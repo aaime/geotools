@@ -285,30 +285,30 @@ class STRTreeGranuleCatalog extends GranuleCatalog {
 
 	}
 
-	public void dispose() {
-		final Lock l=rwLock.writeLock();
-		try{
-			l.lock();	        
-			 
-			// original index 
-			if(wrappedCatalogue!=null)
-			    try{
-			        wrappedCatalogue.dispose();
-			    }catch (Exception e) {
-                                if(LOGGER.isLoggable(Level.FINE))
-                                    LOGGER.log(Level.FINE,e.getLocalizedMessage(),e);
-                            }
-//	
-			
-		}finally{
-//			wrappedCatalogue=null;
-			index= null;
-			l.unlock();
-		
-		}
-		
-		
-	}
+    public void dispose() {
+        final Lock l = rwLock.writeLock();
+        try {
+            l.lock();
+
+            // original index
+            if (wrappedCatalogue != null) {
+                try {
+                    wrappedCatalogue.dispose();
+                } catch (Exception e) {
+                    if (LOGGER.isLoggable(Level.FINE))
+                        LOGGER.log(Level.FINE, e.getLocalizedMessage(), e);
+                }
+            }
+            if(footprintProvider != null) {
+                footprintProvider.dispose();
+            }
+        } finally {
+            index = null;
+            footprintProvider = null;
+            l.unlock();
+
+        }
+    }
 
 	@SuppressWarnings("unchecked")
 	public SimpleFeatureCollection getGranules(Query q) throws IOException {

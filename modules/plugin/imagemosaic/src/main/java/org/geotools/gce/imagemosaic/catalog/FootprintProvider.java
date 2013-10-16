@@ -25,5 +25,19 @@ import com.vividsolutions.jts.geom.Geometry;
 
 public interface FootprintProvider {
 
+    /**
+     * Retrieves the footprint from the current granule represenative feature (as it comes from
+     * the mosaic index)
+     * 
+     * @param feature
+     * @return
+     * @throws IOException
+     */
     Geometry getFootprint(SimpleFeature feature) throws IOException;
+    
+    /**
+     * Close up the provider (in case it holds onto persistent resources such as files or
+     * database connections)
+     */
+    void dispose();
 }

@@ -109,7 +109,10 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
     @Override
     public void dispose() {
         adaptee.dispose();
-        
+        if(footprintProvider != null) {
+            footprintProvider.dispose();
+            footprintProvider = null;
+        }
     }
 
     @Override

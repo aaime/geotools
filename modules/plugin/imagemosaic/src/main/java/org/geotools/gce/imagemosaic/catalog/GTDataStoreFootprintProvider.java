@@ -35,9 +35,11 @@ class GTDataStoreFootprintProvider implements FootprintProvider {
 
     private Filter filter;
 
+    private DataStore store;
+
     public GTDataStoreFootprintProvider(Map<String, Serializable> params, String typeName,
             Filter filter) throws IOException {
-        DataStore store = DataStoreFinder.getDataStore(params);
+        store = DataStoreFinder.getDataStore(params);
         if (store == null) {
             throw new IOException("Coould not create footprint data store from params: " + params);
         }
@@ -110,5 +112,10 @@ class GTDataStoreFootprintProvider implements FootprintProvider {
 
             return super.visit(expression, extraData);
         }
+    }
+
+    @Override
+    public void dispose() {
+        store.dispose();
     }
 }

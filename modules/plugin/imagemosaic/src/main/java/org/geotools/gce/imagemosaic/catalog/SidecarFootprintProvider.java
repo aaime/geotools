@@ -115,6 +115,11 @@ public class SidecarFootprintProvider implements FootprintProvider {
         return path;
     }
 
+    @Override
+    public void dispose() {
+        // nothing to do, in this providers we don't keep files open
+    }
+
     /**
      * Helper that loads a sidecar footprint file in a certain format
      */
@@ -210,6 +215,7 @@ public class SidecarFootprintProvider implements FootprintProvider {
                     if (fi != null) {
                         fi.close();
                     }
+                    ds.dispose();
                 }
             }
 

@@ -277,13 +277,19 @@ class GTDataStoreGranuleCatalog extends GranuleCatalog {
         try {
             l.lock();
             try {
-                if (tileIndexStore != null)
+                if (tileIndexStore != null) {
                     tileIndexStore.dispose();
+                }
+                if(footprintProvider != null) {
+                    footprintProvider.dispose();
+                }
             } catch (Throwable e) {
-                if (LOGGER.isLoggable(Level.FINE))
+                if (LOGGER.isLoggable(Level.FINE)) {
                     LOGGER.log(Level.FINE, e.getLocalizedMessage(), e);
+                }
             } finally {
                 tileIndexStore = null;
+                footprintProvider = null;
             }
 
         } finally {

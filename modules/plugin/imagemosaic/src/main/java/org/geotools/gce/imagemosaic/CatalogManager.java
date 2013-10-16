@@ -50,6 +50,8 @@ import org.geotools.feature.collection.AbstractFeatureVisitor;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.gce.imagemosaic.Utils.Prop;
 import org.geotools.gce.imagemosaic.catalog.CatalogConfigurationBean;
+import org.geotools.gce.imagemosaic.catalog.FootprintProvider;
+import org.geotools.gce.imagemosaic.catalog.FootprintProviderFactory;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalog;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalogFactory;
 import org.geotools.gce.imagemosaic.catalog.index.Indexer;
@@ -123,6 +125,8 @@ public class CatalogManager {
             params.put(ShapefileDataStoreFactory.DBFTIMEZONE.key, TimeZone.getTimeZone("UTC"));
             params.put(Utils.Prop.LOCATION_ATTRIBUTE, runConfiguration.getParameter(Utils.Prop.LOCATION_ATTRIBUTE));
             catalog = GranuleCatalogFactory.createGranuleCatalog(params, false, true, Utils.SHAPE_SPI,runConfiguration.getHints());
+            FootprintProvider footprints = FootprintProviderFactory.createFootprintProvider(parent);
+            catalog.setFootprintProvider(footprints);
         }
 
         return catalog;
@@ -161,6 +165,8 @@ public class CatalogManager {
             params.put("ParentLocation", DataUtilities.fileToURL(parent).toExternalForm());
 
             catalog = GranuleCatalogFactory.createGranuleCatalog(params, false, create, spi,hints);
+            FootprintProvider footprints = FootprintProviderFactory.createFootprintProvider(parent);
+            catalog.setFootprintProvider(footprints);
         } catch (Exception e) {
             final IOException ioe = new IOException();
             throw (IOException) ioe.initCause(e);
@@ -559,7 +565,12 @@ public class CatalogManager {
             }
         }
         // Create the catalog
-        return GranuleCatalogFactory.createGranuleCatalog(sourceURL, catalogBean, null,hints);
+        GranuleCatalog catalog = GranuleCatalogFactory.createGranuleCatalog(sourceURL, catalogBean, null,hints);
+        File parent = DataUtilities.urlToFile(sourceURL).getParentFile();
+        FootprintProvider footprints = FootprintProviderFactory.createFootprintProvider(parent);
+        catalog.setFootprintProvider(footprints);
+        
+        return catalog;
     }
 
 }

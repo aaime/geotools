@@ -1021,7 +1021,7 @@ class RasterLayerResponse{
 
 	private boolean multithreadingAllowed;
 	
-	private boolean footprintManagement = !Utils.IGNORE_FOOTPRINT;
+	private boolean footprintManagement = true;
 	
 	private int defaultArtifactsFilterThreshold = Integer.MIN_VALUE;
 	

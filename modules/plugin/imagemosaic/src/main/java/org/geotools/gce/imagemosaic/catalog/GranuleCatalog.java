@@ -28,9 +28,12 @@ import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.factory.Hints;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.visitor.FeatureCalc;
+import org.geotools.gce.imagemosaic.GranuleDescriptor;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.geometry.BoundingBox;
+
+import com.vividsolutions.jts.geom.Geometry;
 
 /**
  * 
@@ -38,6 +41,10 @@ import org.opengis.geometry.BoundingBox;
  * @source $URL$
  */
 public abstract class GranuleCatalog {
+
+    protected final Hints hints;
+    
+    protected FootprintProvider footprintProvider;
     
     /**
      * @param hints
@@ -45,8 +52,6 @@ public abstract class GranuleCatalog {
     public GranuleCatalog(Hints hints) {
         this.hints = hints;
     }
-
-    protected final Hints hints;
 
     public void addGranule(final String typeName, final SimpleFeature granule, final Transaction transaction) throws IOException {
             addGranules(typeName, Collections.singleton(granule),transaction);
@@ -104,5 +109,21 @@ public abstract class GranuleCatalog {
         }
     
         return clone;
+    }
+
+    public void setFootprintProvider(FootprintProvider footprintProvider) {
+        this.footprintProvider = footprintProvider;
+    }
+    
+    protected Geometry getGranuleFootprint(SimpleFeature sf) {
+        if(footprintProvider != null) {
+            try {
+                Geometry footprint = footprintProvider.getFootprint(sf);
+                return footprint;
+            } catch(IOException e) {
+                throw new RuntimeException("Failed to load the footprint for granule: " + sf, e);
+            }
+        }
+        return null;
     }
 }

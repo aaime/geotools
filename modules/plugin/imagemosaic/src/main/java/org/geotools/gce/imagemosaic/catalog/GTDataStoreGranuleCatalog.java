@@ -400,6 +400,7 @@ class GTDataStoreGranuleCatalog extends GranuleCatalog {
                         final SimpleFeature sf = (SimpleFeature) feature;
                         final GranuleDescriptor granule = new GranuleDescriptor(sf,
                                 suggestedRasterSPI, pathType, locationAttribute, parentLocation,
+                                getGranuleFootprint(sf),
                                 heterogeneous, q.getHints());
 
                         visitor.visit(granule, null);

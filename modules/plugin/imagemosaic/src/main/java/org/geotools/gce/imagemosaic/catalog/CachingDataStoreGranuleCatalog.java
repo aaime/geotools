@@ -160,6 +160,7 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
                                             adaptee.pathType,
                                             adaptee.locationAttribute,
                                             adaptee.parentLocation,
+                                            getGranuleFootprint(sf),
                                             adaptee.heterogeneous, 
                                             adaptee.hints); // retain hints since this may contain a reader or anything
                             descriptorsCache.put(featureId, granule);

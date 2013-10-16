@@ -963,7 +963,7 @@ public class Utils {
 	 */
 	static final Color TRANSPARENT = new Color(0,0,0,0);
         
-	final static Boolean IGNORE_FOOTPRINT = Boolean.getBoolean("org.geotools.footprint.ignore");
+	// final static Boolean IGNORE_FOOTPRINT = Boolean.getBoolean("org.geotools.footprint.ignore");
 	
     public static final boolean DEFAULT_FOOTPRINT_MANAGEMENT = true;
 	

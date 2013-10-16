@@ -257,7 +257,7 @@ public class GranuleDescriptor {
 	
 	ROIGeometry granuleROIShape;
         
-        Geometry inclusionGeometry;
+    Geometry inclusionGeometry;
 	
 	URL granuleUrl;
 	
@@ -1093,5 +1093,5 @@ public class GranuleDescriptor {
 	public SimpleFeature getOriginator() {
 		return originator;
 	}
-	
+
 }

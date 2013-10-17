@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import org.apache.commons.io.FileUtils;
 import org.geotools.data.DataUtilities;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.gce.imagemosaic.Utils;
@@ -149,7 +150,9 @@ public class FootprintProviderFactory {
                 } else {
                     filter = ECQL.toFilter("location = granule.location");
                 }
-                return new GTDataStoreFootprintProvider(params, null, filter);
+                String typeName = shapefile.getName();
+                typeName = typeName.substring(0, typeName.lastIndexOf('.'));
+                return new GTDataStoreFootprintProvider(params, typeName, filter);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException(

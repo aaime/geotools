@@ -1,27 +1,48 @@
 package org.geotools.gce.imagemosaic.catalog;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
 import org.geotools.data.DataUtilities;
-import org.geotools.filter.text.cql2.CQLException;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.gce.imagemosaic.Utils;
+import org.geotools.util.Converters;
 import org.geotools.util.logging.Logging;
 import org.opengis.filter.Filter;
 
 public class FootprintProviderFactory {
 
     private final static Logger LOGGER = Logging.getLogger(FootprintProviderFactory.class);
-    
+
     // well known properties
-    private static final String SOURCE_PROPERTY = "footprint_source";
-    private static final String FILTER_PROPERTY = "footprint_filter";
+    public static final String SOURCE_PROPERTY = "footprint_source";
+
+    public static final String FILTER_PROPERTY = "footprint_filter";
+
+    public static final String INSET_PROPERTY = "footprint_inset";
+
+    public static final String INSET_TYPE_PROPERTY = "footprint_inset_type";
+
+    public enum InsetType {
+        full, external;
+        
+        public static List<String> names() {
+            InsetType[] values = values();
+            List<String> names = new ArrayList<String>(values.length);
+
+            for (int i = 0; i < values.length; i++) {
+                names.add(values[i].name());
+            }
+
+            return names;
+        }
+    };
 
     // store types
     private static final String TYPE_SIDECAR = "sidecar";
@@ -39,60 +60,101 @@ public class FootprintProviderFactory {
     public static FootprintProvider createFootprintProvider(File mosaicFolder) {
         File configFile = new File(mosaicFolder, "footprints.properties");
         final Properties properties;
-        if(configFile.exists()) {
+        if (configFile.exists()) {
             properties = Utils.loadPropertiesFromURL(DataUtilities.fileToURL(configFile));
         } else {
             properties = new Properties();
         }
-        
+
         // load the type of config file
         String source = (String) properties.get(SOURCE_PROPERTY);
-        if(source == null) {
+        FootprintProvider provider;
+        if (source == null) {
             // see if we have the default whole mosaic footprint
             File defaultShapefileFootprint = new File(mosaicFolder, "footprints.shp");
-            if(defaultShapefileFootprint.exists()) {
-                return buildShapefileSource(mosaicFolder, defaultShapefileFootprint.getName(), properties);
+            if (defaultShapefileFootprint.exists()) {
+                provider = buildShapefileSource(mosaicFolder, defaultShapefileFootprint.getName(),
+                        properties);
             } else {
-                return new SidecarFootprintProvider(mosaicFolder);
+                provider = new SidecarFootprintProvider(mosaicFolder);
             }
-        } else if(TYPE_SIDECAR.equals(source)) {
-            return new SidecarFootprintProvider(mosaicFolder);
-        } else if(source.toLowerCase().endsWith(".shp")) {
-            return buildShapefileSource(mosaicFolder, source, properties);
+        } else if (TYPE_SIDECAR.equals(source)) {
+            provider = new SidecarFootprintProvider(mosaicFolder);
+        } else if (source.toLowerCase().endsWith(".shp")) {
+            provider = buildShapefileSource(mosaicFolder, source, properties);
         } else {
             throw new IllegalArgumentException("Invalid source type, it should be a reference "
                     + "to a shapefile or 'sidecar', but was '" + source + "' instead");
         }
-            
+
+        // handle inset if necessary
+        double inset = getInset(properties);
+        if (inset > 0) {
+            InsetType insetType = getInsetType(properties);
+            if(insetType == InsetType.external) {
+                provider = new ExternalInsetFootprintProvider(provider, inset);
+            } else {
+                provider = new FullInsetFootprintProvider(provider, inset);
+            }
+        }
+
+        return provider;
     }
 
+    private static InsetType getInsetType(Properties properties) {
+        String insetTypeValue = (String) properties.get(INSET_TYPE_PROPERTY);
+        if (insetTypeValue == null || insetTypeValue.trim().isEmpty()) {
+            return InsetType.external;
+        } else {
+            try {
+                return InsetType.valueOf(insetTypeValue.trim());
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Invalid inset type '" + insetTypeValue
+                        + "', valid values are: " + InsetType.names());
+            }
+        }
+    }
+
+    private static double getInset(Properties properties) {
+        String inset = (String) properties.get(INSET_PROPERTY);
+        if (inset == null) {
+            return 0;
+        }
+        Double converted = Converters.convert(inset, Double.class);
+        if (converted == null) {
+            throw new IllegalArgumentException("Invalid inset value, should be a "
+                    + "floating point number, but instead it is: '" + inset + "'");
+        }
+        return converted;
+    }
 
     private static FootprintProvider buildShapefileSource(File mosaicFolder, String location,
             Properties properties) {
         File shapefile = new File(location);
-        if(!shapefile.isAbsolute()) {
+        if (!shapefile.isAbsolute()) {
             shapefile = new File(mosaicFolder, location);
         }
-        
+
         try {
-            if(!shapefile.exists()) {
-                throw new IllegalArgumentException("Tried to load the footprints from " 
+            if (!shapefile.exists()) {
+                throw new IllegalArgumentException("Tried to load the footprints from "
                         + shapefile.getCanonicalPath() + " but the file was not found");
             } else {
                 final Map<String, Serializable> params = new HashMap<String, Serializable>();
                 params.put("url", DataUtilities.fileToURL(shapefile));
                 String cql = (String) properties.get(FILTER_PROPERTY);
                 Filter filter = null;
-                if(cql != null) {
+                if (cql != null) {
                     filter = ECQL.toFilter(cql);
                 } else {
                     filter = ECQL.toFilter("location = granule.location");
                 }
                 return new GTDataStoreFootprintProvider(params, null, filter);
             }
-        } catch(Exception e) {
-            throw new IllegalArgumentException("Failed to create a shapefile based footprint provider", e);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(
+                    "Failed to create a shapefile based footprint provider", e);
         }
     }
-    
+
 }

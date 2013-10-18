@@ -138,8 +138,8 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
             "AllowMultithreading", Boolean.class, new Boolean[]{Boolean.TRUE,Boolean.FALSE}, Boolean.FALSE);
     
     /** Control the footprint management.*/
-    public static final ParameterDescriptor<Boolean> HANDLE_FOOTPRINT = new DefaultParameterDescriptor<Boolean>(
-            "HandleFootprint", Boolean.class, new Boolean[]{Boolean.TRUE,Boolean.FALSE}, Boolean.FALSE);
+    public static final ParameterDescriptor<String> FOOTPRINT_BEHAVIOR = new DefaultParameterDescriptor<String>(
+            "FootprintBehavior", String.class, FootprintBehavior.valuesAsStrings(), FootprintBehavior.None.name());
     
     /** Control whether to add the ROI in the output mosaic. */
     public static final ParameterDescriptor<Boolean> SET_ROI_PROPERTY = new DefaultParameterDescriptor<Boolean>(
@@ -204,7 +204,7 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
                 ACCURATE_RESOLUTION,
                 SORT_BY,
                 MERGE_BEHAVIOR,
-                HANDLE_FOOTPRINT
+                FOOTPRINT_BEHAVIOR
         }));
 
         // reading parameters

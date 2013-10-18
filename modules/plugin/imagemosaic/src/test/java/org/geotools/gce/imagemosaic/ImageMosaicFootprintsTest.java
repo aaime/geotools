@@ -213,9 +213,9 @@ public class ImageMosaicFootprintsTest {
         final ImageMosaicReader reader = TestUtils.getReader(testMosaicUrl, format);
         // activate footprint management
         GeneralParameterValue[] params = new GeneralParameterValue[1];
-        ParameterValue<Boolean> footprintManagement = ImageMosaicFormat.HANDLE_FOOTPRINT
+        ParameterValue<String> footprintManagement = ImageMosaicFormat.FOOTPRINT_BEHAVIOR
                 .createValue();
-        footprintManagement.setValue(true);
+        footprintManagement.setValue(FootprintBehavior.Cut.name());
         params[0] = footprintManagement;
         GridCoverage2D coverage = reader.read(params);
         assertNotNull(coverage);

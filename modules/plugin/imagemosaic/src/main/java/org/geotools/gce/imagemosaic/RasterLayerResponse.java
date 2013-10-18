@@ -309,7 +309,7 @@ class RasterLayerResponse{
             this.granuleFilter = granuleFilter;
             this.dryRun = dryRun;
             inputTransparentColor = request.getInputTransparentColor();
-            doInputTransparency = inputTransparentColor != null&&!footprintManagement;
+            doInputTransparency = inputTransparentColor != null && !footprintBehavior.handleFootprints();
         }
 
         /** The number of collected granules.**/
@@ -552,7 +552,7 @@ class RasterLayerResponse{
             Geometry mask = JTS.toGeometry(new Envelope(bounds.getMinX(), bounds.getMaxX(), bounds.getMinY(), bounds.getMaxY()));
             ROI imageROI = new ROIGeometry(mask); // TODO can we leave this to null?                   
             // we need to add its roi in order to avoid problems with the mosaic overlapping
-            if (footprintManagement){                         
+            if (footprintBehavior.handleFootprints()){                         
                 final ROI footprint = result.getFootprint();
                 if (footprint != null) {
                     if (imageROI.contains(footprint.getBounds2D().getBounds())) {
@@ -769,12 +769,14 @@ class RasterLayerResponse{
                 assert overallROI!=null;
                 rop.setProperty("ROI", overallROI);
             }
+            
+            final RenderedImage postProcessed = footprintBehavior.postProcessMosaic(mosaic, overallROI);
     
             // prepare for next step
             if(hasAlpha || doInputTransparency){
-                return new MosaicElement(new ImageWorker(mosaic).retainLastBand().getPlanarImage(), overallROI, mosaic);
+                return new MosaicElement(new ImageWorker(postProcessed).retainLastBand().getPlanarImage(), overallROI, postProcessed);
              } else {
-                return new MosaicElement(null, overallROI, mosaic);
+                return new MosaicElement(null, overallROI, postProcessed);
              }            
             
         }
@@ -915,7 +917,7 @@ class RasterLayerResponse{
             // create a granuleDescriptor loader
             final Geometry bb = JTS.toGeometry((BoundingBox) mosaicBBox);
             final Geometry inclusionGeometry = granuleDescriptor.inclusionGeometry;
-            if (!footprintManagement || inclusionGeometry == null || footprintManagement && inclusionGeometry.intersects(bb)) {
+            if (!footprintBehavior.handleFootprints() || inclusionGeometry == null || footprintBehavior.handleFootprints() && inclusionGeometry.intersects(bb)) {
 
                 // find the right filter for this granule
                 boolean found = false;
@@ -1021,7 +1023,7 @@ class RasterLayerResponse{
 
 	private boolean multithreadingAllowed;
 	
-	private boolean footprintManagement = true;
+	private FootprintBehavior footprintBehavior = FootprintBehavior.None;
 	
 	private int defaultArtifactsFilterThreshold = Integer.MIN_VALUE;
 	
@@ -1068,7 +1070,7 @@ class RasterLayerResponse{
 		finalTransparentColor=request.getOutputTransparentColor();
 		// are we doing multithreading?
 		multithreadingAllowed= request.isMultithreadingAllowed();
-		footprintManagement = request.isFootprintManagement();
+		footprintBehavior = request.getFootprintBehavior();
 		setRoiProperty = request.isSetRoiProperty();
 		backgroundValues = request.getBackgroundValues();
 		interpolation = request.getInterpolation();

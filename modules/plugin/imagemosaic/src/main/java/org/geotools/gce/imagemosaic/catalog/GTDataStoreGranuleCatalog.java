@@ -65,6 +65,8 @@ import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.identity.FeatureId;
 import org.opengis.geometry.BoundingBox;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 /**
  * This class simply builds an SRTREE spatial index in memory for fast indexed geometric queries.
  * 
@@ -404,12 +406,15 @@ class GTDataStoreGranuleCatalog extends GranuleCatalog {
                     if (feature instanceof SimpleFeature) {
                         // get the feature
                         final SimpleFeature sf = (SimpleFeature) feature;
-                        final GranuleDescriptor granule = new GranuleDescriptor(sf,
-                                suggestedRasterSPI, pathType, locationAttribute, parentLocation,
-                                getGranuleFootprint(sf),
-                                heterogeneous, q.getHints());
-
-                        visitor.visit(granule, null);
+                        Geometry footprint = getGranuleFootprint(sf);
+                        if(footprint == null || !footprint.isEmpty()) {
+                            final GranuleDescriptor granule = new GranuleDescriptor(sf,
+                                    suggestedRasterSPI, pathType, locationAttribute, parentLocation,
+                                    footprint,
+                                    heterogeneous, q.getHints());
+    
+                            visitor.visit(granule, null);
+                        }
 
                         // check if something bad occurred
                         if (listener.isCanceled() || listener.hasExceptions()) {

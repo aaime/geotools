@@ -37,6 +37,8 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.geometry.BoundingBox;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 /**
  * This class simply builds an SRTREE spatial index in memory for fast indexed
  * geometric queries.
@@ -148,28 +150,33 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
                 if (feature instanceof SimpleFeature) {
                     // get the feature
                     final SimpleFeature sf = (SimpleFeature) feature;
-                    final GranuleDescriptor granule;
+                    GranuleDescriptor granule = null;
 
                     // caching by granule's location
 //                    synchronized (descriptorsCache) {
                         String featureId = sf.getID();
                         if(descriptorsCache.containsKey(featureId)){
-                            granule=descriptorsCache.get(featureId);
+                            granule = descriptorsCache.get(featureId);
                         } else{
                             // create the granule descriptor
-                            granule= new GranuleDescriptor(
-                                            sf,
-                                            adaptee.suggestedRasterSPI,
-                                            adaptee.pathType,
-                                            adaptee.locationAttribute,
-                                            adaptee.parentLocation,
-                                            getGranuleFootprint(sf),
-                                            adaptee.heterogeneous, 
-                                            adaptee.hints); // retain hints since this may contain a reader or anything
-                            descriptorsCache.put(featureId, granule);
+                            Geometry footprint = getGranuleFootprint(sf);
+                            if(footprint == null || !footprint.isEmpty()) {
+                                granule = new GranuleDescriptor(
+                                                sf,
+                                                adaptee.suggestedRasterSPI,
+                                                adaptee.pathType,
+                                                adaptee.locationAttribute,
+                                                adaptee.parentLocation,
+                                                footprint,
+                                                adaptee.heterogeneous, 
+                                                adaptee.hints); // retain hints since this may contain a reader or anything
+                                descriptorsCache.put(featureId, granule);
+                            }
                         }
 
-                        visitor.visit(granule, null);
+                        if(granule != null) {
+                            visitor.visit(granule, null);
+                        }
     
                         // check if something bad occurred
                         if (listener.isCanceled() || listener.hasExceptions()) {

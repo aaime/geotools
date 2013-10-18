@@ -24,7 +24,6 @@ import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.feature.visitor.UniqueVisitor;
 import org.geotools.gce.imagemosaic.catalog.FootprintProviderFactory;
 import org.geotools.geometry.DirectPosition2D;
-import org.geotools.renderedimage.viewer.RenderedImageBrowser;
 import org.junit.Before;
 import org.junit.Test;
 import org.opengis.feature.Feature;
@@ -232,8 +231,8 @@ public class ImageMosaicFootprintsTest {
         saveFootprintProperties(p);
 
          GridCoverage2D coverage = readCoverage();
-        // RenderedImageBrowser.showChain(coverage.getRenderedImage());
-        // System.in.read();
+//         RenderedImageBrowser.showChain(coverage.getRenderedImage());
+//         System.in.read();
         
         // check the footprints have been applied by pocking the output image
         byte[] pixel = new byte[3];
@@ -265,8 +264,8 @@ public class ImageMosaicFootprintsTest {
         saveFootprintProperties(p);
 
         GridCoverage2D coverage = readCoverage();
-        // RenderedImageBrowser.showChain(coverage.getRenderedImage());
-        // System.in.read();
+//         RenderedImageBrowser.showChain(coverage.getRenderedImage());
+//         System.in.read();
         
         // check the footprints have been applied by pocking the output image
         byte[] pixel = new byte[3];

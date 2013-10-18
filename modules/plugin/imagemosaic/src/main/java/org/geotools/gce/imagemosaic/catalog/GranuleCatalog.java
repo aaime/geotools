@@ -115,6 +115,14 @@ public abstract class GranuleCatalog {
         this.footprintProvider = footprintProvider;
     }
     
+    /**
+     * Returns the footprint for the given granule. Mind, when applying insets we might
+     * have the case of the geometry being empty (negative buffer eroded it fully), in that
+     * case the granule must not be loaded
+     * 
+     * @param sf
+     * @return
+     */
     protected Geometry getGranuleFootprint(SimpleFeature sf) {
         if(footprintProvider != null) {
             try {

@@ -47,6 +47,7 @@ import javax.media.jai.ImageLayout;
 import javax.media.jai.Interpolation;
 import javax.media.jai.InterpolationNearest;
 import javax.media.jai.JAI;
+import javax.media.jai.PlanarImage;
 import javax.media.jai.ROI;
 import javax.media.jai.ROIShape;
 import javax.media.jai.TileCache;
@@ -246,7 +247,13 @@ public class GranuleDescriptor {
         }
     
         GranuleLoadingResult(RenderedImage loadedImage, ROI footprint, URL granuleUrl, final boolean doFiltering) {
-            this.loadedImage = loadedImage;
+            if (footprint != null) {
+                PlanarImage pi = PlanarImage.wrapRenderedImage(loadedImage);
+                pi.setProperty("ROI", footprint);
+                this.loadedImage = pi;
+            } else {
+                this.loadedImage = loadedImage;
+            }
             this.footprint = footprint;
             this.granuleUrl = granuleUrl;
             this.doFiltering = doFiltering;
@@ -282,6 +289,9 @@ public class GranuleDescriptor {
 			final boolean heterogeneousGranules, final boolean handleArtifactsFiltering, final Hints hints) {
 		this.granuleBBOX = ReferencedEnvelope.reference(granuleBBOX);
 		this.granuleUrl = granuleUrl;
+		if(inclusionGeometry != null && inclusionGeometry.isEmpty()) {
+		    throw new IllegalArgumentException("Inclusion geometry can be null or a polygon/multipolygon, but cannot be empty");
+		}
 		this.inclusionGeometry = inclusionGeometry;
 		this.handleArtifactsFiltering = handleArtifactsFiltering;
     		filterMe = handleArtifactsFiltering && inclusionGeometry != null;
@@ -643,6 +653,16 @@ public class GranuleDescriptor {
                     }
                     return null;
                 }
+                
+        // check if the requested bbox intersects or overlaps the requested area 
+        if(inclusionGeometry != null && !JTS.toGeometry(cropBBox).intersects(inclusionGeometry)) {
+            if (LOGGER.isLoggable(java.util.logging.Level.FINE)) {
+                LOGGER.fine(new StringBuilder("Got empty intersection for granule ").append(this.toString())
+                        .append(" with request ").append(request.toString()).append(" Resulting in no granule loaded: Empty result").toString());
+            }
+            return null;
+        }
+                
 
 		ImageInputStream inStream=null;
 		ImageReader reader=null;
@@ -749,7 +769,7 @@ public class GranuleDescriptor {
 			
 			// set the source region
 			readParameters.setSourceRegion(sourceArea);
-			final RenderedImage raster;
+			RenderedImage raster;
 			try {
 				// read
 				raster= request.getReadType().read(readParameters,imageIndex, granuleUrl, selectedlevel.rasterDimensions, reader, hints,false);
@@ -819,17 +839,21 @@ public class GranuleDescriptor {
 				return null;
 			}
 			ROI granuleLoadingShape = null;
-			if (granuleROIShape != null){
-			    
-                            final Point2D translate = mosaicWorldToGrid.transform(new DirectPosition2D(x,y), (Point2D) null);
-                            AffineTransform tx2 = new AffineTransform();
-                            tx2.preConcatenate(AffineTransform.getScaleInstance(((AffineTransform)mosaicWorldToGrid).getScaleX(), 
-                                    -((AffineTransform)mosaicWorldToGrid).getScaleY()));
-                            tx2.preConcatenate(AffineTransform.getScaleInstance(((AffineTransform)baseGridToWorld).getScaleX(), 
-                                    -((AffineTransform)baseGridToWorld).getScaleY()));
-                            tx2.preConcatenate(AffineTransform.getTranslateInstance(translate.getX(),translate.getY()));
-                            granuleLoadingShape = (ROI) granuleROIShape.transform(tx2);
-                        }
+            if (granuleROIShape != null) {
+
+                final Point2D translate = mosaicWorldToGrid.transform(new DirectPosition2D(x, y),
+                        (Point2D) null);
+                AffineTransform tx2 = new AffineTransform();
+                tx2.preConcatenate(AffineTransform.getScaleInstance(
+                        ((AffineTransform) mosaicWorldToGrid).getScaleX(),
+                        -((AffineTransform) mosaicWorldToGrid).getScaleY()));
+                tx2.preConcatenate(AffineTransform.getScaleInstance(
+                        ((AffineTransform) baseGridToWorld).getScaleX(),
+                        -((AffineTransform) baseGridToWorld).getScaleY()));
+                tx2.preConcatenate(AffineTransform.getTranslateInstance(translate.getX(),
+                        translate.getY()));
+                granuleLoadingShape = (ROI) granuleROIShape.transform(tx2);
+            }
 			// apply the affine transform  conserving indexed color model
 			final RenderingHints localHints = new RenderingHints(JAI.KEY_REPLACE_INDEX_COLOR_MODEL, interpolation instanceof InterpolationNearest? Boolean.FALSE:Boolean.TRUE);
 			if(XAffineTransform.isIdentity(finalRaster2Model,Utils.AFFINE_IDENTITY_EPS)) {

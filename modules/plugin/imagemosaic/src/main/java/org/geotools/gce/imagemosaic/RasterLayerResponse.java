@@ -970,9 +970,11 @@ class RasterLayerResponse{
                     LOGGER.fine("Using collector with filter:" + collector.granuleFilter.toString());
                 }
                 final MosaicElement preparedMosaic = new Mosaicker(collector.collectGranules(), MergeBehavior.FLAT).createMosaic();
-                mosaicInputs.add(preparedMosaic);
-                if (first == null) {
-                    first = collector;
+                if(preparedMosaic != null) {
+                    mosaicInputs.add(preparedMosaic);
+                    if (first == null) {
+                        first = collector;
+                    }
                 }
             }
             LOGGER.fine("Producing the final mosaic, step 2, final mosaicking"); 

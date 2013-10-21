@@ -22,34 +22,22 @@ import org.opengis.feature.simple.SimpleFeature;
 
 import com.vividsolutions.jts.geom.Geometry;
 
-/**
- * A footprint provider that applies a negative buffer on the geometries loaded by a delegate
- * {@link FootprintProvider}
- * 
- * @author Andrea Aime - GeoSolutions
- *
- */
-public class FullInsetFootprintProvider implements FootprintProvider {
+
+public interface FootprintGeometryProvider {
+
+    /**
+     * Retrieves the footprint from the current granule represenative feature (as it comes from
+     * the mosaic index)
+     * 
+     * @param feature
+     * @return
+     * @throws IOException
+     */
+    Geometry getFootprint(SimpleFeature feature) throws IOException;
     
-    FootprintProvider delegate;
-    double inset;
-    
-    public FullInsetFootprintProvider(FootprintProvider delegate, double inset) {
-        this.delegate = delegate;
-        this.inset = Math.abs(inset);
-    }
-
-    public Geometry getFootprint(SimpleFeature feature) throws IOException {
-        Geometry g = delegate.getFootprint(feature);
-        if(g != null) {
-            g = g.buffer(-inset);
-        }
-        
-        return g;
-    }
-
-    public void dispose() {
-        delegate.dispose();
-    }
-
+    /**
+     * Close up the provider (in case it holds onto persistent resources such as files or
+     * database connections)
+     */
+    void dispose();
 }

@@ -111,9 +111,9 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
     @Override
     public void dispose() {
         adaptee.dispose();
-        if(footprintProvider != null) {
-            footprintProvider.dispose();
-            footprintProvider = null;
+        if(multiScaleROIProvider != null) {
+            multiScaleROIProvider.dispose();
+            multiScaleROIProvider = null;
         }
     }
 
@@ -159,7 +159,7 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
                             granule = descriptorsCache.get(featureId);
                         } else{
                             // create the granule descriptor
-                            Geometry footprint = getGranuleFootprint(sf);
+                            MultiLevelROI footprint = getGranuleFootprint(sf);
                             if(footprint == null || !footprint.isEmpty()) {
                                 granule = new GranuleDescriptor(
                                                 sf,

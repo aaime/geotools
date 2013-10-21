@@ -40,7 +40,7 @@ import com.vividsolutions.jts.io.WKTReader;
  * 
  * @author Andrea Aime - GeoSolutions
  */
-public class SidecarFootprintProvider implements FootprintProvider {
+public class SidecarFootprintProvider implements FootprintGeometryProvider {
 
     static final Logger LOGGER = Logging.getLogger(SidecarFootprintProvider.class);
 

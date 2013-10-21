@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.apache.commons.io.FileUtils;
 import org.geotools.data.DataUtilities;
 import org.geotools.filter.text.ecql.ECQL;
 import org.geotools.gce.imagemosaic.Utils;
@@ -17,9 +16,9 @@ import org.geotools.util.Converters;
 import org.geotools.util.logging.Logging;
 import org.opengis.filter.Filter;
 
-public class FootprintProviderFactory {
+public class MultiLevelROIProviderFactory {
 
-    private final static Logger LOGGER = Logging.getLogger(FootprintProviderFactory.class);
+    private final static Logger LOGGER = Logging.getLogger(MultiLevelROIProviderFactory.class);
 
     // well known properties
     public static final String SOURCE_PROPERTY = "footprint_source";
@@ -30,25 +29,10 @@ public class FootprintProviderFactory {
 
     public static final String INSET_TYPE_PROPERTY = "footprint_inset_type";
 
-    public enum InsetType {
-        full, external;
-        
-        public static List<String> names() {
-            InsetType[] values = values();
-            List<String> names = new ArrayList<String>(values.length);
-
-            for (int i = 0; i < values.length; i++) {
-                names.add(values[i].name());
-            }
-
-            return names;
-        }
-    };
-
     // store types
     private static final String TYPE_SIDECAR = "sidecar";
 
-    private FootprintProviderFactory() {
+    private MultiLevelROIProviderFactory() {
     }
 
     /**
@@ -58,7 +42,7 @@ public class FootprintProviderFactory {
      * @return
      * @throws Exception
      */
-    public static FootprintProvider createFootprintProvider(File mosaicFolder) {
+    public static MultiLevelROIProvider createFootprintProvider(File mosaicFolder) {
         File configFile = new File(mosaicFolder, "footprints.properties");
         final Properties properties;
         if (configFile.exists()) {
@@ -69,7 +53,7 @@ public class FootprintProviderFactory {
 
         // load the type of config file
         String source = (String) properties.get(SOURCE_PROPERTY);
-        FootprintProvider provider;
+        FootprintGeometryProvider provider;
         if (source == null) {
             // see if we have the default whole mosaic footprint
             File defaultShapefileFootprint = new File(mosaicFolder, "footprints.shp");
@@ -90,28 +74,20 @@ public class FootprintProviderFactory {
 
         // handle inset if necessary
         double inset = getInset(properties);
-        if (inset > 0) {
-            InsetType insetType = getInsetType(properties);
-            if(insetType == InsetType.external) {
-                provider = new ExternalInsetFootprintProvider(provider, inset);
-            } else {
-                provider = new FullInsetFootprintProvider(provider, inset);
-            }
-        }
-
-        return provider;
+        FootprintInsetPolicy insetPolicy = getInsetPolicy(properties);
+        return new MultiLevelROIProvider(provider, inset, insetPolicy);
     }
 
-    private static InsetType getInsetType(Properties properties) {
+    private static FootprintInsetPolicy getInsetPolicy(Properties properties) {
         String insetTypeValue = (String) properties.get(INSET_TYPE_PROPERTY);
         if (insetTypeValue == null || insetTypeValue.trim().isEmpty()) {
-            return InsetType.external;
+            return FootprintInsetPolicy.border;
         } else {
             try {
-                return InsetType.valueOf(insetTypeValue.trim());
+                return FootprintInsetPolicy.valueOf(insetTypeValue.trim());
             } catch (Exception e) {
                 throw new IllegalArgumentException("Invalid inset type '" + insetTypeValue
-                        + "', valid values are: " + InsetType.names());
+                        + "', valid values are: " + FootprintInsetPolicy.names());
             }
         }
     }
@@ -129,7 +105,7 @@ public class FootprintProviderFactory {
         return converted;
     }
 
-    private static FootprintProvider buildShapefileSource(File mosaicFolder, String location,
+    private static FootprintGeometryProvider buildShapefileSource(File mosaicFolder, String location,
             Properties properties) {
         File shapefile = new File(location);
         if (!shapefile.isAbsolute()) {

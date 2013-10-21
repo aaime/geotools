@@ -916,7 +916,7 @@ class RasterLayerResponse{
             //
             // create a granuleDescriptor loader
             final Geometry bb = JTS.toGeometry((BoundingBox) mosaicBBox);
-            final Geometry inclusionGeometry = granuleDescriptor.inclusionGeometry;
+            final Geometry inclusionGeometry = granuleDescriptor.getFootprint();
             if (!footprintBehavior.handleFootprints() || inclusionGeometry == null || footprintBehavior.handleFootprints() && inclusionGeometry.intersects(bb)) {
 
                 // find the right filter for this granule
@@ -1565,11 +1565,16 @@ class RasterLayerResponse{
             } 
             il.setSampleModel(rasterManager.defaultCM.createCompatibleSampleModel(tileSize.width, tileSize.height));
             il.setTileGridXOffset(0).setTileGridYOffset(0).setTileWidth((int)tileSize.getWidth()).setTileHeight((int)tileSize.getHeight());
-            return FormatDescriptor.create(
+            finalImage = FormatDescriptor.create(
                     finalImage,
                     Integer.valueOf(il.getSampleModel(null).getDataType()),
                     new RenderingHints(JAI.KEY_IMAGE_LAYOUT,il));
         }
+        
+        if(footprintBehavior != null) {
+            finalImage = footprintBehavior.postProcessBlankResponse(finalImage);
+        }
+        
         return finalImage;
     }
 

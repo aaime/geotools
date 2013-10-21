@@ -282,8 +282,8 @@ class GTDataStoreGranuleCatalog extends GranuleCatalog {
                 if (tileIndexStore != null) {
                     tileIndexStore.dispose();
                 }
-                if(footprintProvider != null) {
-                    footprintProvider.dispose();
+                if(multiScaleROIProvider != null) {
+                    multiScaleROIProvider.dispose();
                 }
             } catch (Throwable e) {
                 if (LOGGER.isLoggable(Level.FINE)) {
@@ -291,7 +291,7 @@ class GTDataStoreGranuleCatalog extends GranuleCatalog {
                 }
             } finally {
                 tileIndexStore = null;
-                footprintProvider = null;
+                multiScaleROIProvider = null;
             }
 
         } finally {
@@ -406,7 +406,7 @@ class GTDataStoreGranuleCatalog extends GranuleCatalog {
                     if (feature instanceof SimpleFeature) {
                         // get the feature
                         final SimpleFeature sf = (SimpleFeature) feature;
-                        Geometry footprint = getGranuleFootprint(sf);
+                        MultiLevelROI footprint = getGranuleFootprint(sf);
                         if(footprint == null || !footprint.isEmpty()) {
                             final GranuleDescriptor granule = new GranuleDescriptor(sf,
                                     suggestedRasterSPI, pathType, locationAttribute, parentLocation,

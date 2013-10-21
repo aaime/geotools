@@ -28,24 +28,21 @@ import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.factory.Hints;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.visitor.FeatureCalc;
-import org.geotools.gce.imagemosaic.GranuleDescriptor;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.geometry.BoundingBox;
 
-import com.vividsolutions.jts.geom.Geometry;
-
 /**
  * 
- *
+ * 
  * @source $URL$
  */
 public abstract class GranuleCatalog {
 
     protected final Hints hints;
-    
-    protected FootprintProvider footprintProvider;
-    
+
+    protected MultiLevelROIProvider multiScaleROIProvider;
+
     /**
      * @param hints
      */
@@ -53,38 +50,42 @@ public abstract class GranuleCatalog {
         this.hints = hints;
     }
 
-    public void addGranule(final String typeName, final SimpleFeature granule, final Transaction transaction) throws IOException {
-            addGranules(typeName, Collections.singleton(granule),transaction);
+    public void addGranule(final String typeName, final SimpleFeature granule,
+            final Transaction transaction) throws IOException {
+        addGranules(typeName, Collections.singleton(granule), transaction);
     }
 
-    public abstract void addGranules(final String typeName, Collection<SimpleFeature> granules, Transaction transaction) throws IOException;
-    
-    public abstract void computeAggregateFunction(Query q, FeatureCalc function) throws IOException ;
+    public abstract void addGranules(final String typeName, Collection<SimpleFeature> granules,
+            Transaction transaction) throws IOException;
 
-    public abstract void createType(String namespace, String typeName, String typeSpec) throws IOException, SchemaException ;
+    public abstract void computeAggregateFunction(Query q, FeatureCalc function) throws IOException;
+
+    public abstract void createType(String namespace, String typeName, String typeSpec)
+            throws IOException, SchemaException;
 
     public abstract void createType(SimpleFeatureType featureType) throws IOException;
 
-    public abstract void createType(String identification, String typeSpec) throws SchemaException, IOException ;
+    public abstract void createType(String identification, String typeSpec) throws SchemaException,
+            IOException;
 
-    public abstract void dispose() ;
+    public abstract void dispose();
 
-    public abstract BoundingBox getBounds(final String typeName) ;
+    public abstract BoundingBox getBounds(final String typeName);
 
     public abstract SimpleFeatureCollection getGranules(Query q) throws IOException;
-    
+
     public abstract int getGranulesCount(Query q) throws IOException;
-    
-    public abstract  void getGranuleDescriptors(Query q, GranuleCatalogVisitor visitor) throws IOException;
-    
+
+    public abstract void getGranuleDescriptors(Query q, GranuleCatalogVisitor visitor)
+            throws IOException;
+
     public abstract QueryCapabilities getQueryCapabilities(final String typeName);
-    
-    public abstract SimpleFeatureType getType(final String typeName) throws IOException ;
+
+    public abstract SimpleFeatureType getType(final String typeName) throws IOException;
 
     public abstract int removeGranules(Query query);
-    
-    public abstract String[] getTypeNames() ;
 
+    public abstract String[] getTypeNames();
 
     /**
      * Merges the wrapper hints with the query ones, making sure not to overwrite the query ones
@@ -93,7 +94,7 @@ public abstract class GranuleCatalog {
      * @return
      */
     protected Query mergeHints(Query q) {
-        if(this.hints==null||this.hints.isEmpty()){
+        if (this.hints == null || this.hints.isEmpty()) {
             return q;
         }
         Query clone = new Query(q);
@@ -107,28 +108,28 @@ public abstract class GranuleCatalog {
                 }
             }
         }
-    
+
         return clone;
     }
 
-    public void setFootprintProvider(FootprintProvider footprintProvider) {
-        this.footprintProvider = footprintProvider;
+    public void setMultiScaleROIProvider(MultiLevelROIProvider footprintProvider) {
+        this.multiScaleROIProvider = footprintProvider;
     }
-    
+
     /**
-     * Returns the footprint for the given granule. Mind, when applying insets we might
-     * have the case of the geometry being empty (negative buffer eroded it fully), in that
-     * case the granule must not be loaded
+     * Returns the footprint for the given granule. Mind, when applying insets we might have the
+     * case of the geometry being empty (negative buffer eroded it fully), in that case the granule
+     * must not be loaded
      * 
      * @param sf
      * @return
      */
-    protected Geometry getGranuleFootprint(SimpleFeature sf) {
-        if(footprintProvider != null) {
+    protected MultiLevelROI getGranuleFootprint(SimpleFeature sf) {
+        if (multiScaleROIProvider != null) {
             try {
-                Geometry footprint = footprintProvider.getFootprint(sf);
-                return footprint;
-            } catch(IOException e) {
+                MultiLevelROI roi = multiScaleROIProvider.getMultiScaleROI(sf);
+                return roi;
+            } catch (IOException e) {
                 throw new RuntimeException("Failed to load the footprint for granule: " + sf, e);
             }
         }

@@ -21,13 +21,13 @@ import org.opengis.filter.expression.PropertyName;
 import com.vividsolutions.jts.geom.Geometry;
 
 /**
- * A {@link FootprintProvider} matching the current feature with the geometry of one feature in a GT
+ * A {@link FootprintGeometryProvider} matching the current feature with the geometry of one feature in a GT
  * data store. The filter must use property names like "granule/attname" to refer to the current
  * granule attributes, e.g. "granule/location"
  * 
  * @author Andrea Aime - GeoSolutions
  */
-class GTDataStoreFootprintProvider implements FootprintProvider {
+class GTDataStoreFootprintProvider implements FootprintGeometryProvider {
 
     static final Logger LOGGER = Logging.getLogger(GTDataStoreFootprintProvider.class);
 

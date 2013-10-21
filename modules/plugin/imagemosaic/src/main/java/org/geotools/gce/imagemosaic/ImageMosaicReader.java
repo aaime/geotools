@@ -61,8 +61,9 @@ import org.geotools.gce.imagemosaic.ImageMosaicWalker.FileProcessingEvent;
 import org.geotools.gce.imagemosaic.ImageMosaicWalker.ProcessingEvent;
 import org.geotools.gce.imagemosaic.Utils.Prop;
 import org.geotools.gce.imagemosaic.catalog.CatalogConfigurationBean;
-import org.geotools.gce.imagemosaic.catalog.FootprintProvider;
-import org.geotools.gce.imagemosaic.catalog.FootprintProviderFactory;
+import org.geotools.gce.imagemosaic.catalog.FootprintGeometryProvider;
+import org.geotools.gce.imagemosaic.catalog.MultiLevelROIProvider;
+import org.geotools.gce.imagemosaic.catalog.MultiLevelROIProviderFactory;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalog;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalogFactory;
 import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilderConfiguration;
@@ -330,8 +331,8 @@ public class ImageMosaicReader extends AbstractGridCoverage2DReader implements S
 //                params.put(Utils.SCAN_FOR_TYPENAMES, typeNamesProps.getProperty(Utils.SCAN_FOR_TYPENAMES));
                 
                 catalog = GranuleCatalogFactory.createGranuleCatalog(sourceURL, beans.get(0).getCatalogConfigurationBean(), params, getHints());
-                FootprintProvider footprints = FootprintProviderFactory.createFootprintProvider(parent);
-                catalog.setFootprintProvider(footprints);
+                MultiLevelROIProvider rois = MultiLevelROIProviderFactory.createFootprintProvider(parent);
+                catalog.setMultiScaleROIProvider(rois);
                 if (granuleCatalog == null) {
                     granuleCatalog = catalog;
                 }
@@ -350,8 +351,8 @@ public class ImageMosaicReader extends AbstractGridCoverage2DReader implements S
                 // Old style code: we have a single MosaicConfigurationBean. Use that to create the catalog 
                 granuleCatalog = CatalogManager.createCatalog(sourceURL, configuration, this.hints);
                 File parent = DataUtilities.urlToFile(sourceURL).getParentFile();
-                FootprintProvider footprints = FootprintProviderFactory.createFootprintProvider(parent);
-                granuleCatalog.setFootprintProvider(footprints);
+                MultiLevelROIProvider rois = MultiLevelROIProviderFactory.createFootprintProvider(parent);
+                granuleCatalog.setMultiScaleROIProvider(rois);
                 addRasterManager(configuration, true);
             }
         } catch (Throwable e) {

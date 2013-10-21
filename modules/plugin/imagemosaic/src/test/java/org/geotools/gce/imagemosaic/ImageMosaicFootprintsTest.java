@@ -22,7 +22,7 @@ import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.feature.visitor.UniqueVisitor;
-import org.geotools.gce.imagemosaic.catalog.FootprintProviderFactory;
+import org.geotools.gce.imagemosaic.catalog.MultiLevelROIProviderFactory;
 import org.geotools.geometry.DirectPosition2D;
 import org.junit.Before;
 import org.junit.Test;
@@ -227,7 +227,7 @@ public class ImageMosaicFootprintsTest {
         // copy the footprints mosaic over
         FileUtils.copyDirectory(footprintsSource, testMosaic);
         Properties p = new Properties();
-        p.put(FootprintProviderFactory.INSET_PROPERTY, "0.1"); 
+        p.put(MultiLevelROIProviderFactory.INSET_PROPERTY, "0.1"); 
         saveFootprintProperties(p);
 
          GridCoverage2D coverage = readCoverage();
@@ -259,8 +259,8 @@ public class ImageMosaicFootprintsTest {
         // copy the footprints mosaic over
         FileUtils.copyDirectory(footprintsSource, testMosaic);
         Properties p = new Properties();
-        p.put(FootprintProviderFactory.INSET_PROPERTY, "0.1"); 
-        p.put(FootprintProviderFactory.INSET_TYPE_PROPERTY, "full");
+        p.put(MultiLevelROIProviderFactory.INSET_PROPERTY, "0.1"); 
+        p.put(MultiLevelROIProviderFactory.INSET_TYPE_PROPERTY, "full");
         saveFootprintProperties(p);
 
         GridCoverage2D coverage = readCoverage();

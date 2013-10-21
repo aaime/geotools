@@ -299,12 +299,12 @@ class STRTreeGranuleCatalog extends GranuleCatalog {
                         LOGGER.log(Level.FINE, e.getLocalizedMessage(), e);
                 }
             }
-            if(footprintProvider != null) {
-                footprintProvider.dispose();
+            if(multiScaleROIProvider != null) {
+                multiScaleROIProvider.dispose();
             }
         } finally {
             index = null;
-            footprintProvider = null;
+            multiScaleROIProvider = null;
             l.unlock();
 
         }

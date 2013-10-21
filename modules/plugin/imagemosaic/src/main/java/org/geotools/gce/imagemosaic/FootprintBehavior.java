@@ -54,14 +54,30 @@ public enum FootprintBehavior {
                 imageWorker.addBand(maskedAlpha, false);
             } else {
                 // turn the roi into a single band image and add it
-                final RenderedImage roiImage = new ImageWorker(overallROI.getAsImage())
+                final RenderedImage alpha = new ImageWorker(overallROI.getAsImage())
                     .forceComponentColorModel().retainFirstBand().getRenderedImage();
-                imageWorker.addBand(roiImage, false);
+                imageWorker.addBand(alpha, false);
             }
 
             RenderedImage result = imageWorker.getRenderedImage();
             return result;
         }
+        
+        @Override
+        public RenderedImage postProcessBlankResponse(RenderedImage finalImage) {
+            // force the current image in RGB or Gray
+            final ImageWorker iw = new ImageWorker(finalImage);
+            iw.forceColorSpaceRGB().forceComponentColorModel();
+            RenderedImage blank = iw.getRenderedImage();
+            if(!blank.getColorModel().hasAlpha()) {
+                RenderedImage alpha = new ImageWorker(blank).retainFirstBand().getRenderedImage();
+                iw.addBand(alpha, false);
+            }
+            
+            RenderedImage result = iw.getRenderedImage();
+            return result;
+        }
+        
     };
     
     
@@ -99,13 +115,22 @@ public enum FootprintBehavior {
     }
     
     /**
-     * Applies post processing to the result mosaic
+     * Applies post processing to the result mosaic, eventually making certain areas transparent
      * @param mosaic
      * @param overallROI
      * @return
      */
     public RenderedImage postProcessMosaic(RenderedImage mosaic, ROI overallROI) {
         return mosaic;
+    }
+
+    /**
+     * Post processes a blank image response, eventually making it transparent
+     * @param finalImage
+     * @return
+     */
+    public RenderedImage postProcessBlankResponse(RenderedImage finalImage) {
+        return finalImage;
     }
 
 }

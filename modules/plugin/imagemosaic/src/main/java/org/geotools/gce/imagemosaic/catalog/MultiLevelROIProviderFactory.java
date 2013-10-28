@@ -81,7 +81,7 @@ public class MultiLevelROIProviderFactory {
     private static FootprintInsetPolicy getInsetPolicy(Properties properties) {
         String insetTypeValue = (String) properties.get(INSET_TYPE_PROPERTY);
         if (insetTypeValue == null || insetTypeValue.trim().isEmpty()) {
-            return FootprintInsetPolicy.border;
+            return FootprintInsetPolicy.BORDER;
         } else {
             try {
                 return FootprintInsetPolicy.valueOf(insetTypeValue.trim());

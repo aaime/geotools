@@ -1290,7 +1290,7 @@ public class Utils {
          * Check if the provided granule's footprint covers the same area of the granule's bbox.
          * @param granuleFootprint the granule Footprint
          * @param granuleBBOX the granule bbox
-         * @return {@code true} in case the footprint isn't covering the full granule's bbox. 
+         * @return {@code true} in case the footprint isn't covering the FULL granule's bbox. 
          */
         static boolean areaIsDifferent(
                 final Geometry granuleFootprint,

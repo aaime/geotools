@@ -65,8 +65,6 @@ import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.identity.FeatureId;
 import org.opengis.geometry.BoundingBox;
 
-import com.vividsolutions.jts.geom.Geometry;
-
 /**
  * This class simply builds an SRTREE spatial index in memory for fast indexed geometric queries.
  * 

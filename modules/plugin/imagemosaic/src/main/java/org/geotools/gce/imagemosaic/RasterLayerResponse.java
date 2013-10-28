@@ -348,10 +348,12 @@ class RasterLayerResponse{
             Utilities.ensureNonNull("granuleDescriptor", granuleDescriptor);
             
             if (granuleFilter.evaluate(granuleDescriptor.originator)) {
+
                 Object imageIndex = granuleDescriptor.originator.getAttribute("imageindex");
                 if(imageIndex != null && imageIndex instanceof Integer) {
                     imageChoice = ((Integer) imageIndex).intValue();
                 }
+                
                 final GranuleLoader loader = new GranuleLoader(baseReadParameters, imageChoice, mosaicBBox, finalWorldToGridCorner, granuleDescriptor, request, hints);
                 if (!dryRun) {
                     if (multithreadingAllowed && rasterManager.parentReader.multiThreadedLoader != null) {
@@ -707,7 +709,7 @@ class RasterLayerResponse{
                             imageBounds = PlanarImage.wrapRenderedImage(mosaic).getBounds();
                         }
 
-                        // and, do we need to add a border around the image?
+                        // and, do we need to add a BORDER around the image?
                         if (!imageBounds.contains(rasterBounds)) {
                             mosaic = MergeBehavior.FLAT
                                     .process(
@@ -917,7 +919,7 @@ class RasterLayerResponse{
             // create a granuleDescriptor loader
             final Geometry bb = JTS.toGeometry((BoundingBox) mosaicBBox);
             final Geometry inclusionGeometry = granuleDescriptor.getFootprint();
-            if (!footprintBehavior.handleFootprints() || inclusionGeometry == null || footprintBehavior.handleFootprints() && inclusionGeometry.intersects(bb)) {
+            if (!footprintBehavior.handleFootprints() || inclusionGeometry == null || (footprintBehavior.handleFootprints() && inclusionGeometry.intersects(bb))) {
 
                 // find the right filter for this granule
                 boolean found = false;
@@ -964,7 +966,7 @@ class RasterLayerResponse{
             LOGGER.fine("Producing the final mosaic, step 1, loop through granule collectors");   
             final List<MosaicElement> mosaicInputs = new ArrayList<RasterLayerResponse.MosaicElement>();
             GranuleCollector first = null; // we take this apart to steal some val
-            final int size = granuleCollectors.size();
+            int size = granuleCollectors.size();
             for (GranuleCollector collector : granuleCollectors) {
                 if(LOGGER.isLoggable(Level.FINE)) {
                     LOGGER.fine("Using collector with filter:" + collector.granuleFilter.toString());
@@ -975,13 +977,24 @@ class RasterLayerResponse{
                     if (first == null) {
                         first = collector;
                     }
+                }else{
+                    // we were not able to mosaic these granules, e.g. we have ROIs and the requested area
+                    // fell outside the ROI
+                    size--;
                 }
             }
             LOGGER.fine("Producing the final mosaic, step 2, final mosaicking"); 
+            // optimization 
             if (size == 1) {
                 // we don't need to mosaick again
                 return mosaicInputs.get(0).source;
             }
+            // no mosaics produced, it might happen, see above
+            if(size==0){
+                return null;
+            }
+            
+            // normal situan
             return new Mosaicker(
                     new MosaicInputs(
                             first.doInputTransparency, 
@@ -1269,7 +1282,8 @@ class RasterLayerResponse{
             final Utils.BBOXFilterExtractor bboxExtractor = new Utils.BBOXFilterExtractor();
             query.getFilter().accept(bboxExtractor, null);
             query.setFilter(FeatureUtilities.DEFAULT_FILTER_FACTORY.bbox(
-                    FeatureUtilities.DEFAULT_FILTER_FACTORY.property(rasterManager.getGranuleCatalog().getType(rasterManager.getTypeName()).getGeometryDescriptor().getName()),
+                    FeatureUtilities.DEFAULT_FILTER_FACTORY.property(
+                            rasterManager.getGranuleCatalog().getType(rasterManager.getTypeName()).getGeometryDescriptor().getName()),
                     bboxExtractor.getBBox()));
             query.setMaxFeatures(1);
             rasterManager.getGranuleDescriptors(query, dryRunVisitor);

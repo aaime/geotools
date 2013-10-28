@@ -19,10 +19,8 @@ package org.geotools.gce.imagemosaic;
 import java.awt.image.RenderedImage;
 
 import javax.media.jai.ROI;
-import javax.media.jai.RenderedImageAdapter;
 import javax.media.jai.RenderedOp;
 import javax.media.jai.operator.MosaicDescriptor;
-import javax.media.jai.operator.MosaicType;
 
 import org.geotools.image.ImageWorker;
 

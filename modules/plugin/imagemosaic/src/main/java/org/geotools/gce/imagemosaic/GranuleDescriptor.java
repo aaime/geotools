@@ -22,6 +22,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -387,7 +388,7 @@ public class GranuleDescriptor {
 			    // Populating overviews and initializing overviewsController
 			    for (int i = 0; i < numberOfOvervies; i++){
 			        overviewsResolution[i][0]= (highestRes[0] * width) / reader.getWidth(i + 1);
-			        overviewsResolution[i][1]= (highestRes[1] * height) / reader.getWidth(i + 1);
+			        overviewsResolution[i][1]= (highestRes[1] * height) / reader.getHeight(i + 1);
 			    }
 			    overviewsController = new OverviewsController(highestRes, numberOfOvervies, overviewsResolution);
 			}
@@ -800,10 +801,32 @@ public class GranuleDescriptor {
 				finalRaster2Model.concatenate(afterDecimationTranslateTranform);
 			if(!XAffineTransform.isIdentity(decimationScaleTranform, Utils.AFFINE_IDENTITY_EPS))
 				finalRaster2Model.concatenate(decimationScaleTranform);
+                        // adjust roi
+                        if (roiProvider != null) {
 
+                            ROIGeometry transformed;
+                            try {
+                                transformed = roiProvider.getTransformedROI(finalRaster2Model.createInverse());    
+                                if(transformed.getAsGeometry().isEmpty()) {
+                                    // inset might have killed the geometry fully
+                                    return null;
+                                }
+                                PlanarImage pi = PlanarImage.wrapRenderedImage(raster);
+                                pi.setProperty("ROI", transformed);
+                                raster = pi;
+                            } catch (NoninvertibleTransformException e) {
+                                if(LOGGER.isLoggable(java.util.logging.Level.INFO))
+                                    LOGGER.info("Unable to create a granuleDescriptor " + this.toString() 
+                                            + " due to a problem when managing the ROI");
+                                return null;
+                            }
+ 
+                        }
 			// keep into account translation factors to place this tile
 			finalRaster2Model.preConcatenate((AffineTransform) mosaicWorldToGrid);
 			final Interpolation interpolation = request.getInterpolation();
+			
+			
 			//paranoiac check to avoid that JAI freaks out when computing its internal layouT on images that are too small
 			Rectangle2D finalLayout= ImageUtilities.layoutHelper(
 					raster, 
@@ -818,21 +841,8 @@ public class GranuleDescriptor {
 					        + " due to jai scale bug creating a null source area");
 				return null;
 			}
-            if (roiProvider != null) {
-                geMapper.setPixelAnchor(PixelInCell.CELL_CORNER);
-                AffineTransform tx = AffineTransform.getScaleInstance(1 / decimationScaleX,
-                        1 / decimationScaleY);
-                tx.concatenate(AffineTransform.getTranslateInstance(-sourceArea.x, -sourceArea.y));
-                tx.concatenate((AffineTransform2D) geMapper.createTransform().inverse());
-                ROIGeometry transformed = roiProvider.getTransformedROI(tx);
-                if(transformed.getAsGeometry().isEmpty()) {
-                    // inset might have killed the geometry fully
-                    return null;
-                }
-                PlanarImage pi = PlanarImage.wrapRenderedImage(raster);
-                pi.setProperty("ROI", transformed);
-                raster = pi;
-            }
+			
+                        
 			// apply the affine transform  conserving indexed color model
 			final RenderingHints localHints = new RenderingHints(JAI.KEY_REPLACE_INDEX_COLOR_MODEL, interpolation instanceof InterpolationNearest? Boolean.FALSE:Boolean.TRUE);
 			if(XAffineTransform.isIdentity(finalRaster2Model,Utils.AFFINE_IDENTITY_EPS)) {
@@ -875,7 +885,7 @@ public class GranuleDescriptor {
                         addBorderExtender = false;
                     }
                 }
-                // border extender
+                // BORDER extender
                 if (addBorderExtender) {
                     localHints.add(ImageUtilities.BORDER_EXTENDER_HINTS);
                 }
@@ -1029,9 +1039,9 @@ public class GranuleDescriptor {
 		// build a decent representation for this level
 		final StringBuilder buffer = new StringBuilder();
 		buffer.append("Description of a granuleDescriptor ").append("\n");
-		buffer.append("BBOX:\t\t").append(granuleBBOX.toString());
-		buffer.append("file:\t\t").append(granuleUrl);
-		buffer.append("gridToWorld:\t\t").append(baseGridToWorld);
+		buffer.append("BBOX:\t\t").append(granuleBBOX.toString()).append("\n");
+		buffer.append("file:\t\t").append(granuleUrl).append("\n");
+		buffer.append("gridToWorld:\t\t").append(baseGridToWorld).append("\n");
 		int i=1;
 		for(final GranuleOverviewLevelDescriptor granuleOverviewLevelDescriptor : granuleLevels.values())
 		{

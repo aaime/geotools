@@ -2214,6 +2214,8 @@ public class ImageMosaicReaderTest extends Assert{
     		
     	}
 
+   
+
     @AfterClass
 	public static void close(){
 		System.clearProperty("org.geotools.referencing.forceXY");

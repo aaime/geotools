@@ -30,6 +30,9 @@ import org.geotools.feature.collection.AbstractFeatureVisitor;
 import org.geotools.feature.visitor.FeatureCalc;
 import org.geotools.gce.imagemosaic.GranuleDescriptor;
 import org.geotools.gce.imagemosaic.ImageMosaicReader;
+import org.geotools.gce.imagemosaic.Utils;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.util.DefaultProgressListener;
 import org.geotools.util.SoftValueHashMap;
 import org.opengis.feature.Feature;
@@ -136,12 +139,19 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
     public void getGranuleDescriptors(final Query q, final GranuleCatalogVisitor visitor) throws IOException {
 
         final SimpleFeatureCollection features = adaptee.getGranules(q);
-        if (features == null)
+        if (features == null){
             throw new NullPointerException(
                     "The provided SimpleFeatureCollection is null, it's impossible to create an index!");
-
-        if (LOGGER.isLoggable(Level.FINE))
+        }
+        if (LOGGER.isLoggable(Level.FINE)){
             LOGGER.fine("Index Loaded");
+        }
+
+        // ROI
+        final Utils.BBOXFilterExtractor bboxExtractor = new Utils.BBOXFilterExtractor();
+        q.getFilter().accept(bboxExtractor, null);
+        ReferencedEnvelope requestedBBox=bboxExtractor.getBBox();
+        final Geometry intersectionGeometry=requestedBBox!=null?JTS.toGeometry(requestedBBox):null;
 
         // visiting the features from the underlying store
         final DefaultProgressListener listener = new DefaultProgressListener();
@@ -161,6 +171,7 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
                             // create the granule descriptor
                             MultiLevelROI footprint = getGranuleFootprint(sf);
                             if(footprint == null || !footprint.isEmpty()) {
+                                // caching only if the footprint is eithery absent or present and NON-empty
                                 granule = new GranuleDescriptor(
                                                 sf,
                                                 adaptee.suggestedRasterSPI,
@@ -173,9 +184,17 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
                                 descriptorsCache.put(featureId, granule);
                             }
                         }
-
+                        
                         if(granule != null) {
-                            visitor.visit(granule, null);
+                            // check ROI inclusion
+                            final Geometry footprint = granule.getFootprint();
+                            if(intersectionGeometry==null||footprint==null||footprint.intersects(intersectionGeometry)){
+                                visitor.visit(granule, null);
+                            }else{
+                                if(LOGGER.isLoggable(Level.FINE)){
+                                    LOGGER.fine("Skipping granule "+granule+"\n since its ROI does not intersect the requested area");
+                                }
+                            }
                         }
     
                         // check if something bad occurred
@@ -187,7 +206,6 @@ class CachingDataStoreGranuleCatalog extends GranuleCatalog {
                                         + " has been canceled");
                             }
                         }
-//                    }
                 }
             }
         }, listener);

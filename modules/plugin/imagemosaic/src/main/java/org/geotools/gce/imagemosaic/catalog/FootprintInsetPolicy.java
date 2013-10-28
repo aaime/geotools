@@ -36,7 +36,7 @@ enum FootprintInsetPolicy {
     /**
      * Full inset from all direction. Works best with fully overlapping granules
      */
-    FULL {
+    full {
         @Override
         public Geometry applyInset(Geometry footprint, Geometry granuleBounds, double inset) {
             if (footprint == null) {
@@ -50,7 +50,7 @@ enum FootprintInsetPolicy {
      * (assuming the granules are cut in a regular grid and meant to be displayed side by side (no
      * overlap)
      */
-    BORDER {
+    border {
         @Override
         public Geometry applyInset(Geometry footprint, Geometry granuleBounds, double inset) {
             if (footprint != null) {

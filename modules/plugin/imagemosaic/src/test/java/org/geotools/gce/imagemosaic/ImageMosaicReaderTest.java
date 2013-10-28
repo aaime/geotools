@@ -77,6 +77,7 @@ import org.geotools.gce.imagemosaic.Utils.Prop;
 import org.geotools.geometry.Envelope2D;
 import org.geotools.geometry.GeneralEnvelope;
 import org.geotools.referencing.CRS;
+import org.geotools.renderedimage.viewer.RenderedImageBrowser;
 import org.geotools.resources.coverage.CoverageUtilities;
 import org.geotools.test.TestData;
 import org.geotools.util.DateRange;
@@ -2214,7 +2215,48 @@ public class ImageMosaicReaderTest extends Assert{
     		
     	}
 
-   
+    /**
+    	 * 
+    	 * @throws IOException
+    	 * @throws FactoryException 
+    	 * @throws NoSuchAuthorityCodeException 
+    	 * @throws MismatchedDimensionException
+    	 * @throws NoSuchAuthorityCodeException
+    	 * @throws ParseException 
+    	 */
+    	@Test
+//    	@Ignore
+    	public void pb() throws IOException, NoSuchAuthorityCodeException, FactoryException, ParseException {
+    	       
+    		ImageMosaicReader reader = new ImageMosaicReader(new File("Y:\\work\\data\\GeoserverSampleImagery\\Zone16"));
+    	    
+    		final String[] metadataNames = reader.getMetadataNames();
+    		assertNotNull(metadataNames);
+    		// limit yourself to reading just a bit of it
+    		final ParameterValue<GridGeometry2D> gg =  AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
+    		final GeneralEnvelope envelope = reader.getOriginalEnvelope();
+    		final Dimension dim= new Dimension();
+//    		dim.setSize(5, 5);
+//    		final Rectangle rasterArea=new Rectangle(dim);
+//    		final GridEnvelope2D range= new GridEnvelope2D(rasterArea);
+//    		gg.setValue(new GridGeometry2D(range,reader.getOriginalGridToWorld(PixelInCell.CELL_CENTER),reader.getCoordinateReferenceSystem()));
+
+                dim.setSize(800, 600);
+                final Rectangle rasterArea=new Rectangle(dim);
+                final GridEnvelope2D range= new GridEnvelope2D(rasterArea);
+                gg.setValue(new GridGeometry2D(range,envelope));
+    		
+    		final ParameterValue<String> fb=ImageMosaicFormat.FOOTPRINT_BEHAVIOR.createValue();
+    		fb.setValue(FootprintBehavior.Transparent.toString());
+    		
+    		// use imageio with defined tiles
+    		final ParameterValue<Boolean> useJai = AbstractGridFormat.USE_JAI_IMAGEREAD.createValue();
+    		useJai.setValue(false);
+    		GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg,fb,useJai});
+    		RenderedImageBrowser.showChain(coverage.getRenderedImage(),false);
+    		System.in.read();
+    		
+    	}
 
     @AfterClass
 	public static void close(){

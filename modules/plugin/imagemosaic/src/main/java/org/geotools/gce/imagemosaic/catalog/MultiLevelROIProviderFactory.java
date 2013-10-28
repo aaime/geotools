@@ -2,9 +2,7 @@ package org.geotools.gce.imagemosaic.catalog;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -81,7 +79,7 @@ public class MultiLevelROIProviderFactory {
     private static FootprintInsetPolicy getInsetPolicy(Properties properties) {
         String insetTypeValue = (String) properties.get(INSET_TYPE_PROPERTY);
         if (insetTypeValue == null || insetTypeValue.trim().isEmpty()) {
-            return FootprintInsetPolicy.BORDER;
+            return FootprintInsetPolicy.border;
         } else {
             try {
                 return FootprintInsetPolicy.valueOf(insetTypeValue.trim());

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.Rectangle;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,9 +28,13 @@ import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.gce.imagemosaic.catalog.MultiLevelROIProviderFactory;
 import org.geotools.geometry.DirectPosition2D;
+import org.geotools.geometry.GeneralEnvelope;
+import org.geotools.referencing.CRS;
 import org.geotools.resources.image.ImageUtilities;
 import org.geotools.test.TestData;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.opengis.feature.Feature;
 import org.opengis.feature.FeatureVisitor;
@@ -358,5 +363,89 @@ public class ImageMosaicFootprintsTest {
         } finally {
             IOUtils.closeQuietly(fos);
         }
+    }
+
+    @Test
+//    @Ignore
+        public void test() throws Exception {
+            // copy the footprints mosaic over
+            final ImageMosaicReader reader = new ImageMosaicReader(new File("D:\\data\\provinciabz\\hillshade_dsm"));
+            // activate footprint management
+            GeneralParameterValue[] params = new GeneralParameterValue[3];
+            ParameterValue<String> footprintManagement = ImageMosaicFormat.FOOTPRINT_BEHAVIOR.createValue();
+            footprintManagement.setValue(FootprintBehavior.Transparent.name());
+            params[0] = footprintManagement;
+            
+            // this prevents us from having problems with link to files still open.
+            ParameterValue<Boolean> jaiImageRead = ImageMosaicFormat.USE_JAI_IMAGEREAD.createValue();
+            jaiImageRead.setValue(false); 
+            params[1] = jaiImageRead;
+            
+            // limit yourself to reading just a bit of it
+            final ParameterValue<GridGeometry2D> gg =  AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
+            final GeneralEnvelope envelope = reader.getOriginalEnvelope();
+            final Rectangle rasterArea=new Rectangle(800,600);
+            final GridEnvelope2D range= new GridEnvelope2D(rasterArea);
+            gg.setValue(new GridGeometry2D(range,envelope));
+            params[2] = gg;
+            
+            GridCoverage2D coverage = reader.read(params);
+            reader.dispose();
+//             RenderedImageBrowser.showChain(coverage.getRenderedImage(),false,true);
+//             System.in.read();
+            
+    
+            disposeCoverage(coverage);
+            
+            
+        }
+
+    @Test
+//    @Ignore
+        public void tm() throws Exception {
+            // copy the footprints mosaic over
+            final ImageMosaicReader reader = new ImageMosaicReader(new File("D:\\data\\true_marble"));
+            // activate footprint management
+            GeneralParameterValue[] params = new GeneralParameterValue[3];
+            ParameterValue<String> footprintManagement = ImageMosaicFormat.FOOTPRINT_BEHAVIOR.createValue();
+            footprintManagement.setValue(FootprintBehavior.None.name());
+            params[0] = footprintManagement;
+            
+            // this prevents us from having problems with link to files still open.
+            ParameterValue<Boolean> jaiImageRead = ImageMosaicFormat.USE_JAI_IMAGEREAD.createValue();
+            jaiImageRead.setValue(false); 
+            params[1] = jaiImageRead;
+            
+            // limit yourself to reading just a bit of it
+            final ParameterValue<GridGeometry2D> gg =  AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
+            final GeneralEnvelope envelope = reader.getOriginalEnvelope();
+            final Rectangle rasterArea=new Rectangle(1352,676);
+            final GridEnvelope2D range= new GridEnvelope2D(rasterArea);
+            gg.setValue(new GridGeometry2D(range,envelope));
+            params[2] = gg;
+            
+            GridCoverage2D coverage = reader.read(params);
+            reader.dispose();
+//             RenderedImageBrowser.showChain(coverage.getRenderedImage(),false,true);
+//             System.in.read();
+            
+    
+            disposeCoverage(coverage);
+            
+            
+        }
+
+    @AfterClass
+    public static void close(){
+    	System.clearProperty("org.geotools.referencing.forceXY");
+            CRS.reset("all");
+    }
+
+    @BeforeClass
+    public static void init(){
+    	
+    	//make sure CRS ordering is correct
+        CRS.reset("all");
+        System.setProperty("org.geotools.referencing.forceXY", "true");
     }
 }

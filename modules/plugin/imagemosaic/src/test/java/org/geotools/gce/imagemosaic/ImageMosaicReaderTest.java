@@ -85,6 +85,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.opengis.feature.simple.SimpleFeature;
@@ -397,10 +398,10 @@ public class ImageMosaicReaderTest extends Assert{
 //	@Ignore
 	public void timeElevation() throws IOException, ParseException, NoSuchAuthorityCodeException, FactoryException {
     	final File workDir=new File(TestData.file(this, "."),"watertemp2");
-    	if(!workDir.mkdir()){
-    	    FileUtils.deleteDirectory(workDir);
-    	    assertTrue("Unable to create workdir:"+workDir,workDir.mkdir());
-    	}
+//    	if(!workDir.mkdir()){
+//    	    FileUtils.deleteDirectory(workDir);
+//    	    assertTrue("Unable to create workdir:"+workDir,workDir.mkdir());
+//    	}
     	FileUtils.copyFile(TestData.file(this, "watertemp.zip"), new File(workDir,"watertemp.zip"));
     	TestData.unzipFile(this, "watertemp2/watertemp.zip");
     	
@@ -421,7 +422,7 @@ public class ImageMosaicReaderTest extends Assert{
 		assertEquals(2,timeMetadata.split(",").length);
 		assertEquals(timeMetadata.split(",")[0],reader.getMetadataValue("TIME_DOMAIN_MINIMUM"));
 		assertEquals(timeMetadata.split(",")[1],reader.getMetadataValue("TIME_DOMAIN_MAXIMUM"));
-		assertEquals("java.sql.Timestamp", reader.getMetadataValue("TIME_DOMAIN_DATATYPE"));
+		assertEquals("java.util.Date", reader.getMetadataValue("TIME_DOMAIN_DATATYPE"));
 		
 		assertEquals("true", reader.getMetadataValue("HAS_ELEVATION_DOMAIN"));
 		final String elevationMetadata = reader.getMetadataValue("ELEVATION_DOMAIN");
@@ -978,7 +979,7 @@ public class ImageMosaicReaderTest extends Assert{
         assertEquals("2008-10-31T00:00:00.000Z/2008-11-04T00:00:00.000Z/PT1S,2008-11-05T00:00:00.000Z/2008-11-07T00:00:00.000Z/PT1S",reader.getMetadataValue("TIME_DOMAIN"));
         assertEquals("2008-10-31T00:00:00.000Z", reader.getMetadataValue("TIME_DOMAIN_MINIMUM"));
         assertEquals("2008-11-07T00:00:00.000Z", reader.getMetadataValue("TIME_DOMAIN_MAXIMUM"));
-        assertEquals("java.sql.Timestamp", reader.getMetadataValue("TIME_DOMAIN_DATATYPE"));
+        assertEquals("java.util.Date", reader.getMetadataValue("TIME_DOMAIN_DATATYPE"));
         
         assertEquals("true", reader.getMetadataValue("HAS_ELEVATION_DOMAIN"));
         assertEquals("20/99,100/150",reader.getMetadataValue("ELEVATION_DOMAIN"));
@@ -1596,15 +1597,15 @@ public class ImageMosaicReaderTest extends Assert{
         // read and check we actually got a coverage in the requested area
         GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggp, bgp});
         assertNotNull(coverage);
-        System.out.println(coverage.getEnvelope2D());
-        System.out.println(env);
+//        System.out.println(coverage.getEnvelope2D());
+//        System.out.println(env);
         assertTrue(coverage.getEnvelope2D().contains((Rectangle2D) env));
         
         // and that the color is the expected one given the background values provided
         RenderedImage ri = coverage.getRenderedImage();
         // ImageIO.write(ri, "PNG", new File("/tmp/mix.png"));
-        System.out.println(ri.getNumXTiles());
-        System.out.println(ri.getNumYTiles());
+//        System.out.println(ri.getNumXTiles());
+//        System.out.println(ri.getNumYTiles());
         int[] pixel = new int[4];
         Raster tile = ri.getTile(ri.getMinTileX() + ri.getNumXTiles()  - 1, 
                 ri.getMinTileY() + ri.getNumYTiles() - 1);
@@ -1623,15 +1624,15 @@ public class ImageMosaicReaderTest extends Assert{
 
 	}
 	
-	@Before
-	public void init(){
+	@BeforeClass
+	public static void init(){
 		
 		//make sure CRS ordering is correct
-		System.setProperty("org.geotools.referencing.forceXY", "true");
+	    CRS.reset("all");
+	    System.setProperty("org.geotools.referencing.forceXY", "true");
 	    System.setProperty("user.timezone", "GMT");
-		System.setProperty("org.geotools.shapefile.datetime", "true");
-
-		INTERACTIVE = TestData.isInteractiveTest();
+	    System.setProperty("org.geotools.shapefile.datetime", "true");
+	    INTERACTIVE = TestData.isInteractiveTest();
 	}
 
 	@Before
@@ -2314,6 +2315,7 @@ public class ImageMosaicReaderTest extends Assert{
     @AfterClass
 	public static void close(){
 		System.clearProperty("org.geotools.referencing.forceXY");
+	        CRS.reset("all");
 	}
 
 

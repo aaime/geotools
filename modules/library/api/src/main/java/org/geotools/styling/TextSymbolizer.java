@@ -250,6 +250,18 @@ public interface TextSymbolizer extends org.opengis.style.TextSymbolizer,Symboli
      * Option overriding manual rotation to align label rotation automatically for polygons.
      */
     public static String POLYGONALIGN_KEY = "polygonAlign";
+
+    /**
+     * Pixels between the stretched graphic and the text, applies when graphic stretching is in use
+     */
+    public static String GRAPHIC_MARGIN_KEY = "graphic-margin";
+    
+    /**
+     * Stretches the graphic below a label to fit the label size. Possible values are 'stretch',
+     * 'proportional'.
+     */
+    public static String GRAPHIC_RESIZE_KEY = "graphic-resize";
+
     
     /**
      * Enumerated options that can be used with polygonAlign.
@@ -274,6 +286,17 @@ public interface TextSymbolizer extends org.opengis.style.TextSymbolizer,Symboli
      * Default value for the polygonAlign
      */
     public static final PolygonAlignOptions DEFAULT_POLYGONALIGN = PolygonAlignOptions.NONE;
+
+    /**
+     * Option to truncate labels placed on the border of the displayArea (display partial labels).
+     */
+    String PARTIALS_KEY = "partials";
+
+    /**
+     * Default behaviour is to not truncate labels on the border of the display area.
+     * Instead, labels are hidden or moved to be fully displayed inside the area.
+     */
+    boolean DEFAULT_PARTIALS = false;
     
     /**
      * Returns the expression that will be evaluated to determine what text is

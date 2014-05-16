@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools</groupId>
     <artifactId>library</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
   
 
@@ -136,15 +136,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>commons-dbcp</groupId>
-      <artifactId>commons-dbcp</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 
   <build>

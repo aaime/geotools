@@ -24,6 +24,7 @@ import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geojson.DelegatingHandler;
 import org.geotools.geojson.IContentHandler;
+import org.geotools.geojson.geom.GeometryCollectionHandler;
 import org.geotools.geojson.geom.GeometryHandler;
 import org.json.simple.parser.ParseException;
 import org.opengis.feature.simple.SimpleFeature;
@@ -50,7 +51,11 @@ public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
     AttributeIO attio;
     
     SimpleFeature feature;
-    
+
+    public FeatureHandler() {
+        this(null, new DefaultAttributeIO());
+    }
+
     public FeatureHandler(SimpleFeatureBuilder builder, AttributeIO attio) {
         this.builder = builder;
         this.attio = attio;
@@ -120,15 +125,23 @@ public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
             ((IContentHandler) delegate).endObject();
             
             if (delegate instanceof GeometryHandler) {
-                if (properties != null) {
-                    //this is a regular property
-                    values.add(((IContentHandler<Geometry>)delegate).getValue());
+                Geometry g = ((IContentHandler<Geometry>)delegate).getValue();
+                if (g == null && 
+                    ((GeometryHandler)delegate).getDelegate() instanceof GeometryCollectionHandler) {
+                    //this means that the collecetion handler is still parsing objects, continue 
+                    // to delegate to it
                 }
                 else {
-                    //its the default geometry
-                    geometry = ((IContentHandler<Geometry>)delegate).getValue();
+                    if (properties != null) {
+                        //this is a regular property
+                        values.add(g);
+                    }
+                    else {
+                        //its the default geometry
+                        geometry = g;
+                    }
+                    delegate = NULL;
                 }
-                delegate = NULL;
             }
             else if (delegate instanceof CRSHandler) {
                 crs = ((CRSHandler)delegate).getValue();
@@ -174,7 +187,11 @@ public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
     
     @Override
     public boolean primitive(Object value) throws ParseException, IOException {
-        if ("".equals(id)) {
+        if (delegate instanceof GeometryHandler && value == null) {
+            delegate = NULL;
+            return true;
+        }
+        else if ("".equals(id)) {
             id = value.toString();
             return true;
         }
@@ -218,22 +235,41 @@ public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
             }
         }
         if (geometry != null) {
-            typeBuilder.add("geometry", geometry != null ? geometry.getClass() : Geometry.class);
-            typeBuilder.setDefaultGeometry("geometry");    
+            addGeometryType(typeBuilder, geometry);
         }
         
         return new SimpleFeatureBuilder(typeBuilder.buildFeatureType());
     }
-    
+
+    void addGeometryType(SimpleFeatureTypeBuilder typeBuilder, Geometry geometry) {
+        typeBuilder.add("geometry", geometry != null ? geometry.getClass() : Geometry.class);
+        typeBuilder.setDefaultGeometry("geometry");
+    }
+
     SimpleFeature buildFeature() {
       
         SimpleFeatureBuilder builder = this.builder != null ? this.builder : createBuilder();
-      SimpleFeatureType featureType = builder.getFeatureType();
+        SimpleFeatureType featureType = builder.getFeatureType();
+        SimpleFeature f = builder.buildFeature(id);
         if (geometry != null) {
-            builder.set(featureType.getGeometryDescriptor().getLocalName(), geometry);    
-        }
-        
-        return builder.buildFeature(id);
+            if(featureType.getGeometryDescriptor() == null) {
+                //GEOT-4293, case of geometry coming after properties, we have to retype 
+                // the builder
+                // JD: this is ugly, we should really come up with a better way to store internal
+                // state of properties, and avoid creating the builder after the properties object
+                // is completed
+                SimpleFeatureTypeBuilder typeBuilder = new SimpleFeatureTypeBuilder();
+                typeBuilder.init(featureType);
+                addGeometryType(typeBuilder, geometry);
+
+                featureType = typeBuilder.buildFeatureType();
+                SimpleFeatureBuilder newBuilder = new SimpleFeatureBuilder(featureType);
+                newBuilder.init(f);
+                f = newBuilder.buildFeature(id);
+            }
+            f.setAttribute(featureType.getGeometryDescriptor().getLocalName(), geometry);
+        }        
+        return f;
     }
 //    "{" +
 //    "  'type': 'Feature'," +

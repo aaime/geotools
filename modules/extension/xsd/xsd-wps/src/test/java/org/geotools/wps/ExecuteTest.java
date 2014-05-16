@@ -16,24 +16,30 @@
  */
 package org.geotools.wps;
 
+import javax.xml.namespace.QName;
+
 import junit.framework.TestCase;
 import net.opengis.ows11.CodeType;
 import net.opengis.ows11.LanguageStringType;
 import net.opengis.ows11.Ows11Factory;
+import net.opengis.wfs.GetFeatureType;
+import net.opengis.wfs.QueryType;
 import net.opengis.wps10.ComplexDataType;
 import net.opengis.wps10.DataInputsType1;
 import net.opengis.wps10.DataType;
 import net.opengis.wps10.ExecuteResponseType;
 import net.opengis.wps10.ExecuteType;
+import net.opengis.wps10.InputReferenceType;
 import net.opengis.wps10.InputType;
 import net.opengis.wps10.OutputDataType;
 import net.opengis.wps10.ProcessOutputsType1;
 import net.opengis.wps10.Wps10Factory;
 
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.xml.Encoder;
-
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import org.geotools.xml.Parser;
+import org.opengis.filter.Filter;
+import org.opengis.filter.FilterFactory2;
 
 /**
  * 
@@ -93,5 +99,40 @@ public class ExecuteTest extends TestCase {
         Encoder e = new Encoder(new WPSConfiguration());
         e.setIndenting(true);
         e.encode(response, WPS.ExecuteResponse, System.out);
+    }
+
+    public void testParserDelegateNamespaces() throws Exception {
+        Parser p = new Parser(new WPSConfiguration());
+        ExecuteType exec = (ExecuteType) 
+            p.parse(getClass().getResourceAsStream("wpsExecute_inlineGetFeature_request.xml"));
+        assertNotNull(exec);
+        assertEquals(1, exec.getDataInputs().getInput().size());
+
+        InputType in = (InputType) exec.getDataInputs().getInput().get(0);
+        InputReferenceType ref = in.getReference();
+        assertNotNull(ref);
+
+        assertTrue(ref.getBody() instanceof GetFeatureType);
+        GetFeatureType gft = (GetFeatureType) ref.getBody();
+
+        QName typeName = (QName) ((QueryType)gft.getQuery().get(0)).getTypeName().get(0);
+        assertEquals("states", typeName.getLocalPart());
+        assertEquals("http://usa.org", typeName.getNamespaceURI());
+    }
+    
+    public void testFilterParserDelegate() throws Exception {
+        Parser p = new Parser(new WPSConfiguration());
+        ExecuteType exec = (ExecuteType) 
+            p.parse(getClass().getResourceAsStream("wpsExecuteFilterInline.xml"));
+        assertNotNull(exec);
+        assertEquals(1, exec.getDataInputs().getInput().size());
+
+        InputType in = (InputType) exec.getDataInputs().getInput().get(0);
+        ComplexDataType cd = in.getData().getComplexData();
+        assertNotNull(cd);
+        Filter filter = (Filter) cd.getData().get(0);
+        FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2();
+        Filter expected = ff.or(ff.greaterOrEqual(ff.property("PERSONS"), ff.literal("10000000")), ff.lessOrEqual(ff.property("PERSONS"), ff.literal("20000000")));
+        assertEquals(expected, filter);
     }
 }

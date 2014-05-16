@@ -17,26 +17,6 @@ The gt-geotiff module in the plugin group provides access to the GeoTiff file fo
       <version>${geotools.version}</version>
     </dependency>
 
-**Happy Fun Ball License**
-
-In addition to the normal LGPL license the gt-geotiff module includes files marked with::
-
-	/*
-	 * (c) 2004 Mike Nidel
-	 *
-	 * Take, Modify, Distribute freely
-	 * Buy, Sell, Pass it off as your own
-	 *
-	 * Use this code at your own risk, the author makes no guarantee
-	 * of performance and retains no liability for the failure of this
-	 * software.
-	 *
-	 * If you feel like it, send any suggestions for improvement or
-	 * bug fixes, or modified source code to mike@gelbin.org
-	 *
-	 * Do not taunt Happy Fun Ball.
-	 */
-
 Example
 ^^^^^^^
 
@@ -45,7 +25,7 @@ You can use GeoTiff files directly using GridFormatFinder::
   File file = new File("test.tiff");
   
   AbstractGridFormat format = GridFormatFinder.findFormat( file );
-  AbstractGridCoverage2DReader reader = format.getReader( file );
+  GridCoverage2DReader reader = format.getReader( file );
 
 You can also use GeoTiffReader directly::
   

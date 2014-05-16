@@ -17,11 +17,12 @@
 package org.geotools.coverageio.gdal;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-import javax.media.jai.JAI;
+import javax.media.jai.ImageLayout;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.widget.ScrollingImagePanel;
 import javax.swing.JFrame;
@@ -87,16 +88,15 @@ public class GDALTestCase  {
     public void setUp() throws Exception {
         if(!testingEnabled())
             return;
-        ImageIO.setUseCache(false);
-        JAI.getDefaultInstance().getTileCache().setMemoryCapacity(16 * 1024 * 1024);
-        JAI.getDefaultInstance().getTileCache().setMemoryThreshold(1.0f);
         try {
             final File file = TestData.file(this, "test.zip");
-            if(file!=null&&file.exists()&&file.canRead())
+            if (file != null && file.exists() && file.canRead())
                 // unzip it
                 TestData.unzipFile(this, "test.zip");
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, e.getLocalizedMessage(), e);
+        } catch (FileNotFoundException e) {
+            LOGGER.log(Level.SEVERE, "can not locate test-data for \"test.zip\"");
+        } catch (Exception e1) {
+        	LOGGER.log(Level.SEVERE, e1.getLocalizedMessage(), e1);
         }
        
     }
@@ -109,5 +109,29 @@ public class GDALTestCase  {
         }
 
         return available;
+    }
+
+    /**
+     * @param reader
+     * @throws IOException 
+     */
+    protected void checkReader(BaseGDALGridCoverage2DReader reader) throws IOException {
+        Assert.assertNotNull(reader);
+        
+
+        // layout checks
+        final ImageLayout layout = reader.getImageLayout();
+        Assert.assertNotNull(layout);
+        Assert.assertNotNull(layout.getColorModel(null));
+        Assert.assertNotNull(layout.getSampleModel(null));
+        Assert.assertEquals(0,layout.getMinX(null));
+        Assert.assertEquals(0,layout.getMinY(null));
+        Assert.assertTrue(layout.getWidth(null) > 0);
+        Assert.assertTrue(layout.getHeight(null) > 0);
+        Assert.assertEquals(0,layout.getTileGridXOffset(null));
+        Assert.assertEquals(0,layout.getTileGridYOffset(null));
+        Assert.assertTrue(layout.getTileHeight(null) > 0);
+        Assert.assertTrue(layout.getTileWidth(null) > 0);
+        
     }
 }

@@ -16,32 +16,28 @@
  */
 package org.geotools.feature.collection;
 
+import java.io.IOException;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.geotools.data.DataUtilities;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
-import org.geotools.feature.CollectionListener;
 import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.FeatureIterator;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.opengis.feature.FeatureVisitor;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.opengis.filter.sort.SortBy;
 
 /**
- * A FeatureCollection which completley delegates to another FeatureCollection.
+ * A FeatureCollection which completely delegates to another FeatureCollection.
  * <p>
  * This class should be subclasses by classes which must somehow decorate 
  * another SimpleFeatureCollection and override the relevant methods. 
  * </p>
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
  * @since 2.5
- *
- *
- *
  *
  * @source $URL$
  */
@@ -61,66 +57,31 @@ public class DecoratingSimpleFeatureCollection implements SimpleFeatureCollectio
     }
 
     public void accepts(org.opengis.feature.FeatureVisitor visitor,
-            org.opengis.util.ProgressListener progress) {
-        SimpleFeatureIterator it = features();
-
-        try {
-            Exception exception = null;
-            while (it.hasNext()) {
-                try {
-                    visitor.visit(it.next());
-                } catch (Exception e) {
-                    if (exception != null)
-                        exception = e;
-                }
-            }
-
-            if (exception != null) {
-                if (exception instanceof RuntimeException) {
-                    throw (RuntimeException) exception;
-                } else {
-                    throw new RuntimeException(exception);
-                }
-            }
-        } finally {
-            close(it);
+            org.opengis.util.ProgressListener progress) throws IOException {
+        if (canDelegate(visitor)) {
+            delegate.accepts(visitor, progress);
+        }
+        else {
+            DataUtilities.visit(this, visitor, progress);
         }
     }
-    
-    public boolean add(SimpleFeature o) {
-        return delegate.add(o);
-    }
 
-    public boolean addAll(Collection c) {
-        return delegate.addAll(c);
-    }
-
-    public boolean addAll(FeatureCollection c) {
-        return delegate.addAll(c);
-    }
-    
-    public void addListener(CollectionListener listener)
-            throws NullPointerException {
-        delegate.addListener(listener);
-    }
-
-    public void clear() {
-        delegate.clear();
-    }
-
-    public void close(FeatureIterator<SimpleFeature> close) {
-        delegate.close(close);
-    }
-
-    public void close(Iterator<SimpleFeature> close) {
-        delegate.close(close);
+    /**
+     * Methods for subclass to override in order to determine if the supplied visitor can be 
+     * passed to the delegate collection.
+     * <p>
+     * The default is false and the visitor receives the decoraeted features. 
+     * </p>
+     */
+    protected boolean canDelegate(FeatureVisitor visitor) {
+        return false;
     }
 
     public boolean contains(Object o) {
         return delegate.contains(o);
     }
 
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(Collection<?> c) {
         return delegate.containsAll(c);
     }
 
@@ -148,31 +109,6 @@ public class DecoratingSimpleFeatureCollection implements SimpleFeatureCollectio
         return delegate.isEmpty();
     }
 
-    public Iterator iterator() {
-        return delegate.iterator();
-    }
-
-    public void purge() {
-        delegate.purge();
-    }
-
-    public boolean remove(Object o) {
-        return delegate.remove(o);
-    }
-
-    public boolean removeAll(Collection c) {
-        return delegate.removeAll(c);
-    }
-
-    public void removeListener(CollectionListener listener)
-            throws NullPointerException {
-        delegate.removeListener(listener);
-    }
-
-    public boolean retainAll(Collection c) {
-        return delegate.retainAll(c);
-    }
-
     public int size() {
         return delegate.size();
     }
@@ -189,10 +125,11 @@ public class DecoratingSimpleFeatureCollection implements SimpleFeatureCollectio
         return delegate.toArray();
     }
 
-    public Object[] toArray(Object[] a) {
+    public <F> F[] toArray(F[] a) {
         return delegate.toArray(a);
     }
-	public String getID() {
-		return delegate.getID();
-	}
+
+    public String getID() {
+        return delegate.getID();
+    }
 }

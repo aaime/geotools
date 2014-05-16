@@ -41,6 +41,7 @@ import java.util.logging.Logger;
 
 import org.geotools.geometry.jts.GeometryClipper;
 import org.geotools.geometry.jts.LiteShape2;
+import org.geotools.renderer.VendorOptionParser;
 import org.geotools.renderer.label.LabelCacheItem.GraphicResize;
 import org.geotools.renderer.lite.LabelCache;
 import org.geotools.renderer.style.SLDStyleFactory;
@@ -50,6 +51,7 @@ import org.geotools.styling.TextSymbolizer.PolygonAlignOptions;
 import org.geotools.util.NumberRange;
 import org.geotools.util.logging.Logging;
 import org.opengis.feature.Feature;
+import org.opengis.filter.expression.Expression;
 import org.opengis.filter.expression.Literal;
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -124,11 +126,11 @@ public final class LabelCacheImpl implements LabelCache {
      */
     public static double MIN_CURVED_DELTA = Math.PI / 60;
 
-    /** Map<label, LabelCacheItem> the label cache */
-    protected Map<String, LabelCacheItem> labelCache = new HashMap<String, LabelCacheItem>();
+    /** Used to locate grouped labels quickly */
+    protected Map<LabelCacheItem, LabelCacheItem> groupedLabelsLookup = new HashMap<LabelCacheItem, LabelCacheItem>();
 
-    /** non-grouped labels get thrown in here* */
-    protected ArrayList<LabelCacheItem> labelCacheNonGrouped = new ArrayList<LabelCacheItem>();
+    /** labels get thrown in here, in insertion order */
+    protected ArrayList<LabelCacheItem> labelCache = new ArrayList<LabelCacheItem>();
 
     /** List of reserved areas of the screen for which labels should fear to tread */
     private List<Rectangle2D> reserved = new ArrayList<Rectangle2D>();
@@ -155,6 +157,8 @@ public final class LabelCacheImpl implements LabelCache {
     GeometryClipper clipper;
 
     private boolean needsOrdering = false;
+    
+    private VendorOptionParser voParser = new VendorOptionParser();
 
     public void enableLayer(String layerId) {
         needsOrdering = true;
@@ -192,7 +196,7 @@ public final class LabelCacheImpl implements LabelCache {
         }
         needsOrdering = true;
         labelCache.clear();
-        labelCacheNonGrouped.clear();
+        groupedLabelsLookup.clear();
         enabledLayers.clear();
     }
 
@@ -203,15 +207,12 @@ public final class LabelCacheImpl implements LabelCache {
         }
         needsOrdering = true;
 
-        for (Iterator<LabelCacheItem> iter = labelCache.values().iterator(); iter.hasNext();) {
+        for (Iterator<LabelCacheItem> iter = labelCache.iterator(); iter.hasNext();) {
             LabelCacheItem item = iter.next();
-            if (item.getLayerIds().contains(layerId))
+            if (item.getLayerIds().contains(layerId)) {
                 iter.remove();
-        }
-        for (Iterator<LabelCacheItem> iter = labelCacheNonGrouped.iterator(); iter.hasNext();) {
-            LabelCacheItem item = iter.next();
-            if (item.getLayerIds().contains(layerId))
-                iter.remove();
+                groupedLabelsLookup.remove(item);
+            }
         }
 
         enabledLayers.remove(layerId);
@@ -224,7 +225,7 @@ public final class LabelCacheImpl implements LabelCache {
     }
 
     /**
-     * @see org.geotools.renderer.lite.LabelCache#startLayer()
+     * @see org.geotools.renderer.lite.LabelCache#startLayer(String)
      */
     public void startLayer(String layerId) {
         enabledLayers.add(layerId);
@@ -254,8 +255,8 @@ public final class LabelCacheImpl implements LabelCache {
     }
 
     /**
-     * @see org.geotools.renderer.lite.LabelCache#put(org.geotools.renderer.style.TextStyle2D,
-     *      org.geotools.renderer.lite.LiteShape)
+     * @see org.geotools.renderer.lite.LabelCache#put(String,TextSymbolizer,Feature,
+     *      LiteShape2,NumberRange)
      */
     public void put(String layerId, TextSymbolizer symbolizer, Feature feature,
             LiteShape2 shape, NumberRange scaleRange) {
@@ -275,43 +276,27 @@ public final class LabelCacheImpl implements LabelCache {
                 return; // dont label something with nothing!
             }
             double priorityValue = getPriority(symbolizer, feature);
-            boolean group = getBooleanOption(symbolizer, TextSymbolizer.GROUP_KEY, false);
+            boolean group = voParser.getBooleanOption(symbolizer, TextSymbolizer.GROUP_KEY, false);
+            LabelCacheItem item = buildLabelCacheItem(layerId, symbolizer, feature, shape,
+                    scaleRange, label, priorityValue);
             if (!(group)) {
-                LabelCacheItem item = buildLabelCacheItem(layerId, symbolizer, feature, shape,
-                        scaleRange, label, priorityValue);
-                labelCacheNonGrouped.add(item);
+                labelCache.add(item);
             } else { // / --------- grouping case ----------------
-
-                // equals and hashcode of LabelCacheItem is the hashcode of
-                // label and the
-                // equals of the 2 labels so label can be used to find the
-                // entry.
-
-                // DJB: this is where the "grouping" of 'same label' features
-                // occurs
-                LabelCacheItem lci = (LabelCacheItem) labelCache.get(label);
-                if (lci == null) // nothing in there yet!
-                {
-                    lci = buildLabelCacheItem(layerId, symbolizer, feature, shape, scaleRange,
-                            label, priorityValue);
-                    labelCache.put(label, lci);
+                // LabelCacheItem equals and hashcode work based on the label equality and the
+                // TextSymbolizer identity
+                LabelCacheItem groupItem = groupedLabelsLookup.get(item);
+                if(groupItem == null) {
+                    labelCache.add(item);
+                    groupedLabelsLookup.put(item, item);
                 } else {
-                    // add only in the non-default case or non-literal. Ie.
+                    // add to the priority only in the non-default case or non-literal. Ie.
                     // area()
-                    if ((symbolizer.getPriority() != null)
-                            && (!(symbolizer.getPriority() instanceof Literal)))
-                        lci.setPriority(lci.getPriority() + priorityValue); // djb--
-                    // changed
-                    // because
-                    // you
-                    // do
-                    // not
-                    // always
-                    // want
-                    // to
-                    // add!
+                    Expression priority = symbolizer.getPriority();
+                    if ((priority != null) && (!(priority instanceof Literal))) {
+                        groupItem.setPriority(groupItem.getPriority() + priorityValue);
+                    }
 
-                    lci.getGeoms().add(shape.getGeometry());
+                    groupItem.getGeoms().add(shape.getGeometry());
                 }
             }
         } catch (Exception e) {
@@ -329,132 +314,39 @@ public final class LabelCacheImpl implements LabelCache {
         TextStyle2D textStyle = (TextStyle2D) styleFactory.createStyle(feature, symbolizer,
                 scaleRange);
 
-        LabelCacheItem item = new LabelCacheItem(layerId, textStyle, shape, label);
+        LabelCacheItem item = new LabelCacheItem(layerId, textStyle, shape, label, symbolizer);
         item.setPriority(priorityValue);
-        item.setSpaceAround(getIntOption(symbolizer, SPACE_AROUND_KEY, DEFAULT_SPACE_AROUND));
-        item.setMaxDisplacement(getIntOption(symbolizer, MAX_DISPLACEMENT_KEY,
+        item.setSpaceAround(voParser.getIntOption(symbolizer, SPACE_AROUND_KEY, DEFAULT_SPACE_AROUND));
+        item.setMaxDisplacement(voParser.getIntOption(symbolizer, MAX_DISPLACEMENT_KEY,
                 DEFAULT_MAX_DISPLACEMENT));
-        item.setMinGroupDistance(getIntOption(symbolizer, MIN_GROUP_DISTANCE_KEY,
+        item.setMinGroupDistance(voParser.getIntOption(symbolizer, MIN_GROUP_DISTANCE_KEY,
                 DEFAULT_MIN_GROUP_DISTANCE));
-        item.setRepeat(getIntOption(symbolizer, LABEL_REPEAT_KEY, DEFAULT_LABEL_REPEAT));
-        item.setLabelAllGroup(getBooleanOption(symbolizer, LABEL_ALL_GROUP_KEY,
+        item.setRepeat(voParser.getIntOption(symbolizer, LABEL_REPEAT_KEY, DEFAULT_LABEL_REPEAT));
+        item.setLabelAllGroup(voParser.getBooleanOption(symbolizer, LABEL_ALL_GROUP_KEY,
                         DEFAULT_LABEL_ALL_GROUP));
-        item.setRemoveGroupOverlaps(getBooleanOption(symbolizer, "removeOverlaps",
+        item.setRemoveGroupOverlaps(voParser.getBooleanOption(symbolizer, "removeOverlaps",
                 DEFAULT_REMOVE_OVERLAPS));
-        item.setAllowOverruns(getBooleanOption(symbolizer, ALLOW_OVERRUNS_KEY,
+        item.setAllowOverruns(voParser.getBooleanOption(symbolizer, ALLOW_OVERRUNS_KEY,
                         DEFAULT_ALLOW_OVERRUNS));
-        item.setFollowLineEnabled(getBooleanOption(symbolizer, FOLLOW_LINE_KEY, DEFAULT_FOLLOW_LINE));
-        double maxAngleDelta = getDoubleOption(symbolizer, MAX_ANGLE_DELTA_KEY, DEFAULT_MAX_ANGLE_DELTA);
+        item.setFollowLineEnabled(voParser.getBooleanOption(symbolizer, FOLLOW_LINE_KEY, DEFAULT_FOLLOW_LINE));
+        double maxAngleDelta = voParser.getDoubleOption(symbolizer, MAX_ANGLE_DELTA_KEY, DEFAULT_MAX_ANGLE_DELTA);
         item.setMaxAngleDelta(Math.toRadians(maxAngleDelta));
-        item.setAutoWrap(getIntOption(symbolizer, AUTO_WRAP_KEY, DEFAULT_AUTO_WRAP));
-        item.setForceLeftToRightEnabled(getBooleanOption(symbolizer, FORCE_LEFT_TO_RIGHT_KEY, DEFAULT_FORCE_LEFT_TO_RIGHT));
-        item.setConflictResolutionEnabled(getBooleanOption(symbolizer, CONFLICT_RESOLUTION_KEY, DEFAULT_CONFLICT_RESOLUTION));
-        item.setGoodnessOfFit(getDoubleOption(symbolizer, GOODNESS_OF_FIT_KEY, DEFAULT_GOODNESS_OF_FIT));
-        item.setPolygonAlign((PolygonAlignOptions) getEnumOption(symbolizer, POLYGONALIGN_KEY, DEFAULT_POLYGONALIGN));
-        item.setGraphicsResize(getGraphicResize(symbolizer));
-        item.setGraphicMargin(getGraphicMargin(symbolizer));
+        item.setAutoWrap(voParser.getIntOption(symbolizer, AUTO_WRAP_KEY, DEFAULT_AUTO_WRAP));
+        item.setForceLeftToRightEnabled(voParser.getBooleanOption(symbolizer, FORCE_LEFT_TO_RIGHT_KEY, DEFAULT_FORCE_LEFT_TO_RIGHT));
+        item.setConflictResolutionEnabled(voParser.getBooleanOption(symbolizer, CONFLICT_RESOLUTION_KEY, DEFAULT_CONFLICT_RESOLUTION));
+        item.setGoodnessOfFit(voParser.getDoubleOption(symbolizer, GOODNESS_OF_FIT_KEY, DEFAULT_GOODNESS_OF_FIT));
+        item.setPolygonAlign((PolygonAlignOptions) voParser.getEnumOption(symbolizer, POLYGONALIGN_KEY, DEFAULT_POLYGONALIGN));
+        item.setGraphicsResize((GraphicResize) voParser.getEnumOption(symbolizer, "graphic-resize", GraphicResize.NONE));
+        item.setGraphicMargin(voParser.getGraphicMargin(symbolizer, "graphic-margin"));
+        item.setPartialsEnabled(voParser.getBooleanOption(symbolizer, PARTIALS_KEY, DEFAULT_PARTIALS));
+
         return item;
     }
     
-    private Enum getEnumOption(TextSymbolizer symbolizer, String optionName, Enum defaultValue) {
-        String value = symbolizer.getOption(optionName);
-        
-        if (value == null)
-            return defaultValue;
-        try {
-            Enum enumValue = Enum.valueOf(defaultValue.getDeclaringClass(), value.toUpperCase());
-            return enumValue;
-        } catch (Exception e) {
-            return defaultValue;
-        }
-    }
-
-    private int getIntOption(TextSymbolizer symbolizer, String optionName, int defaultValue) {
-        String value = symbolizer.getOption(optionName);
-        if (value == null)
-            return defaultValue;
-        try {
-            return Integer.parseInt(value);
-        } catch (Exception e) {
-            return defaultValue;
-        }
-    }
-
-    private double getDoubleOption(TextSymbolizer symbolizer, String optionName, double defaultValue) {
-        String value = symbolizer.getOption(optionName);
-        if (value == null)
-            return defaultValue;
-        try {
-            return Double.parseDouble(value);
-        } catch (Exception e) {
-            return defaultValue;
-        }
-    }
-
-    /**
-     * look at the options in the symbolizer for "group". return its value if
-     * not present, return "DEFAULT_GROUP"
-     * 
-     * @param symbolizer
-     */
-    private boolean getBooleanOption(TextSymbolizer symbolizer, String optionName,
-            boolean defaultValue) {
-        String value = symbolizer.getOption(optionName);
-        if (value == null)
-            return defaultValue;
-        return value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true")
-                || value.equalsIgnoreCase("1");
-    }
     
-    /**
-     * Parses the {@link GraphicResize} enum
-     * @param symbolizer
-     * @return
-     */
-    private GraphicResize getGraphicResize(TextSymbolizer symbolizer) {
-        String value = symbolizer.getOptions().get("graphic-resize");
-        if(value == null) {
-            return GraphicResize.NONE;
-        } else {
-            return GraphicResize.valueOf(value.toUpperCase());
-        }
-    }
-    
-    /**
-     * Parses the graphic margin, if any
-     * @param symbolizer
-     * @return
-     */
-    private int[] getGraphicMargin(TextSymbolizer symbolizer) {
-        String value = symbolizer.getOptions().get("graphic-margin");
-        if(value == null) {
-            return null;
-        } else {
-            String[] values = value.trim().split("\\s+");
-            if(values.length == 0) {
-                return null;
-            } else if(values.length > 4) {
-                throw new IllegalArgumentException("The graphic margin is to be specified with 1, 2 or 4 values");
-            }
-            int[] parsed = new int[values.length];
-            for (int i = 0; i < parsed.length; i++) {
-                parsed[i] = Integer.parseInt(values[i]);
-            } 
-            if(parsed.length == 4) {
-                return parsed;
-            } else if(parsed.length == 3) {
-                return new int[] {parsed[0], parsed[1], parsed[2], parsed[1]};
-            } else if(parsed.length == 2) {
-                return new int[] {parsed[0], parsed[1], parsed[0], parsed[1]};
-            } else {
-                return new int[] {parsed[0], parsed[0], parsed[0], parsed[0]};
-            }
-        }
-    }
 
     /**
-     * @see org.geotools.renderer.lite.LabelCache#endLayer(java.awt.Graphics2D,
-     *      java.awt.Rectangle)
+     * @see org.geotools.renderer.lite.LabelCache#endLayer(String,Graphics2D,Rectangle)
      */
     public void endLayer(String layerId, Graphics2D graphics, Rectangle displayArea) {
         activeLayers.remove(layerId);
@@ -476,14 +368,10 @@ public final class LabelCacheImpl implements LabelCache {
      * 
      * @return
      */
-    private List<LabelCacheItem> getActiveLabels() {
+    public List<LabelCacheItem> getActiveLabels() {
         // fill a list with the active labels
         List<LabelCacheItem> al = new ArrayList<LabelCacheItem>();
-        for (LabelCacheItem item : labelCache.values()) {
-            if (isActive(item.getLayerIds()))
-                al.add(item);
-        }
-        for (LabelCacheItem item : labelCacheNonGrouped) {
+        for (LabelCacheItem item : labelCache) {
             if (isActive(item.getLayerIds()))
                 al.add(item);
         }
@@ -618,12 +506,9 @@ public final class LabelCacheImpl implements LabelCache {
      * SO, use a sample method - make a few points inside the label and see if
      * they're "close to" the polygon The method sucks, but works well...
      * 
-     * @param glyphVector
-     * @param representativeGeom
-     */
-    /**
-     * @param glyphBounds
-     * @param representativeGeom
+     * @param painter
+     * @param transform
+     *
      * @return
      */
     private double goodnessOfFit(LabelPainter painter, AffineTransform transform,
@@ -686,8 +571,9 @@ public final class LabelCacheImpl implements LabelCache {
     private boolean paintLineLabels(LabelPainter painter, AffineTransform originalTransform,
             Rectangle displayArea, LabelIndex paintedBounds) throws Exception {
         final LabelCacheItem labelItem = painter.getLabel();
-        List<LineString> lines = (List<LineString>) getLineSetRepresentativeLocation(labelItem
-                .getGeoms(), displayArea, labelItem.removeGroupOverlaps());
+        List<LineString> lines = (List<LineString>) getLineSetRepresentativeLocation(
+                labelItem.getGeoms(), displayArea, labelItem.removeGroupOverlaps(),
+                labelItem.isPartialsEnabled());
 
         if (lines == null || lines.size() == 0)
             return false;
@@ -804,7 +690,7 @@ public final class LabelCacheImpl implements LabelCache {
 
                     // try to paint the label, the condition under which this
                     // happens are complex
-                    if (displayArea.contains(labelEnvelope)
+                    if ((displayArea.contains(labelEnvelope) || labelItem.isPartialsEnabled())
                             && !(labelItem.isConflictResolutionEnabled() && paintedBounds.labelsWithinDistance(labelEnvelope, extraSpace))
                             && !groupLabels.labelsWithinDistance(labelEnvelope, minDistance)) {
                         if (labelItem.isFollowLineEnabled()) {
@@ -905,7 +791,7 @@ public final class LabelCacheImpl implements LabelCache {
      * @param tempTransform
      * @param centroid
      * @param textStyle
-     * @param textBounds
+     * @param painter
      */
     private void setupPointTransform(AffineTransform tempTransform, Point centroid,
             TextStyle2D textStyle, LabelPainter painter) {
@@ -937,10 +823,11 @@ public final class LabelCacheImpl implements LabelCache {
      * location of the line string, using the positioning information loaded
      * from the the text style
      * 
-     * @param tempTransform
+     * @param painter
+     * @param cursor
      * @param centroid
-     * @param textStyle
-     * @param textBounds
+     * @param tempTransform
+     * @param followLine
      */
     private void setupLineTransform(LabelPainter painter, LineStringCursor cursor,
             Coordinate centroid, AffineTransform tempTransform, boolean followLine) {
@@ -954,6 +841,7 @@ public final class LabelCacheImpl implements LabelCache {
         double rotation;
         double displacementX = 0;
         double displacementY = 0;
+        Rectangle2D textBounds = painter.getLabelBounds();
         if (textStyle.isPointPlacement() && !followLine) {
             // use the one the user supplied!
             rotation = textStyle.getRotation();
@@ -964,12 +852,13 @@ public final class LabelCacheImpl implements LabelCache {
                 rotation = cursor.getCurrentAngle();
             }
             // move it off the line
-            displacementY -= textStyle.getPerpendicularOffset();
+            displacementY -= textStyle.getPerpendicularOffset() + (painter.getLineCount() - 1)
+                    * (textBounds.getHeight() / painter.getLineCount());
             anchorX = 0.5; // centered
             anchorY = painter.getLinePlacementYAnchor();
         }
 
-        Rectangle2D textBounds = painter.getLabelBounds();
+
         displacementX = (anchorX * (-textBounds.getWidth())) + textStyle.getDisplacementX();
         displacementY += (anchorY * (textBounds.getHeight())) - textStyle.getDisplacementY();
 
@@ -989,7 +878,8 @@ public final class LabelCacheImpl implements LabelCache {
             Rectangle displayArea, LabelIndex glyphs) throws Exception {
         LabelCacheItem labelItem = painter.getLabel();
         // get the point onto the shape has to be painted
-        Point point = getPointSetRepresentativeLocation(labelItem.getGeoms(), displayArea);
+        Point point = getPointSetRepresentativeLocation(labelItem.getGeoms(),
+                displayArea, labelItem.isPartialsEnabled());
         if (point == null)
             return false;
 
@@ -1098,7 +988,7 @@ public final class LabelCacheImpl implements LabelCache {
         // check for overlaps and paint
         Rectangle2D transformed = tempTransform
                 .createTransformedShape(painter.getFullLabelBounds()).getBounds2D();
-        if (!displayArea.contains(transformed)
+        if (!(displayArea.contains(transformed) || labelItem.isPartialsEnabled())
                 || (labelItem.isConflictResolutionEnabled() && 
                         glyphs.labelsWithinDistance(transformed, labelItem.getSpaceAround()))) {
             return false;
@@ -1124,7 +1014,7 @@ public final class LabelCacheImpl implements LabelCache {
     private boolean paintPolygonLabel(LabelPainter painter, AffineTransform tempTransform,
             Rectangle displayArea, LabelIndex glyphs) throws Exception {
         LabelCacheItem labelItem = painter.getLabel();
-        Polygon geom = getPolySetRepresentativeLocation(labelItem.getGeoms(), displayArea);
+        Polygon geom = getPolySetRepresentativeLocation(labelItem.getGeoms(), displayArea, labelItem.isPartialsEnabled());
         if (geom == null) {
             return false;
         }
@@ -1245,7 +1135,7 @@ public final class LabelCacheImpl implements LabelCache {
 
         Rectangle2D transformed = tempTransform
                 .createTransformedShape(painter.getFullLabelBounds()).getBounds2D();
-        if (!displayArea.contains(transformed)
+        if (!(displayArea.contains(transformed) || labelItem.isPartialsEnabled())
                 || (labelItem.isConflictResolutionEnabled() 
                         && glyphs.labelsWithinDistance(transformed, labelItem.getSpaceAround()))
                 || goodnessOfFit(painter, tempTransform, pg) < painter.getLabel().getGoodnessOfFit()) {
@@ -1255,7 +1145,7 @@ public final class LabelCacheImpl implements LabelCache {
                 setupPointTransform(tempTransform, centroid, textStyle, painter);
 
                 transformed = tempTransform.createTransformedShape(painter.getFullLabelBounds()).getBounds2D();
-                if (!displayArea.contains(transformed)
+                if (!(displayArea.contains(transformed) || labelItem.isPartialsEnabled())
                         || (labelItem.isConflictResolutionEnabled() 
                                 && glyphs.labelsWithinDistance(transformed, labelItem.getSpaceAround()))
                         || goodnessOfFit(painter, tempTransform, pg) < painter.getLabel().getGoodnessOfFit()) {
@@ -1312,10 +1202,11 @@ public final class LabelCacheImpl implements LabelCache {
      * @param geoms
      *            list of Point or MultiPoint (any other geometry types are
      *            rejected
-     * @param displayGeometry
+     * @param displayArea
+     * @param partialsEnabled true if we don't want to exclude points out of the displayArea
      * @return a point or null (if there's nothing to draw)
      */
-    Point getPointSetRepresentativeLocation(List<Geometry> geoms, Rectangle displayArea) {
+    Point getPointSetRepresentativeLocation(List<Geometry> geoms, Rectangle displayArea, boolean partialsEnabled) {
         // points that are inside the displayGeometry
         ArrayList<Point> pts = new ArrayList<Point>();
 
@@ -1325,13 +1216,12 @@ public final class LabelCacheImpl implements LabelCache {
                 g = g.getCentroid(); // will be point
             if (g instanceof Point) {
                 Point point = (Point) g;
-                if (displayArea.contains(point.getX(), point.getY())) // this is
-                                                                      // robust!
+                if (displayArea.contains(point.getX(), point.getY()) || partialsEnabled) // this is robust!
                     pts.add(point); // possible label location
             } else if (g instanceof MultiPoint) {
                 for (int t = 0; t < g.getNumGeometries(); t++) {
                     Point gg = (Point) g.getGeometryN(t);
-                    if (displayArea.contains(gg.getX(), gg.getY()))
+                    if (displayArea.contains(gg.getX(), gg.getY()) || partialsEnabled)
                         pts.add(gg); // possible label location
                 }
             }
@@ -1361,12 +1251,12 @@ public final class LabelCacheImpl implements LabelCache {
      * 
      * 
      * @param geoms
+     * @param displayArea must be poly
      * @param removeOverlaps
-     * @param displayGeometry
-     *            must be poly
+     * @param partialsEnabled true if we don't want to clip lines on the displayArea
      */
     List<LineString> getLineSetRepresentativeLocation(List<Geometry> geoms, Rectangle displayArea,
-            boolean removeOverlaps) {
+                boolean removeOverlaps, boolean partialsEnabled) {
 
         // go through each geometry in the set.
         // if its a polygon or multipolygon, get the boundary (reduce to a line)
@@ -1382,11 +1272,18 @@ public final class LabelCacheImpl implements LabelCache {
         // clip all the lines to the current bounds
         List<LineString> clippedLines = new ArrayList<LineString>();
         for (LineString ls : lines) {
-            // more robust clipper -- see its dox
-            MultiLineString ll = clipLineString(ls);
-            if ((ll != null) && (!(ll.isEmpty()))) {
-                for (int t = 0; t < ll.getNumGeometries(); t++)
-                    clippedLines.add((LineString) ll.getGeometryN(t));
+            // If we want labels to be entirely in the display area, clip the linestring
+            if (!partialsEnabled) {
+                // more robust clipper -- see its dox
+                MultiLineString ll = clipLineString(ls);
+                if ((ll != null) && (!(ll.isEmpty()))) {
+                    for (int t = 0; t < ll.getNumGeometries(); t++)
+                        clippedLines.add((LineString) ll.getGeometryN(t));
+                }
+            }
+            // If we want to draw partial labels on border, keep the whole linestring
+            else {
+                clippedLines.add(ls);
             }
         }
 
@@ -1476,8 +1373,7 @@ public final class LabelCacheImpl implements LabelCache {
      * does. It might return the unclipped line if there's a problem!
      * 
      * @param line
-     * @param bbox
-     *            MUST BE A BOUNDING BOX
+     *
      */
     public MultiLineString clipLineString(LineString line) {
 
@@ -1516,9 +1412,11 @@ public final class LabelCacheImpl implements LabelCache {
      * geometries
      * 
      * @param geoms
-     * @param displayGeometry
+     * @param displayArea
+     * @param partialsEnabled true if we don't want to clip lines on the displayArea
      */
-    Polygon getPolySetRepresentativeLocation(List<Geometry> geoms, Rectangle displayArea) {
+    Polygon getPolySetRepresentativeLocation(List<Geometry> geoms,
+                Rectangle displayArea, boolean partialsEnabled) {
         List<Polygon> polys = new ArrayList<Polygon>(); // points that are
                                                         // inside the
         Geometry displayGeometry = gf.toGeometry(toEnvelope(displayArea));
@@ -1548,10 +1446,17 @@ public final class LabelCacheImpl implements LabelCache {
         List<Polygon> clippedPolys = new ArrayList<Polygon>();
         Envelope displayGeomEnv = displayGeometry.getEnvelopeInternal();
         for (Polygon p : polys) {
-            MultiPolygon pp = clipPolygon(p, (Polygon) displayGeometry, displayGeomEnv);
-            if ((pp != null) && (!(pp.isEmpty()))) {
-                for (int t = 0; t < pp.getNumGeometries(); t++)
-                    clippedPolys.add((Polygon) pp.getGeometryN(t)); 
+            // If we want labels to be entirely in the display area, clip polygons
+            if (!partialsEnabled) {
+                MultiPolygon pp = clipPolygon(p, (Polygon) displayGeometry, displayGeomEnv);
+                if ((pp != null) && (!(pp.isEmpty()))) {
+                    for (int t = 0; t < pp.getNumGeometries(); t++)
+                        clippedPolys.add((Polygon) pp.getGeometryN(t));
+                }
+            }
+            // If we want to draw partial labels on border, keep the whole polygon
+            else {
+                clippedPolys.add(p);
             }
         }
         
@@ -1686,7 +1591,6 @@ public final class LabelCacheImpl implements LabelCache {
      * 
      * @param edges
      * @param nodes
-     * @param result
      * 
      */
     public List<LineString> processNodes(List<LineString> edges,

@@ -20,11 +20,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.IndexColorModel;
-import java.awt.image.RenderedImage;
+import java.awt.image.*;
+import java.util.Arrays;
+import java.util.Hashtable;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,31 +79,36 @@ public class ImageComposerThread extends AbstractThread {
 
 	private BufferedImage getStartImage(BufferedImage copyFrom) {
 		Dimension dim = getStartDimension();
+		Hashtable<String,Object> properties = null;
+		
+		if (copyFrom.getPropertyNames()!=null) {
+		    properties = new Hashtable<String, Object>();
+		    for (String name : copyFrom.getPropertyNames()) {
+		        properties.put(name, copyFrom.getProperty(name));
+		    }
+		}
 
-		int imageType = copyFrom.getType();
-		if (imageType == BufferedImage.TYPE_CUSTOM)
-			imageType = ImageMosaicJDBCReader.DEFAULT_IMAGE_TYPE;
+		SampleModel sm = copyFrom.getSampleModel().createCompatibleSampleModel((int)dim.getWidth(), (int) dim.getHeight());
+        WritableRaster raster = Raster.createWritableRaster(sm, null);
 
-		BufferedImage image = null;
-		if ((imageType == BufferedImage.TYPE_BYTE_BINARY || imageType == BufferedImage.TYPE_BYTE_INDEXED)
-				&& (copyFrom.getColorModel() instanceof IndexColorModel))
-			image = new BufferedImage((int) dim.getWidth(), (int) dim
-					.getHeight(), imageType, (IndexColorModel) copyFrom
-					.getColorModel());
-		else
-			image = new BufferedImage((int) dim.getWidth(), (int) dim
-					.getHeight(), imageType);
+        ColorModel colorModel = copyFrom.getColorModel();
+        boolean alphaPremultiplied = copyFrom.isAlphaPremultiplied();
 
-		Graphics2D g2D = (Graphics2D) image.getGraphics();
-		Color save = g2D.getColor();
-		g2D.setColor(backgroundColor);
-		g2D.fillRect(0, 0, image.getWidth(), image.getHeight());
-		g2D.setColor(save);
-
-		return image;
+        
+        DataBuffer dataBuffer = createDataBufferFilledWithNoDataValues(raster, colorModel.getPixelSize());
+        raster = Raster.createWritableRaster(sm, dataBuffer, null);
+        BufferedImage image=  new BufferedImage(colorModel, raster, alphaPremultiplied, properties);
+        if (levelInfo.getNoDataValue()==null) {        
+            Graphics2D g2D = (Graphics2D) image.getGraphics();
+            Color save = g2D.getColor();
+            g2D.setColor(backgroundColor);
+            g2D.fillRect(0, 0, image.getWidth(), image.getHeight());
+            g2D.setColor(save);
+        }
+        return  image;
 	}
 
-	private BufferedImage getStartImage(int imageType) {
+    private BufferedImage getStartImage(int imageType) {
 		Dimension dim = getStartDimension();
 
 		if (imageType == BufferedImage.TYPE_CUSTOM)
@@ -125,7 +129,6 @@ public class ImageComposerThread extends AbstractThread {
 	@Override
 	public void run() {
 		BufferedImage image = null;
-		Graphics2D g2D = null;
 
 		TileQueueElement queueObject = null;
 
@@ -134,18 +137,17 @@ public class ImageComposerThread extends AbstractThread {
 
 				if (image == null) {
 					image = getStartImage(queueObject.getTileImage());
-					g2D = (Graphics2D) image.getGraphics();
 				}
 
 				int posx = (int) ((queueObject.getEnvelope().getMinimum(0) - requestEnvelope
 						.getMinimum(0)) / levelInfo.getResX());
 				int posy = (int) ((requestEnvelope.getMaximum(1) - queueObject
 						.getEnvelope().getMaximum(1)) / levelInfo.getResY());
-				g2D.drawImage(queueObject.getTileImage(), AffineTransform
-						.getTranslateInstance(posx, posy), null);
+
+                image.getRaster().setRect(posx, posy, queueObject.getTileImage().getRaster());
 
 			}
-		} catch (InterruptedException e) {
+        } catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 
@@ -164,21 +166,90 @@ public class ImageComposerThread extends AbstractThread {
 		} else {
 			resultEnvelope = requestEnvelope;
 		}
-		
-		image = rescaleImage(image);
-		if (outputTransparentColor == null)
+
+	image = rescaleImageViaPlanarImage(image);
+        if (outputTransparentColor == null)
 		    gridCoverage2D= coverageFactory.create(config.getCoverageName(),
-                            image, resultEnvelope);		
+                            image, resultEnvelope);
 		else {
                     if (LOGGER.isLoggable(Level.FINE))
                             LOGGER.fine("Support for alpha on final mosaic");
                     RenderedImage result =  ImageUtilities.maskColor(outputTransparentColor,image);
                     gridCoverage2D = coverageFactory.create(config.getCoverageName(),
                             result, resultEnvelope);
-		}				
+		}
 	}
 
-	GridCoverage2D getGridCoverage2D() {
+
+    GridCoverage2D getGridCoverage2D() {
 		return gridCoverage2D;
 	}
+
+    private DataBuffer createDataBufferFilledWithNoDataValues(WritableRaster raster, int pixelSize) {
+        int dataType = raster.getDataBuffer().getDataType();
+        
+        Number noDataValue = levelInfo.getNoDataValue();        
+        
+        int dataBufferSize = raster.getDataBuffer().getSize();        
+        int nrBanks = raster.getDataBuffer().getNumBanks();
+        DataBuffer dataBuffer;
+        switch (dataType) {
+            case DataBuffer.TYPE_INT:                
+                int[][] intDataArray = new int[nrBanks][dataBufferSize];
+                if (noDataValue!=null) {
+                    for (int i = 0; i < nrBanks;i++)
+                        Arrays.fill(intDataArray[i], noDataValue.intValue());
+                }   
+                dataBuffer = new DataBufferInt(intDataArray, dataBufferSize);                    
+                break;
+            case DataBuffer.TYPE_FLOAT:
+                float[][] floatDataArray = new float[nrBanks][dataBufferSize];
+                if (noDataValue!=null) {
+                    for (int i = 0; i < nrBanks;i++)
+                        Arrays.fill(floatDataArray[i], noDataValue.floatValue());
+                }   
+                dataBuffer = new DataBufferFloat(floatDataArray, dataBufferSize);                    
+                break;
+            case DataBuffer.TYPE_DOUBLE:
+                double[][] doubleDataArray = new double[nrBanks][dataBufferSize];
+                if (noDataValue!=null) {
+                    for (int i = 0; i < nrBanks;i++)
+                        Arrays.fill(doubleDataArray[i], noDataValue.doubleValue());
+                }   
+                dataBuffer = new DataBufferDouble(doubleDataArray, dataBufferSize);                    
+                break;
+                
+            case DataBuffer.TYPE_SHORT:
+                short[][] shortDataArray = new short[nrBanks][dataBufferSize];
+                if (noDataValue!=null) {
+                    for (int i = 0; i < nrBanks;i++)
+                        Arrays.fill(shortDataArray[i], noDataValue.shortValue());
+                }   
+                dataBuffer = new DataBufferShort(shortDataArray, dataBufferSize);                    
+                break;
+                
+            case DataBuffer.TYPE_BYTE:
+                byte[][] byteDataArray = new byte[nrBanks][dataBufferSize];
+                if (noDataValue!=null) {
+                    for (int i = 0; i < nrBanks;i++)
+                        Arrays.fill(byteDataArray[i], noDataValue.byteValue());
+                }   
+                dataBuffer = new DataBufferByte(byteDataArray, dataBufferSize);                    
+                break;                
+
+            case DataBuffer.TYPE_USHORT:
+                short[][] ushortDataArray = new short[nrBanks][dataBufferSize];
+                if (noDataValue!=null) {
+                    for (int i = 0; i < nrBanks;i++)
+                        Arrays.fill(ushortDataArray[i], noDataValue.shortValue());
+                }   
+                dataBuffer = new DataBufferUShort(ushortDataArray, dataBufferSize);                    
+                break;                                
+                
+            default:
+                throw new IllegalStateException("Couldn't create DataBuffer for  data type " + dataType
+                        + " and " + pixelSize + " pixel size");
+        }
+        return dataBuffer;
+    }
 }

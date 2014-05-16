@@ -1,6 +1,18 @@
-/* Copyright (c) 2001 - 2007 TOPP - www.openplans.org. All rights reserved.
- * This code is licensed under the GPL 2.0 license, available at the root
- * application directory.
+/*
+ *    GeoTools - The Open Source Java GIS Toolkit
+ *    http://geotools.org
+ * 
+ *    (C) 2001-2013, Open Source Geospatial Foundation (OSGeo)
+ *    
+ *    This library is free software; you can redistribute it and/or
+ *    modify it under the terms of the GNU Lesser General Public
+ *    License as published by the Free Software Foundation;
+ *    version 2.1 of the License.
+ *
+ *    This library is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *    Lesser General Public License for more details.
  */
 package org.geotools.filter.spatial;
 
@@ -35,8 +47,10 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.geometry.BoundingBox;
+import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.TransformException;
 
 import com.vividsolutions.jts.geom.Geometry;
 
@@ -68,9 +82,9 @@ public class ReprojectingFilterVisitor extends DuplicatingFilterVisitor {
      * @return
      */
     private CoordinateReferenceSystem findPropertyCRS(PropertyName propertyName) {
-        AttributeDescriptor at = (AttributeDescriptor) propertyName.evaluate(featureType);
-        if (at instanceof GeometryDescriptor) {
-            GeometryDescriptor gat = (GeometryDescriptor) at;
+        Object o = propertyName.evaluate(featureType);
+        if (o instanceof GeometryDescriptor) {
+            GeometryDescriptor gat = (GeometryDescriptor) o;
             return gat.getCoordinateReferenceSystem();
         } else {
             return null;
@@ -78,51 +92,40 @@ public class ReprojectingFilterVisitor extends DuplicatingFilterVisitor {
     }
 
     public Object visit(BBOX filter, Object extraData) {
+
+        // grab the original envelope data
+        BoundingBox boundaries = filter.getBounds();
+        // parse the srs, it might be a code or a WKT definition
+        CoordinateReferenceSystem crs = boundaries.getCoordinateReferenceSystem();
+        
         // if no srs is specified we can't transform anyways
-        String srs = filter.getSRS();
-        if (srs == null || "".equals(srs.trim()))
+        if (crs == null)
             return super.visit(filter, extraData);
 
-        try {
-            // grab the original envelope data
-            double minx = filter.getMinX();
-            double miny = filter.getMinY();
-            double maxx = filter.getMaxX();
-            double maxy = filter.getMaxY();
-            // parse the srs, it might be a code or a WKT definition
-            CoordinateReferenceSystem crs;
-            try {
-                crs = CRS.decode(srs);
-            } catch (NoSuchAuthorityCodeException e) {
-                crs = CRS.parseWKT(srs);
-            }
-
-            // grab the property data
-            String propertyName = filter.getPropertyName();
-            CoordinateReferenceSystem targetCrs = findPropertyCRS(ff.property(propertyName));
-
-            // if there is a mismatch, reproject and replace
-            if (crs != null && targetCrs != null && !CRS.equalsIgnoreMetadata(crs, targetCrs)) {
-                ReferencedEnvelope envelope = new ReferencedEnvelope(minx, maxx, miny, maxy, crs);
-                envelope = envelope.transform(targetCrs, true);
-                minx = envelope.getMinX();
-                miny = envelope.getMinY();
-                maxx = envelope.getMaxX();
-                maxy = envelope.getMaxY();
-
-                // set the srs. If we have a code we use it, otherwise we use a WKT definition
-                if (targetCrs.getIdentifiers().isEmpty()) {
-                    // fall back to WKT
-                    srs = targetCrs.toString();
-                } else {
-                    srs = targetCrs.getIdentifiers().iterator().next().toString();
-                }
-            }
-
-            return getFactory(extraData).bbox(propertyName, minx, miny, maxx, maxy, srs);
-        } catch (Exception e) {
-            throw new RuntimeException("Could not decode srs '" + srs + "'", e);
+        // grab the property data
+        PropertyName propertyName = null;
+        // get the expression as is to preserve namespace context
+        if (filter.getExpression1() instanceof PropertyName) {
+            propertyName = (PropertyName) filter.getExpression1();
+        } else if (filter.getExpression2() instanceof PropertyName) {
+            propertyName = (PropertyName) filter.getExpression2();
         }
+        CoordinateReferenceSystem targetCrs = findPropertyCRS(propertyName);
+
+        // if there is a mismatch, reproject and replace
+        if (crs != null && targetCrs != null && !CRS.equalsIgnoreMetadata(crs, targetCrs)) {
+             ReferencedEnvelope envelope = ReferencedEnvelope.reference(boundaries);
+             try {
+				envelope = envelope.transform(targetCrs, true);
+			} catch (TransformException e) {
+				throw new RuntimeException (e);
+			} catch (FactoryException e) {
+				throw new RuntimeException (e);
+			}
+             boundaries = envelope;                
+        }
+
+        return getFactory(extraData).bbox(propertyName, boundaries);
 
     }
     
@@ -294,6 +297,15 @@ public class ReprojectingFilterVisitor extends DuplicatingFilterVisitor {
                 return ff.equal(ex1, ex2);
             }
         }.transform(filter, extraData);
+    }
+    
+    public Object visit(Literal expression, Object extraData) {
+        Object value = expression.getValue();
+        if (value instanceof Geometry) {
+            value = reproject((Geometry) value, featureType.getCoordinateReferenceSystem());            
+        }
+        
+        return getFactory(extraData).literal(value);
     }
     
     /**

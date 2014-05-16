@@ -2,7 +2,7 @@
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
  *
- *    (C) 2007-2008, Open Source Geospatial Foundation (OSGeo)
+ *    (C) 2007-2013, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -16,14 +16,22 @@
  */
 package org.geotools.gce.imagemosaic;
 
+import it.geosolutions.imageio.pam.PAMDataset;
+import it.geosolutions.imageio.pam.PAMDataset.PAMRasterBand;
+import it.geosolutions.imageio.pam.PAMDataset.PAMRasterBand.Metadata;
+import it.geosolutions.imageio.pam.PAMDataset.PAMRasterBand.Metadata.MDI;
+
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
+import java.awt.image.ComponentColorModel;
+import java.awt.image.IndexColorModel;
 import java.awt.image.RenderedImage;
 import java.awt.image.SampleModel;
 import java.awt.image.WritableRaster;
@@ -40,49 +48,67 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.media.jai.BorderExtender;
 import javax.media.jai.Histogram;
+import javax.media.jai.ImageLayout;
+import javax.media.jai.JAI;
 import javax.media.jai.RasterFactory;
+import javax.media.jai.TileCache;
+import javax.media.jai.TileScheduler;
 import javax.media.jai.remote.SerializableRenderedImage;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 
+import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.geotools.data.DataAccessFactory.Param;
-import org.geotools.data.DataSourceException;
 import org.geotools.data.DataStoreFactorySpi;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.Hints;
-import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilder;
-import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilder.ExceptionEvent;
-import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilder.ProcessingEvent;
+import org.geotools.factory.Hints.Key;
+import org.geotools.filter.visitor.DefaultFilterVisitor;
+import org.geotools.gce.imagemosaic.catalog.CatalogConfigurationBean;
+import org.geotools.gce.imagemosaic.catalog.index.Indexer;
+import org.geotools.gce.imagemosaic.catalog.index.IndexerUtils;
+import org.geotools.gce.imagemosaic.catalog.index.ObjectFactory;
+import org.geotools.gce.imagemosaic.catalog.index.ParametersType.Parameter;
 import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilderConfiguration;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.operation.matrix.XAffineTransform;
 import org.geotools.resources.i18n.ErrorKeys;
 import org.geotools.resources.i18n.Errors;
 import org.geotools.util.Converters;
+import org.geotools.util.Range;
 import org.geotools.util.Utilities;
+import org.opengis.filter.FilterFactory2;
+import org.opengis.filter.spatial.BBOX;
 
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
@@ -98,22 +124,53 @@ import com.vividsolutions.jts.geom.Geometry;
  * @source $URL$
  */
 public class Utils {
+    
+    public final static FilterFactory2 FF = CommonFactoryFinder.getFilterFactory2();
+    
+    final private static String DATABASE_KEY = "database";
+
+    final private static String MVCC_KEY = "MVCC";
+
+    final private static double RESOLUTION_TOLERANCE_FACTOR = 1E-2;
+
+    public final static Key EXCLUDE_MOSAIC = new Key(Boolean.class);
+    
+    public final static Key CHECK_AUXILIARY_METADATA = new Key(Boolean.class);
+
+    public final static Key AUXILIARY_FILES_PATH = new Key(String.class);
+
+    public final static Key MOSAIC_READER = new Key(ImageMosaicReader.class);
+
+    public static final String RANGE_SPLITTER_CHAR = ";";
 
     public final static String INDEXER_PROPERTIES = "indexer.properties";
+
+    public final static String INDEXER_XML = "indexer.xml";
+
+    private static JAXBContext CONTEXT = null;
     
+    public final static String PAM_DATASET = "PamDataset";
+
+    static final String DEFAULT = "default";
+
     /** EHCache instance to cache histograms */ 
-    private static Cache ehcache;    
-    
-    
+    private static Cache ehcache;
+
     /** RGB to GRAY coefficients (for Luminance computation) */
     public final static double RGB_TO_GRAY_MATRIX [][]= {{ 0.114, 0.587, 0.299, 0 }};
-    
+
     /** 
      * Flag indicating whether to compute optimized crop ops (instead of standard
      * mosaicking op) when possible (As an instance when mosaicking a single granule) 
      */
     final static boolean OPTIMIZE_CROP; 
-        
+
+    /**
+     * Logger.
+     */
+    private final static Logger LOGGER = org.geotools.util.logging.Logging
+                    .getLogger(Utils.class.toString());
+
     static {
         final String prop = System.getProperty("org.geotools.imagemosaic.optimizecrop");
         if (prop != null && prop.equalsIgnoreCase("FALSE")){
@@ -121,6 +178,13 @@ public class Utils {
         } else {
             OPTIMIZE_CROP = true;
         }
+
+        try {
+            CONTEXT = JAXBContext.newInstance("org.geotools.gce.imagemosaic.catalog.index");
+        } catch (JAXBException e) {
+            LOGGER.log(Level.FINER, e.getMessage(), e);
+        }
+        CLEANUP_FILTER = initCleanUpFilter(); 
     }
     
     public static class Prop {
@@ -131,25 +195,68 @@ public class Utils {
         public final static String SUGGESTED_SPI = "SuggestedSPI";
         public final static String EXP_RGB = "ExpandToRGB";
         public final static String ABSOLUTE_PATH = "AbsolutePath";
+        public final static String AUXILIARY_FILE = "AuxiliaryFile";
         public final static String NAME = "Name";
+        public final static String INDEX_NAME = "Name";
         public final static String FOOTPRINT_MANAGEMENT = "FootprintManagement";
         public final static String HETEROGENEOUS = "Heterogeneous";
         public static final String TIME_ATTRIBUTE = "TimeAttribute";
         public static final String ELEVATION_ATTRIBUTE = "ElevationAttribute";
-        public final static String CACHING= "Caching";
-        
+        public static final String ADDITIONAL_DOMAIN_ATTRIBUTES = "AdditionalDomainAttributes";
+
+        /**
+         * Sets if the target schema should be used to locate granules (default is FALSE)<br/>
+         * {@value TRUE|FALSE}
+         */
+        public final static String USE_EXISTING_SCHEMA = "UseExistingSchema"; 
+        public final static String TYPENAME = "TypeName";
+        public final static String PATH_TYPE = "PathType";
+        public final static String PARENT_LOCATION = "ParentLocation";
+        public final static String ROOT_MOSAIC_DIR = "RootMosaicDirectory";
+        public final static String INDEXING_DIRECTORIES = "IndexingDirectories";
+        public final static String HARVEST_DIRECTORY = "HarvestingDirectory";
+        public final static String CAN_BE_EMPTY = "CanBeEmpty";
+
+        /** Sets if the reader should look for auxiliary metadata PAM files */
+        public static final String CHECK_AUXILIARY_METADATA = "CheckAuxiliaryMetadata";
+
         //Indexer Properties specific properties
         public  static final String RECURSIVE = "Recursive";
         public static final String WILDCARD = "Wildcard";
         public static final String SCHEMA = "Schema";
         public static final String RESOLUTION_LEVELS = "ResolutionLevels";
         public static final String PROPERTY_COLLECTORS = "PropertyCollectors";
+        public final static String CACHING= "Caching";
     }
         /**
-	 * Logger.
-	 */
-	private final static Logger LOGGER = org.geotools.util.logging.Logging
-			.getLogger(Utils.class.toString());
+     * Extracts a bbox from a filter in case there is at least one.
+     * 
+     * I am simply looking for the BBOX filter but I am sure we could
+     * use other filters as well. I will leave this as a todo for the moment.
+     * 
+     * @author Simone Giannecchini, GeoSolutions SAS.
+     * @todo TODO use other spatial filters as well
+     */
+    public static class BBOXFilterExtractor extends DefaultFilterVisitor{
+    
+    	public ReferencedEnvelope getBBox() {
+    		return bbox;
+    	}
+    	private ReferencedEnvelope bbox;
+    	@Override
+    	public Object visit(BBOX filter, Object data) {
+    		final ReferencedEnvelope bbox= ReferencedEnvelope.reference(filter.getBounds());
+    		if(this.bbox!=null){
+    		    this.bbox=(ReferencedEnvelope) this.bbox.intersection(bbox);
+    		}
+    		else{
+    		    this.bbox=bbox;
+    		}
+    		return super.visit(filter, data);
+    	}
+    	
+    }
+
 	/**
 	 * Default wildcard for creating mosaics.
 	 */
@@ -193,22 +300,35 @@ public class Utils {
 
 		// create a mosaic index builder and set the relevant elements
 		final CatalogBuilderConfiguration configuration = new CatalogBuilderConfiguration();
-		configuration.setAbsolute(absolutePath);
-		configuration.setHints(hints);
-		configuration.setRootMosaicDirectory(location);
-		configuration.setIndexingDirectories(Arrays.asList(location));
-		configuration.setIndexName(indexName);
+		configuration.setHints(hints);// retain hints as this may contain an instance of an ImageMosaicReader
+		List<Parameter> parameterList = configuration.getIndexer().getParameters().getParameter();
+               
+               IndexerUtils.setParam(parameterList, Prop.ABSOLUTE_PATH, Boolean.toString(absolutePath));
+               IndexerUtils.setParam(parameterList, Prop.ROOT_MOSAIC_DIR, location);
+               IndexerUtils.setParam(parameterList, Prop.INDEX_NAME, indexName);
+               IndexerUtils.setParam(parameterList, Prop.WILDCARD, wildcard);
+               IndexerUtils.setParam(parameterList, Prop.INDEXING_DIRECTORIES, location);
 
-		// create the builder
-		final CatalogBuilder catalogBuilder = new CatalogBuilder(configuration);
+        // create the builder
+        // final ImageMosaicWalker catalogBuilder = new ImageMosaicWalker(configuration);
+        final ImageMosaicEventHandlers eventHandler = new ImageMosaicEventHandlers();
+        final ImageMosaicConfigHandler catalogHandler = new ImageMosaicConfigHandler(configuration,
+                eventHandler);
+        final ImageMosaicWalker walker;
+        if (catalogHandler.isUseExistingSchema()) {
+            walker = new ImageMosaicDatastoreWalker(catalogHandler, eventHandler);
+        } else {
+            walker = new ImageMosaicDirectoryWalker(catalogHandler, eventHandler);
+        }
+
 		// this is going to help us with catching exceptions and logging them
 		final Queue<Throwable> exceptions = new LinkedList<Throwable>();
 		try {
 
-			final CatalogBuilder.ProcessingEventListener listener = new CatalogBuilder.ProcessingEventListener() {
+			final ImageMosaicEventHandlers.ProcessingEventListener listener = new ImageMosaicEventHandlers.ProcessingEventListener() {
 
 				@Override
-				public void exceptionOccurred(ExceptionEvent event) {
+				public void exceptionOccurred(ImageMosaicEventHandlers.ExceptionEvent event) {
 					final Throwable t = event.getException();
 					exceptions.add(t);
 					if (LOGGER.isLoggable(Level.SEVERE))
@@ -217,20 +337,20 @@ public class Utils {
 				}
 
 				@Override
-				public void getNotification(ProcessingEvent event) {
+				public void getNotification(ImageMosaicEventHandlers.ProcessingEvent event) {
 					if (LOGGER.isLoggable(Level.FINE))
 						LOGGER.fine(event.getMessage());
 
 				}
 
 			};
-			catalogBuilder.addProcessingEventListener(listener);
-			catalogBuilder.run();
+			eventHandler.addProcessingEventListener(listener);
+			walker.run();
 		} catch (Throwable e) {
 			LOGGER.log(Level.SEVERE, "Unable to build mosaic", e);
 			return false;
 		} finally {
-			catalogBuilder.dispose();
+			catalogHandler.dispose();
 		}
 
 		// check that nothing bad happened
@@ -239,17 +359,35 @@ public class Utils {
 		return true;
 	}
 
-	public static String getMessageFromException(Exception exception) {
+	// Make additional filters pluggable
+    private static IOFileFilter initCleanUpFilter() {
+        IOFileFilter filesFilter = FileFilterUtils.or(
+                FileFilterUtils.suffixFileFilter("properties"),
+                FileFilterUtils.suffixFileFilter("shp"), FileFilterUtils.suffixFileFilter("dbf"),
+                FileFilterUtils.suffixFileFilter("sbn"), FileFilterUtils.suffixFileFilter("sbx"),
+                FileFilterUtils.suffixFileFilter("shx"), FileFilterUtils.suffixFileFilter("qix"),
+                FileFilterUtils.suffixFileFilter("lyr"), FileFilterUtils.suffixFileFilter("prj"),
+                FileFilterUtils.suffixFileFilter("ncx"), FileFilterUtils.suffixFileFilter("gbx9"),
+                FileFilterUtils.nameFileFilter("error.txt"),
+                FileFilterUtils.nameFileFilter("_metadata"),
+                FileFilterUtils.suffixFileFilter("sample_image"),
+                FileFilterUtils.nameFileFilter("error.txt.lck"),
+                FileFilterUtils.suffixFileFilter("xml"),
+                FileFilterUtils.suffixFileFilter("db"));
+        return filesFilter;
+    }
+
+    public static String getMessageFromException(Exception exception) {
 		if (exception.getLocalizedMessage() != null)
 			return exception.getLocalizedMessage();
 		else
 			return exception.getMessage();
 	}
 
-	static URL checkSource(Object source) throws MalformedURLException,
-			DataSourceException {
-		return checkSource(source, null);
-	}
+//	static URL checkSource(Object source) throws MalformedURLException,
+//			DataSourceException {
+//		return checkSource(source, null);
+//	}
 
 	
 
@@ -262,16 +400,34 @@ public class Utils {
 	        final URL sourceURL,
 		final String defaultLocationAttribute, 
 		final Set<String> ignorePropertiesSet) {
+		
+		if(LOGGER.isLoggable(Level.FINE)){
+			LOGGER.log(Level.FINE,"Trying to load properties file from URL:"+sourceURL);
+		}
+		
 		// ret value
 		final MosaicConfigurationBean retValue = new MosaicConfigurationBean();
+		final CatalogConfigurationBean catalogConfigurationBean = new CatalogConfigurationBean();
+		retValue.setCatalogConfigurationBean(catalogConfigurationBean);
 		final boolean ignoreSome = ignorePropertiesSet != null && !ignorePropertiesSet.isEmpty();
 
-		//
-		// load the properties file
-		//
-		URL propsURL = sourceURL;
-		if (!sourceURL.toExternalForm().endsWith(".properties"))
-			propsURL = DataUtilities.changeUrlExt(sourceURL, "properties");
+        //
+        // load the properties file
+        //
+        URL propsURL = sourceURL;
+        if (!sourceURL.toExternalForm().endsWith(".properties")) {
+            propsURL = DataUtilities.changeUrlExt(sourceURL, "properties");
+            if (propsURL.getProtocol().equals("file")) {
+                final File sourceFile = DataUtilities.urlToFile(propsURL);
+                if (!sourceFile.exists()) {
+                    if (LOGGER.isLoggable(Level.INFO)) {
+                        LOGGER.info("properties file doesn't exist");
+                    }
+                    return null;
+                }
+            }
+        }
+		
 		final Properties properties = loadPropertiesFromURL(propsURL);
 		if (properties == null) {
 			if (LOGGER.isLoggable(Level.INFO))
@@ -304,12 +460,23 @@ public class Utils {
 				
 		}
 		
+		if (!ignoreSome
+                        || !ignorePropertiesSet.contains(Prop.AUXILIARY_FILE)) {
+                    retValue.setAuxiliaryFilePath(properties.getProperty(Prop.AUXILIARY_FILE));
+        }
+
+                if (!ignoreSome || !ignorePropertiesSet.contains(Prop.CHECK_AUXILIARY_METADATA)) {
+                    final boolean checkAuxiliaryMetadata = Boolean.valueOf(properties.getProperty(
+                            Prop.CHECK_AUXILIARY_METADATA, "false").trim());
+                    retValue.setCheckAuxiliaryMetadata(checkAuxiliaryMetadata);
+                }
+                
+		
 		//
 		// resolutions levels
 		//              
 		if (!ignoreSome || !ignorePropertiesSet.contains(Prop.LEVELS)) {
-			int levelsNumber = Integer.parseInt(properties.getProperty(
-					Prop.LEVELS_NUM, "1").trim());
+			int levelsNumber = Integer.parseInt(properties.getProperty(Prop.LEVELS_NUM, "1").trim());
 			retValue.setLevelsNum(levelsNumber);
 			if (!properties.containsKey(Prop.LEVELS)) {
 				if (LOGGER.isLoggable(Level.INFO))
@@ -320,8 +487,7 @@ public class Utils {
 			pairs = levels.split(" ");
 			if (pairs == null || pairs.length != levelsNumber) {
 				if (LOGGER.isLoggable(Level.INFO))
-					LOGGER
-							.info("Levels number is different from the provided number of levels resoltion.");
+					LOGGER.info("Levels number is different from the provided number of levels resoltion.");
 				return null;
 			}
 			final double[][] resolutions = new double[levelsNumber][2];
@@ -329,8 +495,7 @@ public class Utils {
 				pair = pairs[i].split(",");
 				if (pair == null || pair.length != 2) {
 					if (LOGGER.isLoggable(Level.INFO))
-						LOGGER
-								.info("OverviewLevel number is different from the provided number of levels resoltion.");
+						LOGGER.info("OverviewLevel number is different from the provided number of levels resoltion.");
 					return null;
 				}
 				resolutions[i][0] = Double.parseDouble(pair[0]);
@@ -340,13 +505,21 @@ public class Utils {
 		}
 
 		//
+		// typename, is mandatory when we don't use shapeiles
+		//              
+		if (!ignoreSome || !ignorePropertiesSet.contains(Prop.TYPENAME)) {
+			String typeName = properties.getProperty(Prop.TYPENAME, null);
+			catalogConfigurationBean.setTypeName(typeName);
+		}
+
+		//
 		// suggested spi is optional
 		//
 		if (!ignoreSome || !ignorePropertiesSet.contains(Prop.SUGGESTED_SPI)) {
 			if (properties.containsKey(Prop.SUGGESTED_SPI)) {
 				final String suggestedSPI = properties.getProperty(
 						Prop.SUGGESTED_SPI).trim();
-				retValue.setSuggestedSPI(suggestedSPI);
+				catalogConfigurationBean.setSuggestedSPI(suggestedSPI);
 			}
 		}
 
@@ -366,6 +539,13 @@ public class Utils {
 			retValue.setElevationAttribute(elevationAttribute);
 		}
 
+		//
+                // additional domain attribute is optional
+                //
+                if (properties.containsKey(Prop.ADDITIONAL_DOMAIN_ATTRIBUTES)) {
+                        final String additionalDomainAttributes = properties.getProperty(Prop.ADDITIONAL_DOMAIN_ATTRIBUTES).trim();
+                        retValue.setAdditionalDomainAttributes(additionalDomainAttributes);
+                }
 
 		//
 		// caching
@@ -373,9 +553,9 @@ public class Utils {
 		if (properties.containsKey(Prop.CACHING)) {
 			String caching = properties.getProperty(Prop.CACHING).trim();
 			try {
-				retValue.setCaching(Boolean.valueOf(caching));
+			    catalogConfigurationBean.setCaching(Boolean.valueOf(caching));
 			} catch (Throwable e) {
-				retValue.setCaching(Boolean.valueOf(Utils.DEFAULT_CACHING_BEHAVIOR));
+			    catalogConfigurationBean.setCaching(Boolean.valueOf(Utils.DEFAULT_CACHING_BEHAVIOR));
 			}
 		}
 
@@ -386,7 +566,7 @@ public class Utils {
                     if(!properties.containsKey(Prop.NAME)) {
                             if(LOGGER.isLoggable(Level.SEVERE))
                                     LOGGER.severe("Required key Name not found.");          
-                            return  null;
+                            return null;
                     }                       
                     String coverageName = properties.getProperty(Prop.NAME).trim();
                     retValue.setName(coverageName);
@@ -407,7 +587,7 @@ public class Utils {
                 if (!ignoreSome || !ignorePropertiesSet.contains(Prop.HETEROGENEOUS)) {
                     final boolean heterogeneous = Boolean.valueOf(properties.getProperty(
                             Prop.HETEROGENEOUS, "false").trim());
-                    retValue.setHeterogeneous(heterogeneous);
+                    catalogConfigurationBean.setHeterogeneous(heterogeneous);
                 }
 
 		//
@@ -418,7 +598,7 @@ public class Utils {
 					.getProperty(Prop.ABSOLUTE_PATH,
 							Boolean.toString(Utils.DEFAULT_PATH_BEHAVIOR))
 					.trim());
-			retValue.setAbsolutePath(absolutePath);
+			catalogConfigurationBean.setAbsolutePath(absolutePath);
 		}
 
 		//
@@ -436,11 +616,10 @@ public class Utils {
 		//  
 		if (!ignoreSome
 				|| !ignorePropertiesSet.contains(Prop.LOCATION_ATTRIBUTE)) {
-			retValue.setLocationAttribute(properties.getProperty(
-					Prop.LOCATION_ATTRIBUTE, Utils.DEFAULT_LOCATION_ATTRIBUTE)
-					.trim());
+		    catalogConfigurationBean.setLocationAttribute(properties.getProperty(
+					Prop.LOCATION_ATTRIBUTE, Utils.DEFAULT_LOCATION_ATTRIBUTE).trim());
 		}
-
+		
 		// return value
 		return retValue;
 	}
@@ -504,7 +683,7 @@ public class Utils {
 			IOFileFilter... filters) {
 		IOFileFilter retFilter = inputFilter;
 		for (IOFileFilter filter : filters) {
-			retFilter = FileFilterUtils.andFileFilter(retFilter,
+			retFilter = FileFilterUtils.and(retFilter,
 					FileFilterUtils.notFileFilter(filter));
 		}
 		return retFilter;
@@ -714,13 +893,7 @@ public class Utils {
 			// create a datastore as instructed
 			final DataStoreFactorySpi spi = (DataStoreFactorySpi) Class.forName(SPIClass).newInstance();
 			return createDataStoreParamsFromPropertiesFile(properties, spi);
-		} catch (ClassNotFoundException e) {
-			final IOException ioe = new IOException();
-			throw (IOException) ioe.initCause(e);
-		} catch (InstantiationException e) {
-			final IOException ioe = new IOException();
-			throw (IOException) ioe.initCause(e);
-		} catch (IllegalAccessException e) {
+		} catch (Exception e) {
 			final IOException ioe = new IOException();
 			throw (IOException) ioe.initCause(e);
 		}
@@ -846,7 +1019,7 @@ public class Utils {
 	 */
 	static final Color TRANSPARENT = new Color(0,0,0,0);
         
-	final static Boolean IGNORE_FOOTPRINT = Boolean.getBoolean("org.geotools.footprint.ignore");
+	// final static Boolean IGNORE_FOOTPRINT = Boolean.getBoolean("org.geotools.footprint.ignore");
 	
     public static final boolean DEFAULT_FOOTPRINT_MANAGEMENT = true;
 	
@@ -859,14 +1032,32 @@ public class Utils {
 		final Param[] paramsInfo = spi.getParametersInfo();
 		for (Param p : paramsInfo) {
 			// search for this param and set the value if found
-			if (properties.containsKey(p.key))
-				params.put(p.key, (Serializable) Converters.convert(properties.getProperty(p.key), p.type));
+			if (properties.containsKey(p.key)){
+			    params.put(p.key, (Serializable) Converters.convert(properties.getProperty(p.key), p.type));
+			}
 			else if (p.required && p.sample == null)
 				throw new IOException("Required parameter missing: "+ p.toString());
 		}
 		
 		return params;
 	}
+            
+    public static Map<String, Serializable> filterDataStoreParams(
+            Properties properties, DataStoreFactorySpi spi) throws IOException {
+        // get the params
+        final Map<String, Serializable> params = new HashMap<String, Serializable>();
+        final Param[] paramsInfo = spi.getParametersInfo();
+        for (Param p : paramsInfo) {
+            // search for this param and set the value if found
+            if (properties.containsKey(p.key)) {
+                params.put(p.key,
+                        (Serializable) Converters.convert(properties.get(p.key), p.type));
+            } else if (p.required && p.sample == null)
+                throw new IOException("Required parameter missing: " + p.toString());
+        }
+
+        return params;
+    }
 
     static URL checkSource(Object source, Hints hints) {
         URL sourceURL = null;
@@ -905,7 +1096,6 @@ public class Utils {
                         sourceFile = tempFile;
                 }
         }
-
         // //
         //
         // at this point we have tried to convert the thing to a File as hard as
@@ -921,21 +1111,23 @@ public class Utils {
                         // it's a DIRECTORY, let's look for a possible properties files
                         // that we want to load
                         final String locationPath = sourceFile.getAbsolutePath();
-                        final String defaultIndexName = FilenameUtils.getName(locationPath);
+                        final String defaultIndexName = getDefaultIndexName(locationPath);
                         boolean datastoreFound = false;
                         boolean buildMosaic = false;
 
                         //
                         // do we have a datastore properties file? It will preempt on
                         // the shapefile
+                        // TODO: Refactor these checks once we integrate datastore on indexer.xml
                         //
                         File dataStoreProperties = new File(locationPath,"datastore.properties");
+//                        File emptyFile = new File(locationPath,"empty");
 
                         // this can be used to look for properties files that do NOT
                         // define a datastore
                         final File[] properties = sourceFile
                                         .listFiles((FilenameFilter) FileFilterUtils
-                                                        .andFileFilter(
+                                                        .and(
                                                                         FileFilterUtils
                                                                                         .notFileFilter(FileFilterUtils
                                                                                                         .nameFileFilter("datastore.properties")),
@@ -953,7 +1145,7 @@ public class Utils {
                                 for (File propFile : properties)
                                         if (Utils.checkFileReadable(propFile)) {
                                                 // load it
-                                                if (null != Utils.loadMosaicProperties(DataUtilities.fileToURL(propFile),"location")) {
+                                                if (null != Utils.loadMosaicProperties(DataUtilities.fileToURL(propFile),Utils.DEFAULT_LOCATION_ATTRIBUTE)) {
                                                         found = true;
                                                         break;
                                                 }
@@ -1021,39 +1213,23 @@ public class Utils {
                                 }
                             
                                 // actual creation
-                                createMosaic(locationPath, defaultIndexName,DEFAULT_WILCARD, DEFAULT_PATH_BEHAVIOR,hints);
+                                createMosaic(locationPath, defaultIndexName, DEFAULT_WILCARD, DEFAULT_PATH_BEHAVIOR, hints);
 
                                 // check that the mosaic properties file was created
                                 final File propertiesFile = new File(locationPath,
                                                 defaultIndexName + ".properties");
                                 if (!Utils.checkFileReadable(propertiesFile)) {
                                         // retrieve a null so that we shows that a problem occurred
-                                        sourceURL = null;
-                                        return sourceURL;
+                                        if (!checkMosaicHasBeenInitialized(locationPath, defaultIndexName)) {
+                                            sourceURL = null;
+                                            return sourceURL;
+                                        }
                                 }
 
                                 // check that the shapefile was correctly created in case it
                                 // was needed
-                                if (!datastoreFound) {
-                                        shapeFile = new File(locationPath, defaultIndexName+ ".shp");
-
-                                        if (!Utils.checkFileReadable(shapeFile))
-                                                sourceURL = null;
-                                        else
-                                                // now set the new source and proceed
-                                                sourceURL = DataUtilities.fileToURL(shapeFile);
-                                } else {
-                                        dataStoreProperties = new File(locationPath,"datastore.properties");
-
-                                        // datastore.properties as the source
-                                        if (!Utils.checkFileReadable(dataStoreProperties)){
-                                            sourceURL = null;
-                                        }
-                                        else {
-                                            sourceURL = DataUtilities.fileToURL(dataStoreProperties);
-                                        }
-                                }
-
+                                sourceURL = updateSourceURL(sourceURL, datastoreFound, locationPath, defaultIndexName/*, emptyFile*/);
+                                
                         } else
                                 // now set the new source and proceed
                                 sourceURL = datastoreFound ? DataUtilities.fileToURL(dataStoreProperties) : DataUtilities.fileToURL(shapeFile); 
@@ -1066,17 +1242,110 @@ public class Utils {
         }
         return sourceURL;
     }
+
+    private static String getDefaultIndexName(final String locationPath) {
+        if(locationPath == null) {
+            return null;
+        }
+        File file = new File(locationPath);
+        if(file.isDirectory()) {
+            File indexer = new File(file, "indexer.properties");
+            if(indexer.exists()) {
+                URL indexerUrl = DataUtilities.fileToURL(indexer);
+                Properties config = Utils.loadPropertiesFromURL(indexerUrl);
+                if(config != null && config.get(Utils.Prop.NAME) != null) {
+                    return (String) config.get(Utils.Prop.NAME);
+                } 
+            }
+        }
+        
+        return FilenameUtils.getName(locationPath);
+    }
     
+
+    /**
+     * Look for a proper sourceURL to be returned.
+     * 
+     * @param sourceURL
+     * @param datastoreFound 
+     * @param locationPath
+     * @param defaultIndexName
+     * @param emptyFile
+     * @return
+     */
+    private static URL updateSourceURL(URL sourceURL, boolean datastoreFound, String locationPath, String defaultIndexName/*,
+            File emptyFile*/) {
+        if (!datastoreFound) {
+            File shapeFile = new File(locationPath, defaultIndexName + ".shp");
+
+            if (!Utils.checkFileReadable(shapeFile)) {
+//                if (!Utils.checkFileReadable(emptyFile)) {
+                    sourceURL = null;
+//                } else {
+//                    sourceURL = DataUtilities.fileToURL(emptyFile);
+//                }
+            } else {
+                // now set the new source and proceed
+                sourceURL = DataUtilities.fileToURL(shapeFile);
+            }
+        } else {
+                File dataStoreProperties = new File(locationPath,"datastore.properties");
+
+                // datastore.properties as the source
+                if (!Utils.checkFileReadable(dataStoreProperties)){
+                    sourceURL = null;
+                }
+                else {
+                    sourceURL = DataUtilities.fileToURL(dataStoreProperties);
+                }
+        }
+
+       
+        return sourceURL;
+    }
+
+    private static boolean checkMosaicHasBeenInitialized(String locationPath, String defaultIndexName) {
+        File mosaicFile = new File(locationPath, defaultIndexName + ".xml");
+        if (Utils.checkFileReadable(mosaicFile)) {
+            return true;
+        }
+        mosaicFile = new File(locationPath, defaultIndexName + ".properties");
+        if (Utils.checkFileReadable(mosaicFile)) {
+            return true;
+        }
+        
+        return false;
+    }
 
     static final double SAMEBBOX_THRESHOLD_FACTOR = 20;
 
     static final double AFFINE_IDENTITY_EPS = 1E-6;
 
     public static final boolean DEFAULT_COLOR_EXPANSION_BEHAVIOR = false;
-    
+
+    public static final TimeZone UTC_TIME_ZONE = TimeZone.getTimeZone("UTC");
+
+    static final String DESCENDING_ORDER_IDENTIFIER = " D"; // SortOrder.DESCENDING.identifier();
+
+    static final String ASCENDING_ORDER_IDENTIFIER = " A"; // SortOrder.ASCENDING.identifier();
+
+    public static final String SCAN_FOR_TYPENAMES = "TypeNames";
+
+    public static final String SAMPLE_IMAGE_NAME = "sample_image";
+
+    public static final String TIME_DOMAIN = "TIME";
+
+    public static final String ELEVATION_DOMAIN = "ELEVATION";
+
+    public static final String ADDITIONAL_DOMAIN = "ADDITIONAL";
+
+    public static ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+
+    private static IOFileFilter CLEANUP_FILTER;
+
     /**
-     * Private constructor to initialize the ehCache instance.
-     * It can be configured through a Bean.
+     * Private constructor to initialize the ehCache instance. It can be configured through a Bean.
+     * 
      * @param ehcache
      */
     private Utils(Cache ehcache) {
@@ -1149,7 +1418,7 @@ public class Utils {
          * Check if the provided granule's footprint covers the same area of the granule's bbox.
          * @param granuleFootprint the granule Footprint
          * @param granuleBBOX the granule bbox
-         * @return {@code true} in case the footprint isn't covering the full granule's bbox. 
+         * @return {@code true} in case the footprint isn't covering the FULL granule's bbox. 
          */
         static boolean areaIsDifferent(
                 final Geometry granuleFootprint,
@@ -1203,88 +1472,508 @@ public class Utils {
             return false;
     }
 
-	/**
-	 * Checks if the Shape equates to a Rectangle, if it does it performs a conversion, otherwise
-	 * returns null
-	 * @param shape
-	 * @return
-	 */
-	static Rectangle toRectangle(Shape shape) {
-	    if(shape instanceof Rectangle) {
-	        return (Rectangle) shape;
-	    }
-	    
-	    if(shape == null) {
-	        return null;
-	    }
-	    
-	    // check if it's equivalent to a rectangle
-	    PathIterator iter = shape.getPathIterator(new AffineTransform());
-	    double[] coords = new double[2];
-	    
-	    // not enough points?
-	    if(iter.isDone()) {
-	        return null;
-	    }
-	    
-	    // get the first and init the data structures
-	    iter.next();
-	    int action = iter.currentSegment(coords);
-	    if(action != PathIterator.SEG_MOVETO && action != PathIterator.SEG_LINETO) {
-	        return null;
-	    }
-	    double minx = coords[0];
-	    double miny = coords[1];
-	    double maxx = minx;
-	    double maxy = miny;
-	    double prevx = minx;
-	    double prevy = miny;
-	    int i = 0;
-	    
-	    // at most 4 steps, if more it's not a strict rectangle
-	    for (; i < 4 && !iter.isDone(); i++) {
-	        iter.next();
-	        action = iter.currentSegment(coords);
-	        
-	        if(action == PathIterator.SEG_CLOSE) {
-	            break;
-	        }
-	        if(action != PathIterator.SEG_LINETO) {
-	            return null;
-	        }
-	        
-	        // check orthogonal step (x does not change and y does, or vice versa)
-	        double x = coords[0];
-	        double y = coords[1];
-	        if(!(prevx == x && prevy != y) &&
-	           !(prevx != x && prevy == y)) {
-	            return null;
-	        }
-	        
-	        // update mins and maxes
-	        if(x < minx) {
-	            minx = x;
-	        } else if(x > maxx) {
-	            maxx = x;
-	        }
-	        if(y < miny) {
-	            miny = y;
-	        } else if(y > maxy) {
-	            maxy = y;
-	        }
-	        
-	        // keep track of prev step
-	        prevx = x;
-	        prevy = y;
-	    }
-	    
-	    // if more than 4 other points it's not a standard rectangle
-	    iter.next();
-	    if(!iter.isDone() || i != 3) {
-	        return null;
-	    }
-	    
-	    // turn it into a rectangle
-	    return new Rectangle2D.Double(minx, miny, maxx - minx, maxy - miny).getBounds();
-	}
+    /**
+     * Checks if the Shape equates to a Rectangle, if it does it performs a conversion, otherwise returns null
+     * 
+     * @param shape
+     * @return
+     */
+    static Rectangle toRectangle(Shape shape) {
+        if (shape instanceof Rectangle) {
+            return (Rectangle) shape;
+        }
+
+        if (shape == null) {
+            return null;
+        }
+
+        // check if it's equivalent to a rectangle
+        PathIterator iter = shape.getPathIterator(new AffineTransform());
+        double[] coords = new double[2];
+
+        // not enough points?
+        if (iter.isDone()) {
+            return null;
+        }
+
+        // get the first and init the data structures
+        iter.next();
+        int action = iter.currentSegment(coords);
+        if (action != PathIterator.SEG_MOVETO && action != PathIterator.SEG_LINETO) {
+            return null;
+        }
+        double minx = coords[0];
+        double miny = coords[1];
+        double maxx = minx;
+        double maxy = miny;
+        double prevx = minx;
+        double prevy = miny;
+        int i = 0;
+
+        // at most 4 steps, if more it's not a strict rectangle
+        for (; i < 4 && !iter.isDone(); i++) {
+            iter.next();
+            action = iter.currentSegment(coords);
+
+            if (action == PathIterator.SEG_CLOSE) {
+                break;
+            }
+            if (action != PathIterator.SEG_LINETO) {
+                return null;
+            }
+
+            // check orthogonal step (x does not change and y does, or vice versa)
+            double x = coords[0];
+            double y = coords[1];
+            if (!(prevx == x && prevy != y) && !(prevx != x && prevy == y)) {
+                return null;
+            }
+
+            // update mins and maxes
+            if (x < minx) {
+                minx = x;
+            } else if (x > maxx) {
+                maxx = x;
+            }
+            if (y < miny) {
+                miny = y;
+            } else if (y > maxy) {
+                maxy = y;
+            }
+
+            // keep track of prev step
+            prevx = x;
+            prevy = y;
+        }
+
+        // if more than 4 other points it's not a standard rectangle
+        iter.next();
+        if (!iter.isDone() || i != 3) {
+            return null;
+        }
+
+        // turn it into a rectangle
+        return new Rectangle2D.Double(minx, miny, maxx - minx, maxy - miny).getBounds();
+    }
+
+    public static ImageLayout getImageLayoutHint(RenderingHints renderHints) {
+        if (renderHints == null||!renderHints.containsKey(JAI.KEY_IMAGE_LAYOUT)) {
+            return null;
+        } else {
+            return (ImageLayout) renderHints.get(JAI.KEY_IMAGE_LAYOUT);
+        }
+    }
+
+    public static TileCache getTileCacheHint(RenderingHints renderHints) {
+        if (renderHints == null||!renderHints.containsKey(JAI.KEY_TILE_CACHE)) {
+            return null;
+        } else {
+            return (TileCache) renderHints.get(JAI.KEY_TILE_CACHE);
+        }
+    }
+
+    public static BorderExtender getBorderExtenderHint(RenderingHints renderHints) {
+        if (renderHints == null||!renderHints.containsKey(JAI.KEY_BORDER_EXTENDER)) {
+            return null;
+        } else {
+            return (BorderExtender) renderHints.get(JAI.KEY_BORDER_EXTENDER);
+        }
+    }
+    
+    public static TileScheduler getTileSchedulerHint(RenderingHints renderHints) {
+        if (renderHints == null||!renderHints.containsKey(JAI.KEY_TILE_SCHEDULER)) {
+            return null;
+        } else {
+            return (TileScheduler) renderHints.get(JAI.KEY_TILE_SCHEDULER);
+        }
+    }
+    
+    /**
+     * Create a Range of numbers from a couple of values.
+     * @param firstValue
+     * @param secondValue
+     * @return
+     */
+    public static Range<? extends Number> createRange(Object firstValue, Object secondValue) {
+        Class<? extends Object> targetClass = firstValue.getClass();
+        Class<? extends Object> target2Class = secondValue.getClass();
+        if (targetClass != target2Class) {
+            throw new IllegalArgumentException("The 2 values need to belong to the same class:\n"
+                    + "firstClass = " + targetClass.toString() + "; secondClass = " + targetClass.toString()); 
+        }
+        if (targetClass == Byte.class) {
+            return new Range<Byte>(Byte.class, (Byte) firstValue, (Byte) secondValue);
+        } else if (targetClass == Short.class) {
+            return new Range<Short>(Short.class, (Short) firstValue, (Short) secondValue);
+        } else if (targetClass == Integer.class) {
+            return new Range<Integer>(Integer.class, (Integer) firstValue, (Integer) secondValue);
+        } else if (targetClass == Long.class) {
+            return new Range<Long>(Long.class, (Long) firstValue, (Long) secondValue);
+        } else if (targetClass == Float.class) {
+            return new Range<Float>(Float.class, (Float) firstValue, (Float) secondValue);
+        } else if (targetClass == Double.class) {
+            return new Range<Double>(Double.class, (Double) firstValue, (Double) secondValue);
+        } else return null;
+    }
+    
+    /**
+     * Simple minimal check which checks whether and indexer file exists 
+     * @param source
+     * @return
+     */
+    public static boolean minimalIndexCheck(Object source) {
+        File sourceFile = null;
+        URL sourceURL = null; 
+        if (source instanceof File) {
+            sourceFile = (File) source;
+        } else if (source instanceof URL) {
+            sourceURL = (URL) source;
+            if (sourceURL.getProtocol().equals("file")) {
+                sourceFile = DataUtilities.urlToFile(sourceURL);
+            }
+        } else if (source instanceof String) {
+            // is it a File?
+            final String tempSource = (String) source;
+            File tempFile = new File(tempSource);
+            if (!tempFile.exists()) {
+                // is it a URL
+                try {
+                    sourceURL = new URL(tempSource);
+                    source = DataUtilities.urlToFile(sourceURL);
+                } catch (MalformedURLException e) {
+                    sourceURL = null;
+                    source = null;
+                }
+            } else {
+                sourceURL = DataUtilities.fileToURL(tempFile);
+
+                // so that we can do our magic here below
+                sourceFile = tempFile;
+            }
+        }
+        final File indexerProperties = new File(sourceFile, Utils.INDEXER_PROPERTIES);
+        if (Utils.checkFileReadable(indexerProperties)) {
+            return true;
+        }
+        final File indexerXML = new File(sourceFile, Utils.INDEXER_XML);
+        if (Utils.checkFileReadable(indexerXML)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Check whether 2 resolution levels sets are homogeneous (within a tolerance)
+     * @param numberOfLevels
+     * @param resolutionLevels
+     * @param compareLevels
+     * @return
+     */
+    public static boolean homogeneousCheck(final int numberOfLevels, double[][] resolutionLevels,
+            double[][] compareLevels) {
+        for (int k = 0; k < numberOfLevels; k++) {
+            if (Math.abs(resolutionLevels[k][0] - compareLevels[k][0]) > RESOLUTION_TOLERANCE_FACTOR
+                    * compareLevels[k][0]
+                    || Math.abs(resolutionLevels[k][1] - compareLevels[k][1]) > RESOLUTION_TOLERANCE_FACTOR
+                            * compareLevels[k][1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Unmarshal the file and return and Indexer object.
+     * 
+     * @param indexerFile
+     * @return
+     * @throws JAXBException
+     */
+    public static Indexer unmarshal(File indexerFile) throws JAXBException {
+        Unmarshaller unmarshaller = null;
+        Indexer indexer = null;
+        if (indexerFile != null) {
+            unmarshaller = CONTEXT.createUnmarshaller();
+            indexer = (Indexer) unmarshaller.unmarshal(indexerFile);
+        }
+        return indexer;
+    }
+
+    /**
+     * This method checks the {@link ColorModel} of the current image with the one of the first image in order to check if they are compatible or
+     * not in order to perform a mosaic operation.
+     * 
+     * <p>
+     * It is worth to point out that we also check if, in case we have two index color model image, we also try to suggest whether or not we
+     * should do a color expansion.
+     * 
+     * @param defaultCM
+     * @param defaultPalette
+     * @param actualCM
+     * @return a boolean asking to skip this feature.
+     */
+    static boolean checkColorModels(ColorModel defaultCM, byte[][] defaultPalette, MosaicConfigurationBean configuration, ColorModel actualCM) {
+        //
+        //
+        // ComponentColorModel
+        //
+        //
+        
+        if (defaultCM instanceof ComponentColorModel && actualCM instanceof ComponentColorModel) {
+            final ComponentColorModel defCCM = (ComponentColorModel) defaultCM, actualCCM = (ComponentColorModel) actualCM;
+            
+            // number of color components
+            final int numColorComponents = defCCM.getNumColorComponents();
+            if(numColorComponents != actualCCM.getNumColorComponents()){
+                return false;
+            }
+            
+            // componets size
+            for(int i=0;i<numColorComponents;i++){
+                if(defaultCM.getComponentSize(i)!=defaultCM.getComponentSize(i)){
+                    return false;
+                }
+            }
+            return !(defCCM.hasAlpha() == actualCCM.hasAlpha() 
+                    &&defCCM.isAlphaPremultiplied() == actualCCM.isAlphaPremultiplied()//&& colorSpaceIsOk
+                    && defCCM.getTransparency() == actualCCM.getTransparency()
+                    && defCCM.getTransferType() == actualCCM.getTransferType()
+                    && defCCM.getPixelSize() == actualCCM.getPixelSize());
+            
+        }
+    
+        //
+        //
+        // IndexColorModel
+        //
+        //
+    
+        if (defaultCM instanceof IndexColorModel && actualCM instanceof IndexColorModel) {
+            final IndexColorModel defICM = (IndexColorModel) defaultCM, actualICM = (IndexColorModel) actualCM;
+            if (defICM.getNumColorComponents() != actualICM.getNumColorComponents()
+                    || defICM.hasAlpha() != actualICM.hasAlpha()
+                    || !defICM.getColorSpace().equals(actualICM.getColorSpace())
+                    || defICM.getTransferType() != actualICM.getTransferType())
+                return true;
+    
+            //
+            // Suggesting expansion in the simplest case
+            //
+            if (defICM.getMapSize() != actualICM.getMapSize()
+                    || defICM.getTransparency() != actualICM.getTransparency()
+                    || defICM.getTransferType() != actualICM.getTransferType()
+                    || defICM.getTransparentPixel() != actualICM.getTransparentPixel()) {
+                configuration.setExpandToRGB(true);
+                return false;
+            }
+    
+            //
+            // Now checking palettes to see if we need to do a color convert
+            //
+            // get the palette for this color model
+            int numBands = actualICM.getNumColorComponents();
+            byte[][] actualPalette = new byte[3][actualICM.getMapSize()];
+            actualICM.getReds(actualPalette[0]);
+            actualICM.getGreens(actualPalette[0]);
+            actualICM.getBlues(actualPalette[0]);
+            if (numBands == 4)
+                actualICM.getAlphas(defaultPalette[0]);
+            // compare them
+            for (int i = 0; i < defICM.getMapSize(); i++)
+                for (int j = 0; j < numBands; j++)
+                    if (actualPalette[j][i] != defaultPalette[j][i]) {
+                        configuration.setExpandToRGB(true);
+                        break;
+                    }
+            return false;
+    
+        }
+    
+        //
+        // if we get here this means that the two color models where completely
+        // different, hence skip this feature.
+        //
+        return true;
+    }
+    
+    
+    /*
+     * Checks if the provided factory spi builds a H2 store
+     */
+    public static boolean isH2Store(DataStoreFactorySpi spi) {
+        String spiName = spi == null ? null : spi.getClass().getName();
+        return "org.geotools.data.h2.H2DataStoreFactory".equals(spiName) || 
+        "org.geotools.data.h2.H2JNDIDataStoreFactory".equals(spiName);
+    }
+
+    public static void fixH2DatabaseLocation(Map<String, Serializable> params, String parentLocation) throws MalformedURLException {
+        if(params.containsKey(DATABASE_KEY)){
+            String dbname = (String) params.get(DATABASE_KEY);
+            // H2 database URLs must not be percent-encoded: see GEOT-4262.
+            params.put(DATABASE_KEY,
+                    "file:" + (new File(DataUtilities.urlToFile(new URL(parentLocation)),
+                                    dbname)).getPath());
+        }
+    }
+
+    /**
+     * Checks if the provided factory spi builds a Oracle store
+     */
+    public static boolean isOracleStore(DataStoreFactorySpi spi) {
+        String spiName = spi == null ? null : spi.getClass().getName();
+        return "org.geotools.data.oracle.OracleNGOCIDataStoreFactory".equals(spiName) ||
+                "org.geotools.data.oracle.OracleNGJNDIDataStoreFactory".equals(spiName) ||
+                "org.geotools.data.oracle.OracleNGDataStoreFactory".equals(spiName);
+    }
+
+    /**
+     * Checks if the provided factory spi builds a Postgis store
+     */
+    public static boolean isPostgisStore(DataStoreFactorySpi spi) {
+        String spiName = spi == null ? null : spi.getClass().getName();
+        return "org.geotools.data.postgis.PostgisNGJNDIDataStoreFactory".equals(spiName) ||
+               "org.geotools.data.postgis.PostgisNGDataStoreFactory".equals(spiName);
+    }
+
+    /**
+     * Merge statistics across datasets.
+     * 
+     * @param pamDatasets
+     * @return
+     */
+    public static PAMDataset mergePamDatasets (PAMDataset[] pamDatasets) {
+        PAMDataset merged = pamDatasets[0];
+        if (pamDatasets.length > 1) {
+            merged = initRasterBands(pamDatasets[0]);
+            if (merged != null){
+                for (PAMDataset pamDataset: pamDatasets) {
+                    updatePamDatasets(pamDataset, merged);
+                }
+            }
+        }
+        return merged;
+    }
+
+    /**
+     * Merge basic statistics on destination {@link PAMDataset} 
+     * {@link PAMRasterBand}s need to have same size. No checks are performed here 
+     * 
+     * @param inputPamDataset
+     * @param outputPamDataset
+     */
+    private static void updatePamDatasets(PAMDataset inputPamDataset, PAMDataset outputPamDataset) {
+        List<PAMRasterBand> inputRasterBands = inputPamDataset.getPAMRasterBand();
+        List<PAMRasterBand> outputRasterBands = outputPamDataset.getPAMRasterBand();
+        for (int i = 0; i < inputRasterBands.size(); i++) {
+            updateRasterBand(inputRasterBands.get(i), outputRasterBands.get(i));
+        }
+        
+    }
+
+    /**
+     * Merge basic statistics on {@link PAMRasterBand} by updating min/max
+     * Other statistics still need some work.
+     * {@link MDI}s need to have same size. No checks are performed here 
+     * 
+     * @param inputPamRasterBand
+     * @param outputPamRasterBand
+     */
+    private static void updateRasterBand(PAMRasterBand inputPamRasterBand, PAMRasterBand outputPamRasterBand) {
+        List<MDI> mdiInputs = inputPamRasterBand.getMetadata().getMDI();
+        List<MDI> mdiOutputs = outputPamRasterBand.getMetadata().getMDI();
+        for (int i=0; i < mdiInputs.size(); i++) {
+            MDI mdiInput = mdiInputs.get(i);
+            MDI mdiOutput = mdiOutputs.get(i);
+            updateMDI(mdiInput, mdiOutput);
+        }
+        
+    }
+
+    /**
+     * Update min and max for mdiOutput.
+     * Other statistics need better management. 
+     * For the moment we simply returns the min between them
+     * @param mdiInput
+     * @param mdiOutput
+     */
+    private static void updateMDI(MDI mdiInput, MDI mdiOutput) {
+        Double current = Double.parseDouble(mdiInput.getValue());
+        Object value = mdiOutput.getValue();
+        if (value != null) {
+            Double output = Double.parseDouble((String) value);
+            if (mdiInput.getKey().toUpperCase().endsWith("_MAXIMUM")) {
+                if (current < output) {
+                    current = output;
+                }
+            } else {
+                if (output < current) {
+                    current = output;
+                }
+            }
+        }
+        mdiOutput.setValue(Double.toString(current));
+    }
+
+    /** 
+     * Initialize a list of {@link PAMRasterBand}s having same size of the 
+     * sample {@link PAMDataset} and same metadata names.
+     * @param merged
+     * @param samplePam
+     * @return 
+     */
+    private static PAMDataset initRasterBands(PAMDataset samplePam) {
+        PAMDataset merged = null;
+        if (samplePam != null) {
+            merged = new PAMDataset();
+            final List<PAMRasterBand> samplePamRasterBands = samplePam.getPAMRasterBand(); 
+            final int numBands = samplePamRasterBands.size();
+            List<PAMRasterBand> pamRasterBands = merged.getPAMRasterBand();
+            PAMRasterBand sampleBand = samplePamRasterBands.get(0);
+            List<MDI> sampleMetadata = sampleBand.getMetadata().getMDI();
+            for (int i = 0; i<numBands; i++) {
+                final PAMRasterBand band = new PAMRasterBand();
+                final Metadata metadata = new Metadata();
+                List<MDI> mdiList = metadata.getMDI();
+                for (MDI mdi: sampleMetadata) {
+                    MDI addedMdi = new MDI();
+                    addedMdi.setKey(mdi.getKey());
+                    mdiList.add(addedMdi);
+                }
+                band.setMetadata(metadata);
+                pamRasterBands.add(band);
+            }
+        }
+        return merged;
+    }
+
+    public static IOFileFilter getCleanupFilter() {
+       return CLEANUP_FILTER;
+    }
+
+    public static void fixH2MVCCParam(Map<String, Serializable> params) {
+        if (params != null) {
+            // H2 database URLs must not be percent-encoded: see GEOT-4262.
+            params.put(MVCC_KEY, true);
+        }
+    }
+
+    public static void fixPostgisDBCreationParams(Map<String, Serializable> datastoreParams) {
+        datastoreParams.put("create database", true);
+    }
+
+    public static void dropDB(DataStoreFactorySpi spi, Properties properties) throws IOException {
+        if (Utils.isPostgisStore(spi)) {
+            final Map params = filterDataStoreParams(properties, spi);
+            // Use reflection to invoke dropDatabase on postGis factory DB 
+            try {
+                MethodUtils.invokeMethod(spi, "dropDatabase", params);
+            } catch (NoSuchMethodException e) {
+                throw new IOException("Unable to drop the database: ", e);
+            } catch (IllegalAccessException e) {
+                throw new IOException("Unable to drop the database: ", e);
+            } catch (InvocationTargetException e) {
+                throw new IOException("Unable to drop the database: ", e);
+            }
+        }
+    }
 }

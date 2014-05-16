@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools</groupId>
     <artifactId>modules</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
 
 
@@ -51,16 +51,6 @@
        <modules>
          <module>coveragetools</module>
          <module>excel</module>
-       </modules>
-     </profile>
-
-     <!-- ================================================== -->
-     <!--     Modules kicked out of the build                -->
-     <!-- ================================================== -->
-     <profile>
-       <id>archive</id>
-       <modules>
-         <module>ogr</module>
        </modules>
      </profile>
 
@@ -128,15 +118,6 @@
        </modules>
      </profile>
      <profile>
-       <id>shapefile-renderer</id>
-       <activation>
-         <property><name>all</name></property>
-       </activation>
-       <modules>
-         <module>shapefile-renderer</module>
-       </modules>
-     </profile>
-     <profile>
        <id>swt</id>
        <modules>
          <module>swt</module>
@@ -149,21 +130,19 @@
        </modules>
      </profile>
      <profile>
-       <id>ogr</id>
+       <id>wfs-ng</id>
        <modules>
-         <module>ogr</module>
+         <module>wfs-ng</module>
        </modules>
      </profile>
      <profile>
-       <id>geogit-versioned</id>
        <activation>
          <property><name>all</name></property>
        </activation>
        <modules>
-         <module>geogit-versioned</module>
+         <module>coverage-experiment</module>
        </modules>
      </profile>
-
      <profile>
        <id>unsupported</id>
        <activation>
@@ -173,7 +152,6 @@
          <module>csv</module>
          <module>epsg-oracle</module>
          <module>jdbc-ng</module>
-         <module>postgis-versioned</module>
          <module>vpf</module>
          <module>matfile5</module>
          <module>sfs</module>
@@ -181,7 +159,7 @@
          <module>feature-aggregate</module>
          <module>mongodb</module>
          <module>property-ng</module>
-         <module>shapefile-ng</module>
+         <module>shapefile-old</module>
        </modules>
      </profile>
   </profiles>
@@ -193,7 +171,8 @@
     <module>process</module>
     <module>wfs</module>
     <module>geojson</module>
-    <module>grid</module>
+    <module>geopkg</module>
+    <module>mbtiles</module>
   </modules>
 
 </project>

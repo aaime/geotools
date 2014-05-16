@@ -109,10 +109,10 @@ public class ProcessFunctionFactory implements FunctionFactory {
             org.geotools.process.Process process = Processors.createProcess(processName);
             Map<String, Parameter<?>> parameters = Processors.getParameterInfo(processName);
             if (process instanceof RenderingProcess){
-                return new RenderingProcessFunction(processName.getLocalPart(), processName, args, 
+                return new RenderingProcessFunction(processName, args, 
                     parameters, (RenderingProcess) process, fallback);
             } else {
-                return new ProcessFunction(processName.getLocalPart(), processName, args, parameters, 
+                return new ProcessFunction(processName, args, parameters, 
                     process, fallback);
             }
         }
@@ -141,7 +141,7 @@ public class ProcessFunctionFactory implements FunctionFactory {
                     Map<String, Parameter<?>> resultInfo = factory.getResultInfo(processName, null);
                     
                     // check there is a single output
-                    if(getPrimary(resultInfo) != null) {
+                    if (resultInfo != null && getPrimary(resultInfo) != null) {
                         Map<String, Parameter<?>> parameterInfo = factory.getParameterInfo(processName);
                         List<String> argumentNames = new ArrayList<String>(parameterInfo.keySet());
 

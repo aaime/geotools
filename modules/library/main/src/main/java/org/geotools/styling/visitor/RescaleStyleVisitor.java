@@ -20,6 +20,9 @@ import static org.geotools.styling.TextSymbolizer.*;
 
 import java.util.Map;
 
+import javax.measure.quantity.Length;
+import javax.measure.unit.Unit;
+
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.styling.Displacement;
 import org.geotools.styling.ExternalGraphic;
@@ -27,10 +30,15 @@ import org.geotools.styling.Font;
 import org.geotools.styling.Graphic;
 import org.geotools.styling.LabelPlacement;
 import org.geotools.styling.LinePlacement;
+import org.geotools.styling.LineSymbolizer;
 import org.geotools.styling.Mark;
 import org.geotools.styling.PointPlacement;
+import org.geotools.styling.PointSymbolizer;
+import org.geotools.styling.PolygonSymbolizer;
+import org.geotools.styling.RasterSymbolizer;
 import org.geotools.styling.Stroke;
 import org.geotools.styling.Symbol;
+import org.geotools.styling.Symbolizer;
 import org.geotools.styling.TextSymbolizer;
 import org.geotools.util.Converters;
 import org.opengis.filter.FilterFactory2;
@@ -66,7 +74,9 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
      * This is the scale used as a multiplication factory for everything that
      * has a size.
      */
-    private Expression scale;
+    protected Expression scale;
+    
+    protected Unit<Length> defaultUnit;
 
     public RescaleStyleVisitor( double scale ){
         this( CommonFactoryFinder.getFilterFactory2(null), scale );
@@ -101,14 +111,10 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
             return Expression.NIL;
         }
         
-        Expression rescale = ff.multiply( scale, expr );
-        if( expr instanceof Literal && scale instanceof Literal){
-            double constant = (double) rescale.evaluate(null, Double.class);
-            return ff.literal(constant);
-        }
-        return rescale;
+        Measure m = new Measure(expr, defaultUnit);
+        return RescalingMode.KeepUnits.rescaleToExpression(scale, m);
     }
-    
+
     /**
      * Increase stroke width.
      * <p>
@@ -175,7 +181,7 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
 
         Expression opacityCopy = copy( gr.getOpacity() );
         Expression rotationCopy = copy( gr.getRotation() );
-        Expression sizeCopy = rescale( gr.getSize() );
+        Expression sizeCopy = rescaleGraphicSize(gr);
         
         Symbol[] symbols = gr.getSymbols();
         length=symbols.length;
@@ -197,50 +203,110 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
         pages.push(copy);
     }
     
+    protected Expression rescaleGraphicSize(Graphic gr) {
+        return rescale(gr.getSize());
+    }
+
     @Override
     public void visit(TextSymbolizer text) {
-        super.visit(text);
-        TextSymbolizer copy = (TextSymbolizer) pages.peek();
+        this.defaultUnit = text.getUnitOfMeasure();
+        try {
+            super.visit(text);
+            TextSymbolizer copy = (TextSymbolizer) pages.peek();
 
-        // rescales fonts
-        Font[] fonts = copy.getFonts();
-        for (Font font : fonts) {
-            font.setSize(rescale(font.getSize()));
-        }
-        copy.setFonts(fonts);
-
-        // rescales label placement
-        LabelPlacement placement = copy.getLabelPlacement();
-        if (placement instanceof PointPlacement) {
-            // rescales point label placement
-            PointPlacement pointPlacement = (PointPlacement) placement;
-            Displacement disp = pointPlacement.getDisplacement();
-            if (disp != null) {
-                disp.setDisplacementX(rescale(disp.getDisplacementX()));
-                disp.setDisplacementY(rescale(disp.getDisplacementY()));
-                pointPlacement.setDisplacement(disp);
+            // rescales fonts
+            Font[] fonts = copy.getFonts();
+            for (Font font : fonts) {
+                font.setSize(rescale(font.getSize()));
             }
-        } else if (placement instanceof LinePlacement) {
-            // rescales line label placement
-            LinePlacement linePlacement = (LinePlacement) placement;
-            linePlacement.setGap(rescale(linePlacement.getGap()));
-            linePlacement.setInitialGap(rescale(linePlacement.getInitialGap()));
-            linePlacement.setPerpendicularOffset(rescale(linePlacement.getPerpendicularOffset()));
-        }
-        copy.setLabelPlacement(placement);
-        
-        // rescale the halo
-        if(copy.getHalo() != null) {
-            copy.getHalo().setRadius(rescale(copy.getHalo().getRadius()));
-        }
-        
-        // deal with the format options specified in pixels
-        Map<String, String> options = copy.getOptions();
-        rescaleOption(options, SPACE_AROUND_KEY, DEFAULT_SPACE_AROUND);
-        rescaleOption(options, MAX_DISPLACEMENT_KEY, DEFAULT_MAX_DISPLACEMENT);
-        rescaleOption(options, MIN_GROUP_DISTANCE_KEY, DEFAULT_MIN_GROUP_DISTANCE);
-        rescaleOption(options, LABEL_REPEAT_KEY, DEFAULT_LABEL_REPEAT);
-        rescaleOption(options, AUTO_WRAP_KEY, DEFAULT_AUTO_WRAP);
+            copy.setFonts(fonts);
+
+            // rescales label placement
+            LabelPlacement placement = copy.getLabelPlacement();
+            if (placement instanceof PointPlacement) {
+                // rescales point label placement
+                PointPlacement pointPlacement = (PointPlacement) placement;
+                Displacement disp = pointPlacement.getDisplacement();
+                if (disp != null) {
+                    disp.setDisplacementX(rescale(disp.getDisplacementX()));
+                    disp.setDisplacementY(rescale(disp.getDisplacementY()));
+                    pointPlacement.setDisplacement(disp);
+                }
+            } else if (placement instanceof LinePlacement) {
+                // rescales line label placement
+                LinePlacement linePlacement = (LinePlacement) placement;
+                linePlacement.setGap(rescale(linePlacement.getGap()));
+                linePlacement.setInitialGap(rescale(linePlacement.getInitialGap()));
+                linePlacement.setPerpendicularOffset(rescale(linePlacement.getPerpendicularOffset()));
+            }
+            copy.setLabelPlacement(placement);
+            
+            // rescale the halo
+            if(copy.getHalo() != null) {
+                copy.getHalo().setRadius(rescale(copy.getHalo().getRadius()));
+            }
+            
+            // deal with the format options specified in pixels
+            Map<String, String> options = copy.getOptions();
+            rescaleOption(options, SPACE_AROUND_KEY, DEFAULT_SPACE_AROUND);
+            rescaleOption(options, MAX_DISPLACEMENT_KEY, DEFAULT_MAX_DISPLACEMENT);
+            rescaleOption(options, MIN_GROUP_DISTANCE_KEY, DEFAULT_MIN_GROUP_DISTANCE);
+            rescaleOption(options, LABEL_REPEAT_KEY, DEFAULT_LABEL_REPEAT);
+            rescaleOption(options, AUTO_WRAP_KEY, DEFAULT_AUTO_WRAP);
+            rescaleArrayOption(options, GRAPHIC_MARGIN_KEY, 0);
+        } finally {
+            this.defaultUnit = null;
+        }     
+    }
+    
+    @Override    
+    public void visit(Symbolizer sym) {
+        this.defaultUnit = sym.getUnitOfMeasure();
+        try {
+            super.visit(sym);
+        } finally {
+            this.defaultUnit = null;
+        }        
+    }
+    
+    @Override    
+    public void visit(PointSymbolizer sym) {
+        this.defaultUnit = sym.getUnitOfMeasure();
+        try {
+            super.visit(sym);
+        } finally {
+            this.defaultUnit = null;
+        }        
+    }
+    
+    @Override    
+    public void visit(LineSymbolizer sym) {
+        this.defaultUnit = sym.getUnitOfMeasure();
+        try {
+            super.visit(sym);
+        } finally {
+            this.defaultUnit = null;
+        }        
+    }
+    
+    @Override    
+    public void visit(PolygonSymbolizer sym) {
+        this.defaultUnit = sym.getUnitOfMeasure();
+        try {
+            super.visit(sym);
+        } finally {
+            this.defaultUnit = null;
+        }        
+    }
+    
+    @Override    
+    public void visit(RasterSymbolizer sym) {
+        this.defaultUnit = sym.getUnitOfMeasure();
+        try {
+            super.visit(sym);
+        } finally {
+            this.defaultUnit = null;
+        }        
     }
     
     /**
@@ -278,5 +344,30 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
         }
         
     };
+    
+    /**
+     * Rescales the specified vendor option
+     * @param options
+     * @param key
+     * @param defaultAutoWrap
+     * @param value
+     */
+    protected void rescaleArrayOption(Map<String, String> options, String key, int defaultValue) {
+        double scaleFactor = (double) scale.evaluate(null, Double.class);
+        if(options.get(key) != null) {
+            String strValue = options.get(key);
+            String[] splitted = strValue.split("\\s+");
+            StringBuilder sb = new StringBuilder();
+            for (String value : splitted) {
+                double rescaled = (int) Math.round(Double.parseDouble(value) * scaleFactor);
+                sb.append((int) rescaled).append(" ");
+            }
+            sb.setLength(sb.length() - 1);
+            options.put(key, sb.toString());
+        } else if(defaultValue != 0) {
+            options.put(key, String.valueOf((int) Math.round(defaultValue * scaleFactor)));
+        }
         
+    };
+    
 }

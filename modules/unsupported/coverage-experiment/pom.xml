@@ -12,8 +12,12 @@
     <parent>
       <groupId>org.geotools</groupId>
       <artifactId>unsupported</artifactId>
-      <version>8-SNAPSHOT</version>
+      <version>12-SNAPSHOT</version>
   </parent>
+  
+  <properties>
+    <netcdf.version>4.3.16</netcdf.version>
+  </properties>
 
   <!-- =========================================================== -->
   <!--     Module Description                                      -->
@@ -82,8 +86,13 @@
     <repository>
       <id>geosolutions</id>
       <name>GeoSolutions libraries repository</name>
-      <url>http://mvn.geo-solutions.it/</url>
+      <url>http://maven.geo-solutions.it/</url>
     </repository>
+    <repository>
+      <id>unidata</id>
+      <name>Unidata UCAR Libraries repository</name>
+      <url>https://artifacts.unidata.ucar.edu/content/repositories/unidata/</url>
+    </repository> 
     </repositories>
 
   <!-- =========================================================== -->
@@ -91,11 +100,10 @@
   <!-- =========================================================== -->
       <modules>
         <module>coverage-api</module>
-        <module>coverage-core</module>
+        <module>unidata</module>
         <!--module>geotiff</module-->
+		<module>grib</module>
         <module>netcdf</module>
-        <module>hdf4</module>
-        <module>grib1</module>
-      </modules>
+        <!--module>hdf4</module-->
+  </modules>
  </project>
- 

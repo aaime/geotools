@@ -165,8 +165,8 @@ public class SLDStyleFactoryTest extends TestCase {
         // no general path equality implemented, we have to check manually
         PathIterator piExpected = expected.getPathIterator(new AffineTransform());
         PathIterator pi = ms.getShape().getPathIterator(new AffineTransform());
-        double[] coordsExpected = new double[2];
-        double[] coords = new double[2];
+        double[] coordsExpected = new double[6];
+        double[] coords = new double[6];
         assertEquals(piExpected.getWindingRule(), pi.getWindingRule());
         while(!piExpected.isDone()) {
             assertFalse(pi.isDone());
@@ -282,7 +282,7 @@ public class SLDStyleFactoryTest extends TestCase {
         symb.getGraphic().addMark(myMark);
         
         MarkStyle2D ms = (MarkStyle2D) sld.createPointStyle(feature, symb, range);
-        assertEquals(16, ms.getSize());
+        assertEquals(16.0, ms.getSize());
     }
     public void testDefaultLineSymbolizerWithColor() throws Exception {
         LineSymbolizer symb = sf.createLineSymbolizer();

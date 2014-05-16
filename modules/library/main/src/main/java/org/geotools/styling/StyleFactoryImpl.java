@@ -465,6 +465,14 @@ public class StyleFactoryImpl extends AbstractStyleFactory
         return extg;
     }
 
+    @Override
+    public ExternalGraphic createExternalGraphic(Icon inlineContent, String format) {
+        ExternalGraphicImpl extg = new ExternalGraphicImpl();
+        extg.setInlineContent(inlineContent);
+        extg.setFormat(format);
+        return extg;
+    }
+
     public ExternalGraphic createExternalGraphic(java.net.URL url, String format) {
         ExternalGraphic extg = new ExternalGraphicImpl();
         extg.setLocation(url);
@@ -708,7 +716,7 @@ public class StyleFactoryImpl extends AbstractStyleFactory
     }
 
     public RasterSymbolizer getDefaultRasterSymbolizer() {
-        return createRasterSymbolizer("geom",
+        return createRasterSymbolizer(null,
             filterFactory.literal(1.0), null, null, null, null,
             null, null);
     }

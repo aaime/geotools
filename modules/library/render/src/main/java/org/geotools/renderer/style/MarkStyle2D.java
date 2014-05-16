@@ -38,12 +38,13 @@ public class MarkStyle2D extends PolygonStyle2D {
     static boolean maxMarkSizeEnabled = Boolean.getBoolean("org.geotools.maxMarkSizeEnabled");
     
     Shape shape;
-    int size;
+    double size;
     float rotation;
 
     /**
      * Returns the shape rotation, in radians
      *
+     * @return shape rotation, in radians
      */
     public float getRotation() {
         return rotation;
@@ -104,7 +105,7 @@ public class MarkStyle2D extends PolygonStyle2D {
      * Returns the size of the shape, in pixels
      *
      */
-    public int getSize() {
+    public double getSize() {
         return size;
     }
 
@@ -131,7 +132,7 @@ public class MarkStyle2D extends PolygonStyle2D {
      *
      * @param i
      */
-    public void setSize(int i) {
+    public void setSize(double i) {
         size = i;
     }
 

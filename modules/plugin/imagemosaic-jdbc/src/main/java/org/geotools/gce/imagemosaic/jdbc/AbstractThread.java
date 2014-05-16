@@ -16,15 +16,17 @@
  */
 package org.geotools.gce.imagemosaic.jdbc;
 
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.awt.image.IndexColorModel;
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import javax.media.jai.Interpolation;
+import javax.media.jai.PlanarImage;
+import javax.media.jai.RenderedOp;
+import javax.media.jai.TiledImage;
+import javax.media.jai.operator.ScaleDescriptor;
 
 import org.geotools.geometry.GeneralEnvelope;
 
@@ -84,59 +86,26 @@ abstract class AbstractThread extends Thread {
 		rescaleY = levelInfo.getResY() / resY;
 	}
 
-	/**
-	 * @return a Map containing a rendereing hint for the interpolation as
-	 *         specified in the config
-	 */
-	Map<RenderingHints.Key, Object> getRenderingHints() {
-		final Map<RenderingHints.Key, Object> hints = new HashMap<RenderingHints.Key, Object>();
-		Object interpolation = null;
 
-		if (config.getInterpolation().intValue() == 1) {
-			interpolation = RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR;
-		}
+    protected BufferedImage rescaleImageViaPlanarImage(BufferedImage image) {
+        PlanarImage planarImage = new TiledImage(image, image.getWidth(), image.getHeight());
+        
+        int interpolation=Interpolation.INTERP_NEAREST;
+        
+        if (config.getInterpolation().intValue() == 2) 
+                   interpolation = Interpolation.INTERP_BILINEAR;
 
-		if (config.getInterpolation().intValue() == 2) {
-			interpolation = RenderingHints.VALUE_INTERPOLATION_BILINEAR;
-		}
+        if (config.getInterpolation().intValue() == 3) 
+                   interpolation = Interpolation.INTERP_BICUBIC;
 
-		if (config.getInterpolation().intValue() == 3) {
-			interpolation = RenderingHints.VALUE_INTERPOLATION_BICUBIC;
-		}
 
-		hints.put(RenderingHints.KEY_INTERPOLATION, interpolation);
+        RenderedOp result = ScaleDescriptor.create(planarImage, new Float(rescaleX), new Float(rescaleY), 0.0f, 0.0f, Interpolation.getInstance(interpolation), null);
+        WritableRaster scaledImageRaster = (WritableRaster) result.getData();
 
-		return hints;
-	}
+        ColorModel colorModel = image.getColorModel();
 
-	/**
-	 * @param image
-	 *            to scale
-	 * @return rescaled image fitting into the requested pixel dimension
-	 */
-	protected BufferedImage rescaleImage(BufferedImage image) {
+        BufferedImage scaledImage = new BufferedImage(colorModel, scaledImageRaster, image.isAlphaPremultiplied(), null);
+        return scaledImage;
+    }
 
-		BufferedImage scaledImage = null;
-		int imageType = image.getType();
-
-		if ((imageType == BufferedImage.TYPE_BYTE_BINARY || imageType == BufferedImage.TYPE_BYTE_INDEXED)
-				&& (image.getColorModel() instanceof IndexColorModel))
-			scaledImage = new BufferedImage((int) Math.floor(image.getWidth()
-					* rescaleX),
-					(int) Math.floor(image.getHeight() * rescaleY), image
-							.getType(), (IndexColorModel) image.getColorModel());
-		else
-			scaledImage = new BufferedImage((int) Math.floor(image.getWidth()
-					* rescaleX),
-					(int) Math.floor(image.getHeight() * rescaleY), image
-							.getType());
-
-		final Graphics2D g2D = (Graphics2D) scaledImage.getGraphics();
-
-		g2D.addRenderingHints(getRenderingHints());
-		g2D.drawImage(image, AffineTransform.getScaleInstance(rescaleX,
-				rescaleY), null);
-
-		return scaledImage;
-	}
 }

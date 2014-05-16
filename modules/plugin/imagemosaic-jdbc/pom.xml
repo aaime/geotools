@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools</groupId>
     <artifactId>plugin</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
 
 
@@ -90,11 +90,6 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.geotools</groupId>
-      <artifactId>gt-coverage</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
       <groupId>com.vividsolutions</groupId>
       <artifactId>jts</artifactId>
       <!-- The version number is specified in the parent POM. -->
@@ -110,7 +105,7 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>hsqldb</groupId>
+      <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <!-- The version number is specified in the parent POM. -->
     </dependency>
@@ -140,15 +135,12 @@
       <version>${project.version}</version>
     </dependency> 	
 
-
     <!-- Test dependencies -->
     <dependency>
       <groupId>postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <!-- The version number is specified in the parent POM. -->
       <scope>test</scope>      
     </dependency>
-    
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>

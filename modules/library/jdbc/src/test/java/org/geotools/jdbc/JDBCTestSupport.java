@@ -46,7 +46,7 @@ import com.vividsolutions.jts.geom.Geometry;
 /**
  * Test support class for jdbc test cases.
  * <p>
- * This test class fires up a live instance of an h2 database to provide a
+ * This test class fires up a live instance of a jdbc database to provide a
  * live database to work with.
  * </p>
  *
@@ -132,10 +132,7 @@ public abstract class JDBCTestSupport extends OnlineTestCase {
 
         //create the dataStore
         //TODO: replace this with call to datastore factory
-        HashMap params = new HashMap();
-        params.put( JDBCDataStoreFactory.NAMESPACE.key, "http://www.geotools.org/test" );
-        params.put( JDBCDataStoreFactory.SCHEMA.key, "geotools" );
-        params.put( JDBCDataStoreFactory.DATASOURCE.key, setup.getDataSource() );
+        HashMap params = createDataStoreFactoryParams();
         
         JDBCDataStoreFactory factory = setup.createDataStoreFactory();
         dataStore = factory.createDataStore( params );
@@ -145,6 +142,14 @@ public abstract class JDBCTestSupport extends OnlineTestCase {
     }
 
     protected abstract JDBCTestSetup createTestSetup();
+
+    protected HashMap createDataStoreFactoryParams() throws Exception{
+	HashMap params = new HashMap();
+        params.put( JDBCDataStoreFactory.NAMESPACE.key, "http://www.geotools.org/test" );
+        params.put( JDBCDataStoreFactory.SCHEMA.key, "geotools" );
+        params.put( JDBCDataStoreFactory.DATASOURCE.key, setup.getDataSource() );
+        return params;
+    }
 
     protected void disconnect() throws Exception {
         setup.tearDown();

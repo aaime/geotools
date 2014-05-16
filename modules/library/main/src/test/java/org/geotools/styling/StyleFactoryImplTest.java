@@ -44,31 +44,13 @@ import org.opengis.filter.expression.Expression;
  * @source $URL$
  */
 public class StyleFactoryImplTest extends TestCase {
-    static StyleFactory styleFactory;
+    static StyleFactory styleFactory = CommonFactoryFinder.getStyleFactory(null);
     static FilterFactory filterFactory = CommonFactoryFinder.getFilterFactory(null);        
     static SimpleFeature feature;
     protected static final Logger LOGGER = org.geotools.util.logging.Logging.getLogger("org.geotools.styling");
 
-    public StyleFactoryImplTest(java.lang.String testName) {
-        super(testName);
-
-        feature = null;
-    }
-
-    public static void main(java.lang.String[] args) {
-        junit.textui.TestRunner.run(suite());
-    }
-
-    public static Test suite() {
-        TestSuite suite = new TestSuite(StyleFactoryImplTest.class);
-
-        return suite;
-    }
-
     public void testCommonFactoryFinder() {
         LOGGER.finer("testCreateStyle");
-
-        styleFactory = CommonFactoryFinder.getStyleFactory(null);
 
         assertNotNull("Failed to build styleFactory", styleFactory);
     }
@@ -409,5 +391,11 @@ public class StyleFactoryImplTest extends TestCase {
        Fill f1 = styleFactory.createFill(null);
        Fill f2 = styleFactory.getDefaultFill();
        assertEquals(f1, f2);
+    }
+    
+    public void testRasterSymbolizerNoGeometry() {
+        RasterSymbolizer rs = styleFactory.getDefaultRasterSymbolizer();
+        assertNull(rs.getGeometryPropertyName());
+        assertNull(rs.getGeometry());
     }
 }   

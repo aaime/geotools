@@ -136,15 +136,16 @@ class ContrastEnhancementNode extends StyleVisitorCoverageProcessingNodeAdapter
 	 * 
 	 * @see org.geotools.renderer.lite.gridcoverage2d.StyleVisitorAdapter#visit(org.geotools.styling.ContrastEnhancement)
 	 */
-	public synchronized void visit(final ContrastEnhancement ce) {
+	public void visit(final ContrastEnhancement ce) {
 		// /////////////////////////////////////////////////////////////////////
 		//
 		// Do nothing if we don't have a valid ContrastEnhancement element. This
 		// would protect us against bad SLDs
 		//
 		// /////////////////////////////////////////////////////////////////////
-		if (ce == null)
-			return;
+		if (ce == null){
+		    return;
+		}
 
 		// /////////////////////////////////////////////////////////////////////
 		//
@@ -211,7 +212,6 @@ class ContrastEnhancementNode extends StyleVisitorCoverageProcessingNodeAdapter
 	 */
     @SuppressWarnings("unchecked")
 	protected GridCoverage2D execute() {
-		assert Thread.holdsLock(this);
 		final Hints hints = getHints();
 
 		// /////////////////////////////////////////////////////////////////////
@@ -223,7 +223,7 @@ class ContrastEnhancementNode extends StyleVisitorCoverageProcessingNodeAdapter
 		final List<CoverageProcessingNode> sources = this.getSources();
 		if (sources != null && !sources.isEmpty()) {
 			final GridCoverage2D source = (GridCoverage2D) getSource(0).getOutput();
-			ensureSourceNotNull(source, this.getName().toString());
+			GridCoverageRendererUtilities.ensureSourceNotNull(source, this.getName().toString());
 			GridCoverage2D output;
 			if ((!Double.isNaN(gammaValue) && 
 					!Double.isInfinite(gammaValue) && 

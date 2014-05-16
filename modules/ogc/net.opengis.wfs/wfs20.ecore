@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="wfs20"
-    nsURI="http://www.opengis.net/wfs/2.0" nsPrefix="wfs">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="wfs20" nsURI="http://www.opengis.net/wfs/2.0" nsPrefix="wfs">
   <eAnnotations source="urn:opengis:specification:gml:schema-xlinks:v3.0c2">
     <details key="appinfo" value="xlinks.xsd v3.0b2 2001-07"/>
   </eAnnotations>
@@ -975,24 +973,6 @@
       <details key="name" value="GetFeatureType"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstractQueryExpressionGroup"
-        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EFeatureMapEntry">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="group"/>
-        <details key="name" value="AbstractQueryExpression:group"/>
-        <details key="namespace" value="http://www.opengis.net/fes/2.0"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractQueryExpression"
-        lowerBound="1" upperBound="-1" eType="ecore:EClass ../net.opengis.fes/fes20.ecore#//AbstractQueryExpressionType"
-        volatile="true" transient="true" derived="true" containment="true" resolveProxies="false">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="kind" value="element"/>
-        <details key="name" value="AbstractQueryExpression"/>
-        <details key="namespace" value="http://www.opengis.net/fes/2.0"/>
-        <details key="group" value="http://www.opengis.net/fes/2.0#AbstractQueryExpression:group"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/XMLType.ecore#//NonNegativeInteger">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
@@ -1043,6 +1023,31 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metadata" eType="#//Map"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="formatOptions" eType="#//Map"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="viewParams" unique="false"
+        upperBound="-1" eType="#//Map">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstractQueryExpressionGroup"
+        unique="false" lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EFeatureMapEntry">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="group"/>
+        <details key="name" value="AbstractQueryExpression:group"/>
+        <details key="namespace" value="http://www.opengis.net/fes/2.0"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractQueryExpression"
+        lowerBound="1" upperBound="-1" eType="ecore:EClass ../net.opengis.fes/fes20.ecore#//AbstractQueryExpressionType"
+        volatile="true" transient="true" derived="true" containment="true" resolveProxies="false">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="AbstractQueryExpression"/>
+        <details key="namespace" value="http://www.opengis.net/fes/2.0"/>
+        <details key="group" value="http://www.opengis.net/fes/2.0#AbstractQueryExpression:group"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GetFeatureWithLockType" eSuperTypes="#//GetFeatureType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -1091,7 +1096,8 @@
         <details key="name" value="resolve"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolveDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolveDepth" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+        defaultValueLiteral="*"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolvePath" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/XMLType.ecore#//String">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="attribute"/>
@@ -2004,7 +2010,7 @@
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="member" upperBound="-1"
-        eType="#//FeatureCollection"/>
+        eType="#//Collection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="additionalValues" eType="#//AdditionalValuesType"
         containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -2323,4 +2329,5 @@
   <eClassifiers xsi:type="ecore:EDataType" name="FeatureCollection" instanceClassName="org.geotools.feature.FeatureCollection"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PropertyName" instanceClassName="org.opengis.filter.expression.PropertyName"/>
   <eClassifiers xsi:type="ecore:EDataType" name="FeatureId" instanceClassName="org.opengis.filter.identity.FeatureId"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceClassName="java.util.Collection"/>
 </ecore:EPackage>

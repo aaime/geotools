@@ -17,21 +17,18 @@
 package org.geotools.ows;
 
 import net.opengis.ows10.Ows10Factory;
-import org.picocontainer.MutablePicoContainer;
+
 import org.geotools.filter.v1_1.OGCConfiguration;
 import org.geotools.ows.bindings.AcceptFormatsTypeBinding;
-import org.geotools.ows.bindings.AcceptVersionsTypeBinding;
 import org.geotools.ows.bindings.AddressTypeBinding;
 import org.geotools.ows.bindings.BoundingBoxTypeBinding;
 import org.geotools.ows.bindings.CapabilitiesBaseTypeBinding;
-import org.geotools.ows.bindings.CodeTypeBinding;
 import org.geotools.ows.bindings.ContactTypeBinding;
 import org.geotools.ows.bindings.DescriptionTypeBinding;
 import org.geotools.ows.bindings.DomainTypeBinding;
 import org.geotools.ows.bindings.ExceptionTypeBinding;
 import org.geotools.ows.bindings.GetCapabilitiesTypeBinding;
 import org.geotools.ows.bindings.IdentificationTypeBinding;
-import org.geotools.ows.bindings.KeywordsTypeBinding;
 import org.geotools.ows.bindings.MetadataTypeBinding;
 import org.geotools.ows.bindings.MimeTypeBinding;
 import org.geotools.ows.bindings.OnlineResourceTypeBinding;
@@ -54,7 +51,10 @@ import org.geotools.ows.bindings._OperationsMetadataBinding;
 import org.geotools.ows.bindings._ServiceIdentificationBinding;
 import org.geotools.ows.bindings._ServiceProviderBinding;
 import org.geotools.xlink.XLINKConfiguration;
+import org.geotools.xml.ComplexEMFBinding;
 import org.geotools.xml.Configuration;
+import org.geotools.xml.SimpleContentComplexEMFBinding;
+import org.picocontainer.MutablePicoContainer;
 
 
 /**
@@ -92,13 +92,14 @@ public class OWSConfiguration extends Configuration {
         //Types
         container.registerComponentImplementation(OWS.AcceptFormatsType,
             AcceptFormatsTypeBinding.class);
-        container.registerComponentImplementation(OWS.AcceptVersionsType,
-            AcceptVersionsTypeBinding.class);
+        container.registerComponentInstance(OWS.AcceptVersionsType, 
+                new ComplexEMFBinding(Ows10Factory.eINSTANCE, OWS.AcceptVersionsType));
         container.registerComponentImplementation(OWS.AddressType, AddressTypeBinding.class);
-        container.registerComponentImplementation(OWS.BoundingBoxType, BoundingBoxTypeBinding.class);
+        container.registerComponentImplementation(OWS.WGS84BoundingBoxType, WGS84BoundingBoxTypeBinding.class);
+        container.registerComponentInstance(OWS.BoundingBoxType, new BoundingBoxTypeBinding(Ows10Factory.eINSTANCE, OWS.BoundingBoxType));
         container.registerComponentImplementation(OWS.CapabilitiesBaseType,
             CapabilitiesBaseTypeBinding.class);
-        container.registerComponentImplementation(OWS.CodeType, CodeTypeBinding.class);
+        container.registerComponentInstance(OWS.CodeType, new SimpleContentComplexEMFBinding(Ows10Factory.eINSTANCE, OWS.CodeType));
         container.registerComponentImplementation(OWS.ContactType, ContactTypeBinding.class);
         container.registerComponentImplementation(OWS.DescriptionType, DescriptionTypeBinding.class);
         container.registerComponentImplementation(OWS.DomainType, DomainTypeBinding.class);
@@ -107,7 +108,7 @@ public class OWSConfiguration extends Configuration {
             GetCapabilitiesTypeBinding.class);
         container.registerComponentImplementation(OWS.IdentificationType,
             IdentificationTypeBinding.class);
-        container.registerComponentImplementation(OWS.KeywordsType, KeywordsTypeBinding.class);
+        container.registerComponentInstance(OWS.KeywordsType, new ComplexEMFBinding(Ows10Factory.eINSTANCE, OWS.KeywordsType));
         container.registerComponentImplementation(OWS.MetadataType, MetadataTypeBinding.class);
         container.registerComponentImplementation(OWS.MimeType, MimeTypeBinding.class);
         container.registerComponentImplementation(OWS.OnlineResourceType,
@@ -126,8 +127,6 @@ public class OWSConfiguration extends Configuration {
         container.registerComponentImplementation(OWS.UpdateSequenceType,
             UpdateSequenceTypeBinding.class);
         container.registerComponentImplementation(OWS.VersionType, VersionTypeBinding.class);
-        container.registerComponentImplementation(OWS.WGS84BoundingBoxType,
-            WGS84BoundingBoxTypeBinding.class);
         container.registerComponentImplementation(OWS._DCP, _DCPBinding.class);
         container.registerComponentImplementation(OWS._ExceptionReport,
             _ExceptionReportBinding.class);

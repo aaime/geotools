@@ -16,22 +16,24 @@
  */
 package org.geotools.styling.visitor;
 
+import static org.junit.Assert.*;
+
 import java.awt.Color;
+import java.util.Map;
 
 import javax.measure.quantity.Length;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.filter.FilterFactoryImpl;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.styling.Fill;
 import org.geotools.styling.Font;
+import org.geotools.styling.Graphic;
 import org.geotools.styling.LinePlacement;
 import org.geotools.styling.LineSymbolizer;
 import org.geotools.styling.LineSymbolizerImpl;
@@ -41,17 +43,17 @@ import org.geotools.styling.PointSymbolizer;
 import org.geotools.styling.PointSymbolizerImpl;
 import org.geotools.styling.PolygonSymbolizer;
 import org.geotools.styling.PolygonSymbolizerImpl;
-import org.geotools.styling.Rule;
 import org.geotools.styling.Stroke;
 import org.geotools.styling.StyleBuilder;
-import org.geotools.styling.Symbolizer;
 import org.geotools.styling.TextSymbolizer;
 import org.geotools.styling.TextSymbolizerImpl;
+import org.geotools.util.Converters;
+import org.junit.Assert;
+import org.junit.Test;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.expression.Expression;
-import org.opengis.style.GraphicalSymbol;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -66,9 +68,12 @@ import com.vividsolutions.jts.geom.LineString;
  *
  * @source $URL$
  */
-public class UomRescaleStyleVisitorTest extends TestCase
+public class UomRescaleStyleVisitorTest
 {
     
+    FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2();
+    
+    @Test
     public void testConstructorOK()
     {
         try
@@ -78,11 +83,11 @@ public class UomRescaleStyleVisitorTest extends TestCase
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
-    
+    @Test
     public void testConstructorFail()
     {
     	try
@@ -94,7 +99,7 @@ public class UomRescaleStyleVisitorTest extends TestCase
     		return;
     	}
     	
-    	Assert.fail("Should throw IllegalArgumentException.");
+    	fail("Should throw IllegalArgumentException.");
     }
     
     protected double computeExpectedRescaleSize(double size, double scaleMetersToPixel, Unit<Length> uom)
@@ -127,7 +132,7 @@ public class UomRescaleStyleVisitorTest extends TestCase
 
             PointSymbolizerImpl pointSymb = (PointSymbolizerImpl) styleBuilder.createPointSymbolizer();
             pointSymb.setUnitOfMeasure(uom);
-
+            
             FilterFactory2 filterFactory  = new FilterFactoryImpl();
             pointSymb.getGraphic().setSize(filterFactory.literal(size));
 
@@ -137,13 +142,13 @@ public class UomRescaleStyleVisitorTest extends TestCase
             PointSymbolizer rescaledPointSymb = (PointSymbolizer) visitor.getCopy();
             double rescaledSize = rescaledPointSymb.getGraphic().getSize().evaluate(null, Double.class);
             
-            Assert.assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
-            Assert.assertNotSame(rescaledPointSymb, pointSymb);
+            assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
+            assertNotSame(rescaledPointSymb, pointSymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
@@ -169,13 +174,13 @@ public class UomRescaleStyleVisitorTest extends TestCase
             LineSymbolizer rescaledLineSymb = (LineSymbolizer) visitor.getCopy();
             double rescaledSize = rescaledLineSymb.getStroke().getWidth().evaluate(null, Double.class);
             
-            Assert.assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
-            Assert.assertNotSame(rescaledLineSymb, lineSymb);
+            assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
+            assertNotSame(rescaledLineSymb, lineSymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
@@ -201,13 +206,13 @@ public class UomRescaleStyleVisitorTest extends TestCase
             PolygonSymbolizer rescaledPolySymb = (PolygonSymbolizer) visitor.getCopy();
             double rescaledSize = rescaledPolySymb.getStroke().getWidth().evaluate(null, Double.class);
             
-            Assert.assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
-            Assert.assertNotSame(rescaledPolySymb, polySymb);
+            assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
+            assertNotSame(rescaledPolySymb, polySymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
@@ -219,9 +224,13 @@ public class UomRescaleStyleVisitorTest extends TestCase
             int fontSize = 100;
             double displacementX = 13;
             double displacementY = 17;
+            int maxDisplacement = 10;
             double expectedRescaledFontSize = computeExpectedRescaleSize(fontSize, scaleMetersToPixel, uom);
             double expectedRescaledDisplacementXSize = computeExpectedRescaleSize(displacementX, scaleMetersToPixel, uom);
             double expectedRescaledDisplacementYSize = computeExpectedRescaleSize(displacementY, scaleMetersToPixel, uom);
+            int expectedMaxDisplacement = (int) computeExpectedRescaleSize(maxDisplacement, scaleMetersToPixel, uom);
+            int expectedGraphicMargin1 = (int) computeExpectedRescaleSize(maxDisplacement, scaleMetersToPixel, uom);
+            int expectedGraphicMargin2 = (int) computeExpectedRescaleSize(maxDisplacement * 2, scaleMetersToPixel, uom);
             
             StyleBuilder styleBuilder = new StyleBuilder();
 
@@ -233,6 +242,10 @@ public class UomRescaleStyleVisitorTest extends TestCase
             
             PointPlacement placement = styleBuilder.createPointPlacement(0.3, 0.3, displacementX, displacementY, 10);
             textSymb.setLabelPlacement(placement);
+            
+            // check we can rescale properly also vendor options
+            textSymb.addToOptions("maxDisplacement", String.valueOf(maxDisplacement));
+            textSymb.addToOptions(TextSymbolizer.GRAPHIC_MARGIN_KEY, maxDisplacement + " " + maxDisplacement * 2);
 
             visitor = new UomRescaleStyleVisitor(scaleMetersToPixel);
 
@@ -244,51 +257,62 @@ public class UomRescaleStyleVisitorTest extends TestCase
             double rescaledDisplacementXSize = rescaledPlacement.getDisplacement().getDisplacementX().evaluate(null, Double.class);
             double rescaledDisplacementYSize = rescaledPlacement.getDisplacement().getDisplacementY().evaluate(null, Double.class);
             
-            Assert.assertEquals(Math.round(expectedRescaledFontSize), Math.round(rescaledFontSize));
-            Assert.assertEquals(Math.round(expectedRescaledDisplacementXSize), Math.round(rescaledDisplacementXSize));
-            Assert.assertEquals(Math.round(expectedRescaledDisplacementYSize), Math.round(rescaledDisplacementYSize));
-            Assert.assertNotSame(rescaledTextSymb, textSymb);
+            assertEquals(Math.round(expectedRescaledFontSize), Math.round(rescaledFontSize));
+            assertEquals(Math.round(expectedRescaledDisplacementXSize), Math.round(rescaledDisplacementXSize));
+            assertEquals(Math.round(expectedRescaledDisplacementYSize), Math.round(rescaledDisplacementYSize));
+            assertNotSame(rescaledTextSymb, textSymb);
+            
+            Map<String, String> options = rescaledTextSymb.getOptions();
+            int rescaledMaxDisplacement = Converters.convert(options.get("maxDisplacement"), Integer.class).intValue();
+            assertEquals(rescaledMaxDisplacement, expectedMaxDisplacement);
+            
+            String[] splitted = options.get(TextSymbolizer.GRAPHIC_MARGIN_KEY).split("\\s+");
+            int rescaledGraphicMargin1 = Converters.convert(splitted[0], Integer.class).intValue();
+            int rescaledGraphicMargin2 = Converters.convert(splitted[1], Integer.class).intValue();
+            assertEquals(expectedGraphicMargin1, rescaledGraphicMargin1);
+            assertEquals(expectedGraphicMargin2, rescaledGraphicMargin2);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
 
     // POINT SYMBOLIZER TESTS
     
+    @Test
     public void testVisitPointSymbolizer_ScalePixelNull()
     {
         visitPointSymbolizerTest(10, null);
     }
     
-   
+    @Test
     public void testVisitPointSymbolizer_ScalePixelExplicit()
     {
         visitPointSymbolizerTest(10, NonSI.PIXEL);
     }
     
-    
+    @Test
     public void testVisitPointSymbolizer_ScaleMeter1()
     {
         visitPointSymbolizerTest(1, SI.METER);
     }
     
-   
+    @Test
     public void testVisitPointSymbolizer_ScaleMeter10()
     {
         visitPointSymbolizerTest(10, SI.METER);
     }
     
-    
+    @Test
     public void testVisitPointSymbolizer_ScaleFoot1()
     {
         visitPointSymbolizerTest(1, NonSI.FOOT);
     }
     
-    
+    @Test
     public void testVisitPointSymbolizer_ScaleFoot10()
     {
         visitPointSymbolizerTest(10, NonSI.FOOT);
@@ -296,37 +320,37 @@ public class UomRescaleStyleVisitorTest extends TestCase
 
 
     // LINE SYMBOLIZER TESTS
-    
+    @Test
     public void testVisitLineSymbolizer_ScalePixelNull()
     {
         visitLineSymbolizerTest(10, null);
     }
     
-    
+    @Test
     public void testVisitLineSymbolizer_ScalePixelExplicit()
     {
         visitLineSymbolizerTest(10, NonSI.PIXEL);
     }
     
-    
+    @Test
     public void testVisitLineSymbolizer_ScaleMeter1()
     {
         visitLineSymbolizerTest(1, SI.METER);
     }
     
-    
+    @Test
     public void testVisitLineSymbolizer_ScaleMeter10()
     {
         visitLineSymbolizerTest(10, SI.METER);
     }
     
-    
+    @Test
     public void testVisitLineSymbolizer_ScaleFoot1()
     {
         visitLineSymbolizerTest(1, NonSI.FOOT);
     }
     
-    
+    @Test
     public void testVisitLineSymbolizer_ScaleFoot10()
     {
         visitLineSymbolizerTest(10, NonSI.FOOT);
@@ -334,37 +358,37 @@ public class UomRescaleStyleVisitorTest extends TestCase
     
     
     // POLYGON SYMBOLIZER TESTS
-    
+    @Test
     public void testVisitPolygonSymbolizer_ScalePixelNull()
     {
         visitPolygonSymbolizerTest(10, null);
     }
     
-    
+    @Test
     public void testVisitPolygonSymbolizer_ScalePixelExplicit()
     {
         visitPolygonSymbolizerTest(10, NonSI.PIXEL);
     }
     
-    
+    @Test
     public void testVisitPolygonSymbolizer_ScaleMeter1()
     {
         visitPolygonSymbolizerTest(1, SI.METER);
     }
     
-    
+    @Test
     public void testVisitPolygonSymbolizer_ScaleMeter10()
     {
         visitPolygonSymbolizerTest(10, SI.METER);
     }
     
-    
+    @Test
     public void testVisitPolygonSymbolizer_ScaleFoot1()
     {
         visitPolygonSymbolizerTest(1, NonSI.FOOT);
     }
     
-    
+    @Test
     public void testVisitPolygonSymbolizer_ScaleFoot10()
     {
         visitPolygonSymbolizerTest(10, NonSI.FOOT);
@@ -372,37 +396,37 @@ public class UomRescaleStyleVisitorTest extends TestCase
 
     
     // TEXT SYMBOLIZER TESTS
-    
+    @Test
     public void testVisitTextSymbolizer_ScalePixelNull()
     {
         visitTextSymbolizerTest(10, null);
     }
     
-    
+    @Test
     public void testVisitTextSymbolizer_ScalePixelExplicit()
     {
         visitTextSymbolizerTest(10, NonSI.PIXEL);
     }
     
-    
+    @Test
     public void testVisitTextSymbolizer_ScaleMeter1()
     {
         visitTextSymbolizerTest(1, SI.METER);
     }
     
-    
+    @Test
     public void testVisitTextSymbolizer_ScaleMeter10()
     {
         visitTextSymbolizerTest(10, SI.METER);
     }
     
-    
+    @Test
     public void testVisitTextSymbolizer_ScaleFoot1()
     {
         visitTextSymbolizerTest(1, NonSI.FOOT);
     }
     
-    
+    @Test
     public void testVisitTextSymbolizer_ScaleFoot10()
     {
         visitTextSymbolizerTest(10, NonSI.FOOT);
@@ -410,7 +434,7 @@ public class UomRescaleStyleVisitorTest extends TestCase
 
 
     // EXTRA TESTS
-    
+    @Test
     public void testVisitLineSymbolizer_NullStroke()
     {
         try
@@ -428,17 +452,17 @@ public class UomRescaleStyleVisitorTest extends TestCase
             lineSymb.accept(visitor);
             LineSymbolizer rescaledLineSymb = (LineSymbolizer) visitor.getCopy();
             
-            Assert.assertNull(rescaledLineSymb.getStroke());
-            Assert.assertNotSame(rescaledLineSymb, lineSymb);
+            assertNull(rescaledLineSymb.getStroke());
+            assertNotSame(rescaledLineSymb, lineSymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
-    
+    @Test
     public void testVisitPolygonSymbolizer_NullStroke()
     {
         try
@@ -455,18 +479,18 @@ public class UomRescaleStyleVisitorTest extends TestCase
             polySymb.accept(visitor);
             PolygonSymbolizer rescaledPolySymb = (PolygonSymbolizer) visitor.getCopy();
             
-            Assert.assertEquals(polySymb.getFill(), rescaledPolySymb.getFill());
-            Assert.assertNull(rescaledPolySymb.getStroke());
-            Assert.assertNotSame(rescaledPolySymb, polySymb);
+            assertEquals(polySymb.getFill(), rescaledPolySymb.getFill());
+            assertNull(rescaledPolySymb.getStroke());
+            assertNotSame(rescaledPolySymb, polySymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
-    
+    @Test
     public void testVisitTextSymbolizer_LinePlacement()
     {
         try
@@ -509,20 +533,20 @@ public class UomRescaleStyleVisitorTest extends TestCase
             double rescaledGap = rescaledPlacement.getGap().evaluate(null, Double.class);
             double rescaledInitialGap = rescaledPlacement.getInitialGap().evaluate(null, Double.class);
             
-            Assert.assertEquals(Math.round(expectedRescaledFontSize), Math.round(rescaledFontSize));
-            Assert.assertEquals(Math.round(expectedRescaledPerpOffset), Math.round(rescaledPerpOffset));
-            Assert.assertEquals(Math.round(expectedRescaledGap), Math.round(rescaledGap));
-            Assert.assertEquals(Math.round(expectedRescaledInitialGap), Math.round(rescaledInitialGap));
-            Assert.assertNotSame(rescaledTextSymb, textSymb);
+            assertEquals(Math.round(expectedRescaledFontSize), Math.round(rescaledFontSize));
+            assertEquals(Math.round(expectedRescaledPerpOffset), Math.round(rescaledPerpOffset));
+            assertEquals(Math.round(expectedRescaledGap), Math.round(rescaledGap));
+            assertEquals(Math.round(expectedRescaledInitialGap), Math.round(rescaledInitialGap));
+            assertNotSame(rescaledTextSymb, textSymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
-    
+    @Test
     public void testVisitLineSymbolizer_ExpressionWithFeatureAttribute()
     {
         try
@@ -571,18 +595,19 @@ public class UomRescaleStyleVisitorTest extends TestCase
             double rescaledWidthValue = rescaledWidth.evaluate(feature, Double.class);
             double expectedRescaledWidthValue = computeExpectedRescaleSize(widthValue, scaleMetersToPixel, uom); 
             
-            Assert.assertEquals(stroke.getColor(), rescaledStroke.getColor());
-            Assert.assertEquals(expectedRescaledWidthValue, rescaledWidthValue);
-            Assert.assertNotSame(SI.METER, rescaledLineSymb.getUnitOfMeasure());
-            Assert.assertNotSame(rescaledLineSymb, lineSymb);
+            assertEquals(stroke.getColor(), rescaledStroke.getColor());
+            assertEquals(expectedRescaledWidthValue, rescaledWidthValue, 0d);
+            assertNotSame(SI.METER, rescaledLineSymb.getUnitOfMeasure());
+            assertNotSame(rescaledLineSymb, lineSymb);
         }
         catch (Exception e2)
         {
             e2.printStackTrace();
-            Assert.fail(e2.getClass().getSimpleName() + " should not be thrown.");
+            fail(e2.getClass().getSimpleName() + " should not be thrown.");
         }
     }
     
+    @Test
     public void testRescaleGraphicFillStrokes() {
         // create a graphic that needs rescaling
         StyleBuilder sb = new StyleBuilder();
@@ -606,9 +631,9 @@ public class UomRescaleStyleVisitorTest extends TestCase
         ps.accept(visitor);
         PolygonSymbolizer rps = (PolygonSymbolizer) visitor.getCopy();
         Mark rm = (Mark) rps.getStroke().getGraphicStroke().graphicalSymbols().get(0);
-        assertEquals(10.0, rm.getStroke().getWidth().evaluate(null));
+        assertEquals(10.0, rm.getStroke().getWidth().evaluate(null, Double.class), 0d);
         rm = (Mark) rps.getFill().getGraphicFill().graphicalSymbols().get(0);
-        assertEquals(20.0, rm.getStroke().getWidth().evaluate(null));
+        assertEquals(20.0, rm.getStroke().getWidth().evaluate(null, Double.class), 0d);
 
         
         // a line symbolizer that uses a graphic stroke
@@ -619,6 +644,105 @@ public class UomRescaleStyleVisitorTest extends TestCase
         ls.accept(visitor);
         LineSymbolizer lps = (LineSymbolizer) visitor.getCopy();
         rm = (Mark) lps.getStroke().getGraphicStroke().graphicalSymbols().get(0);
-        assertEquals(10.0, rm.getStroke().getWidth().evaluate(null));
+        assertEquals(10.0, rm.getStroke().getWidth().evaluate(null, Double.class), 0d);
     }
+
+    @Test
+    public void testRescaleGraphicPointSymbolizer() {
+        // create a graphic that needs rescaling
+        StyleBuilder sb = new StyleBuilder();
+        
+        // create a circle
+        Mark circle = sb.createMark("circle", null, sb.createStroke(500));
+        Graphic g = sb.createGraphic(null, circle, null);
+        
+        // a point symbolizer with the specified circle
+        PointSymbolizer ps = sb.createPointSymbolizer(g);
+        
+        // first see it in feet
+        ps.setUnitOfMeasure(NonSI.FOOT);
+        
+        // rescale it
+        UomRescaleStyleVisitor visitor = new UomRescaleStyleVisitor(10);
+        ps.accept(visitor);
+        PointSymbolizer rps = (PointSymbolizer) visitor.getCopy();
+        Mark rm = (Mark) rps.getGraphic().graphicalSymbols().get(0);
+        assertEquals(1524.0, rm.getStroke().getWidth().evaluate(null, Double.class), 0d);
+        
+        // now let's see the same in meters
+        ps.setUnitOfMeasure(SI.METER);
+        
+        // rescale it
+        visitor = new UomRescaleStyleVisitor(10);
+        ps.accept(visitor);
+        rps = (PointSymbolizer) visitor.getCopy();
+        rm = (Mark) rps.getGraphic().graphicalSymbols().get(0);
+        assertEquals(5000.0, rm.getStroke().getWidth().evaluate(null, Double.class), 0d);
+    }
+    
+    
+    @Test
+    public void visitLocalUomMeters() {
+        UomRescaleStyleVisitor visitor = null;
+        double size = 100;
+        double scaleMetersToPixel = 10;
+        double expectedRescaledSize = computeExpectedRescaleSize(size, scaleMetersToPixel, SI.METER);
+
+        StyleBuilder styleBuilder = new StyleBuilder();
+        LineSymbolizerImpl lineSymb = (LineSymbolizerImpl) styleBuilder.createLineSymbolizer();
+        lineSymb.getStroke().setWidth(ff.literal(size + "m"));
+
+        visitor = new UomRescaleStyleVisitor(scaleMetersToPixel);
+
+        lineSymb.accept(visitor);
+        LineSymbolizer rescaledLineSymb = (LineSymbolizer) visitor.getCopy();
+        double rescaledSize = rescaledLineSymb.getStroke().getWidth().evaluate(null, Double.class);
+
+        assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
+        assertNotSame(rescaledLineSymb, lineSymb);
+    }
+    
+    @Test
+    public void visitLocalUomOverrideFeet() {
+        UomRescaleStyleVisitor visitor = null;
+        double size = 100;
+        double scaleMetersToPixel = 10;
+        double expectedRescaledSize = computeExpectedRescaleSize(size, scaleMetersToPixel, SI.METER);
+
+        StyleBuilder styleBuilder = new StyleBuilder();
+        LineSymbolizerImpl lineSymb = (LineSymbolizerImpl) styleBuilder.createLineSymbolizer();
+        lineSymb.setUnitOfMeasure(NonSI.FOOT);
+        lineSymb.getStroke().setWidth(ff.literal(size + "m"));
+
+        visitor = new UomRescaleStyleVisitor(scaleMetersToPixel);
+
+        lineSymb.accept(visitor);
+        LineSymbolizer rescaledLineSymb = (LineSymbolizer) visitor.getCopy();
+        double rescaledSize = rescaledLineSymb.getStroke().getWidth().evaluate(null, Double.class);
+
+        assertEquals(Math.round(expectedRescaledSize), Math.round(rescaledSize));
+        assertNotSame(rescaledLineSymb, lineSymb);
+    }
+    
+    @Test
+    public void visitLocalUomPixelOverridingMeters() {
+        UomRescaleStyleVisitor visitor = null;
+        double size = 100;
+        double scaleMetersToPixel = 10;
+
+        StyleBuilder styleBuilder = new StyleBuilder();
+        LineSymbolizerImpl lineSymb = (LineSymbolizerImpl) styleBuilder.createLineSymbolizer();
+        lineSymb.setUnitOfMeasure(SI.METER);
+        lineSymb.getStroke().setWidth(ff.literal(size + "px"));
+
+        visitor = new UomRescaleStyleVisitor(scaleMetersToPixel);
+
+        lineSymb.accept(visitor);
+        LineSymbolizer rescaledLineSymb = (LineSymbolizer) visitor.getCopy();
+        double rescaledSize = rescaledLineSymb.getStroke().getWidth().evaluate(null, Double.class);
+
+        assertEquals(Math.round(size), Math.round(size));
+        assertNotSame(rescaledLineSymb, lineSymb);
+    }
+
 }

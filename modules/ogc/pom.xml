@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.geotools</groupId>
     <artifactId>modules</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
 
   <groupId>org.geotools</groupId>
@@ -62,7 +62,7 @@
     <module>net.opengis.wfs</module>
     <module>net.opengis.wps</module>
     <module>net.opengis.wcs</module>
-    <module>net.opengis.wfsv</module>
+    <module>net.opengis.csw</module>
   </modules>
 
 </project>

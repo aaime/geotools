@@ -28,17 +28,29 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.Raster;
 import java.io.IOException;
+
+import junit.framework.Assert;
 
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.map.MapContext;
 import org.geotools.renderer.GTRenderer;
 import org.geotools.renderer.RenderListener;
+import org.geotools.sld.v1_1.SLDConfiguration;
+import org.geotools.styling.DefaultResourceLocator;
+import org.geotools.styling.NamedLayer;
+import org.geotools.styling.NamedStyle;
+import org.geotools.styling.ResourceLocator;
 import org.geotools.styling.SLDParser;
 import org.geotools.styling.Style;
 import org.geotools.styling.StyleFactory;
+import org.geotools.styling.StyledLayerDescriptor;
+import org.geotools.styling.UserLayer;
 import org.geotools.test.TestData;
+import org.geotools.xml.Parser;
 
 /**
  * Used to test a renderer implementation.
@@ -102,6 +114,23 @@ public abstract class RendererBaseTest {
         }
         final BufferedImage image = mergeImages(images);
 
+        showImage(testName, timeOut, image);
+        boolean hasData = false; // All I can seem to check reliably.
+
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                if (image.getRGB(x, y) != 0) {
+                    hasData = true;
+                }
+            }
+        }
+
+        assert (hasData);
+        return image;
+    }
+
+    public static void showImage(String testName, long timeOut, final BufferedImage image)
+            throws InterruptedException {
         final String headless = System.getProperty("java.awt.headless", "false");
         if (!headless.equalsIgnoreCase("true") && TestData.isInteractiveTest()) {
             try {
@@ -136,21 +165,8 @@ public abstract class RendererBaseTest {
                 frame.dispose();
             } catch (HeadlessException exception) {
                 // The test is running on a machine without X11 display. Ignore.
-                return image;
             }
         }
-        boolean hasData = false; // All I can seem to check reliably.
-
-        for (int y = 0; y < image.getHeight(); y++) {
-            for (int x = 0; x < image.getWidth(); x++) {
-                if (image.getRGB(x, y) != 0) {
-                    hasData = true;
-                }
-            }
-        }
-
-        assert (hasData);
-        return image;
     }
 
     public static BufferedImage renderImage(GTRenderer renderer, ReferencedEnvelope bounds,
@@ -248,5 +264,111 @@ public abstract class RendererBaseTest {
 
         Style style = stylereader.readXML()[0];
         return style;
+    }
+    
+    /**
+     * Load a Symbology Encoding style from the test-data directory associated with the object.
+     * 
+     * @param loader
+     * @param sldFilename
+     * @return
+     * @throws IOException
+     */
+    protected static Style loadSEStyle(Object loader, String sldFilename) throws IOException {
+        try {
+            final java.net.URL surl = TestData.getResource(loader, sldFilename);
+            SLDConfiguration configuration = new SLDConfiguration() {
+                protected void configureContext(org.picocontainer.MutablePicoContainer container) {
+                    DefaultResourceLocator locator = new DefaultResourceLocator();
+                    locator.setSourceUrl(surl);
+                    container.registerComponentInstance(ResourceLocator.class, locator);
+                };
+            };
+            Parser parser = new Parser(configuration);
+
+            StyledLayerDescriptor sld = (StyledLayerDescriptor) parser.parse(surl.openStream());
+            
+            for (int i = 0; i < sld.getStyledLayers().length; i++) {
+                Style[] styles = null;
+                
+                if (sld.getStyledLayers()[i] instanceof NamedLayer) {
+                    NamedLayer layer = (NamedLayer) sld.getStyledLayers()[i];
+                    styles = layer.getStyles();
+                }
+                else if(sld.getStyledLayers()[i] instanceof UserLayer) {
+                    UserLayer layer = (UserLayer) sld.getStyledLayers()[i];
+                    styles = layer.getUserStyles();
+                }
+                
+                if (styles != null) {
+                    for (int j = 0; j < styles.length; i++) {
+                        if (!(styles[j] instanceof NamedStyle)) {
+                            return styles[j];
+                        }
+                    }
+                }
+                
+            }
+
+            return null;
+            
+        } 
+        catch(Exception e) {
+            if (e instanceof IOException) throw (IOException) e;
+            throw (IOException) new IOException().initCause(e);
+        }
+    }
+    
+    
+
+    
+    /**
+     * Checks the pixel i/j has the specified color
+     * @param image
+     * @param i
+     * @param j
+     * @param color
+     */
+    public static void assertPixel(BufferedImage image, int i, int j, Color color) {
+        Color actual = getPixelColor(image, i, j);
+        
+        Assert.assertEquals(color, actual);
+    }
+    
+    /**
+     * Checks the pixel i/j has the specified color
+     * @param image
+     * @param i
+     * @param j
+     * @param color
+     */
+    public static void assertPixel(BufferedImage image, int i, int j, Color color, int tolerance) {
+        Color actual = getPixelColor(image, i, j);
+        
+        Assert.assertTrue( Math.abs( color.getRed() - actual.getRed()) < tolerance );
+        Assert.assertTrue( Math.abs( color.getGreen() - actual.getGreen()) < tolerance );
+        Assert.assertTrue( Math.abs( color.getBlue() - actual.getBlue()) < tolerance );
+    }
+
+    /**
+     * Gets a specific pixel color from the specified buffered image
+     * @param image
+     * @param i
+     * @param j
+     * @param color
+     * @return
+     */
+    private static Color getPixelColor(BufferedImage image, int i, int j) {
+        ColorModel cm = image.getColorModel();
+        Raster raster = image.getRaster();
+        Object pixel = raster.getDataElements(i, j, null);
+        
+        Color actual;
+        if(cm.hasAlpha()) {
+            actual = new Color(cm.getRed(pixel), cm.getGreen(pixel), cm.getBlue(pixel), cm.getAlpha(pixel));
+        } else {
+            actual = new Color(cm.getRed(pixel), cm.getGreen(pixel), cm.getBlue(pixel), 255);
+        }
+        return actual;
     }
 }

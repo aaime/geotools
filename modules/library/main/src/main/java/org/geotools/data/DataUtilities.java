@@ -16,6 +16,7 @@
  */
 package org.geotools.data;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -74,6 +75,7 @@ import org.geotools.feature.FeatureTypes;
 import org.geotools.feature.GeometryAttributeImpl;
 import org.geotools.feature.NameImpl;
 import org.geotools.feature.SchemaException;
+import org.geotools.feature.collection.BridgeIterator;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.feature.type.AttributeDescriptorImpl;
@@ -89,6 +91,7 @@ import org.geotools.referencing.CRS;
 import org.geotools.resources.i18n.ErrorKeys;
 import org.geotools.resources.i18n.Errors;
 import org.geotools.util.Converters;
+import org.geotools.util.NullProgressListener;
 import org.geotools.util.Utilities;
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.feature.Feature;
@@ -115,6 +118,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.util.ProgressListener;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Envelope;
@@ -142,7 +146,7 @@ import org.geotools.data.view.DefaultView;
  * SimpleFeatureCollection,SimpleFeatureSource</li>
  * <li>{@link #list} to quickly copy features into a memory based list</li>
  * <li>{@link #reader} methods to convert to FeatureReader</li>
- * <li>{@link #source} setup a FeatureSource wrapper around the provided data</li>
+ * <li>{@link #expression} setup a FeatureSource wrapper around the provided data</li>
  * </ul>
  * </p>
  * <p>
@@ -194,6 +198,8 @@ public class DataUtilities {
     static Map<Class, String> typeEncode = new HashMap<Class, String>();
 
     static FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2();
+    
+    static final boolean IS_WINDOWS_OS;
 
     static {
         typeEncode.put(String.class, "String");
@@ -250,6 +256,10 @@ public class DataUtilities {
 
         typeEncode.put(Date.class, "Date");
         typeMap.put("Date", Date.class);
+        
+        // check if we are running on windows
+        String os = System.getProperty("os.name");
+        IS_WINDOWS_OS = os.toUpperCase().contains("WINDOWS");
     }
     
     /**
@@ -340,9 +350,8 @@ public class DataUtilities {
 
         String simplePrefix = "file:/";
         String standardPrefix = "file://";
-        String os = System.getProperty("os.name");
 
-        if (os.toUpperCase().contains("WINDOWS") && string.startsWith(standardPrefix)) {
+        if (IS_WINDOWS_OS && string.startsWith(standardPrefix)) {
             // win32: host/share reference
             path3 = string.substring(standardPrefix.length() - 2);
         } else if (string.startsWith(standardPrefix)) {
@@ -956,13 +965,13 @@ public class DataUtilities {
             return UUID.fromString("00000000-0000-0000-0000-000000000000");
         }        
         if (type == Timestamp.class)
-            return new Timestamp(System.currentTimeMillis());
+            return new Timestamp(0);
         if (type == java.sql.Date.class)
-            return new java.sql.Date(System.currentTimeMillis());
+            return new java.sql.Date(0);
         if (type == java.sql.Time.class)
-            return new java.sql.Time(System.currentTimeMillis());
+            return new java.sql.Time(0);
         if (type == java.util.Date.class)
-            return new java.util.Date();
+            return new java.util.Date(0);
 
         GeometryFactory fac = new GeometryFactory();
         Coordinate coordinate = new Coordinate(0, 0);
@@ -974,17 +983,17 @@ public class DataUtilities {
         if (type == MultiPoint.class) {
             return fac.createMultiPoint(new Point[] { point });
         }
+        LineString lineString = fac.createLineString(new Coordinate[] { new Coordinate(0, 0), new Coordinate(0, 1) });
         if (type == LineString.class) {
-            return fac.createLineString(new Coordinate[] { coordinate, coordinate, coordinate,
-                    coordinate });
+            return lineString;
         }
-        LinearRing linearRing = fac.createLinearRing(new Coordinate[] { coordinate, coordinate,
-                coordinate, coordinate });
+        LinearRing linearRing = fac.createLinearRing(new Coordinate[] { new Coordinate(0, 0), new Coordinate(0, 1),
+                new Coordinate(1, 1), new Coordinate(1, 0), new Coordinate(0, 0)});
         if (type == LinearRing.class) {
             return linearRing;
         }
         if (type == MultiLineString.class) {
-            return fac.createMultiLineString(new LineString[] { linearRing });
+            return fac.createMultiLineString(new LineString[] { lineString });
         }
         Polygon polygon = fac.createPolygon(linearRing, new LinearRing[0]);
         if (type == Polygon.class) {
@@ -1144,41 +1153,6 @@ public class DataUtilities {
             throws IOException, SchemaException {
         return new DefaultView(store.getFeatureSource(query.getTypeName()), query);
     }
-    /**
-     * Returns collection from the provided feature array
-     * 
-     * @param featureArray 
-     * @return array contents as a SimpleFeatureCollection
-     * @deprecated Please use {@link #collection(SimpleFeature[])} and check {@link SimpleFeatureCollection#size()} to ensure contents are not empty
-     */
-    public static SimpleFeatureCollection results(SimpleFeature[] featureArray) {
-        return results(collection(featureArray));
-    }
-
-    /**
-     * Returns collection if non empty.
-     * <p>
-     * Previous implementation would throw an IOException if the collection was empty; method
-     * is now duplicated as it does not servce a function.
-     * 
-     * @param collection
-     * @return provided collection
-     * @deprecated Please check collection.size() directly to ensure your collection contains content
-     */
-    public static SimpleFeatureCollection results(final SimpleFeatureCollection collection) {
-        if (collection.size() == 0) {
-            // throw new IOException("Provided collection was empty");
-        }
-        return collection;
-    }
-
-    public static <T extends FeatureType, F extends Feature> FeatureCollection<T, F> results(
-            final FeatureCollection<T, F> collection) {
-        if (collection.size() == 0) {
-            // throw new IOException("Provided collection was empty");
-        }
-        return collection;
-    }
 
     /**
      * Adapt a collection to a reader for use with FeatureStore.setFeatures( reader ).
@@ -1226,7 +1200,8 @@ public class DataUtilities {
      * @return FeatureCollection
      */
     public static SimpleFeatureCollection collection(SimpleFeature[] features) {
-        SimpleFeatureCollection collection = FeatureCollections.newCollection();
+        // JG: There may be some performance to be gained by using ListFeatureCollection here
+        DefaultFeatureCollection collection = new DefaultFeatureCollection(null,null);
         final int length = features.length;
         for (int i = 0; i < length; i++) {
             collection.add(features[i]);
@@ -1247,6 +1222,48 @@ public class DataUtilities {
             FeatureCollection<SimpleFeatureType, SimpleFeature> featureCollection) {
         return new DefaultFeatureCollection(featureCollection);
     }
+
+    /**
+     * Checks if the provided iterator implements {@link Closeable}.
+     * <p>
+     * Any problems are logged at {@link Level#FINE}.
+     */
+    public static void close(Iterator<?> iterator) {
+        if (iterator != null && iterator instanceof Closeable) {
+            try {
+                ((Closeable) iterator).close();
+            } catch (IOException e) {
+                String name = iterator.getClass().getPackage().toString();
+                Logger log = Logger.getLogger(name);
+                log.log(Level.FINE, e.getMessage(), e);
+            }
+        }
+    }
+    
+    /**
+     * Obtain the first feature from the collection as an exemplar.
+     * 
+     * @param featureCollection
+     * @return first feature from the featureCollection
+     */
+    public static <F extends Feature> F first( FeatureCollection<?,F> featureCollection ){
+        if (featureCollection == null) {
+            return null;
+        }
+        FeatureIterator<F> iter = featureCollection.features();
+        try {
+            while (iter.hasNext()) {
+                F feature = iter.next();
+                if (feature != null) {
+                    return feature;
+                }
+            }
+            return null; // not found!
+        } finally {
+            iter.close();
+        }
+    }
+    
     //
     // Conversion (or casting) from general feature model to simple feature model
     //
@@ -1445,23 +1462,55 @@ public class DataUtilities {
     // FeatureCollection Utility Methods
     //
     /**
-     * Copies the provided fetaures into a List.
+     * Copies the provided features into a List.
      * 
      * @param featureCollection
      * @return List of features copied into memory
      */
-    public static List<SimpleFeature> list(
-            FeatureCollection<SimpleFeatureType, SimpleFeature> featureCollection) {
-        final ArrayList<SimpleFeature> list = new ArrayList<SimpleFeature>();
+    public static <F extends Feature> List<F> list(FeatureCollection<?, F> featureCollection) {
+        final ArrayList<F> list = new ArrayList<F>();
+        FeatureIterator<F> iter = featureCollection.features();
         try {
-            featureCollection.accepts(new FeatureVisitor() {
-                public void visit(Feature feature) {
-                    list.add((SimpleFeature) feature);
-                }
-            }, null);
-        } catch (IOException ignore) {
+            while( iter.hasNext() ){
+                F feature = iter.next();
+                list.add( feature );
+            }
+        }
+        finally {
+            iter.close();
         }
         return list;
+    }
+    /**
+     * Copies the provided fetaures into a List.
+     * 
+     * @param featureCollection
+     * @param maxFeatures Maximum number of features to load
+     * @return List of features copied into memory
+     */
+    public static <F extends Feature> List<F> list(FeatureCollection<?, F> featureCollection, int maxFeatures) {
+        final ArrayList<F> list = new ArrayList<F>();
+        FeatureIterator<F> iter = featureCollection.features();
+        try {
+            for( int count = 0; iter.hasNext() && count < maxFeatures; count++){
+                F feature = iter.next();
+                list.add( feature );        
+            }
+        }
+        finally {
+            iter.close();
+        }
+        return list;
+    }
+    /**
+     * Iteator wrapped around the provided FeatureIterator, implementing {@link Closeable}.
+     * 
+     * @see #close(Iterator)
+     * @param featureIterator
+     * @return Iterator wrapped around provided FeatureIterator, implements Closeable 
+     */
+    public static <F extends Feature> Iterator<F> iterator( FeatureIterator<F> featureIterator ){
+        return new BridgeIterator<F>( featureIterator );
     }
 
     /**
@@ -1485,6 +1534,25 @@ public class DataUtilities {
         return fids;
     }
     //
+    // Conversion to java.util.Collection
+    //
+    /**
+     * Used to quickly cast to a java.util.Collection.
+     * 
+     * @param featureCollection
+     * @return Collection
+     */
+    @SuppressWarnings("unchecked")
+    public static <F extends Feature> Collection<F> collectionCast(
+            FeatureCollection<?, F> featureCollection) {
+        if (featureCollection instanceof Collection<?>) {
+            return (Collection<F>) featureCollection;
+        } else {
+            throw new IllegalArgumentException(
+                    "Require access to SimpleFeatureCollection implementing Collecion.add");
+        }
+    }
+    //
     // Conversion to FeatureCollection
     //
     /**
@@ -1497,7 +1565,7 @@ public class DataUtilities {
      * @return FeatureCollection
      */
     public static SimpleFeatureCollection collection(List<SimpleFeature> list) {
-        SimpleFeatureCollection collection = FeatureCollections.newCollection();
+        DefaultFeatureCollection collection = new DefaultFeatureCollection( null, null);
         for (SimpleFeature feature : list) {
             collection.add(feature);
         }
@@ -1520,7 +1588,7 @@ public class DataUtilities {
      * @return FeatureCollection
      */
     public static SimpleFeatureCollection collection(SimpleFeature feature) {
-        SimpleFeatureCollection collection = FeatureCollections.newCollection();
+        DefaultFeatureCollection collection = new DefaultFeatureCollection( null, null);
         collection.add(feature);
         return collection;
     }
@@ -1540,7 +1608,7 @@ public class DataUtilities {
      */
     public static SimpleFeatureCollection collection(
             FeatureReader<SimpleFeatureType, SimpleFeature> reader) throws IOException {
-        SimpleFeatureCollection collection = FeatureCollections.newCollection();
+        DefaultFeatureCollection collection = new DefaultFeatureCollection(null,null);
         try {
             while (reader.hasNext()) {
                 try {
@@ -1572,7 +1640,7 @@ public class DataUtilities {
      */
     public static SimpleFeatureCollection collection(SimpleFeatureIterator reader)
             throws IOException {
-        SimpleFeatureCollection collection = FeatureCollections.newCollection();
+        DefaultFeatureCollection collection = new DefaultFeatureCollection( null,null);
         try {
             while (reader.hasNext()) {
                 try {
@@ -1717,7 +1785,7 @@ public class DataUtilities {
         tb.setNamespaceURI(namespace);
         tb.setCRS(null); // not interested in warnings from this simple method
         tb.addAll(types);
-
+        setDefaultGeometry(tb, properties, featureType);
         return tb.buildFeatureType();
     }
 
@@ -1757,7 +1825,19 @@ public class DataUtilities {
         for (int i = 0; i < properties.length; i++) {
             tb.add(featureType.getDescriptor(properties[i]));
         }
+        setDefaultGeometry(tb, properties, featureType);
         return tb.buildFeatureType();
+    }
+
+    private static void setDefaultGeometry(SimpleFeatureTypeBuilder typeBuilder, String[] properties,
+            SimpleFeatureType featureType) {
+        GeometryDescriptor geometryDescriptor = featureType.getGeometryDescriptor();
+        if (geometryDescriptor != null) {
+            String propertyName = geometryDescriptor.getLocalName();
+            if (Arrays.asList(properties).contains(propertyName)) {
+                typeBuilder.setDefaultGeometry(propertyName);
+            }
+        }
     }
     //
     // Decoding (ie Parsing) support for PropertyAttributeReader and tutorials
@@ -2588,10 +2668,97 @@ public class DataUtilities {
     }
 
     /**
-     * Manually calculates the bounds of a feature collection.
-     * 
+     * Manually count the number of features from the provided FeatureIterator.
+     * This implementation is intended for FeatureCollection implementors and test case
+     * verification. Client code should always call {@link FeatureCollection#size()}
      * @param collection
+     * @return number of featuers in feature collection
+     */
+    public static int count( FeatureIterator<?> iterator) {
+        int count = 0;
+        if( iterator != null ){
+            try {
+                while (iterator.hasNext()) {
+                    @SuppressWarnings("unused")
+                    Feature feature = iterator.next();
+                    count++;
+                }
+                return count;
+            }
+            finally {
+                iterator.close();
+            }
+        }
+        return count;
+    }
+    /**
+     * Manually count the number of features in a feature collection using using {@link FeatureCollection#features()}.
+     * 
+     * This implementation is intended for FeatureCollection implementors and test case
+     * verification. Client code should always call {@link FeatureCollection#size()}
+     * @param collection
+     * @return number of featuers in feature collection
+     */
+    public static int count(
+            FeatureCollection<? extends FeatureType, ? extends Feature> collection) {
+        int count = 0;
+        FeatureIterator<? extends Feature> i = collection.features();
+        try {
+            while (i.hasNext()) {
+                @SuppressWarnings("unused")
+                Feature feature = (Feature) i.next();
+                count++;
+            }
+            return count;
+        }
+        finally {
+            if( i != null ){
+                i.close();
+            }
+        }
+    }
+    /**
+     * Manually calculate the bounds from the provided FeatureIteator.
+     * This implementation is intended for FeatureCollection implementors and test case
+     * verification. Client code should always call {@link FeatureCollection#getBounds()}.
+     * 
+     * @param iterator
      * @return
+     */
+    public static ReferencedEnvelope bounds( FeatureIterator<?> iterator ){
+        if( iterator == null ){
+            return null;
+        }
+        try {
+            ReferencedEnvelope bounds = null;
+            while (iterator.hasNext()) {
+                Feature feature = iterator.next();
+                ReferencedEnvelope featureEnvelope = null;
+                if(feature != null && feature.getBounds() != null) {
+                    featureEnvelope = ReferencedEnvelope.reference(feature.getBounds());
+                }
+                
+                if(featureEnvelope != null) {
+                    if(bounds == null) {
+                        bounds = new ReferencedEnvelope(featureEnvelope);
+                    } else {
+                        bounds.expandToInclude(featureEnvelope);
+                    }
+                }
+            }            
+            return bounds;
+        } finally {
+            iterator.close();
+        }
+    }
+    /**
+     * Manually calculates the bounds of a feature collection using {@link FeatureCollection#features()}.
+     * <p>
+     * This implementation is intended for FeatureCollection implementors and test case
+     * verification. Client code should always call {@link FeatureCollection#getBounds()}.
+     *  
+     * @param collection
+     * @return bounds of features in feature collection
      */
     public static ReferencedEnvelope bounds(
             FeatureCollection<? extends FeatureType, ? extends Feature> collection) {
@@ -2602,11 +2769,14 @@ public class DataUtilities {
             ReferencedEnvelope bounds = new ReferencedEnvelope(crs);
 
             while (i.hasNext()) {
-                BoundingBox geomBounds = ((SimpleFeature) i.next()).getBounds();
+                Feature feature = i.next();
+                if( feature == null ) continue;
+                
+                BoundingBox geomBounds = feature.getBounds();
                 // IanS - as of 1.3, JTS expandToInclude ignores "null" Envelope
                 // and simply adds the new bounds...
                 // This check ensures this behavior does not occur.
-                if ( ! geomBounds.isEmpty() ) {
+                if ( geomBounds != null && !geomBounds.isEmpty() ) {
                     bounds.include(geomBounds);
                 }
             }
@@ -2615,6 +2785,49 @@ public class DataUtilities {
         finally {
             if( i != null ){
                 i.close();
+            }
+        }
+    }
+
+    /**
+     * Manually visit each feature using {@link FeatureCollection#features()}.
+     * <p>
+     * This method is intended to assist FeatureCollection implementors, and used to verify test-case results. Client code should always call
+     * {@link FeatureCollection#accepts(FeatureVisitor, ProgressListener)}
+     * 
+     * @param collection
+     * @return bounds of features in feature collection
+     */
+    public static void visit(FeatureCollection<?, ?> collection, FeatureVisitor visitor,
+            ProgressListener progress) throws IOException {
+        FeatureIterator<?> iterator = null;
+        float size = progress != null ? collection.size() : 0;
+        if (progress == null) {
+            progress = new NullProgressListener();
+        }
+        try {
+            float position = 0;
+            progress.started();
+            iterator = collection.features();
+            while (!progress.isCanceled() && iterator.hasNext()) {
+                Feature feature = null;
+                try {
+                    feature = iterator.next();
+                    visitor.visit(feature);
+                    if (size > 0) {
+                        progress.progress(position++ / size);
+                    }
+                } catch (Exception erp) {
+                    progress.exceptionOccurred(erp);
+                    String fid = feature == null ? "feature" : feature.getIdentifier().toString();
+                    throw new IOException("Problem with " + collection.getID() + " visiting " + fid
+                            + ":" + erp, erp);
+                }
+            }
+        } finally {
+            progress.complete();
+            if (iterator != null) {
+                iterator.close();
             }
         }
     }

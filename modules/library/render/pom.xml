@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools</groupId>
     <artifactId>library</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
   
 
@@ -141,7 +141,7 @@
     </dependency>
     <dependency>
       <groupId>org.easymock</groupId>
-      <artifactId>easymock</artifactId>
+      <artifactId>easymockclassextension</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -153,6 +153,18 @@
     <dependency>
       <groupId>org.geotools</groupId>
       <artifactId>gt-geotiff</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools.xsd</groupId>
+      <artifactId>gt-xsd-sld</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-shapefile</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>

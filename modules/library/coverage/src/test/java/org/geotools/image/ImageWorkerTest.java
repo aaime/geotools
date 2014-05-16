@@ -16,11 +16,17 @@
  */
 package org.geotools.image;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import it.geosolutions.imageio.utilities.ImageIOUtilities;
 import it.geosolutions.imageioimpl.plugins.tiff.TIFFImageReaderSpi;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.Transparency;
 import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
@@ -46,21 +52,24 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.media.jai.ImageLayout;
+import javax.media.jai.Interpolation;
 import javax.media.jai.JAI;
 import javax.media.jai.RasterFactory;
+import javax.media.jai.RenderedOp;
 import javax.media.jai.operator.BandMergeDescriptor;
 import javax.media.jai.operator.ConstantDescriptor;
 
 import org.geotools.TestData;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.Viewer;
+import org.geotools.coverage.processing.GridProcessingTestBase;
+import org.geotools.referencing.CRS;
 import org.geotools.resources.image.ComponentColorModelJAI;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.sun.media.imageioimpl.common.PackageUtil;
-import com.sun.media.imageioimpl.plugins.tiff.TIFFImageReader;
 
 
 /**
@@ -73,7 +82,31 @@ import com.sun.media.imageioimpl.plugins.tiff.TIFFImageReader;
  * @author Simone Giannecchini (GeoSolutions)
  * @author Martin Desruisseaux (Geomatys)
  */
-public final class ImageWorkerTest {
+public final class ImageWorkerTest extends GridProcessingTestBase {
+    
+    private final static String GOOGLE_MERCATOR_WKT="PROJCS[\"WGS 84 / Pseudo-Mercator\","+
+            "GEOGCS[\"Popular Visualisation CRS\","+
+                "DATUM[\"Popular_Visualisation_Datum\","+
+                    "SPHEROID[\"Popular Visualisation Sphere\",6378137,0,"+
+                        "AUTHORITY[\"EPSG\",\"7059\"]],"+
+                    "TOWGS84[0,0,0,0,0,0,0],"+
+                    "AUTHORITY[\"EPSG\",\"6055\"]],"+
+                "PRIMEM[\"Greenwich\",0,"+
+                    "AUTHORITY[\"EPSG\",\"8901\"]],"+
+                "UNIT[\"degree\",0.01745329251994328,"+
+                    "AUTHORITY[\"EPSG\",\"9122\"]],"+
+                "AUTHORITY[\"EPSG\",\"4055\"]],"+
+            "UNIT[\"metre\",1,"+
+                "AUTHORITY[\"EPSG\",\"9001\"]],"+
+            "PROJECTION[\"Mercator_1SP\"],"+
+            "PARAMETER[\"central_meridian\",0],"+
+            "PARAMETER[\"scale_factor\",1],"+
+            "PARAMETER[\"false_easting\",0],"+
+            "PARAMETER[\"false_northing\",0],"+
+            "AUTHORITY[\"EPSG\",\"3785\"],"+
+            "AXIS[\"X\",EAST],"+
+            "AXIS[\"Y\",NORTH]]";
+            
     /**
      * Image to use for testing purpose.
      */
@@ -326,6 +359,13 @@ public final class ImageWorkerTest {
 	        worker.writeJPEG(outFile, "JPEG-LS", 0.75f, true);
 	        readWorker = new ImageWorker(ImageIO.read(outFile));
 	        show(readWorker, "Native JPEG LS");
+        } else {
+            try{
+                worker.writeJPEG(outFile, "JPEG-LS", 0.75f, true);
+                assertFalse(true);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         }
 
         // /////////////////////////////////////////////////////////////////////
@@ -400,6 +440,46 @@ public final class ImageWorkerTest {
     }
     
     @Test
+    public void test16BitGIF() throws Exception {
+        // the resource has been compressed since the palette is way larger than the image itself, 
+        // and the palette does not get compressed
+        InputStream gzippedStream = ImageWorkerTest.class.getResource("test-data/sf-sfdem.tif.gz").openStream();
+        GZIPInputStream is = new GZIPInputStream(gzippedStream);
+        try {
+            ImageInputStream iis = ImageIO.createImageInputStream(is);
+            ImageReader reader = new TIFFImageReaderSpi().createReaderInstance(iis);
+            reader.setInput(iis);
+            BufferedImage bi = reader.read(0);
+            if(TestData.isInteractiveTest()){
+                ImageIOUtilities.visualize(bi,"before");
+            }
+            reader.dispose();
+            iis.close();
+            IndexColorModel icm = (IndexColorModel) bi.getColorModel();
+            assertEquals(65536, icm.getMapSize());
+            
+            final File outFile = TestData.temp(this, "temp.gif");
+            ImageWorker worker = new ImageWorker(bi);
+            worker.writeGIF(outFile, "LZW", 0.75f);
+
+            // Read it back.
+            bi=ImageIO.read(outFile);
+            if(TestData.isInteractiveTest()){
+                ImageIOUtilities.visualize(bi,"after");
+            }
+            ColorModel cm = bi.getColorModel();
+            assertTrue("wrong color model", cm instanceof IndexColorModel);
+            assertEquals("wrong transparency model", Transparency.OPAQUE, cm.getTransparency());
+            final IndexColorModel indexColorModel = (IndexColorModel)cm;
+            assertEquals("wrong transparent color index", -1, indexColorModel.getTransparentPixel());
+            assertEquals("wrong component size", 8, indexColorModel.getComponentSize(0));
+            outFile.delete();
+        } finally {
+            is.close();
+        }
+    }
+    
+    @Test
     public void test16BitPNG() throws Exception {
         // the resource has been compressed since the palette is way larger than the image itself, 
         // and the palette does not get compressed
@@ -410,6 +490,8 @@ public final class ImageWorkerTest {
             ImageReader reader = new TIFFImageReaderSpi().createReaderInstance(iis);
             reader.setInput(iis);
             BufferedImage bi = reader.read(0);
+            reader.dispose();
+            iis.close();
             IndexColorModel icm = (IndexColorModel) bi.getColorModel();
             assertEquals(65536, icm.getMapSize());
             
@@ -424,8 +506,76 @@ public final class ImageWorkerTest {
             // we expect a RGB one
             ComponentColorModel ccm = (ComponentColorModel) back.getColorModel();
             assertEquals(3, ccm.getNumColorComponents());
+            
+            
+            // now ask to write paletted
+            worker = new ImageWorker(bi);
+            worker.writePNG(outFile, "FILTERED", 0.75f, true, true);
+            worker.dispose();
+            
+            // make sure we can read it 
+            back = ImageIO.read(outFile);
+            
+            // we expect a RGB one
+            icm =  (IndexColorModel) back.getColorModel();
+            assertEquals(3, icm.getNumColorComponents());
+            assertTrue(icm.getMapSize() <= 256);  
         } finally {
             is.close();
+        }
+    }
+    
+    @Test
+    public void test4BitPNG() throws Exception {
+
+        // create test image
+        IndexColorModel icm =new IndexColorModel(
+                        4, 
+                        16, 
+                        new byte[]{(byte)255,0,        0,        0,16,32,64,(byte)128,1,2,3,4,5,6,7,8}, 
+                        new byte[]{0,        (byte)255,0,        0,16,32,64,(byte)128,1,2,3,4,5,6,7,8}, 
+                        new byte[]{0,        0,        (byte)255,0,16,32,64,(byte)128,1,2,3,4,5,6,7,8});
+        assertEquals(16, icm.getMapSize());
+        
+        // create random data
+        WritableRaster data = com.sun.media.jai.codecimpl.util.RasterFactory.createWritableRaster(
+                        icm.createCompatibleSampleModel(32,32), 
+                        new Point(0,0));
+        for(int x=data.getMinX();x<data.getMinX()+data.getWidth();x++){
+                for(int y=data.getMinY();y<data.getMinY()+data.getHeight();y++){
+                        data.setSample(x, y, 0, (x+y)%8);
+                }
+        }
+        
+
+        final BufferedImage bi = new BufferedImage(
+                        icm,
+                        data,
+                        false,
+                        null);
+        assertEquals(16, ((IndexColorModel)bi.getColorModel()).getMapSize());
+        assertEquals(4, bi.getSampleModel().getSampleSize(0));
+        bi.setData(data);
+        if(TestData.isInteractiveTest()){
+                ImageIOUtilities.visualize(bi,"before");
+        }
+        
+        // encode as png
+        ImageWorker worker = new ImageWorker(bi);
+        final File outFile = TestData.temp(this, "temp4.png");
+        worker.writePNG(outFile, "FILTERED", 0.75f, true, false);
+        worker.dispose();
+        
+        // make sure we can read it 
+        BufferedImage back = ImageIO.read(outFile);
+        
+        // we expect an IndexColorMolde one matching the old one
+        IndexColorModel ccm =  (IndexColorModel) back.getColorModel();
+        assertEquals(3, ccm.getNumColorComponents());
+        assertEquals(16, ccm.getMapSize());
+        assertEquals(4, ccm.getPixelSize());
+        if(TestData.isInteractiveTest()){
+                ImageIOUtilities.visualize(back,"after");
         }
     }
     
@@ -764,6 +914,60 @@ public final class ImageWorkerTest {
         testAlphaRGB(true);
     }
     
+    @Test
+    public void testYCbCr() {
+        assertTrue("Assertions should be enabled.", ImageWorker.class.desiredAssertionStatus());
+        // check the presence of the PYCC.pf file that contains the profile for the YCbCr color space
+        if(ImageWorker.CS_PYCC==null){
+            System.out.println("testYCbCr disabled since we are unable to locate the YCbCr color profile");
+            return;
+        }
+        // RGB component color model
+        ImageWorker worker = new ImageWorker(getSyntheticRGB(false));
+        
+        RenderedImage image = worker.getRenderedImage();
+        assertTrue(image.getColorModel() instanceof ComponentColorModel);
+        assertTrue(!image.getColorModel().hasAlpha());
+        int sample = image.getTile(0, 0).getSample(0, 0, 2);
+        assertEquals(0, sample);
+        
+        assertFalse(worker.isColorSpaceYCbCr());
+        worker.forceColorSpaceYCbCr();
+        assertTrue(worker.isColorSpaceYCbCr());
+        worker.forceColorSpaceRGB();
+        assertFalse(worker.isColorSpaceYCbCr());
+        assertTrue(worker.isColorSpaceRGB());
+        
+        // RGB Palette
+        worker.forceBitmaskIndexColorModel();
+        image = worker.getRenderedImage();
+        assertTrue(image.getColorModel() instanceof IndexColorModel);
+        assertTrue(!image.getColorModel().hasAlpha());
+        
+        assertFalse(worker.isColorSpaceYCbCr());
+        worker.forceColorSpaceYCbCr();
+        assertTrue(worker.isColorSpaceYCbCr());   
+        worker.forceColorSpaceRGB();
+        assertFalse(worker.isColorSpaceYCbCr());
+        assertTrue(worker.isColorSpaceRGB());     
+        
+        // RGB DirectColorModel
+        worker = new ImageWorker(getSyntheticRGB(true));        
+        image = worker.getRenderedImage();
+        assertTrue(image.getColorModel() instanceof DirectColorModel);
+        assertTrue(!image.getColorModel().hasAlpha());
+        sample = image.getTile(0, 0).getSample(0, 0, 2);
+        assertEquals(0, sample);
+        
+        assertFalse(worker.isColorSpaceYCbCr());
+        worker.forceColorSpaceYCbCr();
+        assertTrue(worker.isColorSpaceYCbCr()); 
+        worker.forceColorSpaceRGB();
+        assertFalse(worker.isColorSpaceYCbCr());
+        assertTrue(worker.isColorSpaceRGB());       
+        
+    }
+    
     private void testAlphaRGB(boolean direct) {
         assertTrue("Assertions should be enabled.", ImageWorker.class.desiredAssertionStatus());
         ImageWorker worker = new ImageWorker(getSyntheticRGB(direct));
@@ -890,4 +1094,34 @@ public final class ImageWorkerTest {
         assertSame(bi, t2);
         
     }
+    
+    
+    
+    @Test
+    public void testOptimizedWarp() throws Exception {
+        // do it again, make sure the image does not turn black since 
+        GridCoverage2D ushortCoverage = EXAMPLES.get(5);
+       GridCoverage2D coverage = project(ushortCoverage,CRS.parseWKT(GOOGLE_MERCATOR_WKT), null,"nearest", null, true);
+       RenderedImage ri = coverage.getRenderedImage();
+       
+       
+       ImageWorker.WARP_REDUCTION_ENABLED = false;
+       AffineTransform at = new AffineTransform(0.4, 0, 0, 0.5, -200, -200);
+       RenderedOp fullChain = (RenderedOp) new ImageWorker(ri).affine(at, Interpolation.getInstance(Interpolation.INTERP_NEAREST), new double[] {0}).getRenderedImage();
+       assertEquals("Scale", fullChain.getOperationName());
+       fullChain.getTiles();
+       
+       ImageWorker.WARP_REDUCTION_ENABLED = true;
+       RenderedOp reduced = (RenderedOp) new ImageWorker(ri).affine(at, Interpolation.getInstance(Interpolation.INTERP_NEAREST), new double[] {0}).getRenderedImage();
+       // force computation, to make sure it does not throw exceptions
+       reduced.getTiles();
+       // check the chain has been reduced
+       assertEquals("Warp", reduced.getOperationName());
+       assertEquals(1, reduced.getSources().size());
+       assertSame(ushortCoverage.getRenderedImage(), reduced.getSourceImage(0));
+    
+       // check the bounds of the output image has not changed
+       assertEquals(fullChain.getBounds(), reduced.getBounds());
+    }
+    
 }

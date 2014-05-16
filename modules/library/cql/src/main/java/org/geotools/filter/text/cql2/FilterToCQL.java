@@ -18,13 +18,9 @@ package org.geotools.filter.text.cql2;
 
 import java.util.logging.Logger;
 
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.factory.Hints;
 import org.geotools.filter.text.commons.FilterToTextUtil;
 import org.opengis.filter.And;
-import org.opengis.filter.BinaryComparisonOperator;
 import org.opengis.filter.ExcludeFilter;
-import org.opengis.filter.FilterFactory;
 import org.opengis.filter.FilterVisitor;
 import org.opengis.filter.Id;
 import org.opengis.filter.IncludeFilter;
@@ -237,11 +233,11 @@ class FilterToCQL implements FilterVisitor {
     }
     public Object visit(Overlaps filter, Object extraData) {
     	checkLeftExpressionIsProperty(filter.getExpression1());
-    	return FilterToTextUtil.buildBinarySpatialOperator("OVERLAP", filter, extraData);
+    	return FilterToTextUtil.buildBinarySpatialOperator("OVERLAPS", filter, extraData);
     }
     public Object visit(Touches filter, Object extraData) {
     	checkLeftExpressionIsProperty(filter.getExpression1());
-    	return FilterToTextUtil.buildBinarySpatialOperator("TOUCH", filter, extraData);
+    	return FilterToTextUtil.buildBinarySpatialOperator("TOUCHES", filter, extraData);
     }
     	     
     public Object visit(Within filter, Object extraData) {

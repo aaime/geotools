@@ -12,7 +12,7 @@
    <parent>
     <groupId>org.geotools</groupId>
     <artifactId>gt-coverage-experiment</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
    </parent>
 
   <!-- =========================================================== -->
@@ -75,14 +75,14 @@
   <dependencies>
   	<dependency>
       <groupId>org.geotools</groupId>
-      <artifactId>gt-coverage-core</artifactId>
+      <artifactId>gt-coverage-api</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>it.geosolutions.imageio-ext</groupId>
-      <artifactId>imageio-ext-netcdf</artifactId>
-      <version>${imageio.ext.version}</version>
-    </dependency>
+  	<dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-unidata</artifactId>
+      <version>${project.version}</version>
+    </dependency>    
        <dependency>
       <groupId>it.geosolutions.imageio-ext</groupId>
       <artifactId>imageio-ext-imagereadmt</artifactId>
@@ -98,7 +98,35 @@
       <artifactId>imageio-ext-geocore</artifactId>
       <version>${imageio.ext.version}</version>
     </dependency>
-   
+    <dependency>
+      <groupId>edu.ucar</groupId>
+      <artifactId>netcdf</artifactId> 
+      <version>${netcdf.version}</version>
+    </dependency>
+       <dependency>
+      <groupId>opendap</groupId>
+      <artifactId>opendap</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <!-- required to read files remotely over HTTP -->
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+      <scope>runtime</scope>
+    </dependency> 
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.4</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>1.6.4</version>
+    </dependency>
+            
     <!-- Test dependencies -->
     <dependency>
       <groupId>org.geotools</groupId>

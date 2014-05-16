@@ -28,8 +28,8 @@ import javax.xml.namespace.QName;
 
 import org.geotools.data.FeatureSource;
 import org.geotools.data.complex.filter.XPath;
-import org.geotools.data.complex.filter.XPath.Step;
-import org.geotools.data.complex.filter.XPath.StepList;
+import org.geotools.data.complex.filter.XPathUtil.Step;
+import org.geotools.data.complex.filter.XPathUtil.StepList;
 import org.geotools.data.joining.JoiningNestedAttributeMapping;
 import org.geotools.feature.Types;
 import org.geotools.gml3.GML;
@@ -79,19 +79,27 @@ public class FeatureTypeMapping {
 
     private Expression featureFidMapping;
 
+    private boolean isDenormalised;
+
     /**
      * No parameters constructor for use by the digester configuration engine as a JavaBean
      */
     public FeatureTypeMapping() {
-        this(null, null, new LinkedList<AttributeMapping>(), new NamespaceSupport());
+        this(null, null, new LinkedList<AttributeMapping>(), new NamespaceSupport(), true);
     }
 
     public FeatureTypeMapping(FeatureSource<? extends FeatureType, ? extends Feature> source,
             AttributeDescriptor target, List<AttributeMapping> mappings, NamespaceSupport namespaces) {
+        this(source, target, mappings, namespaces, true);
+    }
+
+    public FeatureTypeMapping(FeatureSource<? extends FeatureType, ? extends Feature> source,
+            AttributeDescriptor target, List<AttributeMapping> mappings, NamespaceSupport namespaces, boolean isDenormalised) {
         this.source = source;
         this.target = target;
         this.attributeMappings = new LinkedList<AttributeMapping>(mappings);
         this.namespaces = namespaces;
+        this.isDenormalised = isDenormalised;
         
         // find id expression
         for (AttributeMapping attMapping : attributeMappings) {
@@ -276,26 +284,29 @@ public class FeatureTypeMapping {
         // @attName or propA/propB@attName
         if (candidates.size() == 0 && propertyName.size() > 0) {
             XPath.Step clientPropertyStep = (Step) propertyName.get(propertyName.size() - 1);
-            Name clientPropertyName = Types.toTypeName(clientPropertyStep.getName());
-            XPath.StepList parentPath;
+            if (clientPropertyStep.isXmlAttribute()) {
+                Name clientPropertyName = Types.toTypeName(clientPropertyStep.getName());
+                XPath.StepList parentPath;
 
-            if (propertyName.size() == 1) {
-                parentPath = XPath.rootElementSteps(this.target, this.namespaces);
-            } else {  
-                parentPath = new XPath.StepList(propertyName);
-                parentPath.remove(parentPath.size() - 1);
-            }
+                if (propertyName.size() == 1) {
+                    parentPath = XPath.rootElementSteps(this.target, this.namespaces);
+                } else {
+                    parentPath = new XPath.StepList(propertyName);
+                    parentPath.remove(parentPath.size() - 1);
+                }
 
-            candidates = getAttributeMappingsIgnoreIndex(parentPath);
-            expressions = getClientPropertyExpressions(candidates, clientPropertyName, parentPath);
-            if (expressions.isEmpty()) {
-                // this might be a wrapper mapping for another complex mapping
-                // look for the client properties there
-                FeatureTypeMapping inputMapping = getUnderlyingComplexMapping();
-                if (inputMapping != null) {
-                    return getClientPropertyExpressions(inputMapping
-                            .getAttributeMappingsIgnoreIndex(parentPath), clientPropertyName,
-                            parentPath);
+                candidates = getAttributeMappingsIgnoreIndex(parentPath);
+                expressions = getClientPropertyExpressions(candidates, clientPropertyName,
+                        parentPath);
+                if (expressions.isEmpty()) {
+                    // this might be a wrapper mapping for another complex mapping
+                    // look for the client properties there
+                    FeatureTypeMapping inputMapping = getUnderlyingComplexMapping();
+                    if (inputMapping != null) {
+                        return getClientPropertyExpressions(
+                                inputMapping.getAttributeMappingsIgnoreIndex(parentPath),
+                                clientPropertyName, parentPath);
+                    }
                 }
             }
         }
@@ -356,6 +367,14 @@ public class FeatureTypeMapping {
             }
         }
         return expressions;
+    }
+
+    public boolean isDenormalised() {
+        return isDenormalised;
+    }
+
+    public void setDenormalised(boolean isDenormalised) {
+        this.isDenormalised = isDenormalised;
     }
 
 }

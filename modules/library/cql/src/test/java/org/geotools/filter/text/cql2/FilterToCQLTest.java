@@ -69,12 +69,12 @@ public class FilterToCQLTest{
     }
     @Test
     public void testANDOR() throws Exception {
-        cqlTest( "((ATTR1 < 10 AND ATTR2 < 2) OR ATTR3 > 10)" );
+        cqlTest( "(ATTR1 < 10 AND ATTR2 < 2) OR ATTR3 > 10" );
     }
     /** (ATTR1 > 10 OR ATTR2 < 2) */
     @Test
     public void testOR() throws Exception {
-        cqlTest( "(ATTR1 > 10 OR ATTR2 < 2)" );
+        cqlTest( "ATTR1 > 10 OR ATTR2 < 2" );
     }
 
     @Test
@@ -90,25 +90,25 @@ public class FilterToCQLTest{
     @Test 
     public void testAfter() throws Exception{
     	
-    	cqlTest("attr AFTER 2006-12-31T01:30:00Z");
+    	cqlTest("attr AFTER 2006-12-31T01:30:00+00:00");
     }
     
     @Test 
     public void testBefore() throws Exception{
     	
-    	cqlTest("attr BEFORE 2006-12-31T01:30:00Z");
+    	cqlTest("attr BEFORE 2006-12-31T01:30:00+00:00");
     }
 
     @Test
     public void testBeforeAndAfter() throws Exception{
     	
-    	cqlTest("(dateAttr AFTER 2006-10-10T01:30:00Z AND dateAttr BEFORE 2010-12-31T01:30:00Z)");
+    	cqlTest("dateAttr AFTER 2006-10-10T01:30:00+00:00 AND dateAttr BEFORE 2010-12-31T01:30:00+00:00");
     }
 
     @Test
     public void testDuring() throws Exception{
     	
-    	cqlTest("dateAttr DURING 2006-10-10T01:30:00Z/2010-12-31T01:30:00Z");
+    	cqlTest("dateAttr DURING 2006-10-10T01:30:00+00:00/2010-12-31T01:30:00+00:00");
     }
     
     @Test (expected=UnsupportedOperationException.class) 
@@ -234,10 +234,35 @@ public class FilterToCQLTest{
     }
 
     @Test
-    public void testIntersects() throws Exception{
+    public void testIntersectsPoint() throws Exception{
     	
     	cqlTest("INTERSECTS(the_geom, POINT (1 2))");
     }
+    
+	@Test
+	public void testIntersects() throws Exception {
+		cqlTest("INTERSECTS(theGeom, POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0)))");
+	}
+
+	@Test
+	public void testOverlaps() throws Exception {
+		cqlTest("OVERLAPS(theGeom, POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0)))");
+	}
+
+	@Test
+	public void testCrosses() throws Exception {
+		cqlTest("CROSSES(theGeom, POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0)))");
+	}
+
+	@Test
+	public void testContains() throws Exception {
+		cqlTest("CONTAINS(theGeom, POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0)))");
+	}
+
+	@Test
+	public void testTouches() throws Exception {
+		cqlTest("TOUCHES(theGeom, POLYGON ((0 0, 0 10, 10 10, 10 0, 0 0)))");
+	}
 
     protected void cqlTest( String cql ) throws Exception {
         Filter filter = CQL.toFilter(cql);
@@ -245,7 +270,6 @@ public class FilterToCQLTest{
         
         FilterToCQL toCQL = new FilterToCQL();
         String output = filter.accept( toCQL, null ).toString();
-        Assert.assertNotNull( output );
         Assert.assertEquals( cql,output );        
     }
     

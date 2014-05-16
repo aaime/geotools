@@ -17,6 +17,8 @@
 package org.geotools.factory;
 
 import java.awt.RenderingHints;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -79,35 +81,38 @@ public final class GeoTools {
      */
     private static final Properties PROPS;  
     static {
-        Properties props = new Properties();
-        try {
-            props.load(GeoTools.class.getResourceAsStream("GeoTools.properties"));
+        PROPS = loadProperites("GeoTools.properties");
+    }
 
-            //load git info if it is avaialble
-            if (GeoTools.class.getResource("/git.properties") != null) {
-                props.load(GeoTools.class.getResourceAsStream("/git.properties"));
+    private static Properties loadProperites(String resource) {
+        Properties props = new Properties();
+        InputStream stream = GeoTools.class.getResourceAsStream(resource);
+        if (stream != null) {
+            try {
+                props.load(stream);
+            } catch (IOException ignore) {
+            } finally {
+                try {
+                    stream.close();
+                } catch (IOException ignore) {
+                }
             }
         }
-        catch(Exception e) {}
-        
-        PROPS = props;
+
+        return props;
     }
-    
+
     /**
      * The current GeoTools version. The separator character must be the dot.
      */
-    private static final Version VERSION = new Version(PROPS.getProperty("version", "8-SNAPSHOT"));
+    private static final Version VERSION = new Version(PROPS.getProperty("version", "12-SNAPSHOT"));
 
     /**
      * The version control (svn) revision at which this version of geotools was built.
      */
     private static final String BUILD_REVISION;
     static {
-        String rev = PROPS.getProperty("build.revision", "-1");
-        if ("-1".equals(rev)) {
-            rev = PROPS.getProperty("git.commit.id", "-1");
-        }
-        BUILD_REVISION = rev;
+        BUILD_REVISION = PROPS.getProperty("build.revision", "-1");
     }
 
     /**
@@ -474,8 +479,7 @@ public final class GeoTools {
      * @return {@code true} if at least one hint changed as a result of this scan,
      *         or {@code false} otherwise.
      */
-    static boolean scanForSystemHints(final Hints hints) {
-        assert Thread.holdsLock(hints);
+    static boolean scanForSystemHints(final Map<RenderingHints.Key, Object> hints) {
         boolean changed = false;
         synchronized (BINDINGS) {
             for (final Map.Entry<String, RenderingHints.Key> entry : BINDINGS.entrySet()) {

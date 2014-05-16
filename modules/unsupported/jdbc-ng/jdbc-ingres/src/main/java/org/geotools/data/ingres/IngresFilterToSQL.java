@@ -36,7 +36,7 @@ public class IngresFilterToSQL extends PreparedFilterToSQL {
 	boolean looseBBOXEnabled;
 	
     public IngresFilterToSQL(IngresDialect dialect) {
-
+        super(dialect);
     }
 
     public boolean isLooseBBOXEnabled() {
@@ -167,9 +167,18 @@ public class IngresFilterToSQL extends PreparedFilterToSQL {
         out.write("(");
 
         property.accept(this, extraData);
-        out.write(", GeomFromWKB(");
+        out.write(", ");
         geometry.accept(this, extraData);
-        out.write(")");
+        
+        if(currentSRID == null && currentGeometry  != null) {
+            // if we don't know at all, use the srid of the geometry we're comparing against
+            // (much slower since that has to be extracted record by record as opposed to 
+            // being a constant)
+            out.write(", ST_SRID(\"" + currentGeometry.getLocalName() + "\"))");
+        } else {
+            out.write(", " + currentSRID + ")");
+        }
+        
         out.write(closingParenthesis);
         out.write(" = 1");
     }

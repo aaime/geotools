@@ -2,21 +2,26 @@
 
 # error out if any statements fail
 set -e
+set -x
 
 function usage() {
-  echo "$0 [options] <tag> <branch>"
+  echo "$0 [options] <tag> <branch> <user> <email>"
   echo
   echo " tag : Release tag (eg: 2.1.4, 2.2-beta1, ...)"
+  echo " user:  Git username"
+  echo " email: Git email"
   echo 
 }
 
-if [ -z $2 ]; then
+if [ -z $4 ]; then
   usage
   exit
 fi
 
 tag=$1
 branch=$2
+git_user=$3
+git_email=$4
 
 # load properties + functions
 . "$( cd "$( dirname "$0" )" && pwd )"/properties
@@ -33,6 +38,8 @@ fi
 
 pushd ../../ > /dev/null
 
+init_git $git_user $git_email
+
 # switch to the release branch
 git checkout rel_$tag
 
@@ -46,29 +53,32 @@ fi
 set -e
 
 # deploy the release to maven repo
-mvn deploy -DskipTests
-mvn -P deploy.opengeo deploy -DskipTests -Dall
+if [ -z $SKIP_DEPLOY ]; then
+  mvn clean deploy -DskipTests -Dall
+  mvn clean -P deploy.opengeo deploy -DskipTests -Dall
+fi
 
 # get <major.minor> for sf release dir
 if [ "$( echo $str | egrep "[0-9]+\.[0-9]+((\.|-).*)?" )" != "$str" ]; then
   echo "$tag is not a valid release version number"
   exit 1
 fi
-dir=`echo $tag | sed 's/\([0-9]*\.[0-9]*\).*/\1/g'`
+dir=`echo $tag | sed 's/\([0-9]*\)\([\.\-]\)\([0-9]*\).*/\1/g'`
 
 pushd $DIST_PATH/$tag > /dev/null
 
+#JD: disabling this for now... i think something recently changes on the sf
+# server in that we can't use ssh directly to log in, need to find an 
+# to this command for remotely creating a directory on the server
+#ssh -i $SF_PK $SF_USER@$SF_HOST mkdir -p "/home/pfs/project/g/ge/geotools/GeoTools\ $dir\ Releases"
 rsync -ave "ssh -i $SF_PK" *.zip $SF_USER@$SF_HOST:"/home/pfs/project/g/ge/geotools/GeoTools\ $dir\ Releases/$tag/"
 
 popd > /dev/null
 
-# merge the tag release branch into main release branch and tag it
-git checkout rel_$branch
-git merge -m "Merging rel_$tag into rel_$branch" rel_$tag
+# tag the release branch
 git tag $tag
 
-# push them up
-git push origin rel_$branch
+# push up tag
 git push origin $tag
 
 popd > /dev/null

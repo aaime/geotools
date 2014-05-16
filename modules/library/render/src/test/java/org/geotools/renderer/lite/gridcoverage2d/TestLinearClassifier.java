@@ -18,6 +18,7 @@ package org.geotools.renderer.lite.gridcoverage2d;
 
 import it.geosolutions.imageio.plugins.arcgrid.AsciiGridsImageReader;
 import it.geosolutions.imageio.plugins.arcgrid.spi.AsciiGridsImageReaderSpi;
+import it.geosolutions.imageio.utilities.ImageIOUtilities;
 
 import java.awt.Color;
 import java.awt.Transparency;
@@ -43,6 +44,7 @@ import junit.framework.TestCase;
 import org.geotools.TestData;
 import org.geotools.resources.image.ComponentColorModelJAI;
 import org.geotools.util.NumberRange;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.opengis.referencing.operation.TransformException;
@@ -56,10 +58,10 @@ import org.opengis.referencing.operation.TransformException;
  *
  * @source $URL$
  */
-public class TestLinearClassifier extends TestCase {
+public class TestLinearClassifier extends Assert {
 
 	@Before
-	protected void setUp() throws Exception {
+	public void before() throws Exception {
 
 		// check that it exisits
 		File file = TestData.copy(this, "arcgrid/arcgrid.zip");
@@ -232,7 +234,7 @@ public class TestLinearClassifier extends TestCase {
 					RasterClassifier.OPERATION_NAME, pbj);
 
 			if (TestData.isInteractiveTest())
-				RasterSymbolizerTest.visualize(finalimage, "synthetic");
+			    ImageIOUtilities.visualize(finalimage, "synthetic");
 			else
 				finalimage.getTiles();
 			finalimage.dispose();
@@ -336,7 +338,7 @@ public class TestLinearClassifier extends TestCase {
 					RasterClassifier.OPERATION_NAME, pbj);
 
 			if (TestData.isInteractiveTest())
-				RasterSymbolizerTest.visualize(finalimage, "synthetic");
+			    ImageIOUtilities.visualize(finalimage, "synthetic");
 			else
 				finalimage.getTiles();
 			finalimage.dispose();
@@ -423,7 +425,7 @@ public class TestLinearClassifier extends TestCase {
 					RasterClassifier.OPERATION_NAME, pbj);
 
 			if (TestData.isInteractiveTest())
-				RasterSymbolizerTest.visualize(finalimage, "spearfish");
+				ImageIOUtilities.visualize(finalimage, "spearfish");
 			else
 				finalimage.getTiles();
 			finalimage.dispose();
@@ -543,7 +545,7 @@ public class TestLinearClassifier extends TestCase {
 			final RenderedOp finalImage = JAI.create(
 					RasterClassifier.OPERATION_NAME, pbj);
 			if (TestData.isInteractiveTest())
-				RasterSymbolizerTest.visualize(finalImage, "testSWAN1");
+				ImageIOUtilities.visualize(finalImage, "testSWAN1");
 			else
 				finalImage.getTiles();
 			finalImage.dispose();
@@ -636,7 +638,7 @@ public class TestLinearClassifier extends TestCase {
 			assertEquals(icm.getRed(2),255);
 			
 			if (TestData.isInteractiveTest())
-				RasterSymbolizerTest.visualize(finalImage, "testSWANGAP");
+				ImageIOUtilities.visualize(finalImage, "testSWANGAP");
 			else
 				finalImage.getTiles();
 			finalImage.dispose();

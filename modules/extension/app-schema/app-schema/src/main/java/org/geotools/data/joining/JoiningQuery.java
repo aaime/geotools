@@ -16,6 +16,7 @@
  */
 package org.geotools.data.joining;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.geotools.data.Query;
@@ -33,11 +34,16 @@ import org.opengis.filter.sort.SortBy;
  */
 public class JoiningQuery extends Query {
     
+    // true if idExpression has been mapped to a database column
+    // false if it's a string constant or has been omitted, and PK should be used if available
+    private boolean hasIdColumn;
+    
     public static class QueryJoin {
         protected String joiningTypeName;    
         protected Expression foreignKeyName;    
         protected Expression joiningKeyName;
         protected SortBy[] sortBy;
+        protected List<String> ids = new ArrayList<String>(); 
                 
         public String getJoiningTypeName() {
             return joiningTypeName;
@@ -70,6 +76,14 @@ public class JoiningQuery extends Query {
         public void setSortBy(SortBy[] sortBy){
             this.sortBy = sortBy;
         }
+        
+        public void addId(String pn) {
+            this.ids.add(pn);
+        }
+        
+        public List<String> getIds() {
+            return ids;
+        }
     }
     
     protected List<QueryJoin> queryJoins;
@@ -83,12 +97,14 @@ public class JoiningQuery extends Query {
     
     public JoiningQuery(JoiningQuery query) {
         super(query);
+        this.hasIdColumn = query.hasIdColumn;
         setQueryJoins(query.getQueryJoins());
         setSubset(query.isSubset);
     }
     
-    public JoiningQuery(Query query){
+    public JoiningQuery(Query query, boolean hasIdColumn){
         super(query);
+        this.hasIdColumn = hasIdColumn;
     }
     
     public JoiningQuery() {
@@ -108,6 +124,10 @@ public class JoiningQuery extends Query {
     
     public boolean isSubset() {
         return isSubset;
+    }
+    
+    public boolean hasIdColumn() {
+        return hasIdColumn;
     }
 
 }

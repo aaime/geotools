@@ -18,6 +18,7 @@ package org.geotools.xml.impl;
 
 import org.eclipse.xsd.XSDAttributeDeclaration;
 import org.eclipse.xsd.XSDComplexTypeDefinition;
+import org.eclipse.xsd.XSDComponent;
 import org.eclipse.xsd.XSDElementDeclaration;
 import org.eclipse.xsd.XSDFactory;
 import org.eclipse.xsd.XSDSchemaContent;
@@ -189,6 +190,11 @@ public class ElementHandlerImpl extends HandlerImpl implements ElementHandler {
             node.addAttribute(new NodeImpl(attribute, parsed));
         }
 
+
+        // trigger the leading edge initialize callback
+        ElementInitializer initer = new ElementInitializer(element, node, parent.getContext());
+        parser.getBindingWalker().walk(element.getElementDeclaration(), initer, container(), parent.getContext());
+
         //create context for children 
         //TODO: this should only be done if the element is complex, this class
         // needs to be split into two, one for complex, other for simple
@@ -222,29 +228,28 @@ public class ElementHandlerImpl extends HandlerImpl implements ElementHandler {
             ((NodeImpl)node).collapseWhitespace();
         }
         
-        //get the containing type (we do this for anonymous complex types)
-        XSDTypeDefinition container = null;
-        if (getParentHandler().getComponent() != null) {
-            container = getParentHandler().getComponent().getTypeDefinition();
-        }
-
-        ParseExecutor executor = new ParseExecutor(element, node, getParentHandler().getContext(),
-                parser);
-        parser.getBindingWalker()
-              .walk(element.getElementDeclaration(), executor, container,
-            getParentHandler().getContext());
-
-        //cache the parsed value
-        value = executor.getValue();
-
-        if (value == null) {
-            //TODO: instead of continuuing, just remove the element from 
-            // the parent, or figure out if the element is 'optional' and 
-            // remove
-            if (parser.getLogger().isLoggable(Level.FINE)) {
-                parser.getLogger().fine("Binding for " + element.getName() + " returned null");
+        if(isNil(element)) {
+            value = null;
+        } else {
+            ParseExecutor executor = new ParseExecutor(element, node, getParentHandler().getContext(),
+                    parser);
+            parser.getBindingWalker()
+                  .walk(element.getElementDeclaration(), executor, container(),
+                getParentHandler().getContext());
+        
+            //cache the parsed value
+            value = executor.getValue();
+        
+            if (value == null) {
+                //TODO: instead of continuing, just remove the element from 
+                // the parent, or figure out if the element is 'optional' and 
+                // remove
+                if (parser.getLogger().isLoggable(Level.FINE)) {
+                    parser.getLogger().fine("Binding for " + element.getName() + " returned null");
+                }
             }
         }
+        
 
         //set the value for this node in the parse tree
         node.setValue(value);
@@ -254,6 +259,21 @@ public class ElementHandlerImpl extends HandlerImpl implements ElementHandler {
 
         //kill the context
         parent.getContext().removeChildContainer(getContext());
+    }
+
+    /**
+     * Checks if a certain attribute is nil
+     * @param element
+     * @return
+     */
+    private boolean isNil(ElementImpl element) {
+        for(AttributeInstance att : element.getAttributes()) {
+            if("nil".equals(att.getName()) && "http://www.w3.org/2001/XMLSchema-instance".equals(att.getNamespace())) {
+                return "true".equals(att.getText());
+            }
+        }
+        
+        return false;
     }
 
     public Handler createChildHandler(QName qName) {
@@ -301,6 +321,15 @@ public class ElementHandlerImpl extends HandlerImpl implements ElementHandler {
         return null;
     }
 
+    private XSDTypeDefinition container() {
+      //get the containing type (we do this for anonymous complex types)
+        XSDTypeDefinition container = null;
+        if (getParentHandler().getComponent() != null) {
+            container = getParentHandler().getComponent().getTypeDefinition();
+        }
+        return container;
+    }
+
     //    public List getChildHandlers() {
     //        return childHandlers;
     //    }
@@ -311,15 +340,10 @@ public class ElementHandlerImpl extends HandlerImpl implements ElementHandler {
         //initialize the context for the handler
         if (child instanceof ElementHandler) {
             //get the containing type (we do this for anonymous complex types)
-            XSDTypeDefinition container = null;
-            if (getParentHandler().getComponent() != null) {
-                container = getParentHandler().getComponent().getTypeDefinition();
-            }
-
             ElementInstance childInstance = (ElementInstance) child.getComponent();
             ContextInitializer initer = new ContextInitializer(childInstance, node,
                     child.getContext());
-            parser.getBindingWalker().walk(element.getElementDeclaration(), initer, container, getContext());
+            parser.getBindingWalker().walk(element.getElementDeclaration(), initer, container(), getContext());
         }
     }
 

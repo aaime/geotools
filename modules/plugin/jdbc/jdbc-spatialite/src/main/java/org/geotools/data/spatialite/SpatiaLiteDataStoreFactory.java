@@ -26,7 +26,8 @@ import org.apache.commons.dbcp.BasicDataSource;
 import org.geotools.jdbc.JDBCDataStore;
 import org.geotools.jdbc.JDBCDataStoreFactory;
 import org.geotools.jdbc.SQLDialect;
-import org.sqlite.SQLiteConfig;
+import org.spatialite.SQLiteConfig;
+import org.spatialite.SQLiteJDBCLoader;
 
 /**
  * DataStoreFactory for SpatiaLite database.
@@ -68,6 +69,16 @@ public class SpatiaLiteDataStoreFactory extends JDBCDataStoreFactory {
     public File getBaseDirectory() {
         return baseDirectory;
     }
+
+    @Override
+    public boolean isAvailable() {
+        if (!super.isAvailable()) {
+            return false;
+        }
+
+        return SQLiteJDBCLoader.isNativeMode();
+    }
+
     @Override
     protected SQLDialect createSQLDialect(JDBCDataStore dataStore) {
         return new SpatiaLiteDialect( dataStore );
@@ -80,7 +91,7 @@ public class SpatiaLiteDataStoreFactory extends JDBCDataStoreFactory {
     
     @Override
     protected String getDriverClassName() {
-        return "org.sqlite.JDBC";
+        return "org.spatialite.JDBC";
     }
     
     public String getDescription() {
@@ -120,7 +131,7 @@ public class SpatiaLiteDataStoreFactory extends JDBCDataStoreFactory {
                 location = baseDirectory.getAbsolutePath() + File.separator + db;    
             }
         }
-        return "jdbc:sqlite:" + location;
+        return "jdbc:spatialite:" + location;
     }
     
     @Override

@@ -87,11 +87,11 @@ Installing Maven
 
 #. You need to have a couple of environmental variables set for maven to work. Use
    :menuselection:`Control Panel --> System --> Advanced --> Environmental Variables` to set the following.
-
-   * JAVA_HOME = :file:`C:\Program Files\Java\jdk1.6.0_16`
-   * M2_HOME = :file:`C:\java\apache-maven-2.2.1`
-   * PATH = :file:`%JAVA_HOME%\bin;%M2_HOME%\bin`
-
+   
+   * JAVA_HOME = :file:`C:\\Program Files\\Java\\jdk1.6.0_16`
+   * M2_HOME = :file:`C:\\java\\apache-maven-2.2.1`
+   * PATH = :file:`%JAVA_HOME%\\bin;%M2_HOME%\\bin`
+   
    .. image:: images/env-variables.jpg
       :scale: 60
    
@@ -153,7 +153,7 @@ Creating a new project
 
 #. We are going to start by defining the version number of GeoTools we wish to use. This workbook
    was written for |release| although you may wish to try a newer version, or make use of a nightly
-   build by using 8-SNAPSHOT.
+   build by using |branch|-SNAPSHOT.
     
    .. literalinclude:: artifacts/pom.xml
         :language: xml
@@ -183,7 +183,7 @@ Creating a new project
    :menuselection:`Project --> Update All Maven Dependencies`.
     
    If it really cannot connect you can switch to edit the `geotools.version` property in your
-   pom.xml to |version|-SNAPSHOT (GeoTools development version) and then add a reference to the snapshot
+   pom.xml to |branch|-SNAPSHOT (GeoTools development version) and then add a reference to the snapshot
    repository as shown below:
     
    .. literalinclude:: artifacts/pom2.xml
@@ -297,7 +297,7 @@ Things to Try
 * Important: GeoTools is an active open source project - you can quickly use maven to try out the
   latest nightly build by changing your pom.xml file to use a "SNAPSHOT" release.
   
-  At the time of writing |version|-SNAPSHOT is under active development.
+  At the time of writing |branch|-SNAPSHOT is under active development.
 
   .. literalinclude:: artifacts/pom2.xml
    :language: xml

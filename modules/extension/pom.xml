@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools</groupId>
     <artifactId>modules</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
   
 
@@ -46,10 +46,13 @@
   <modules>
     <module>app-schema</module>
     <module>brewer</module>
+    <module>complex</module>
     <module>graph</module>
+    <module>grid</module>
     <module>validation</module>
-    <module>xsd</module>
     <module>wms</module>
+    <module>xsd</module>
+    <module>transform</module>
   </modules>
 </project>
 

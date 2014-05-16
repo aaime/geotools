@@ -16,30 +16,33 @@
  */
 package org.geotools.geometry.jts;
 
-import org.opengis.geometry.BoundingBox;
-import org.opengis.geometry.DirectPosition;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import com.vividsolutions.jts.geom.Envelope;
 import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.geom.GeneralPath;
-
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.LineString;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import java.util.List;
 
 import org.geotools.geometry.Envelope2D;
 import org.geotools.geometry.GeneralDirectPosition;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.crs.DefaultGeocentricCRS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-
 import org.junit.Test;
+import org.opengis.geometry.BoundingBox;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import static org.junit.Assert.*;
 import org.opengis.referencing.operation.MathTransform;
+
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Envelope;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.LinearRing;
+import com.vividsolutions.jts.geom.Point;
 
 /**
  * Unit tests for the JTS utility class.
@@ -192,5 +195,144 @@ public class JTSTest extends JTSTestBase {
         assertEquals(dest0.x, -dest180.x, TOL);
         assertEquals(dest0.y, dest180.y, TOL);
         assertEquals(dest0.z, dest180.z, TOL);
+    }
+    
+    @Test
+    public void testTransformToWGS84() throws Exception {
+        String wkt = "GEOGCS[\"GDA94\","
+                + " DATUM[\"Geocentric Datum of Australia 1994\","
+                + "  SPHEROID[\"GRS 1980\", 6378137.0, 298.257222101, AUTHORITY[\"EPSG\",\"7019\"]],"
+                + "  TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "
+                + " AUTHORITY[\"EPSG\",\"6283\"]], "
+                + " PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]],"
+                + " UNIT[\"degree\", 0.017453292519943295], "
+                + " AXIS[\"Geodetic longitude\", EAST], " + " AXIS[\"Geodetic latitude\", NORTH], "
+                + " AXIS[\"Ellipsoidal height\", UP], " + " AUTHORITY[\"EPSG\",\"4939\"]]";
+
+        CoordinateReferenceSystem gda94 = CRS.parseWKT(wkt);
+        ReferencedEnvelope bounds = new ReferencedEnvelope3D(130.875825803896, 130.898939990319,
+                -16.4491956225999, -16.4338185791628, 0.0, 0.0, gda94 );
+
+        ReferencedEnvelope worldBounds = JTS.toGeographic( bounds );
+        assertEquals( DefaultGeographicCRS.WGS84, worldBounds.getCoordinateReferenceSystem() );
+        
+        Envelope envelope = new Envelope(130.875825803896, 130.898939990319,
+                -16.4491956225999, -16.4338185791628);
+        
+        Envelope worldBounds2 = JTS.toGeographic( envelope, gda94 );
+        if( worldBounds2 instanceof BoundingBox){
+            assertEquals( DefaultGeographicCRS.WGS84, ((BoundingBox)worldBounds2).getCoordinateReferenceSystem() );
+        }
+    }
+    
+    @Test
+    public void testToGeographic() throws Exception {
+        String wkt = "GEOGCS[\"GDA94\","
+                + " DATUM[\"Geocentric Datum of Australia 1994\","
+                + "  SPHEROID[\"GRS 1980\", 6378137.0, 298.257222101, AUTHORITY[\"EPSG\",\"7019\"]],"
+                + "  TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "
+                + " AUTHORITY[\"EPSG\",\"6283\"]], "
+                + " PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]],"
+                + " UNIT[\"degree\", 0.017453292519943295], "
+                + " AXIS[\"Geodetic longitude\", EAST], " + " AXIS[\"Geodetic latitude\", NORTH], "
+                + " AXIS[\"Ellipsoidal height\", UP], " + " AUTHORITY[\"EPSG\",\"4939\"]]";
+
+        CoordinateReferenceSystem gda94 = CRS.parseWKT(wkt);
+        GeometryFactory gf = new GeometryFactory();
+        Point point = gf.createPoint( new Coordinate( 130.875825803896, -16.4491956225999, 0.0 ) );
+        
+        Geometry worldPoint = JTS.toGeographic( point,  gda94 );
+        assertTrue( worldPoint instanceof Point );
+        assertEquals( point.getX(), worldPoint.getCoordinate().x,0.00000001);
+    }
+    @Test
+    public void testToGeographicGeometry() throws Exception {
+        // This time we are in north / east order
+        String wkt = "GEOGCS[\"GDA94\","
+                + " DATUM[\"Geocentric Datum of Australia 1994\","
+                + "  SPHEROID[\"GRS 1980\", 6378137.0, 298.257222101, AUTHORITY[\"EPSG\",\"7019\"]],"
+                + "  TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "
+                + " AUTHORITY[\"EPSG\",\"6283\"]], "
+                + " PRIMEM[\"Greenwich\", 0.0, AUTHORITY[\"EPSG\",\"8901\"]],"
+                + " UNIT[\"degree\", 0.017453292519943295], "
+                + " AXIS[\"Geodetic latitude\", NORTH], " + " AXIS[\"Geodetic longitude\", EAST], "
+                + " AXIS[\"Ellipsoidal height\", UP], " + " AUTHORITY[\"EPSG\",\"4939\"]]";
+        CoordinateReferenceSystem gda94 = CRS.parseWKT(wkt);
+        
+        GeometryFactory gf = new GeometryFactory();
+        Point point = gf.createPoint( new Coordinate( -16.4463909341494,130.882672103999, 97.009018073082));
+        
+        Point world = (Point) JTS.toGeographic( point, gda94 );
+        assertEquals( point.getX(), world.getY(), 0.00000005 );
+        assertEquals( point.getY(), world.getX(), 0.00000005 );
+    }
+
+    @Test
+    public void testRemoveCollinear() throws Exception {
+        // This polygon (* = vertix)
+        //
+        // ******
+        // |    |
+        // *-*--*
+        //
+        // should become like this after the remove collinear
+        //
+        // *----*
+        // |    |
+        // *----*
+
+        final int[] xPoints = {0, 1, 2, 3, 4, 5, 5, 2, 0};
+
+        final int[] yPoints = {0, 0, 0, 0, 0, 0, 2, 2, 2};
+
+        final int nPoints = xPoints.length;
+        final Shape shape = new Polygon(xPoints, yPoints, nPoints);
+        final Geometry original = JTS.toGeometry(shape);
+        final Geometry reduced = JTS.removeCollinearVertices(original);
+        assertEquals(10, original.getNumPoints());
+        assertEquals(5, reduced.getNumPoints());
+        final double DELTA = 1E-9;
+
+        final Coordinate[] coords = reduced.getCoordinates();
+        assertEquals(0, coords[0].x, DELTA);
+        assertEquals(0, coords[0].y, DELTA);
+        assertEquals(5, coords[1].x, DELTA);
+        assertEquals(0, coords[1].y, DELTA);
+        assertEquals(5, coords[2].x, DELTA);
+        assertEquals(2, coords[2].y, DELTA);
+        assertEquals(0, coords[3].x, DELTA);
+        assertEquals(2, coords[3].y, DELTA);
+        assertEquals(0, coords[4].x, DELTA);
+        assertEquals(0, coords[4].y, DELTA);
+    }
+
+    @Test
+    public void testMakeValid() throws Exception {
+        // An invalid polygon similar to this one
+        //
+        // *----*
+        // |    |
+        // *----*----*
+        //      |    |
+        //      *----*
+        // 
+        // Will be split into 2 separate polygons through the makeValid method 
+        final int[] xPoints = {0, 5, 5, 5, 10, 10, 5, 0};
+        final int[] yPoints = {0, 0, 5, 10, 10, 5, 5, 5};
+        final int nPoints = xPoints.length;
+
+        final Shape shape = new java.awt.Polygon(xPoints, yPoints, nPoints);
+        final LinearRing geom = (LinearRing) JTS.toGeometry(shape);
+        final GeometryFactory factory = new GeometryFactory();
+        final com.vividsolutions.jts.geom.Polygon polygon = factory.createPolygon(geom);
+        assertFalse(polygon.isValid());
+
+        final List<com.vividsolutions.jts.geom.Polygon> validPols = JTS.makeValid(polygon, false);
+
+        assertEquals(2, validPols.size());
+        com.vividsolutions.jts.geom.Polygon polygon1 = validPols.get(0);
+        com.vividsolutions.jts.geom.Polygon polygon2 = validPols.get(1);
+        assertEquals(5, polygon1.getNumPoints());
+        assertEquals(5, polygon2.getNumPoints());
     }
 }

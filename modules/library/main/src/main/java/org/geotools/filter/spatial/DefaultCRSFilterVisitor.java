@@ -1,19 +1,28 @@
-/* Copyright (c) 2001 - 2007 TOPP - www.openplans.org. All rights reserved.
- * This code is licensed under the GPL 2.0 license, availible at the root
- * application directory.
+/*
+ *    GeoTools - The Open Source Java GIS Toolkit
+ *    http://geotools.org
+ * 
+ *    (C) 2001-2007, Open Source Geospatial Foundation (OSGeo)
+ *    
+ *    This library is free software; you can redistribute it and/or
+ *    modify it under the terms of the GNU Lesser General Public
+ *    License as published by the Free Software Foundation;
+ *    version 2.1 of the License.
+ *
+ *    This library is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *    Lesser General Public License for more details.
  */
 package org.geotools.filter.spatial;
 
 import org.geotools.filter.visitor.DuplicatingFilterVisitor;
 import org.geotools.geometry.jts.ReferencedEnvelope;
-import org.geotools.referencing.CRS;
 import org.opengis.filter.FilterFactory2;
 import org.opengis.filter.expression.Literal;
 import org.opengis.filter.spatial.BBOX;
-import org.opengis.geometry.BoundingBox;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 
 /**
@@ -39,16 +48,8 @@ public class DefaultCRSFilterVisitor extends DuplicatingFilterVisitor {
         if (srs != null && !"".equals(srs.trim()))
             return super.visit(filter, extraData);
 
-        try {
-            // grab the original envelope data
-            double minx = filter.getMinX();
-            double miny = filter.getMinY();
-            double maxx = filter.getMaxX();
-            double maxy = filter.getMaxY();
-            String propertyName = filter.getPropertyName();
-            String defaultSrs = CRS.toSRS(defaultCrs);
-
-            return getFactory(extraData).bbox(propertyName, minx, miny, maxx, maxy, defaultSrs);
+        try {  
+        	return getFactory(extraData).bbox(filter.getExpression1(), ReferencedEnvelope.create(filter.getBounds(),defaultCrs));
         } catch (Exception e) {
             throw new RuntimeException("Could not decode srs '" + srs + "'", e);
         }

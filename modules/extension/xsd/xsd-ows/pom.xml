@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools.xsd</groupId>
     <artifactId>xsd</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
   
   <!-- =========================================================== -->
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>org.geotools.ogc</groupId>
       <artifactId>net.opengis.ows</artifactId>
-      <version>8-SNAPSHOT</version>
+      <version>12-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.geotools.xsd</groupId>
@@ -85,22 +85,23 @@
       <plugin>
         <groupId>org.geotools.maven</groupId>
         <artifactId>xmlcodegen</artifactId>
+        <version>${project.version}</version>
         <configuration>
           <schemaLocation>owsAll.xsd</schemaLocation>
-          <schemaSourceDirectory>${basedir}/src/main/resources/org/geotools/ows/v1_1</schemaSourceDirectory>
-          <destinationPackage>org.geotools.ows.v1_1</destinationPackage>
+          <schemaSourceDirectory>${basedir}/src/main/resources/org/geotools/ows/v2_0</schemaSourceDirectory>
+          <destinationPackage>org.geotools.ows.v2_0</destinationPackage>
           <complexBindingBaseClass>org.geotools.xml.AbstractComplexEMFBinding</complexBindingBaseClass>
           <bindingConstructorArguments>
             <bindingConstructorArgument>
               <name>factory</name>
-              <type>net.opengis.ows.v1_1_0.Ows11Factory</type>
+              <type>net.opengis.ows20.Ows20Factory</type>
               <mode>parent</mode>
             </bindingConstructorArgument>
           </bindingConstructorArguments>
           <includes>
             <include>LanguageStringType</include>
           </includes>
-        </configuration>
+          </configuration>
       </plugin>
     </plugins>
   </build>

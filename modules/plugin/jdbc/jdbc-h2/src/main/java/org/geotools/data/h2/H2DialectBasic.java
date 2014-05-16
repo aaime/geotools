@@ -99,19 +99,31 @@ public class H2DialectBasic extends BasicSQLDialect {
     public void encodePostCreateTable(String tableName, StringBuffer sql) {
         delegate.encodePostCreateTable(tableName, sql);
     }
-    
+
     @Override
     public void postCreateTable(String schemaName,
             SimpleFeatureType featureType, Connection cx) throws SQLException {
         delegate.postCreateTable(schemaName, featureType, cx);
     }
-    
+
     @Override
     public void postCreateFeatureType(SimpleFeatureType featureType, DatabaseMetaData metadata,
             String schemaName, Connection cx) throws SQLException {
         delegate.postCreateFeatureType(featureType, metadata, schemaName, cx);
     }
-    
+
+    @Override
+    public void preDropTable(String schemaName, SimpleFeatureType featureType, Connection cx)
+            throws SQLException {
+        delegate.preDropTable(schemaName, featureType, cx);
+    }
+
+    @Override
+    public void postDropTable(String schemaName, SimpleFeatureType featureType, Connection cx)
+            throws SQLException {
+        delegate.postDropTable(schemaName, featureType, cx);
+    }
+
     @Override
     public Integer getGeometrySRID(String schemaName, String tableName, String columnName,
         Connection cx) throws SQLException {
@@ -173,13 +185,17 @@ public class H2DialectBasic extends BasicSQLDialect {
     public void encodeValue(Object value, Class type, StringBuffer sql) {
         if (byte[].class == type) {
             byte[] b = (byte[]) value;
-            
-            //encode as hex string
-            sql.append("'");
-            for (int i=0; i < b.length; i++) {
-                sql.append(Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 ));
+            if (value != null) {
+                //encode as hex string
+                sql.append("'");
+                for (int i=0; i < b.length; i++) {
+                    sql.append(Integer.toString( ( b[i] & 0xff ) + 0x100, 16).substring( 1 ));
+                }
+                sql.append("'");
             }
-            sql.append("'");
+            else {
+                sql.append("NULL");
+            }
         }
         else {
             super.encodeValue(value, type, sql);
@@ -188,7 +204,7 @@ public class H2DialectBasic extends BasicSQLDialect {
     }
     
     @Override
-    public void encodeGeometryValue(Geometry value, int srid, StringBuffer sql)
+    public void encodeGeometryValue(Geometry value, int dimension, int srid, StringBuffer sql)
             throws IOException {
         if (value != null && !value.isEmpty()) {
             sql.append("ST_GeomFromText ('");

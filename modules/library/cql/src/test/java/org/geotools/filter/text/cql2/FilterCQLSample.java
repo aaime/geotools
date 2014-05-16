@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.Hints;
@@ -44,6 +45,7 @@ import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.temporal.After;
 import org.opengis.filter.temporal.Before;
 import org.opengis.filter.temporal.During;
+import org.opengis.filter.temporal.TEquals;
 import org.opengis.temporal.Instant;
 import org.opengis.temporal.Period;
 
@@ -70,7 +72,7 @@ public class FilterCQLSample {
     private static final FilterFactory FACTORY = CommonFactoryFinder.getFilterFactory((Hints) null);
 
     private static final String DATE_TIME_FORMATTER = "yyyy-MM-dd'T'HH:mm:ss'Z'";
-    
+
     private static final Calendar CALENDAR = Calendar.getInstance();
     public static final String LESS_FILTER_SAMPLE = "ATTR1 < 1";
     public static final String LESS_EQ_FILTER_SAMPLE = "ATTR1 <= 1";
@@ -84,6 +86,7 @@ public class FilterCQLSample {
     public static final String PROPERTY_IS_NOT_NULL = "ATTR1 IS NOT NULL";
     private static final String FIRST_DATE = "2006-11-30T01:30:00Z";
     private static final String LAST_DATE = "2006-12-31T01:30:00Z";
+    public static final String FILTER_EQUAL_DATETIME = "ATTR1 TEQUALS " + FIRST_DATE;
     public static final String FILTER_BEFORE_DATE = "ATTR1 BEFORE " + FIRST_DATE;
     public static final String FILTER_BEFORE_PERIOD_BETWEEN_DATES = "ATTR1 BEFORE " + FIRST_DATE
         + "/" + LAST_DATE;
@@ -220,7 +223,21 @@ public class FilterCQLSample {
 
             SAMPLES.put(PROPERTY_IS_NOT_NULL, notNullFilter);
         }
+        {
+            TEquals tEqualsFilter = null;
 
+            try {
+                SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER);
+                dateFormatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+                Date dateTime = dateFormatter.parse(FIRST_DATE);
+                tEqualsFilter = FACTORY.tequals(FACTORY.property("ATTR1"), FACTORY.literal(dateTime));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            // ATTR1 BEFORE 2006-12-31T01:30:00Z
+            SAMPLES.put(FILTER_EQUAL_DATETIME, tEqualsFilter);
+        }
         {
             // ---------------------------------------
             // Result filter for BEFORE tests
@@ -228,6 +245,7 @@ public class FilterCQLSample {
 
             try {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER);
+                dateFormatter.setTimeZone(TimeZone.getTimeZone("GMT"));
                 Date dateTime = dateFormatter.parse(FIRST_DATE);
                 beforeFilter = FACTORY.before(FACTORY.property("ATTR1"), FACTORY.literal(dateTime));
             } catch (ParseException e) {
@@ -272,7 +290,7 @@ public class FilterCQLSample {
 
             try {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER);
-                
+                dateFormatter.setTimeZone(TimeZone.getTimeZone("GMT"));
                 Date dateTime = dateFormatter.parse(LAST_DATE);
                 afterFilter = FACTORY.after(FACTORY.property("ATTR1"), FACTORY.literal(dateTime));
             } catch (ParseException e) {
@@ -643,7 +661,7 @@ public class FilterCQLSample {
 			throws ParseException {
 		During during = FACTORY.during(property, FACTORY.literal(period));
 
-		final Date lastDate = strToDate(FIRST_DATE);
+		final Date lastDate = period.getEnding().getPosition().getDate();
 		
 		After after = FACTORY.after(property, FACTORY.literal(lastDate));
 		Or filter = FACTORY.or(during, after);
@@ -669,6 +687,7 @@ public class FilterCQLSample {
 
     private static Date strToDate(String firstDate) throws ParseException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER);
+        dateFormatter.setTimeZone(TimeZone.getTimeZone("GMT"));
         return dateFormatter.parse(firstDate);
 	}
 
@@ -747,6 +766,7 @@ public class FilterCQLSample {
     private static Instant dateToInstant(String strDate) throws ParseException{
 
     	SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER);
+    	dateFormatter.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         Date date;
 		try {

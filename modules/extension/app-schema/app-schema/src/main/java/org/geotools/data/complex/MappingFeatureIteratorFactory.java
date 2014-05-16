@@ -26,7 +26,7 @@ import org.geotools.data.Query;
 import org.geotools.data.complex.config.AppSchemaDataAccessConfigurator;
 import org.geotools.data.complex.filter.ComplexFilterSplitter;
 import org.geotools.data.complex.filter.XPath;
-import org.geotools.data.complex.filter.XPath.StepList;
+import org.geotools.data.complex.filter.XPathUtil.StepList;
 import org.geotools.data.joining.JoiningQuery;
 import org.geotools.feature.Types;
 import org.geotools.filter.FidFilterImpl;
@@ -36,6 +36,8 @@ import org.geotools.jdbc.JDBCFeatureSource;
 import org.geotools.jdbc.JDBCFeatureStore;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.filter.Filter;
+import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.Literal;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.xml.sax.helpers.NamespaceSupport;
@@ -110,10 +112,28 @@ public class MappingFeatureIteratorFactory {
         }        
 
         boolean isJoining = AppSchemaDataAccessConfigurator.isJoining();
+        boolean removeQueryLimitIfDenormalised = false;
+
+        FeatureSource mappedSource = mapping.getSource();            
+        
+        if (isJoining && !(mappedSource instanceof JDBCFeatureSource
+                || mappedSource instanceof JDBCFeatureStore)) {
+        	// check if joining is explicitly set for non database backends
+        	if (AppSchemaDataAccessConfigurator.isJoiningSet()) {
+        		throw new IllegalArgumentException(
+                        "Joining queries are only supported on JDBC data stores");	
+        	} else {
+        		// override default behaviour
+        		// this is not intended
+        		isJoining = false;
+        	}
+        }
 
         if (isJoining) {
             if (!(query instanceof JoiningQuery)) {
-                query = new JoiningQuery(query);
+                boolean hasIdColumn = !Expression.NIL.equals(mapping.getFeatureIdExpression())
+                        && !(mapping.getFeatureIdExpression() instanceof Literal);
+                query = new JoiningQuery(query, hasIdColumn);
             }
         }
         IMappingFeatureIterator iterator;
@@ -143,7 +163,6 @@ public class MappingFeatureIteratorFactory {
                 }
             }
             // END OF HACK
-            FeatureSource mappedSource = mapping.getSource();
             if (isJoining || mappedSource instanceof JDBCFeatureSource
                     || mappedSource instanceof JDBCFeatureStore) {
                 // has database as data source, we can use the data source filter capabilities
@@ -158,7 +177,7 @@ public class MappingFeatureIteratorFactory {
                 int maxFeatures = Query.DEFAULT_MAX;
                 if (filter != null && filter != Filter.INCLUDE) {
                     maxFeatures = query.getMaxFeatures();
-                    query.setMaxFeatures(Query.DEFAULT_MAX);
+                    removeQueryLimitIfDenormalised = true;
                 }
                 if (isJoining && isListFilter != null) {
                     // pass it on in JoiningQuery so it can be handled when the SQL is prepared
@@ -174,7 +193,7 @@ public class MappingFeatureIteratorFactory {
                 // need to flag if this is non joining and has pre filter because it needs
                 // to find denormalised rows that match the id (but doesn't match pre filter)
                 boolean isFiltered = !isJoining && preFilter != null && preFilter != Filter.INCLUDE;
-                iterator = new DataAccessMappingFeatureIterator(store, mapping, query, isFiltered);
+                iterator = new DataAccessMappingFeatureIterator(store, mapping, query, isFiltered, removeQueryLimitIfDenormalised);
                 // HACK HACK HACK
                 // experimental/temporary solution for isList subsetting by filtering
                 // Because subsetting should be done before the feature is built.. so we're not 

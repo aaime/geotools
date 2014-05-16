@@ -32,9 +32,10 @@ import org.geotools.data.FeatureSource;
 import org.geotools.data.complex.config.AppSchemaDataAccessConfigurator;
 import org.geotools.data.complex.config.AppSchemaDataAccessDTO;
 import org.geotools.data.complex.config.EmfAppSchemaReader;
-import org.geotools.data.complex.config.FeatureTypeRegistry;
+import org.geotools.data.complex.config.AppSchemaFeatureTypeRegistry;
 import org.geotools.data.complex.config.XMLConfigDigester;
 import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.Types;
 import org.geotools.test.AppSchemaTestSupport;
 import org.geotools.xml.SchemaIndex;
@@ -98,7 +99,7 @@ public class GeologicUnitTest extends AppSchemaTestSupport {
     public void testParseSchema() throws Exception {
         SchemaIndex schemaIndex = loadSchema("http://schemas.opengis.net/GeoSciML/Gsml.xsd");
 
-        FeatureTypeRegistry typeRegistry = new FeatureTypeRegistry();
+        AppSchemaFeatureTypeRegistry typeRegistry = new AppSchemaFeatureTypeRegistry();
         try {
             typeRegistry.addSchemas(schemaIndex);
     
@@ -184,8 +185,14 @@ public class GeologicUnitTest extends AppSchemaTestSupport {
 
     private int size(FeatureCollection<FeatureType, Feature> features) {
         int size = 0;
-        for (Iterator i = features.iterator(); i.hasNext(); i.next()) {
-            size++;
+        FeatureIterator<Feature> i = features.features();
+        try {
+            for (; i.hasNext(); i.next()) {
+                size++;
+            }
+        }
+        finally {
+            i.close();
         }
         return size;
     }

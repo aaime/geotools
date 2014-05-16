@@ -24,6 +24,7 @@ import org.geotools.gml3.bindings.AbstractFeatureCollectionTypeBinding;
 import org.geotools.gml3.bindings.AbstractFeatureTypeBinding;
 import org.geotools.gml3.bindings.AbstractGeometryTypeBinding;
 import org.geotools.gml3.bindings.AbstractRingPropertyTypeBinding;
+import org.geotools.gml3.bindings.ArcStringTypeBinding;
 import org.geotools.gml3.bindings.ArcTypeBinding;
 import org.geotools.gml3.bindings.BoundingShapeTypeBinding;
 import org.geotools.gml3.bindings.CircleTypeBinding;
@@ -67,6 +68,7 @@ import org.geotools.gml3.bindings.TimePeriodTypeBinding;
 import org.geotools.gml3.bindings.TimePositionTypeBinding;
 import org.geotools.gml3.bindings.TimePositionUnionBinding;
 import org.geotools.gml3.v3_2.bindings.AbstractRingTypeBinding;
+import org.geotools.gml3.bindings.ext.CompositeCurveTypeBinding;
 import org.geotools.gml3.v3_2.bindings.DoubleListBinding;
 import org.geotools.gml3.v3_2.bindings.EnvelopeTypeBinding;
 import org.geotools.gml3.v3_2.bindings.GML32EncodingUtils;
@@ -231,6 +233,8 @@ public class GMLConfiguration extends Configuration {
         
         //extended bindings for arc/surface support
         if (isExtendedArcSurfaceSupport()) {
+            container.registerComponentImplementation(GML.ArcStringType,
+                    ArcStringTypeBinding.class);
             container.registerComponentImplementation(GML.ArcType,
                     ArcTypeBinding.class);
             container.registerComponentImplementation(GML.CircleType,
@@ -241,6 +245,8 @@ public class GMLConfiguration extends Configuration {
             container.registerComponentImplementation(GML.SurfacePatchArrayPropertyType,
                     SurfacePatchArrayPropertyTypeBinding.class);
             container.registerComponentImplementation(GML.SurfaceType, SurfaceTypeBinding.class);
+            container.registerComponentImplementation(GML.CompositeCurveType, 
+                    CompositeCurveTypeBinding.class);
             container.registerComponentImplementation(GML.CurveArrayPropertyType, 
                     org.geotools.gml3.bindings.ext.CurveArrayPropertyTypeBinding.class);
             container.registerComponentImplementation(GML.CurvePropertyType, 

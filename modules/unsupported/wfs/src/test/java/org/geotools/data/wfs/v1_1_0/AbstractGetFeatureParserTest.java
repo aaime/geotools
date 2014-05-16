@@ -19,6 +19,7 @@ package org.geotools.data.wfs.v1_1_0;
 import static org.geotools.data.wfs.v1_1_0.DataTestSupport.CUBEWERX_GOVUNITCE;
 import static org.geotools.data.wfs.v1_1_0.DataTestSupport.CUBEWERX_ROADSEG;
 import static org.geotools.data.wfs.v1_1_0.DataTestSupport.GEOS_ARCHSITES;
+import static org.geotools.data.wfs.v1_1_0.DataTestSupport.GEOS_CURVE_ROADS;
 import static org.geotools.data.wfs.v1_1_0.DataTestSupport.GEOS_ROADS;
 import static org.geotools.data.wfs.v1_1_0.DataTestSupport.GEOS_STATES;
 import static org.geotools.data.wfs.v1_1_0.DataTestSupport.GEOS_TASMANIA_CITIES;
@@ -30,6 +31,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 
 import javax.xml.namespace.QName;
 
@@ -143,7 +145,8 @@ public abstract class AbstractGetFeatureParserTest {
         CoordinateReferenceSystem crs = CRS.decode(epsgCrsId);
 
         SimpleFeatureType originalType = EmfAppSchemaParser.parseSimpleFeatureType(
-                wfsConfiguration, featureName, schemaLocation, crs);
+                wfsConfiguration, featureName, schemaLocation, crs,
+                new HashMap<String, String>(), null, false);
 
         SimpleFeatureType subsetType = DataUtilities.createSubType(originalType, properties);
         return subsetType;
@@ -306,6 +309,27 @@ public abstract class AbstractGetFeatureParserTest {
         final FeatureVisitor assertor = new FeatureAssertor(featureType);
 
         URL url = TestData.getResource(this, GEOS_ROADS.DATA);
+        GetFeatureParser parser = getParser(featureName, schemaLocation, featureType, url);
+
+        int nof = parser.getNumberOfFeatures();
+        assertEquals(expectedCount, nof);
+
+        testParseGetFeatures(featureName, featureType, parser, assertor, expectedCount);
+    }
+    
+    @Test
+    public void testParseGeoServer_curveroads_MultiLineString() throws Exception {
+        final QName featureName = GEOS_CURVE_ROADS.TYPENAME;
+        final int expectedCount = 1;
+        final String schemaLocation = GEOS_CURVE_ROADS.SCHEMA;
+
+        final String[] properties = { "the_geom", "label" };
+        final SimpleFeatureType featureType;
+        featureType = getTypeView(featureName, schemaLocation, GEOS_CURVE_ROADS.CRS, properties);
+
+        final FeatureVisitor assertor = new FeatureAssertor(featureType);
+
+        URL url = TestData.getResource(this, GEOS_CURVE_ROADS.DATA);
         GetFeatureParser parser = getParser(featureName, schemaLocation, featureType, url);
 
         int nof = parser.getNumberOfFeatures();

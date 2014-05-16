@@ -27,19 +27,20 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.xerces.parsers.SAXParser;
-import org.apache.xerces.xni.XMLResourceIdentifier;
-import org.apache.xerces.xni.XNIException;
-import org.apache.xerces.xni.parser.XMLEntityResolver;
-import org.apache.xerces.xni.parser.XMLInputSource;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.geotools.xml.resolver.SchemaCatalog;
+import org.geotools.xml.resolver.SchemaResolver;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
+import org.xml.sax.ext.EntityResolver2;
 
 /**
- * A class to perform XML schema validation against schemas found using an {@link AppSchemaResolver}
+ * A class to perform XML schema validation against schemas found using an {@link SchemaResolver}
  * .
  * 
  * @author Ben Caradoc-Davies (CSIRO Earth Science and Resource Engineering)
@@ -60,7 +61,7 @@ public class AppSchemaValidator {
     /**
      * The resolver used to find XML schemas.
      */
-    private final AppSchemaResolver resolver;
+    private final SchemaResolver resolver;
 
     /**
      * Failures found during parsing of an XML instance document.
@@ -75,32 +76,32 @@ public class AppSchemaValidator {
     /**
      * Construct an {@link AppSchemaValidator} that performs schema validation against schemas found
      * on the classpath using the convention described in
-     * {@link AppSchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
+     * {@link SchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
      */
     private AppSchemaValidator() {
-        this(new AppSchemaResolver());
+        this(new SchemaResolver());
     }
 
     /**
      * Construct an {@link AppSchemaValidator} that performs schema validation against schemas found
-     * using an {@link AppSchemaResolver}.
+     * using an {@link SchemaResolver}.
      * 
      * @param resolver
      *            resolver used to locate XML schemas
      */
-    private AppSchemaValidator(AppSchemaResolver resolver) {
+    private AppSchemaValidator(SchemaResolver resolver) {
         this.resolver = resolver;
     }
     
     /**
      * Construct an {@link AppSchemaValidator} that performs schema validation against schemas found
-     * using an {@link AppSchemaResolver} with a {@link AppSchemaCatalog}.
+     * using an {@link SchemaResolver} with a {@link SchemaCatalog}.
      * 
      * @param catalog
-     *            AppSchemaCatalog
+     *            SchemaCatalog
      */
-    private AppSchemaValidator(AppSchemaCatalog catalog) {
-        this(new AppSchemaResolver(catalog));
+    private AppSchemaValidator(SchemaCatalog catalog) {
+        this(new SchemaResolver(catalog));
     }
 
     /**
@@ -125,35 +126,6 @@ public class AppSchemaValidator {
     }
 
     /**
-     * Configure the parser.
-     * 
-     * @param parser
-     *            the XML parser to configure
-     */
-    private void configure(XMLReader parser) {
-        try {
-            // See: http://xerces.apache.org/xerces2-j/features.html
-            // (1) Enable validation in the parser.
-            parser.setFeature("http://xml.org/sax/features/validation", true);
-            // (2) Specify that validation is against XML schemas.
-            parser.setFeature("http://apache.org/xml/features/validation/schema", true);
-            // (2a) Enable the most pedantic level of checking of the schemas themselves.
-            // This has no effect on checking of instance documents, so we leave it turned off.
-            // It is left here for the education of the reader.
-            // parser.setFeature("http://apache.org/xml/features/validation/schema-full-checking",
-            // true);
-            // (3) Set the entity resolver, which is used to look up XML schemas.
-            // See: http://xerces.apache.org/xerces2-j/faq-xcatalogs.html
-            parser.setProperty("http://apache.org/xml/properties/internal/entity-resolver",
-                    new AppSchemaXMLEntityResolver());
-        } catch (Exception e) {
-            // Validation failures do not throw. This block is entered if there is, for example, an
-            // I/O error occurs or a schema cannot be located during parsing.
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
      * Parse an XML instance document read from an {@link InputStream}, recording any validation
      * failures failures.
      * 
@@ -161,16 +133,28 @@ public class AppSchemaValidator {
      *            stream from which XML instance document is read
      */
     public void parse(InputStream input) {
-        XMLReader parser = new SAXParser();
-        configure(parser);
+        SAXParserFactory parserFactory = SAXParserFactory.newInstance();
+        parserFactory.setNamespaceAware(true);
+        parserFactory.setValidating(true);
+        XMLReader xmlReader;
+        try {
+            SAXParser parser = parserFactory.newSAXParser();
+            // Validation is against XML Schema
+            parser.setProperty("http://java.sun.com/xml/jaxp/properties/schemaLanguage",
+                    "http://www.w3.org/2001/XMLSchema");
+            xmlReader = parser.getXMLReader();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        xmlReader.setEntityResolver(new AppSchemaEntityResolver());
         // We principally care about the failures themselves, but it is also possible to install a
         // ContentHandler to output annotated XML that identifies the precise location of failures.
         // That can be done with a serializer that implements both ContentHandler and ErrorHandler.
         // It should be installed here (and used for the error handler):
         // parser.setContentHandler(contentHandler);
-        parser.setErrorHandler(new AppSchemaValidatorErrorHandler());
+        xmlReader.setErrorHandler(new AppSchemaValidatorErrorHandler());
         try {
-            parser.parse(new InputSource(input));
+            xmlReader.parse(new InputSource(input));
         } catch (RuntimeException e) {
             // Avoid gratuitous exception chaining.
             // Resolver failures pass through this block.
@@ -207,7 +191,7 @@ public class AppSchemaValidator {
     /**
      * Construct an {@link AppSchemaValidator} that performs schema validation against schemas found
      * on the classpath using the convention described in
-     * {@link AppSchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
+     * {@link SchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
      */
     public static AppSchemaValidator buildValidator() {
         return new AppSchemaValidator();
@@ -215,23 +199,23 @@ public class AppSchemaValidator {
 
     /**
      * Construct an {@link AppSchemaValidator} that performs schema validation against schemas found
-     * using an {@link AppSchemaResolver}.
+     * using an {@link SchemaResolver}.
      * 
      * @param resolver
      *            the resolver used to find schemas
      */
-    public static AppSchemaValidator buildValidator(AppSchemaResolver resolver) {
+    public static AppSchemaValidator buildValidator(SchemaResolver resolver) {
         return new AppSchemaValidator(resolver);
     }
     
     /**
      * Construct an {@link AppSchemaValidator} that performs schema validation against schemas found
-     * using an {@link AppSchemaResolver} with a {@link AppSchemaCatalog}.
+     * using an {@link SchemaResolver} with a {@link SchemaCatalog}.
      * 
      * @param catalog
-     *            AppSchemaCatalog
+     *            SchemaCatalog
      */
-    public static AppSchemaValidator buildValidator(AppSchemaCatalog catalog) {
+    public static AppSchemaValidator buildValidator(SchemaCatalog catalog) {
         return new AppSchemaValidator(catalog);
     }
 
@@ -239,7 +223,7 @@ public class AppSchemaValidator {
      * 
      * Perform schema validation of an XML instance document read from a classpath resource against
      * schemas found on the classpath using the convention described in
-     * {@link AppSchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
+     * {@link SchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
      * 
      * <p>
      * 
@@ -248,9 +232,9 @@ public class AppSchemaValidator {
      * @param name
      *            resource name of XML instance document
      * @param catalog 
-     *            AppSchemaCatalog to aide local schema resolution or null
+     *            SchemaCatalog to aide local schema resolution or null
      */
-    public static void validateResource(String name, AppSchemaCatalog catalog) {
+    public static void validateResource(String name, SchemaCatalog catalog) {
         InputStream input = null;
         try {
             input = AppSchemaValidator.class.getResourceAsStream(name);
@@ -270,7 +254,7 @@ public class AppSchemaValidator {
      * 
      * Perform schema validation of an XML instance document in a string against schemas found on
      * the classpath using the convention described in
-     * {@link AppSchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
+     * {@link SchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
      * 
      * <p>
      * 
@@ -279,9 +263,9 @@ public class AppSchemaValidator {
      * @param xml
      *            string containing XML instance document
      * @param catalog
-     *            AppSchemaCatalog to aide local schema resolution or null
+     *            SchemaCatalog to aide local schema resolution or null
      */
-    public static void validate(String xml, AppSchemaCatalog catalog) {
+    public static void validate(String xml, SchemaCatalog catalog) {
         byte[] bytes = null;
         String encoding = getEncoding(xml);
         if (encoding != null) {
@@ -332,7 +316,7 @@ public class AppSchemaValidator {
      * 
      * Perform schema validation of an XML instance document read from an input stream against
      * schemas found on the classpath using the convention described in
-     * {@link AppSchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
+     * {@link SchemaResolver#getSimpleHttpResourcePath(java.net.URI)}.
      * 
      * <p>
      * 
@@ -341,37 +325,55 @@ public class AppSchemaValidator {
      * @param input
      *            stream providing XML instance document
      * @param catalog
-     *            AppSchemaCatalog file to aide local schema resolution or null
+     *            SchemaCatalog file to aide local schema resolution or null
      */
-    public static void validate(InputStream input, AppSchemaCatalog catalog) {
+    public static void validate(InputStream input, SchemaCatalog catalog) {
         AppSchemaValidator validator = buildValidator(catalog);
         validator.parse(input);
         validator.checkForFailures();
     }
 
     /**
-     * An {@link XMLEntityResolver} that uses the enclosing instance's {@link AppSchemaResolver} to
-     * look up XML entities (that is, XML schemas).
-     * 
+     * An {@link EntityResolver2} that uses the enclosing instance's {@link SchemaResolver} to look up XML entities (that is, XML schemas).
      */
-    private class AppSchemaXMLEntityResolver implements XMLEntityResolver {
+    private class AppSchemaEntityResolver implements EntityResolver2 {
 
         /**
-         * @see org.apache.xerces.xni.parser.XMLEntityResolver#resolveEntity(org.apache.xerces.xni.XMLResourceIdentifier)
+         * Always throws {@link UnsupportedOperationException}. The {@link EntityResolver2} interface must be used so that relative URLs are resolved
+         * correctly. If this method is called, it means that the parser is probably misconfigured.
+         * 
+         * @see org.xml.sax.EntityResolver#resolveEntity(java.lang.String, java.lang.String)
          */
-        public XMLInputSource resolveEntity(XMLResourceIdentifier resourceIdentifier)
-                throws XNIException, IOException {
-            if (resourceIdentifier.getLiteralSystemId() == null) {
-                throw new RuntimeException("Schema validation failure caused by "
-                        + "missing schemaLocation for namespace "
-                        + resourceIdentifier.getNamespace());
-            } else {
-                // We use AppSchemaResolver.resolve(String, String) to ensure relative
-                // imports work across jar file boundaries.
-                return new XMLInputSource(resourceIdentifier.getPublicId(), resolver.resolve(
-                        resourceIdentifier.getLiteralSystemId(),
-                        resourceIdentifier.getBaseSystemId()), resourceIdentifier.getBaseSystemId());
-            }
+        @Override
+        public InputSource resolveEntity(String publicId, String systemId) throws SAXException,
+                IOException {
+            throw new UnsupportedOperationException(
+                    "Misconfigured parser: EntityResolver2 interface must be used "
+                            + "so that relative URLs are resolved correctly");
+        };
+
+        /**
+         * Always returns null to indicate that there is no external subset.
+         * 
+         * @see org.xml.sax.ext.EntityResolver2#getExternalSubset(java.lang.String, java.lang.String)
+         */
+        @Override
+        public InputSource getExternalSubset(String name, String baseURI) {
+            return null;
+        }
+
+        /**
+         * Return an {@link InputSource} for the resolved schema location. Note that the {@link EntityResolver2} interface must be used because
+         * baseURI is needed to resolve relative URIs. The resolver uses baseURI to find the original unresolved context (which it has stored); this
+         * is then used to construct the unresolved URI of the schema. In the case of downloaded schemas, the original URI is used to download the
+         * schema into the cache; the resolved URI is the location of the cached schema.
+         * 
+         * @see org.xml.sax.ext.EntityResolver2#resolveEntity(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+         */
+        @Override
+        public InputSource resolveEntity(String name, String publicId, String baseURI,
+                String systemId) throws SAXException, IOException {
+            return new InputSource(resolver.resolve(systemId, baseURI));
         }
 
     }

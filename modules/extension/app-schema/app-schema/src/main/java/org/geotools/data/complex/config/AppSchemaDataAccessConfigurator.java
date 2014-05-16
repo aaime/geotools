@@ -52,8 +52,8 @@ import org.geotools.data.complex.FeatureTypeMapping;
 import org.geotools.data.complex.FeatureTypeMappingFactory;
 import org.geotools.data.complex.NestedAttributeMapping;
 import org.geotools.data.complex.filter.XPath;
-import org.geotools.data.complex.filter.XPath.Step;
-import org.geotools.data.complex.filter.XPath.StepList;
+import org.geotools.data.complex.filter.XPathUtil.Step;
+import org.geotools.data.complex.filter.XPathUtil.StepList;
 import org.geotools.data.complex.xml.XmlFeatureSource;
 import org.geotools.data.joining.JoiningNestedAttributeMapping;
 import org.geotools.factory.Hints;
@@ -63,9 +63,11 @@ import org.geotools.filter.FilterFactoryImplReportInvalidProperty;
 import org.geotools.filter.expression.FeaturePropertyAccessorFactory;
 import org.geotools.filter.text.cql2.CQL;
 import org.geotools.filter.text.cql2.CQLException;
-import org.geotools.xml.AppSchemaCache;
-import org.geotools.xml.AppSchemaCatalog;
-import org.geotools.xml.AppSchemaResolver;
+import org.geotools.jdbc.JDBCFeatureSource;
+import org.geotools.jdbc.JDBCFeatureStore;
+import org.geotools.xml.resolver.SchemaCache;
+import org.geotools.xml.resolver.SchemaCatalog;
+import org.geotools.xml.resolver.SchemaResolver;
 import org.geotools.xml.SchemaIndex;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.AttributeDescriptor;
@@ -104,7 +106,7 @@ public class AppSchemaDataAccessConfigurator {
     /** DOCUMENT ME! */
     private AppSchemaDataAccessDTO config;
 
-    private FeatureTypeRegistry typeRegistry;
+    private AppSchemaFeatureTypeRegistry typeRegistry;
     
     private FilterFactory ff = new FilterFactoryImplReportInvalidProperty();
 
@@ -122,7 +124,12 @@ public class AppSchemaDataAccessConfigurator {
      */
     public static boolean isJoining() {
         String s=AppSchemaDataAccessRegistry.getAppSchemaProperties().getProperty(PROPERTY_JOINING);
-        return s!=null && s.equalsIgnoreCase("true");
+        return s==null || s.equalsIgnoreCase("true");
+    }
+    
+    public static boolean isJoiningSet() {
+        String s=AppSchemaDataAccessRegistry.getAppSchemaProperties().getProperty(PROPERTY_JOINING);
+        return s!=null;
     }
 
     /**
@@ -259,14 +266,17 @@ public class AppSchemaDataAccessConfigurator {
 
                 // set original schema locations for encoding
                 target.getType().getUserData().put("schemaURI", schemaURIs);
+                
+                boolean isDatabaseBackend = featureSource instanceof JDBCFeatureSource
+                        || featureSource instanceof JDBCFeatureStore;
 
                 List attMappings = getAttributeMappings(target, dto.getAttributeMappings(), dto
-                        .getItemXpath(), crs);
+                        .getItemXpath(), crs, isDatabaseBackend);
 
                 FeatureTypeMapping mapping;
 
                 mapping = FeatureTypeMappingFactory.getInstance(featureSource, target, attMappings,
-                        namespaces, dto.getItemXpath(), dto.isXmlDataStore());
+                        namespaces, dto.getItemXpath(), dto.isXmlDataStore(), dto.isDenormalised());
 
                 String mappingName = dto.getMappingName();
                 if (mappingName != null) {
@@ -288,7 +298,7 @@ public class AppSchemaDataAccessConfigurator {
         String prefixedTargetName = dto.getTargetElementName();
         Name targetNodeName = Types.degloseName(prefixedTargetName, namespaces);
 
-        AttributeDescriptor targetDescriptor = typeRegistry.getDescriptor(targetNodeName, null, null, crs);
+        AttributeDescriptor targetDescriptor = typeRegistry.getDescriptor(targetNodeName, crs);
         if (targetDescriptor == null) {
             throw new NoSuchElementException("descriptor " + targetNodeName
                     + " not found in parsed schema");
@@ -306,7 +316,7 @@ public class AppSchemaDataAccessConfigurator {
      * @return
      */
     private List getAttributeMappings(final AttributeDescriptor root, final List attDtos,
-            String itemXpath, CoordinateReferenceSystem crs) throws IOException {
+            String itemXpath, CoordinateReferenceSystem crs, boolean isJDBC) throws IOException {
         List attMappings = new LinkedList();
 
         for (Iterator it = attDtos.iterator(); it.hasNext();) {
@@ -385,7 +395,7 @@ public class AppSchemaDataAccessConfigurator {
                     sourceFieldSteps = XPath.steps(root, sourceField, namespaces);
                 }
                 // a nested feature
-                if (isJoining()) {
+                if (isJoining() && isJDBC) {
                     attMapping = new JoiningNestedAttributeMapping(idExpression, sourceExpression,
                             targetXPathSteps, isMultiValued, clientProperties, elementExpr,
                             sourceFieldSteps, namespaces);
@@ -539,7 +549,7 @@ public class AppSchemaDataAccessConfigurator {
         schemaParser.setResolver(buildResolver());
 
         // create a single type registry for all the schemas in the config
-        typeRegistry = new FeatureTypeRegistry(namespaces);
+        typeRegistry = new AppSchemaFeatureTypeRegistry(namespaces);
 
         schemaURIs = new HashMap<String, String>(schemaFiles.size());
         String nameSpace;
@@ -564,7 +574,7 @@ public class AppSchemaDataAccessConfigurator {
     /**
      * Build the catalog for this data access.
      */
-    private AppSchemaCatalog buildCatalog() {
+    private SchemaCatalog buildCatalog() {
         String catalogLocation = config.getCatalog();
         if (catalogLocation == null) {
             return null;
@@ -573,7 +583,7 @@ public class AppSchemaDataAccessConfigurator {
             try {
                 baseUrl = new URL(config.getBaseSchemasUrl());
                 URL resolvedCatalogLocation = resolveResourceLocation(baseUrl, catalogLocation);
-                return AppSchemaCatalog.build(resolvedCatalogLocation);
+                return SchemaCatalog.build(resolvedCatalogLocation);
             } catch (MalformedURLException e) {
                 LOGGER.warning("Malformed URL encountered while setting OASIS catalog location. "
                         + "Mapping file URL: " + config.getBaseSchemasUrl() + " Catalog location: "
@@ -586,9 +596,9 @@ public class AppSchemaDataAccessConfigurator {
     /**
      * Build the cache for this data access.
      */
-    private AppSchemaCache buildCache() {
+    private SchemaCache buildCache() {
         try {
-            return AppSchemaCache.buildAutomaticallyConfiguredUsingFileUrl(
+            return SchemaCache.buildAutomaticallyConfiguredUsingFileUrl(
                     new URL(config.getBaseSchemasUrl()));
         } catch (MalformedURLException e) {
             LOGGER.warning("Malformed mapping file URL: " + config.getBaseSchemasUrl() + " Detail: "
@@ -600,8 +610,8 @@ public class AppSchemaDataAccessConfigurator {
     /**
      * Build the resolver (catalog plus cache) for this data access.
      */
-    private AppSchemaResolver buildResolver() {
-        return new AppSchemaResolver(buildCatalog(), buildCache());
+    private SchemaResolver buildResolver() {
+        return new SchemaResolver(buildCatalog(), buildCache());
     }
 
     private URL resolveResourceLocation(final URL baseUrl, String schemaLocation)

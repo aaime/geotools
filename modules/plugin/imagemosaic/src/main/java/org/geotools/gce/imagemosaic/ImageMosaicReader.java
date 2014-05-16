@@ -2,7 +2,7 @@
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
  *
- *    (C) 2006-2008, Open Source Geospatial Foundation (OSGeo)
+ *    (C) 2006-2013, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -21,19 +21,17 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Date;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
-import java.util.TimeZone;
-import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -41,46 +39,52 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.spi.ImageReaderSpi;
+import javax.media.jai.ImageLayout;
 
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.apache.commons.io.filefilter.IOFileFilter;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.GridCoverageFactory;
 import org.geotools.coverage.grid.GridEnvelope2D;
 import org.geotools.coverage.grid.io.AbstractGridCoverage2DReader;
-import org.geotools.coverage.grid.io.AbstractGridFormat;
+import org.geotools.coverage.grid.io.DefaultHarvestedSource;
+import org.geotools.coverage.grid.io.DimensionDescriptor;
+import org.geotools.coverage.grid.io.GranuleSource;
+import org.geotools.coverage.grid.io.HarvestedSource;
+import org.geotools.coverage.grid.io.OverviewPolicy;
+import org.geotools.coverage.grid.io.StructuredGridCoverage2DReader;
 import org.geotools.data.DataSourceException;
 import org.geotools.data.DataUtilities;
-import org.geotools.data.Query;
-import org.geotools.data.QueryCapabilities;
 import org.geotools.factory.Hints;
-import org.geotools.feature.visitor.FeatureCalc;
-import org.geotools.feature.visitor.MaxVisitor;
-import org.geotools.feature.visitor.MinVisitor;
-import org.geotools.feature.visitor.UniqueVisitor;
-import org.geotools.filter.SortByImpl;
+import org.geotools.gce.imagemosaic.ImageMosaicEventHandlers.ExceptionEvent;
+import org.geotools.gce.imagemosaic.ImageMosaicEventHandlers.FileProcessingEvent;
+import org.geotools.gce.imagemosaic.ImageMosaicEventHandlers.ProcessingEvent;
+import org.geotools.gce.imagemosaic.OverviewsController.OverviewLevel;
+import org.geotools.gce.imagemosaic.Utils.Prop;
+import org.geotools.gce.imagemosaic.catalog.CatalogConfigurationBean;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalog;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalogFactory;
+import org.geotools.gce.imagemosaic.catalog.MultiLevelROIProvider;
+import org.geotools.gce.imagemosaic.catalog.MultiLevelROIProviderFactory;
+import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilderConfiguration;
 import org.geotools.geometry.GeneralEnvelope;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.referencing.operation.transform.AffineTransform2D;
-import org.geotools.resources.coverage.FeatureUtilities;
 import org.geotools.util.Utilities;
 import org.opengis.coverage.grid.Format;
-import org.opengis.coverage.grid.GridCoverage;
-import org.opengis.coverage.grid.GridCoverageReader;
-import org.opengis.coverage.grid.GridCoverageWriter;
+import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.feature.type.AttributeDescriptor;
-import org.opengis.filter.sort.SortBy;
-import org.opengis.filter.sort.SortOrder;
 import org.opengis.geometry.BoundingBox;
+import org.opengis.metadata.Identifier;
 import org.opengis.parameter.GeneralParameterValue;
+import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.datum.PixelInCell;
 import org.opengis.referencing.operation.MathTransform;
 /**
- * This reader is responsible for providing access to mosaic of georeferenced
+ * Reader responsible for providing access to mosaic of georeferenced
  * images. Citing JAI documentation:
  * 
  * The "Mosaic" operation creates a mosaic of two or more source images. This
@@ -108,9 +112,31 @@ import org.opengis.referencing.operation.MathTransform;
  *
  * @source $URL$
  */
-public final class ImageMosaicReader extends AbstractGridCoverage2DReader implements GridCoverageReader, GridCoverageWriter {
+@SuppressWarnings("rawtypes")
+public class ImageMosaicReader extends AbstractGridCoverage2DReader implements StructuredGridCoverage2DReader {
 
-		/** Logger. */
+
+    Set<String> names = new HashSet<String>();
+
+    String defaultName = null;
+
+    public static final String UNSPECIFIED = "_UN$PECIFIED_";
+
+    Map<String, RasterManager> rasterManagers = new ConcurrentHashMap<String, RasterManager>();
+
+    public RasterManager getRasterManager(String name) {
+          if(name != null && rasterManagers.containsKey(name)){
+              return rasterManagers.get(name);
+          }
+          return null;
+  }
+    
+    @Override
+    public String[] getGridCoverageNames() {
+        return (String[]) names.toArray(new String[]{});
+    }
+
+    /** Logger. */
 	private final static Logger LOGGER = org.geotools.util.logging.Logging.getLogger(ImageMosaicReader.class);
 
 	/**
@@ -118,250 +144,268 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 	 * {@link ImageMosaicReader}.
 	 */
 	URL sourceURL;
+	
+        File parentDirectory;
 
 	boolean expandMe;
 	
 	PathType pathType;
 	
-	ExecutorService multiThreadedLoader = null;
+	ExecutorService multiThreadedLoader;
 
-	String locationAttributeName="location";
+	String locationAttributeName=Utils.DEFAULT_LOCATION_ATTRIBUTE;
 
-	RasterManager rasterManager;
-
-	int maxAllowedTiles=ImageMosaicFormat.MAX_ALLOWED_TILES.getDefaultValue();
+        int maxAllowedTiles=ImageMosaicFormat.MAX_ALLOWED_TILES.getDefaultValue();
 
 	/** The suggested SPI to avoid SPI lookup*/
 	ImageReaderSpi suggestedSPI;
-
-	GranuleCatalog catalog;
-
-	String timeAttribute;
+	
+	GranuleCatalog granuleCatalog;
 
 	boolean cachingIndex;
-
-	String elevationAttribute;
 
 	boolean imposedBBox;
 	
 	boolean heterogeneousGranules;
-	
-	/**
-	 * UTC timezone to serve as reference
-	 */
-	static final TimeZone UTC_TZ = TimeZone.getTimeZone("UTC");
-	
-	/**
-	 * Constructor.
-	 * 
-	 * @param source
-	 *            The source object.
-	 * @throws IOException
-	 * @throws UnsupportedEncodingException
-	 * 
-	 */
-	public ImageMosaicReader(Object source, Hints uHints) throws IOException {
-	    super(source,uHints);
-	    if (this.hints.containsKey(Hints.EXECUTOR_SERVICE)) {
-	      final Object executor = uHints.get(Hints.EXECUTOR_SERVICE);
-	      if (executor != null && executor instanceof ExecutorService){
-	          multiThreadedLoader = (ExecutorService) executor;
-	          if (LOGGER.isLoggable(Level.FINE)){
-	              if (multiThreadedLoader instanceof ThreadPoolExecutor){
-	                  final ThreadPoolExecutor tpe = (ThreadPoolExecutor) multiThreadedLoader;
-	                  LOGGER.fine("Using ThreadPoolExecutor with the following settings: " +
-	                              "core pool size = " + tpe.getCorePoolSize() + 
-	                              "\nmax pool size = " + tpe.getMaximumPoolSize() + 
-	                              "\nkeep alive time " + tpe.getKeepAliveTime(TimeUnit.MILLISECONDS));    
-	              }
-	          }
-	      }
-	    }
-		if(this.hints.containsKey(Hints.MAX_ALLOWED_TILES))
-			this.maxAllowedTiles= ((Integer)this.hints.get(Hints.MAX_ALLOWED_TILES));		
 
+        boolean checkAuxiliaryMetadata = false;
 
-		// /////////////////////////////////////////////////////////////////////
-		//
-		// Check source
-		//
-		// /////////////////////////////////////////////////////////////////////
-		if (source instanceof ImageMosaicDescriptor) {
-		    initReaderFromDescriptor((ImageMosaicDescriptor) source, uHints);
-		} else {
-		    initReaderFromURL(source, uHints);
-		}
-	}
-	
-	/**
-	 * Init this {@link ImageMosaicReader} using the provided {@link ImageMosaicDescriptor} as source. 
-	 * @param source
-	 * @param uHints
-	 * @throws DataSourceException
-	 */
-    private void initReaderFromDescriptor(final ImageMosaicDescriptor source, final Hints uHints) throws DataSourceException {
+	String typeName;
+
+    /**
+     * Constructor.
+     * 
+     * @param source The source object.
+     * @throws IOException
+     * @throws UnsupportedEncodingException
+     * 
+     */
+    public ImageMosaicReader(Object source, Hints uHints) throws IOException {
+        super(source, uHints);
+
+        //
+        // try to extract a multithreaded loader if available
+        //
+        if (this.hints.containsKey(Hints.EXECUTOR_SERVICE)) {
+            final Object executor = uHints.get(Hints.EXECUTOR_SERVICE);
+            if (executor != null && executor instanceof ExecutorService) {
+                multiThreadedLoader = (ExecutorService) executor;
+                if (LOGGER.isLoggable(Level.FINE)) {
+                    if (multiThreadedLoader instanceof ThreadPoolExecutor) {
+                        final ThreadPoolExecutor tpe = (ThreadPoolExecutor) multiThreadedLoader;
+                        LOGGER.fine("Using ThreadPoolExecutor with the following settings: "
+                                + "core pool size = " + tpe.getCorePoolSize()
+                                + "\nmax pool size = " + tpe.getMaximumPoolSize()
+                                + "\nkeep alive time "
+                                + tpe.getKeepAliveTime(TimeUnit.MILLISECONDS));
+                    }
+                }
+            }
+        }
+
+        // max allowed tiles for a single request
+        if (this.hints.containsKey(Hints.MAX_ALLOWED_TILES))
+            this.maxAllowedTiles = ((Integer) this.hints.get(Hints.MAX_ALLOWED_TILES));
+
+        //
+        // Check source
+        //
+        if (source instanceof ImageMosaicDescriptor) {
+            initReaderFromDescriptor((ImageMosaicDescriptor) source, uHints);
+        } else {
+            try {
+                
+             // Cloning the hints
+                Hints localHints = new Hints(uHints);
+                if (localHints != null) {
+                    localHints.add(new Hints(Utils.MOSAIC_READER, this));
+                } 
+                initReaderFromURL(source, localHints);
+            } catch (Exception e) {
+                throw new DataSourceException(e);
+            }
+        }
+    }
+
+    /**
+     * Init this {@link ImageMosaicReader} using the provided {@link ImageMosaicDescriptor} as source.
+     * 
+     * @param source
+     * @param uHints
+     * @throws DataSourceException
+     */
+    private void initReaderFromDescriptor(final ImageMosaicDescriptor source, final Hints uHints) throws IOException {
         Utilities.ensureNonNull("source", source);
         final MosaicConfigurationBean configuration = source.getConfiguration();
         if (configuration == null) {
             throw new DataSourceException("Unable to create reader for this mosaic since we could not parse the configuration.");
         }
         extractProperties(configuration);
-        catalog = source.getCatalog();
+        GranuleCatalog catalog = source.getCatalog();
         if (catalog == null) {
             throw new DataSourceException("Unable to create reader for this mosaic since the inner catalog is null.");
         }
-        setGridGeometry();
+
+        final SimpleFeatureType schema = catalog.getType(configuration.getCatalogConfigurationBean().getTypeName());
+        if (schema == null) {
+            throw new DataSourceException("Unable to create reader for this mosaic since the inner catalog schema is null.");
+        }
         
-        rasterManager = new RasterManager(this);
-        rasterManager.defaultSM = configuration.getSampleModel();
-        
+        granuleCatalog = catalog;
+
+        // grid geometry
+        setGridGeometry(typeName);
+
+        // raster manager
+        addRasterManager(configuration, true);
     }
 
     /**
-     * Init this {@link ImageMosaicReader} using the provided object as a source referring to an {@link URL}. 
+     * Init this {@link ImageMosaicReader} using the provided object as a source referring to an {@link URL}.
      * 
      * @param source
      * @param uHints
      * @throws DataSourceException
      */
-    private void initReaderFromURL(final Object source, final Hints hints) throws MalformedURLException, DataSourceException {
-		this.sourceURL=Utils.checkSource(source,hints);
-		if(this.sourceURL==null)
-			throw new DataSourceException("This plugin accepts File, URL or String. The string may describe a File or an URL");
-		
-		//
-		// Load properties file with information about levels and envelope
-		//
-		final MosaicConfigurationBean configuration = loadMosaicProperties();
-		if(configuration==null)
-			throw new DataSourceException("Unable to create reader for this mosaic since we could not parse the configuration.");
-		//location attribute override
-		if(this.hints.containsKey(Hints.MOSAIC_LOCATION_ATTRIBUTE))
-			this.locationAttributeName=((String)this.hints.get(Hints.MOSAIC_LOCATION_ATTRIBUTE));	
-		
-		// 
-		//
-		// Load tiles informations, especially the bounds, which will be
-		// reused
-		//
-		// 
-		try {
-			// create the index
-			catalog= GranuleCatalogFactory.createGranuleCatalog(sourceURL, configuration);
-			
-			// error
-			if(catalog==null)
-				throw new DataSourceException("Unable to create index for this URL "+sourceURL);
-			
-			// everything is fine
-			if (LOGGER.isLoggable(Level.FINE))
-				LOGGER.fine("Connected mosaic reader to its index "
-						+ sourceURL.toString());
-			final SimpleFeatureType type= catalog.getType();
-			if (type==null)
-				throw new IllegalArgumentException("Problems when opening the index, no typenames for the schema are defined");
-			
-			setGridGeometry(configuration.getEnvelope());
+    private void initReaderFromURL(final Object source, final Hints hints) throws Exception {
+        this.sourceURL = Utils.checkSource(source, hints);
+        
+        // Preliminar check on source
+        if (this.sourceURL == null) {
+            throw new DataSourceException(
+                    "This plugin accepts File, URL or String. The string may describe a File or an URL");
+        }
 
-            //
-            // get the crs if able to
-            //
-            final Object tempCRS = this.hints.get(Hints.DEFAULT_COORDINATE_REFERENCE_SYSTEM);
-            if (tempCRS != null) {
-                this.crs = (CoordinateReferenceSystem) tempCRS;
-                LOGGER.log(Level.WARNING, "Using forced coordinate reference system ");
-            } else {
-                final CoordinateReferenceSystem tempcrs = type.getGeometryDescriptor().getCoordinateReferenceSystem();
-                if (tempcrs == null) {
-                    // use the default crs
-                    crs = AbstractGridFormat.getDefaultCRS();
-                    LOGGER.log(Level.WARNING, "Unable to find a CRS for this coverage, using a default one" );
-                } else
-                    crs = tempcrs;
+        // Load properties file
+        MosaicConfigurationBean configuration = null;
+        try {
+            if (sourceURL.getProtocol().equals("file")) {
+                final File sourceFile = DataUtilities.urlToFile(sourceURL);
+                if (!sourceFile.exists()) {
+                    throw new DataSourceException("The specified sourceURL doesn't refer to an existing file");
+                }
             }
-			
-			//
-			// location attribute field checks
-			//	
-			if(this.locationAttributeName==null)
-			{
-				//get the first string
-				for(AttributeDescriptor attribute: type.getAttributeDescriptors()){
-					if(attribute.getType().getBinding().equals(String.class))
-						this.locationAttributeName=attribute.getName().toString();
-				}
-			}
-			if(type.getDescriptor(this.locationAttributeName)==null)
-				throw new DataSourceException("The provided name for the location attribute is invalid.");
-			
-			//
-			// time attribute field checks
-			//
-			//time attribute override
-			if(this.timeAttribute==null)
-			{
-				//get the first attribute that can be use as date
-				for(AttributeDescriptor attribute: type.getAttributeDescriptors()){
-					// TODO improve this code
-					if(attribute.getType().getBinding().equals(Date.class))
-					{
-						this.timeAttribute=attribute.getName().toString();
-						break;
-					}
-					if(attribute.getType().getBinding().equals(Timestamp.class))
-					{
-						this.timeAttribute=attribute.getName().toString();
-						break;
-					}
-					if(attribute.getType().getBinding().equals(java.sql.Date.class))
-					{
-						this.timeAttribute=attribute.getName().toString();
-						break;
-					}						
-				}
-			}
-			if(this.timeAttribute!=null&&this.timeAttribute.length()>0&&type.getDescriptor(this.timeAttribute)==null)
-				throw new DataSourceException("The provided name for the timeAttribute attribute is invalid.");			
-			
-			// creating the raster manager
-			rasterManager = new RasterManager(this);
-		}
-		catch (Throwable e) {
-			try {
-				if(catalog!=null)
-					catalog.dispose();
-			} catch (Throwable e1) {
-				if (LOGGER.isLoggable(Level.FINEST))
-					LOGGER.log(Level.FINEST, e1.getLocalizedMessage(), e1);
-			}
-			finally{
-				catalog=null;
-			}
-			
-			// dispose raster manager as well
-			try {
-				if(rasterManager!=null)
-					rasterManager.dispose();
-			} catch (Throwable e1) {
-				if (LOGGER.isLoggable(Level.FINEST))
-					LOGGER.log(Level.FINEST, e1.getLocalizedMessage(), e1);
-			}
-			finally{
-				rasterManager=null;
-			}
-			
-			throw new  DataSourceException(e);
-		}
 
-		
-	}
+            configuration = Utils.loadMosaicProperties(sourceURL, this.locationAttributeName);
+            if (configuration == null) {
+                //
+                // do we have a datastore properties file? It will preempt on the shapefile
+                //
+                final File parent = DataUtilities.urlToFile(sourceURL).getParentFile();
 
-	private void setGridGeometry(ReferencedEnvelope envelope) {
-		Utilities.ensureNonNull("index", catalog);
-	    //
+                // this can be used to look for properties files that do NOT define a datastore
+                final File[] properties = parent.listFiles((FilenameFilter) FileFilterUtils.and(
+                        FileFilterUtils.notFileFilter(FileFilterUtils
+                                .nameFileFilter("indexer.properties")), FileFilterUtils.and(
+                                FileFilterUtils.notFileFilter(FileFilterUtils
+                                        .nameFileFilter("datastore.properties")), FileFilterUtils
+                                        .makeFileOnly(FileFilterUtils
+                                                .suffixFileFilter(".properties")))));
+
+                // do we have a valid datastore + mosaic properties pair?
+                final File datastoreProperties = new File(parent, "datastore.properties");
+
+                // Scan for MosaicConfigurationBeans from properties files
+                List<MosaicConfigurationBean> beans = new ArrayList<MosaicConfigurationBean>();
+                for (File propFile : properties) {
+                    if (Utils.checkFileReadable(propFile) && Utils.loadMosaicProperties(DataUtilities.fileToURL(propFile), "") != null) {
+                        configuration = Utils.loadMosaicProperties(DataUtilities.fileToURL(propFile), this.locationAttributeName);
+                        if (configuration != null) {
+                            beans.add(configuration);
+                        }
+                    }
+                }
+                
+                // In case we didn't find any configuration bean and datastore properties, we can't do anything
+                if (beans.isEmpty() && !datastoreProperties.exists()) {
+                    throw new DataSourceException("No mosaic properties file or datastore properties file have been found");
+                }
+                
+                // Catalog initialization from datastore
+                GranuleCatalog catalog = null;
+                final Properties params = CatalogManager.createGranuleCatalogProperties(datastoreProperties);
+
+                // Since we are dealing with a catalog from an existing store, make sure to scan for all the typeNames on initialization
+                final Object typeNames=params.get(Utils.SCAN_FOR_TYPENAMES);
+                if (typeNames!=null){
+                    params.put(Utils.SCAN_FOR_TYPENAMES, Boolean.valueOf(typeNames.toString()));
+                } else {
+                    params.put(Utils.SCAN_FOR_TYPENAMES, Boolean.TRUE);
+                }
+                if (beans.size() > 0) {
+                    catalog = GranuleCatalogFactory.createGranuleCatalog(sourceURL, beans.get(0).getCatalogConfigurationBean(), params, getHints());
+                } else {
+                    catalog = CatalogManager.createGranuleCatalogFromDatastore(parent, datastoreProperties, true, getHints());
+                } 
+                MultiLevelROIProvider rois = MultiLevelROIProviderFactory.createFootprintProvider(parent);
+                catalog.setMultiScaleROIProvider(rois);
+                if (granuleCatalog != null) {
+                    granuleCatalog.dispose();
+                }
+                granuleCatalog = catalog;
+
+                if (granuleCatalog == null) {
+                    throw new DataSourceException("Unable to create index for this URL " + sourceURL);
+                }
+
+                // Creating a RasterManager for each mosaic configuration found on disk
+                for (MosaicConfigurationBean bean : beans) {
+                    // Add a RasterManager on top of this Mosaic configuration bean and initialize it
+                    addRasterManager(bean, true);
+                }
+            } else {
+                
+                // Old style code: we have a single MosaicConfigurationBean. Use that to create the catalog 
+                granuleCatalog = CatalogManager.createCatalog(sourceURL, configuration, this.hints);
+                File parent = DataUtilities.urlToFile(sourceURL).getParentFile();
+                MultiLevelROIProvider rois = MultiLevelROIProviderFactory.createFootprintProvider(parent);
+                granuleCatalog.setMultiScaleROIProvider(rois);
+                addRasterManager(configuration, true);
+            }
+            if (sourceURL != null) {
+                parentDirectory = DataUtilities.urlToFile(sourceURL);
+                if (!parentDirectory.isDirectory()) {
+                        parentDirectory = parentDirectory.getParentFile();
+                }
+            }
+        } catch (Throwable e) {
+            
+            // Dispose catalog
+            try {
+                if (granuleCatalog != null) {
+                    granuleCatalog.dispose();
+                }
+            } catch (Throwable e1) {
+                if (LOGGER.isLoggable(Level.FINEST)) {
+                    LOGGER.log(Level.FINEST, e1.getLocalizedMessage(), e1);
+                }
+            } finally {
+                granuleCatalog = null;
+            }
+            
+            // dispose raster managers as well
+            try {
+                disposeManagers();
+            } catch (Throwable e1) {
+                if (LOGGER.isLoggable(Level.FINEST)) {
+                    LOGGER.log(Level.FINEST, e1.getLocalizedMessage(), e1);
+                }
+            } finally {
+                rasterManagers = null;
+            }
+
+            // rethrow
+            throw new DataSourceException(e);
+        }
+    }
+
+    private void setGridGeometry(final ReferencedEnvelope envelope, final GranuleCatalog catalog,
+            String typeName) {
+        Utilities.ensureNonNull("index", catalog);
+        //
         // save the bbox and prepare other info
         //
-        final BoundingBox bounds = catalog.getBounds();
+        final BoundingBox bounds = catalog.getBounds(typeName);
         if(bounds.isEmpty()) {
                 throw new IllegalArgumentException("Cannot create a mosaic out of an empty index");
         }
@@ -393,62 +437,10 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 		
 	}
 
-	private void setGridGeometry () {
-	    setGridGeometry(null)                ; 
+	private void setGridGeometry (final String typeName) {
+	    setGridGeometry(null, granuleCatalog, typeName); 
     }
-
-        /**
-	 * Loads the properties file that contains useful information about this
-	 * coverage.
-	 * 
-	 * @throws UnsupportedEncodingException
-	 * @throws IOException
-	 */
-	private MosaicConfigurationBean loadMosaicProperties(){
-		// discern if we have a shapefile based index or a datastore based index
-		final File sourceFile=DataUtilities.urlToFile(sourceURL);
-		final String extension= FilenameUtils.getExtension(sourceFile.getAbsolutePath());
-		MosaicConfigurationBean configuration=null;
-		if(extension.equalsIgnoreCase("shp"))
-		{
-			// shapefile
-			configuration=Utils.loadMosaicProperties(DataUtilities.changeUrlExt(sourceURL, "properties"),this.locationAttributeName);
-		}
-		else
-		{
-			// we need to look for properties files that do NOT define a datastore
-			final File[] properties = sourceFile.getParentFile().listFiles(
-					(FilenameFilter)
-					FileFilterUtils.andFileFilter(
-							FileFilterUtils.notFileFilter(FileFilterUtils.nameFileFilter("indexer.properties")),
-						FileFilterUtils.andFileFilter(
-								FileFilterUtils.notFileFilter(FileFilterUtils.nameFileFilter("datastore.properties")),
-								FileFilterUtils.makeFileOnly(FileFilterUtils.suffixFileFilter(".properties")
-						)
-					)
-			));
-			
-			
-			// check the valid mosaic properties files
-			for(File propFile:properties)
-				if(Utils.checkFileReadable(propFile))
-				{
-					// try to load the config
-					configuration=Utils.loadMosaicProperties(DataUtilities.fileToURL(propFile), this.locationAttributeName);
-					if(configuration!=null)
-						break;
-					
-					// proceed with next prop file
-				}		
-							
-		}
-		// we did not find any good candidate for mosaic.properties file, this will signal it		
-		if(configuration!=null)
-			return extractProperties(configuration);
-		return configuration;
-	}
-
-	private MosaicConfigurationBean extractProperties(final MosaicConfigurationBean configuration) {
+	private void extractProperties(final MosaicConfigurationBean configuration) throws IOException {
 
 		// resolutions levels
 		numOverviews = configuration.getLevelsNum() - 1;
@@ -477,19 +469,23 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 		// we do not find it.
 		expandMe = configuration.isExpandToRGB();
 		
-		heterogeneousGranules = configuration.isHeterogeneous();
-
+		checkAuxiliaryMetadata = configuration.isCheckAuxiliaryMetadata();
+		
+		CatalogConfigurationBean catalogConfigurationBean = configuration.getCatalogConfigurationBean();
+		
+		// do we have heterogenous granules
+		heterogeneousGranules = catalogConfigurationBean.isHeterogeneous();
 
 		// absolute or relative path
-		pathType = configuration.isAbsolutePath()?PathType.ABSOLUTE:PathType.RELATIVE;
+		pathType = catalogConfigurationBean.isAbsolutePath()?PathType.ABSOLUTE:PathType.RELATIVE;
 		
 		//
 		// location attribute
 		//
-		locationAttributeName = configuration.getLocationAttribute();
+		locationAttributeName = catalogConfigurationBean.getLocationAttribute();
 		
 		// suggested SPI
-		final String suggestedSPIClass = configuration.getSuggestedSPI();
+		final String suggestedSPIClass = catalogConfigurationBean.getSuggestedSPI();
 		if (suggestedSPIClass != null){
 			try {
 				final Class<?> clazz=Class.forName(suggestedSPIClass);
@@ -497,40 +493,27 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 					suggestedSPI=(ImageReaderSpi)clazz.newInstance();
 				else
 					suggestedSPI=null;
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				if(LOGGER.isLoggable(Level.FINE))
 					LOGGER.log(Level.FINE,e.getLocalizedMessage(),e);
 				suggestedSPI=null;
-			} catch (InstantiationException e) {
-				if(LOGGER.isLoggable(Level.FINE))
-					LOGGER.log(Level.FINE,e.getLocalizedMessage(),e);
-				suggestedSPI=null;
-			} catch (IllegalAccessException e) {
-				if(LOGGER.isLoggable(Level.FINE))
-					LOGGER.log(Level.FINE,e.getLocalizedMessage(),e);
-				suggestedSPI=null;
-			}
+			} 
 		}
-		
-		// time param
-		final String timeAttribute = configuration.getTimeAttribute();
-		if(timeAttribute != null)
-			this.timeAttribute = timeAttribute;
-		
-		
-		// elevation param
-		final String elevationAttribute = configuration.getElevationAttribute();
-		if(elevationAttribute != null)
-			this.elevationAttribute = elevationAttribute;				
-
 
 		// caching for the index
-		cachingIndex = configuration.isCaching();
+		cachingIndex = catalogConfigurationBean.isCaching();
 		
-		// imposed BBOX?
-		this.imposedBBox=true;
+		// imposed BBOX
+                if(configuration.getEnvelope()!=null){
+            		this.imposedBBox=true;
+            		// we set the BBOX later to retain also the CRS
+                } else {
+                	this.imposedBBox=false;
+                }
 		
-		return configuration;
+		// typeName to be used for reading the mosaic
+		this.typeName = catalogConfigurationBean.getTypeName();
+
 	}
 
 	/**
@@ -555,14 +538,19 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 		return new ImageMosaicFormat();
 	}
 
+    public GridCoverage2D read(GeneralParameterValue[] params) throws IOException {
+	     return read (UNSPECIFIED, params); 
+	}
+
 	/**
 	 * 
 	 * @see org.opengis.coverage.grid.GridCoverageReader#read(org.opengis.parameter.GeneralParameterValue[])
+	 * @Override
 	 */
-	public GridCoverage2D read(GeneralParameterValue[] params) throws IOException {
+	public GridCoverage2D read(String coverageName, GeneralParameterValue[] params) throws IOException {
 	   
 	    // check if we were disposed already
-	    if(rasterManager==null){
+	    if(rasterManagers == null){
 	        throw new IOException("Looks like this reader has been already disposed or it has not been properly initialized.");
 	    }
 		if (LOGGER.isLoggable(Level.FINE)) {
@@ -571,7 +559,12 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
     		    } else {
     		        LOGGER.fine("Reading mosaic");
     		    }
-		    LOGGER.fine("Highest res "+highestRes[0]+" "+highestRes[1]);
+    		    final double[][] levels = getResolutionLevels(coverageName);
+    		    if (levels != null) {
+    		        final double[] highRes = levels[0];
+    		        LOGGER.fine("Highest res "+ highRes[0] + " " + highRes[1]);
+    		    }
+		    
 		}
 		//
 		// add max allowed tiles if missing
@@ -609,13 +602,10 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 				
 		}
 		
-		// /////////////////////////////////////////////////////////////////////
 		//
 		// Loading tiles trying to optimize as much as possible
 		//
-		// /////////////////////////////////////////////////////////////////////
-		
-		final Collection<GridCoverage2D> response = rasterManager.read(params);
+		final Collection<GridCoverage2D> response = read(params, coverageName);
 		if (response.isEmpty()) {
 		    if (LOGGER.isLoggable(Level.FINE)){
 		        LOGGER.fine("The response is empty. ==> returning a null GridCoverage");
@@ -625,37 +615,49 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
 			return response.iterator().next();
 		}
 	}
+	
+    /**
+     * Look for the parameter containing the coverage name and check its validity. Then delegate the proper RasterManager to do the read operation.
+     * 
+     * @param params
+     * @return
+     * @throws IOException
+     */
+    private Collection<GridCoverage2D> read(GeneralParameterValue[] params, String coverageName)
+            throws IOException {
+        coverageName = checkUnspecifiedCoverage(coverageName);
+        return getRasterManager(coverageName).read(params);
+    }
 
-	/**
-	 * Package private accessor for {@link Hints}.
-	 * 
-	 * @return this {@link Hints} used by this reader.
-	 */
-	Hints getHints(){
-		return super.hints;
-	}
+    /**
+     * Package private accessor for {@link Hints}.
+     * 
+     * @return this {@link Hints} used by this reader.
+     */
+    Hints getHints() {
+        return super.hints;
+    }
+
+    /**
+     * Package private accessor for the highest resolution values.
+     * 
+     * @return the highest resolution values.
+     */
+    double[] getHighestRes() {
+        return super.highestRes;
+    }
 	
-	/**
-	 * Package private accessor for the highest resolution values.
-	 * 
-	 * @return the highest resolution values.
-	 */
-	double[] getHighestRes(){
-		return super.highestRes;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	double[][] getOverviewsResolution(){
-		return super.overViewResolutions;
-	}
-	
-	int getNumberOfOvervies(){
-		return super.numOverviews;
-	}
-	
+    /**
+     * 
+     * @return
+     */
+    double[][] getOverviewsResolution() {
+        return super.overViewResolutions;
+    }
+
+    int getNumberOfOvervies() {
+        return super.numOverviews;
+    }
 
     /** Package scope grid to world transformation accessor */
     MathTransform getRaster2Model() {
@@ -672,293 +674,459 @@ public final class ImageMosaicReader extends AbstractGridCoverage2DReader implem
     	return coverageFactory;
     }
 
-	String getName() {
-		return super.coverageName;
-	}
-
-	public Object getDestination() {
-		return null;
-	}
-
-	public void setCurrentSubname(String arg0) throws IOException {
-		throw new UnsupportedOperationException("Unsupported method");
-		
-	}
-
-	public void setMetadataValue(String arg0, String arg1) throws IOException {
-		throw new UnsupportedOperationException("Unsupported method");
-		
-	}
-
-	public void write(GridCoverage arg0, GeneralParameterValue[] arg1)throws IllegalArgumentException, IOException {
-		throw new UnsupportedOperationException("Unsupported method");
-		
-	}
-	
-	
-	/**
-	 * Number of coverages for this reader is 1
-	 * 
-	 * @return the number of coverages for this reader.
-	 */
-	@Override
-	public int getGridCoverageCount() {
-		return 1;
-	}
-
-	/**
-	 * Releases resources held by this reader.
-	 * 
-	 */
-	@Override
-	public synchronized void dispose() {
-		super.dispose();
-		try{
-		    if(rasterManager!=null)
-		        rasterManager.dispose();
-		} catch (Exception e) {
-                    if(LOGGER.isLoggable(Level.FINE))
-                        LOGGER.log(Level.FINE,e.getLocalizedMessage(),e);
-                } finally {
-                    rasterManager=null;
-                }
-	}
-
-	@Override
-	public String[] getMetadataNames() {
-	    final String []parentNames = super.getMetadataNames();
-            final List<String> metadataNames = new ArrayList<String>();
-            metadataNames.add(TIME_DOMAIN);
-            metadataNames.add(HAS_TIME_DOMAIN);
-            metadataNames.add(TIME_DOMAIN_MINIMUM);
-            metadataNames.add(TIME_DOMAIN_MAXIMUM);
-            metadataNames.add(TIME_DOMAIN_RESOLUTION);
-            metadataNames.add(ELEVATION_DOMAIN);
-            metadataNames.add(ELEVATION_DOMAIN_MINIMUM);
-            metadataNames.add(ELEVATION_DOMAIN_MAXIMUM);
-            metadataNames.add(HAS_ELEVATION_DOMAIN);
-            metadataNames.add(ELEVATION_DOMAIN_RESOLUTION);
-            if(parentNames!=null)
-                metadataNames.addAll(Arrays.asList(parentNames));
-            return metadataNames.toArray(new String[metadataNames.size()]);
-	}
-
-	@Override
-	public String getMetadataValue(final String name) {
-	    final String superValue=super.getMetadataValue(name);
-	    if(superValue!=null)
-	        return superValue;
-	    
-            if (name.equalsIgnoreCase(HAS_ELEVATION_DOMAIN))
-                return String.valueOf(elevationAttribute != null);
-    
-            if (name.equalsIgnoreCase(HAS_TIME_DOMAIN))
-                return String.valueOf(timeAttribute != null);
-    
-            if (name.equalsIgnoreCase(TIME_DOMAIN_RESOLUTION))
-                return null;
-    
-            final boolean getTimeDomain = (timeAttribute != null && name.equalsIgnoreCase("time_domain"));
-            if (getTimeDomain) {
-                return extractTimeDomain();
-    
-            }
-    
-            final boolean getTimeExtrema = timeAttribute != null
-                    && (name.equalsIgnoreCase("time_domain_minimum") || name.equalsIgnoreCase("time_domain_maximum"));
-            if (getTimeExtrema) {
-                return extractTimeExtrema(name);
-    
-            }
-    
-            final boolean getElevationAttribute = (elevationAttribute != null && name.equalsIgnoreCase("elevation_domain"));
-            if (getElevationAttribute) {
-                return extractElevationDomain();
-    
-            }
-    
-            final boolean getElevationExtrema = elevationAttribute != null
-                    && (name.equalsIgnoreCase("elevation_domain_minimum") || name.equalsIgnoreCase("elevation_domain_maximum"));
-            if (getElevationExtrema) {
-                return extractElevationExtrema(name);
-    
-            }
-        		
-
-		return super.getMetadataValue(name);
-	}
-
+    /**
+     * Number of coverages for this reader is 1
+     * 
+     * @return the number of coverages for this reader.
+     */
+    @Override
+    public int getGridCoverageCount() {
+        return names.size();
+    }
 
     /**
-     * Extract the time domain extrema.
+     * Releases resources held by this reader.
      * 
-     * @param metadataName a {@link String} either TIME_DOMAIN_MAXIMUM or TIME_DOMAIN_MINIMUM.
-     * 
-     * @return either TIME_DOMAIN_MAXIMUM or TIME_DOMAIN_MINIMUM as a {@link String}.
      */
-    private String extractTimeExtrema(String metadataName) {
-        if(timeAttribute==null){
-            if(LOGGER.isLoggable(Level.INFO))
-                LOGGER.info("Requesting extrema on attribute "+metadataName+" when no such an attribute is supported!");
-            return null;
-        }
-        try {
-            final FeatureCalc visitor = createExtremaQuery(metadataName,rasterManager.timeAttribute);
-            
-            // check result
-            final Date result=(Date) visitor.getResult().getValue();
-            final SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-            df.setTimeZone(UTC_TZ);
-            return df.format(result)+"Z";//ZULU
-        } catch (IOException e) {
-            if(LOGGER.isLoggable(Level.WARNING))
-                    LOGGER.log(Level.WARNING,"Unable to compute extrema for TIME_DOMAIN",e);
-            return null;
+    @Override
+    public synchronized void dispose() {
+        super.dispose();
+        synchronized (this) {
+            try {
+                if (granuleCatalog != null)
+                    this.granuleCatalog.dispose();
+                disposeManagers();
+            } catch (Exception e) {
+                if (LOGGER.isLoggable(Level.FINE))
+                    LOGGER.log(Level.FINE, e.getLocalizedMessage(), e);
+            }
         }
     }
 
     /**
-     * @param metadataName
-     * @param attributeName 
+     * Dispose raster managers
+     */
+    private void disposeManagers() {
+        if (rasterManagers != null) {
+            Set<String> keys = rasterManagers.keySet();
+            for (String key: keys) {
+                rasterManagers.get(key).dispose();
+            }
+            rasterManagers.clear();
+            rasterManagers = null;
+        }
+    }
+
+    @Override
+    public String[] getMetadataNames() {
+        return getMetadataNames(UNSPECIFIED);
+    }
+
+    /**
+     * Populate the metadata names array for the specified coverageName
+     * @param coverageName
+     * @return
+     */
+    @Override
+    public String[] getMetadataNames(String coverageName) {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager != null ? manager.getMetadataNames() : null;
+    }
+
+    @Override
+    public String getMetadataValue(final String name) {
+        return getMetadataValue(UNSPECIFIED, name);
+    }
+
+    @Override
+    public String getMetadataValue(String coverageName, final String name) {
+        coverageName = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(coverageName);
+        return manager.getMetadataValue(name);
+    }
+
+    @Override
+    public Set<ParameterDescriptor<List>> getDynamicParameters() {
+        return getDynamicParameters(UNSPECIFIED);
+    }
+    
+    @Override
+    public Set<ParameterDescriptor<List>> getDynamicParameters(String coverageName) {
+        coverageName = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager =  getRasterManager(coverageName);
+        return (Set<ParameterDescriptor<List>>) (manager.domainsManager != null ? manager.domainsManager
+                .getDynamicParameters() :  Collections.emptySet());
+    }
+
+    public boolean isParameterSupported(Identifier name) {
+        return isParameterSupported(UNSPECIFIED, name);
+    }
+    
+    @Override
+    public int getNumOverviews(String coverageName) {
+        coverageName = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager =  getRasterManager(coverageName);
+        return manager.overviewsController.getNumberOfOverviews();
+    }
+
+    @Override
+    public int getNumOverviews() {
+        return getNumOverviews(UNSPECIFIED);
+    }
+
+    @Override
+    public double[] getReadingResolutions(OverviewPolicy policy,
+            double[] requestedResolution) {
+        return getReadingResolutions(UNSPECIFIED, policy, requestedResolution);
+    }
+
+    @Override
+    public double[] getReadingResolutions(String coverageName, OverviewPolicy policy,
+            double[] requestedResolution) {
+        coverageName = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager =  getRasterManager(coverageName);
+        final int numOverviews = getNumOverviews(coverageName);
+        OverviewsController overviewsController = manager.overviewsController; 
+        OverviewLevel level = null;
+        if (numOverviews > 0) {
+            int imageIdx = overviewsController.pickOverviewLevel(policy, requestedResolution);
+            level = overviewsController.getLevel(imageIdx);
+        } else {
+            level = overviewsController.getLevel(0);
+        }
+        return new double[]{level.resolutionX, level.resolutionY};
+    }
+
+        /**
+         * Check whether the specified parameter is supported for the specified coverage.
+         * @param coverageName
+         * @param parameterName
+         * @return
+         */
+        public boolean isParameterSupported(String coverageName, Identifier parameterName) {
+            coverageName = checkUnspecifiedCoverage(coverageName);
+            RasterManager manager = getRasterManager(coverageName);
+            return manager.domainsManager != null ? manager.domainsManager.isParameterSupported(parameterName) : false;
+    }
+
+    /**
+     * Checker whether the specified coverageName is supported. In case the name is Unspecified and the manager only has 1 coverage, then it returns
+     * the only available coverage name (using default to speed up the response without need to access the set through an iterator). In case of
+     * multiple coverages, throws an Exceptions if the coverage name is unspecified.
+     * 
+     * @param coverageName
+     */
+    private String checkUnspecifiedCoverage(String coverageName) {
+        if (coverageName.equalsIgnoreCase(UNSPECIFIED)) {
+            if (getGridCoverageCount() > 1) {
+                throw new IllegalArgumentException(
+                        "Need to specify the coverageName for a reader related to multiple coverages");
+            } else {
+                return defaultName;
+            }
+        } else {
+            if (!names.contains(coverageName)) {
+                throw new IllegalArgumentException("The specified coverageName is unavailable");
+            } else {
+                return coverageName;
+            }
+        }
+    }
+
+    /**
+     * Create a RasterManager on top of this {@link MosaicConfigurationBean}
+     * @param configuration the {@link MosaicConfigurationBean} to be used to create the {@link RasterManager}
+     * @param init {@code true} if the Manager should be initialized. 
      * @return
      * @throws IOException
      */
-    private FeatureCalc createExtremaQuery(String metadataName, String attributeName) throws IOException {
-        final Query query = new Query(rasterManager.granuleCatalog.getType().getTypeName());
-        query.setPropertyNames(Arrays.asList(attributeName));
-                              
-        final FeatureCalc visitor= 
-            metadataName.toLowerCase().endsWith("maximum")?
-                new MaxVisitor(attributeName):new MinVisitor(attributeName);
-        rasterManager.granuleCatalog.computeAggregateFunction(query, visitor);
-        return visitor;
-    }
-    
-    /**
-     * Extract the elevation domain extrema.
-     * 
-     * @param metadataName a {@link String} either ELEVATION_DOMAIN_MAXIMUM or ELEVATION_DOMAIN_MINIMUM.
-     * 
-     * @return either ELEVATION_DOMAIN_MAXIMUM or ELEVATION_DOMAIN_MINIMUM as a {@link String}.
-     */
-    private String extractElevationExtrema(String metadataName) {
-        if(elevationAttribute==null){
-            if(LOGGER.isLoggable(Level.INFO))
-                LOGGER.info("Requesting extrema on attribute "+metadataName+" when no such an attribute is supported!");
-            return null;
+    protected RasterManager addRasterManager(final MosaicConfigurationBean configuration, final boolean init) throws IOException {
+        Utilities.ensureNonNull("MosaicConfigurationBean", configuration);
+        String name = configuration.getName();
+        RasterManager rasterManager = new RasterManager(this, configuration);
+        rasterManagers.put(name, rasterManager);
+        names.add(name);
+        if (defaultName == null) {
+            defaultName = name;
         }
-        try {
-            final FeatureCalc visitor = createExtremaQuery(metadataName,rasterManager.elevationAttribute);
-            
-            // check result
-            final Object result = visitor.getResult().getValue();
-            if(result instanceof Number) {
-                return result.toString();
-            } else {
-                return null;
-            }
-        } catch (IOException e) {
-            if(LOGGER.isLoggable(Level.WARNING))
-                    LOGGER.log(Level.WARNING,"Unable to compute extrema for ELEVATION_DOMAIN",e);
-            return null;
+        if (init) {
+            rasterManager.initialize(false);
+        }
+        return rasterManager;
+    }
+
+    @Override
+    public GranuleSource getGranules(final String coverageName, final boolean readOnly) throws IOException,
+            UnsupportedOperationException {
+        RasterManager manager = getRasterManager(coverageName);
+        if (manager == null) {
+            // Consider creating a new GranuleStore
+        } else {
+            return manager.getGranuleSource(readOnly, getHints());
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isReadOnly() {
+        return false;
+    }
+
+    @Override
+    public void createCoverage(String coverageName, SimpleFeatureType indexSchema) throws IOException, UnsupportedOperationException {
+        RasterManager manager = getRasterManager(coverageName);
+        if (manager != null) {
+            manager.createStore(indexSchema);
+        } else {
+            throw new IOException("This implementation requires to create a RasterManager for a coverage before creating the store. " + coverageName);
         }
     }
 
-    /**
-     * Extract the elevation domain as a comma separated list of string values.
-     * @return a {@link String} that contains a comma separated list of values.
-     */
-    private String extractElevationDomain() {
-        if(elevationAttribute==null){
-            if(LOGGER.isLoggable(Level.INFO))
-                LOGGER.info("Requesting domain on attribute elevation when no such an attribute is supported!");
-            return null;
-        }
-        try {
-            final Set<Number> result = extractDomain(elevationAttribute);          
-            // check result
-            if(result.size()<=0)
-                    return "";
-            
-            final StringBuilder buff= new StringBuilder();
-            for(Iterator<Number> it= result.iterator(); it.hasNext();){
-                    final double value= ((Number) it.next()).doubleValue();
-                    buff.append(value);
-                    if(it.hasNext())
-                    	buff.append(",");
-            }
-            return buff.toString();
-        } catch (IOException e) {
-            if(LOGGER.isLoggable(Level.WARNING))
-                    LOGGER.log(Level.WARNING,"Unable to parse attribute: ELEVATION_DOMAIN",e);
-            return "";
-        }
+    @Override
+    public boolean removeCoverage(String coverageName, final boolean delete) throws IOException {
+        return removeCoverage(coverageName, delete, true);
     }
 
     /**
-     * Extract the domain of a dimension as a set of unique values.
      * 
-     * <p>
-     * It retrieves a comma separated list of values as a {@link String}.
-     * 
-     * @return a comma separated list of values as a {@link String}.
+     * @param coverageName
+     * @param forceDelete
+     * @param checkForReferences
+     *          {@code true} true in case, when deleting, we need to check whether the file is being referred by some
+     *          other coverage or not. In the latter case, we can safely delete it
+     *          
+     * @return
      * @throws IOException
      */
-    private Set extractDomain(final String attribute)
-            throws IOException {
+    private boolean removeCoverage(String coverageName, final boolean forceDelete, final boolean checkForReferences) throws IOException {
+        RasterManager manager = getRasterManager(coverageName);
+        if (manager != null) {
+           manager.removeStore(coverageName, forceDelete, checkForReferences);
+           
+           // Should I preserve managers for future re-harvesting or it's ok
+           // to remove them
+           rasterManagers.remove(coverageName);
+           names.remove(coverageName);
+           if (defaultName == coverageName) {
+               Iterator<String> iterator = names.iterator();
+               if (iterator.hasNext()) {
+                   defaultName = iterator.next();
+               } else {
+                   defaultName = null;
+               }
+           }
 
-        final QueryCapabilities queryCapabilities = rasterManager.granuleCatalog.getQueryCapabilities();
-        boolean manualSort=false;        
-        Query query = new Query(rasterManager.granuleCatalog.getType().getTypeName());
-        query.setPropertyNames(Arrays.asList(attribute));
-        final SortBy[] sortBy=new SortBy[]{
-                	new SortByImpl(
-                			FeatureUtilities.DEFAULT_FILTER_FACTORY.property(attribute),
-                			SortOrder.ASCENDING
-                	)};
-        if(queryCapabilities.supportsSorting(sortBy))
-                query.setSortBy(sortBy);
-        else
-                manualSort=true;				
-        final UniqueVisitor visitor= new UniqueVisitor(attribute);
-        rasterManager.granuleCatalog.computeAggregateFunction(query, visitor);
+           return true;
+        } else {
+            throw new IOException("No Raster manager have been found for the specified coverageName. " + coverageName);
+        }
+    }
+    
+    
+
+    @Override
+    public GeneralEnvelope getOriginalEnvelope() {
+        return getOriginalEnvelope(UNSPECIFIED);
+    }
+
+    @Override
+    public GeneralEnvelope getOriginalEnvelope(String coverageName) {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager.spatialDomainManager.coverageEnvelope;
+    }
+
+    @Override
+    public GridEnvelope getOriginalGridRange() {
+        return getOriginalGridRange(UNSPECIFIED);
+    }
+    
+    @Override
+    public GridEnvelope getOriginalGridRange(String coverageName) {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager.spatialDomainManager.gridEnvelope;
+    }
+
+    @Override
+    public MathTransform getOriginalGridToWorld(PixelInCell pixInCell) {
+        return getOriginalGridToWorld(UNSPECIFIED, pixInCell);
+    }
+    
+    @Override
+    public MathTransform getOriginalGridToWorld(String coverageName, PixelInCell pixInCell) {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager.spatialDomainManager.getOriginalGridToWorld(pixInCell);
+    }
+
+    @Override
+    public CoordinateReferenceSystem getCoordinateReferenceSystem() {
+        return getCoordinateReferenceSystem(UNSPECIFIED);
+    }
+    @Override
+    public CoordinateReferenceSystem getCoordinateReferenceSystem(String coverageName) {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager.spatialDomainManager.coverageCRS;
+    }
+
+    @Override
+    public ImageLayout getImageLayout() throws IOException {
+        return getImageLayout(UNSPECIFIED);
+    }
+
+    @Override
+    public ImageLayout getImageLayout(String coverageName) throws IOException {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager.defaultImageLayout;
+    }
+    
+    @Override
+    public double[][] getResolutionLevels() throws IOException {
+        return getResolutionLevels(UNSPECIFIED);
+    }
+
+    @Override
+    public double[][] getResolutionLevels(String coverageName) throws IOException {
+        String name = checkUnspecifiedCoverage(coverageName);
+        RasterManager manager = getRasterManager(name);
+        return manager.levels;
+    }
+
+    @Override
+    public List<HarvestedSource> harvest(String defaultCoverage, Object source, Hints hints) throws IOException, UnsupportedOperationException {
+        File file = null;
+        if(source instanceof File) {
+            file = (File) source;
+        }
+        if(source instanceof String) {
+            file = new File((String) source);
+        }
+
+        final List<HarvestedSource> result = new ArrayList<HarvestedSource>();
+        if(file == null) {
+            result.add(new DefaultHarvestedSource(source, false, "Unrecognized source type"));
+            return result;
+        } else if(!file.exists()) {
+            result.add(new DefaultHarvestedSource(source, false, "Specified file path does not exist"));
+            return result;
+        }
         
-        // check result
-        final Set result = manualSort?
-                new TreeSet(visitor.getUnique()):
-                visitor.getUnique();
+        // the mosaic walker works on a single directory, if we need to harvest 
+        // a single file we'll have to use the parent folder and add a filter
+        IOFileFilter filter = null;
+        File directory = file;
+        if(!file.isDirectory()) {
+            directory = file.getParentFile();
+            filter = FileFilterUtils.nameFileFilter(file.getName());
+        }
+        
+        // prepare the walker configuration
+        CatalogBuilderConfiguration configuration = new CatalogBuilderConfiguration();
+        configuration.setParameter(Prop.ABSOLUTE_PATH, Boolean.toString(Utils.DEFAULT_PATH_BEHAVIOR));
+        String indexingPath = directory.getAbsolutePath();
+        configuration.setParameter(Prop.HARVEST_DIRECTORY, indexingPath);
+        if(defaultCoverage == null) {
+            String[] coverageNames = getGridCoverageNames();
+            defaultCoverage = (coverageNames != null && coverageNames.length > 0) ? coverageNames[0] : Utils.DEFAULT_INDEX_NAME;
+        } 
+        configuration.setParameter(Prop.INDEX_NAME, defaultCoverage);
+        configuration.setHints(new Hints(Utils.MOSAIC_READER, this));
+        
+        File mosaicSource = DataUtilities.urlToFile(sourceURL);
+        if(!mosaicSource.isDirectory()) {
+            mosaicSource = mosaicSource.getParentFile();
+        }
+        
+        configuration.setParameter(Prop.ROOT_MOSAIC_DIR, mosaicSource.getAbsolutePath());
+        
+        // run the walker and collect information
+        ImageMosaicEventHandlers eventHandler = new ImageMosaicEventHandlers();
+        final ImageMosaicConfigHandler catalogHandler = new ImageMosaicConfigHandler(configuration,
+                eventHandler);
+        // build the index
+        ImageMosaicDirectoryWalker walker = new ImageMosaicDirectoryWalker(catalogHandler, eventHandler,filter);
+        eventHandler.addProcessingEventListener(new ImageMosaicEventHandlers.ProcessingEventListener() {
+            
+            @Override
+            public void getNotification(ProcessingEvent event) {
+                if(event instanceof FileProcessingEvent) {
+                    FileProcessingEvent fileEvent = (FileProcessingEvent) event;
+                    result.add(new DefaultHarvestedSource(fileEvent.getFile(), fileEvent.isIngested(), fileEvent.getMessage()));
+                }
+            }
+            
+            @Override
+            public void exceptionOccurred(ExceptionEvent event) {
+                // nothing to do
+            }
+        });
+
+        walker.run();
+
         return result;
     }
 
-    /**
-     * Extract the elevation domain as a comma separated list of string values.
-     * @return a {@link String} that contains a comma separated list of values.
-     */
-    private String extractTimeDomain() {
-        if(timeAttribute==null){
-            if(LOGGER.isLoggable(Level.INFO))
-                LOGGER.info("Requesting domain on attribute time when no such an attribute is supported!");
-            return null;
+    @Override
+    public List<DimensionDescriptor> getDimensionDescriptors(String coverageName) throws IOException {
+            RasterManager manager = getRasterManager(coverageName);
+            return manager.getDimensionDescriptors();
+    }
+
+    @Override
+    public void delete(boolean deleteData) throws IOException {
+        // TODO: Should we make it synchronized?
+
+        String[] coverageNames = getGridCoverageNames();
+        for (String coverageName: coverageNames) {
+            removeCoverage(coverageName, deleteData, true);
         }
-        try {
-            final Collection<Date>result =extractDomain(timeAttribute);
-            
-            // check result
-            if(result.size()<=0)
-                    return "";	
-                    
-            final StringBuilder buff= new StringBuilder();
-            final SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-            df.setTimeZone(UTC_TZ);
-            for(Date date:result){
-                    buff.append(df.format(date)).append("Z");//ZULU
-                    buff.append(",");
+
+        // Dispose before deleting to make sure any lock on files or resources is released
+        dispose();
+        removeDB();
+        if (deleteData) {
+            // quick way: delete everything
+            final File[] list = parentDirectory.listFiles();
+            for (File file: list) {
+                FileUtils.deleteQuietly(file);
             }
-            return buff.substring(0,buff.length()-1).toString();
-        } catch (IOException e) {
-            if(LOGGER.isLoggable(Level.WARNING))
-                    LOGGER.log(Level.WARNING,"Unable to parse attribute:TIME_DOMAIN",e);
-            return "";
+        } else {
+            finalizeCleanup();
         }
+    }
+
+    private void removeDB() throws IOException {
+        final File parent = DataUtilities.urlToFile(sourceURL).getParentFile();
+
+        final File datastoreProperties = new File(parent, "datastore.properties");
+        if (datastoreProperties != null && datastoreProperties.exists() && datastoreProperties.canRead()) {
+            CatalogManager.dropDatastore(datastoreProperties);
+        }
+
+        // Scan for MosaicConfigurationBeans from properties files
+        List<MosaicConfigurationBean> beans = new ArrayList<MosaicConfigurationBean>();
+        
+    }
+
+    /**
+     * Finalize the clean up by removing any file returned by the cleanup filter.
+     * Note that some H2 .db files change their name during life cycle. So they won't be stored inside the fileset manager
+     */
+    private void finalizeCleanup() {
+        IOFileFilter filesFilter = Utils.getCleanupFilter();
+        Collection<File> files = FileUtils.listFiles(parentDirectory, filesFilter, null);
+        for (File file : files) {
+            FileUtils.deleteQuietly(file);
+        }
+
+    }
+
+    @Override
+    public boolean removeCoverage(String coverageName) throws IOException, UnsupportedOperationException {
+        return removeCoverage(coverageName, false);
     }
 }

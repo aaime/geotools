@@ -23,11 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.media.jai.JAI;
+import javax.media.jai.ParameterBlockJAI;
 import javax.media.jai.RenderedOp;
 import javax.media.jai.operator.HistogramDescriptor;
 
 import org.geotools.coverage.grid.GridCoverage2D;
-import org.geotools.coverage.processing.AbstractStatisticsOperationJAI;
+import org.geotools.coverage.processing.BaseStatisticsOperationJAI;
 import org.opengis.coverage.processing.OperationNotFoundException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -75,7 +76,7 @@ import org.opengis.util.InternationalString;
  *
  * @source $URL$
  */
-public class Histogram extends AbstractStatisticsOperationJAI {
+public class Histogram extends BaseStatisticsOperationJAI {
 
 	/**
 	 * Serial number for interoperability with different versions.
@@ -147,4 +148,13 @@ public class Histogram extends AbstractStatisticsOperationJAI {
 		}
 		return super.getProperties(data, crs, name, toCRS, sources, parameters);
 	}
+
+    @Override
+    protected ParameterBlockJAI prepareParameters(ParameterValueGroup parameters) {
+        ParameterBlockJAI block = super.prepareParameters(parameters);
+        block.setParameter("lowValue", parameters.parameter("lowValue").getValue());
+        block.setParameter("highValue", parameters.parameter("highValue").getValue());
+        block.setParameter("numBins", parameters.parameter("numBins").getValue());
+        return block;
+    }
 }

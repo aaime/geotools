@@ -36,8 +36,25 @@ import org.geotools.jdbc.SQLDialect;
 public class SQLServerDataStoreFactory extends JDBCDataStoreFactory {
     /** parameter for database type */
     public static final Param DBTYPE = new Param("dbtype", String.class, "Type", true, "sqlserver");
+    
     /** parameter for using integrated security, only works on windows, ignores the user and password parameters, the current windows user account is used for login*/
     public static final Param INTSEC = new Param("Integrated Security", Boolean.class, "Login as current windows user account. Works only in windows. Ignores user and password settings.", false, new Boolean(false)); 
+
+	/** parameter for using Native Paging */
+	public static final Param NATIVE_PAGING = new Param("Use Native Paging", Boolean.class, "Use native paging for sql queries. For some sets of data, native paging can have a performance impact.", false, Boolean.TRUE);	
+		
+    /** Metadata table providing information about primary keys **/
+    public static final Param GEOMETRY_METADATA_TABLE = new Param("Geometry metadata table", String.class,
+            "The optional table containing geometry metadata (geometry type and srid). Can be expressed as 'schema.name' or just 'name'", false);
+
+    /** parameter for using WKB or Sql server binary directly. Setting to true will use WKB */
+    public static final Param NATIVE_SERIALIZATION = new Param("Use native geometry serialization", Boolean.class,
+            "Use native SQL Server serialization, or WKB serialization.", false, Boolean.FALSE);
+    
+    /** parameter for forcing the usage of spatial indexes in queries via sql hints */
+    public static final Param FORCE_SPATIAL_INDEX = new Param("Force spatial index usage via hints", Boolean.class,
+            "When enabled, spatial filters will be accompained by a WITH INDEX sql hint forcing the usage of the spatial index.", false, Boolean.FALSE);
+
     
     @Override
     protected SQLDialect createSQLDialect(JDBCDataStore dataStore) {
@@ -69,6 +86,10 @@ public class SQLServerDataStoreFactory extends JDBCDataStoreFactory {
         super.setupParameters(parameters);
         parameters.put(DBTYPE.key, DBTYPE);
         parameters.put(INTSEC.key, INTSEC);
+        parameters.put(NATIVE_PAGING.key, NATIVE_PAGING);
+        parameters.put(NATIVE_SERIALIZATION.key, NATIVE_SERIALIZATION);
+        parameters.put(GEOMETRY_METADATA_TABLE.key, GEOMETRY_METADATA_TABLE);
+        parameters.put(FORCE_SPATIAL_INDEX.key, FORCE_SPATIAL_INDEX);
     }
     
     /**
@@ -91,5 +112,32 @@ public class SQLServerDataStoreFactory extends JDBCDataStoreFactory {
         return url;
     }
 
+    @Override
+    protected JDBCDataStore createDataStoreInternal(JDBCDataStore dataStore, Map params)
+            throws IOException {
+        SQLServerDialect dialect = (SQLServerDialect) dataStore.getSQLDialect();
+    	
+    	// check the geometry metadata table
+        String metadataTable = (String) GEOMETRY_METADATA_TABLE.lookUp(params);
+        dialect.setGeometryMetadataTable(metadataTable);
+
+    	// check native paging
+        Boolean useNativePaging = (Boolean) NATIVE_PAGING.lookUp(params);
+        dialect.setUseOffSetLimit(useNativePaging == null || Boolean.TRUE.equals(useNativePaging));
+
+        // check serialization format
+        Boolean useNativeSerialization = (Boolean) NATIVE_SERIALIZATION.lookUp(params);
+        if (useNativeSerialization != null) {
+            dialect.setUseNativeSerialization(useNativeSerialization);
+        }
+        
+        // check spatial index hints usage
+        Boolean forceSpatialIndexes = (Boolean) FORCE_SPATIAL_INDEX.lookUp(params);
+        if (forceSpatialIndexes != null) {
+            dialect.setForceSpatialIndexes(forceSpatialIndexes);
+        }
+
+        return dataStore;
+    }
     
 }

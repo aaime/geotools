@@ -29,8 +29,9 @@ import org.geotools.feature.type.ComplexFeatureTypeImpl;
 import org.geotools.gml3.GML;
 import org.geotools.gml3.GMLConfiguration;
 import org.geotools.test.AppSchemaTestSupport;
+import org.geotools.xml.resolver.SchemaCatalog;
 import org.geotools.xml.AppSchemaConfiguration;
-import org.geotools.xml.AppSchemaResolver;
+import org.geotools.xml.resolver.SchemaResolver;
 import org.geotools.xml.Configuration;
 import org.geotools.xml.SchemaIndex;
 import org.geotools.xs.XS;
@@ -72,7 +73,7 @@ public class EmfAppSchemaReaderTest extends AppSchemaTestSupport {
 
         SchemaIndex schemaIndex = EmfAppSchemaReader.newInstance().parse(resource);
 
-        FeatureTypeRegistry parsedTypes = new FeatureTypeRegistry();
+        AppSchemaFeatureTypeRegistry parsedTypes = new AppSchemaFeatureTypeRegistry();
         
         try {
             parsedTypes.addSchemas(schemaIndex);
@@ -144,7 +145,7 @@ public class EmfAppSchemaReaderTest extends AppSchemaTestSupport {
         URL resource = getClass().getResource(res);
         SchemaIndex schemaIndex = EmfAppSchemaReader.newInstance().parse(resource);
         
-        FeatureTypeRegistry typeRegistry = new FeatureTypeRegistry();
+        AppSchemaFeatureTypeRegistry typeRegistry = new AppSchemaFeatureTypeRegistry();
         try {
             typeRegistry.addSchemas(schemaIndex);
             
@@ -166,7 +167,7 @@ public class EmfAppSchemaReaderTest extends AppSchemaTestSupport {
             Assert.assertEquals(8, ((ComplexFeatureTypeImpl) wq_plus_Type).getTypeDescriptors().size());
     
             Name name = Types.typeName(NS_URI, "wq_plus");
-            AttributeDescriptor wqPlusDescriptor = typeRegistry.getDescriptor(name, null, null, null);
+            AttributeDescriptor wqPlusDescriptor = typeRegistry.getDescriptor(name, null);
             Assert.assertNotNull(wqPlusDescriptor);
             Assert.assertEquals(name, wqPlusDescriptor.getName());
             Assert.assertSame(wq_plus_Type, wqPlusDescriptor.getType());
@@ -226,7 +227,7 @@ public class EmfAppSchemaReaderTest extends AppSchemaTestSupport {
         URL resource = getClass().getResource(res);
         SchemaIndex schemaIndex = EmfAppSchemaReader.newInstance().parse(resource);
 
-        FeatureTypeRegistry registry = new FeatureTypeRegistry();
+        AppSchemaFeatureTypeRegistry registry = new AppSchemaFeatureTypeRegistry();
         try {
             registry.addSchemas(schemaIndex);
     
@@ -255,7 +256,7 @@ public class EmfAppSchemaReaderTest extends AppSchemaTestSupport {
     public void findGml31Configuration() {
         AppSchemaConfiguration configuration = new AppSchemaConfiguration(
                 "urn:cgi:xmlns:CGI:GeoSciML:2.0",
-                "http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd", new AppSchemaResolver());
+                "http://www.geosciml.org/geosciml/2.0/xsd/geosciml.xsd", new SchemaResolver());
         Configuration gmlConfiguration = EmfAppSchemaReader.findGmlConfiguration(configuration);
         Assert.assertNotNull(gmlConfiguration);
         Assert.assertEquals(new GMLConfiguration(), gmlConfiguration);
@@ -269,10 +270,28 @@ public class EmfAppSchemaReaderTest extends AppSchemaTestSupport {
         AppSchemaConfiguration configuration = new AppSchemaConfiguration(
                 "urn:cgi:xmlns:CGI:GeoSciML-Core:3.0.0",
                 "https://www.seegrid.csiro.au/subversion/GeoSciML/branches/3.0.0_rc1_gml3.2/geosciml-core/3.0.0/xsd/geosciml-core.xsd",
-                new AppSchemaResolver());
+                new SchemaResolver());
         Configuration gmlConfiguration = EmfAppSchemaReader.findGmlConfiguration(configuration);
         Assert.assertNotNull(gmlConfiguration);
         Assert.assertEquals(new org.geotools.gml3.v3_2.GMLConfiguration(), gmlConfiguration);
     }
+    
+    /**
+     * Test when secondary schemaUri contains non GML schema used in anyType from primary schema.
+     */
+    @Test
+	public void testNonGMLConfiguration() {
+		SchemaCatalog catalog = SchemaCatalog.build(getClass()
+				.getResource("/test-data/mappedPolygons.oasis.xml"));
+		AppSchemaConfiguration configuration = new AppSchemaConfiguration(
+				"http://www.opengis.net/swe/2.0",
+				"http://schemas.opengis.net/sweCommon/2.0/swe.xsd",
+				new SchemaResolver(catalog));
+		Configuration gmlConfiguration = EmfAppSchemaReader
+				.findGmlConfiguration(configuration);
+		// Null should be returned, not exception
+		// Warning message should be in the log
+		Assert.assertNull(gmlConfiguration);
+	}
 
 }

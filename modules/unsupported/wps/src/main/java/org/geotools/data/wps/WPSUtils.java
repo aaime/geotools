@@ -2,7 +2,7 @@
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
  *
- *    (C) 2008, Open Source Geospatial Foundation (OSGeo)
+ *    (C) 2008-12, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.vividsolutions.jts.geom.Geometry;
+import java.util.logging.Logger;
+import net.opengis.ows11.DomainMetadataType;
 
 import net.opengis.wps10.ComplexDataCombinationsType;
 import net.opengis.wps10.ComplexDataDescriptionType;
@@ -47,6 +49,7 @@ import org.eclipse.emf.common.util.EList;
 import org.geotools.data.Parameter;
 import org.geotools.text.Text;
 import org.geotools.util.Converters;
+import org.geotools.util.logging.LoggerFactory;
 import org.opengis.util.InternationalString;
 
 
@@ -54,6 +57,7 @@ import org.opengis.util.InternationalString;
  * Contains helpful static util methods for the WPS module
  *
  * @author gdavis
+ * @author etj
  *
  *
  *
@@ -62,6 +66,7 @@ import org.opengis.util.InternationalString;
  */
 public class WPSUtils
 {
+    private static final Logger LOGGER = org.geotools.util.logging.Logging.getLogger("org.geotools.data.wps");
 
     /**
      * static ints representing the input types
@@ -137,6 +142,21 @@ public class WPSUtils
      */
     public static DataType createInputDataType(Object obj, int type, String schema)
     {
+        return createInputDataType(obj, type, schema, null);
+    }
+
+    /**
+     * Creates a DataType input object from the given object, schema and type (complex or literal).
+     *
+     * @param obj
+     *            the base input object
+     * @param type
+     *            the input type (literal or complexdata)
+     * @param schema
+     *            only used for type complexdata
+     * @return the created DataType input object
+     */
+    public static DataType createInputDataType(Object obj, int type, String schema, String mimeType) {
         DataType dt = Wps10Factory.eINSTANCE.createDataType();
 
         if (type == INPUTTYPE_LITERAL)
@@ -161,11 +181,15 @@ public class WPSUtils
             {
                 cdt.setSchema(schema);
             }
+            if(mimeType != null) {
+                cdt.setMimeType(mimeType);
+            }
             dt.setComplexData(cdt);
         }
 
         return dt;
     }
+
 
     /**
      * Create a map of <String name, Parameter> inputs for a process based on its describeProcess.
@@ -290,8 +314,31 @@ public class WPSUtils
             Class type = Object.class;
             if (literalOutput != null)
             {
-                String reference = literalOutput.getDataType().getReference();
-                type = getLiteralTypeFromReference(reference);
+                DomainMetadataType dataType = literalOutput.getDataType();
+                if(dataType != null)
+                {
+                    // try and parse the type
+                    Class literalType = null;
+                    
+                    if(dataType.getReference() != null) { // reference is 0..1
+                        literalType = guessLiteralType(dataType.getReference());
+                        if(literalType == null) {
+                            LOGGER.warning("Unparsable ows:reference " + dataType.getReference());
+                        }
+                    }
+                    if(literalType == null) { // no parsable reference
+                        literalType = guessLiteralType(dataType.getValue()); // value is mandatory
+                    }
+
+                    type = literalType != null? literalType : String.class;
+                }
+                else
+                {
+                    // datatype is null => character string (OGC 05-007r7, Table 37, DataType)
+                    type = String.class;
+                }
+
+                // TODO: handle UOM
             }
             else if (complexOutput != null)
             {
@@ -348,39 +395,53 @@ public class WPSUtils
     /**
      * Take a reference string and determine the literal type based from that
      *
-     * @param reference
-     *            string
-     * @return class type it maps to
+     * @param ref (OGC suggests a URN starting with urn:ogc:def:dataType:OGC)
+     * 
+     * @return class type it maps to, or String.class if no match was found
      */
-    private static Class getLiteralTypeFromReference(String reference)
+    private static Class getLiteralTypeFromReference(String ref)
     {
-        if ((reference.toUpperCase()).contains("DOUBLE"))
+        Class guess = guessLiteralType(ref);
+        
+        return guess != null? guess : String.class; // default to string
+    }
+
+    /**
+     * Try and parse a literaltype.
+     * If nothing matched, return null.
+     * 
+     * @return class type it maps to, or null if no match was found
+     */
+    private static Class guessLiteralType(String s)
+    {
+        final String u = s.toUpperCase();
+
+        if (u.contains("DOUBLE"))
         {
             return Double.class;
         }
-        else if ((reference.toUpperCase()).contains("INTEGER"))
+        else if ( u.contains("INTEGER"))
         {
             return Integer.class;
         }
-        else if ((reference.toUpperCase()).contains("FLOAT"))
+        else if ( u.contains("FLOAT"))
         {
             return Float.class;
         }
-        else if ((reference.toUpperCase()).contains("BOOLEAN"))
+        else if ( u.contains("BOOLEAN"))
         {
             return boolean.class;
         }
-        else if ((reference.toUpperCase()).contains("CHAR"))
+        else if ( u.contains("CHAR"))
         {
             return Character.class;
         }
-        else if ((reference.toUpperCase()).contains("STRING"))
+        else if ( u.contains("STRING"))
         {
             return String.class;
         }
 
-        // default to string
-        return String.class;
+        return null;
     }
 
     /**

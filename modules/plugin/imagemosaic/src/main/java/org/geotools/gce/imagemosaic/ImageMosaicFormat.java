@@ -2,7 +2,7 @@
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
  *
- *    (C) 2006-2008, Open Source Geospatial Foundation (OSGeo)
+ *    (C) 2006-2013, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -25,10 +25,8 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,6 +45,7 @@ import org.geotools.data.DataUtilities;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureSource;
 import org.geotools.factory.Hints;
+import org.geotools.gce.imagemosaic.catalog.CatalogConfigurationBean;
 import org.geotools.gce.imagemosaic.catalog.GranuleCatalog;
 import org.geotools.parameter.DefaultParameterDescriptor;
 import org.geotools.parameter.DefaultParameterDescriptorGroup;
@@ -112,9 +111,6 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
     
     static final Interpolation DEFAULT_INTERPOLATION = new InterpolationNearest();
 
-    /** Optional Time value for this mosaic. */
-    public static final ParameterDescriptor<List> TIME = DefaultParameterDescriptor.create("TIME", "A list of time objects",List.class, null,false);    
-    
     /** Filter tiles based on attributes from the input coverage*/
     public static final ParameterDescriptor<Filter> FILTER = new DefaultParameterDescriptor<Filter>("Filter", Filter.class, null, null);
     
@@ -142,12 +138,8 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
             "AllowMultithreading", Boolean.class, new Boolean[]{Boolean.TRUE,Boolean.FALSE}, Boolean.FALSE);
     
     /** Control the footprint management.*/
-    public static final ParameterDescriptor<Boolean> HANDLE_FOOTPRINT = new DefaultParameterDescriptor<Boolean>(
-            "HandleFootprint", Boolean.class, new Boolean[]{Boolean.TRUE,Boolean.FALSE}, Boolean.TRUE);
-    
-    /** Control whether to add the ROI in the output mosaic. */
-    public static final ParameterDescriptor<Boolean> SET_ROI_PROPERTY = new DefaultParameterDescriptor<Boolean>(
-            "SetRoiProperty", Boolean.class, new Boolean[]{Boolean.TRUE,Boolean.FALSE}, Boolean.FALSE);
+    public static final ParameterDescriptor<String> FOOTPRINT_BEHAVIOR = new DefaultParameterDescriptor<String>(
+            "FootprintBehavior", String.class, FootprintBehavior.valuesAsStrings(), FootprintBehavior.None.name());
     
     /** Control the background values for the output coverage */
     public static final ParameterDescriptor<double[]> BACKGROUND_VALUES = new DefaultParameterDescriptor<double[]>(
@@ -156,11 +148,22 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
     /** Control the interpolation to be used in mosaicking */
     public static final ParameterDescriptor<Interpolation> INTERPOLATION = new DefaultParameterDescriptor<Interpolation>(
             "Interpolation", Interpolation.class, null, DEFAULT_INTERPOLATION);
+    /** Control the requested resolution calculation. */
+    public static final ParameterDescriptor<Boolean> ACCURATE_RESOLUTION = new DefaultParameterDescriptor<Boolean>("Accurate resolution computation", Boolean.class, new Boolean[]{Boolean.TRUE,Boolean.FALSE}, Boolean.FALSE);
 
-    /** Optional Elevation value for this mosaic. */
-    public static final ParameterDescriptor<List> ELEVATION = DefaultParameterDescriptor.create("ELEVATION", "An elevation value",List.class, null,false);
-
+    /** Optional Sorting for the granules of the mosaic.
+     * 
+     *  <p>It does work only with DBMS as indexes
+     */
+    public static final ParameterDescriptor<String> SORT_BY = new DefaultParameterDescriptor<String>("SORTING",String.class, null, null);
     
+    /**
+     * Merging behavior for the various granules of the mosaic we are going to produce.
+     * 
+     * <p>
+     * This parameter controls whether we want to merge in a single mosaic or stack all the bands into the final mosaic.
+     */
+    public static final ParameterDescriptor<String> MERGE_BEHAVIOR = new DefaultParameterDescriptor<String>("MergeBehavior",String.class,MergeBehavior.valuesAsStrings(), MergeBehavior.getDefault().toString());
     /**
      * Creates an instance and sets the metadata.
      */
@@ -193,7 +196,11 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
                 MAX_ALLOWED_TILES,
                 TIME,
                 ELEVATION,
-                FILTER
+                FILTER,
+                ACCURATE_RESOLUTION,
+                SORT_BY,
+                MERGE_BEHAVIOR,
+                FOOTPRINT_BEHAVIOR
         }));
 
         // reading parameters
@@ -240,7 +247,7 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
      * @param source
      * @return 
      */
-    private boolean checkDescriptor(final ImageMosaicDescriptor source) {
+    private static boolean checkDescriptor(final ImageMosaicDescriptor source) {
         //TODO: improve checks
         final GranuleCatalog catalog = source.getCatalog();
         final MosaicConfigurationBean configuration = source.getConfiguration();
@@ -269,6 +276,30 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
     @SuppressWarnings("unchecked")
     private boolean checkForUrl( Object source, Hints hints){
          try {
+            if (hints != null && hints.containsKey(Utils.EXCLUDE_MOSAIC) && ((Boolean)hints.get(Utils.EXCLUDE_MOSAIC) == true)) {
+                return false;
+            }
+
+            // Minimal check. In case we found the indexer we say that we can deal with that mosaic
+            // An additional getReader may confirm or deny that in case.
+            boolean indexerFound = Utils.minimalIndexCheck(source);
+            if (indexerFound) {
+                return true;
+            }
+
+            //
+            // Check source
+            //
+            // if it is a URL or a String let's try to see if we can get a file to
+            // check if we have to build the index
+            ImageMosaicReader reader = getReader(source, hints);
+            if (reader != null) {
+                // TODO: It's inefficient
+                reader.dispose();
+                return true;
+            }
+            
+            
             
             URL sourceURL = Utils.checkSource(source, hints);
             if(sourceURL == null){
@@ -308,7 +339,7 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
         		    final String SPIClass=properties.getProperty("SPI");
     		    	// create a datastore as instructed
     				final DataStoreFactorySpi spi= (DataStoreFactorySpi) Class.forName(SPIClass).newInstance();
-    				
+ 				
     				// get the params
     				final Map<String, Serializable> params = new HashMap<String, Serializable>();	
     				final Param[] paramsInfo = spi.getParametersInfo();
@@ -324,6 +355,12 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
     							return false;
     						}
     				}						
+    				// H2 workadound
+                    if (Utils.isH2Store(spi)) {
+                        Utils.fixH2DatabaseLocation(params,
+                                DataUtilities.fileToURL(sourceF.getParentFile()).toExternalForm());
+                    }
+    				
     				tileIndexStore=spi.createDataStore(params);
         			if(tileIndexStore==null)
         				return false;
@@ -337,27 +374,9 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
             	    }
                     
             	    ShapefileDataStore store = new ShapefileDataStore(sourceURL);
-            	    store.setDbftimeZone(TimeZone.getTimeZone("UTC"));
+            	    store.setTimeZone(Utils.UTC_TIME_ZONE);
             	    tileIndexStore = store;
             	}
-                final String[] typeNames = tileIndexStore.getTypeNames();
-                if (typeNames.length <= 0)
-                    return false;
-                final String typeName = typeNames[0];
-                if(typeName==null)
-    				return false;
-                
-                final SimpleFeatureSource featureSource = tileIndexStore.getFeatureSource(typeName);
-                if(featureSource==null)
-    				return false;
-                
-                final SimpleFeatureType schema = featureSource.getSchema();
-                if(schema==null)
-    				return false;
-                
-                crs = featureSource.getSchema().getGeometryDescriptor().getCoordinateReferenceSystem();
-                if(crs==null)
-    				return false;
    
                 //
                 // Now look for the properties file and try to parse relevant fields
@@ -375,9 +394,9 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
 					// this can be used to look for properties files that do NOT define a datastore
 					final File[] properties = parent.listFiles(
 							(FilenameFilter)
-							FileFilterUtils.andFileFilter(
+							FileFilterUtils.and(
 									FileFilterUtils.notFileFilter(FileFilterUtils.nameFileFilter("indexer.properties")),
-								FileFilterUtils.andFileFilter(
+								FileFilterUtils.and(
 										FileFilterUtils.notFileFilter(FileFilterUtils.nameFileFilter("datastore.properties")),
 										FileFilterUtils.makeFileOnly(FileFilterUtils.suffixFileFilter(".properties")
 								)
@@ -395,13 +414,44 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
                 }
 	            
 	            //get the properties file
-	            final MosaicConfigurationBean props = Utils.loadMosaicProperties(propsUrl, "location");
-	            if(props==null)
+	            final MosaicConfigurationBean configuration = Utils.loadMosaicProperties(propsUrl, Utils.DEFAULT_LOCATION_ATTRIBUTE);
+	            if(configuration==null)
 	            	return false;
-	            
+
+	        CatalogConfigurationBean catalogBean = configuration.getCatalogConfigurationBean();
+            	// we need the type name with a DB to pick up the right table
+            	// for shapefiles this can be null so taht we select the first and ony one
+            	String typeName = catalogBean.getTypeName();            	
+            	if(typeName==null){
+                    final String[] typeNames = tileIndexStore.getTypeNames();
+                    if (typeNames.length <= 0)
+                        return false;
+                    typeName= typeNames[0];            		
+            	}
+                if(typeName==null)
+    				return false;
+
+            	// now try to connect to the index
+                SimpleFeatureSource featureSource = null;
+                try{
+                	featureSource=tileIndexStore.getFeatureSource(typeName);             	
+                }catch (Exception e) {
+                	featureSource = tileIndexStore.getFeatureSource(typeName.toUpperCase());
+				}
+                if(featureSource==null){
+                	return false;
+                }
+                
+                final SimpleFeatureType schema = featureSource.getSchema();
+                if(schema==null)
+    				return false;
+                
+                crs = featureSource.getSchema().getGeometryDescriptor().getCoordinateReferenceSystem();
+                if(crs==null)
+    				return false;	            
                 // looking for the location attribute
-	            final String locationAttributeName=props.getLocationAttribute();
-                if (schema.getDescriptor(locationAttributeName) == null)
+	            final String locationAttributeName = catalogBean.getLocationAttribute();
+                if (schema.getDescriptor(locationAttributeName) == null&&schema.getDescriptor(locationAttributeName.toUpperCase()) == null)
                     return false;   
                 
 	    		return true;
@@ -426,7 +476,7 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
 
     }
 
-	/**
+    /**
      * @see AbstractGridFormat#getReader(Object, Hints)
      */
     @Override
@@ -434,15 +484,14 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
         try {
 
             final ImageMosaicReader reader = new ImageMosaicReader(source, hints);
-//            reader.multiThreadedLoader = mtLoader;
             return reader;
         } catch (MalformedURLException e) {
             if (LOGGER.isLoggable(Level.WARNING))
                 LOGGER.log(Level.WARNING, e.getLocalizedMessage(), e);
             return null;
         } catch (IOException e) {
-            if (LOGGER.isLoggable(Level.WARNING))
-                LOGGER.log(Level.WARNING, e.getLocalizedMessage(), e);
+            if (LOGGER.isLoggable(Level.FINE))
+                LOGGER.log(Level.FINE, e.getLocalizedMessage(), e);
             return null;
         }
     }

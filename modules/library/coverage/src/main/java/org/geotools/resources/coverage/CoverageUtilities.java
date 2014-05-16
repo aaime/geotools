@@ -2,7 +2,7 @@
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
  * 
- *    (C) 2001-2008, Open Source Geospatial Foundation (OSGeo)
+ *    (C) 2001-2013, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -43,10 +43,12 @@ import org.geotools.geometry.Envelope2D;
 import org.geotools.metadata.iso.spatial.PixelTranslation;
 import org.geotools.referencing.CRS;
 import org.geotools.referencing.operation.matrix.XAffineTransform;
+import org.geotools.referencing.operation.transform.AffineTransform2D;
 import org.geotools.resources.CRSUtilities;
 import org.geotools.resources.i18n.ErrorKeys;
 import org.geotools.resources.i18n.Errors;
-import org.geotools.util.NumberRange;
+import org.geotools.resources.i18n.Vocabulary;
+import org.geotools.resources.i18n.VocabularyKeys;
 import org.geotools.util.Utilities;
 import org.opengis.coverage.Coverage;
 import org.opengis.coverage.SampleDimension;
@@ -58,6 +60,7 @@ import org.opengis.referencing.datum.PixelInCell;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform1D;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -73,7 +76,21 @@ import org.opengis.referencing.operation.TransformException;
  * @author Simone Giannecchini, GeoSolutions
  */
 public final class CoverageUtilities {
-    public static final AffineTransform IDENTITY_TRANSFORM = new AffineTransform();
+	
+	/**
+	 * Public name for standard No Data category.
+	 */
+	public static final InternationalString NODATA=Vocabulary.formatInternational(VocabularyKeys.NODATA);
+	
+	
+    /**
+     * Axes transposition for swapping Lat and Lon axes.
+     */
+    public static final AffineTransform AXES_SWAP= new AffineTransform2D(0,1,1,0,0,0);
+	
+    /** Identity affine transformation.*/
+    public static final AffineTransform IDENTITY_TRANSFORM = new AffineTransform2D(AffineTransform.getRotateInstance(0));
+    
     /**
      * {@link AffineTransform} that can be used to go from an image datum placed
      * at the center of pixels to one that is placed at ULC.
@@ -199,24 +216,60 @@ public final class CoverageUtilities {
      * @return an array of double values to use as a background.
      */
 	public static double[] getBackgroundValues(GridCoverage2D coverage) {
-        /*
-         * Get the sample value to use for background. We will try to fetch this
-         * value from one of "no data" categories. For geophysics images, it is
-         * usually NaN. For non-geophysics images, it is usually 0.
-         */
+		
+		//minimal checks
+		if(coverage==null){
+			throw new NullPointerException(Errors.format(ErrorKeys.NULL_PARAMETER_$2, "coverage","GridCoverage2D"));
+		}
+		
+		// try to get the GC_NODATA double value from the coverage property
+		final Object noData=coverage.getProperty("GC_NODATA");
+		if(noData!=null&& noData instanceof Number){
+			return new double[]{((Double)noData).doubleValue()};
+		}
+		
+        ////
+		//
+		// Try to gather no data values from the sample dimensions
+		// and, if not available, we try to suggest them from the sample
+		// dimension type
+		//
+		////
         final GridSampleDimension[] sampleDimensions = coverage.getSampleDimensions();
         final double[] background = new double[sampleDimensions.length];
+        
+        boolean found=false;
+        final int dataType = coverage.getRenderedImage().getSampleModel().getDataType();
         for (int i=0; i<background.length; i++) {
-            final NumberRange<?> range = sampleDimensions[i].getBackground().getRange();
-            final double min = range.getMinimum();
-            final double max = range.getMaximum();
-            if (range.isMinIncluded()) {
-                background[i] = min;
-            } else if (range.isMaxIncluded()) {
-                background[i] = max;
-            } else {
-                background[i] = 0.5 * (min + max);
-            }
+        	// try to use the no data category if preset
+        	final List<Category> categories = sampleDimensions[i].getCategories();
+        	if(categories!=null&&categories.size()>0){
+        		for(Category category:categories){
+        			if(category.getName().equals(NODATA)){
+        				background[i]=category.geophysics(true).getRange().getMinimum();
+        				found=true;
+        				break;
+        			}
+        		}
+        	}
+        	
+        	if(!found){
+        		// we don't have a proper no data value, let's try to suggest something 
+        		// meaningful fro mthe data type for this coverage
+            	background[i]=suggestNoDataValue(dataType).doubleValue();
+        	}
+        	
+//          SG 25112012, removed this automagic behavior        	
+//            final NumberRange<?> range = sampleDimensions[i].getBackground().getRange();
+//            final double min = range.getMinimum();
+//            final double max = range.getMaximum();
+//            if (range.isMinIncluded()) {
+//                background[i] = min;
+//            } else if (range.isMaxIncluded()) {
+//                background[i] = max;
+//            } else {
+//                background[i] = 0.5 * (min + max);
+//            }
         }
         return background;
     }
@@ -370,7 +423,8 @@ public final class CoverageUtilities {
      *
      * @todo Move this method in {@link org.geotools.coverage.processing.Operation2D}.
      */
-    public static ViewType preferredViewForOperation(final GridCoverage2D coverage,
+    @SuppressWarnings("deprecation")
+	public static ViewType preferredViewForOperation(final GridCoverage2D coverage,
             final Interpolation interpolation, final boolean hasFilter, final RenderingHints hints)
     {
         /*
@@ -597,8 +651,7 @@ public final class CoverageUtilities {
 	
 	/**
 	 * Returns a suitable no data value depending on the {@link DataBuffer} type.
-	 * 
-	 * 	 * 
+	 *
 	 * @param dataType
 	 *            to create a low threshold for.
 	 * @return a no data value suitable for this data type.
@@ -620,5 +673,42 @@ public final class CoverageUtilities {
 		default:
 			throw new IllegalAccessError(Errors.format(ErrorKeys.ILLEGAL_ARGUMENT_$2,"dataType",dataType));
 		}
-	}  
+	}
+	
+    /**
+     * Unified Code for Units of Measure (UCUM) 
+     */
+    public static class UCUM {
+
+        /**
+         * An UCUM Unit instance simply made of name and symbol.
+         */
+        public static class UCUMUnit {
+
+            private String name;
+
+            private String symbol;
+
+            public UCUMUnit(String name, String symbol) {
+                this.name = name;
+                this.symbol = symbol;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public String getSymbol() {
+                return symbol;
+            }
+        }
+
+        /**
+         * Commonly used UCUM units. In case this set will grow too much, we may consider importing some UCUM specialized library.
+         */
+        public final static UCUMUnit TIME_UNITS = new UCUMUnit("second", "s");
+
+        public final static UCUMUnit ELEVATION_UNITS = new UCUMUnit("meter", "m");
+
+    }
 }

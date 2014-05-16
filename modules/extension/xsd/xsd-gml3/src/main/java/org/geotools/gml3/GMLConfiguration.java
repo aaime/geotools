@@ -26,6 +26,7 @@ import org.geotools.gml3.bindings.AbstractFeatureCollectionTypeBinding;
 import org.geotools.gml3.bindings.AbstractFeatureTypeBinding;
 import org.geotools.gml3.bindings.AbstractGeometryTypeBinding;
 import org.geotools.gml3.bindings.AbstractRingPropertyTypeBinding;
+import org.geotools.gml3.bindings.ArcStringTypeBinding;
 import org.geotools.gml3.bindings.BoundingShapeTypeBinding;
 import org.geotools.gml3.bindings.ComplexSupportXSAnyTypeBinding;
 import org.geotools.gml3.bindings.CurveArrayPropertyTypeBinding;
@@ -91,6 +92,7 @@ import org.geotools.gml3.bindings.ArcTypeBinding;
 import org.geotools.gml3.bindings.CircleTypeBinding;
 import org.geotools.gml3.bindings.RingTypeBinding;
 import org.geotools.gml3.bindings.SurfacePatchArrayPropertyTypeBinding;
+import org.geotools.gml3.bindings.ext.CompositeCurveTypeBinding;
 
 
 /**
@@ -279,6 +281,8 @@ public class GMLConfiguration extends Configuration {
         
         //extended bindings for arc/surface support
         if (isExtendedArcSurfaceSupport()) {
+            container.registerComponentImplementation(GML.ArcStringType,
+                    ArcStringTypeBinding.class);
             container.registerComponentImplementation(GML.ArcType,
                     ArcTypeBinding.class);
             container.registerComponentImplementation(GML.CircleType,
@@ -286,6 +290,8 @@ public class GMLConfiguration extends Configuration {
             container.registerComponentImplementation(GML.RingType, RingTypeBinding.class);
             container.registerComponentImplementation(GML.SurfacePatchArrayPropertyType,
                     SurfacePatchArrayPropertyTypeBinding.class);
+            container.registerComponentImplementation(GML.CompositeCurveType, 
+                    CompositeCurveTypeBinding.class);
             container.registerComponentImplementation(GML.CurveArrayPropertyType, 
                     org.geotools.gml3.bindings.ext.CurveArrayPropertyTypeBinding.class);
             container.registerComponentImplementation(GML.CurvePropertyType, 

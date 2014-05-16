@@ -21,12 +21,12 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import org.geotools.coverage.grid.GridCoverage2D;
-import org.geotools.coverage.grid.io.AbstractGridCoverage2DReader;
+import org.geotools.coverage.grid.io.GridCoverage2DReader;
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.FactoryRegistryException;
 import org.geotools.factory.GeoTools;
-import org.geotools.feature.FeatureCollections;
+import org.geotools.feature.DefaultFeatureCollection;
 import org.geotools.feature.SchemaException;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
@@ -45,6 +45,7 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.FeatureTypeFactory;
 import org.opengis.filter.FilterFactory2;
+import org.opengis.filter.expression.PropertyName;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -77,6 +78,9 @@ public final class FeatureUtilities {
     static FeatureTypeFactory typeFactory;
     static FeatureFactory featureFactory;
     public static final FilterFactory2 DEFAULT_FILTER_FACTORY = CommonFactoryFinder.getFilterFactory2(GeoTools.getDefaultHints());
+    public final static PropertyName GRID_PROPERTY_NAME = DEFAULT_FILTER_FACTORY.property("grid");
+    public static final PropertyName PARAMS_PROPERTY_NAME = DEFAULT_FILTER_FACTORY.property("params");
+
     
     /**
      * Do not allows instantiation of this class.
@@ -130,6 +134,7 @@ public final class FeatureUtilities {
      * @return a feature with the grid coverage envelope as the geometry and the
      *         grid coverage itself in the "grid" attribute.
      */
+    @SuppressWarnings("unchecked")
     public static SimpleFeatureCollection wrapGridCoverage(final GridCoverage2D coverage)
             throws TransformException, SchemaException {
         final Polygon bounds = getPolygon(coverage.getEnvelope2D());
@@ -147,10 +152,9 @@ public final class FeatureUtilities {
         fb.add(coverage);
         SimpleFeature feature = fb.buildFeature(null);
 
-        final SimpleFeatureCollection collection = FeatureCollections.newCollection();
+        final DefaultFeatureCollection collection = new DefaultFeatureCollection();
         collection.add(feature);
-
-        return collection;
+        return collection;        
     }
     
     /**
@@ -184,7 +188,8 @@ public final class FeatureUtilities {
      * @return a feature with the grid coverage envelope as the geometry and the
      *         grid coverage itself in the "grid" attribute.
      */
-    public static SimpleFeatureCollection wrapGridCoverageReader(final AbstractGridCoverage2DReader gridCoverageReader,
+    @SuppressWarnings("unchecked")
+    public static SimpleFeatureCollection wrapGridCoverageReader(final GridCoverage2DReader gridCoverageReader,
 			GeneralParameterValue[] params) throws TransformException,
 			FactoryRegistryException, SchemaException {
 
@@ -194,11 +199,11 @@ public final class FeatureUtilities {
 		final Rectangle2D rect = gridCoverageReader.getOriginalEnvelope()
 				.toRectangle2D();
 		final CoordinateReferenceSystem sourceCrs = CRS
-			.getHorizontalCRS(gridCoverageReader.getCrs());
+			.getHorizontalCRS(gridCoverageReader.getCoordinateReferenceSystem());
 		if(sourceCrs==null)
 			throw new UnsupportedOperationException(
 					Errors.format(
-		                    ErrorKeys.CANT_SEPARATE_CRS_$1,gridCoverageReader.getCrs()));
+		                    ErrorKeys.CANT_SEPARATE_CRS_$1,gridCoverageReader.getCoordinateReferenceSystem()));
 
 
 		final Coordinate[] coord = new Coordinate[5];
@@ -215,7 +220,7 @@ public final class FeatureUtilities {
 		SimpleFeatureTypeBuilder ftb = new SimpleFeatureTypeBuilder(getTypeFactory());
         ftb.setName("GridCoverage");
         ftb.add("geom", Polygon.class, sourceCrs);
-        ftb.add("grid", AbstractGridCoverage2DReader.class);
+        ftb.add("grid", GridCoverage2DReader.class);
         ftb.add("params", GeneralParameterValue[].class);
         SimpleFeatureType schema = ftb.buildFeatureType();
 
@@ -226,15 +231,13 @@ public final class FeatureUtilities {
         fb.add(params);
         SimpleFeature feature = fb.buildFeature(null);
 
-
-		final SimpleFeatureCollection collection = FeatureCollections.newCollection();
-		collection.add(feature);
-
-		return collection;
-	}
+        final DefaultFeatureCollection collection = new DefaultFeatureCollection();
+        collection.add(feature);
+        return collection;        
+    }
     
     /**
-     * Checks if the feature type specified is a AbstractGridCoverage2DReader wrapper
+     * Checks if the feature type specified is a GridCoverage2DReader wrapper
      * @param featureType
      * @return
      */
@@ -250,7 +253,7 @@ public final class FeatureUtilities {
             return false;
         
         AttributeDescriptor gridDescriptor = featureType.getDescriptor("grid");
-        if(gridDescriptor == null || !AbstractGridCoverage2DReader.class.equals(gridDescriptor.getType().getBinding()))
+        if(gridDescriptor == null || !GridCoverage2DReader.class.equals(gridDescriptor.getType().getBinding()))
             return false;
         
         AttributeDescriptor paramDescriptor = featureType.getDescriptor("params");

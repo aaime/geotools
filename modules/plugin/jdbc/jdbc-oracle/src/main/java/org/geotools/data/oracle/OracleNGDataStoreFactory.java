@@ -124,8 +124,10 @@ public class OracleNGDataStoreFactory extends JDBCDataStoreFactory {
         String metadataTable = (String) GEOMETRY_METADATA_TABLE.lookUp(params);
         dialect.setGeometryMetadataTable(metadataTable);
         
-        // setup proper fetch size
-        dataStore.setFetchSize(200);
+        if (dataStore.getFetchSize() <= 0) {
+            // Oracle is dead slow with the fetch size at 0, let's have a sane default
+            dataStore.setFetchSize(200);
+        }
         
         return dataStore;
     }
@@ -136,7 +138,11 @@ public class OracleNGDataStoreFactory extends JDBCDataStoreFactory {
       String host = (String) HOST.lookUp(params);        
       Integer port =(Integer) PORT.lookUp(params);
 
-    	if(db.startsWith("("))
+    	if(db.startsWith("(") || db.startsWith("ldap://"))
+    		// for Oracle LDAP:
+    		// ldap://[host]/[db],cn=OracleContext,dc=[oracle_ldap_context]
+    		// for Oracle RAC
+    		// (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=[host])(PORT=[port, often 1521]))(LOAD_BALANCE=YES)(CONNECT_DATA=(SERVICE_NAME=[oracle_service_name])))
     		return JDBC_PATH + db;  
     	else if(db.startsWith("/") && host != null && port != null)
     		return JDBC_PATH + "//" + host + ":" + port + db;

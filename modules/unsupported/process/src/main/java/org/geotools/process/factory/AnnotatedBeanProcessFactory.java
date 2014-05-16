@@ -16,15 +16,18 @@
  */
 package org.geotools.process.factory;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.geotools.factory.FactoryRegistry;
 import org.geotools.feature.NameImpl;
 import org.opengis.feature.type.Name;
 import org.opengis.util.InternationalString;
@@ -118,14 +121,65 @@ public class AnnotatedBeanProcessFactory extends AnnotationDrivenProcessFactory 
     protected Method method(String className) {
         Class<?> c = classMap.get(className);
         if (c != null) {
+            
+            List<Method> candidates = new ArrayList<Method>();
             for (Method m : c.getMethods()) {
                 if ("execute".equals(m.getName())) {
-                    return m;
+                    candidates.add(m);
                 }
             }
+            
+            if(candidates.size() == 1) {
+                return candidates.get(0);
+            } else if(candidates.size() > 1) {
+                // uh, we have various methods in overload, we'll prefer the one
+                // that has annotations and exposes most params
+                Method selection = null;
+                for (Method m : candidates) {
+                    if(hasProcessAnnotations(m)) {
+                        if(selection != null) {
+                            throw new IllegalArgumentException("Invalid process bean " + className 
+                                    + ", has two annotated execute methods");
+                        } else {
+                            selection = m;
+                        }
+                    }
+                }
+                
+                return selection;
+            }
         }
+        
+        
+        
         return null;
     }
+    
+    private boolean hasProcessAnnotations(Method m) {
+        Annotation[] annotations = m.getAnnotations();
+        if(hasProcessAnnotations(annotations)) {
+            return true;
+        }
+        Annotation[][] paramAnnotations = m.getParameterAnnotations();
+        for (Annotation[] pa : paramAnnotations) {
+            if(hasProcessAnnotations(pa)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private boolean hasProcessAnnotations(Annotation[] annotations) {
+        for (Annotation annotation : annotations) {
+            if(annotation instanceof DescribeResult || annotation instanceof DescribeResults || annotation instanceof DescribeParameter) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     /**
      * List of processes published; generated from the classMap created in the constructuor.
      */
@@ -148,7 +202,11 @@ public class AnnotatedBeanProcessFactory extends AnnotationDrivenProcessFactory 
      */
     protected Object createProcessBean(Name name) {
         try {
-            return classMap.get(name.getLocalPart()).newInstance();
+            Class<?> processClass = classMap.get(name.getLocalPart());
+            if(processClass == null) {
+                throw new IllegalArgumentException("Process " + name + " is unknown");
+            }
+            return processClass.newInstance();
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
@@ -156,4 +214,27 @@ public class AnnotatedBeanProcessFactory extends AnnotationDrivenProcessFactory 
         }
     }
 
+    /**
+     * Subclass of FactoryRegistry meant for convenience of looking up all the classes
+     * that implement a specific bean interface.
+     */
+    public static class BeanFactoryRegistry<T> extends FactoryRegistry {
+
+        public BeanFactoryRegistry(Class<T> clazz) {
+            super(clazz);
+        }
+
+        public Class<T> getBeanClass() {
+            return (Class<T>) getCategories().next();
+        }
+
+        public Class<? extends T>[] lookupBeanClasses() {
+            Iterator<T> it = getServiceProviders(getBeanClass(), null, null);
+            List<Class> list = new ArrayList();
+            while(it.hasNext()) {
+                list.add((Class<? extends T>) it.next().getClass());
+            }
+            return list.toArray(new Class[list.size()]);
+        }
+    }
 }

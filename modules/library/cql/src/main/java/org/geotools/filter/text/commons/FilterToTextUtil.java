@@ -95,23 +95,27 @@ public final class FilterToTextUtil {
 	 */
 	public static Object buildBinaryLogicalOperator(final String operator, FilterVisitor visitor, BinaryLogicOperator filter, Object extraData) {
     	
-    	LOGGER.finer("exporting And filter");
+    	LOGGER.finer("exporting binary logic filter");
     	
-    	StringBuilder output = asStringBuilder(extraData);
-		List<Filter> children = filter.getChildren();
-		if (children != null) {
-			output.append("(");
-			for (Iterator<Filter> i = children.iterator(); i.hasNext();) {
-				Filter child = i.next();
-				child.accept(visitor, output);
-				if (i.hasNext()) {
-					output.append(" ").append(operator).append(" ");
-				}
-			}
-			output.append(")");
-		}
-		return output;
-	}
+        StringBuilder output = asStringBuilder(extraData);
+        List<Filter> children = filter.getChildren();
+        if (children != null) {
+            for (Iterator<Filter> i = children.iterator(); i.hasNext();) {
+                Filter child = i.next();
+                if (child instanceof BinaryLogicOperator) {
+                    output.append("(");
+                }
+                child.accept(visitor, output);
+                if (child instanceof BinaryLogicOperator) {
+                    output.append(")");
+                }
+                if (i.hasNext()) {
+                    output.append(" ").append(operator).append(" ");
+                }
+            }
+        }
+        return output;
+    }
 
 	public static Object buildBetween(PropertyIsBetween filter, Object extraData) {
     	LOGGER.finer("exporting PropertyIsBetween");
@@ -189,8 +193,7 @@ public final class FilterToTextUtil {
 	public static Object buildIsNull(PropertyIsNull filter, Object extraData) {
         StringBuilder output = asStringBuilder(extraData);
         
-        PropertyName propertyName = (PropertyName) filter.getExpression();
-        propertyName.accept(new ExpressionToText(), output);        
+        filter.getExpression().accept(new ExpressionToText(), output);
         output.append(" IS NULL");
         return output;
 	}
@@ -237,9 +240,9 @@ public final class FilterToTextUtil {
         StringBuilder output = asStringBuilder(extraData);
         
         output.append("DWITHIN(");
-        PropertyName propertyName = (PropertyName) filter.getExpression1();
         ExpressionToText visitor = new ExpressionToText();
-		propertyName.accept(visitor, output);
+        
+        filter.getExpression1().accept(visitor, output);
         output.append(", ");
         filter.getExpression2().accept(visitor, output);
         output.append(", ");
@@ -289,6 +292,7 @@ public final class FilterToTextUtil {
 	}
 
 	public static Object buildDuring(During during, Object extraData) {
+
         LOGGER.finer("exporting DURING" );
 		
     	StringBuilder output = asStringBuilder(extraData);
@@ -300,48 +304,9 @@ public final class FilterToTextUtil {
         output.append(" DURING ");
         
         Literal expr2 = (Literal) during.getExpression2();
-        Period period = (Period) expr2.getValue();
-        
-        String strBeginningData = dateToCQLDate( period.getBeginning().getPosition().getDate() );
-		String strEndingDate = dateToCQLDate( period.getEnding().getPosition().getDate() );
-		output.append(strBeginningData).append("/").append(strEndingDate);
+
+        expr2.accept(visitor, output);
 
         return output;
 	}
-	
-    private static String dateToCQLDate(Date date){
-
-    	StringBuilder cqlDate = new StringBuilder();
-	    Calendar cal = Calendar.getInstance();
-	    cal.setTime(date);
-
-    	// builds the string date
-	    int years = cal.get(Calendar.YEAR);
-	    String strYear = String.format("%04d", years);
-    	cqlDate.append(strYear).append("-");
-    	
-	    int month = cal.get(Calendar.MONTH)+1;
-	    String strMonth = String.format("%02d", month);
-    	cqlDate.append(strMonth).append("-");
-
-	    int day = cal.get(Calendar.DAY_OF_MONTH);
-	    String strDay = String.format("%02d", day);
-    	cqlDate.append(strDay);
-    	
-    	// builds the string time
-    	cqlDate.append("T");
-	    int hour = cal.get(Calendar.HOUR);
-	    String strHour = String.format("%02d", hour);
-    	cqlDate.append(strHour).append(":");
-    	
-	    int minute = cal.get(Calendar.MINUTE);
-	    String strMinute = String.format("%02d", minute);
-    	cqlDate.append(strMinute).append(":");
-
-	    int second = cal.get(Calendar.SECOND);
-	    String strSecond = String.format("%02d", second);
-    	cqlDate.append(strSecond).append("Z"); // TODO it is a bug in the cql specification. Zulu zone shouldn't be only one of various possibles zone times. 
-
-    	return cqlDate.toString();
-    }
 }

@@ -24,24 +24,28 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.opengis.metadata.citation.Citation;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.cs.AxisDirection;
-import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.cs.CoordinateSystemAxis;
-import org.opengis.referencing.crs.CRSAuthorityFactory;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.CoordinateOperation;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.referencing.operation.MathTransform;
-
-import org.geotools.factory.Hints;
 import org.geotools.factory.GeoTools;
+import org.geotools.factory.Hints;
+import org.geotools.geometry.DirectPosition2D;
 import org.geotools.metadata.iso.citation.Citations;
 import org.geotools.referencing.CRS.AxisOrder;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.referencing.factory.OrderedAxisAuthorityFactory;
+import org.geotools.referencing.operation.projection.LambertConformal1SP;
+import org.geotools.referencing.operation.projection.TransverseMercator;
+import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.TransformException;
 
 
 /**
@@ -82,6 +86,12 @@ public class CRSTest extends TestCase {
         super(name);
     }
 
+    protected void tearDown() throws Exception {
+        System.clearProperty("org.geotools.referencing.forceXY");
+        Hints.removeSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER);
+        CRS.reset("all");
+    }    
+    
     /**
      * Tests the (latitude, longitude) axis order for EPSG:4326.
      */
@@ -412,6 +422,7 @@ public class CRSTest extends TestCase {
             CoordinateReferenceSystem crs = CRS.decode("EPSG:4326");
             assertEquals("EPSG:4326", CRS.toSRS(crs));
             Hints.putSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER, Boolean.TRUE);
+            CRS.reset("ALL");
             assertEquals("urn:ogc:def:crs:EPSG::4326", CRS.toSRS(crs));
         } finally {
             Hints.removeSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER);
@@ -485,5 +496,90 @@ public class CRSTest extends TestCase {
         mt.transform(src, 0, p, 0, 1);
         assertEquals(expected[0], p[0], 1e-6);
         assertEquals(expected[1], p[1], 1e-6);
+    }
+    
+    /**
+     * Testing the handling of toSRS method; used to translate from
+     * CoordinateReferenceSystem identifiers to the spatial reference system
+     * name used by OGC web services. There are a number of options here
+     * depending on the specification used.
+     */
+    public void testSRS() throws Exception {
+        try {
+            CRS.reset("all");
+            System.setProperty("org.geotools.referencing.forceXY", "true");
+            
+            assertEquals( "CRS:84", CRS.toSRS( DefaultGeographicCRS.WGS84 ));
+            CoordinateReferenceSystem WORLD = (CoordinateReferenceSystem) CRS.decode("EPSG:4326",false);
+            assertEquals( "4326", CRS.toSRS( WORLD, true ) );
+            String srs = CRS.toSRS( WORLD, false );
+            assertTrue( "EPSG:4326", srs.contains("EPSG") && srs.contains("4326") );
+            
+            CoordinateReferenceSystem WORLD2 = (CoordinateReferenceSystem) CRS.decode("EPSG:4326",true);
+            srs = CRS.toSRS( WORLD2, false );
+            assertTrue( "EPSG:4326", srs.contains("EPSG") && srs.contains("4326") );
+            
+            CoordinateReferenceSystem WORLD3 = (CoordinateReferenceSystem) CRS.decode("urn:x-ogc:def:crs:EPSG::4326",false);
+            srs = CRS.toSRS( WORLD3, false );
+            assertTrue( "EPSG:4326", srs.contains("EPSG") && srs.contains("4326") );
+            
+            CoordinateReferenceSystem WORLD4 = (CoordinateReferenceSystem) CRS.decode("urn:x-ogc:def:crs:EPSG::4326",true);
+            srs = CRS.toSRS( WORLD4, false );
+            assertTrue( "EPSG:4326", srs.contains("EPSG") && srs.contains("4326") );
+        } finally {
+            System.getProperties().remove("org.geotools.referencing.forceXY");
+        }
+        try {
+            CRS.reset("all");
+            Hints.putSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER, Boolean.TRUE);
+            assertEquals( AxisOrder.EAST_NORTH, CRS.getAxisOrder(CRS.decode("EPSG:4326",false)));
+            assertEquals( AxisOrder.EAST_NORTH, CRS.getAxisOrder(CRS.decode("EPSG:4326",true)));
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("urn:x-ogc:def:crs:EPSG::4326",false)));
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("urn:x-ogc:def:crs:EPSG::4326",true)));
+        } finally {
+            Hints.removeSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER);
+        }
+        try {
+            CRS.reset("all");
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("EPSG:4326",false)));
+            assertEquals( AxisOrder.EAST_NORTH, CRS.getAxisOrder(CRS.decode("EPSG:4326",true)));
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("urn:x-ogc:def:crs:EPSG::4326",false)));
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("urn:x-ogc:def:crs:EPSG::4326",true)));
+        } finally {
+        }
+        try {
+            CRS.reset("all");
+            System.setProperty("org.geotools.referencing.forceXY", "true");
+            assertEquals( AxisOrder.EAST_NORTH, CRS.getAxisOrder(CRS.decode("EPSG:4326",false)));
+            assertEquals( AxisOrder.EAST_NORTH, CRS.getAxisOrder(CRS.decode("EPSG:4326",true)));
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("urn:x-ogc:def:crs:EPSG::4326",false)));
+            assertEquals( AxisOrder.NORTH_EAST, CRS.getAxisOrder(CRS.decode("urn:x-ogc:def:crs:EPSG::4326",true)));
+        } finally {
+            System.getProperties().remove("org.geotools.referencing.forceXY");
+        }
+    }
+    
+    public void testCRS_CH1903_LV03() throws NoSuchAuthorityCodeException, FactoryException, MismatchedDimensionException, TransformException {
+        CoordinateReferenceSystem sourceCRS = CRS.decode("EPSG:4326", false);// WGS84
+        CoordinateReferenceSystem targetCRS = CRS.decode("EPSG:21781", false);// CH1903_LV03
+
+        MathTransform transform = CRS.findMathTransform(sourceCRS, targetCRS, true);
+        // test coordinate: Berne, old reference point
+        // see http://www.swisstopo.admin.ch/internet/swisstopo/en/home/topics/survey/sys/refsys/switzerland.html
+        DirectPosition2D source = new DirectPosition2D(sourceCRS, 46.9510827861504654, 7.4386324175389165);
+        DirectPosition2D result = new DirectPosition2D();
+
+        transform.transform(source, result);
+        assertEquals(600000.0, result.x, 0.1);
+        assertEquals(200000.0, result.y, 0.1);
+    }
+    
+    public void testGetMapProjection() throws Exception {
+        CoordinateReferenceSystem utm32OnLonLat = CRS.decode("EPSG:23032", true);
+        assertTrue(CRS.getMapProjection(utm32OnLonLat) instanceof TransverseMercator);
+        CoordinateReferenceSystem utm32OnLatLon = CRS.decode("EPSG:23032", false);
+        assertTrue(CRS.getMapProjection(utm32OnLatLon) instanceof TransverseMercator);
+        CoordinateReferenceSystem nad27Tennessee = CRS.decode("EPSG:2062", false);
+        assertTrue(CRS.getMapProjection(nad27Tennessee) instanceof LambertConformal1SP);
     }
 }

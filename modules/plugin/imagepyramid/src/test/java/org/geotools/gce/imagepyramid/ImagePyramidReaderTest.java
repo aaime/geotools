@@ -16,15 +16,19 @@
  */
 package org.geotools.gce.imagepyramid;
 
-import it.geosolutions.imageio.utilities.ImageIOUtilities;
-
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TimeZone;
 
 import javax.imageio.ImageIO;
 import javax.media.jai.PlanarImage;
@@ -46,10 +50,11 @@ import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.parameter.Parameter;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.test.TestData;
-import org.junit.Ignore;
+import org.geotools.util.DateRange;
 import org.junit.Test;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.parameter.GeneralParameterValue;
+import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
@@ -60,9 +65,6 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
  * @author Stefan Alfons Krueger (alfonx), Wikisquare.de : Test coverage for pyramids stored in JARs and referenced by URLs
  * @since 2.3
  * 
- *
- *
- *
  * @source $URL$
  */
 public class ImagePyramidReaderTest extends Assert {
@@ -71,7 +73,7 @@ public class ImagePyramidReaderTest extends Assert {
 	 * File to be used for testing purposes.
 	 */
 	private final static String TEST_FILE = "pyramid.properties";
-	private final static String TEST_JAR_FILE = "pyramid.jar";
+//	private final static String TEST_JAR_FILE = "pyramid.jar";
 	
 	  
     /**
@@ -81,9 +83,9 @@ public class ImagePyramidReaderTest extends Assert {
      */
     @Test
     public void testAutomaticBuild() throws IOException {
-        final URL testFile = TestData.getResource(this, TEST_FILE);
+        final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
         File sourceDir = DataUtilities.urlToFile(testFile).getParentFile();
-        File targetDir = File.createTempFile("pyramid", "tst", new File("./target"));
+        File targetDir = File.createTempFile("pyramid", "tst", TestData.file(this, "."));
         targetDir.delete();
         targetDir.mkdir();
         try {
@@ -109,9 +111,9 @@ public class ImagePyramidReaderTest extends Assert {
      */
     @Test
     public void testAutomaticBuildGdalRetile() throws IOException {
-        final URL testFile = TestData.getResource(this, TEST_FILE);
+        final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
         File sourceDir = DataUtilities.urlToFile(testFile).getParentFile();
-        File targetDir = File.createTempFile("pyramid", "tst", new File("./target"));
+        File targetDir = File.createTempFile("pyramid", "tst", TestData.file(this, "."));
         targetDir.delete();
         targetDir.mkdir();
         try {
@@ -165,7 +167,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		// Get the resource.
 		//
-	        final URL testFile = TestData.getResource(this, TEST_FILE);//
+	        final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);//
 		assertNotNull(testFile);
 
 		//
@@ -200,7 +202,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		// Get the resource.
 		//
-		final File testFile = TestData.file(this, TEST_FILE);//
+		final File testFile = TestData.file(this, "goodpyramid/"+TEST_FILE);//
 		assertNotNull(testFile);
 
 		//
@@ -234,7 +236,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		// Get the resource.
 		//
-		final String testFile = TestData.file(this, TEST_FILE)
+		final String testFile = TestData.file(this, "goodpyramid/"+TEST_FILE)
 				.getCanonicalPath();//
 		assertNotNull(testFile);
 
@@ -268,7 +270,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		// Get the resource.
 		//
-		final File testFile = TestData.file(this, TEST_FILE);//
+		final File testFile = TestData.file(this, "goodpyramid/"+TEST_FILE);//
 		assertNotNull(testFile);
 
 
@@ -291,7 +293,7 @@ public class ImagePyramidReaderTest extends Assert {
 			reader = new ImagePyramidReader(new FileInputStream(testFile),
 					new Hints(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER,
 							Boolean.FALSE));
-		} catch (IllegalArgumentException e) {
+		} catch (DataSourceException e) {
 
 		}
 		assertNull(reader);
@@ -299,7 +301,7 @@ public class ImagePyramidReaderTest extends Assert {
 			reader = new ImagePyramidReader(ImageIO
 					.createImageInputStream(testFile), new Hints(
 					Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER, Boolean.FALSE));
-		} catch (IllegalArgumentException e) {
+		} catch (DataSourceException e) {
 
 		}
 		assertNull(reader);
@@ -313,14 +315,6 @@ public class ImagePyramidReaderTest extends Assert {
 			reader.getCurrentSubname();
 
 		} catch (UnsupportedOperationException e) {
-			try {
-				String[] names = reader.getMetadataNames();
-				assertNull(names);
-
-			} catch (UnsupportedOperationException e1) {
-				
-			}
-			
 			try {
 				String value = reader.getMetadataValue("");
 				assertNull(value);
@@ -340,7 +334,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		// Get the resource.
 		//
-		final URL testFile = TestData.getResource(this, TEST_FILE);
+		final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
 		assertNotNull(testFile);
 
 		//
@@ -381,7 +375,7 @@ public class ImagePyramidReaderTest extends Assert {
     public void testRequestOutsideBounds() throws IOException, MismatchedDimensionException,
             NoSuchAuthorityCodeException {
         // grab the reader
-        final URL testFile = TestData.getResource(this, TEST_FILE);
+        final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
         assertNotNull(testFile);
         final ImagePyramidReader reader = new ImagePyramidReader(testFile, new Hints(
                 Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER, Boolean.FALSE));
@@ -419,7 +413,7 @@ public class ImagePyramidReaderTest extends Assert {
 	        //
 		// Get the resource.
 		//
-		final URL testFile = TestData.getResource(this, TEST_FILE);
+		final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
 
 		//
 		// Get a reader
@@ -482,7 +476,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		// Get the resource.
 		//
-		final URL testFile = TestData.getResource(this, TEST_FILE);
+		final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
 
 		
 		//
@@ -550,7 +544,7 @@ public class ImagePyramidReaderTest extends Assert {
 		//
 		//
 		// /////////////////////////////////////////////////////////////////
-		final URL testFile = TestData.getResource(this, TEST_FILE);
+		final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
 
 		//
 		// Get a reader
@@ -614,7 +608,7 @@ public class ImagePyramidReaderTest extends Assert {
 
 		// Get the resource.
 		//
-		final URL testFile = TestData.getResource(this, TEST_FILE);
+		final URL testFile = TestData.getResource(this, "goodpyramid/"+TEST_FILE);
 
 		//
 		// Get a reader
@@ -655,94 +649,201 @@ public class ImagePyramidReaderTest extends Assert {
 		        PlanarImage.wrapRenderedImage(((GridCoverage2D) coverage).getRenderedImage()).getTiles();
 
 	}
-	
 
-	/**
-	 * Tests to read a pyramid from inside a JAR. The source is passed as an {@link URL}
-	 */
-	@Test
-	@Ignore
-	public void testDefaultParameterValueURLtoJAR() throws IOException,
-			MismatchedDimensionException, NoSuchAuthorityCodeException {
-		
+    //	private final static String TEST_JAR_FILE = "pyramid.jar";
+        
+          
+    /**
+     * Tests that we recognize gdal_retile structure
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void badPyramid1() throws IOException {
+        final URL sourceDir = TestData.getResource(this, "badpyramid1");
+        // now make sure we can actually rebuild the mosaic
+        final AbstractGridFormat format = new ImagePyramidFormat();
+        final Hints hints = new Hints(Hints.DEFAULT_COORDINATE_REFERENCE_SYSTEM, DefaultGeographicCRS.WGS84);
+        assertFalse(((ImagePyramidFormat)format).accepts(sourceDir, hints));
+        final ImagePyramidReader reader = (ImagePyramidReader) format.getReader(sourceDir, hints);
+        assertNull(reader);
+    }
+    
+    /**
+     * Tests that we recognize gdal_retile structure
+     * 
+     * @throws IOException
+     */
+    @Test
+    public void badPyramid2() throws IOException {
+        final URL sourceDir = TestData.getResource(this, "badpyramid2");
+        // now make sure we can actually rebuild the mosaic
+        final AbstractGridFormat format = new ImagePyramidFormat();
+        final Hints hints = new Hints(Hints.DEFAULT_COORDINATE_REFERENCE_SYSTEM, DefaultGeographicCRS.WGS84);
+        assertFalse(((ImagePyramidFormat)format).accepts(sourceDir, hints));
+        final ImagePyramidReader reader = (ImagePyramidReader) format.getReader(sourceDir, hints);
+        assertNull(reader);
+    }
+    
+    @Test
+	public void timePyramid() throws IOException,
+			MismatchedDimensionException, NoSuchAuthorityCodeException, InvalidParameterValueException, ParseException {
+
 		//
 		// Get the resource.
 		//
-		final URL testJarFile = TestData.getResource(this, TEST_JAR_FILE);
-		assertNotNull(testJarFile);
-		
-		final String spec = "jar:"+testJarFile.toExternalForm()+"!/"+TEST_FILE;
-		final URL testFile = new URL(spec); 
-		
+		final URL testFile = TestData.getResource(this, "timepyramid/timepyramid.properties");
 		assertNotNull(testFile);
+	
+		//
+		// Get the reader
+		//
+		final ImagePyramidReader reader = new ImagePyramidReader(
+				testFile,
+				new Hints(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER, Boolean.FALSE));
+		assertNotNull(reader);
+		
+		assertEquals("true", reader.getMetadataValue("HAS_TIME_DOMAIN"));
+		final String timeMetadata = reader.getMetadataValue("TIME_DOMAIN");
+		assertNotNull(timeMetadata);
+		assertEquals(timeMetadata.split(",")[0],reader.getMetadataValue("TIME_DOMAIN_MINIMUM"));
+		assertEquals(timeMetadata.split(",")[timeMetadata.split(",").length-1],reader.getMetadataValue("TIME_DOMAIN_MAXIMUM"));
 
 		//
-		// Get a reader
+		// alpha on output
 		//
-		final AbstractGridFormat format = new ImagePyramidFormat();
-		assertTrue(format.accepts(testFile));
-		final ImagePyramidReader reader = (ImagePyramidReader) format
-				.getReader(testFile);
-		assertNotNull(reader);
+		final ParameterValue<Color> transp = ImageMosaicFormat.INPUT_TRANSPARENT_COLOR.createValue();
+		transp.setValue(Color.black);
 
 		//
 		// Show the coverage
 		//
-		final GridCoverage2D coverage = (GridCoverage2D) reader.read(null);
-		assertNotNull("Null value returned instead of a coverage", coverage);
-		assertTrue("coverage dimensions different from what we expected",
-				coverage.getGridGeometry().getGridRange().getSpan(0) == 250
-						&& coverage.getGridGeometry().getGridRange().getSpan(
-								1) == 250);
+		GridCoverage2D coverage = (GridCoverage2D) reader.read(new GeneralParameterValue[] {  transp });
+		assertNotNull(coverage);
+		assertTrue("coverage dimensions different from what we expected",coverage.getGridGeometry().getGridRange().getSpan(0) == 200&& coverage.getGridGeometry().getGridRange().getSpan(1) == 200);
 		if (TestData.isInteractiveTest())
-			coverage.show("testDefaultParameterValue");
+			coverage.show("testComplete");
 		else
-			((GridCoverage2D) coverage).getRenderedImage().getData();
-
+			PlanarImage.wrapRenderedImage(((GridCoverage2D) coverage).getRenderedImage()).getTiles();
+		
+		// limit yourself to reading just a bit of it
+		final ParameterValue<GridGeometry2D> gg =  AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
+		final GeneralEnvelope envelope = reader.getOriginalEnvelope();
+		final Dimension dim= new Dimension();
+		dim.setSize(reader.getOriginalGridRange().getSpan(0)/2.0, reader.getOriginalGridRange().getSpan(1)/2.0);
+		final Rectangle rasterArea=(( GridEnvelope2D)reader.getOriginalGridRange());
+		rasterArea.setSize(dim);
+		final GridEnvelope2D range= new GridEnvelope2D(rasterArea);
+		gg.setValue(new GridGeometry2D(range,envelope));
+		
+		final SimpleDateFormat formatD = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		formatD.setTimeZone(TimeZone.getTimeZone("GMT"));
+		
+		// use imageio with defined tiles
+		final ParameterValue<Boolean> useJai = AbstractGridFormat.USE_JAI_IMAGEREAD.createValue();
+		useJai.setValue(false);
+		
+		
+		// specify time
+		final ParameterValue<List> time = ImageMosaicFormat.TIME.createValue();
+        time.setValue(
+                new ArrayList(){{
+                    add(new DateRange(formatD.parse("2004-01-01T00:00:00.000Z"), formatD.parse("2004-07-01T00:00:00.000Z")));
+                    }}
+        );		
+        // Testing output coverage for level 0
+        TestUtils.checkCoverage(reader.getImageMosaicReaderForLevel(0), new GeneralParameterValue[] {gg,useJai ,time}, "time test");
 	}
+    
+ 
 	
 
-	/**
-	 * Tests to read a pyramid from inside a JAR. The source is passed as a {@link String}
-	 */
-	@Test
-	@Ignore
-	public void testDefaultParameterValueStringtoURLtoJAR() throws IOException,
-			MismatchedDimensionException, NoSuchAuthorityCodeException {
-
-		//
-		// Get the resource.
-		//
-		final URL testJarFile = TestData.getResource(this, TEST_JAR_FILE);
-		assertNotNull(testJarFile);
-		
-		final String spec = "jar:"+testJarFile.toExternalForm()+"!/"+TEST_FILE;
-		
-		assertNotNull(spec);
-
-		//
-		// Get a reader
-		//
-
-		final AbstractGridFormat format = new ImagePyramidFormat();
-		assertTrue(format.accepts(spec));
-		final ImagePyramidReader reader = (ImagePyramidReader) format
-				.getReader(spec);
-		assertNotNull(reader);
-
-		//
-		// Show the coverage
-		//
-		final GridCoverage2D coverage = (GridCoverage2D) reader.read(null);
-		assertNotNull("Null value returned instead of a coverage", coverage);
-		assertTrue("coverage dimensions different from what we expected",
-				coverage.getGridGeometry().getGridRange().getSpan(0) == 250
-						&& coverage.getGridGeometry().getGridRange().getSpan(
-								1) == 250);
-		if (TestData.isInteractiveTest())
-			coverage.show("testDefaultParameterValue");
-		else
-			((GridCoverage2D) coverage).getRenderedImage().getData();
-
-	}
+//	/**
+//	 * Tests to read a pyramid from inside a JAR. The source is passed as an {@link URL}
+//	 */
+//	@Test
+//	@Ignore
+//	public void testDefaultParameterValueURLtoJAR() throws IOException,
+//			MismatchedDimensionException, NoSuchAuthorityCodeException {
+//		
+//		//
+//		// Get the resource.
+//		//
+//		final URL testJarFile = TestData.getResource(this, TEST_JAR_FILE);
+//		assertNotNull(testJarFile);
+//		
+//		final String spec = "jar:"+testJarFile.toExternalForm()+"!/"+TEST_FILE;
+//		final URL testFile = new URL(spec); 
+//		
+//		assertNotNull(testFile);
+//
+//		//
+//		// Get a reader
+//		//
+//		final AbstractGridFormat format = new ImagePyramidFormat();
+//		assertTrue(format.accepts(testFile));
+//		final ImagePyramidReader reader = (ImagePyramidReader) format
+//				.getReader(testFile);
+//		assertNotNull(reader);
+//
+//		//
+//		// Show the coverage
+//		//
+//		final GridCoverage2D coverage = (GridCoverage2D) reader.read(null);
+//		assertNotNull("Null value returned instead of a coverage", coverage);
+//		assertTrue("coverage dimensions different from what we expected",
+//				coverage.getGridGeometry().getGridRange().getSpan(0) == 250
+//						&& coverage.getGridGeometry().getGridRange().getSpan(
+//								1) == 250);
+//		if (TestData.isInteractiveTest())
+//			coverage.show("testDefaultParameterValue");
+//		else
+//			((GridCoverage2D) coverage).getRenderedImage().getData();
+//
+//	}
+	
+//
+//	/**
+//	 * Tests to read a pyramid from inside a JAR. The source is passed as a {@link String}
+//	 */
+//	@Test
+//	@Ignore
+//	public void testDefaultParameterValueStringtoURLtoJAR() throws IOException,
+//			MismatchedDimensionException, NoSuchAuthorityCodeException {
+//
+//		//
+//		// Get the resource.
+//		//
+//		final URL testJarFile = TestData.getResource(this, TEST_JAR_FILE);
+//		assertNotNull(testJarFile);
+//		
+//		final String spec = "jar:"+testJarFile.toExternalForm()+"!/"+TEST_FILE;
+//		
+//		assertNotNull(spec);
+//
+//		//
+//		// Get a reader
+//		//
+//
+//		final AbstractGridFormat format = new ImagePyramidFormat();
+//		assertTrue(format.accepts(spec));
+//		final ImagePyramidReader reader = (ImagePyramidReader) format
+//				.getReader(spec);
+//		assertNotNull(reader);
+//
+//		//
+//		// Show the coverage
+//		//
+//		final GridCoverage2D coverage = (GridCoverage2D) reader.read(null);
+//		assertNotNull("Null value returned instead of a coverage", coverage);
+//		assertTrue("coverage dimensions different from what we expected",
+//				coverage.getGridGeometry().getGridRange().getSpan(0) == 250
+//						&& coverage.getGridGeometry().getGridRange().getSpan(
+//								1) == 250);
+//		if (TestData.isInteractiveTest())
+//			coverage.show("testDefaultParameterValue");
+//		else
+//			((GridCoverage2D) coverage).getRenderedImage().getData();
+//
+//	}
 }

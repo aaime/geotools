@@ -16,6 +16,9 @@
  */
 package org.geotools.feature.visitor;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.filter.IllegalFilterException;
@@ -35,7 +38,7 @@ import org.opengis.filter.expression.Expression;
  *
  * @source $URL$
  */
-public class AverageVisitor implements FeatureCalc {
+public class AverageVisitor implements FeatureCalc, FeatureAttributeVisitor {
     private Expression expr;
 
     /**
@@ -91,7 +94,12 @@ public class AverageVisitor implements FeatureCalc {
     public void init(SimpleFeatureCollection collection) {
     	//do nothing
     }
-    
+
+    @Override
+    public List<Expression> getExpressions() {
+        return Arrays.asList(expr);
+    }
+
     /**
      * Factory method for creating the appropriate strategy object
      * 
@@ -122,12 +130,14 @@ public class AverageVisitor implements FeatureCalc {
     public void visit(org.opengis.feature.Feature feature) {
     	Object value = expr.evaluate(feature);
 
-        if (strategy == null) {
-            Class type = value.getClass();
-            strategy = createStrategy(type);
-        }
+        if (value != null) {
+            if (strategy == null) {
+                Class type = value.getClass();
+                strategy = createStrategy(type);
+            }
 
-        strategy.add(value);
+            strategy.add(value);
+        }
     }
 
     public Expression getExpression() {

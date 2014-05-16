@@ -38,7 +38,7 @@ public class ImageLevelInfo implements Comparable<ImageLevelInfo> {
 	/**
 	 * Flag if ImageIO.read(InputStream in) does not return a null pointer
 	 */
-	private boolean canImageIOReadFromInputStream;
+	private boolean canImageIOReadFromInputStream =true;
 
 	/**
 	 * The Coordinate Reference System stored in the sql database (if supported)
@@ -114,6 +114,8 @@ public class ImageLevelInfo implements Comparable<ImageLevelInfo> {
 	 * storing the extent as envelope, for convinience
 	 */
 	private Envelope envelope = null;
+
+	private Number noDataValue;
 
 	public String getCoverageName() {
 		return coverageName;
@@ -352,4 +354,11 @@ public class ImageLevelInfo implements Comparable<ImageLevelInfo> {
 		this.canImageIOReadFromInputStream = canImageIOReadFromInputStream;
 	}
 
+        public Number getNoDataValue() {
+            return noDataValue;
+        }
+    
+        public void setNoDataValue(Number noDataValue) {
+            this.noDataValue = noDataValue;
+        }
 }

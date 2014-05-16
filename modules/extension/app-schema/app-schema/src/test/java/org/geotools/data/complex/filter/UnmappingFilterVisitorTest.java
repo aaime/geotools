@@ -38,16 +38,18 @@ import javax.xml.namespace.QName;
 
 import org.geotools.data.DataAccess;
 import org.geotools.data.DataAccessFinder;
+import org.geotools.data.DataUtilities;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.complex.AppSchemaDataAccess;
 import org.geotools.data.complex.AttributeMapping;
 import org.geotools.data.complex.FeatureTypeMapping;
 import org.geotools.data.complex.TestData;
-import org.geotools.data.complex.filter.XPath.Step;
-import org.geotools.data.complex.filter.XPath.StepList;
+import org.geotools.data.complex.filter.XPathUtil.Step;
+import org.geotools.data.complex.filter.XPathUtil.StepList;
 import org.geotools.data.memory.MemoryDataStore;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
 import org.geotools.feature.NameImpl;
 import org.geotools.feature.TypeBuilder;
 import org.geotools.feature.Types;
@@ -55,6 +57,8 @@ import org.geotools.feature.type.UniqueNameFeatureTypeFactoryImpl;
 import org.geotools.filter.FilterFactoryImplNamespaceAware;
 import org.geotools.filter.IsEqualsToImpl;
 import org.geotools.filter.OrImpl;
+import org.geotools.filter.spatial.BBOX3DImpl;
+import org.geotools.geometry.jts.ReferencedEnvelope3D;
 import org.geotools.gml3.GML;
 import org.geotools.test.AppSchemaTestSupport;
 import org.geotools.xlink.XLINK;
@@ -87,6 +91,7 @@ import org.opengis.filter.expression.Literal;
 import org.opengis.filter.expression.Multiply;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.identity.FeatureId;
+import org.opengis.filter.spatial.BBOX;
 import org.opengis.filter.spatial.Intersects;
 import org.xml.sax.helpers.NamespaceSupport;
 
@@ -182,7 +187,7 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
         attMappings.add(new AttributeMapping(null, strConcat, XPath.steps(targetFeature,
                 "concatenated", namespaces)));
 
-        FeatureSource simpleSource = mapping.getSource();
+        FeatureSource<?,?> simpleSource = mapping.getSource();
         FeatureTypeMapping mapping = new FeatureTypeMapping(simpleSource, targetFeature,
                 attMappings, namespaces);
         return mapping;
@@ -204,9 +209,10 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
                 .getFeatures(unrolled);
         assertEquals(1, getCount(results));
 
-        Iterator<SimpleFeature> features = results.iterator();
+        FeatureIterator<SimpleFeature> features = results.features();
         SimpleFeature unmappedFeature = (SimpleFeature) features.next();
-        results.close(features);
+        features.close();
+
         assertNotNull(unmappedFeature);
         Object object = unmappedFeature.getProperty("station_no").getValue();
         assertEquals(fid, object);
@@ -237,16 +243,18 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
                 .getFeatures(unrolled);
         assertEquals(1, getCount(results));
 
-        Iterator<SimpleFeature> features = results.iterator();
+        FeatureIterator<SimpleFeature> features = results.features();
         SimpleFeature unmappedFeature = (SimpleFeature) features.next();
-        results.close(features);
+        
+        features.close();
+
         assertNotNull(unmappedFeature);
         Object object = unmappedFeature.getProperty("station_no").getValue();
         assertEquals(fid1, object);
     }
 
-    private int getCount(FeatureCollection features) {
-        Iterator iterator = features.iterator();
+    private int getCount(FeatureCollection<?,?> features) {
+        FeatureIterator<?> iterator = features.features();
         int count = 0;
         try {
             while (iterator.hasNext()) {
@@ -254,7 +262,7 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
                 count++;
             }
         } finally {
-            features.close(iterator);
+            iterator.close();
         }
         return count;
     }
@@ -304,11 +312,9 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
         }
         featureMapping.setIdentifierExpression(idExpression);
         this.visitor = new UnmappingFilterVisitor(this.mapping);
-        FeatureCollection<SimpleFeatureType,SimpleFeature> content = mapping.getSource()
-                .getFeatures();
-        Iterator iterator = content.iterator();
-        Feature sourceFeature = (Feature) iterator.next();
-        content.close(iterator);
+        
+        // retrieve a single sample feature
+        Feature sourceFeature = DataUtilities.first( mapping.getSource().getFeatures() );
         String fid = sourceFeature.getIdentifier().toString();
         Id fidFilter = ff.id(Collections.singleton(ff.featureId(fid)));
         Filter unrolled = (Filter) fidFilter.accept(visitor, null);
@@ -318,9 +324,9 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
         FeatureCollection<SimpleFeatureType,SimpleFeature> results = mapping.getSource()
                 .getFeatures(unrolled);
         assertEquals(1, getCount(results));
-        iterator = results.iterator();
-        SimpleFeature unmappedFeature = (SimpleFeature) iterator.next();
-        results.close(iterator);
+        
+        SimpleFeature unmappedFeature =  DataUtilities.first( results);
+        
         assertEquals(fid, unmappedFeature.getID());
     }
     
@@ -679,7 +685,7 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
         testLogicFilter(Or.class);
     }
 
-    private void testLogicFilter(Class filterType) throws Exception {
+    private void testLogicFilter(Class<?> filterType) throws Exception {
         BinaryLogicOperator complexLogicFilter;
         PropertyIsGreaterThan resultFilter = ff.greater(ff.property("measurement/result"), ff
                 .literal(new Integer(5)));
@@ -751,6 +757,26 @@ public class UnmappingFilterVisitorTest extends AppSchemaTestSupport {
         Expression unmappedAtt = unmapped.getExpression();
         assertTrue(unmappedAtt instanceof PropertyName);
         assertEquals("results_value", ((PropertyName) unmappedAtt).getPropertyName());
+    }
+    
+    @Test
+    public void testBBox3D() throws Exception {
+    	BBOX bbox = ff.bbox("location", new ReferencedEnvelope3D(0, 10, 20, 50, 60, 70, null));
+    	
+    	assertTrue(bbox instanceof BBOX3DImpl);
+    	BBOX3DImpl bbox3d = (BBOX3DImpl) bbox;
+    	
+    	Filter unrolled = (Filter) bbox.accept(visitor, null);
+    	
+    	assertTrue(unrolled instanceof BBOX3DImpl);
+    	BBOX3DImpl unrolled3d = (BBOX3DImpl) unrolled;
+    	assertEquals(bbox3d.getMinX(), unrolled3d.getMinX(), 0.0);
+    	assertEquals(bbox3d.getMaxX(), unrolled3d.getMaxX(), 0.0);
+    	assertEquals(bbox3d.getMinY(), unrolled3d.getMinY(), 0.0);
+    	assertEquals(bbox3d.getMaxY(), unrolled3d.getMaxY(), 0.0);
+    	assertEquals(bbox3d.getMinZ(), unrolled3d.getMinZ(), 0.0);
+    	assertEquals(bbox3d.getMaxZ(), unrolled3d.getMaxZ(), 0.0);
+    	
     }
 
 }

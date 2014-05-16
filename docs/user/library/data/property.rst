@@ -6,7 +6,7 @@ originally a tutorial in the use of AbstractDataStore and has become useful in i
 
 **Reference**
 
-* :doc:`/tutorial/advanced/abstractdatastore`
+* :doc:`/tutorial/abstractdatastore`
 
 **Maven**::
    
@@ -19,15 +19,15 @@ originally a tutorial in the use of AbstractDataStore and has become useful in i
 Example
 ^^^^^^^
 
-The property datastore works with a custom format based on Java properity files::
+The property datastore works with a custom format based on Java property files::
   
   _=id:Integer,geom:Geometry,name:String
   rd1=1|wkt|road one
   rd2=2|wkt|road two
   
-These examples use the file :download:`example.properties </tutorial/advanced/artifacts/example.properties>`.
+These examples use the file :download:`example.properties </tutorial/artifacts/example.properties>`.
   
-.. literalinclude:: /tutorial/advanced/artifacts/example.properties
+.. literalinclude:: /tutorial/artifacts/example.properties
 
 Here is an example to parse the above file:
 

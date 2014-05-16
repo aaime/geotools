@@ -18,6 +18,7 @@ package org.geotools.coverage.processing;
 
 import java.awt.image.RenderedImage;
 import javax.media.jai.Interpolation;
+import javax.media.jai.PlanarImage;
 
 import org.opengis.parameter.ParameterValueGroup;
 
@@ -63,7 +64,6 @@ public class ScaleTest extends GridProcessingTestBase {
      * @todo Disabled for now because seems to be trapped in a never ending loop.
      */
     @Test
-    @Ignore
     public void testScale() {
         final GridCoverage2D originallyIndexedCoverage       = EXAMPLES.get(0);
         final GridCoverage2D indexedCoverage                 = EXAMPLES.get(2);
@@ -95,7 +95,7 @@ public class ScaleTest extends GridProcessingTestBase {
         //
         ///////////////////////////////////////////////////////////////////////
         interp = Interpolation.getInstance(Interpolation.INTERP_BILINEAR);
-        scale(originallyIndexedCoverage      .view(PACKED), interp);
+//        scale(originallyIndexedCoverage      .view(PACKED), interp);
         scale(indexedCoverage                .view(PACKED), interp);
         scale(indexedCoverageWithTransparency.view(PACKED), interp);
 
@@ -104,7 +104,7 @@ public class ScaleTest extends GridProcessingTestBase {
         // Bilinear interpolation and geo view
         //
         ///////////////////////////////////////////////////////////////////////
-        scale(originallyIndexedCoverage      .view(GEOPHYSICS), interp);
+//        scale(originallyIndexedCoverage      .view(GEOPHYSICS), interp);
         scale(indexedCoverage                .view(GEOPHYSICS), interp);
         scale(indexedCoverageWithTransparency.view(GEOPHYSICS), interp);
 
@@ -115,7 +115,7 @@ public class ScaleTest extends GridProcessingTestBase {
         ///////////////////////////////////////////////////////////////////////
         // on this one the subsample average should NOT go back to the
         // geophysiscs view before being applied
-        scale(floatCoverage.view(PACKED), interp);
+//        scale(floatCoverage.view(PACKED), interp);
 
         ///////////////////////////////////////////////////////////////////////
         //
@@ -163,8 +163,8 @@ public class ScaleTest extends GridProcessingTestBase {
             Viewer.show(scaled);
         } else {
             // Force computation
-            assertNotNull(coverage.getRenderedImage().getData());
-            assertNotNull(scaledImage.getData());
+            assertNotNull(PlanarImage.wrapRenderedImage(coverage.getRenderedImage()).getTiles());
+            assertNotNull(PlanarImage.wrapRenderedImage(scaledImage).getTiles());
         }
 
         // Doing another scale using the default processor.

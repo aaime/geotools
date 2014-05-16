@@ -18,6 +18,7 @@ package org.geotools.xml;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,14 +40,17 @@ import java.util.logging.Logger;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.sax.TransformerHandler;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.XMLSerializer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xsd.XSDAttributeDeclaration;
 import org.eclipse.xsd.XSDElementDeclaration;
@@ -57,7 +62,9 @@ import org.eclipse.xsd.XSDParticle;
 import org.eclipse.xsd.XSDSchema;
 import org.eclipse.xsd.XSDTypeDefinition;
 import org.eclipse.xsd.util.XSDUtil;
+import org.geotools.data.DataUtilities;
 import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
 import org.geotools.xml.impl.BindingFactoryImpl;
 import org.geotools.xml.impl.BindingLoader;
 import org.geotools.xml.impl.BindingPropertyExtractor;
@@ -69,6 +76,7 @@ import org.geotools.xml.impl.GetPropertyExecutor;
 import org.geotools.xml.impl.MismatchedBindingFinder;
 import org.geotools.xml.impl.NamespaceSupportWrapper;
 import org.geotools.xml.impl.SchemaIndexImpl;
+import org.opengis.feature.Feature;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.defaults.DefaultPicoContainer;
 import org.w3c.dom.Attr;
@@ -81,6 +89,7 @@ import org.w3c.dom.Text;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.ext.LexicalHandler;
 import org.xml.sax.helpers.NamespaceSupport;
 
 
@@ -142,6 +151,8 @@ public class Encoder {
      */
     public static final QName COMMENT = new QName("http://www.geotools.org", "comment");
 
+    static final String INDENT_AMOUNT_KEY = "{http://xml.apache.org/xslt}indent-amount";
+
     /** the schema + index **/
     private XSDSchema schema;
     private SchemaIndex index;
@@ -171,8 +182,8 @@ public class Encoder {
     /** schema location */
     private HashMap schemaLocations;
 
-    /** output format */
-    private OutputFormat outputFormat;
+    /** output format/properties */
+    private Properties outputProps;
 
     /** namespace aware */
     private boolean namespaceAware = true;
@@ -263,7 +274,9 @@ public class Encoder {
         //add the property extractor for bindings as first
         propertyExtractors.add(0, new BindingPropertyExtractor(this, context));
 
-        outputFormat = new OutputFormat();
+        //create output properties with some defaults
+        outputProps = new Properties();
+        outputProps.setProperty(INDENT_AMOUNT_KEY, "2");
         
         configuration.setupEncoder(this);
     }
@@ -281,7 +294,7 @@ public class Encoder {
      */
     public void setEncoding(final Charset charset) {
         final String charsetName = charset.name();
-        outputFormat.setEncoding(charsetName);
+        outputProps.put(OutputKeys.ENCODING, charsetName);
     }
 
     /**
@@ -295,9 +308,8 @@ public class Encoder {
      * @return the character set used for encoding
      */
     public Charset getEncoding() {
-        final String charsetName = outputFormat.getEncoding();
-        final Charset charset = Charset.forName(charsetName);
-        return charset;
+        final String charsetName = outputProps.getProperty(OutputKeys.ENCODING);
+        return charsetName != null ? Charset.forName(charsetName) : null; 
     }
 
     /**
@@ -307,7 +319,7 @@ public class Encoder {
      *            <code>true</code> if XML declaration should be omitted
      */
     public void setOmitXMLDeclaration(final boolean ommitXmlDeclaration) {
-        outputFormat.setOmitXMLDeclaration(ommitXmlDeclaration);
+        outputProps.put(OutputKeys.OMIT_XML_DECLARATION, "yes");
     }
 
     /**
@@ -317,7 +329,7 @@ public class Encoder {
      * @return whether the xml declaration is omitted, defaults to false.
      */
     public boolean isOmitXMLDeclaration() {
-        return outputFormat.getOmitXMLDeclaration();
+        return "yes".equals(outputProps.get(OutputKeys.OMIT_XML_DECLARATION));
     }
 
     /**
@@ -333,7 +345,7 @@ public class Encoder {
      *            <code>true</code> if indentation should be on
      */
     public void setIndenting(final boolean doIndent) {
-        outputFormat.setIndenting(doIndent);
+        outputProps.put(OutputKeys.INDENT, "yes");
     }
 
     /**
@@ -345,7 +357,7 @@ public class Encoder {
      * @see #setIndentSize(int)
      */
     public boolean isIndenting() {
-        return outputFormat.getIndenting();
+        return "yes".equals(outputProps.get(OutputKeys.INDENT));
     }
 
     /**
@@ -364,7 +376,8 @@ public class Encoder {
         if (indentSize < 0) {
             throw new IllegalArgumentException("indentSize shall be >= 0: " + indentSize);
         }
-        outputFormat.setIndent(indentSize);
+        setIndenting(true);
+        outputProps.setProperty(INDENT_AMOUNT_KEY, String.valueOf(indentSize));
     }
 
     /**
@@ -382,7 +395,10 @@ public class Encoder {
      * @see #setIndenting(boolean)
      */
     public int getIndentSize() {
-        return outputFormat.getIndent();
+        if (outputProps.containsKey(INDENT_AMOUNT_KEY)) {
+            return Integer.parseInt(outputProps.getProperty(INDENT_AMOUNT_KEY));
+        }
+        return 0;
     }
 
     /**
@@ -400,7 +416,8 @@ public class Encoder {
         if (lineWidth < 0) {
             throw new IllegalArgumentException("lineWidth shall be >= 0: " + lineWidth);
         }
-        outputFormat.setLineWidth(lineWidth);
+
+        //TODO: it seems there is no magic key for line width... 
     }
 
     /**
@@ -419,7 +436,7 @@ public class Encoder {
      * @see #isIndenting()
      */
     public int getLineWidth() {
-        return outputFormat.getLineWidth();
+        return 72;
     }
     
     /**
@@ -511,16 +528,6 @@ public class Encoder {
     }
 
     /**
-     * Sets hte output format to be used by the encoder.
-     *
-     * @param outputFormat The output format.
-     * @deprecated use the various setters instead (setEncoding, setIndentation, etc)
-     */
-    public void setOutputFormat(OutputFormat outputFormat) {
-        this.outputFormat = outputFormat;
-    }
-
-    /**
      * @return The walker used to traverse bindings, this method is for internal use only.
      */
     public BindingWalker getBindingWalker() {
@@ -577,9 +584,21 @@ public class Encoder {
         }
         
         //create the document seriaizer
-        XMLSerializer xmls = new XMLSerializer(out, outputFormat);
-
-        xmls.setNamespaces(namespaceAware);
+        SAXTransformerFactory txFactory = 
+            (SAXTransformerFactory) SAXTransformerFactory.newInstance();
+        
+        TransformerHandler xmls;
+        try {
+            xmls = txFactory.newTransformerHandler();
+        } catch (TransformerConfigurationException e) {
+            throw new IOException(e);
+        }
+        xmls.getTransformer().setOutputProperties(outputProps);
+        xmls.getTransformer().setOutputProperty(OutputKeys.METHOD, "XML");
+        xmls.setResult(new StreamResult(out));
+        
+        //TODO
+        //xmls.setNamespaces(namespaceAware);
         try {
             encode(object, name, xmls);
         } 
@@ -627,8 +646,8 @@ public class Encoder {
                     continue;
                 }
 
-                serializer.startPrefixMapping(pre, ns);
-                serializer.endPrefixMapping(pre);
+                serializer.startPrefixMapping(pre != null ? pre : "", ns);
+                serializer.endPrefixMapping(pre != null ? pre : "");
 
                 namespaces.declarePrefix((pre != null) ? pre : "", ns);
             }
@@ -725,7 +744,7 @@ public class Encoder {
                     }
                 } else {
                     // no more children, finish the element
-                    end(entry.encoding);
+                    end(entry.encoding, entry.element);
                     encoded.pop();
                     
                     //clean up the entry
@@ -1022,7 +1041,7 @@ O:
                                     iterator = collection.iterator();
                                 } else if (obj instanceof FeatureCollection) {
                                     FeatureCollection collection = (FeatureCollection) obj;
-                                    iterator = collection.iterator();
+                                    iterator = DataUtilities.iterator( collection.features() );
                                 } else {
                                     iterator = new SingleIterator(obj);
                                 }
@@ -1117,16 +1136,10 @@ O:
         return new String(out.toByteArray());
     }
 
-    protected void closeIterator(Iterator itr, Object source) {
-        //special case check here for feature collection
-        // we need to ensure the iterator is closed properly
-        if ( source instanceof FeatureCollection ) {
-            //only close the iterator if not just a wrapping one
-            if ( !( itr instanceof SingleIterator ) ) {
-                ((FeatureCollection)source).close( itr );
-            }
-        }
+    protected void closeIterator(Iterator iterator, Object source) {
+        DataUtilities.close( iterator );
     }
+    
     protected Node encode(Object object, XSDNamedComponent component) {
         return encode( object, component, null );
     }
@@ -1151,7 +1164,6 @@ O:
         if (element.getLocalName() != null) {
             uri = element.getNamespaceURI();
             local = element.getLocalName();
-            
         }
         else {
             //namespace unaware dom tree
@@ -1171,11 +1183,10 @@ O:
 
         // declaration == null -> gml3 envelope encoding test failing
         // declaration.getSchema() == null -> wfs 2.0 feature collection encoding test failing
-        if (namespaceAware && (declaration == null || declaration.isGlobal() || 
-        		declaration.getSchema() == null || 
-        		declaration.getSchema().getElementFormDefault() == XSDForm.QUALIFIED_LITERAL)) {
+        if (forceQualified(declaration)) {
             uri = (uri != null) ? uri : namespaces.getURI("");
             qName = namespaces.getPrefix(uri) + ":" + qName;
+            
         } else {
             uri = "";
         }
@@ -1199,9 +1210,11 @@ O:
 
             if (node instanceof Element) {
                 Element child = (Element) node;
-                start(child, declaration != null ? Schemas.getChildElementDeclaration(declaration, 
-                        new QName(child.getNamespaceURI(), child.getNodeName())) : null);
-                end(child);
+                QName childName = new QName(child.getNamespaceURI(), child.getNodeName());
+                XSDElementDeclaration childDecl = declaration != null ? 
+                    Schemas.getChildElementDeclaration(declaration, childName) : null; 
+                start(child, childDecl);
+                end(child, childDecl);
             }
         }
 
@@ -1214,28 +1227,44 @@ O:
         }
     }
 
+    boolean forceQualified(XSDElementDeclaration e) {
+        return namespaceAware && (e == null || e.isGlobal() || e.getSchema() == null || 
+                e.getSchema().getElementFormDefault() == XSDForm.QUALIFIED_LITERAL);
+    }
+
     protected void comment(Element element) throws SAXException, IOException {
-        if (serializer instanceof XMLSerializer) {
+        if (serializer instanceof LexicalHandler) {
             NodeList children = element.getChildNodes();
 
             for (int i = 0; i < children.getLength(); i++) {
                 Node text = (Node) children.item(i);
-                ((XMLSerializer) serializer).comment(text.getNodeValue());
+                String str = text.getNodeValue();
+                ((LexicalHandler) serializer).comment(str.toCharArray(), 0, str.length());
             }
         }
     }
 
-    protected void end(Element element) throws SAXException {
+    protected void end(Element element, XSDElementDeclaration declaration) throws SAXException {
         //push off last context
         namespaces.popContext();
 
         String uri = element.getNamespaceURI();
         String local = element.getLocalName();
-
         String qName = element.getLocalName();
 
         if ((element.getPrefix() != null) && !"".equals(element.getPrefix())) {
             qName = element.getPrefix() + ":" + qName;
+        }
+        else {
+            if (forceQualified(declaration)) {
+                uri = uri != null ? uri : namespaces.getURI("");
+                if (uri != null) {
+                    qName = namespaces.getPrefix(uri) + ":" + qName;    
+                }
+                else {
+                    uri = "";
+                }
+            }
         }
 
         serializer.endElement(uri, local, qName);
@@ -1255,7 +1284,7 @@ O:
             return null;
         }
     }
-
+    
     private static class SingleIterator implements Iterator {
         Object object;
         boolean more;

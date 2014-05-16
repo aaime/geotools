@@ -1,12 +1,17 @@
 package org.geotools.process.factory;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.awt.Rectangle;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import junit.framework.TestCase;
 
 import org.geotools.data.Parameter;
 import org.geotools.data.Query;
@@ -18,11 +23,15 @@ import org.geotools.feature.NameImpl;
 import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.process.Process;
 import org.geotools.process.ProcessException;
 import org.geotools.process.ProcessFactory;
 import org.geotools.process.Processors;
 import org.geotools.process.RenderingProcess;
+import org.geotools.referencing.CRS.AxisOrder;
 import org.geotools.util.SimpleInternationalString;
+import org.junit.Before;
+import org.junit.Test;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.Name;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -32,6 +41,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.impl.PackedCoordinateSequenceFactory;
+import com.vividsolutions.jts.io.WKTReader;
 
 /**
  * Tests some processes that do not require integration with the application context
@@ -42,7 +52,12 @@ import com.vividsolutions.jts.geom.impl.PackedCoordinateSequenceFactory;
  *
  * @source $URL$
  */
-public class BeanProcessFactoryTest extends TestCase {
+public class BeanProcessFactoryTest {
+    
+    /**
+     * Constant used for absolute reference tests
+     */
+    public static final Rectangle DEFAULT_RECTANGLE = new Rectangle(0, 0, 10, 10);
 
     public class BeanProcessFactory extends AnnotatedBeanProcessFactory {
 
@@ -50,6 +65,7 @@ public class BeanProcessFactoryTest extends TestCase {
             super(new SimpleInternationalString("Some bean based processes custom processes"),
                     "bean", 
                     IdentityProcess.class,
+                    DefaultsProcess.class,
                     VectorIdentityRTProcess.class);
         }
 
@@ -57,8 +73,8 @@ public class BeanProcessFactoryTest extends TestCase {
 
     BeanProcessFactory factory;
 
-    @Override
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         factory = new BeanProcessFactory();
 
         // check SPI will see the factory if we register it using an iterator
@@ -75,6 +91,7 @@ public class BeanProcessFactoryTest extends TestCase {
         });
     }
 
+    @Test
     public void testNames() {
         Set<Name> names = factory.getNames();
         assertTrue(names.size() > 0);
@@ -82,11 +99,16 @@ public class BeanProcessFactoryTest extends TestCase {
         // Identity
         assertTrue(names.contains(new NameImpl("bean", "Identity")));
     }
-
+    
+    @Test
     public void testDescribeIdentity() {
         NameImpl name = new NameImpl("bean", "Identity");
+        DescribeProcess describeProcessAnno = IdentityProcess.class.getAnnotation(DescribeProcess.class);
+
         InternationalString desc = factory.getDescription(name);
-        assertNotNull(desc);
+        assertTrue(desc.toString().equals(describeProcessAnno.description()));
+        InternationalString title = factory.getTitle(name);
+        assertTrue(title.toString().equals(describeProcessAnno.title()));
 
         Map<String, Parameter<?>> params = factory.getParameterInfo(name);
         assertEquals(1, params.size());
@@ -101,6 +123,7 @@ public class BeanProcessFactoryTest extends TestCase {
         assertEquals(Object.class, identity.type);
     }
 
+    @Test
     public void testExecuteIdentity() throws ProcessException {
         // prepare a mock feature collection
         SimpleFeatureTypeBuilder tb = new SimpleFeatureTypeBuilder();
@@ -117,7 +140,8 @@ public class BeanProcessFactoryTest extends TestCase {
         assertEquals(re, computed);
         assertSame(re, computed);
     }
-
+    
+    @Test
     public void testSPI() throws Exception {
         NameImpl boundsName = new NameImpl("bean", "Identity");
         ProcessFactory factory = Processors.createProcessFactory(boundsName);
@@ -128,6 +152,7 @@ public class BeanProcessFactoryTest extends TestCase {
         assertNotNull(buffer);
     }
 
+    @Test
     public void testInvertQuery() throws ProcessException {
         // prepare a mock feature collection
         SimpleFeatureCollection data = buildTestFeatures();
@@ -150,6 +175,35 @@ public class BeanProcessFactoryTest extends TestCase {
         assertEquals(data, computed);
         assertSame(data, computed);
     }
+    
+    @Test
+    public void testDefaultValues() throws Exception {
+        Process defaults = factory.create(new NameImpl("bean", "Defaults"));
+        Map<String, Object> results = defaults.execute(Collections.EMPTY_MAP, null);
+        
+        // double check all defaults have been applied
+        assertEquals("default string", results.get("string"));
+        assertEquals(new WKTReader().read("POINT(0 0)"), results.get("geometry"));
+        assertEquals(1, results.get("int"));
+        assertEquals(0.65e-10, results.get("double"));
+        assertEquals(AxisOrder.EAST_NORTH, results.get("axisOrder"));
+        assertEquals(Short.MAX_VALUE, results.get("short"));
+        assertEquals(DefaultsProcess.GREET_DEFAULT, results.get("greet"));
+        assertEquals(DEFAULT_RECTANGLE, results.get("rect"));
+    }
+    
+    @Test
+    public void testMinMaxAcceptedValues() throws Exception {
+        //test that the annotation is correctly generating the parameter metadata
+        Map<String, Parameter<?>> params = factory.getParameterInfo(new NameImpl("bean", "Defaults"));        
+        assertEquals(2.0,((Parameter)params.get("int")).metadata.get(Parameter.MAX));
+        assertEquals(-1.0,((Parameter)params.get("int")).metadata.get(Parameter.MIN));
+        assertEquals(2.5, ((Parameter)params.get("double")).metadata.get(Parameter.MAX));
+        assertEquals(-1.5, ((Parameter)params.get("double")).metadata.get(Parameter.MIN));
+        //check the null values with a  parameter that does not have that annotation parameter filled
+        assertNull(((Parameter)params.get("short")).metadata.get(Parameter.MAX));
+        assertNull(((Parameter)params.get("short")).metadata.get(Parameter.MIN));        
+    }
 
 
     private SimpleFeatureCollection buildTestFeatures()
@@ -162,7 +216,7 @@ public class BeanProcessFactoryTest extends TestCase {
         tb.add("count", Integer.class);
         SimpleFeatureType schema = tb.buildFeatureType();
 
-        SimpleFeatureCollection fc = new ListFeatureCollection(schema);
+        ListFeatureCollection fc = new ListFeatureCollection(schema);
         SimpleFeatureBuilder fb = new SimpleFeatureBuilder(schema);
 
         GeometryFactory factory = new GeometryFactory(new PackedCoordinateSequenceFactory());

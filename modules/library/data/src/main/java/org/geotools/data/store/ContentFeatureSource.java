@@ -61,6 +61,7 @@ import org.geotools.filter.function.Collection_MinFunction;
 import org.geotools.filter.function.Collection_SumFunction;
 import org.geotools.filter.function.Collection_UniqueFunction;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.referencing.CRS;
 import org.geotools.util.NullProgressListener;
 import org.opengis.feature.Feature;
 import org.opengis.feature.FeatureVisitor;
@@ -618,14 +619,20 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
         
         // reprojection
         if ( !canReproject() ) {
-            if (query.getCoordinateSystemReproject() != null) {
-                try {
-                    reader = new ReprojectFeatureReader(reader, query.getCoordinateSystemReproject());
-                } catch (Exception e) {
-                    if(e instanceof IOException)
-                        throw (IOException) e;
-                    else
-                        throw (IOException) new IOException("Error occurred trying to reproject data").initCause(e);
+            CoordinateReferenceSystem targetCRS = query.getCoordinateSystemReproject();
+            if (targetCRS != null) {
+                CoordinateReferenceSystem nativeCRS = reader.getFeatureType().getCoordinateReferenceSystem();
+                if(nativeCRS == null) {
+                    throw new IOException("Cannot reproject data, the source CRS is not available");
+                } else if(!nativeCRS.equals(targetCRS)) {
+                    try {
+                        reader = new ReprojectFeatureReader(reader, targetCRS);
+                    } catch (Exception e) {
+                        if(e instanceof IOException)
+                            throw (IOException) e;
+                        else
+                            throw (IOException) new IOException("Error occurred trying to reproject data").initCause(e);
+                    }
                 }
             }    
         }
@@ -682,13 +689,21 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
             float position = 0;
             progress.started();
             while( reader.hasNext() ){
+                SimpleFeature feature = null;
                 if (size > 0) progress.progress( position++/size );
                 try {
-                    SimpleFeature feature = reader.next();
+                    feature = reader.next();
                     visitor.visit(feature);
                 }
-                catch( Exception erp ){
+                catch( IOException erp ){
                     progress.exceptionOccurred( erp );
+                    throw erp;
+                }
+                catch( Exception unexpected ){
+                    progress.exceptionOccurred( unexpected );
+                    String fid = feature == null ? "feature" : feature.getIdentifier().toString();
+                    throw new IOException("Problem visiting " + query.getTypeName() + " visiting " + fid
+                            + ":" + unexpected, unexpected);
                 }
             }
         }

@@ -234,7 +234,7 @@ public class TeradataDialect extends PreparedStatementSQLDialect {
     }
 
     @Override
-    public void setGeometryValue(Geometry g, int srid, Class binding,
+    public void setGeometryValue(Geometry g, int dimension, int srid, Class binding,
             PreparedStatement ps, int column) throws SQLException {
         if (g != null) {
             if (g instanceof LinearRing ) {
@@ -743,7 +743,7 @@ public class TeradataDialect extends PreparedStatementSQLDialect {
                     
                     //look up the spatial index table
                     tables = cx.getMetaData().getTables(
-                        null, schemaName, tableName+"_"+columnName+"_idx", new String[]{"TABLE"});
+                        null, schemaName, tableName+"_"+columnName+"_idx", new String[]{"TABLE","VIEW"});
                     try {
                         if (tables.next()) {
                             tinfo.setIndexTableName(tables.getString("TABLE_NAME"));

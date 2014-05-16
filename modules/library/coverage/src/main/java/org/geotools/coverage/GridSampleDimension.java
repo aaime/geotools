@@ -643,8 +643,8 @@ public class GridSampleDimension implements SampleDimension, Serializable {
             isGeophysics       = other.isGeophysics;
             hasQualitative     = other.hasQualitative;
             hasQuantitative    = other.hasQuantitative;
-            sampleToGeophysics = other.sampleToGeophysics;
-            description        = other.description;
+            sampleToGeophysics = other.getSampleToGeophysics();
+            description        = other.getDescription();
         } else {
             // 'inverse' will be set when needed.
             categories         = null;
@@ -805,10 +805,11 @@ public class GridSampleDimension implements SampleDimension, Serializable {
      * then a {@linkplain Category#NODATA default} one is returned.
      *
      * @return A category to use as background for the "Resample" operation. Never {@code null}.
+     * @deprecated check for no data values instead
      */
     public Category getBackground() {
         return (categories != null) ? categories.nodata : Category.NODATA;
-    }
+    }    
 
     /**
      * Returns the values to indicate "no data" for this sample dimension.  The default

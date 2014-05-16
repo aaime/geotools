@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,6 +47,8 @@ import org.geotools.referencing.factory.AbstractAuthorityFactory;
 import org.geotools.referencing.factory.IdentifiedObjectFinder;
 import org.geotools.referencing.operation.DefaultMathTransformFactory;
 import org.geotools.referencing.operation.projection.MapProjection;
+import org.geotools.referencing.operation.transform.AffineTransform2D;
+import org.geotools.referencing.operation.transform.ConcatenatedTransform;
 import org.geotools.referencing.operation.transform.IdentityTransform;
 import org.geotools.referencing.wkt.Formattable;
 import org.geotools.resources.CRSUtilities;
@@ -93,6 +96,7 @@ import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.NoninvertibleTransformException;
+import org.opengis.referencing.operation.Projection;
 import org.opengis.referencing.operation.TransformException;
 
 
@@ -136,6 +140,8 @@ import org.opengis.referencing.operation.TransformException;
 public final class CRS {
     
     static final Logger LOGGER = Logging.getLogger(CRS.class);
+    
+    static volatile AtomicBoolean FORCED_LON_LAT = null;
     
     /**
      * Enumeration describing axis order for geographic coordinate reference systems.
@@ -247,18 +253,40 @@ public final class CRS {
             throws FactoryRegistryException
     {
         CRSAuthorityFactory factory = (longitudeFirst) ? xyFactory : defaultFactory;
-        if (factory == null) try {
-            factory = new DefaultAuthorityFactory(longitudeFirst);
-            if (longitudeFirst) {
-                xyFactory = factory;
-            } else {
-                defaultFactory = factory;
+        if (factory == null) 
+            try {
+                // what matters is the value of the flag when the factories are created,. do updated
+                updateForcedLonLat();
+                factory = new DefaultAuthorityFactory(longitudeFirst);
+                if (longitudeFirst) {
+                    xyFactory = factory;
+                } else {
+                    defaultFactory = factory;
+                }
+            } catch (NoSuchElementException exception) {
+                // No factory registered in FactoryFinder.
+                throw new FactoryNotFoundException(null, exception);
             }
-        } catch (NoSuchElementException exception) {
-            // No factory registered in FactoryFinder.
-            throw new FactoryNotFoundException(null, exception);
-        }
         return factory;
+    }
+    
+    private static void updateForcedLonLat() {
+        boolean forcedLonLat = false;
+        try {
+            forcedLonLat = Boolean.getBoolean("org.geotools.referencing.forceXY") || 
+                Boolean.TRUE.equals(Hints.getSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER));
+        } catch(Exception e) {
+            // all right it was a best effort attempt
+            LOGGER.log(Level.FINE, "Failed to determine if we are in forced lon/lat mode", e);
+        }
+        FORCED_LON_LAT = new AtomicBoolean(forcedLonLat);
+    }
+    
+    private static boolean isForcedLonLat() {
+        if(FORCED_LON_LAT == null) {
+            updateForcedLonLat();
+        }
+        return FORCED_LON_LAT.get();
     }
 
     /**
@@ -762,12 +790,26 @@ search:             if (DefaultCoordinateSystemAxis.isCompassDirection(axis.getD
         if(projectedCRS == null)
             return null;
         
-        MathTransform mt = projectedCRS.getConversionFromBase().getMathTransform();
-        if(mt instanceof MapProjection)
-            return (MapProjection) mt;
-        
-        return null;
+        Projection conversion = projectedCRS.getConversionFromBase();
+        MathTransform mt = conversion.getMathTransform();
+        return unrollProjection(mt);
     }
+
+    private static MapProjection unrollProjection(MathTransform mt) {
+        if(mt instanceof MapProjection) {
+            return (MapProjection) mt;
+        } else if(mt instanceof ConcatenatedTransform) {
+            ConcatenatedTransform ct = (ConcatenatedTransform) mt;
+            MapProjection result = unrollProjection(ct.transform1);
+            if(result == null) {
+                result = unrollProjection(ct.transform2);
+            }
+            return result;
+        } else {
+            return null;
+        }
+    }
+
 
     /**
      * Returns the first vertical coordinate reference system found in a the given CRS,
@@ -877,9 +919,10 @@ search:             if (DefaultCoordinateSystemAxis.isCompassDirection(axis.getD
      * Spatial Reference System (ie SRS) values:
      * <ul>
      *   <li>{@code EPSG:4326} - this is the usual format understood to mean <cite>forceXY</cite>
-     *       order. Note that the axis order is <em>not necessarly</em> (<var>longitude</var>,
+     *       order prior to WMS 1.3.0. Note that the axis order is <em>not necessarly</em> (<var>longitude</var>,
      *       <var>latitude</var>), but this is the common behavior we observe in practice.</li>
      *   <li>{@code AUTO:43200} - </li>
+     *   <li>{@code CRS:84} - similar to {@link DefaultGeographicCRS#WGS84} (formally defined by CRSAuthorityFactory)
      *   <li>{@code ogc:uri:.....} - understood to match the EPSG database axis order.</li>
      *   <li>Well Known Text (WKT)</li>
      * </ul>
@@ -890,15 +933,10 @@ search:             if (DefaultCoordinateSystemAxis.isCompassDirection(axis.getD
      * @since 2.5
      */
     public static String toSRS(final CoordinateReferenceSystem crs) {
-        boolean forcedLonLat = false;
-        try {
-            forcedLonLat = Boolean.getBoolean("org.geotools.referencing.forceXY") || 
-                Boolean.TRUE.equals(Hints.getSystemDefault(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER));
-        } catch(Exception e) {
-            // all right it was a best effort attempt
-            LOGGER.log(Level.FINE, "Failed to determine if we are in forced lon/lat mode", e);
+        if (crs == null) {
+            return null;
         }
-        if (forcedLonLat && CRS.getAxisOrder(crs, false) == AxisOrder.NORTH_EAST) {
+        if (isForcedLonLat() && CRS.getAxisOrder(crs, false) == AxisOrder.NORTH_EAST) {
             try {
                 // not usual axis order, check if we can have a EPSG code
                 Integer code = CRS.lookupEpsgCode(crs, false);
@@ -910,22 +948,36 @@ search:             if (DefaultCoordinateSystemAxis.isCompassDirection(axis.getD
                 LOGGER.log(Level.FINE, "Failed to determine EPSG code", e);
             }
         }
-        
-        // fall back on simple lookups
-        if( crs == null ){
-            return null;
+        // special case DefaultGeographic.WGS84 to prevent SRS="WGS84(DD)"
+        if (crs == DefaultGeographicCRS.WGS84) {
+            // if( forcedLonLat ) return "EPSG:4326"; <-- this is a bad idea for interoperability WMS 1.3.0
+            return "CRS:84"; // WMS Authority definition DefaultGeographicCRS.WGS84
         }
-        final Set<ReferenceIdentifier> identifiers = crs.getIdentifiers();
+        Set<ReferenceIdentifier> identifiers = crs.getIdentifiers();
         if (identifiers.isEmpty()) {
-            // fallback unfortunately this often does not work
+            // we got nothing to work with ... unfortunately this often does not work
             final ReferenceIdentifier name = crs.getName();
             if (name != null) {
                 return name.toString();
             }
+            return null;
         } else {
+            // check for an identifier to use as an srsName
+            for (ReferenceIdentifier identifier : crs.getIdentifiers()) {
+                String srs = identifier.toString();
+                if (srs.contains("EPSG:") || srs.contains("CRS:")) {
+                    return srs; // handles prj files that supply EPSG code
+                }
+            }
+            // fallback unfortunately this often does not work
+            ReferenceIdentifier name = crs.getName();
+            if (name != null
+                    && (name.toString().contains("EPSG:") || name.toString().contains("CRS:"))) {
+                return name.toString();
+            }
+            // nothing was obviously an identifier .. so we grab the first
             return identifiers.iterator().next().toString();
         }
-        return null;
     }
     /**
      * Returns the <cite>Spatial Reference System</cite> identifier, or {@code null} if none.
@@ -934,13 +986,13 @@ search:             if (DefaultCoordinateSystemAxis.isCompassDirection(axis.getD
      * true for force a very simple representation that is just based on the code portion.
      * 
      * @param crs
-     * @param simple Set to true to force generation of a simple srsName entry
+     * @param codeOnly Set to true to force generation of a simple srsName using only the code portion
      * @return srsName
      */
-    public static String toSRS(final CoordinateReferenceSystem crs, boolean simple){
+    public static String toSRS(final CoordinateReferenceSystem crs, boolean codeOnly){
         if( crs == null ) return null;
         String srsName = toSRS( crs );
-        if( simple && srsName != null ){
+        if( codeOnly && srsName != null ){
             // Some Server implementations using older versions of this
             // library barf on a fully qualified CRS name with messages
             // like : "couldnt decode SRS - EPSG:EPSG:4326. currently
@@ -1780,6 +1832,7 @@ search:             if (DefaultCoordinateSystemAxis.isCompassDirection(axis.getD
                 MapProjection.resetWarnings();
             }
         }
+        FORCED_LON_LAT = null;
         defaultFactory = null;
         xyFactory = null;
         strictFactory = null;

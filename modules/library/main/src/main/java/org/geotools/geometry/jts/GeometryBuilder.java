@@ -100,6 +100,16 @@ public class GeometryBuilder {
     }
     
     /**
+     * Creates a 1D Point.
+     * 
+     * @param x the X ordinate
+     * @return a Point
+     */
+    public Point point(double x) {
+        return geomFact.createPoint(createCS(new double[] { x }, 1));
+    }
+    
+    /**
      * Creates a 2D Point.
      * 
      * @param x the X ordinate
@@ -318,7 +328,7 @@ public class GeometryBuilder {
         double rx = Math.abs(x2 - x1) / 2;
         double ry = Math.abs(y2 - y1) / 2;
         double cx = Math.min(x1, x2) + rx;
-        double cy = Math.min(x1, x2) + ry;
+        double cy = Math.min(y1, y2) + ry;
     
         double[] ord = new double[2 * nsides + 2];
         double angInc = 2 * Math.PI / nsides;
@@ -438,8 +448,7 @@ public class GeometryBuilder {
         double[] ord2 = new double[ord.length + dim];
         System.arraycopy(ord, 0, ord2, 0, ord.length);
         // copy first coord to last
-        int n = ord2.length / dim;
-        int lastPos = dim * n;
+        int lastPos = ord.length;
         for (int i = 0; i < dim; i++) {
             ord2[lastPos + i] = ord2[i];
         }

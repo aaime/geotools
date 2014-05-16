@@ -29,6 +29,7 @@ import org.apache.commons.jxpath.JXPathException;
 import org.geotools.data.Query;
 import org.geotools.data.complex.PathAttributeList.Pair;
 import org.geotools.data.complex.filter.XPath.*;
+import org.geotools.data.complex.filter.XPathUtil.*;
 import org.geotools.data.complex.xml.*;
 import org.geotools.feature.AttributeBuilder;
 import org.geotools.feature.FeatureIterator;
@@ -518,7 +519,7 @@ public class XmlMappingFeatureIterator extends DataAccessMappingFeatureIterator 
                 
         boolean exists = false;
         
-        if (featureCounter >= maxFeatures) {
+        if (featureCounter >= requestMaxFeatures) {
             return false;
         }
         if (isSourceFeatureIteratorNull()) {

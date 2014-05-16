@@ -23,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
@@ -36,10 +35,14 @@ import org.apache.commons.cli2.option.DefaultOption;
 import org.apache.commons.cli2.validation.InvalidArgumentException;
 import org.apache.commons.cli2.validation.Validator;
 import org.apache.commons.io.FileUtils;
-import org.geotools.coverage.grid.io.AbstractGridCoverage2DReader;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
+import org.geotools.coverage.grid.io.GridCoverage2DReader;
 import org.geotools.coverage.grid.io.GridFormatFinder;
-import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilder;
+import org.geotools.gce.imagemosaic.ImageMosaicConfigHandler;
+import org.geotools.gce.imagemosaic.ImageMosaicDirectoryWalker;
+import org.geotools.gce.imagemosaic.ImageMosaicEventHandlers;
+import org.geotools.gce.imagemosaic.MosaicConfigurationBean;
+import org.geotools.gce.imagemosaic.Utils.Prop;
 import org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilderConfiguration;
 import org.geotools.geometry.GeneralEnvelope;
 import org.geotools.utils.CoverageToolsConstants;
@@ -418,8 +421,7 @@ public class PyramidBuilder extends BaseArgumentsManager implements Runnable,
 			fireException(message, 0, new IOException(message));
 			return;
 		}
-		final AbstractGridCoverage2DReader inReader = (AbstractGridCoverage2DReader) format
-				.getReader(inputLocation);
+		final GridCoverage2DReader inReader = (GridCoverage2DReader) format.getReader(inputLocation);
 		if (inReader == null) {
 			String message = "Unable to instantiate a reader for this coverage";
 			fireException(message, 0, new IOException(message));
@@ -427,7 +429,11 @@ public class PyramidBuilder extends BaseArgumentsManager implements Runnable,
 		}
 
 		envelope = inReader.getOriginalEnvelope();
-		inReader.dispose();
+		try {
+		    inReader.dispose();
+		} catch(IOException e) {
+		    LOGGER.log(Level.SEVERE, "Failure occurred while closing grid coverage reader", e);
+		}
 
 		// /////////////////////////////////////////////////////////////////////
 		//
@@ -576,31 +582,21 @@ public class PyramidBuilder extends BaseArgumentsManager implements Runnable,
 	    
 	        // prepare the configuration
 	        final CatalogBuilderConfiguration configuration = new CatalogBuilderConfiguration();
-                configuration.setRootMosaicDirectory(new File(outputLocation, String.valueOf(level)).getAbsolutePath());   
-                configuration.setIndexName(name);
-//	        configuration.setAbsolute(runner.absolute);
-//	        configuration.setFootprintManagement(runner.footprintManagement);
-//	        configuration.setCaching(runner.caching);
-//	        configuration.setWildcard(runner.wildcardString);
-//	        configuration.setLocationAttribute(runner.locationAttribute);
-//	        
-//
-//	        final String directories = runner.indexingDirectoriesString;
-//	        final String[] dirs_ = directories.split(",");
-//	        final List<String> dirs = new ArrayList<String>();
-//	        for (String dir : dirs_)
-//	            dirs.add(dir);
-//	        configuration.setIndexingDirectories(dirs);
-                configuration.setIndexingDirectories(Arrays.asList(configuration.getRootMosaicDirectory()));
+	        configuration.setParameter(Prop.ROOT_MOSAIC_DIR, new File(outputLocation, String.valueOf(level)).getAbsolutePath());
+                configuration.setParameter(Prop.INDEX_NAME, name);
+                configuration.setParameter(Prop.INDEXING_DIRECTORIES, configuration.getParameter(Prop.ROOT_MOSAIC_DIR));
 
 	        // prepare and run the index builder
-	        final CatalogBuilder builder = new CatalogBuilder(configuration);
+                ImageMosaicEventHandlers eventHandler=new ImageMosaicEventHandlers();
+                final ImageMosaicConfigHandler catalogHandler = new ImageMosaicConfigHandler(configuration, eventHandler);
+                // TODO 
+	        final ImageMosaicDirectoryWalker builder = new ImageMosaicDirectoryWalker(catalogHandler, eventHandler); 
 	        builder.run();	    
-	        builder.addProcessingEventListener(new CatalogBuilder.ProcessingEventListener() {
+	        eventHandler.addProcessingEventListener(new ImageMosaicEventHandlers.ProcessingEventListener() {
                     
                     @Override
                     public void getNotification(
-                            org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilder.ProcessingEvent event) {
+                            ImageMosaicEventHandlers.ProcessingEvent event) {
                        slaveToolsListener.getNotification(
                                new ProcessingEvent(
                                        event.getSource(),
@@ -611,13 +607,14 @@ public class PyramidBuilder extends BaseArgumentsManager implements Runnable,
                     
                     @Override
                     public void exceptionOccurred(
-                            org.geotools.gce.imagemosaic.catalogbuilder.CatalogBuilder.ExceptionEvent event) {
+                            ImageMosaicEventHandlers.ExceptionEvent event) {
                         slaveToolsListener.exceptionOccurred(new ExceptionEvent(event.getSource(),event.getMessage(),event.getPercentage(),event.getException()));
                         
                     }
                 });
-		builder.removeAllProcessingEventListeners();
-		return new double[] { builder.getMosaicConfiguration().getLevels()[0][0],builder.getMosaicConfiguration().getLevels()[0][1]};
+	        eventHandler.removeAllProcessingEventListeners();
+		MosaicConfigurationBean bean = catalogHandler.getConfigurations().values().iterator().next();
+		return new double[] { bean.getLevels()[0][0],bean.getLevels()[0][1]};
 	}
 
 	/**

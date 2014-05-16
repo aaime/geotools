@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.zip.GZIPInputStream;
 
 import org.geotools.data.Base64;
@@ -43,6 +44,8 @@ public class SimpleHttpClient implements HTTPClient {
     private int connectTimeout = DEFAULT_TIMEOUT;
 
     private int readTimeout = DEFAULT_TIMEOUT;
+
+    private boolean tryGzip = true;
 
     @Override
     public String getUser() {
@@ -89,8 +92,10 @@ public class SimpleHttpClient implements HTTPClient {
      */
     public HTTPResponse get(final URL url) throws IOException {
 
-        HttpURLConnection connection = openConnection(url);
-        connection.setRequestMethod("GET");
+        URLConnection connection = openConnection(url);
+        if(connection instanceof HttpURLConnection){
+            ((HttpURLConnection) connection).setRequestMethod("GET");
+        }
 
         connection.connect();
 
@@ -104,8 +109,10 @@ public class SimpleHttpClient implements HTTPClient {
     public HTTPResponse post(final URL url, final InputStream postContent,
             final String postContentType) throws IOException {
 
-        HttpURLConnection connection = openConnection(url);
-        connection.setRequestMethod("POST");
+        URLConnection connection = openConnection(url);
+        if (connection instanceof HttpURLConnection) {
+            ((HttpURLConnection) connection).setRequestMethod("POST");
+        }
         connection.setDoOutput(true);
         if (postContentType != null) {
             connection.setRequestProperty("Content-type", postContentType);
@@ -128,17 +135,24 @@ public class SimpleHttpClient implements HTTPClient {
         return new SimpleHTTPResponse(connection);
     }
 
-    private HttpURLConnection openConnection(URL finalURL) throws IOException {
-        HttpURLConnection connection = (HttpURLConnection) finalURL.openConnection();
-        connection.addRequestProperty("Accept-Encoding", "gzip");
+    private URLConnection openConnection(URL finalURL) throws IOException {
+        URLConnection connection = finalURL.openConnection();
+        final boolean http = connection instanceof HttpURLConnection;
+        if(http && tryGzip){
+            connection.addRequestProperty("Accept-Encoding", "gzip");
+        }
         // mind, connect timeout is in seconds
-        connection.setConnectTimeout(1000 * getConnectTimeout());
-        connection.setReadTimeout(1000 * getReadTimeout());
+        if (http && getConnectTimeout() > 0) {
+            connection.setConnectTimeout(1000 * getConnectTimeout());
+        }
+        if (http && getReadTimeout() > 0) {
+            connection.setReadTimeout(1000 * getReadTimeout());
+        }
 
         final String username = getUser();
         final String password = getPassword();
 
-        if (username != null && password != null) {
+        if (http && username != null && password != null) {
             String userpassword = username + ":" + password;
             String encodedAuthorization = Base64.encodeBytes(userpassword.getBytes("UTF-8"));
             connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
@@ -148,12 +162,20 @@ public class SimpleHttpClient implements HTTPClient {
 
     public static class SimpleHTTPResponse implements HTTPResponse {
 
-        private HttpURLConnection connection;
+        private URLConnection connection;
 
         private InputStream responseStream;
 
-        public SimpleHTTPResponse(final HttpURLConnection connection) {
+        public SimpleHTTPResponse(final URLConnection connection) throws IOException {
             this.connection = connection;
+            InputStream inputStream = connection.getInputStream();
+
+            final String contentEncoding = connection.getContentEncoding();
+
+            if (contentEncoding != null && connection.getContentEncoding().indexOf("gzip") != -1) {
+                inputStream = new GZIPInputStream(inputStream);
+            }
+            responseStream = inputStream;
         }
 
         /**
@@ -169,7 +191,9 @@ public class SimpleHttpClient implements HTTPClient {
                 responseStream = null;
             }
             if (connection != null) {
-                connection.disconnect();
+                if (connection instanceof HttpURLConnection) {
+                    ((HttpURLConnection) connection).disconnect();
+                }
                 connection = null;
             }
         }
@@ -192,20 +216,46 @@ public class SimpleHttpClient implements HTTPClient {
          * @see org.geotools.data.ows.HTTPResponse#getResponseStream()
          */
         public InputStream getResponseStream() throws IOException {
-
-            if (responseStream == null) {
-                InputStream inputStream = connection.getInputStream();
-
-                final String contentEncoding = connection.getContentEncoding();
-
-                if (contentEncoding != null
-                        && connection.getContentEncoding().indexOf("gzip") != -1) {
-                    inputStream = new GZIPInputStream(inputStream);
-                }
-                responseStream = inputStream;
-            }
-
             return responseStream;
         }
+
+        /**
+         * @see org.geotools.data.ows.HTTPResponse#getResponseCharset()
+         */
+        @Override
+        public String getResponseCharset() {
+            String contentType = getContentType();
+            if (null == contentType) {
+                return null;
+            }
+            String[] split = contentType.split(";");
+
+            for (int i = 1; i < split.length; i++) {
+                String[] mimeParam = split[i].split("=");
+                if (mimeParam.length == 2 && "charset".equalsIgnoreCase(mimeParam[0])) {
+                    String charset = mimeParam[1];
+                    return charset.trim();
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * @param tryGZIP
+     * @see org.geotools.data.ows.HTTPClient#setTryGzip(boolean)
+     */
+    @Override
+    public void setTryGzip(boolean tryGZIP) {
+        this.tryGzip = tryGZIP;
+    }
+
+    /**
+     * @return
+     * @see org.geotools.data.ows.HTTPClient#isTryGzip()
+     */
+    @Override
+    public boolean isTryGzip() {
+        return tryGzip;
     }
 }

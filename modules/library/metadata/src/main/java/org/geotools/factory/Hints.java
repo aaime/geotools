@@ -27,7 +27,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.naming.Name;
 import javax.sql.DataSource;
@@ -71,12 +73,12 @@ public class Hints extends RenderingHints {
     /**
      * A set of system-wide hints to use by default.
      */
-    private static final Hints GLOBAL = new Hints();
+    private static volatile Map<RenderingHints.Key, Object> GLOBAL = new ConcurrentHashMap<RenderingHints.Key, Object>();
 
     /**
      * {@code true} if {@link #scanSystemProperties} needs to be invoked.
      */
-    private static boolean needScan = true;
+    private static AtomicBoolean needScan = new AtomicBoolean(true);
 
 
 
@@ -813,6 +815,20 @@ public class Hints extends RenderingHints {
     ////////                      Data stores                       ////////
     ////////                                                        ////////
     ////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * Resolve setting for resolving resources. ("local", "none", "remote" or "all")
+     * <p>
+     * This maps directly to the {@code resolve} parameter in a WFS query.
+     */
+    public static final Key RESOLVE = new Key("net.opengis.wfs20.ResolveValueType");
+    
+    /**
+     * The maximum time-out for resolving resources.
+     * <p>
+     * This maps directly to the {@code resolveTimeOut} parameter in a WFS query.
+     */
+    public static final Hints.Key RESOLVE_TIMEOUT = new Key(Integer.class);
 
     /**
      * The maximum number of associations traversed in a datastore query.
@@ -1132,24 +1148,23 @@ public class Hints extends RenderingHints {
      * @since 2.4
      */
     public static void scanSystemProperties() {
-        synchronized (GLOBAL) {
-            needScan = true;
-        }
+        needScan.set(true);
     }
 
     /**
      * Invokes {@link GeoTools#scanSystemProperties} when first needed. The caller is
-     * responsible for invoking {@link GeoTools#fireConfigurationChanged} outside the
-     * synchronized block if this method returns {@code true}.
+     * responsible for invoking {@link GeoTools#fireConfigurationChanged} if this method returns {@code true}.
      *
      * @return {@code true} if at least one hint changed as a result of this scan,
      *         or {@code false} otherwise.
      */
     private static boolean ensureSystemDefaultLoaded() {
-        assert Thread.holdsLock(GLOBAL);
-        if (needScan) {
-            needScan = false;
-            return GeoTools.scanForSystemHints(GLOBAL);
+        if (needScan.get()) {
+            Map<RenderingHints.Key, Object> newGlobal = new ConcurrentHashMap<RenderingHints.Key, Object>(GLOBAL);
+            boolean modified = GeoTools.scanForSystemHints(newGlobal);
+            GLOBAL = newGlobal;
+            needScan.set(false);
+            return modified;
         } else {
             return false;
         }
@@ -1160,15 +1175,12 @@ public class Hints extends RenderingHints {
      * {@link GeoTools#getDefaultHints} implementation only.
      */
     static Hints getDefaults(final boolean strict) {
-        final boolean changed;
         final Hints hints;
-        synchronized (GLOBAL) {
-            changed = ensureSystemDefaultLoaded();
-            if (strict) {
-                hints = new StrictHints(GLOBAL);
-            } else {
-                hints = new Hints(GLOBAL);
-            }
+        final boolean changed = ensureSystemDefaultLoaded();
+        if (strict) {
+            hints = new StrictHints(GLOBAL);
+        } else {
+            hints = new Hints(GLOBAL);
         }
         if (changed) {
             GeoTools.fireConfigurationChanged();
@@ -1181,11 +1193,28 @@ public class Hints extends RenderingHints {
      * is for {@link GeoTools#init} implementation only.
      */
     static void putSystemDefault(final RenderingHints hints) {
-        synchronized (GLOBAL) {
-            ensureSystemDefaultLoaded();
-            GLOBAL.add(hints);
-        }
+        ensureSystemDefaultLoaded();
+        Map<RenderingHints.Key, Object> map = toMap(hints);
+        GLOBAL.putAll(map);
         GeoTools.fireConfigurationChanged();
+    }
+
+    /**
+     * Turns the rendering hints provided into a map with {@link RenderingHints.Key} keys, ignoring
+     * every other entry that might have keys of different nature
+     * 
+     * @param hints
+     * @return
+     */
+    private static Map<java.awt.RenderingHints.Key, Object> toMap(RenderingHints hints) {
+        Map<RenderingHints.Key, Object> result = new HashMap<RenderingHints.Key, Object>();
+        for (Map.Entry<Object, Object> entry : hints.entrySet()) {
+            if(entry.getKey() instanceof RenderingHints.Key) {
+                result.put((java.awt.RenderingHints.Key) entry.getKey(), entry.getValue());
+            }
+        }
+        
+        return result;
     }
 
     /**
@@ -1201,10 +1230,8 @@ public class Hints extends RenderingHints {
     public static Object getSystemDefault(final RenderingHints.Key key) {
         final boolean changed;
         final Object value;
-        synchronized (GLOBAL) {
-            changed = ensureSystemDefaultLoaded();
-            value = GLOBAL.get(key);
-        }
+        changed = ensureSystemDefaultLoaded();
+        value = GLOBAL.get(key);
         if (changed) {
             GeoTools.fireConfigurationChanged();
         }
@@ -1228,10 +1255,8 @@ public class Hints extends RenderingHints {
     public static Object putSystemDefault(final RenderingHints.Key key, final Object value) {
         final boolean changed;
         final Object old;
-        synchronized (GLOBAL) {
-            changed = ensureSystemDefaultLoaded();
-            old = GLOBAL.put(key, value);
-        }
+        changed = ensureSystemDefaultLoaded();
+        old = GLOBAL.put(key, value);
         if (changed || !Utilities.equals(value, old)) {
             GeoTools.fireConfigurationChanged();
         }
@@ -1251,10 +1276,8 @@ public class Hints extends RenderingHints {
     public static Object removeSystemDefault(final RenderingHints.Key key) {
         final boolean changed;
         final Object old;
-        synchronized (GLOBAL) {
-            changed = ensureSystemDefaultLoaded();
-            old = GLOBAL.remove(key);
-        }
+        changed = ensureSystemDefaultLoaded();
+        old = GLOBAL.remove(key);
         if (changed || old != null) {
             GeoTools.fireConfigurationChanged();
         }
@@ -1275,11 +1298,9 @@ public class Hints extends RenderingHints {
         buffer.append(lineSeparator).append(AbstractFactory.toString(this));
         Map<?,?> extra = null;
         final boolean changed;
-        synchronized (GLOBAL) {
-            changed = ensureSystemDefaultLoaded();
-            if (!GLOBAL.isEmpty()) {
-                extra = new HashMap<Object,Object>(GLOBAL);
-            }
+        changed = ensureSystemDefaultLoaded();
+        if (!GLOBAL.isEmpty()) {
+            extra = new HashMap<Object,Object>(GLOBAL);
         }
         if (changed) {
             GeoTools.fireConfigurationChanged();

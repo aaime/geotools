@@ -80,7 +80,7 @@ class ChannelSelectionNode extends SubchainStyleVisitorCoverageProcessingAdapter
 	 * 
 	 * @see org.geotools.renderer.lite.gridcoverage2d.StyleVisitorAdapter#visit(org.geotools.styling.ChannelSelection)
 	 */
-	public synchronized void visit(final ChannelSelection cs) {
+	public void visit(final ChannelSelection cs) {
 		// /////////////////////////////////////////////////////////////////////
 		//
 		// Ensure that the ChannelSelection is not null and that the source is
@@ -93,7 +93,7 @@ class ChannelSelectionNode extends SubchainStyleVisitorCoverageProcessingAdapter
 			throw new IllegalArgumentException(Errors.format(
 					ErrorKeys.SOURCE_CANT_BE_NULL_$1, "ChannelSelectionNode"));
 		final GridCoverage2D source = (GridCoverage2D) getSource(0).getOutput();
-		ensureSourceNotNull(source, this.getName().toString());
+		GridCoverageRendererUtilities.ensureSourceNotNull(source, this.getName().toString());
 
 		// /////////////////////////////////////////////////////////////////////
 		//

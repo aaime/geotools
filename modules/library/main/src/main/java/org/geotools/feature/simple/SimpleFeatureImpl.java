@@ -31,7 +31,9 @@ import org.geotools.feature.IllegalAttributeException;
 import org.geotools.feature.PropertyImpl;
 import org.geotools.feature.type.AttributeDescriptorImpl;
 import org.geotools.feature.type.Types;
+import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.geotools.geometry.jts.ReferencedEnvelope3D;
 import org.geotools.util.Converters;
 import org.geotools.util.Utilities;
 import org.opengis.feature.GeometryAttribute;
@@ -46,7 +48,9 @@ import org.opengis.feature.type.Name;
 import org.opengis.filter.identity.FeatureId;
 import org.opengis.filter.identity.Identifier;
 import org.opengis.geometry.BoundingBox;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
+import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 
 /**
@@ -270,22 +274,24 @@ public class SimpleFeatureImpl implements SimpleFeature {
 
     public BoundingBox getBounds() {
         //TODO: cache this value
-        ReferencedEnvelope bounds = new ReferencedEnvelope( featureType.getCoordinateReferenceSystem() );
-        for ( Object o : values ) {
+    	CoordinateReferenceSystem crs = featureType.getCoordinateReferenceSystem();
+        Envelope bounds = ReferencedEnvelope.create( crs );
+    	
+    	for ( Object o : values ) {
             if ( o instanceof Geometry ) {
                 Geometry g = (Geometry) o;
                 //TODO: check userData for crs... and ensure its of the same 
                 // crs as the feature type
                 if ( bounds.isNull() ) {
-                    bounds.init(g.getEnvelopeInternal());
+                    bounds.init(JTS.bounds( g, crs ));
                 }
                 else {
-                    bounds.expandToInclude(g.getEnvelopeInternal());
+                    bounds.expandToInclude(JTS.bounds( g, crs ));
                 }
             }
         }
         
-        return bounds;
+        return (BoundingBox) bounds;
     }
 
     public GeometryAttribute getDefaultGeometryProperty() {
@@ -350,7 +356,7 @@ public class SimpleFeatureImpl implements SimpleFeature {
     public void setValue(Collection<Property> values) {
         int i = 0;
         for ( Property p : values ) {
-            this.values[i] = p.getValue();
+            this.values[i++] = p.getValue();
         }
     }
 

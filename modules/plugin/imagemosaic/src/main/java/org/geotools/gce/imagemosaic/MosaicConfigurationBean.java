@@ -2,7 +2,7 @@
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
  *
- *    (C) 2007-2008, Open Source Geospatial Foundation (OSGeo)
+ *    (C) 2007-2013, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -16,20 +16,23 @@
  */
 package org.geotools.gce.imagemosaic;
 
+import java.awt.image.ColorModel;
 import java.awt.image.IndexColorModel;
 import java.awt.image.SampleModel;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.geotools.gce.imagemosaic.catalog.CatalogConfigurationBean;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.util.Utilities;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  * Very simple bean to hold the configuration of the mosaic.
  * 
  * @author Simone Giannecchini, GeoSolutions S.A.S.
  * @author Stefan Alfons Krueger (alfonx), Wikisquare.de : Support for jar:file:foo.jar/bar.properties URLs
- *
  *
  * @source $URL$
  */
@@ -38,11 +41,11 @@ public class MosaicConfigurationBean {
         /**
          * Default constructor
          */
-	public MosaicConfigurationBean() {
-		
-	}
-	
-	public MosaicConfigurationBean(final MosaicConfigurationBean that) {
+    public MosaicConfigurationBean() {
+        
+    }
+    
+    public MosaicConfigurationBean(final MosaicConfigurationBean that) {
             Utilities.ensureNonNull("MosaicConfigurationBean", that);
             try {
                     BeanUtils.copyProperties(this, that);
@@ -54,56 +57,61 @@ public class MosaicConfigurationBean {
                     throw iae;
             }
         }
-	
-	/**
-	 * <code>true</code> it tells us if the mosaic points to absolute paths or to relative ones. (in case of <code>false</code>).
-	 */
-	private boolean absolutePath= Utils.DEFAULT_PATH_BEHAVIOR;
-	
-	/**
-	 * <code>true</code> if we need to expand to RGB(A) the single tiles in case they use a different {@link IndexColorModel}.
-	 */
-	private boolean expandToRGB;
-	
-	/** OverviewLevel levels */
-	private double[][] levels;
-	
-	/** name for the mosaic.*/
-	private String name;
-	
-	/** number of levels*/
-	private int levelsNum;
-	
-	/** location attribute name*/
-	private String locationAttribute=Utils.DEFAULT_LOCATION_ATTRIBUTE;
-	
-	/**Suggested SPI for the various tiles. May be null.**/
-	private String suggestedSPI;
-	
-	/** time attribute name. <code>null</code> if absent.*/
-	private String timeAttribute;
-	
-	/** elevation attribute name. <code>null</code> if absent.*/
-	private String elevationAttribute;
-	
+    
+    /**
+     * <code>true</code> if we need to expand to RGB(A) the single tiles in case they use a different {@link IndexColorModel}.
+     */
+    private boolean expandToRGB;
+    
+    /**
+     * <code>true</code> if we need to look for Auxiliary Metadata PAM XML files
+     */
+    private boolean checkAuxiliaryMetadata;
+    
+    /** OverviewLevel levels */
+    private double[][] levels;
+    
+    /** name for the mosaic.*/
+    private String name;
+    
+    /** number of levels*/
+    private int levelsNum;
+    
+    /** time attribute name. <code>null</code> if absent.*/
+    private String timeAttribute;
+    
+    /** elevation attribute name. <code>null</code> if absent.*/
+    private String elevationAttribute;
+
+        /** additional domain attributes names. <code>null</code> if absent.*/
+        private String additionalDomainAttributes;
+
+        private CoordinateReferenceSystem crs;
+        
         /** 
          * mosaic's dummy sample model useful to store dataType and number of bands. All the other fields
          * shouldn't be queried since they are meaningless for the whole mosaic (width, height, ...)
          */
         private SampleModel sampleModel;
-	
-	/** Imposed envelope for this mosaic. If not present we need to compute from catalogue.*/
-	private ReferencedEnvelope envelope;
-	
-	private boolean heterogeneous;
+        
+        private ColorModel colorModel;
+        
+        private byte [][] palette;
+        
+    /** Imposed envelope for this mosaic. If not present we need to compute from catalogue.*/
+    private ReferencedEnvelope envelope;
+    
+    private String auxiliaryFilePath;
+    
+    private CatalogConfigurationBean catalogConfigurationBean;
 
-	public ReferencedEnvelope getEnvelope() {
-		return envelope;
-	}
+    public ReferencedEnvelope getEnvelope() {
+        return envelope;
+    }
 
-	public void setEnvelope(ReferencedEnvelope envelope) {
-		this.envelope = envelope;
-	}
+    public void setEnvelope(ReferencedEnvelope envelope) {
+        this.envelope = envelope;
+    }
 
     public SampleModel getSampleModel() {
         return sampleModel;
@@ -113,94 +121,122 @@ public class MosaicConfigurationBean {
         this.sampleModel = sampleModel;
     }
 
-	public String getElevationAttribute() {
-		return elevationAttribute;
-	}
-	public void setElevationAttribute(final String elevationAttribute) {
-		this.elevationAttribute = elevationAttribute;
-	}
+    public ColorModel getColorModel() {
+        return colorModel;
+    }
 
-	/** we want to use caching for our index.*/
-	private boolean caching = Utils.DEFAULT_CONFIGURATION_CACHING;
+    public void setColorModel(ColorModel colorModel) {
+        this.colorModel = colorModel;
+    }
+
+    public byte[][] getPalette() {
+        return palette;
+    }
+
+    public void setPalette(byte[][] palette) {
+        this.palette = palette;
+    }
+
+    public String getElevationAttribute() {
+        return elevationAttribute;
+    }
+    public void setElevationAttribute(final String elevationAttribute) {
+        this.elevationAttribute = elevationAttribute;
+    }
 
    /** <code>true</code> if we need to manage footprint if available.  */
     private boolean footprintManagement;
 
-	public String getTimeAttribute() {
-		return timeAttribute;
-	}
-	public void setTimeAttribute(final String timeAttribute) {
-		this.timeAttribute = timeAttribute;
-	}
-	/**
-	 * @return the suggestedSPI
-	 */
-	public String getSuggestedSPI() {
-		return suggestedSPI;
-	}
-	/**
-	 * @param suggestedSPI the suggestedSPI to set
-	 */
-	public void setSuggestedSPI(final String suggestedSPI) {
-		this.suggestedSPI = suggestedSPI;
-	}
-	
-	public boolean isAbsolutePath() {
-		return absolutePath;
-	}
-	public void setAbsolutePath(final boolean absolutePath) {
-		this.absolutePath = absolutePath;
-	}
-	public boolean isExpandToRGB() {
-		return expandToRGB;
-	}
-	public void setExpandToRGB(final boolean expandToRGB) {
-		this.expandToRGB = expandToRGB;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(final String name) {
-		this.name = name;
-	}
-	public int getLevelsNum() {
-		return levelsNum;
-	}
-	public void setLevelsNum(final int levelsNum) {
-		this.levelsNum = levelsNum;
-	}
-	public double[][] getLevels() {
-		return levels.clone();
-	}
-	public void setLevels(final double[][] levels) {
-		this.levels = levels.clone();
-	}
-	public String getLocationAttribute() {
-		return locationAttribute;
-	}
-	public void setLocationAttribute(final String locationAttribute) {
-		this.locationAttribute = locationAttribute;
-	}
-	public boolean isCaching() {
-		return caching;
-	}
-	public void setCaching(final boolean caching) {
-		this.caching = caching;
-	}
+    public String getTimeAttribute() {
+        return timeAttribute;
+    }
+    public void setTimeAttribute(final String timeAttribute) {
+        this.timeAttribute = timeAttribute;
+    }
+    
+    public String getAdditionalDomainAttributes() {
+        return additionalDomainAttributes;
+    }
 
-        public void setFootprintManagement(final boolean footprintManagement) {
-                this.footprintManagement = footprintManagement;
-        }
+    public void setAdditionalDomainAttributes(String additionalDomainAttributes) {
+        this.additionalDomainAttributes = additionalDomainAttributes;
+    }
+    
+    public boolean isExpandToRGB() {
+        return expandToRGB;
+    }
+    public void setExpandToRGB(final boolean expandToRGB) {
+        this.expandToRGB = expandToRGB;
+    }
+    public boolean isCheckAuxiliaryMetadata() {
+        return checkAuxiliaryMetadata;
+    }
 
-        public boolean isFootprintManagement() {
-            return footprintManagement;
-        }
+    public void setCheckAuxiliaryMetadata(boolean checkAuxiliaryMetadata) {
+        this.checkAuxiliaryMetadata = checkAuxiliaryMetadata;
+    }
 
-        public boolean isHeterogeneous() {
-            return heterogeneous;
-        }
+    public String getName() {
+        return name;
+    }
+    public void setName(final String name) {
+        this.name = name;
+    }
+    public int getLevelsNum() {
+        return levelsNum;
+    }
+    public void setLevelsNum(final int levelsNum) {
+        this.levelsNum = levelsNum;
+    }
+    public double[][] getLevels() {
+        return levels.clone();
+    }
+    public void setLevels(final double[][] levels) {
+        this.levels = levels.clone();
+    }
 
-        public void setHeterogeneous(boolean heterogeneous) {
-            this.heterogeneous = heterogeneous;
+    public CoordinateReferenceSystem getCrs() {
+        return crs;
+    }
+
+    public void setCrs(CoordinateReferenceSystem crs) {
+        this.crs = crs;
+    }
+
+    public void setFootprintManagement(final boolean footprintManagement) {
+            this.footprintManagement = footprintManagement;
+    }
+
+    public boolean isFootprintManagement() {
+        return footprintManagement;
+    }
+
+    public CatalogConfigurationBean getCatalogConfigurationBean() {
+        return catalogConfigurationBean;
+    }
+
+    public void setCatalogConfigurationBean(CatalogConfigurationBean catalogConfigurationBean) {
+        this.catalogConfigurationBean = catalogConfigurationBean;
+    }
+
+    public String getAuxiliaryFilePath() {
+        return auxiliaryFilePath;
+    }
+
+    public void setAuxiliaryFilePath(String auxiliaryFilePath) {
+        this.auxiliaryFilePath = auxiliaryFilePath;
+    }
+
+    @Override
+    public String toString() {
+        return "MosaicConfigurationBean [expandToRGB=" + expandToRGB + ", levels="
+                + Arrays.toString(levels) + ", name=" + name
+                + ", levelsNum=" + levelsNum + ", timeAttribute=" + timeAttribute
+                + ", elevationAttribute=" + elevationAttribute
+                + ",sampleModel=" + sampleModel
+                + ", envelope=" + envelope 
+                + ", footprintManagement=" + footprintManagement 
+                + ", checkAuxiliaryMetadata=" + checkAuxiliaryMetadata +
+                "]";
         }
 }

@@ -69,7 +69,7 @@ public abstract class SubchainStyleVisitorCoverageProcessingAdapter extends
 		super(maxSources, hints, name, description);
 	}
 
-	public synchronized void dispose(boolean force) {
+	public void dispose(boolean force) {
 		// dispose the graph of operations we set up
 		dispose(sink, force);
 
@@ -98,8 +98,8 @@ public abstract class SubchainStyleVisitorCoverageProcessingAdapter extends
      * @param  sink
      * @uml.property  name="sink"
      */
-	protected synchronized void setSink(CoverageProcessingNode sink) {
-		ensureNotNull(sink, "sink");
+	protected void setSink(CoverageProcessingNode sink) {
+	        GridCoverageRendererUtilities.ensureNotNull(sink, "sink");
 		if (this.sink != null)
 			throw new IllegalStateException(Errors
 					.format(ErrorKeys.SINK_ALREADY_SET));
@@ -111,7 +111,7 @@ public abstract class SubchainStyleVisitorCoverageProcessingAdapter extends
 	 * 
 	 * @see org.geotools.renderer.lite.gridcoverage2d.StyleVisitorCoverageProcessingNodeAdapter#execute()
 	 */
-	public synchronized GridCoverage execute() {
+	public GridCoverage execute() {
 		if (sink != null) {
 			return sink.getOutput();
 		}

@@ -44,18 +44,26 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.OperationNotFoundException;
 import org.opengis.referencing.operation.TransformException;
 
+import com.vividsolutions.jts.algorithm.CGAlgorithms;
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
+import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.polygonize.Polygonizer;
 
 /**
  * JTS Geometry utility methods, bringing Geotools to JTS.
@@ -176,7 +184,8 @@ public final class JTS {
         ensureNonNull("sourceEnvelope", sourceEnvelope);
         ensureNonNull("transform", transform);
 
-        if ((transform.getSourceDimensions() != 2) || (transform.getTargetDimensions() != 2)) {
+        if (transform.getSourceDimensions() != transform.getTargetDimensions() ||
+            transform.getSourceDimensions() < 2){
             throw new MismatchedDimensionException(Errors.format(ErrorKeys.BAD_TRANSFORM_$1,
                     Classes.getShortClassName(transform)));
         }
@@ -219,7 +228,194 @@ public final class JTS {
 
         return targetEnvelope;
     }
+    
+    /**
+     * Transform from D up to 3D.
+     * <p>
+     * This method transforms each ordinate into WGS84, manually converts this to WGS84_3D with
+     * the addition of a Double.NaN, and then transforms to the final 3D position.
+     * 
+     * @param sourceEnvelope
+     * @param targetEnvelope
+     * @param transform
+     * @param npoints
+     * @return ReferencedEnvelope3D in targetCRS describing the sourceEnvelope bounds
+     * @throws TransformException
+     * @throws FactoryException If operationis unavailable from source CRS to WGS84, to from WGS84_3D to targetCRS
+     * @throws OperationNotFoundException 
+     */ // JTS.transformUp(this, targetCRS, numPointsForTransformation );
+    public static ReferencedEnvelope3D transformTo3D(final ReferencedEnvelope sourceEnvelope,
+            CoordinateReferenceSystem targetCRS, boolean lenient, int npoints)
+            throws TransformException, OperationNotFoundException, FactoryException {
+        final double xmin = sourceEnvelope.getMinX();
+        final double xmax = sourceEnvelope.getMaxX();
+        final double ymin = sourceEnvelope.getMinY();
+        final double ymax = sourceEnvelope.getMaxY();
+        final double scaleX = (xmax - xmin) / npoints;
+        final double scaleY = (ymax - ymin) / npoints;
+        ReferencedEnvelope3D targetEnvelope = new ReferencedEnvelope3D(targetCRS);
+        
+        /*
+         * Gets a first estimation using an algorithm capable to take singularity in account
+         * (North pole, South pole, 180ï¿½ longitude). We will expand this initial box later.
+         */
+        CoordinateOperationFactory coordinateOperationFactory = CRS
+                .getCoordinateOperationFactory(lenient);
+        CoordinateOperation operation1 = coordinateOperationFactory.createOperation(
+                sourceEnvelope.getCoordinateReferenceSystem(), DefaultGeographicCRS.WGS84);
+        MathTransform transform1 = operation1.getMathTransform();
+        final CoordinateOperation operation2 = coordinateOperationFactory.createOperation(
+                DefaultGeographicCRS.WGS84_3D, targetCRS);
+        MathTransform transform2 = operation2.getMathTransform();
 
+        for( int t = 0; t < npoints; t++ ){
+            double dx = scaleX * t;
+            double dy = scaleY * t;
+            
+            GeneralDirectPosition left = new GeneralDirectPosition( xmin, ymin+dy);
+            DirectPosition pt = transformTo3D( left, transform1, transform2 );
+            targetEnvelope.expandToInclude(pt);
+            
+            GeneralDirectPosition top = new GeneralDirectPosition( xmin+dx, ymax);
+            pt = transformTo3D( top, transform1, transform2 );
+            targetEnvelope.expandToInclude(pt);
+            
+            GeneralDirectPosition right = new GeneralDirectPosition( xmax, ymax-dy);
+            pt = transformTo3D( right, transform1, transform2 );
+            targetEnvelope.expandToInclude(pt);
+            
+            GeneralDirectPosition bottom = new GeneralDirectPosition( xmax-dx, ymin);
+            pt = transformTo3D( bottom, transform1, transform2 );
+            targetEnvelope.expandToInclude(pt);
+        }
+        return targetEnvelope;
+    }
+    /**
+     * Transform from 3D down to 2D.
+     * <p>
+     * This method transforms each ordinate into WGS84, manually converts this to WGS84_3D with
+     * the addition of a Double.NaN, and then transforms to the final 3D position.
+     * 
+     * @param sourceEnvelope
+     * @param targetEnvelope
+     * @param transform
+     * @param npoints
+     * @return ReferencedEnvelope matching provided 2D TargetCRS
+     * @throws TransformException
+     */
+    public static ReferencedEnvelope transformTo2D(final ReferencedEnvelope sourceEnvelope,
+            CoordinateReferenceSystem targetCRS, boolean lenient, int npoints)
+            throws TransformException, OperationNotFoundException, FactoryException {
+        final double xmin = sourceEnvelope.getMinX();
+        final double xmax = sourceEnvelope.getMaxX();
+        final double ymin = sourceEnvelope.getMinY();
+        final double ymax = sourceEnvelope.getMaxY();
+        final double scaleX = (xmax - xmin) / npoints;
+        final double scaleY = (ymax - ymin) / npoints;
+        
+        final double zmin = sourceEnvelope.getMinimum(2);
+        final double zmax = sourceEnvelope.getMaximum(2);
+        final double scaleZ = (zmax - zmin) / npoints;
+        
+        //final double z = (zmax-zmin) / 2; // just average is fine as we are trying to remove height
+        
+        ReferencedEnvelope targetEnvelope = new ReferencedEnvelope( targetCRS );
+        
+        /*
+         * Gets a first estimation using an algorithm capable to take singularity in account
+         * (North pole, South pole, 180ï¿½ longitude). We will expand this initial box later.
+         */
+        CoordinateOperationFactory coordinateOperationFactory = CRS
+                .getCoordinateOperationFactory(lenient);
+        CoordinateReferenceSystem sourceCRS = sourceEnvelope.getCoordinateReferenceSystem();
+        CoordinateOperation operation1 = coordinateOperationFactory.createOperation(
+                sourceCRS, DefaultGeographicCRS.WGS84_3D);
+        MathTransform transform1 = operation1.getMathTransform();
+        final CoordinateOperation operation2 = coordinateOperationFactory.createOperation(
+                DefaultGeographicCRS.WGS84, targetCRS);
+        MathTransform transform2 = operation2.getMathTransform();
+    
+        for( int t = 0; t < npoints; t++ ){
+            double dx = scaleX * t;
+            double dy = scaleY * t;
+            for( int u = 0; u < npoints; u++ ){
+                double dz = scaleZ * u;
+                double z = zmin+dz;
+
+                GeneralDirectPosition left = new GeneralDirectPosition(xmin, ymin+dy, z );
+                
+                DirectPosition pt = transformTo2D( left, transform1, transform2 );
+                targetEnvelope.expandToInclude(pt);
+                
+                GeneralDirectPosition top = new GeneralDirectPosition( xmin+dx, ymax, z );
+                pt = transformTo2D( top, transform1, transform2 );
+                targetEnvelope.expandToInclude(pt);
+                
+                GeneralDirectPosition right = new GeneralDirectPosition( xmax, ymax-dy, z);
+                pt = transformTo2D( right, transform1, transform2 );
+                targetEnvelope.expandToInclude(pt);
+                
+                GeneralDirectPosition bottom = new GeneralDirectPosition( xmax-dx, ymax, z);
+                pt = transformTo2D( bottom, transform1, transform2 );
+                targetEnvelope.expandToInclude(pt);
+                
+                if (zmin == zmax) {
+                    break; // only need one z sample
+                }
+            }
+        }
+        return targetEnvelope;
+    }
+
+    /**
+     * Transform the provided 2D direct position into 3D (0 Ellipsoidal height assumed when
+     * converting from {@link DefaultGeographicCRS#WGS84} to {@link DefaultGeographicCRS#WGS84_3D}).
+     * 
+     * @param srcPosition Source 2D position
+     * @param transformToWGS84 From source CRS to To WGS84
+     * @param transformFromWGS84_3D From WGS84_3D to target CRS
+     * @return Position in target CRS as calculated by transform2
+     * @throws TransformException
+     */
+    private static DirectPosition transformTo3D(GeneralDirectPosition srcPosition, MathTransform transformToWGS84,
+            MathTransform transformFromWGS84_3D) throws TransformException {
+        DirectPosition world2D = transformToWGS84.transform(srcPosition, null );
+        
+        DirectPosition world3D = new GeneralDirectPosition( DefaultGeographicCRS.WGS84_3D);
+        world3D.setOrdinate(0, world2D.getOrdinate(0));
+        world3D.setOrdinate(1, world2D.getOrdinate(1));
+        world3D.setOrdinate(2, 0.0 ); // 0 elliposial height is assumed 
+        
+        DirectPosition targetPosition = transformFromWGS84_3D.transform(world3D, null );
+        return targetPosition;
+    }
+
+    /**
+     * Transform the provided 3D direct position into 2D (Ellipsoidal height is ignored when
+     * converting from {@link DefaultGeographicCRS#WGS84_3D} to {@link DefaultGeographicCRS#WGS84}).
+     * 
+     * @param srcPosition Source 3D position
+     * @param transformToWGS84_3D From source CRS to To WGS84_3D
+     * @param transformFromWGS84 From WGS84 to target CRS
+     * @return Position in target CRS as calculated by transform2
+     * @throws TransformException 
+     */
+    private static DirectPosition transformTo2D(GeneralDirectPosition srcPosition, MathTransform transformToWGS84_3D,
+            MathTransform transformFromWGS84) throws TransformException {
+        if( Double.isNaN( srcPosition.getOrdinate(2)) ){
+            srcPosition.setOrdinate(2, 0.0 ); // lazy add 3rd ordinate if not provided to prevent failure
+        }
+        DirectPosition world3D = transformToWGS84_3D.transform(srcPosition, null );
+        
+        DirectPosition world2D = new GeneralDirectPosition( DefaultGeographicCRS.WGS84);
+        world2D.setOrdinate(0, world3D.getOrdinate(0));
+        world2D.setOrdinate(1, world3D.getOrdinate(1));
+        
+        DirectPosition targetPosition = transformFromWGS84.transform(world2D, null );
+        return targetPosition;
+    }
+
+    
     /**
      * Transforms the geometry using the default transformer.
      * 
@@ -241,6 +437,7 @@ public final class JTS {
         return transformer.transform(geom);
     }
 
+    
     /**
      * Transforms the coordinate using the provided math transform.
      * 
@@ -284,35 +481,51 @@ public final class JTS {
     }
 
     /**
-     * Transforms the envelope from its current crs to WGS84 coordinate reference system. If the
+     * Transforms the envelope from its current crs to {@link DefaultGeographicCRS#WGS84}. If the
      * specified envelope is already in WGS84, then it is returned unchanged.
-     * 
+     * <p>
+     * The method {@link CRS#equalsIgnoreMetadata(Object, Object)} is used to compare the numeric values
+     * and axis order (so {@code CRS.decode("CRS.84")} or {@code CRS.decode("4326",true)} 
+     * provide an appropriate match).
      * @param envelope
      *            The envelope to transform.
      * @param crs
      *            The CRS the envelope is currently in.
-     * @return The envelope transformed to be in WGS84 CRS.
+     * @return The envelope transformed to be in {@link DefaultGeographicCRS#WGS84}.
      * @throws TransformException
      *             If at least one coordinate can't be transformed.
      */
     public static Envelope toGeographic(final Envelope envelope, final CoordinateReferenceSystem crs)
             throws TransformException {
         if (CRS.equalsIgnoreMetadata(crs, DefaultGeographicCRS.WGS84)) {
-            return envelope;
+            if( envelope instanceof ReferencedEnvelope){
+                return envelope;
+            }
+            return ReferencedEnvelope.create( envelope,  DefaultGeographicCRS.WGS84 );
         }
-
-        final MathTransform transform;
-
+        ReferencedEnvelope initial = ReferencedEnvelope.create( envelope, crs );
+        return toGeographic( initial );
+    }
+    /**
+     * Transforms the envelope to {@link DefaultGeographicCRS#WGS84}.
+     * <p>
+     * This method will transform to {@link DefaultGeographicCRS#WGS84_3D} if necessary
+     * (and then drop the height axis).
+     * <p>
+     * This method is identical to calling: envelope.transform(DefaultGeographicCRS.WGS84,true)
+     * 
+     * @param envelope The envelope to transform
+     * @return The envelope transformed to be in WGS84 CRS
+     */
+    public static ReferencedEnvelope toGeographic(final ReferencedEnvelope envelope)
+            throws TransformException {
         try {
-            transform = CRS.findMathTransform(crs, DefaultGeographicCRS.WGS84, true);
+            return envelope.transform(DefaultGeographicCRS.WGS84, true);
         } catch (FactoryException exception) {
             throw new TransformPathNotFoundException(Errors.format(
                     ErrorKeys.CANT_TRANSFORM_ENVELOPE, exception));
         }
-
-        return transform(envelope, transform);
     }
-
     /**
      * Like a transform but eXtreme!
      * 
@@ -850,7 +1063,50 @@ public final class JTS {
 
         return factory.createPolygon(factory.createLinearRing(coordinates), null);
     }
-
+    
+    /**
+     * Transforms the geometry from its current crs to {@link DefaultGeographicCRS#WGS84}. If the
+     * specified geometry is already in WGS84, then it is returned unchanged.
+     * <p>
+     * The method {@link CRS#equalsIgnoreMetadata(Object, Object)} is used to compare the numeric values
+     * and axis order (so {@code CRS.decode("CRS.84")} or {@code CRS.decode("4326",true)} 
+     * provide an appropriate match).
+     * @param geom
+     *            The geometry to transform.
+     * @param crs
+     *            The CRS the geometry is currently in.
+     * @return The geometry transformed to be in {@link DefaultGeographicCRS#WGS84}.
+     * @throws TransformException
+     *             If at least one coordinate can't be transformed.
+     */
+    public static Geometry toGeographic( Geometry geom, final CoordinateReferenceSystem crs ) throws TransformException {
+        if( crs == null ){
+            return geom;
+        }
+        if( crs.getCoordinateSystem().getDimension() >= 3 ){
+            try {
+                MathTransform transform = CRS.findMathTransform( crs,  DefaultGeographicCRS.WGS84_3D );
+                Geometry geometry = transform( geom, transform );
+                
+                return geometry; // The extra Z values will be ignored
+            } catch (FactoryException exception) {
+                throw new TransformException(Errors.format(
+                        ErrorKeys.CANT_REPROJECT_$1, crs));
+            }
+        }
+        else if ( CRS.equalsIgnoreMetadata( crs,  DefaultGeographicCRS.WGS84 ) ){
+            return geom;
+        }
+        else {
+            try {
+                MathTransform transform = CRS.findMathTransform( crs,  DefaultGeographicCRS.WGS84 );
+                return transform( geom, transform );
+            } catch (FactoryException exception) {
+                throw new TransformException(Errors.format(
+                        ErrorKeys.CANT_REPROJECT_$1, crs));
+            }
+        }
+    }
     /**
      * Converts a {@link BoundingBox} to a JTS polygon.
      * <p>
@@ -1087,5 +1343,241 @@ public final class JTS {
 
         return factory.createGeometryCollection(smoothed);
     }
+    /**
+     * Replacement for geometry.getEnvelopeInternal() that returns ReferencedEnvelope or ReferencedEnvelope3D
+     * as appropriate for the provided CRS.
+     * 
+     * @param geometry
+     * @param crs
+     * @return ReferencedEnvelope (or ReferencedEnvelope3D) as appropriate
+     */
+    public static ReferencedEnvelope bounds( Geometry geometry, CoordinateReferenceSystem crs ){
+        if( geometry == null ){
+            return null;
+        }
+        if( crs == null ){
+            return new ReferencedEnvelope( geometry.getEnvelopeInternal(), null ); // CRS is not known
+        } else if (crs.getCoordinateSystem().getDimension() >= 3) {
+            ReferencedEnvelope bounds = new ReferencedEnvelope3D( crs );
+            
+            // Note we are visiting all coordinates (rather than just the outer rings
+            // polygons) as holes may contribute to the min / max bounds.
+            for( Coordinate coordinate : geometry.getCoordinates() ){
+                bounds.expandToInclude( coordinate );
+            }
+            return bounds;
+        } else {
+            return new ReferencedEnvelope(geometry.getEnvelopeInternal(), crs);
+        }
+    }
 
+    /**
+     * Removes collinear points from the provided linestring.
+     * 
+     * @param ls the {@link LineString} to be simplified.
+     * @return a new version of the provided {@link LineString} with collinear points removed.
+     */
+    static LineString removeCollinearVertices(final LineString ls) {
+        if (ls == null) {
+            throw new NullPointerException("The provided linestring is null");
+        }
+
+        final int N = ls.getNumPoints();
+        final boolean isLinearRing = ls instanceof LinearRing;
+
+        List<Coordinate> retain = new ArrayList<Coordinate>();
+        retain.add(ls.getCoordinateN(0));
+
+        int i0 = 0, i1 = 1, i2 = 2;
+        Coordinate firstCoord = ls.getCoordinateN(i0);
+        Coordinate midCoord;
+        Coordinate lastCoord;
+        while (i2 < N) {
+            midCoord = ls.getCoordinateN(i1);
+            lastCoord = ls.getCoordinateN(i2);
+
+            final int orientation = CGAlgorithms
+                    .computeOrientation(firstCoord, midCoord, lastCoord);
+            // Colllinearity test
+            if (orientation != CGAlgorithms.COLLINEAR) {
+                // add midcoord and change head
+                retain.add(midCoord);
+                i0 = i1;
+                firstCoord = ls.getCoordinateN(i0);
+            }
+            i1++;
+            i2++;
+        }
+        retain.add(ls.getCoordinateN(N - 1));
+
+        //
+        // Return value
+        //
+        final int size = retain.size();
+        // nothing changed?
+        if (size == N) {
+            // free everything and return original
+            retain.clear();
+
+            return ls;
+        }
+
+        return isLinearRing ? ls.getFactory()
+                .createLinearRing(retain.toArray(new Coordinate[size])) : ls.getFactory()
+                .createLineString(retain.toArray(new Coordinate[size]));
+    }
+
+    /**
+     * Removes collinear vertices from the provided {@link Polygon}.
+     * 
+     * @param polygon the instance of a {@link Polygon} to remove collinear vertices from.
+     * @return a new instance of the provided {@link Polygon} without collinear vertices.
+     */
+    static Polygon removeCollinearVertices(final Polygon polygon) {
+        if (polygon == null) {
+            throw new NullPointerException("The provided Polygon is null");
+        }
+
+        // reuse existing factory
+        final GeometryFactory gf = polygon.getFactory();
+
+        // work on the exterior ring
+        LineString exterior = polygon.getExteriorRing();
+        LineString shell = removeCollinearVertices(exterior);
+        if ((shell == null) || shell.isEmpty()) {
+            return null;
+        }
+
+        // work on the holes
+        List<LineString> holes = new ArrayList<LineString>();
+        final int size = polygon.getNumInteriorRing();
+        for (int i = 0; i < size; i++) {
+            LineString hole = polygon.getInteriorRingN(i);
+            hole = removeCollinearVertices(hole);
+            if ((hole != null) && !hole.isEmpty()) {
+                holes.add(hole);
+            }
+        }
+
+        return gf.createPolygon((LinearRing) shell, holes.toArray(new LinearRing[holes.size()]));
+    }
+
+    /**
+     * Removes collinear vertices from the provided {@link Geometry}.
+     * 
+     * <p>
+     * For the moment this implementation only accepts, {@link Polygon}, {@link LineString} and {@link MultiPolygon} It will throw an exception if the
+     * geometry is not one of those types
+     * 
+     * @param g the instance of a {@link Geometry} to remove collinear vertices from.
+     * @return a new instance of the provided {@link Geometry} without collinear vertices.
+     */
+    public static Geometry removeCollinearVertices(final Geometry g) {
+        if (g == null) {
+            throw new NullPointerException("The provided Geometry is null");
+        }
+        if (g instanceof LineString) {
+            return removeCollinearVertices((LineString) g);
+        } else if (g instanceof Polygon) {
+            return removeCollinearVertices((Polygon) g);
+        } else if (g instanceof MultiPolygon) {
+            MultiPolygon mp = (MultiPolygon) g;
+            Polygon[] parts = new Polygon[mp.getNumGeometries()];
+            for (int i = 0; i < mp.getNumGeometries(); i++) {
+                Polygon part = (Polygon) mp.getGeometryN(i);
+                part = removeCollinearVertices(part);
+                parts[i] = part;
+            }
+
+            return g.getFactory().createMultiPolygon(parts);
+        }
+
+        throw new IllegalArgumentException(
+                "This method can work on LineString, Polygon and Multipolygon: " + g.getClass());
+    }
+
+    /**
+     * Removes collinear vertices from the provided {@link Geometry} if the number of point exceeds the requested minPoints.
+     * 
+     * <p>
+     * For the moment this implementation only accepts, {@link Polygon}, {@link LineString} and {@link MultiPolygon} It will throw an exception if the
+     * geometry is not one of those types
+     * 
+     * @param geometry the instance of a {@link Geometry} to remove collinear vertices from.
+     * @param minPoints perform removal of collinear points if num of vertices exceeds minPoints.
+     * @return a new instance of the provided {@link Geometry} without collinear vertices.
+     */
+    public static Geometry removeCollinearVertices(final Geometry geometry, int minPoints) {
+        ensureNonNull("geometry", geometry);
+
+        if ((minPoints <= 0) || (geometry.getNumPoints() < minPoints)) {
+            return geometry;
+        }
+
+        if (geometry instanceof LineString) {
+            return removeCollinearVertices((LineString) geometry);
+        } else if (geometry instanceof Polygon) {
+            return removeCollinearVertices((Polygon) geometry);
+        } else if (geometry instanceof MultiPolygon) {
+            MultiPolygon mp = (MultiPolygon) geometry;
+            Polygon[] parts = new Polygon[mp.getNumGeometries()];
+            for (int i = 0; i < mp.getNumGeometries(); i++) {
+                Polygon part = (Polygon) mp.getGeometryN(i);
+                part = removeCollinearVertices(part);
+                parts[i] = part;
+            }
+
+            return geometry.getFactory().createMultiPolygon(parts);
+        }
+
+        throw new IllegalArgumentException(
+                "This method can work on LineString, Polygon and Multipolygon: "
+                        + geometry.getClass());
+    }
+
+    /**
+     * Given a potentially invalid polygon it rebuilds it as a list of valid polygons, eventually removing the holes
+     * 
+     * @param polygon
+     * @return
+     */
+    public static List<Polygon> makeValid(Polygon polygon, boolean removeHoles) {
+        // add all segments into the polygonizer
+        final Polygonizer p = new Polygonizer();
+        polygon.apply(new CoordinateSequenceFilter() {
+
+            public boolean isGeometryChanged() {
+                return false;
+            }
+
+            public boolean isDone() {
+                return false;
+            }
+
+            public void filter(CoordinateSequence seq, int i) {
+                if (i == 0) {
+                    return;
+                }
+                p.add(new GeometryFactory().createLineString(new Coordinate[] {
+                        seq.getCoordinate(i - 1), seq.getCoordinate(i) }));
+            }
+        });
+
+        List<Polygon> result = new ArrayList<Polygon>(p.getPolygons());
+
+        // if necessary throw away the holes and return just the shells
+        if (removeHoles) {
+            for (int i = 0; i < result.size(); i++) {
+                Polygon item = result.get(i);
+                if (item.getNumInteriorRing() > 0) {
+                    GeometryFactory factory = item.getFactory();
+                    Polygon noHoles = factory.createPolygon((LinearRing) item.getExteriorRing(),
+                            null);
+                    result.set(i, noHoles);
+                }
+            }
+        }
+
+        return result;
+    }
 }

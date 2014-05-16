@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.geotools.xsd</groupId>
     <artifactId>xsd</artifactId>
-    <version>8-SNAPSHOT</version>
+    <version>12-SNAPSHOT</version>
   </parent>
   
   <!-- =========================================================== -->
@@ -91,6 +91,7 @@
       <plugin>
         <groupId>org.geotools.maven</groupId>
         <artifactId>xmlcodegen</artifactId>
+        <version>${project.version}</version>
         <configuration>
           <schemaLocation>wpsAll.xsd</schemaLocation>
           <schemaSourceDirectory>${basedir}/src/main/resources/org/geotools/wps/</schemaSourceDirectory>
@@ -113,7 +114,6 @@
           </includes>
         </configuration>
       </plugin>
-
     </plugins>
   </build>
 

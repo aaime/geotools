@@ -223,15 +223,6 @@ public class ECQLCompiler extends ECQLParser implements org.geotools.filter.text
                 return this.builder.bulidNegativeNumber();
             
                 // ----------------------------------------
-                // Date, Time and Timestamp Strings
-                // ----------------------------------------
-//				TODO under debate in ogc csw list
-//            case   JJTDATESTRING_NODE:
-//            case   JJTTIMESTRING_NODE:
-//            case   JJTTIMESTAMPSTRING_NODE:
-//            	return this.builder.buildDateTimeExpression(getTokenInPosition(0));            	
-            	
-                // ----------------------------------------
                 // String
                 // ----------------------------------------
             case JJTSTRINGNODE:
@@ -344,6 +335,10 @@ public class ECQLCompiler extends ECQLParser implements org.geotools.filter.text
                 // ----------------------------------------
                 // temporal predicate actions
                 // ----------------------------------------
+            case JJTDATE_NODE:
+                return this.builder
+                        .buildDateExpression(getTokenInPosition(0));
+
             case JJTDATETIME_NODE:
                 return this.builder
                         .buildDateTimeExpression(getTokenInPosition(0));
@@ -360,6 +355,9 @@ public class ECQLCompiler extends ECQLParser implements org.geotools.filter.text
 
             case JJTPERIOD_WITH_DURATION_DATE_NODE:
                 return this.builder.buildPeriodDurationAndDate();
+
+            case JJTTPTEQUALS_DATETIME_NODE:
+                return this.builder.buildTEquals();
 
             case JJTTPBEFORE_DATETIME_NODE:
                 return buildBefore();

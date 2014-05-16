@@ -1156,4 +1156,20 @@ public class WFS_1_0_0_DataStore extends AbstractDataStore implements WFSDataSto
     public void setNamespaceOverride(String namespaceOverride) {
         this.namespaceOverride = namespaceOverride;
     }
+
+    @Override
+    public void setUseDefaultSRS(Boolean useDefaultSRS) {
+        throw new UnsupportedOperationException(
+                "Not used, this class needs to be adapted to the new architecture in the wfs.v_1_1_0 package");
+    }
+
+    @Override
+    public void removeSchema(String typeName) throws IOException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void removeSchema(Name typeName) throws IOException {
+        throw new UnsupportedOperationException();
+    }
 }

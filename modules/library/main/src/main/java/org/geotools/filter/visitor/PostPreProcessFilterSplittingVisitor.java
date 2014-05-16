@@ -60,6 +60,7 @@ import org.opengis.filter.expression.NilExpression;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.expression.Subtract;
 import org.opengis.filter.spatial.BBOX;
+import org.opengis.filter.spatial.BBOX3D;
 import org.opengis.filter.spatial.Beyond;
 import org.opengis.filter.spatial.BinarySpatialOperator;
 import org.opengis.filter.spatial.Contains;
@@ -468,11 +469,14 @@ public class PostPreProcessFilterSplittingVisitor implements FilterVisitor, Expr
 	
 	    
         public Object visit(BBOX filter, Object notUsed) {
-            if (!fcs.supports(BBOX.class)) {
+        	if (filter instanceof BBOX3D && !fcs.supports(BBOX3D.class)) {
                 postStack.push(filter);
-            } else {
-                preStack.push(filter);
-            }
+        	} else if (!fcs.supports(BBOX.class)) {
+	            postStack.push(filter);
+	        } else {
+	            preStack.push(filter);
+	        }
+	            
             return null;
         }
         
@@ -765,16 +769,16 @@ public class PostPreProcessFilterSplittingVisitor implements FilterVisitor, Expr
 	
 
 	    public Object visit(Id filter, Object notUsed) {
-	        if( original==null )
-	        	original=filter;
-
-	        // figure out how to check that this is top level.
-	        // otherwise this is fine
-	        if (!postStack.isEmpty()) {
-	        	postStack.push(filter);
+	        if (original == null)
+	            original = filter;
+	        
+	        if (!fcs.supports(filter)) {
+	            postStack.push(filter);
+	        } else {
+	            preStack.push(filter);            
 	        }
-	        preStack.push(filter);
-            return null;
+
+	        return null;
 	    }
         
 	    public Object visit(PropertyName expression, Object notUsed) {
@@ -797,10 +801,7 @@ public class PostPreProcessFilterSplittingVisitor implements FilterVisitor, Expr
 	    }
         
 	    public Object visit(Literal expression, Object notUsed) {
-	        if (expression.getValue() == null) {
-	        	postStack.push(expression);
-	        }
-	        preStack.push(expression);
+            preStack.push(expression);
             return null;
 	    }
         
@@ -872,7 +873,7 @@ public class PostPreProcessFilterSplittingVisitor implements FilterVisitor, Expr
 	
 	        if (expression.getName() == null) {
 	        	postStack.push(expression);
-	            return null;
+	        	return null;
 	        }
 
 	        int i = postStack.size();

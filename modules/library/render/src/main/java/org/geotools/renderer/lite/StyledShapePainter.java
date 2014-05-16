@@ -56,6 +56,17 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
+import java.io.IOException;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+
+import org.opengis.filter.expression.Literal;
+import org.opengis.style.ExternalGraphic;
+import org.opengis.style.GraphicLegend;
+import org.opengis.style.GraphicalSymbol;
+import org.opengis.style.Mark;
+
 /**
  * A simple class that knows how to paint a Shape object onto a Graphic given a
  * Style2D. It's the last step of the rendering engine, and has been factored
@@ -72,6 +83,10 @@ public final class StyledShapePainter {
 
     /** The logger for the rendering module. */
     private final static Logger LOGGER = org.geotools.util.logging.Logging.getLogger(StyledShapePainter.class.getName());
+    /**
+     * Whether icon centers should be matched to a pixel center, or not
+     */
+    public static boolean ROUND_ICON_COORDS = Boolean.parseBoolean(System.getProperty("org.geotools.renderer.lite.roundIconCoords", "true"));
 
     /**
      * the label cache, used to populate the label cache with reserved areas for labelling 
@@ -304,6 +319,73 @@ public final class StyledShapePainter {
             }
         }
     }
+    
+    /**
+     * Paints a GraphicLegend in the supplied graphics
+     * 
+     * @param graphics
+     *            The graphics in which to draw.
+     * @param shape
+     *            The shape to draw.
+     * @param legend
+     *            The legend to apply.
+     * @param symbolScale
+     *            The scale of the symbol, if the legend graphic has to be rescaled               
+     */
+    public void paint(final Graphics2D graphics, final LiteShape2 shape, final GraphicLegend legend, 
+            final double symbolScale, boolean isLabelObstacle) {
+        if (legend == null) {
+            // TODO: what's going on? Should not be reached...
+            throw new NullPointerException("ShapePainter has been asked to paint a null legend!!");
+        }
+        Iterator<GraphicalSymbol> symbolIter = legend.graphicalSymbols().iterator();
+        
+        while(symbolIter.hasNext()) {
+        
+            GraphicalSymbol symbol = symbolIter.next();
+
+            if (symbol instanceof ExternalGraphic) {
+                float[] coords = new float[2];
+                PathIterator iter = getPathIterator(shape);
+                iter.currentSegment(coords);
+                
+                // Note: Converting to Radians here due to direct use of SLD Expressions which uses degrees
+                double rotation = Math.toRadians( ((Literal)legend.getRotation()).evaluate(null,  Double.class));
+                float opacity = ((Literal)legend.getOpacity()).evaluate(null,  Float.class);
+
+                ExternalGraphic graphic = (ExternalGraphic) symbol;
+
+                while (!(iter.isDone())) {
+                    iter.currentSegment(coords);
+                    try {
+                        BufferedImage image = ImageIO.read(graphic.getOnlineResource().getLinkage().toURL());
+                        if (symbolScale != 1.0){
+                            int w = (int) (image.getWidth() / symbolScale);
+                            int h = (int) (image.getHeight() / symbolScale);
+                            int imageType = image.getType() == 0 ? BufferedImage.TYPE_4BYTE_ABGR : image.getType();
+                            BufferedImage rescaled = new BufferedImage(w, h, imageType);
+                            Graphics2D g = rescaled.createGraphics();
+                            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                            g.drawImage(image, 0, 0, w, h, 0, 0, image.getWidth(), image.getHeight(), null);
+                            g.dispose();
+                            image = rescaled;
+                        }
+                        renderImage(graphics, coords[0], coords[1],
+                                // Doesn't seem to work with SVGs
+                                // Looking at the SLDStyleFactory, they get the icon from an
+                                // ExternalGraphicFactory. 
+                                image, 
+                                rotation, 
+                                opacity,
+                                isLabelObstacle);
+                    } catch (IOException ex) {
+                            Logger.getLogger(StyledShapePainter.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    iter.next();
+                }
+            }
+        }
+    } 
 
     Shape dashShape(Shape shape, Stroke stroke) {
         if(!(stroke instanceof BasicStroke)) {
@@ -371,13 +453,17 @@ public final class StyledShapePainter {
 
         // I suppose the image has been already scaled and its square
         double imageSize;
+        double graphicRotation = 0; // rotation in radians
         if(graphicStroke instanceof MarkStyle2D) {
             imageSize = ((MarkStyle2D) graphicStroke).getSize();
+            graphicRotation = ((MarkStyle2D) graphicStroke).getRotation();
         } else if(graphicStroke instanceof IconStyle2D) {
             imageSize = ((IconStyle2D) graphicStroke).getIcon().getIconWidth();
+            graphicRotation = ((IconStyle2D) graphicStroke).getRotation();
         } else {
             GraphicStyle2D gs = (GraphicStyle2D) graphicStroke;
             imageSize = gs.getImage().getWidth() - gs.getBorder();
+            graphicRotation = ((GraphicStyle2D) graphicStroke).getRotation();
         }
 
         double[] first = new double[2];
@@ -453,7 +539,7 @@ public final class StyledShapePainter {
                                 + Math.sqrt((dx * dx) + (dy * dy)));
                     }
     
-                    double rotation = -(theta - (Math.PI / 2d));
+                    double rotation = -(theta - (Math.PI / 2d)) + graphicRotation;
                     double x = previous[0] + (Math.sin(theta) * remainder);
                     double y = previous[1] + (Math.cos(theta) * remainder);
     
@@ -500,11 +586,11 @@ public final class StyledShapePainter {
      * @param y
      *            the image
      * @param image
-     *            DOCUMENT ME!
+     *            image to draw
      * @param rotation
-     *            the image rotatation
+     *            the image rotation in radians
      * @param opacity
-     *            DOCUMENT ME!
+     *            opacity between 0.0 and 1.0
      */
     private void renderImage(Graphics2D graphics, double x, double y,
             BufferedImage image, double rotation, float opacity, boolean isLabelObstacle) {
@@ -513,9 +599,14 @@ public final class StyledShapePainter {
         }
 
         AffineTransform markAT = new AffineTransform();
-        markAT.translate(x, y);
-        markAT.rotate(rotation);
-        markAT.translate(-image.getWidth() / 2.0, -image.getHeight() / 2.0);
+        if(ROUND_ICON_COORDS && rotation == 0) {
+            // this results in sharper images to be painted
+            markAT.translate(Math.round(x - image.getWidth() / 2), Math.round(y - image.getHeight() / 2));
+        } else {
+            markAT.translate(x, y);
+            markAT.rotate(rotation);
+            markAT.translate(-image.getWidth() / 2.0, -image.getHeight() / 2.0);
+        }
         if (isLabelObstacle) {
             int w = Math.max((int) (image.getWidth() * 1), 1);
             int h = Math.max((int) (image.getHeight() * 1), 1);

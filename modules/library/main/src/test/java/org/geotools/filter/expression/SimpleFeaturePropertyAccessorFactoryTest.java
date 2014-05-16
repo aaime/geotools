@@ -38,12 +38,12 @@ public class SimpleFeaturePropertyAccessorFactoryTest extends TestCase {
 	
 	public void test() {
 		
-		//make sure features are supported
+		// make sure features are supported
 		assertNotNull( factory.createPropertyAccessor( SimpleFeature.class, "xpath", null, null ) );
 		assertNotNull( factory.createPropertyAccessor( SimpleFeatureType.class, "xpath", null, null ) );
 		assertNull( factory.createPropertyAccessor( Map.class , "xpath", null, null ) );
 		
-		//make sure only simple xpath
+		// make sure only simple xpath
 		assertNull( factory.createPropertyAccessor( SimpleFeature.class, "@xpath", null, null )  );
 		assertNull( factory.createPropertyAccessor( SimpleFeatureType.class, "@xpath", null, null )  );
 		
@@ -52,6 +52,9 @@ public class SimpleFeaturePropertyAccessorFactoryTest extends TestCase {
 		
 		assertNull( factory.createPropertyAccessor( SimpleFeature.class, "*[0]", null, null ) );
 		assertNull( factory.createPropertyAccessor( SimpleFeatureType.class, "*[0]", null, null ) );
+
+        assertNull( factory.createPropertyAccessor( SimpleFeature.class, "===", null, null )  );
+        assertNull( factory.createPropertyAccessor( SimpleFeature.class, "34x?<>", null, null )  );
 	}
 	
 	

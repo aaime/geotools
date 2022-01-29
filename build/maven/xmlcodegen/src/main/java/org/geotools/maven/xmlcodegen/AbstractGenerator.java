@@ -1,7 +1,7 @@
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
- * 
+ *
  *    (C) 2002-2008, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
@@ -30,55 +30,42 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Set;
 import java.util.logging.Logger;
-
 import org.eclipse.xsd.XSDNamedComponent;
 import org.eclipse.xsd.XSDSchema;
 import org.geotools.xsd.Schemas;
-
 
 /**
  * Abstract base class for code generators.
  *
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
  */
 public abstract class AbstractGenerator {
     static Logger logger = org.geotools.util.logging.Logging.getLogger(AbstractGenerator.class);
 
-    /**
-     * Package base
-     */
+    /** Package base */
     String packageBase;
 
-    /**
-     * location to write out files
-     */
-    //String location;
+    /** location to write out files */
+    // String location;
     String sourceLocation;
+
     String testLocation;
     String resourceLocation;
 
-    /**
-     * Flag determining if generator will overwrite existing files.
-     */
+    /** Flag determining if generator will overwrite existing files. */
     boolean overwriting = false;
 
-    /**
-     * Schema source directory
-     */
+    /** Schema source directory */
     File schemaSourceDirectory;
-    /**
-     * lookup directories for schemas
-     */
+    /** lookup directories for schemas */
     File[] schemaLookupDirectories;
 
     Set included = null;
-    
+
     /**
      * Sets the base package for generated classes.
      *
-     * @param packageBase Dot seperate package name, or <code>null</code> for
-     * no package.
+     * @param packageBase Dot seperate package name, or <code>null</code> for no package.
      */
     public void setPackageBase(String packageBase) {
         this.packageBase = packageBase;
@@ -88,19 +75,19 @@ public abstract class AbstractGenerator {
         return packageBase;
     }
 
-//    /**
-//     * Sets the location to write out generated java classes.
-//     *
-//     * @param location A file path.
-//     */
-//    public void setLocation(String location) {
-//        this.location = location;
-//    }
-//
-//    public String getLocation() {
-//        return location;
-//    }
-    
+    //    /**
+    //     * Sets the location to write out generated java classes.
+    //     *
+    //     * @param location A file path.
+    //     */
+    //    public void setLocation(String location) {
+    //        this.location = location;
+    //    }
+    //
+    //    public String getLocation() {
+    //        return location;
+    //    }
+
     /**
      * Sets the location to write out generated source files.
      *
@@ -127,13 +114,10 @@ public abstract class AbstractGenerator {
     }
 
     /**
-     * Flag controlling the behaviour of the generator when a generated file
-     * already exists.
-     * <p>
-     * If set to <code>true</code>, the generator will overwrite existing files.
-     * if set to <code>false</code>, the generator will not overwrite the file
-     * and issue a warning.
-     * </p>
+     * Flag controlling the behaviour of the generator when a generated file already exists.
+     *
+     * <p>If set to <code>true</code>, the generator will overwrite existing files. if set to <code>
+     * false</code>, the generator will not overwrite the file and issue a warning.
      *
      * @param overwriting overwrite flag.
      */
@@ -143,50 +127,46 @@ public abstract class AbstractGenerator {
 
     /**
      * Sets the single directory to lookup schemas.
-     * 
+     *
      * @param schemaSourceDirectory A directory.
      */
     public void setSchemaSourceDirectory(File schemaSourceDirectory) {
         this.schemaSourceDirectory = schemaSourceDirectory;
     }
-    
+
     /**
-     * Sets the directories to use when attempting to locate a schema via a 
-     * relative reference.
-     * 
+     * Sets the directories to use when attempting to locate a schema via a relative reference.
+     *
      * @param schemaLookupDirectories An array of directories.
      */
     public void setSchemaLookupDirectories(File[] schemaLookupDirectories) {
-		this.schemaLookupDirectories = schemaLookupDirectories;
-	}
-   
+        this.schemaLookupDirectories = schemaLookupDirectories;
+    }
+
     /**
      * Writes out a string to a file.
-     * <p>
-     * THe file written out is located under {@link #location}, with the path
-     * generated from {@link #packageBase} appended.
-     * </p>
+     *
+     * <p>THe file written out is located under {@link #location}, with the path generated from
+     * {@link #packageBase} appended.
      *
      * @param result Result to write to the files.
      * @param className The name of the file to write out.
      */
-    protected void write(String result, String className, String baseLocation)
-        throws IOException {
-        //convert package to a path
+    protected void write(String result, String className, String baseLocation) throws IOException {
+        // convert package to a path
         File location = outputLocation(baseLocation);
 
         location.mkdirs();
         location = new File(location, className + ".java");
 
-        //check for existing file
+        // check for existing file
         if (location.exists() && !overwriting) {
             logger.warning("Generated file: " + location + " already exists.");
 
             return;
         }
 
-        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(
-                    location));
+        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(location));
 
         if (packageBase != null) {
             out.write(("package " + packageBase + ";\n\n").getBytes());
@@ -200,19 +180,18 @@ public abstract class AbstractGenerator {
 
     /**
      * Copies a file to the output location.
-     * <p>
-     * THe file written out is located under {@link #location}, with the path
-     * generated from {@link #packageBase} appended.
-     * </p>
+     *
+     * <p>THe file written out is located under {@link #location}, with the path generated from
+     * {@link #packageBase} appended.
      *
      * @param file The file to copy.
      */
     protected void copy(File file, String baseLocation) throws IOException {
         File dest = new File(outputLocation(baseLocation), file.getName());
 
-        logger.info( "Copying " + file + " to " + dest );
-        
-        //check for existing file
+        logger.info("Copying " + file + " to " + dest);
+
+        // check for existing file
         if (dest.exists() && !overwriting) {
             logger.warning("Generated file: " + dest + " already exists.");
 
@@ -224,63 +203,61 @@ public abstract class AbstractGenerator {
 
         int b = -1;
 
-        while ((b = in.read()) != -1)
-            out.write(b);
+        while ((b = in.read()) != -1) out.write(b);
 
         out.flush();
         out.close();
         in.close();
     }
-    
+
     /**
-     * Attempts to locate a schema file by name by iterating through 
-     * {@link #schemaLookupDirectories}.
-     * 
+     * Attempts to locate a schema file by name by iterating through {@link
+     * #schemaLookupDirectories}.
+     *
      * @param path The path of the file.
-     * 
      */
-    protected File findSchemaFile( String path ) throws IOException {
+    protected File findSchemaFile(String path) throws IOException {
         File file = null;
         try {
             file = new File(new URL(path).toURI());
-        } catch( MalformedURLException | URISyntaxException e ) {
+        } catch (MalformedURLException | URISyntaxException e) {
             file = new File(path);
         }
 
-        if ( file.isAbsolute() ) {
-    		return file;
-    	}
-    	
-    	if ( schemaSourceDirectory != null ) {
-    	    file = new File( schemaSourceDirectory, path );
-            if ( file.exists() ) {
+        if (file.isAbsolute()) {
+            return file;
+        }
+
+        if (schemaSourceDirectory != null) {
+            file = new File(schemaSourceDirectory, path);
+            if (file.exists()) {
                 return file;
             }
-    	}
-    	
-    	if ( schemaLookupDirectories != null ) {
+        }
+
+        if (schemaLookupDirectories != null) {
             for (File dir : schemaLookupDirectories) {
                 file = new File(dir, path);
                 if (file.exists()) {
                     return file;
                 }
             }
-    	}
-    	
-    	return null;
+        }
+
+        return null;
     }
 
     /**
-     * Convenience method for generating the output location of generated files based on
-     * {@link #getLocation()}
+     * Convenience method for generating the output location of generated files based on {@link
+     * #getLocation()}
      */
-    protected File outputLocation( String baseLocation ) {
+    protected File outputLocation(String baseLocation) {
         File location = null;
 
-        if ( baseLocation == null ) {
+        if (baseLocation == null) {
             baseLocation = sourceLocation;
         }
-        
+
         if (baseLocation != null) {
             location = new File(baseLocation);
         } else {
@@ -297,49 +274,43 @@ public abstract class AbstractGenerator {
 
     /**
      * Executes a code generation template.
-     * <p>
-     * The class of the template is formed by prepending
-     * <code>org.geotools.xml.codegen.</code> to <code>name</code>.
+     *
+     * <p>The class of the template is formed by prepending <code>org.geotools.xml.codegen.</code>
+     * to <code>name</code>.
+     *
      * <p>
      *
      * @param templateName The non-qualified class name of the template.
-     * @param input        The input to the template.
-     *
+     * @param input The input to the template.
      * @return The result of the code generator
-     *
-     * @throws ClassNotFoundException If the template class could not be
-     * found.
-     *
-     * @throws RuntimeException If any exceptions ( ex, relection) occur.
-     * while attempting to execute the template.
-     *
+     * @throws ClassNotFoundException If the template class could not be found.
+     * @throws RuntimeException If any exceptions ( ex, relection) occur. while attempting to
+     *     execute the template.
      */
     protected String execute(String templateName, Object input)
-        throws ClassNotFoundException, RuntimeException {
-        Class<?> c = Class.forName("org.geotools.maven.xmlcodegen.templates."
-                + templateName);
+            throws ClassNotFoundException, RuntimeException {
+        Class<?> c = Class.forName("org.geotools.maven.xmlcodegen.templates." + templateName);
 
         try {
             Object template = c.getDeclaredConstructor().newInstance();
 
-            Method generate = c.getMethod("generate",
-                    new Class[] { Object.class });
+            Method generate = c.getMethod("generate", new Class[] {Object.class});
 
-            return (String) generate.invoke(template, new Object[] { input });
+            return (String) generate.invoke(template, new Object[] {input});
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     String prefix(XSDSchema schema) {
-       return Schemas.getTargetPrefix( schema );
+        return Schemas.getTargetPrefix(schema);
     }
 
     public void setIncluded(Set included) {
-    	this.included = included;
+        this.included = included;
     }
 
     protected boolean included(XSDNamedComponent c) {
-    	return included != null ? included.contains( c.getName() ) : true;
+        return included != null ? included.contains(c.getName()) : true;
     }
 }

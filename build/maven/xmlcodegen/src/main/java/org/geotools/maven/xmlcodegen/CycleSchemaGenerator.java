@@ -1,7 +1,7 @@
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
- * 
+ *
  *    (C) 2011, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import org.eclipse.xsd.XSDAttributeDeclaration;
 import org.eclipse.xsd.XSDComplexTypeDefinition;
 import org.eclipse.xsd.XSDElementDeclaration;
@@ -41,18 +40,14 @@ import org.opengis.feature.type.ComplexType;
 import org.opengis.feature.type.PropertyDescriptor;
 
 /**
- * Schema generator that uses subclasses of {@link AbstractLazyAttributeTypeImpl} and
- * {@link AbstractLazyComplexTypeImpl} to support cyclically-defined types. Types are sorted by
- * name.
- * 
- * <p>
- * 
- * Much of the code that builds the attributes is based on code snippets stolen from
- * {@link SchemaGenerator}, written by Justin Deoliveira.
- * 
+ * Schema generator that uses subclasses of {@link AbstractLazyAttributeTypeImpl} and {@link
+ * AbstractLazyComplexTypeImpl} to support cyclically-defined types. Types are sorted by name.
+ *
+ * <p>Much of the code that builds the attributes is based on code snippets stolen from {@link
+ * SchemaGenerator}, written by Justin Deoliveira.
+ *
  * @author Ben Caradoc-Davies (CSIRO Earth Science and Resource Engineering)
  * @author Justin Deoliveira
- * 
  */
 @SuppressWarnings("PMD.SystemPrintln")
 public class CycleSchemaGenerator extends SchemaGenerator {
@@ -65,8 +60,8 @@ public class CycleSchemaGenerator extends SchemaGenerator {
 
     /**
      * Constructor.
-     * 
-     *            the schema we are building
+     *
+     * <p>the schema we are building
      */
     public CycleSchemaGenerator(XSDSchema schema) {
         super(schema);
@@ -74,9 +69,10 @@ public class CycleSchemaGenerator extends SchemaGenerator {
 
     /**
      * Build an AttributeType for a simple type.
-     * 
-     * @see org.geotools.maven.xmlcodegen.SchemaGenerator#createType(org.eclipse.xsd.XSDSimpleTypeDefinition,
-     *      int)
+     *
+     * @see
+     *     org.geotools.maven.xmlcodegen.SchemaGenerator#createType(org.eclipse.xsd.XSDSimpleTypeDefinition,
+     *     int)
      */
     @Override
     protected AttributeType createType(final XSDSimpleTypeDefinition xsdType, int depth) {
@@ -88,27 +84,31 @@ public class CycleSchemaGenerator extends SchemaGenerator {
             return findType(xsdType);
         }
         System.err.println("Creating simple type " + name(xsdType));
-        AttributeType gtType = new AbstractLazyAttributeTypeImpl(name(xsdType), Object.class,
-                false, false, null, null) {
-            @Override
-            public AttributeType buildSuper() {
-                XSDTypeDefinition baseType = xsdType.getBaseType();
-                if (baseType != null && baseType.getName() != null && !baseType.equals(xsdType)) {
-                    return createType(baseType, Integer.MAX_VALUE);
-                } else {
-                    return null;
-                }
-            }
-        };
+        AttributeType gtType =
+                new AbstractLazyAttributeTypeImpl(
+                        name(xsdType), Object.class, false, false, null, null) {
+                    @Override
+                    public AttributeType buildSuper() {
+                        XSDTypeDefinition baseType = xsdType.getBaseType();
+                        if (baseType != null
+                                && baseType.getName() != null
+                                && !baseType.equals(xsdType)) {
+                            return createType(baseType, Integer.MAX_VALUE);
+                        } else {
+                            return null;
+                        }
+                    }
+                };
         types.put(xsdType, gtType);
         return gtType;
     }
 
     /**
      * Build an AttributeType for a complex type.
-     * 
-     * @see org.geotools.maven.xmlcodegen.SchemaGenerator#createType(org.eclipse.xsd.XSDComplexTypeDefinition,
-     *      int)
+     *
+     * @see
+     *     org.geotools.maven.xmlcodegen.SchemaGenerator#createType(org.eclipse.xsd.XSDComplexTypeDefinition,
+     *     int)
      */
     @Override
     protected AttributeType createType(final XSDComplexTypeDefinition xsdType, int depth) {
@@ -121,103 +121,118 @@ public class CycleSchemaGenerator extends SchemaGenerator {
             return findType(xsdType);
         }
         System.err.println("Creating complex type " + name(xsdType));
-        ComplexType gtType = new AbstractLazyComplexTypeImpl(name(xsdType), false,
-                xsdType.isAbstract(), null, null) {
+        ComplexType gtType =
+                new AbstractLazyComplexTypeImpl(
+                        name(xsdType), false, xsdType.isAbstract(), null, null) {
 
-            @Override
-            public AttributeType buildSuper() {
-                XSDTypeDefinition baseType = xsdType.getBaseType();
-                if (baseType != null && baseType.getName() != null && !baseType.equals(xsdType)) {
-                    return createType(baseType, DUMMY_DEPTH);
-                } else {
-                    return null;
-                }
-            }
-
-            @Override
-            public Collection<PropertyDescriptor> buildDescriptors() {
-                if (!followComplexTypes) {
-                    // might need to generate shallow schema classes while bootstrapping
-                    return null;
-                } else {
-                    List<PropertyDescriptor> properties = new ArrayList<>();
-                    for (XSDParticle particle : Schemas
-                            .getChildElementParticles(xsdType, false)) {
-                        XSDElementDeclaration element = (XSDElementDeclaration) particle
-                                .getContent();
-                        if (element.isElementDeclarationReference()) {
-                            element = element.getResolvedElementDeclaration();
-                        }
-                        XSDTypeDefinition childType = element.getTypeDefinition();
-                        if (childType == null) {
-                            childType = findGlobalElementXSDType(element);
-                        }
-                        AttributeType gtType = null;
-                        if (childType != null) {
-                            gtType = createType(childType, DUMMY_DEPTH);
+                    @Override
+                    public AttributeType buildSuper() {
+                        XSDTypeDefinition baseType = xsdType.getBaseType();
+                        if (baseType != null
+                                && baseType.getName() != null
+                                && !baseType.equals(xsdType)) {
+                            return createType(baseType, DUMMY_DEPTH);
                         } else {
-                            // set to xs:anyType
-                            gtType = xsAnyType();
+                            return null;
                         }
-                        if (gtType == null) {
-                            throw new RuntimeException();
-                        }
-                        int minOccurs = particle.getMinOccurs();
-                        int maxOccurs = particle.getMaxOccurs();
-                        if (maxOccurs == -1) {
-                            maxOccurs = Integer.MAX_VALUE;
-                        }
-                        boolean isNillable = element.isNillable();
-                        // TODO: default value
-                        AttributeDescriptor ad = factory.createAttributeDescriptor(gtType,
-                                new NameImpl(element.getTargetNamespace(), element.getName()),
-                                minOccurs, maxOccurs, isNillable, null);
-                        properties.add(ad);
                     }
-                    for (XSDAttributeDeclaration attribute : Schemas
-                            .getAttributeDeclarations(xsdType, false)) {
-                        if (attribute.isAttributeDeclarationReference()) {
-                            attribute = attribute.getResolvedAttributeDeclaration();
-                        }
-                        XSDSimpleTypeDefinition type = attribute.getTypeDefinition();
-                        if (type == null) {
-                            // look up in global schema
-                            for (XSDAttributeDeclaration ad : schema.getAttributeDeclarations()) {
-                                if (Utilities.equals(ad.getTargetNamespace(),
-                                        attribute.getTargetNamespace())
-                                        && Utilities.equals(ad.getName(), attribute.getName())) {
-                                    type = ad.getTypeDefinition();
-                                    break;
-                                }
-                            }
-                        }
-                        if (type == null) {
-                            throw new RuntimeException(
-                                    "Could not locate type definition for attribute "
-                                            + name(attribute) + " of " + getName());
-                        }
-                        if (type.getName() == null) {
-                            // TODO: deal with anonymous attribute types
-                            continue;
-                        }
-                        AttributeType gtType = createType(type, DUMMY_DEPTH);
-                        // TODO: if attribute is required
-                        AttributeDescriptor ad = factory.createAttributeDescriptor(gtType,
-                                name(attribute), 0, 1, true, null);
-                        properties.add(ad);
-                    }
-                    return properties;
-                }
-            }
 
-        };
+                    @Override
+                    public Collection<PropertyDescriptor> buildDescriptors() {
+                        if (!followComplexTypes) {
+                            // might need to generate shallow schema classes while bootstrapping
+                            return null;
+                        } else {
+                            List<PropertyDescriptor> properties = new ArrayList<>();
+                            for (XSDParticle particle :
+                                    Schemas.getChildElementParticles(xsdType, false)) {
+                                XSDElementDeclaration element =
+                                        (XSDElementDeclaration) particle.getContent();
+                                if (element.isElementDeclarationReference()) {
+                                    element = element.getResolvedElementDeclaration();
+                                }
+                                XSDTypeDefinition childType = element.getTypeDefinition();
+                                if (childType == null) {
+                                    childType = findGlobalElementXSDType(element);
+                                }
+                                AttributeType gtType = null;
+                                if (childType != null) {
+                                    gtType = createType(childType, DUMMY_DEPTH);
+                                } else {
+                                    // set to xs:anyType
+                                    gtType = xsAnyType();
+                                }
+                                if (gtType == null) {
+                                    throw new RuntimeException();
+                                }
+                                int minOccurs = particle.getMinOccurs();
+                                int maxOccurs = particle.getMaxOccurs();
+                                if (maxOccurs == -1) {
+                                    maxOccurs = Integer.MAX_VALUE;
+                                }
+                                boolean isNillable = element.isNillable();
+                                // TODO: default value
+                                AttributeDescriptor ad =
+                                        factory.createAttributeDescriptor(
+                                                gtType,
+                                                new NameImpl(
+                                                        element.getTargetNamespace(),
+                                                        element.getName()),
+                                                minOccurs,
+                                                maxOccurs,
+                                                isNillable,
+                                                null);
+                                properties.add(ad);
+                            }
+                            for (XSDAttributeDeclaration attribute :
+                                    Schemas.getAttributeDeclarations(xsdType, false)) {
+                                if (attribute.isAttributeDeclarationReference()) {
+                                    attribute = attribute.getResolvedAttributeDeclaration();
+                                }
+                                XSDSimpleTypeDefinition type = attribute.getTypeDefinition();
+                                if (type == null) {
+                                    // look up in global schema
+                                    for (XSDAttributeDeclaration ad :
+                                            schema.getAttributeDeclarations()) {
+                                        if (Utilities.equals(
+                                                        ad.getTargetNamespace(),
+                                                        attribute.getTargetNamespace())
+                                                && Utilities.equals(
+                                                        ad.getName(), attribute.getName())) {
+                                            type = ad.getTypeDefinition();
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (type == null) {
+                                    throw new RuntimeException(
+                                            "Could not locate type definition for attribute "
+                                                    + name(attribute)
+                                                    + " of "
+                                                    + getName());
+                                }
+                                if (type.getName() == null) {
+                                    // TODO: deal with anonymous attribute types
+                                    continue;
+                                }
+                                AttributeType gtType = createType(type, DUMMY_DEPTH);
+                                // TODO: if attribute is required
+                                AttributeDescriptor ad =
+                                        factory.createAttributeDescriptor(
+                                                gtType, name(attribute), 0, 1, true, null);
+                                properties.add(ad);
+                            }
+                            return properties;
+                        }
+                    }
+                };
         types.put(xsdType, gtType);
         return gtType;
     }
 
     /**
      * Return the short class name of the schema template.
-     * 
+     *
      * @see org.geotools.maven.xmlcodegen.SchemaGenerator#getSchemaClassTemplateName()
      */
     @Override
@@ -227,20 +242,20 @@ public class CycleSchemaGenerator extends SchemaGenerator {
 
     /**
      * Return a list of types sorted by name.
-     * 
+     *
      * @see org.geotools.maven.xmlcodegen.SchemaGenerator#sort()
      */
     @Override
     public List<AttributeType> sort() {
-        List<AttributeType> sorted = new ArrayList<>(
-                types.values());
-        Collections.sort(sorted, new Comparator<AttributeType>() {
-            @Override
-            public int compare(AttributeType at1, AttributeType at2) {
-                return ((NameImpl) at1.getName()).compareTo((NameImpl) at2.getName());
-            }
-        });
+        List<AttributeType> sorted = new ArrayList<>(types.values());
+        Collections.sort(
+                sorted,
+                new Comparator<AttributeType>() {
+                    @Override
+                    public int compare(AttributeType at1, AttributeType at2) {
+                        return ((NameImpl) at1.getName()).compareTo((NameImpl) at2.getName());
+                    }
+                });
         return sorted;
     }
-
 }

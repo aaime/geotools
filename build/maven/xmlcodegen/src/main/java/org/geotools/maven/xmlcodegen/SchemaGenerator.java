@@ -1,7 +1,7 @@
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
- * 
+ *
  *    (C) 2002-2008, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
@@ -22,14 +22,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.logging.Logger;
-
 import org.eclipse.xsd.XSDAttributeDeclaration;
 import org.eclipse.xsd.XSDComplexTypeDefinition;
 import org.eclipse.xsd.XSDElementDeclaration;
@@ -54,9 +52,8 @@ import org.geotools.graph.traverse.standard.DirectedDepthFirstTopologicalIterato
 import org.geotools.graph.util.graph.CycleDetector;
 import org.geotools.graph.util.graph.DirectedCycleDetector;
 import org.geotools.util.Utilities;
-import org.geotools.xsd.Schemas;
 import org.geotools.xs.XS;
-import org.opengis.feature.Attribute;
+import org.geotools.xsd.Schemas;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.ComplexType;
@@ -66,79 +63,50 @@ import org.opengis.feature.type.PropertyDescriptor;
 import org.opengis.feature.type.Schema;
 
 /**
- * Parses an XML schema to procuce an instance of
- * {@link org.opengis.feature.type.Schema}.
+ * Parses an XML schema to procuce an instance of {@link org.opengis.feature.type.Schema}.
  *
- *         <p>
- *
- *  </p>
+ * <p>
  *
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
  */
 @SuppressWarnings("PMD.SystemPrintln")
 public class SchemaGenerator extends AbstractGenerator {
-    /**
-     * The xsd schema from which gt types will be
-     * generated.
-     */
+    /** The xsd schema from which gt types will be generated. */
     XSDSchema schema;
 
-    /**
-     * Mapping from XSD types to Geotools types.
-     */
+    /** Mapping from XSD types to Geotools types. */
     Map<XSDTypeDefinition, AttributeType> types;
 
-    /**
-     * Factory used to build geotools types.
-     */
+    /** Factory used to build geotools types. */
     FeatureTypeFactory factory;
-    /**
-     * Flag indicating whether simple types should be processed.
-     */
+    /** Flag indicating whether simple types should be processed. */
     boolean simpleTypes;
 
-    /**
-     * Flag indicating whether complex types should be processed.
-     */
+    /** Flag indicating whether complex types should be processed. */
     boolean complexTypes;
 
-    /**
-     * Flag indicating whether to follow type references within
-     * complex type definitions.
-     */
+    /** Flag indicating whether to follow type references within complex type definitions. */
     boolean followComplexTypes;
 
-    /**
-     *  Mapping of schemas imported by the schema being processed, indexed by
-     *  namespace.
-     */
+    /** Mapping of schemas imported by the schema being processed, indexed by namespace. */
     Map<String, Schema> imports;
 
-    /**
-     * Set of names of types names to include in the generated output.
-     */
+    /** Set of names of types names to include in the generated output. */
     Set<String> includes;
-    
-    /**
-     * Controls how far to recurse when building the schema.
-     */
+
+    /** Controls how far to recurse when building the schema. */
     int maxDepth = 15;
-    
-    /**
-     * When set to true the generator will print paths as it recurses through the schema.
-     */
+
+    /** When set to true the generator will print paths as it recurses through the schema. */
     boolean printRecursionPaths = false;
-    
+
     /**
-     * Bindings of XSD type names to class names. If defined, the generated schema will
-     * bind these complex types as if they were non-complex, bound the named classes.
+     * Bindings of XSD type names to class names. If defined, the generated schema will bind these
+     * complex types as if they were non-complex, bound the named classes.
      */
     private Map<Name, String> typeBindings;
-    
-    /**
-     * Logger
-     */
+
+    /** Logger */
     Logger logger = org.geotools.util.logging.Logging.getLogger(SchemaGenerator.class);
 
     public SchemaGenerator(XSDSchema schema) {
@@ -152,83 +120,69 @@ public class SchemaGenerator extends AbstractGenerator {
         includes = new HashSet<>();
     }
 
-    /**
-     * @return The parsed xml schema.
-     */
+    /** @return The parsed xml schema. */
     public XSDSchema getSchema() {
         return schema;
     }
 
     /**
-     * @param complexTypes Flag indicating whether or not to process complex
-     * types in the supplied schema.
+     * @param complexTypes Flag indicating whether or not to process complex types in the supplied
+     *     schema.
      */
     public void setComplexTypes(boolean complexTypes) {
         this.complexTypes = complexTypes;
     }
 
     /**
-     * @param simpleTypes Flag indicating whether or not to process complex
-     * types in the supplied schema.
+     * @param simpleTypes Flag indicating whether or not to process complex types in the supplied
+     *     schema.
      */
     public void setSimpleTypes(boolean simpleTypes) {
         this.simpleTypes = simpleTypes;
     }
 
     /**
-     * Indicates to generator whether to follow the type definitions of
-     * complex types.
-     * <p>
-     * Warning, setting this flag to <code>true</code> will result in all
-     * generated complex types being empty.
-     * </p>
+     * Indicates to generator whether to follow the type definitions of complex types.
+     *
+     * <p>Warning, setting this flag to <code>true</code> will result in all generated complex types
+     * being empty.
      */
     public void setFollowComplexTypes(boolean followComplexTypes) {
         this.followComplexTypes = followComplexTypes;
     }
 
-    /**
-     * Sets the type names for which to include in the generated schema.
-     * 
-     */
+    /** Sets the type names for which to include in the generated schema. */
     public void setIncludes(String[] includes) {
-        if ( includes == null ) {
+        if (includes == null) {
             this.includes = Collections.emptySet();
-        }
-        else {
+        } else {
             this.includes = new HashSet<>(Arrays.asList(includes));
         }
-        
     }
-    
+
     /**
-     * Sets the flag controlling whether  paths are printed out as the generator recurses through
-     * the schema.
+     * Sets the flag controlling whether paths are printed out as the generator recurses through the
+     * schema.
      */
     public void setPrintRecursionPaths(boolean printRecursionPaths) {
         this.printRecursionPaths = printRecursionPaths;
     }
 
-    /**
-     * Sets the max depth the generator will recurse into the schema.
-     */
+    /** Sets the max depth the generator will recurse into the schema. */
     public void setMaxRecursionDepth(int maxDepth) {
         if (maxDepth > 0) {
             this.maxDepth = maxDepth;
         }
     }
-    
-    /**
-     * Provide an explicit mapping from an XSD type
-     */
-    public void addTypeMapping(String namespace, String name,
-        AttributeType gtType) {
+
+    /** Provide an explicit mapping from an XSD type */
+    public void addTypeMapping(String namespace, String name, AttributeType gtType) {
         if (namespace == null) {
             namespace = schema.getTargetNamespace();
         }
         assert name != null;
 
-        //find the type in the xsd schema
+        // find the type in the xsd schema
         List typeDefs = schema.getTypeDefinitions();
 
         for (Object typeDef : typeDefs) {
@@ -243,15 +197,12 @@ public class SchemaGenerator extends AbstractGenerator {
             }
         }
 
-        throw new IllegalArgumentException("Type: [" + namespace + "," + name
-            + "] not found");
+        throw new IllegalArgumentException("Type: [" + namespace + "," + name + "] not found");
     }
 
     /**
-     * Add the explicit bindings of XSD types to fully-qualified class names.
-     * If a type has a binding, it will be treated as non-complex and bound to
-     * the named class.
-     * 
+     * Add the explicit bindings of XSD types to fully-qualified class names. If a type has a
+     * binding, it will be treated as non-complex and bound to the named class.
      */
     public void setTypeBindings(TypeBinding[] typeBindings) {
         Map<Name, String> bindings = new HashMap<>();
@@ -267,7 +218,8 @@ public class SchemaGenerator extends AbstractGenerator {
                 }
                 String binding = typeBinding.getBinding();
                 if (binding == null) {
-                    throw new IllegalArgumentException("Missing binding for typeBinding for " + name);
+                    throw new IllegalArgumentException(
+                            "Missing binding for typeBinding for " + name);
                 }
                 bindings.put(new NameImpl(namespace, name), binding);
             }
@@ -275,16 +227,12 @@ public class SchemaGenerator extends AbstractGenerator {
         this.typeBindings = bindings;
     }
 
-    /**
-     * @return the map of XSD type names to fully-qualified class names.
-     */
+    /** @return the map of XSD type names to fully-qualified class names. */
     public Map<Name, String> getTypeBindings() {
         return typeBindings;
     }
-    
-    /**
-     * Adds an imported schema to be used for type lookups.
-     */
+
+    /** Adds an imported schema to be used for type lookups. */
     public void addImport(Schema imported) {
         imports.put(imported.getURI(), imported);
     }
@@ -298,16 +246,13 @@ public class SchemaGenerator extends AbstractGenerator {
         return imports.get(namespace);
     }
 
-    /**
-     * @return The collection of schemas imported by the schema being generated.
-     */
+    /** @return The collection of schemas imported by the schema being generated. */
     public Collection<Schema> getImports() {
         return imports.values();
     }
 
     /**
      * @param type Geotools attribute type.
-     *
      * @return the XSD type associated with <code>type</code>.
      */
     public XSDTypeDefinition getXSDType(AttributeType type) {
@@ -325,13 +270,11 @@ public class SchemaGenerator extends AbstractGenerator {
         return null;
     }
 
-    /**
-     * Generates the Geotools schema from the XML schema.
-     */
+    /** Generates the Geotools schema from the XML schema. */
     public void generate() throws Exception {
-        List typeDefs = GeneratorUtils.types( schema, includes );
+        List typeDefs = GeneratorUtils.types(schema, includes);
 
-        //process simple types
+        // process simple types
         if (simpleTypes) {
             logger.fine("Generating simple types");
             for (Object typeDef : typeDefs) {
@@ -341,8 +284,7 @@ public class SchemaGenerator extends AbstractGenerator {
                     continue;
                 }
 
-                if (!xsdType.getTargetNamespace()
-                        .equals(schema.getTargetNamespace())) {
+                if (!xsdType.getTargetNamespace().equals(schema.getTargetNamespace())) {
                     continue;
                 }
 
@@ -353,7 +295,7 @@ public class SchemaGenerator extends AbstractGenerator {
             }
         }
 
-        //process complex types
+        // process complex types
         if (complexTypes) {
             logger.fine("Generating complex types");
             for (Object typeDef : typeDefs) {
@@ -363,8 +305,7 @@ public class SchemaGenerator extends AbstractGenerator {
                     continue;
                 }
 
-                if (!xsdType.getTargetNamespace()
-                        .equals(schema.getTargetNamespace())) {
+                if (!xsdType.getTargetNamespace().equals(schema.getTargetNamespace())) {
                     continue;
                 }
 
@@ -389,184 +330,181 @@ public class SchemaGenerator extends AbstractGenerator {
             gtSchema.put(gtType.getName(), gtType);
         }
 
-        Object[] input = {
-                gtSchema, Schemas.getTargetPrefix(schema), this
-            };
+        Object[] input = {gtSchema, Schemas.getTargetPrefix(schema), this};
         String result = execute(getSchemaClassTemplateName(), input);
-        String className = Schemas.getTargetPrefix(schema).toUpperCase()
-            + "Schema";
+        String className = Schemas.getTargetPrefix(schema).toUpperCase() + "Schema";
 
         write(result, className, sourceLocation);
     }
 
-    /**
-     * Return the short name of the template class.
-     */
+    /** Return the short name of the template class. */
     protected String getSchemaClassTemplateName() {
         return "SchemaClassTemplate";
     }
 
     /**
-     * Returns a list of the types in the generated schema sorted
-     * as follows:
+     * Returns a list of the types in the generated schema sorted as follows:
+     *
      * <p>
-     *         <ul>
-     *         <li>If A is a super type of B, then A appears in list before B.
-     *         <li>If B is complex and A is referenced from the type definition
-     * of B, then A appears in the list before B.
-     *         </ul>
-     *  </p>
+     *
+     * <ul>
+     *   <li>If A is a super type of B, then A appears in list before B.
+     *   <li>If B is complex and A is referenced from the type definition of B, then A appears in
+     *       the list before B.
+     * </ul>
      */
-
-	public List<AttributeType> sort() {
-		//build a directed graph representing dependencies among types
-		GraphGenerator gg = new BasicDirectedGraphGenerator();
+    public List<AttributeType> sort() {
+        // build a directed graph representing dependencies among types
+        GraphGenerator gg = new BasicDirectedGraphGenerator();
 
         for (AttributeType type : types.values()) {
             AttributeType superType = type.getSuper();
 
             if (superType != null) {
-                //add edge type -> parent
-                gg.add(new Object[]{type, superType});
+                // add edge type -> parent
+                gg.add(new Object[] {type, superType});
             }
 
             if (type instanceof ComplexType) {
                 ComplexType cType = (ComplexType) type;
 
-                //add an edge for each descriptor
+                // add an edge for each descriptor
                 Collection atts = cType.getDescriptors();
                 for (Object att : atts) {
                     PropertyDescriptor ad = (PropertyDescriptor) att;
-                    gg.add(new Object[]{type, ad.getType()});
+                    gg.add(new Object[] {type, ad.getType()});
                 }
             }
         }
-		
-		Graph graph = gg.getGraph();
-		
-		//test the graph for cycles
-		CycleDetector cycleDetector = new DirectedCycleDetector(graph);
-		if (cycleDetector.containsCycle()) {
-			logger.info("Cycle found");
-			return null;
-		}
-			 
-		
-		//no cycles, perform a topological sorting of the graph
-		DirectedDepthFirstTopologicalIterator iterator = 
-			new DirectedDepthFirstTopologicalIterator();
-		
-		final List<AttributeType> sorted = new ArrayList<>();
-		GraphWalker walker = new GraphWalker() {
-			
-			@Override
-            public int visit(Graphable element, GraphTraversal traversal) {
-				AttributeType type = (AttributeType) element.getObject();
-				
-				//only add if in this schema
-				if (type.getName().getNamespaceURI().equals(schema.getTargetNamespace())) {
-					sorted.add((AttributeType) element.getObject());	
-				}
-				
-				return GraphTraversal.CONTINUE;
-			}
-			
-			@Override
-            public void finish() { }
-		};
-		
-		GraphTraversal traversal = 
-			new BasicGraphTraversal(graph,walker,iterator);
-		traversal.init();
-		traversal.traverse();
 
-		if(sorted.size() != types.size()) {
-			throw new RuntimeException("Internal error in schema dependency sort");
-		}
+        Graph graph = gg.getGraph();
 
-		Collections.reverse(sorted);
-		
-		return sorted;
-	}
+        // test the graph for cycles
+        CycleDetector cycleDetector = new DirectedCycleDetector(graph);
+        if (cycleDetector.containsCycle()) {
+            logger.info("Cycle found");
+            return null;
+        }
 
-	protected final AttributeType createType(XSDTypeDefinition xsdType, int depth) {
-		if (xsdType instanceof XSDSimpleTypeDefinition) {
-			return createType((XSDSimpleTypeDefinition)xsdType, depth);
-		}
-		else {
-			return createType((XSDComplexTypeDefinition)xsdType, depth);
-		}
-	}
-	
-    protected AttributeType createType( XSDSimpleTypeDefinition xsdType, int depth ) {
+        // no cycles, perform a topological sorting of the graph
+        DirectedDepthFirstTopologicalIterator iterator =
+                new DirectedDepthFirstTopologicalIterator();
+
+        final List<AttributeType> sorted = new ArrayList<>();
+        GraphWalker walker =
+                new GraphWalker() {
+
+                    @Override
+                    public int visit(Graphable element, GraphTraversal traversal) {
+                        AttributeType type = (AttributeType) element.getObject();
+
+                        // only add if in this schema
+                        if (type.getName().getNamespaceURI().equals(schema.getTargetNamespace())) {
+                            sorted.add((AttributeType) element.getObject());
+                        }
+
+                        return GraphTraversal.CONTINUE;
+                    }
+
+                    @Override
+                    public void finish() {}
+                };
+
+        GraphTraversal traversal = new BasicGraphTraversal(graph, walker, iterator);
+        traversal.init();
+        traversal.traverse();
+
+        if (sorted.size() != types.size()) {
+            throw new RuntimeException("Internal error in schema dependency sort");
+        }
+
+        Collections.reverse(sorted);
+
+        return sorted;
+    }
+
+    protected final AttributeType createType(XSDTypeDefinition xsdType, int depth) {
+        if (xsdType instanceof XSDSimpleTypeDefinition) {
+            return createType((XSDSimpleTypeDefinition) xsdType, depth);
+        } else {
+            return createType((XSDComplexTypeDefinition) xsdType, depth);
+        }
+    }
+
+    protected AttributeType createType(XSDSimpleTypeDefinition xsdType, int depth) {
         if (types.containsKey(xsdType)) {
             return types.get(xsdType);
         }
 
-        //import?
+        // import?
         if (!xsdType.getTargetNamespace().equals(schema.getTargetNamespace())) {
             return findType(xsdType);
         }
 
-        //first build super type
+        // first build super type
         AttributeType superType = null;
         XSDTypeDefinition baseType = xsdType.getBaseType();
 
         if ((baseType != null) && !baseType.equals(xsdType)) {
             if (baseType.getName() != null) {
-                //ignore unamed types
-                //superType = createType((XSDSimpleTypeDefinition)baseType);
-                superType = createType(baseType, depth+1);
+                // ignore unamed types
+                // superType = createType((XSDSimpleTypeDefinition)baseType);
+                superType = createType(baseType, depth + 1);
                 assert superType != null;
             }
         }
 
-        //TODO: actually derive valus from type
-		AttributeType gtType = factory.createAttributeType(
-			name(xsdType), Object.class, false, false, Collections.emptyList(), 
-			superType, null
-		);
+        // TODO: actually derive valus from type
+        AttributeType gtType =
+                factory.createAttributeType(
+                        name(xsdType),
+                        Object.class,
+                        false,
+                        false,
+                        Collections.emptyList(),
+                        superType,
+                        null);
         types.put(xsdType, gtType);
 
         return gtType;
     }
 
-	protected AttributeType createType(XSDComplexTypeDefinition xsdType, int depth) {
-	        if (depth > maxDepth) {
-                        throw new RuntimeException("Recursion depth exceeded:" + xsdType.getName());
-                }
-                if (printRecursionPaths) {
-                        for ( int i = 0; i < depth; i++ ) {
-                                System.out.print("-");
-                        }
-                        System.out.println(xsdType.getName());
-                }
-                
-		//already processed?
-		if (types.containsKey(xsdType)) {
-			return types.get(xsdType);
-		}
-		
-		//import?
-		if (!xsdType.getTargetNamespace().equals(schema.getTargetNamespace())) {
-			return findType(xsdType);
-		}
-		
-		//first build super type
-		AttributeType/*ComplexType*/ superType = null;
-		XSDTypeDefinition baseType = xsdType.getBaseType();
-		if (baseType != null && !baseType.equals(xsdType)) {
-			if (baseType.getName() != null) {
-				//ignore unamed types
-				superType = createType(/*(XSDComplexTypeDefinition)*/baseType, depth+1);
-				assert superType != null;
-			}
-		}
-		
-		// now build child types
-		List<PropertyDescriptor> properties = new ArrayList<>();
-		if (followComplexTypes) {
-			List children = Schemas.getChildElementParticles(xsdType, false);
+    protected AttributeType createType(XSDComplexTypeDefinition xsdType, int depth) {
+        if (depth > maxDepth) {
+            throw new RuntimeException("Recursion depth exceeded:" + xsdType.getName());
+        }
+        if (printRecursionPaths) {
+            for (int i = 0; i < depth; i++) {
+                System.out.print("-");
+            }
+            System.out.println(xsdType.getName());
+        }
+
+        // already processed?
+        if (types.containsKey(xsdType)) {
+            return types.get(xsdType);
+        }
+
+        // import?
+        if (!xsdType.getTargetNamespace().equals(schema.getTargetNamespace())) {
+            return findType(xsdType);
+        }
+
+        // first build super type
+        AttributeType /*ComplexType*/ superType = null;
+        XSDTypeDefinition baseType = xsdType.getBaseType();
+        if (baseType != null && !baseType.equals(xsdType)) {
+            if (baseType.getName() != null) {
+                // ignore unamed types
+                superType = createType(/*(XSDComplexTypeDefinition)*/ baseType, depth + 1);
+                assert superType != null;
+            }
+        }
+
+        // now build child types
+        List<PropertyDescriptor> properties = new ArrayList<>();
+        if (followComplexTypes) {
+            List children = Schemas.getChildElementParticles(xsdType, false);
             for (Object child : children) {
                 XSDParticle particle = (XSDParticle) child;
                 XSDElementDeclaration element = (XSDElementDeclaration) particle.getContent();
@@ -583,7 +521,7 @@ public class SchemaGenerator extends AbstractGenerator {
                 if (childType != null) {
                     gtType = createType(childType, depth + 1);
                 } else {
-                    //set to xs:anyType
+                    // set to xs:anyType
                     gtType = xsAnyType();
                 }
                 assert gtType != null;
@@ -595,14 +533,14 @@ public class SchemaGenerator extends AbstractGenerator {
                 }
                 boolean isNillable = element.isNillable();
 
-                //TODO: default value
-                AttributeDescriptor ad = factory.createAttributeDescriptor(
-                        gtType, name(element), minOccurs, maxOccurs, isNillable, null
-                );
+                // TODO: default value
+                AttributeDescriptor ad =
+                        factory.createAttributeDescriptor(
+                                gtType, name(element), minOccurs, maxOccurs, isNillable, null);
                 properties.add(ad);
             }
-			
-			List atts = Schemas.getAttributeDeclarations(xsdType,false);
+
+            List atts = Schemas.getAttributeDeclarations(xsdType, false);
             for (Object att : atts) {
                 XSDAttributeDeclaration attribute = (XSDAttributeDeclaration) att;
                 if (attribute.isAttributeDeclarationReference()) {
@@ -611,10 +549,10 @@ public class SchemaGenerator extends AbstractGenerator {
 
                 XSDSimpleTypeDefinition type = attribute.getTypeDefinition();
                 if (type == null) {
-                    //look up in global schema
+                    // look up in global schema
                     for (XSDAttributeDeclaration ad : schema.getAttributeDeclarations()) {
-                        if (Utilities.equals(ad.getTargetNamespace(),
-                                attribute.getTargetNamespace())
+                        if (Utilities.equals(
+                                        ad.getTargetNamespace(), attribute.getTargetNamespace())
                                 && Utilities.equals(ad.getName(), attribute.getName())) {
                             type = ad.getTypeDefinition();
                             break;
@@ -622,34 +560,37 @@ public class SchemaGenerator extends AbstractGenerator {
                     }
                 }
                 if (type == null || type.getName() == null) {
-                    //TODO: deal with anonymous attribute types
+                    // TODO: deal with anonymous attribute types
                     continue;
                 }
                 AttributeType gtType = createType(type, depth + 1);
                 if ("uom".equals(attribute.getName())) {
                     System.out.println();
                 }
-                //TODO: if attribute is required
-                AttributeDescriptor ad = factory.createAttributeDescriptor(
-                        gtType, name(attribute),
-                        0, 1, true, null);
+                // TODO: if attribute is required
+                AttributeDescriptor ad =
+                        factory.createAttributeDescriptor(
+                                gtType, name(attribute), 0, 1, true, null);
                 properties.add(ad);
-
             }
-		}
-		
-		
-		//TODO: isIdentifiable
-		//TODO: restrictions
-		//TODO: description
-		ComplexType gtType = factory.createComplexType(
-			name(xsdType), properties, false, xsdType.isAbstract(), 
-			Collections.emptyList(), superType, null
-		);
-		types.put(xsdType,gtType);
-		return gtType;
-	}
-	
+        }
+
+        // TODO: isIdentifiable
+        // TODO: restrictions
+        // TODO: description
+        ComplexType gtType =
+                factory.createComplexType(
+                        name(xsdType),
+                        properties,
+                        false,
+                        xsdType.isAbstract(),
+                        Collections.emptyList(),
+                        superType,
+                        null);
+        types.put(xsdType, gtType);
+        return gtType;
+    }
+
     protected final AttributeType findType(XSDTypeDefinition xsdType) {
         Name name = name(xsdType);
 
@@ -663,27 +604,26 @@ public class SchemaGenerator extends AbstractGenerator {
 
         throw new IllegalStateException("Could not find imported type: " + name);
     }
-    
+
     protected final XSDTypeDefinition findGlobalElementXSDType(XSDElementDeclaration element) {
         for (XSDElementDeclaration e : schema.getElementDeclarations()) {
-            if (element.getName().equals(e.getName()) && (element.getTargetNamespace() == null ||
-                    element.getTargetNamespace().equals(e.getTargetNamespace()))) {
+            if (element.getName().equals(e.getName())
+                    && (element.getTargetNamespace() == null
+                            || element.getTargetNamespace().equals(e.getTargetNamespace()))) {
                 return e.getType();
             }
         }
-        return null; 
+        return null;
     }
 
-    /**
-     * Convenience method for getting the name of a component.
-     */
+    /** Convenience method for getting the name of a component. */
     protected final Name name(XSDNamedComponent component) {
         if (component.getName() == null) {
             logger.warning("Anonymous component: " + component);
         }
         return new NameImpl(component.getTargetNamespace(), component.getName());
     }
-    
+
     protected final AttributeType xsAnyType() {
         XSDSchema schema = XSDUtil.getSchemaForSchema(XSDConstants.SCHEMA_FOR_SCHEMA_URI_2001);
         for (XSDTypeDefinition t : schema.getTypeDefinitions()) {
@@ -693,7 +633,7 @@ public class SchemaGenerator extends AbstractGenerator {
         }
         throw new IllegalStateException("XS schema not present");
     }
-   
+
     public static void main(String[] args) throws Exception {
         XSDSchema schema = XSDUtil.getSchemaForSchema(XSDConstants.SCHEMA_FOR_SCHEMA_URI_2001);
 
@@ -704,5 +644,4 @@ public class SchemaGenerator extends AbstractGenerator {
 
         generator.generate();
     }
-
 }

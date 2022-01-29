@@ -1,7 +1,7 @@
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
- * 
+ *
  *    (C) 2002-2008, Open Source Geospatial Foundation (OSGeo)
  *
  *    This library is free software; you can redistribute it and/or
@@ -18,47 +18,40 @@ package org.geotools.maven.xmlcodegen;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
-
 import org.eclipse.xsd.XSDInclude;
 import org.eclipse.xsd.XSDSchema;
 import org.geotools.xsd.Schemas;
 
-
 /**
- * Generates an instance of {@link org.eclipse.xsd.util.XSDSchemaLocationResolver} for
- * a particular schema.
- * <p>
- * The schema supplied, and any included schemas ( not imported ), are added to
- * the set of schemas that the resulting class can resolve.
- * </p>
+ * Generates an instance of {@link org.eclipse.xsd.util.XSDSchemaLocationResolver} for a particular
+ * schema.
+ *
+ * <p>The schema supplied, and any included schemas ( not imported ), are added to the set of
+ * schemas that the resulting class can resolve.
  *
  * @author Justin Deoliveira, The Open Planning Project, jdeolive@openplans.org
- *
  */
 public class SchemaLocationResolverGenerator extends AbstractGenerator {
-    public void generate(XSDSchema schema)  {
+    public void generate(XSDSchema schema) {
         List<File> includes = new ArrayList<>();
         List<String> namespaces = new ArrayList<>();
 
         File file = null;
         try {
-        	file = findSchemaFile( schema.getSchemaLocation() );	
+            file = findSchemaFile(schema.getSchemaLocation());
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "", e);
         }
-        catch( Exception e ) {
-        	logger.log( Level.SEVERE, "", e );
+
+        if (file != null) {
+            includes.add(file);
+            namespaces.add(schema.getTargetNamespace());
+        } else {
+            logger.log(Level.SEVERE, "Could not find: " + schema.getSchemaLocation() + " to copy.");
         }
-        
-        if ( file != null ) {
-        	includes.add(file);
-        	namespaces.add(schema.getTargetNamespace());
-        }
-        else {
-        	logger.log( Level.SEVERE, "Could not find: " + schema.getSchemaLocation() + " to copy." );
-        }
-        
+
         List included = Schemas.getIncludes(schema);
 
         for (Object o : included) {
@@ -79,25 +72,24 @@ public class SchemaLocationResolverGenerator extends AbstractGenerator {
                     namespaces.add(schema.getTargetNamespace());
                 }
             } else {
-                logger.log(Level.SEVERE, "Could not find: " + include.getSchemaLocation() + " to copy.");
+                logger.log(
+                        Level.SEVERE,
+                        "Could not find: " + include.getSchemaLocation() + " to copy.");
             }
-
         }
 
         try {
-//			String result = execute("SchemaLocationResolverTemplate",
-//			        new Object[] { schema, includes, namespaces });
-//			String prefix = Schemas.getTargetPrefix(schema).toUpperCase();
-//			write(result, prefix + "SchemaLocationResolver");
+            //			String result = execute("SchemaLocationResolverTemplate",
+            //			        new Object[] { schema, includes, namespaces });
+            //			String prefix = Schemas.getTargetPrefix(schema).toUpperCase();
+            //			write(result, prefix + "SchemaLocationResolver");
 
-			//copy over all the schemas
+            // copy over all the schemas
             for (File include : includes) {
                 copy(include, resourceLocation);
             }
-		}
-        catch( Exception e ) {
-        	logger.log( Level.SEVERE, "Error generating resolver", e );
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error generating resolver", e);
         }
     }
-
 }

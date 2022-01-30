@@ -1916,23 +1916,6 @@
           </upToDateChecking>
         </configuration>
       </plugin>
-      <!--plugin>
-        <groupId>com.coveo</groupId>
-        <artifactId>fmt-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>${fmt.action}</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <verbose>false</verbose>
-          <filesNamePattern>.*\.java</filesNamePattern>
-          <skip>${fmt.skip}</skip>
-          <style>aosp</style>
-        </configuration>
-      </plugin-->
 
       <plugin>
         <groupId>com.github.ekryd.sortpom</groupId>

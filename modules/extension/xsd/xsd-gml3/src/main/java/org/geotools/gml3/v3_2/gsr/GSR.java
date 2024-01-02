@@ -64,11 +64,15 @@ public final class GSR extends GML.DelegatingXSD {
         return getClass().getResource("gsr.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.isotc211.org/2005/gsr";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SC_CRS_PropertyType =
             new QName("http://www.isotc211.org/2005/gsr", "SC_CRS_PropertyType");
 

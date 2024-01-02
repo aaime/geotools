@@ -70,6 +70,7 @@ public class PropertyDataStore extends ContentDataStore {
         setFeatureTypeFactory(new FeatureTypeFactoryImpl());
         setFeatureFactory(CommonFactoryFinder.getFeatureFactory(null));
     }
+
     // constructor end
 
     // createSchema start
@@ -87,6 +88,7 @@ public class PropertyDataStore extends ContentDataStore {
             writer.flush();
         }
     }
+
     // createSchema end
 
     // info start
@@ -102,6 +104,7 @@ public class PropertyDataStore extends ContentDataStore {
         }
         return info;
     }
+
     // info end
 
     @Override

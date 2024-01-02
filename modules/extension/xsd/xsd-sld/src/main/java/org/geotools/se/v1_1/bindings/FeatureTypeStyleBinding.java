@@ -71,7 +71,9 @@ public class FeatureTypeStyleBinding extends SLDFeatureTypeStyleBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.FeatureTypeStyle;

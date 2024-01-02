@@ -83,6 +83,7 @@ public class ContourProcessTest {
         process = new ContourProcess();
         TestData.unzipFile(this, "contours.zip");
     }
+
     /**
      * Creates a coverage with just two rows where values are constant within rows and differ
      * between rows, then checks for correctly generated single contour between rows.
@@ -160,7 +161,9 @@ public class ContourProcessTest {
      */
     @Test
     public void invalidLinestrings()
-            throws FileNotFoundException, IOException, NoSuchAuthorityCodeException,
+            throws FileNotFoundException,
+                    IOException,
+                    NoSuchAuthorityCodeException,
                     FactoryException {
         File input = TestData.file(ContourProcessTest.class, "contoursample.tif");
         AbstractGridFormat format = GridFormatFinder.findFormat(input);

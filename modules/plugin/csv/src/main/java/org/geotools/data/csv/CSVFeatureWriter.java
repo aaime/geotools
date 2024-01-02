@@ -88,6 +88,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
     public SimpleFeatureType getFeatureType() {
         return this.featureType;
     }
+
     // featureType end
 
     // hasNext start
@@ -101,6 +102,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
         }
         return iterator.hasNext();
     }
+
     // hasNext end
 
     // next start
@@ -131,6 +133,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
             throw new IOException("Unable to create feature:" + invalid.getMessage(), invalid);
         }
     }
+
     // next end
 
     // remove start
@@ -142,6 +145,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
     public void remove() throws IOException {
         this.currentFeature = null; // just mark it done which means it will not get written out.
     }
+
     // remove end
 
     // write start
@@ -155,6 +159,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
         nextRow++;
         this.currentFeature = null; // indicate that it has been written
     }
+
     // write end
 
     // close start

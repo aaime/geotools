@@ -392,8 +392,11 @@ public class HeterogenousCRSTest {
 
     private void runConcurrentHeteroUTMH2(
             Function<ImageMosaicReader, GeneralParameterValue[]> parameters)
-            throws URISyntaxException, IOException, InterruptedException,
-                    java.util.concurrent.ExecutionException, java.util.concurrent.TimeoutException {
+            throws URISyntaxException,
+                    IOException,
+                    InterruptedException,
+                    java.util.concurrent.ExecutionException,
+                    java.util.concurrent.TimeoutException {
         String testLocation = "hetero_utm";
         URL storeUrl = TestData.url(this, testLocation);
 

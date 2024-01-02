@@ -56,7 +56,9 @@ public class PolyStyleTypeBinding extends AbstractComplexBinding {
         this.sb = sb;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.PolyStyleType;

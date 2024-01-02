@@ -74,6 +74,7 @@ public class FilterSAXParser {
     public FilterSAXParser() {
         this(CommonFactoryFinder.getFilterFactory());
     }
+
     /** Constructor injdection */
     public FilterSAXParser(FilterFactory factory) {
         ff = factory;
@@ -83,6 +84,7 @@ public class FilterSAXParser {
     public void setFilterFactory(FilterFactory factory) {
         ff = factory;
     }
+
     /**
      * Handles all incoming generic string 'messages,' including a message to create the filter,
      * based on the XML tag that represents the start of the filter.

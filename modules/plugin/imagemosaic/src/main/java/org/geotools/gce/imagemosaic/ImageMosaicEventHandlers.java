@@ -54,7 +54,9 @@ public class ImageMosaicEventHandlers {
         public abstract void exceptionOccurred(final ExceptionEvent event);
     }
 
-    /** @author Simone Giannecchini, GeoSolutions. */
+    /**
+     * @author Simone Giannecchini, GeoSolutions.
+     */
     public static class ProcessingEvent extends EventObject {
 
         private static final long serialVersionUID = 6930580659705360225L;
@@ -63,7 +65,9 @@ public class ImageMosaicEventHandlers {
 
         private double percentage = 0;
 
-        /** @param source */
+        /**
+         * @param source
+         */
         public ProcessingEvent(final Object source, final String message, final double percentage) {
             super(source);
             this.message = message;
@@ -85,7 +89,9 @@ public class ImageMosaicEventHandlers {
 
         private boolean ingested;
 
-        /** @param source */
+        /**
+         * @param source
+         */
         public FileProcessingEvent(
                 final Object source,
                 final File file,

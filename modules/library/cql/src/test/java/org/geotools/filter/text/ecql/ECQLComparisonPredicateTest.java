@@ -86,6 +86,7 @@ public class ECQLComparisonPredicateTest extends CQLComparisonPredicateTest {
 
         assertTrue(ECQL.toFilter("A > 2 && B < 1") instanceof AndImpl);
     }
+
     /**
      * Test: Expression on the Left hand of comparison predicate
      *

@@ -289,13 +289,17 @@ public abstract class DirectEpsgFactory extends DirectAuthorityFactory
                         MessageFormat.format(ErrorKeys.UNEXPECTED_PARAMETER_$1, code));
         }
     }
+
     /// Datum shift operation methods
     /** First Bursa-Wolf method. */
     private static final int BURSA_WOLF_MIN_CODE = 9603;
+
     /** Last Bursa-Wolf method. */
     private static final int BURSA_WOLF_MAX_CODE = 9607;
+
     /** Rotation frame method. */
     private static final int ROTATION_FRAME_CODE = 9607;
+
     /** Dummy operation to ignore. */
     private static final int DUMMY_OPERATION = 1;
 
@@ -2634,6 +2638,7 @@ public abstract class DirectEpsgFactory extends DirectAuthorityFactory
     private static final class Dimensions {
         /** The dimensions as an encoded value. */
         int encoded;
+
         /** The occurences of this dimensions. */
         int occurences;
 

@@ -41,8 +41,12 @@ public class H2MigrateConfiguration {
      * well as ImageMosaic own one
      */
     public static DataStore getDataStore(Properties configuration)
-            throws IOException, ClassNotFoundException, IllegalAccessException,
-                    InstantiationException, NoSuchMethodException, InvocationTargetException {
+            throws IOException,
+                    ClassNotFoundException,
+                    IllegalAccessException,
+                    InstantiationException,
+                    NoSuchMethodException,
+                    InvocationTargetException {
         // first try out the default GeoTools approach
         final DataStore dataStore =
                 DataStoreFinder.getDataStore(DataUtilities.toConnectionParameters(configuration));

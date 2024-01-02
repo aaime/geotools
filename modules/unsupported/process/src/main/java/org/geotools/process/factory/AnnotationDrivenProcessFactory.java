@@ -603,6 +603,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
     class InvokeMethodProcess implements Process {
         /** Method to invoke. */
         Method method;
+
         /** Target object used to invoke method, may be null when using a static method. */
         Object targetObject;
 

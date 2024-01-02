@@ -24,7 +24,9 @@ import org.geotools.api.feature.type.AttributeDescriptor;
 import org.geotools.api.feature.type.Name;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoSchemaMapper extends AbstractCollectionMapper {
 
     MongoGeometryBuilder geomBuilder = new MongoGeometryBuilder();

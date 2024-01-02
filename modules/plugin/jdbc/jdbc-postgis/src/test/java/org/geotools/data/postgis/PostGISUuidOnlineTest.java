@@ -23,7 +23,9 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
-/** @author kbyte */
+/**
+ * @author kbyte
+ */
 public class PostGISUuidOnlineTest extends JDBCUuidOnlineTest {
 
     @Override

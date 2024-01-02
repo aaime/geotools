@@ -548,6 +548,7 @@ public class WKTReader2 extends WKTReader {
         }
         return lineStrings;
     }
+
     /**
      * This method will read a LineString, CircularString or CompoundCurve and return the result as
      * a LinearRing.

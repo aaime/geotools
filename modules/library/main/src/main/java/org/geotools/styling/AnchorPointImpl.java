@@ -82,6 +82,7 @@ public class AnchorPointImpl implements org.geotools.api.style.AnchorPoint, Clon
                     cannotModifyConstant();
                 }
             };
+
     /** The logger for the default core module. */
     private static final java.util.logging.Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(AnchorPointImpl.class);
@@ -183,6 +184,7 @@ public class AnchorPointImpl implements org.geotools.api.style.AnchorPoint, Clon
     public void accept(StyleVisitor visitor) {
         visitor.visit(this);
     }
+
     /* (non-Javadoc)
      * @see Cloneable#clone()
      */

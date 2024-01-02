@@ -27,7 +27,9 @@ import org.geotools.test.TestData;
 import org.geotools.wmts.WMTSConfiguration;
 import org.geotools.xsd.Parser;
 
-/** @author Emanuele Tajariol (etj AT geo-solutions DOT it) */
+/**
+ * @author Emanuele Tajariol (etj AT geo-solutions DOT it)
+ */
 public class WMTSTestUtils {
 
     public static WMTSCapabilities createCapabilities(String capFile) throws Exception {

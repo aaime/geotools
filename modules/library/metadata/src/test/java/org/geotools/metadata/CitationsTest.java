@@ -45,6 +45,7 @@ public final class CitationsTest {
         String message = ErrorKeys.BAD_ENTRY;
         assertNotNull(message);
     }
+
     /**
      * Tests the {@link AbstractMetadata#toString()} method first, since debugging will relying a
      * lot on this method for the remaining of the test suite.

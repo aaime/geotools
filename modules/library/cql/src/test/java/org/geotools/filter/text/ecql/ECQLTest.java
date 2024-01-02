@@ -398,6 +398,7 @@ public final class ECQLTest {
 
         Assert.assertEquals(expectedCQL, cqlResult);
     }
+
     /** Verify the parser uses the provided FilterFactory implementation */
     @Test
     public void toExpressionUsesProvidedFilterFactory() throws Exception {

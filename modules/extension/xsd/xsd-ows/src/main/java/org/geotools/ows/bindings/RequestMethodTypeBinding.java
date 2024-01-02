@@ -58,7 +58,9 @@ public class RequestMethodTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.RequestMethodType;

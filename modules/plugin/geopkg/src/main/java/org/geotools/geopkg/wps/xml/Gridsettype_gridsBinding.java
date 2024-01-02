@@ -44,7 +44,9 @@ import org.geotools.xsd.Node;
  */
 public class Gridsettype_gridsBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GPKG.gridsettype_grids;

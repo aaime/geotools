@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCLobOnlineTest;
 import org.geotools.jdbc.JDBCLobTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaLobOnlineTest extends JDBCLobOnlineTest {
 
     @Override

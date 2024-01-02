@@ -126,7 +126,9 @@ public class ImageUtilitiesTest {
 
     @Test
     public void testDisposeWritableRenderedImage()
-            throws NoSuchFieldException, SecurityException, IllegalArgumentException,
+            throws NoSuchFieldException,
+                    SecurityException,
+                    IllegalArgumentException,
                     IllegalAccessException {
         BufferedImage bi = new BufferedImage(256, 256, BufferedImage.TYPE_BYTE_GRAY);
         WritableRenderedImageAdapter wria = new WritableRenderedImageAdapter(bi);

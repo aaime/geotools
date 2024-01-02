@@ -43,7 +43,9 @@ public abstract class AbstractDescribeProcessRequest extends AbstractWPSRequest
         setProperty(REQUEST, "DescribeProcess");
     }
 
-    /** @see org.geotools.data.wps.request.DescribeProcessRequest#setIdentifier(java.lang.String) */
+    /**
+     * @see org.geotools.data.wps.request.DescribeProcessRequest#setIdentifier(java.lang.String)
+     */
     @Override
     public void setIdentifier(String processNames) {
         setProperty(IDENTIFIER, processNames);

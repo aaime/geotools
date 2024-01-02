@@ -176,6 +176,7 @@ class ColorMapUtilities {
                             Integer.valueOf(dim)));
         }
     }
+
     /**
      * Check that all the output values for the various {@link
      * DefaultConstantPiecewiseTransformElement} are equal.

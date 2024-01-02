@@ -61,8 +61,10 @@ public class RubberSheetBuilder extends MathTransformBuilder {
      * @param vertices A List with four points defining the quadrilateral in the region of interest.
      */
     public RubberSheetBuilder(List<MappedPosition> vectors, List<Position> vertices)
-            throws IllegalArgumentException, MismatchedDimensionException,
-                    MismatchedReferenceSystemException, TriangulationException {
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
+                    MismatchedReferenceSystemException,
+                    TriangulationException {
 
         // Validates the vectors parameter while setting it
         super.setMappedPositions(vectors);

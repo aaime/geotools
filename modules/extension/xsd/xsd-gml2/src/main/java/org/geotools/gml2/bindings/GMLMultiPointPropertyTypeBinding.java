@@ -56,7 +56,9 @@ import org.locationtech.jts.geom.MultiPoint;
  * @generated
  */
 public class GMLMultiPointPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiPointPropertyType;

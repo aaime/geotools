@@ -46,7 +46,9 @@ public interface Font {
      */
     Expression getStyle();
 
-    /** @param style The "font-style" SVG parameter (one of "normal", "italic", or "oblique" */
+    /**
+     * @param style The "font-style" SVG parameter (one of "normal", "italic", or "oblique"
+     */
     void setStyle(Expression style);
 
     /**
@@ -58,7 +60,9 @@ public interface Font {
      */
     Expression getWeight();
 
-    /** @param weight The "font-weight" SVG parameter (one of "normal", "bold") */
+    /**
+     * @param weight The "font-weight" SVG parameter (one of "normal", "bold")
+     */
     void setWeight(Expression weight);
 
     /**
@@ -78,7 +82,9 @@ public interface Font {
      */
     Object accept(TraversingStyleVisitor visitor, Object extraData);
 
-    /** @param size the font size in pixels */
+    /**
+     * @param size the font size in pixels
+     */
     void setSize(Expression size);
 
     /**

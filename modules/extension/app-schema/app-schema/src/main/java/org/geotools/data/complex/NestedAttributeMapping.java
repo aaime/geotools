@@ -82,6 +82,7 @@ public class NestedAttributeMapping extends AttributeMapping {
 
     /** Id expression for the nested type. */
     private Expression nestedIdExpression;
+
     /** true if the type is depending on a function value, i.e. could be a Function */
     private boolean isConditional;
 
@@ -445,7 +446,9 @@ public class NestedAttributeMapping extends AttributeMapping {
         return mappingSource;
     }
 
-    /** @return the nested feature type name */
+    /**
+     * @return the nested feature type name
+     */
     public Object getNestedFeatureType(Object feature) {
         Object fTypeValue;
         if (isConditional) {

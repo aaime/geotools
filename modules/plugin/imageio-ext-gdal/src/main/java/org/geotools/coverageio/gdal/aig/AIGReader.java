@@ -58,7 +58,9 @@ public final class AIGReader extends BaseGDALGridCoverage2DReader implements Gri
         super(input, hints, DEFAULT_WORLDFILE_EXT, new ArcBinaryGridImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new AIGFormat();

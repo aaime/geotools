@@ -610,6 +610,7 @@ public class SoftValueHashMap<K, V> extends AbstractMap<K, V> {
     private static Object replaceNull(Object o) {
         return o == null ? Null.PLACEHOLDER : o;
     }
+
     /** Resolves placeholder. */
     private static Object resolveNull(Object value) {
         return value == Null.PLACEHOLDER ? null : value;

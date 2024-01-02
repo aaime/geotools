@@ -83,7 +83,9 @@ public class SurfaceTypeBinding extends AbstractComplexBinding implements Compar
         this.gf = gf;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.SurfaceType;

@@ -20,7 +20,9 @@ import java.net.URI;
 import org.geotools.xml.schema.Attribute;
 import org.geotools.xml.schema.AttributeGroup;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class AttributeGroupGT implements AttributeGroup {
     private String anyAttributeNamespace;
     private Attribute[] attributes;
@@ -46,31 +48,41 @@ public class AttributeGroupGT implements AttributeGroup {
         this.anyAttributeNamespace = anyAttributeNamespace;
     }
 
-    /** @see org.geotools.xml.xsi.AttributeGroup#getAnyAttributeNameSpace() */
+    /**
+     * @see org.geotools.xml.xsi.AttributeGroup#getAnyAttributeNameSpace()
+     */
     @Override
     public String getAnyAttributeNameSpace() {
         return anyAttributeNamespace;
     }
 
-    /** @see org.geotools.xml.xsi.AttributeGroup#getAttributeDescriptors() */
+    /**
+     * @see org.geotools.xml.xsi.AttributeGroup#getAttributeDescriptors()
+     */
     @Override
     public Attribute[] getAttributes() {
         return attributes;
     }
 
-    /** @see org.geotools.xml.xsi.AttributeGroup#getId() */
+    /**
+     * @see org.geotools.xml.xsi.AttributeGroup#getId()
+     */
     @Override
     public String getId() {
         return id;
     }
 
-    /** @see org.geotools.xml.xsi.AttributeGroup#getLocalName() */
+    /**
+     * @see org.geotools.xml.xsi.AttributeGroup#getLocalName()
+     */
     @Override
     public String getName() {
         return name;
     }
 
-    /** @see org.geotools.xml.xsi.AttributeGroup#getNamespace() */
+    /**
+     * @see org.geotools.xml.xsi.AttributeGroup#getNamespace()
+     */
     @Override
     public URI getNamespace() {
         return namespace;

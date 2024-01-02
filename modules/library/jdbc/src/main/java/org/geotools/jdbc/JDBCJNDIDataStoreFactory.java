@@ -37,6 +37,7 @@ import org.geotools.util.factory.GeoTools;
 public abstract class JDBCJNDIDataStoreFactory extends JDBCDataStoreFactory {
 
     public static final String J2EERootContext = "java:comp/env/";
+
     /** JNDI data source name */
     public static final Param JNDI_REFNAME =
             new Param(

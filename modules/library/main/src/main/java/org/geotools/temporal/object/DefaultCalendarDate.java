@@ -33,6 +33,7 @@ public class DefaultCalendarDate extends DefaultTemporalPosition implements Cale
 
     /** This is the name of the calendar era to which the date is referenced. */
     private InternationalString calendarEraName;
+
     /**
      * This is a sequence of positive integers in which the first integeridentifies a specific
      * instance of the unit used at the highest level of the calendar hierarchy, the second integer

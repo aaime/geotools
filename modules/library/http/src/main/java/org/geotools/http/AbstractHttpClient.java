@@ -78,13 +78,17 @@ public abstract class AbstractHttpClient implements HTTPClient {
         this.readTimeout = readTimeout;
     }
 
-    /** @see HTTPClient#setTryGzip(boolean) */
+    /**
+     * @see HTTPClient#setTryGzip(boolean)
+     */
     @Override
     public void setTryGzip(boolean tryGZIP) {
         this.tryGzip = tryGZIP;
     }
 
-    /** @see HTTPClient#isTryGzip() */
+    /**
+     * @see HTTPClient#isTryGzip()
+     */
     @Override
     public boolean isTryGzip() {
         return tryGzip;

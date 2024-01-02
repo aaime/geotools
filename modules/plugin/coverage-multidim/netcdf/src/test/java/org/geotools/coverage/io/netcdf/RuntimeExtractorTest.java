@@ -29,7 +29,9 @@ import org.geotools.test.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Daniele Romagnoli, GeoSolutions SAS */
+/**
+ * @author Daniele Romagnoli, GeoSolutions SAS
+ */
 public class RuntimeExtractorTest extends Assert {
 
     @Test

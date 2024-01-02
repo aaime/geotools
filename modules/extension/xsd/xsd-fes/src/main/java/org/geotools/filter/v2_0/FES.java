@@ -59,361 +59,745 @@ public final class FES extends XSD {
         return getClass().getResource("filterAll.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/fes/2.0";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractAdhocQueryExpressionType =
             new QName("http://www.opengis.net/fes/2.0", "AbstractAdhocQueryExpressionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractIdType =
             new QName("http://www.opengis.net/fes/2.0", "AbstractIdType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractProjectionClauseType =
             new QName("http://www.opengis.net/fes/2.0", "AbstractProjectionClauseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractQueryExpressionType =
             new QName("http://www.opengis.net/fes/2.0", "AbstractQueryExpressionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSelectionClauseType =
             new QName("http://www.opengis.net/fes/2.0", "AbstractSelectionClauseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSortingClauseType =
             new QName("http://www.opengis.net/fes/2.0", "AbstractSortingClauseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AdditionalOperatorsType =
             new QName("http://www.opengis.net/fes/2.0", "AdditionalOperatorsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AliasesType =
             new QName("http://www.opengis.net/fes/2.0", "AliasesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ArgumentsType =
             new QName("http://www.opengis.net/fes/2.0", "ArgumentsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ArgumentType =
             new QName("http://www.opengis.net/fes/2.0", "ArgumentType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AvailableFunctionsType =
             new QName("http://www.opengis.net/fes/2.0", "AvailableFunctionsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AvailableFunctionType =
             new QName("http://www.opengis.net/fes/2.0", "AvailableFunctionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BBOXType = new QName("http://www.opengis.net/fes/2.0", "BBOXType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BinaryComparisonOpType =
             new QName("http://www.opengis.net/fes/2.0", "BinaryComparisonOpType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BinaryLogicOpType =
             new QName("http://www.opengis.net/fes/2.0", "BinaryLogicOpType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BinarySpatialOpType =
             new QName("http://www.opengis.net/fes/2.0", "BinarySpatialOpType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BinaryTemporalOpType =
             new QName("http://www.opengis.net/fes/2.0", "BinaryTemporalOpType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComparisonOperatorNameType =
             new QName("http://www.opengis.net/fes/2.0", "ComparisonOperatorNameType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComparisonOperatorsType =
             new QName("http://www.opengis.net/fes/2.0", "ComparisonOperatorsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComparisonOperatorType =
             new QName("http://www.opengis.net/fes/2.0", "ComparisonOperatorType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComparisonOpsType =
             new QName("http://www.opengis.net/fes/2.0", "ComparisonOpsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ConformanceType =
             new QName("http://www.opengis.net/fes/2.0", "ConformanceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DistanceBufferType =
             new QName("http://www.opengis.net/fes/2.0", "DistanceBufferType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Extended_CapabilitiesType =
             new QName("http://www.opengis.net/fes/2.0", "Extended_CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExtensionOperatorType =
             new QName("http://www.opengis.net/fes/2.0", "ExtensionOperatorType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExtensionOpsType =
             new QName("http://www.opengis.net/fes/2.0", "ExtensionOpsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FilterType =
             new QName("http://www.opengis.net/fes/2.0", "FilterType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FunctionType =
             new QName("http://www.opengis.net/fes/2.0", "FunctionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GeometryOperandsType =
             new QName("http://www.opengis.net/fes/2.0", "GeometryOperandsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Id_CapabilitiesType =
             new QName("http://www.opengis.net/fes/2.0", "Id_CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LiteralType =
             new QName("http://www.opengis.net/fes/2.0", "LiteralType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LogicOpsType =
             new QName("http://www.opengis.net/fes/2.0", "LogicOpsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LowerBoundaryType =
             new QName("http://www.opengis.net/fes/2.0", "LowerBoundaryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MatchActionType =
             new QName("http://www.opengis.net/fes/2.0", "MatchActionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MeasureType =
             new QName("http://www.opengis.net/fes/2.0", "MeasureType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsBetweenType =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsBetweenType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsLikeType =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsLikeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsNilType =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsNilType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsNullType =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsNullType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceIdentifierType =
             new QName("http://www.opengis.net/fes/2.0", "ResourceIdentifierType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceIdType =
             new QName("http://www.opengis.net/fes/2.0", "ResourceIdType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Scalar_CapabilitiesType =
             new QName("http://www.opengis.net/fes/2.0", "Scalar_CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaElement =
             new QName("http://www.opengis.net/fes/2.0", "SchemaElement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SortByType =
             new QName("http://www.opengis.net/fes/2.0", "SortByType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SortOrderType =
             new QName("http://www.opengis.net/fes/2.0", "SortOrderType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SortPropertyType =
             new QName("http://www.opengis.net/fes/2.0", "SortPropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Spatial_CapabilitiesType =
             new QName("http://www.opengis.net/fes/2.0", "Spatial_CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SpatialOperatorNameType =
             new QName("http://www.opengis.net/fes/2.0", "SpatialOperatorNameType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SpatialOperatorsType =
             new QName("http://www.opengis.net/fes/2.0", "SpatialOperatorsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SpatialOperatorType =
             new QName("http://www.opengis.net/fes/2.0", "SpatialOperatorType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SpatialOpsType =
             new QName("http://www.opengis.net/fes/2.0", "SpatialOpsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Temporal_CapabilitiesType =
             new QName("http://www.opengis.net/fes/2.0", "Temporal_CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TemporalOperandsType =
             new QName("http://www.opengis.net/fes/2.0", "TemporalOperandsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TemporalOperatorNameType =
             new QName("http://www.opengis.net/fes/2.0", "TemporalOperatorNameType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TemporalOperatorsType =
             new QName("http://www.opengis.net/fes/2.0", "TemporalOperatorsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TemporalOperatorType =
             new QName("http://www.opengis.net/fes/2.0", "TemporalOperatorType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TemporalOpsType =
             new QName("http://www.opengis.net/fes/2.0", "TemporalOpsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TypeNamesListType =
             new QName("http://www.opengis.net/fes/2.0", "TypeNamesListType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TypeNamesType =
             new QName("http://www.opengis.net/fes/2.0", "TypeNamesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UnaryLogicOpType =
             new QName("http://www.opengis.net/fes/2.0", "UnaryLogicOpType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomIdentifier =
             new QName("http://www.opengis.net/fes/2.0", "UomIdentifier");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomSymbol = new QName("http://www.opengis.net/fes/2.0", "UomSymbol");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomURI = new QName("http://www.opengis.net/fes/2.0", "UomURI");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpperBoundaryType =
             new QName("http://www.opengis.net/fes/2.0", "UpperBoundaryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName VersionActionTokens =
             new QName("http://www.opengis.net/fes/2.0", "VersionActionTokens");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName VersionType =
             new QName("http://www.opengis.net/fes/2.0", "VersionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _Filter_Capabilities =
             new QName("http://www.opengis.net/fes/2.0", "_Filter_Capabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _LogicalOperators =
             new QName("http://www.opengis.net/fes/2.0", "_LogicalOperators");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GeometryOperandsType_GeometryOperand =
             new QName("http://www.opengis.net/fes/2.0", "GeometryOperandsType_GeometryOperand");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TemporalOperandsType_TemporalOperand =
             new QName("http://www.opengis.net/fes/2.0", "TemporalOperandsType_TemporalOperand");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Id = new QName("http://www.opengis.net/fes/2.0", "_Id");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractAdhocQueryExpression =
             new QName("http://www.opengis.net/fes/2.0", "AbstractAdhocQueryExpression");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractProjectionClause =
             new QName("http://www.opengis.net/fes/2.0", "AbstractProjectionClause");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractQueryExpression =
             new QName("http://www.opengis.net/fes/2.0", "AbstractQueryExpression");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSelectionClause =
             new QName("http://www.opengis.net/fes/2.0", "AbstractSelectionClause");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSortingClause =
             new QName("http://www.opengis.net/fes/2.0", "AbstractSortingClause");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName After = new QName("http://www.opengis.net/fes/2.0", "After");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName And = new QName("http://www.opengis.net/fes/2.0", "And");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AnyInteracts =
             new QName("http://www.opengis.net/fes/2.0", "AnyInteracts");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BBOX = new QName("http://www.opengis.net/fes/2.0", "BBOX");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Before = new QName("http://www.opengis.net/fes/2.0", "Before");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Begins = new QName("http://www.opengis.net/fes/2.0", "Begins");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BegunBy = new QName("http://www.opengis.net/fes/2.0", "BegunBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Beyond = new QName("http://www.opengis.net/fes/2.0", "Beyond");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName comparisonOps =
             new QName("http://www.opengis.net/fes/2.0", "comparisonOps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Contains = new QName("http://www.opengis.net/fes/2.0", "Contains");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Crosses = new QName("http://www.opengis.net/fes/2.0", "Crosses");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Disjoint = new QName("http://www.opengis.net/fes/2.0", "Disjoint");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName During = new QName("http://www.opengis.net/fes/2.0", "During");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DWithin = new QName("http://www.opengis.net/fes/2.0", "DWithin");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName EndedBy = new QName("http://www.opengis.net/fes/2.0", "EndedBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Ends = new QName("http://www.opengis.net/fes/2.0", "Ends");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Equals = new QName("http://www.opengis.net/fes/2.0", "Equals");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName expression =
             new QName("http://www.opengis.net/fes/2.0", "expression");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName extensionOps =
             new QName("http://www.opengis.net/fes/2.0", "extensionOps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Filter = new QName("http://www.opengis.net/fes/2.0", "Filter");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Filter_Capabilities =
             new QName("http://www.opengis.net/fes/2.0", "Filter_Capabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Function = new QName("http://www.opengis.net/fes/2.0", "Function");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Intersects =
             new QName("http://www.opengis.net/fes/2.0", "Intersects");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Literal = new QName("http://www.opengis.net/fes/2.0", "Literal");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LogicalOperators =
             new QName("http://www.opengis.net/fes/2.0", "LogicalOperators");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName logicOps = new QName("http://www.opengis.net/fes/2.0", "logicOps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Meets = new QName("http://www.opengis.net/fes/2.0", "Meets");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MetBy = new QName("http://www.opengis.net/fes/2.0", "MetBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Not = new QName("http://www.opengis.net/fes/2.0", "Not");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Or = new QName("http://www.opengis.net/fes/2.0", "Or");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OverlappedBy =
             new QName("http://www.opengis.net/fes/2.0", "OverlappedBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Overlaps = new QName("http://www.opengis.net/fes/2.0", "Overlaps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsBetween =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsBetween");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsEqualTo =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsEqualTo");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsGreaterThan =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsGreaterThan");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsGreaterThanOrEqualTo =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsGreaterThanOrEqualTo");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsLessThan =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsLessThan");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsLessThanOrEqualTo =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsLessThanOrEqualTo");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsLike =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsLike");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsNil =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsNil");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsNotEqualTo =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsNotEqualTo");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyIsNull =
             new QName("http://www.opengis.net/fes/2.0", "PropertyIsNull");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceId =
             new QName("http://www.opengis.net/fes/2.0", "ResourceId");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SortBy = new QName("http://www.opengis.net/fes/2.0", "SortBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName spatialOps =
             new QName("http://www.opengis.net/fes/2.0", "spatialOps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TContains = new QName("http://www.opengis.net/fes/2.0", "TContains");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName temporalOps =
             new QName("http://www.opengis.net/fes/2.0", "temporalOps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TEquals = new QName("http://www.opengis.net/fes/2.0", "TEquals");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Touches = new QName("http://www.opengis.net/fes/2.0", "Touches");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TOverlaps = new QName("http://www.opengis.net/fes/2.0", "TOverlaps");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ValueReference =
             new QName("http://www.opengis.net/fes/2.0", "ValueReference");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Within = new QName("http://www.opengis.net/fes/2.0", "Within");
 
     /* Attributes */

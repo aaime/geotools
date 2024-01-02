@@ -47,6 +47,7 @@ import org.geotools.geometry.jts.ReferencedEnvelope;
 public class FeatureListenerManager {
     private static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(FeatureListenerManager.class);
+
     /**
      * Hold on to provided FeatureListener using a weak reference.
      *
@@ -287,6 +288,7 @@ public class FeatureListenerManager {
             }
         }
     }
+
     /**
      * Notify all listeners that have registered interest for notification on this event type.
      *
@@ -374,6 +376,7 @@ public class FeatureListenerManager {
             }
         }
     }
+
     /** Fire notifications out to those listing on this transaction. */
     private void fireEvent(
             String typeName,
@@ -396,6 +399,7 @@ public class FeatureListenerManager {
             }
         }
     }
+
     /**
      * Notify all listeners that have registered interest for notification on this event type.
      *

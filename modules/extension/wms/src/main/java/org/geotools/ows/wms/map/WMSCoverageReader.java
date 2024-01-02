@@ -525,12 +525,16 @@ public class WMSCoverageReader extends AbstractGridCoverage2DReader {
             this.style = style;
         }
 
-        /** @return the layer */
+        /**
+         * @return the layer
+         */
         public Layer getLayer() {
             return layer;
         }
 
-        /** @return the style */
+        /**
+         * @return the style
+         */
         public String getStyle() {
             return style;
         }

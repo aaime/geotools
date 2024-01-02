@@ -47,12 +47,16 @@ public class WMTSRequest {
         this.getTile = getTile;
     }
 
-    /** @return Returns the getFeatureInfo. */
+    /**
+     * @return Returns the getFeatureInfo.
+     */
     public OperationType getGetFeatureInfo() {
         return getFeatureInfo;
     }
 
-    /** @param getFeatureInfo The getFeatureInfo to set. */
+    /**
+     * @param getFeatureInfo The getFeatureInfo to set.
+     */
     public void setGetFeatureInfo(OperationType getFeatureInfo) {
         this.getFeatureInfo = getFeatureInfo;
     }

@@ -90,6 +90,7 @@ final class FeatureWriterIterator implements Iterator<SimpleFeature> {
                     new IllegalStateException("Could not remove feature").initCause(problem);
         }
     }
+
     /**
      * This method only needs package visability as only AbstractFeatureCollection is trusted enough
      * to call it.

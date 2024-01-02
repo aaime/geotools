@@ -24,10 +24,14 @@ import org.geotools.data.sqlserver.SQLServerDialect;
 import org.geotools.jdbc.JDBCDataStore;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author ian.turton */
+/**
+ * @author ian.turton
+ */
 public class JTDSSQLServerDialect extends SQLServerDialect {
 
-    /** @param dataStore */
+    /**
+     * @param dataStore
+     */
     public JTDSSQLServerDialect(JDBCDataStore dataStore) {
         super(dataStore);
     }

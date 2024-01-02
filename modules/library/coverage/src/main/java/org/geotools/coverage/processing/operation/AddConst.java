@@ -80,6 +80,7 @@ import org.geotools.util.NumberRange;
 public class AddConst extends OperationJAI {
     private static final String OPERATION_CONST = "operationConst";
     private static final String ADD_CONST = "AddConst";
+
     /** Serial number for interoperability with different versions. */
     private static final long serialVersionUID = 5443686039059774671L;
 

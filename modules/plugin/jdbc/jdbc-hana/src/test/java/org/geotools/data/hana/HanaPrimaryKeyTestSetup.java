@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCPrimaryKeyTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaPrimaryKeyTestSetup extends JDBCPrimaryKeyTestSetup {
 
     private static final String AUTO_TABLE = "auto";

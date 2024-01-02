@@ -85,6 +85,7 @@ public class PolygonSymbolizerImpl extends AbstractSymbolizer
     public void setDisplacement(org.geotools.api.style.Displacement displacement) {
         this.disp = DisplacementImpl.cast(displacement);
     }
+
     /**
      * Provides the graphical-symbolization parameter to use to fill the area of the geometry.
      *

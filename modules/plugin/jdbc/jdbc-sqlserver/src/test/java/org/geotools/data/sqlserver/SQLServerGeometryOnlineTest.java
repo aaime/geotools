@@ -32,7 +32,9 @@ import org.locationtech.jts.geom.MultiPolygon;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 
-/** @author DamianoG */
+/**
+ * @author DamianoG
+ */
 public class SQLServerGeometryOnlineTest extends JDBCGeometryOnlineTest {
 
     private SQLServerGeometryTestSetup testSetup;

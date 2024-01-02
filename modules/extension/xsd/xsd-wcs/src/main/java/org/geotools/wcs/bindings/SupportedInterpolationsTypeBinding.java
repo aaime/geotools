@@ -49,7 +49,9 @@ import org.geotools.xsd.Node;
  */
 public class SupportedInterpolationsTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.SupportedInterpolationsType;

@@ -535,7 +535,9 @@ public final class ArcGridWriter extends AbstractGridCoverageWriter implements G
             throw new DataSourceException("The provided coverage is not a GridCoverage2D");
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageWriter#dispose() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageWriter#dispose()
+     */
     @Override
     public void dispose() {
 

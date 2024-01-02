@@ -53,7 +53,9 @@ public class PolygonSymbolizerBinding extends SLDPolygonSymbolizerBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.PolygonSymbolizer;

@@ -107,14 +107,19 @@ public class MonolineFormatter extends Formatter {
 
     /** Do not format source class name. */
     private static final int NO_SOURCE = 0;
+
     /** Explicit value for 'none'. */
     private static final int NO_SOURCE_EX = 1;
+
     /** Format the source logger without base. */
     private static final int LOGGER_SHORT = 2;
+
     /** Format the source logger only. */
     private static final int LOGGER_LONG = 3;
+
     /** Format the class name without package. */
     private static final int CLASS_SHORT = 4;
+
     /** Format the fully qualified class name. */
     private static final int CLASS_LONG = 5;
 

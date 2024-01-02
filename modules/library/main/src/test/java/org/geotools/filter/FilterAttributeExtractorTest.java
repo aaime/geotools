@@ -94,6 +94,7 @@ public class FilterAttributeExtractorTest {
         Assert.assertEquals(3, attributes.size());
         Assert.assertEquals(3, properties.size());
     }
+
     /**
      * Sets up a schema and a test feature.
      *

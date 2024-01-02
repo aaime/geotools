@@ -76,6 +76,7 @@ public class TextStyle2D extends Style2D {
 
     Font[] fonts;
     double rotation;
+
     /** yes = <PointPlacement> no = <LinePlacement> default = yes* */
     boolean pointPlacement = true;
 
@@ -192,17 +193,23 @@ public class TextStyle2D extends Style2D {
         return haloShape;
     }
 
-    /** @param f */
+    /**
+     * @param f
+     */
     public void setAnchorX(double f) {
         anchorX = f;
     }
 
-    /** @param f */
+    /**
+     * @param f
+     */
     public void setAnchorY(double f) {
         anchorY = f;
     }
 
-    /** @param font */
+    /**
+     * @param font
+     */
     public void setFont(Font font) {
         if (font == null) {
             this.fonts = null;
@@ -211,62 +218,86 @@ public class TextStyle2D extends Style2D {
         }
     }
 
-    /** @param composite */
+    /**
+     * @param composite
+     */
     public void setHaloComposite(Composite composite) {
         haloComposite = composite;
     }
 
-    /** @param paint */
+    /**
+     * @param paint
+     */
     public void setHaloFill(Paint paint) {
         haloFill = paint;
     }
 
-    /** @param f */
+    /**
+     * @param f
+     */
     public void setHaloRadius(float f) {
         haloRadius = f;
     }
 
-    /** @param f */
+    /**
+     * @param f
+     */
     public void setRotation(double f) {
         rotation = f;
     }
 
-    /** @return Returns the label. */
+    /**
+     * @return Returns the label.
+     */
     public String getLabel() {
         return label;
     }
 
-    /** @param label The label to set. */
+    /**
+     * @param label The label to set.
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
-    /** @return Returns the pointPlacement (true => point placement, false => line placement) */
+    /**
+     * @return Returns the pointPlacement (true => point placement, false => line placement)
+     */
     public boolean isPointPlacement() {
         return pointPlacement;
     }
 
-    /** @param pointPlacement (true => point placement, false => line placement.) */
+    /**
+     * @param pointPlacement (true => point placement, false => line placement.)
+     */
     public void setPointPlacement(boolean pointPlacement) {
         this.pointPlacement = pointPlacement;
     }
 
-    /** @return Returns the displacementX. */
+    /**
+     * @return Returns the displacementX.
+     */
     public double getDisplacementX() {
         return displacementX;
     }
 
-    /** @param displacementX The displacementX to set. */
+    /**
+     * @param displacementX The displacementX to set.
+     */
     public void setDisplacementX(double displacementX) {
         this.displacementX = displacementX;
     }
 
-    /** @return Returns the displacementY. */
+    /**
+     * @return Returns the displacementY.
+     */
     public double getDisplacementY() {
         return displacementY;
     }
 
-    /** @param displacementY The displacementY to set. */
+    /**
+     * @param displacementY The displacementY to set.
+     */
     public void setDisplacementY(double displacementY) {
         this.displacementY = displacementY;
     }
@@ -356,12 +387,16 @@ public class TextStyle2D extends Style2D {
         }
     }
 
-    /** @return the fonts */
+    /**
+     * @return the fonts
+     */
     public Font[] getFonts() {
         return fonts;
     }
 
-    /** @param fonts the fonts to set */
+    /**
+     * @param fonts the fonts to set
+     */
     public void setFonts(Font[] fonts) {
         this.fonts = fonts;
     }

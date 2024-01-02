@@ -52,7 +52,9 @@ public class LinePlacementBinding extends SLDLinePlacementBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.LinePlacement;

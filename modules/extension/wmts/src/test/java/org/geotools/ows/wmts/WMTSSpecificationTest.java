@@ -24,7 +24,9 @@ import java.net.URL;
 import org.geotools.ows.wmts.WMTSSpecification.GetCapsRequest;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class WMTSSpecificationTest {
 
     /**

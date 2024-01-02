@@ -72,7 +72,9 @@ public class _DataBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WPS.Data;

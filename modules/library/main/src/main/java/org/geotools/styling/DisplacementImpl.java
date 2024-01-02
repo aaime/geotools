@@ -57,6 +57,7 @@ public class DisplacementImpl implements Cloneable, org.geotools.api.style.Displ
                     return null;
                 }
             };
+
     /** Null Displacement instance. */
     public static final Displacement NULL =
             new ConstantDisplacement() {
@@ -80,6 +81,7 @@ public class DisplacementImpl implements Cloneable, org.geotools.api.style.Displ
                     return null;
                 }
             };
+
     /** The logger for the default core module. */
     private static final java.util.logging.Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(DisplacementImpl.class);
@@ -129,6 +131,7 @@ public class DisplacementImpl implements Cloneable, org.geotools.api.style.Displ
     public void setDisplacementX(Expression displacementX) {
         this.displacementX = displacementX;
     }
+
     /**
      * Set displacement x to the provided literal.
      *
@@ -137,6 +140,7 @@ public class DisplacementImpl implements Cloneable, org.geotools.api.style.Displ
     public void setDisplacementX(double displacementX) {
         this.displacementX = filterFactory.literal(displacementX);
     }
+
     /**
      * Setter for property displacementY.
      *
@@ -146,6 +150,7 @@ public class DisplacementImpl implements Cloneable, org.geotools.api.style.Displ
     public void setDisplacementY(Expression displacementY) {
         this.displacementY = displacementY;
     }
+
     /**
      * Set displacement y to the provided literal.
      *

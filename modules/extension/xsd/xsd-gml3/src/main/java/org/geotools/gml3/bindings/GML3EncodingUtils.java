@@ -107,7 +107,9 @@ public class GML3EncodingUtils {
         }
     }
 
-    /** @deprecated please use {@link org.geotools.geometry.jts.JTS#getCRS(Geometry)} */
+    /**
+     * @deprecated please use {@link org.geotools.geometry.jts.JTS#getCRS(Geometry)}
+     */
     @Deprecated
     static CoordinateReferenceSystem getCRS(Geometry g) {
         return JTS.getCRS(g);

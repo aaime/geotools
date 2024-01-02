@@ -62,7 +62,9 @@ import org.w3c.dom.Element;
  */
 public class TimeSequenceTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.TimeSequenceType;

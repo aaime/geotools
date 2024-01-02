@@ -61,204 +61,316 @@ public final class GML extends XSD {
         return getClass().getResource("gml4wcs.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/gml";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometricPrimitiveType =
             new QName("http://www.opengis.net/gml", "AbstractGeometricPrimitiveType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometryBaseType =
             new QName("http://www.opengis.net/gml", "AbstractGeometryBaseType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometryType =
             new QName("http://www.opengis.net/gml", "AbstractGeometryType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractGMLType =
             new QName("http://www.opengis.net/gml", "AbstractGMLType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractMetaDataType =
             new QName("http://www.opengis.net/gml", "AbstractMetaDataType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractRingPropertyType =
             new QName("http://www.opengis.net/gml", "AbstractRingPropertyType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractRingType =
             new QName("http://www.opengis.net/gml", "AbstractRingType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractSurfaceType =
             new QName("http://www.opengis.net/gml", "AbstractSurfaceType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName BoundingShapeType =
             new QName("http://www.opengis.net/gml", "BoundingShapeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CodeListType =
             new QName("http://www.opengis.net/gml", "CodeListType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CodeType = new QName("http://www.opengis.net/gml", "CodeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DirectPositionType =
             new QName("http://www.opengis.net/gml", "DirectPositionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName doubleList = new QName("http://www.opengis.net/gml", "doubleList");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName EnvelopeType =
             new QName("http://www.opengis.net/gml", "EnvelopeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName EnvelopeWithTimePeriodType =
             new QName("http://www.opengis.net/gml", "EnvelopeWithTimePeriodType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GridEnvelopeType =
             new QName("http://www.opengis.net/gml", "GridEnvelopeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GridLimitsType =
             new QName("http://www.opengis.net/gml", "GridLimitsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GridType = new QName("http://www.opengis.net/gml", "GridType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName integerList = new QName("http://www.opengis.net/gml", "integerList");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LinearRingType =
             new QName("http://www.opengis.net/gml", "LinearRingType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName MetaDataPropertyType =
             new QName("http://www.opengis.net/gml", "MetaDataPropertyType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName NameList = new QName("http://www.opengis.net/gml", "NameList");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PointType = new QName("http://www.opengis.net/gml", "PointType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PolygonType = new QName("http://www.opengis.net/gml", "PolygonType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RectifiedGridType =
             new QName("http://www.opengis.net/gml", "RectifiedGridType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ReferenceType =
             new QName("http://www.opengis.net/gml", "ReferenceType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StringOrRefType =
             new QName("http://www.opengis.net/gml", "StringOrRefType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TemporalPositionType =
             new QName("http://www.opengis.net/gml", "TemporalPositionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeDurationType =
             new QName("http://www.opengis.net/gml", "TimeDurationType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeIndeterminateValueType =
             new QName("http://www.opengis.net/gml", "TimeIndeterminateValueType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimePositionType =
             new QName("http://www.opengis.net/gml", "TimePositionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName VectorType = new QName("http://www.opengis.net/gml", "VectorType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _GeometricPrimitive =
             new QName("http://www.opengis.net/gml", "_GeometricPrimitive");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Geometry = new QName("http://www.opengis.net/gml", "_Geometry");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _GML = new QName("http://www.opengis.net/gml", "_GML");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _MetaData = new QName("http://www.opengis.net/gml", "_MetaData");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Object = new QName("http://www.opengis.net/gml", "_Object");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Ring = new QName("http://www.opengis.net/gml", "_Ring");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Surface = new QName("http://www.opengis.net/gml", "_Surface");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName boundedBy = new QName("http://www.opengis.net/gml", "boundedBy");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName description = new QName("http://www.opengis.net/gml", "description");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Envelope = new QName("http://www.opengis.net/gml", "Envelope");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName EnvelopeWithTimePeriod =
             new QName("http://www.opengis.net/gml", "EnvelopeWithTimePeriod");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName exterior = new QName("http://www.opengis.net/gml", "exterior");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Grid = new QName("http://www.opengis.net/gml", "Grid");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName interior = new QName("http://www.opengis.net/gml", "interior");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LinearRing = new QName("http://www.opengis.net/gml", "LinearRing");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName metaDataProperty =
             new QName("http://www.opengis.net/gml", "metaDataProperty");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName name = new QName("http://www.opengis.net/gml", "name");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Polygon = new QName("http://www.opengis.net/gml", "Polygon");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName pos = new QName("http://www.opengis.net/gml", "pos");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RectifiedGrid =
             new QName("http://www.opengis.net/gml", "RectifiedGrid");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName timePosition =
             new QName("http://www.opengis.net/gml", "timePosition");
 
     /* Attributes */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName id = new QName("http://www.opengis.net/gml", "id");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName remoteSchema =
             new QName("http://www.opengis.net/gml", "remoteSchema");
 }

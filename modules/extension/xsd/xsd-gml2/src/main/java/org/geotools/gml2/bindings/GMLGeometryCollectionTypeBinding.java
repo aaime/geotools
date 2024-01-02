@@ -60,7 +60,9 @@ public class GMLGeometryCollectionTypeBinding extends AbstractComplexBinding {
         this.gFactory = gFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.GeometryCollectionType;

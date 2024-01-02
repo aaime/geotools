@@ -64,10 +64,12 @@ public class FilterAttributeExtractor extends DefaultFilterVisitor {
     public FilterAttributeExtractor() {
         this(null);
     }
+
     /** Use the provided feature type as a sanity check when extracting property names. */
     public FilterAttributeExtractor(SimpleFeatureType featureType) {
         this.featureType = featureType;
     }
+
     /**
      * Attributes names found (so far).
      *
@@ -155,7 +157,8 @@ public class FilterAttributeExtractor extends DefaultFilterVisitor {
             }
         }
         return super.visit(expression, data);
-    };
+    }
+    ;
 
     /**
      * Returns true if the last visited expression is a constant, that is, does not depend on any

@@ -37,7 +37,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class SLDBlueChannelBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.BLUECHANNEL;

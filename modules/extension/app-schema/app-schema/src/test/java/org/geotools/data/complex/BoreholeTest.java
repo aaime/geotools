@@ -113,7 +113,9 @@ public class BoreholeTest extends AppSchemaTestSupport {
         reader = EmfComplexFeatureReader.newInstance();
     }
 
-    /** @param location schema location path discoverable through getClass().getResource() */
+    /**
+     * @param location schema location path discoverable through getClass().getResource()
+     */
     private SchemaIndex loadSchema(String location) throws IOException {
         // load needed GML types directly from the gml schemas
         URL schemaLocation = getClass().getResource(location);

@@ -53,7 +53,9 @@ public final class SRPReader extends BaseGDALGridCoverage2DReader implements Gri
         super(input, hints, worldFileExt, new SRPImageReaderSpi());
     }
 
-    /** @see GridCoverageReader#getFormat() */
+    /**
+     * @see GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new SRPFormat();

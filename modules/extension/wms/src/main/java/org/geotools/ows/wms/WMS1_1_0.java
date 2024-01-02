@@ -30,7 +30,9 @@ import org.geotools.ows.wms.request.GetLegendGraphicRequest;
 import org.geotools.ows.wms.response.DescribeLayerResponse;
 import org.geotools.ows.wms.response.GetLegendGraphicResponse;
 
-/** @author Richard Gould */
+/**
+ * @author Richard Gould
+ */
 public class WMS1_1_0 extends WMS1_0_0 {
 
     public WMS1_1_0() {}
@@ -48,7 +50,9 @@ public class WMS1_1_0 extends WMS1_0_0 {
         return "1.1.0";
     }
 
-    /** @see org.geotools.data.wms.Specification#createGetCapabilitiesRequest(java.net.URL) */
+    /**
+     * @see org.geotools.data.wms.Specification#createGetCapabilitiesRequest(java.net.URL)
+     */
     @Override
     public GetCapabilitiesRequest createGetCapabilitiesRequest(URL server) {
         return new GetCapsRequest(server);
@@ -64,7 +68,9 @@ public class WMS1_1_0 extends WMS1_0_0 {
         return new GetFeatureInfoRequest(onlineResource, getMapRequest);
     }
 
-    /** @see WMS1_0_0#createDescribeLayerRequest(java.net.URL) */
+    /**
+     * @see WMS1_0_0#createDescribeLayerRequest(java.net.URL)
+     */
     @Override
     public DescribeLayerRequest createDescribeLayerRequest(URL onlineResource)
             throws UnsupportedOperationException {
@@ -90,6 +96,7 @@ public class WMS1_1_0 extends WMS1_0_0 {
         protected void initRequest() {
             setProperty(processKey("REQUEST"), "GetCapabilities");
         }
+
         /* (non-Javadoc)
          * @see org.geotools.data.wms.request.AbstractGetCapabilitiesRequest#initService()
          */
@@ -97,6 +104,7 @@ public class WMS1_1_0 extends WMS1_0_0 {
         protected void initService() {
             setProperty(processKey("SERVICE"), "WMS");
         }
+
         /* (non-Javadoc)
          * @see org.geotools.data.wms.request.AbstractGetCapabilitiesRequest#initVersion()
          */

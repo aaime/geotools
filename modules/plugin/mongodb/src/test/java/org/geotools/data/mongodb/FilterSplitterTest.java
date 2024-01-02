@@ -15,7 +15,9 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-/** @author hans.yperman@vliz.be */
+/**
+ * @author hans.yperman@vliz.be
+ */
 package org.geotools.data.mongodb;
 
 import org.geotools.api.filter.Filter;

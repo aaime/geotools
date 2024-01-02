@@ -69,7 +69,9 @@ public class MultiplyProcessTest {
         }
     }
 
-    /** @throws Exception */
+    /**
+     * @throws Exception
+     */
     @Test
     public void testMultiplyJAIExt() throws Exception {
         doTestMultiply();

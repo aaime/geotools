@@ -132,6 +132,7 @@ public class ReferencingExamples {
         }
         // referencingFactoryContainer2 end
     }
+
     /** A method with some examples of premade static objects. */
     @SuppressWarnings("unused")
     void premadeObjects() {

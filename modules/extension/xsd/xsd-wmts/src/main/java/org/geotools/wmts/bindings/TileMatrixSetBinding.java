@@ -103,7 +103,9 @@ public class TileMatrixSetBinding extends DescriptionTypeBinding {
         this.wmtsv_1Factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WMTS.TileMatrixSet;

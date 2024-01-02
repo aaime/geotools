@@ -44,7 +44,9 @@ import org.geotools.xsd.Node;
  */
 public class FunctionTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.FunctionType;

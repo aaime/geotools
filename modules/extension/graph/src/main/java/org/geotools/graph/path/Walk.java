@@ -177,13 +177,17 @@ public class Walk extends ArrayList<Node> implements NodeSequence {
         return (get(0).equals(get(size() - 1)));
     }
 
-    /** @see NodeSequence#getFirst() */
+    /**
+     * @see NodeSequence#getFirst()
+     */
     @Override
     public Node getFirst() {
         return get(0);
     }
 
-    /** @see NodeSequence#getLast() */
+    /**
+     * @see NodeSequence#getLast()
+     */
     @Override
     public Node getLast() {
         return get(size() - 1);

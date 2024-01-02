@@ -82,7 +82,9 @@ public class MarkBinding extends SLDMarkBinding {
         super(styleFactory, filterFactory, resourceLocator);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Mark;

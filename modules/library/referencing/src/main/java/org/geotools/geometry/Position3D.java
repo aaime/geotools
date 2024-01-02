@@ -82,6 +82,7 @@ public class Position3D implements Position, Serializable, Cloneable {
         this(x, y, z);
         setCoordinateReferenceSystem(crs);
     }
+
     /**
      * Constructs a position initialized to the same values than the specified point.
      *

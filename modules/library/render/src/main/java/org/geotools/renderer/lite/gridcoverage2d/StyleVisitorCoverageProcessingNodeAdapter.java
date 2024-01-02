@@ -50,7 +50,9 @@ public abstract class StyleVisitorCoverageProcessingNodeAdapter extends StyleVis
     /** Instance of {@link CoverageProcessingNode} that we are adapting. */
     private final CoverageProcessingNode adaptee;
 
-    /** @param adaptee */
+    /**
+     * @param adaptee
+     */
     public StyleVisitorCoverageProcessingNodeAdapter(CoverageProcessingNode adaptee) {
         GridCoverageRendererUtilities.ensureNotNull(adaptee, "CoverageProcessingNode");
         this.adaptee = adaptee;
@@ -97,7 +99,9 @@ public abstract class StyleVisitorCoverageProcessingNodeAdapter extends StyleVis
                 };
     }
 
-    /** @see BaseCoverageProcessingNode#execute() */
+    /**
+     * @see BaseCoverageProcessingNode#execute()
+     */
     protected abstract GridCoverage execute();
 
     /*

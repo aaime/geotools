@@ -57,6 +57,7 @@ public abstract class XSD {
 
     /** type schema */
     protected Schema typeSchema;
+
     /** type mapping profile */
     protected Schema typeMappingProfile;
 

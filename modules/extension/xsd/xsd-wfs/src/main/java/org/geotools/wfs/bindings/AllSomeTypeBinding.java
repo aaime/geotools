@@ -43,7 +43,9 @@ import org.geotools.xsd.impl.AttributeImpl;
  */
 public class AllSomeTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.AllSomeType;

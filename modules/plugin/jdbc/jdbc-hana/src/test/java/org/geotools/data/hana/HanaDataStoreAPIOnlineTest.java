@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCDataStoreAPIOnlineTest;
 import org.geotools.jdbc.JDBCDataStoreAPITestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaDataStoreAPIOnlineTest extends JDBCDataStoreAPIOnlineTest {
 
     @Override

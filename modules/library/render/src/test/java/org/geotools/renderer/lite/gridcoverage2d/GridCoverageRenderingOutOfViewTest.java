@@ -53,8 +53,11 @@ public class GridCoverageRenderingOutOfViewTest {
 
     @Test
     public void test()
-            throws IOException, URISyntaxException, MismatchedDimensionException,
-                    NoSuchAuthorityCodeException, FactoryException {
+            throws IOException,
+                    URISyntaxException,
+                    MismatchedDimensionException,
+                    NoSuchAuthorityCodeException,
+                    FactoryException {
         StreamingRenderer renderer = new StreamingRenderer();
 
         MapContent map = new MapContent();

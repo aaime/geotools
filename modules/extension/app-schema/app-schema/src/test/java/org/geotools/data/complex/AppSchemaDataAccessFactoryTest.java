@@ -105,7 +105,9 @@ public class AppSchemaDataAccessFactoryTest extends AppSchemaTestSupport {
         }
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     @Test
     public void testCreateDataStore() throws IOException {
         DataAccess<FeatureType, Feature> ds = factory.createDataStore(params);
@@ -116,7 +118,9 @@ public class AppSchemaDataAccessFactoryTest extends AppSchemaTestSupport {
         ds.dispose();
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     @Test
     public void testFactoryLookup() throws IOException {
         DataAccess<FeatureType, Feature> ds = DataAccessFinder.getDataStore(params);

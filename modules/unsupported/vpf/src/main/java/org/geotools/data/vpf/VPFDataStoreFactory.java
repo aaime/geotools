@@ -61,6 +61,7 @@ import org.geotools.feature.SchemaException;
 public class VPFDataStoreFactory implements DataStoreFactorySpi {
     /** Default Constructor */
     public VPFDataStoreFactory() {}
+
     /*
      *  (non-Javadoc)
      * @see org.geotools.api.data.DataStoreFactorySpi#getDisplayName()
@@ -69,6 +70,7 @@ public class VPFDataStoreFactory implements DataStoreFactorySpi {
     public String getDisplayName() {
         return "Vector Product Format Library";
     }
+
     /*
      *  (non-Javadoc)
      * @see org.geotools.api.data.DataStoreFactorySpi#getDescription()
@@ -77,6 +79,7 @@ public class VPFDataStoreFactory implements DataStoreFactorySpi {
     public String getDescription() {
         return "Vector Product Format Library data store implementation.";
     }
+
     /*
      *  (non-Javadoc)
      * @see org.geotools.api.data.DataStoreFactorySpi#canProcess(java.util.Map)
@@ -233,6 +236,7 @@ public class VPFDataStoreFactory implements DataStoreFactorySpi {
 
         return create(params);
     }
+
     /** A parameter which is the directory containing the LHT file */
     public static final Param DIR =
             new Param("url", URL.class, "Directory containing lht file", true);
@@ -250,6 +254,7 @@ public class VPFDataStoreFactory implements DataStoreFactorySpi {
             DIR,
         };
     }
+
     /*
      *  (non-Javadoc)
      * @see org.geotools.api.data.DataStoreFactorySpi#isAvailable()

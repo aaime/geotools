@@ -74,6 +74,7 @@ public class CategorizeFunction implements Function {
 
     private final List<Expression> parameters;
     private final Literal fallback;
+
     /** True if all expressions in the param set are static values */
     private boolean staticTable = true;
 

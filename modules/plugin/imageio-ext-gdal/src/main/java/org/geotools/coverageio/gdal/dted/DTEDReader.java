@@ -53,7 +53,9 @@ public final class DTEDReader extends BaseGDALGridCoverage2DReader implements Gr
         super(input, hints, worldFileExt, new DTEDImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new DTEDFormat();

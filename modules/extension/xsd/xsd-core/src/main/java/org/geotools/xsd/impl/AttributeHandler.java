@@ -27,7 +27,9 @@ import org.eclipse.xsd.XSDAttributeDeclaration;
  * @author Justin Deoliveira,Refractions Research Inc.,jdeolive@refractions.net
  */
 public interface AttributeHandler extends Handler {
-    /** @return The schema declaration of the attribute being handled. */
+    /**
+     * @return The schema declaration of the attribute being handled.
+     */
     XSDAttributeDeclaration getAttributeDeclaration();
 
     /**

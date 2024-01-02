@@ -51,7 +51,9 @@ public class USAddressBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public QName getTarget() {
         return PO.USAddress;
     }

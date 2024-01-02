@@ -109,6 +109,7 @@ public class XMLSAXHandler extends DefaultHandler {
             return super.resolveEntity(publicId, systemId);
         }
     }
+
     // hints
     private Map<String, Object> hints;
     private ElementHandlerFactory ehf = new ElementHandlerFactory(logger);
@@ -159,6 +160,7 @@ public class XMLSAXHandler extends DefaultHandler {
         this.hints = hints;
         setEntityResolver(XMLHandlerHints.toEntityResolver(hints));
     }
+
     /**
      * Implementation of endDocument.
      *
@@ -491,7 +493,9 @@ public class XMLSAXHandler extends DefaultHandler {
         this.locator = locator;
     }
 
-    /** @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)
+     */
     @Override
     public void endPrefixMapping(String prefix) {
         // hard coded schemas should not be removed.  For example.  GML and WFS
@@ -499,7 +503,9 @@ public class XMLSAXHandler extends DefaultHandler {
         ehf.endPrefixMapping(prefix);
     }
 
-    /** @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+     */
     @Override
     public void startPrefixMapping(String prefix, String uri) {
         if ("http://www.w3.org/2001/XMLSchema-instance".equals(uri)) {

@@ -101,7 +101,9 @@ public abstract class Abstract_URI_AuthorityFactory extends AuthorityFactoryAdap
      */
     protected abstract URI_Parser buildParser(String code) throws NoSuchAuthorityCodeException;
 
-    /** @see org.geotools.referencing.factory.AuthorityFactoryAdapter#getAuthority() */
+    /**
+     * @see org.geotools.referencing.factory.AuthorityFactoryAdapter#getAuthority()
+     */
     @Override
     public abstract Citation getAuthority();
 

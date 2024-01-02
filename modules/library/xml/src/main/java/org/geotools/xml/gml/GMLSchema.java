@@ -83,19 +83,25 @@ public class GMLSchema implements Schema {
         FCBuffer.logger.setLevel(l);
     }
 
-    /** @see schema.Schema#getAttributeGroups() */
+    /**
+     * @see schema.Schema#getAttributeGroups()
+     */
     @Override
     public AttributeGroup[] getAttributeGroups() {
         return attributeGroups;
     }
 
-    /** @see schema.Schema#getAttributeDescriptors() */
+    /**
+     * @see schema.Schema#getAttributeDescriptors()
+     */
     @Override
     public Attribute[] getAttributes() {
         return attributes;
     }
 
-    /** @see schema.Schema#getBlockDefault() */
+    /**
+     * @see schema.Schema#getBlockDefault()
+     */
     @Override
     public int getBlockDefault() {
         return NONE;
@@ -142,7 +148,9 @@ public class GMLSchema implements Schema {
         return complexTypes1;
     }
 
-    /** @see schema.Schema#getComplexTypes() */
+    /**
+     * @see schema.Schema#getComplexTypes()
+     */
     @Override
     public ComplexType[] getComplexTypes() {
         return complexTypes;
@@ -150,6 +158,7 @@ public class GMLSchema implements Schema {
 
     /** GMLSchema.getInstance().getElements()[GMLSchema.BOX] */
     public static final int BOX = 41;
+
     /*
      * Used to load the set of elements stored in the static class variable
      * representing the element set in the GML Schema
@@ -545,50 +554,67 @@ public class GMLSchema implements Schema {
         return elements1;
     }
 
-    /** @see schema.Schema#isElementFormDefault() */
+    /**
+     * @see schema.Schema#isElementFormDefault()
+     */
     @Override
     public boolean isElementFormDefault() {
         return true;
     }
 
-    /** @see schema.Schema#getElements() */
+    /**
+     * @see schema.Schema#getElements()
+     */
     @Override
     public Element[] getElements() {
         return elements;
     }
 
-    /** @see schema.Schema#getFinalDefault() */
+    /**
+     * @see schema.Schema#getFinalDefault()
+     */
     @Override
     public int getFinalDefault() {
         return NONE;
     }
 
-    /** @see schema.Schema#getGroups() */
+    /**
+     * @see schema.Schema#getGroups()
+     */
     @Override
     public Group[] getGroups() {
         return new Group[0];
     }
 
-    /** @see schema.Schema#getId() */
+    /**
+     * @see schema.Schema#getId()
+     */
     @Override
     public String getId() {
         return null;
     }
 
     private static Schema[] imports = {XLinkSchema.getInstance()};
-    /** @see schema.Schema#getImports() */
+
+    /**
+     * @see schema.Schema#getImports()
+     */
     @Override
     public Schema[] getImports() {
         return imports;
     }
 
-    /** @see schema.Schema#getSimpleTypes() */
+    /**
+     * @see schema.Schema#getSimpleTypes()
+     */
     @Override
     public SimpleType[] getSimpleTypes() {
         return simpleTypes;
     }
 
-    /** @see schema.Schema#getTargetNamespace() */
+    /**
+     * @see schema.Schema#getTargetNamespace()
+     */
     @Override
     public URI getTargetNamespace() {
         return NAMESPACE;
@@ -599,7 +625,9 @@ public class GMLSchema implements Schema {
         return NAMESPACE;
     }
 
-    /** @see schema.Schema#getVersion() */
+    /**
+     * @see schema.Schema#getVersion()
+     */
     @Override
     public String getVersion() {
         return "2.1.2";
@@ -614,7 +642,9 @@ public class GMLSchema implements Schema {
         }
     }
 
-    /** @see schema.Schema#includesURI(java.net.URI) */
+    /**
+     * @see schema.Schema#includesURI(java.net.URI)
+     */
     @Override
     public boolean includesURI(URI uri) {
         //        if (uri.toString().toLowerCase().endsWith("geometry.xsd")
@@ -628,19 +658,25 @@ public class GMLSchema implements Schema {
         return true;
     }
 
-    /** @see schema.Schema#isAttributeFormDefault() */
+    /**
+     * @see schema.Schema#isAttributeFormDefault()
+     */
     @Override
     public boolean isAttributeFormDefault() {
         return false;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getPrefix() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getPrefix()
+     */
     @Override
     public String getPrefix() {
         return "gml";
     }
 
-    /** @see org.geotools.xml.schema.Schema#getInstance() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getInstance()
+     */
     public static Schema getInstance() {
         return instance;
     }
@@ -705,7 +741,9 @@ public class GMLSchema implements Schema {
             this.substitutionGroup = element.getSubstitutionGroup();
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(String name1) {
             if (this.name != null) {
@@ -717,91 +755,121 @@ public class GMLSchema implements Schema {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getGrouping() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getGrouping()
+         */
         @Override
         public int getGrouping() {
             return ELEMENT;
         }
 
-        /** @see schema.Element#isAbstract() */
+        /**
+         * @see schema.Element#isAbstract()
+         */
         @Override
         public boolean isAbstract() {
             return abstracT;
         }
 
-        /** @see schema.Element#getBlock() */
+        /**
+         * @see schema.Element#getBlock()
+         */
         @Override
         public int getBlock() {
             return Schema.NONE;
         }
 
-        /** @see schema.Element#getDefault() */
+        /**
+         * @see schema.Element#getDefault()
+         */
         @Override
         public String getDefault() {
             return null;
         }
 
-        /** @see schema.Element#getFinal() */
+        /**
+         * @see schema.Element#getFinal()
+         */
         @Override
         public int getFinal() {
             return Schema.NONE;
         }
 
-        /** @see schema.Element#getFixed() */
+        /**
+         * @see schema.Element#getFixed()
+         */
         @Override
         public String getFixed() {
             return null;
         }
 
-        /** @see schema.Element#isForm() */
+        /**
+         * @see schema.Element#isForm()
+         */
         @Override
         public boolean isForm() {
             return false;
         }
 
-        /** @see schema.Element#getId() */
+        /**
+         * @see schema.Element#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see schema.Element#getMaxOccurs() */
+        /**
+         * @see schema.Element#getMaxOccurs()
+         */
         @Override
         public int getMaxOccurs() {
             return max;
         }
 
-        /** @see schema.Element#getMinOccurs() */
+        /**
+         * @see schema.Element#getMinOccurs()
+         */
         @Override
         public int getMinOccurs() {
             return min;
         }
 
-        /** @see schema.Element#getLocalName() */
+        /**
+         * @see schema.Element#getLocalName()
+         */
         @Override
         public String getName() {
             return name;
         }
 
-        /** @see schema.Element#isNillable() */
+        /**
+         * @see schema.Element#isNillable()
+         */
         @Override
         public boolean isNillable() {
             return false;
         }
 
-        /** @see schema.Element#getSubstitutionGroup() */
+        /**
+         * @see schema.Element#getSubstitutionGroup()
+         */
         @Override
         public Element getSubstitutionGroup() {
             return substitutionGroup;
         }
 
-        /** @see schema.Element#getBinding() */
+        /**
+         * @see schema.Element#getBinding()
+         */
         @Override
         public Type getType() {
             return type;
         }
 
-        /** @see schema.Element#getNamespace() */
+        /**
+         * @see schema.Element#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return GMLSchema.NAMESPACE;
@@ -827,31 +895,41 @@ public class GMLSchema implements Schema {
      * @see ComplexType
      */
     abstract static class GMLComplexType implements ComplexType {
-        /** @see schema.ComplexType#getBlock() */
+        /**
+         * @see schema.ComplexType#getBlock()
+         */
         @Override
         public int getBlock() {
             return Schema.NONE;
         }
 
-        /** @see schema.ComplexType#getFinal() */
+        /**
+         * @see schema.ComplexType#getFinal()
+         */
         @Override
         public int getFinal() {
             return Schema.NONE;
         }
 
-        /** @see schema.ComplexType#getId() */
+        /**
+         * @see schema.ComplexType#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see schema.ComplexType#isMixed() */
+        /**
+         * @see schema.ComplexType#isMixed()
+         */
         @Override
         public boolean isMixed() {
             return false;
         }
 
-        /** @see schema.ComplexType#getNamespace() */
+        /**
+         * @see schema.ComplexType#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return GMLSchema.NAMESPACE;
@@ -865,19 +943,25 @@ public class GMLSchema implements Schema {
             return null;
         }
 
-        /** @see schema.ComplexType#isDerived() */
+        /**
+         * @see schema.ComplexType#isDerived()
+         */
         @Override
         public boolean isDerived() {
             return false;
         }
 
-        /** @see schema.ComplexType#getParent() */
+        /**
+         * @see schema.ComplexType#getParent()
+         */
         @Override
         public Type getParent() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#cache() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#cache()
+         */
         @Override
         public boolean cache(Element e, Map<String, Object> hints) {
             return true;
@@ -927,49 +1011,65 @@ public class GMLSchema implements Schema {
             this.def = def;
         }
 
-        /** @see schema.Attribute#getNameSpace() */
+        /**
+         * @see schema.Attribute#getNameSpace()
+         */
         @Override
         public URI getNamespace() {
             return GMLSchema.NAMESPACE;
         }
 
-        /** @see schema.Attribute#getDefault() */
+        /**
+         * @see schema.Attribute#getDefault()
+         */
         @Override
         public String getDefault() {
             return def;
         }
 
-        /** @see schema.Attribute#getFixed() */
+        /**
+         * @see schema.Attribute#getFixed()
+         */
         @Override
         public String getFixed() {
             return null;
         }
 
-        /** @see schema.Attribute#isForm() */
+        /**
+         * @see schema.Attribute#isForm()
+         */
         @Override
         public boolean isForm() {
             return false;
         }
 
-        /** @see schema.Attribute#getId() */
+        /**
+         * @see schema.Attribute#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see schema.Attribute#getLocalName() */
+        /**
+         * @see schema.Attribute#getLocalName()
+         */
         @Override
         public String getName() {
             return name;
         }
 
-        /** @see schema.Attribute#getUse() */
+        /**
+         * @see schema.Attribute#getUse()
+         */
         @Override
         public int getUse() {
             return use;
         }
 
-        /** @see schema.Attribute#getSimpleType() */
+        /**
+         * @see schema.Attribute#getSimpleType()
+         */
         @Override
         public SimpleType getSimpleType() {
             return simpleType;
@@ -992,31 +1092,41 @@ public class GMLSchema implements Schema {
         // package visible child declaration
         static final AttributeGroup child = XLinkSchema.SimpleLink.getInstance();
 
-        /** @see schema.Attribute#getNameSpace() */
+        /**
+         * @see schema.Attribute#getNameSpace()
+         */
         @Override
         public URI getNamespace() {
             return GMLSchema.NAMESPACE;
         }
 
-        /** @see schema.AttributeGroup#getAnyAttributeNameSpace() */
+        /**
+         * @see schema.AttributeGroup#getAnyAttributeNameSpace()
+         */
         @Override
         public String getAnyAttributeNameSpace() {
             return child.getAnyAttributeNameSpace();
         }
 
-        /** @see schema.Schema#getAttributeDescriptors() */
+        /**
+         * @see schema.Schema#getAttributeDescriptors()
+         */
         @Override
         public Attribute[] getAttributes() {
             return attributes1;
         }
 
-        /** @see schema.AttributeGroup#getId() */
+        /**
+         * @see schema.AttributeGroup#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see schema.AttributeGroup#getLocalName() */
+        /**
+         * @see schema.AttributeGroup#getLocalName()
+         */
         @Override
         public String getName() {
             return "AssociationAttributeGroup";
@@ -1030,36 +1140,48 @@ public class GMLSchema implements Schema {
      * @see SimpleType
      */
     static class GMLNullType implements SimpleType {
-        /** @see schema.SimpleType#getNamespace() */
+        /**
+         * @see schema.SimpleType#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return GMLSchema.NAMESPACE;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getParent() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getParent()
+         */
         public Type getParent() {
             return null;
         }
 
-        /** @see schema.SimpleType#getFinal() */
+        /**
+         * @see schema.SimpleType#getFinal()
+         */
         @Override
         public int getFinal() {
             return Schema.NONE;
         }
 
-        /** @see schema.SimpleType#getId() */
+        /**
+         * @see schema.SimpleType#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public String getName() {
             return "NullType";
         }
 
-        /** @see schema.Type#getValue(java.lang.String) */
+        /**
+         * @see schema.Type#getValue(java.lang.String)
+         */
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attr, Map<String, Object> hints)
@@ -1092,7 +1214,9 @@ public class GMLSchema implements Schema {
             return false;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return String.class;
@@ -1152,13 +1276,17 @@ public class GMLSchema implements Schema {
             output.endElement(element.getNamespace(), element.getName());
         }
 
-        /** @see org.geotools.xml.schema.SimpleType#getChildType() */
+        /**
+         * @see org.geotools.xml.schema.SimpleType#getChildType()
+         */
         @Override
         public int getChildType() {
             return RESTRICTION;
         }
 
-        /** @see org.geotools.xml.schema.SimpleType#getParents() */
+        /**
+         * @see org.geotools.xml.schema.SimpleType#getParents()
+         */
         @Override
         public SimpleType[] getParents() {
             return new SimpleType[] {
@@ -1166,7 +1294,9 @@ public class GMLSchema implements Schema {
             };
         }
 
-        /** @see org.geotools.xml.schema.SimpleType#getFacets() */
+        /**
+         * @see org.geotools.xml.schema.SimpleType#getFacets()
+         */
         @Override
         public Facet[] getFacets() {
             return new Facet[] {
@@ -1177,7 +1307,9 @@ public class GMLSchema implements Schema {
             };
         }
 
-        /** @see org.geotools.xml.schema.Type#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.schema.Type#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(String name) {
             return null; // will never happen

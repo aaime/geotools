@@ -142,8 +142,12 @@ public class H2Migrator {
     }
 
     private String[] getFilesFromStore(LinkedHashSet<String> filePaths)
-            throws ClassNotFoundException, InstantiationException, IllegalAccessException,
-                    IOException, NoSuchMethodException, InvocationTargetException {
+            throws ClassNotFoundException,
+                    InstantiationException,
+                    IllegalAccessException,
+                    IOException,
+                    NoSuchMethodException,
+                    InvocationTargetException {
         DataStore sourceStore =
                 H2MigrateConfiguration.getDataStore(configuration.getSourceStoreConfiguration());
         final String[] indexTables =

@@ -251,6 +251,7 @@ public class ContentState {
         }
         return false;
     }
+
     /**
      * Creates a FeatureEvent indicating that the provided feature has been changed.
      *

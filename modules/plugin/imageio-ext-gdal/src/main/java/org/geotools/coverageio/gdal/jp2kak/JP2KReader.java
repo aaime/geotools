@@ -54,7 +54,9 @@ public final class JP2KReader extends BaseGDALGridCoverage2DReader implements Gr
         super(input, hints, worldFileExt, new JP2GDALKakaduImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new JP2KFormat();

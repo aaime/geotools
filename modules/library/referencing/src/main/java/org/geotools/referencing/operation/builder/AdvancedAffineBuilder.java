@@ -95,8 +95,10 @@ public class AdvancedAffineBuilder extends MathTransformBuilder {
      * @param vectors GCPs
      */
     public AdvancedAffineBuilder(final List<MappedPosition> vectors)
-            throws IllegalArgumentException, MismatchedDimensionException,
-                    MismatchedReferenceSystemException, FactoryException {
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
+                    MismatchedReferenceSystemException,
+                    FactoryException {
         /** use constructor with approximate values taken from 6 parameters of affine transform */
         this(vectors, (AffineTransform2D) (new AffineTransformBuilder(vectors).getMathTransform()));
     }
@@ -109,8 +111,10 @@ public class AdvancedAffineBuilder extends MathTransformBuilder {
      * @param affineTrans approximate affine transformation
      */
     public AdvancedAffineBuilder(final List<MappedPosition> vectors, AffineTransform2D affineTrans)
-            throws IllegalArgumentException, MismatchedDimensionException,
-                    MismatchedReferenceSystemException, FactoryException {
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
+                    MismatchedReferenceSystemException,
+                    FactoryException {
         super.setMappedPositions(vectors);
 
         /** sets approximate values */

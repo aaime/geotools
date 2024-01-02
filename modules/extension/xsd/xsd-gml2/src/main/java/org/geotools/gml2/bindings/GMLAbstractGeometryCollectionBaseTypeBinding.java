@@ -50,7 +50,9 @@ import org.locationtech.jts.geom.GeometryCollection;
  * @generated JD: this binding should not longer be used
  */
 public class GMLAbstractGeometryCollectionBaseTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractGeometryCollectionBaseType;

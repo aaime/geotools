@@ -74,7 +74,9 @@ public class ContactTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.ContactType;

@@ -284,6 +284,7 @@ public class GML2MockData {
     static GeometryCollection multiGeometry() {
         return gf.createGeometryCollection(new Geometry[] {point(), lineString(), polygon()});
     }
+
     //
     // features
     //

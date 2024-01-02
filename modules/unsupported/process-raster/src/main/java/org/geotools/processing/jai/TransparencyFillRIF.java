@@ -29,7 +29,9 @@ import javax.media.jai.BorderExtender;
 import javax.media.jai.ImageLayout;
 import org.geotools.processing.jai.TransparencyFillDescriptor.FillType;
 
-/** @see TransparencyFillOpImage */
+/**
+ * @see TransparencyFillOpImage
+ */
 public class TransparencyFillRIF implements RenderedImageFactory {
 
     /** Constructor. */

@@ -58,6 +58,7 @@ public class JExampleWizard extends JWizard {
     public double getAnswer() {
         return x + y;
     }
+
     // example wizard end
 
     // page1 start
@@ -84,12 +85,14 @@ public class JExampleWizard extends JWizard {
                 field.setText(x.toString());
             }
             field.addKeyListener(getJWizard().getController());
-        };
+        }
+        ;
 
         @Override
         public void preClosePanel() {
             field.removeKeyListener(getJWizard().getController());
-        };
+        }
+        ;
 
         public boolean isValid() {
             try {
@@ -99,8 +102,11 @@ public class JExampleWizard extends JWizard {
             } catch (NumberFormatException invalid) {
                 return false;
             }
-        };
-    };
+        }
+        ;
+    }
+    ;
+
     // page1 end
     // page2 start
     class Page2 extends JPage {
@@ -126,12 +132,14 @@ public class JExampleWizard extends JWizard {
                 field.setText(y.toString());
             }
             field.addKeyListener(getJWizard().getController());
-        };
+        }
+        ;
 
         @Override
         public void preClosePanel() {
             field.removeKeyListener(getJWizard().getController());
-        };
+        }
+        ;
 
         @Override
         public boolean isValid() {
@@ -142,8 +150,11 @@ public class JExampleWizard extends JWizard {
             } catch (NumberFormatException invalid) {
                 return false;
             }
-        };
-    };
+        }
+        ;
+    }
+    ;
+
     // page2 end
 
     public static void main(String[] args) {

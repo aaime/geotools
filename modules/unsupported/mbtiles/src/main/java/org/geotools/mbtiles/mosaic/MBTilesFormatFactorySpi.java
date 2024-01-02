@@ -24,7 +24,9 @@ import java.util.Map;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
 import org.geotools.coverage.grid.io.GridFormatFactorySpi;
 
-/** @author Niels Charlier */
+/**
+ * @author Niels Charlier
+ */
 public class MBTilesFormatFactorySpi implements GridFormatFactorySpi {
 
     @Override

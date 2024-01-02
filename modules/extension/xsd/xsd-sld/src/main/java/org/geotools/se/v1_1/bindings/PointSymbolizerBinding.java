@@ -48,7 +48,9 @@ public class PointSymbolizerBinding extends SLDPointSymbolizerBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.PointSymbolizer;

@@ -40,6 +40,7 @@ import org.junit.Test;
  */
 public class EPSGTest {
     EPSGCRSAuthorityFactory factory;
+
     /*
      * @see junit.framework.TestCase#setUp()
      */
@@ -87,6 +88,7 @@ public class EPSGTest {
                 (CoordinateReferenceSystem) factory.createObject("EPSG:4326");
         assertNotNull(crs);
     }
+
     /** UDIG requires this to work */
     @Test
     public void test4269() throws Exception {
@@ -94,6 +96,7 @@ public class EPSGTest {
                 (CoordinateReferenceSystem) factory.createObject("EPSG:4269");
         assertNotNull(crs);
     }
+
     /** UDIG requires this to work */
     @Test
     public void test42102() throws Exception {
@@ -146,24 +149,28 @@ public class EPSGTest {
         CoordinateReferenceSystem crs = CRS.decode("epsg:4326");
         assertNotNull(crs);
     }
+
     /** wfs requires this to work */
     @Test
     public void test26742Lower() throws Exception {
         CoordinateReferenceSystem crs = CRS.decode("epsg:26742");
         assertNotNull(crs);
     }
+
     /** wfs requires this to work */
     @Test
     public void test4269Lower() throws Exception {
         CoordinateReferenceSystem crs = CRS.decode("epsg:4269");
         assertNotNull(crs);
     }
+
     /** wfs requires this to work */
     @Test
     public void test42304Lower() throws Exception {
         CoordinateReferenceSystem crs = CRS.decode("epsg:42304");
         assertNotNull(crs);
     }
+
     /** wfs requires this to work */
     @Test
     public void test42102Lower() throws Exception {

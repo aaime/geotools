@@ -26,14 +26,19 @@ import java.net.URI;
 public interface Any extends ElementGrouping {
 
     public static final URI ALL = null;
+
     /** Returns the element declaration's id for this schema element. */
     public String getId();
 
-    /** @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs() */
+    /**
+     * @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs()
+     */
     @Override
     public int getMaxOccurs();
 
-    /** @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs() */
+    /**
+     * @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs()
+     */
     @Override
     public int getMinOccurs();
 

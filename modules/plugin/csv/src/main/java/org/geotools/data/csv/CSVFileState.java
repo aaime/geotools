@@ -49,7 +49,8 @@ public class CSVFileState {
 
     private static CoordinateReferenceSystem DEFAULT_CRS() throws FactoryException {
         return CRS.decode("EPSG:4326");
-    };
+    }
+    ;
 
     private final File file;
 
@@ -97,6 +98,7 @@ public class CSVFileState {
         this.namespace = namespace;
         this.dataInput = null;
     }
+
     /** Internal constructor for testing purposes? */
     public CSVFileState(String dataInput, String typeName) {
         this.dataInput = dataInput;
@@ -178,52 +180,72 @@ public class CSVFileState {
         return headers;
     }
 
-    /** @return the quotechar */
+    /**
+     * @return the quotechar
+     */
     public char getQuotechar() {
         return quotechar;
     }
 
-    /** @param quotechar the quotechar to set */
+    /**
+     * @param quotechar the quotechar to set
+     */
     public void setQuotechar(char quotechar) {
         this.quotechar = quotechar;
     }
 
-    /** @param escapechar2 */
+    /**
+     * @param escapechar2
+     */
     public void setEscapechar(char escapechar2) {
         this.escapechar = escapechar2;
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     public char getEscapechar() {
         return escapechar;
     }
 
-    /** @return the separator */
+    /**
+     * @return the separator
+     */
     public char getSeparator() {
         return separator;
     }
 
-    /** @param separator the separator to set */
+    /**
+     * @param separator the separator to set
+     */
     public void setSeparator(char separator) {
         this.separator = separator;
     }
 
-    /** @return the lineSeparator */
+    /**
+     * @return the lineSeparator
+     */
     public String getLineSeparator() {
         return lineSeparator;
     }
 
-    /** @param lineSeparator the lineSeparator to set */
+    /**
+     * @param lineSeparator the lineSeparator to set
+     */
     public void setLineSeparator(String lineSeparator) {
         this.lineSeparator = lineSeparator;
     }
 
-    /** @return the quoteAllFields */
+    /**
+     * @return the quoteAllFields
+     */
     public boolean isQuoteAllFields() {
         return quoteAllFields;
     }
 
-    /** @param quoteAllFields the quoteAllFields to set */
+    /**
+     * @param quoteAllFields the quoteAllFields to set
+     */
     public void setQuoteAllFields(boolean quoteAllFields) {
         this.quoteAllFields = quoteAllFields;
     }

@@ -37,6 +37,7 @@ import org.locationtech.jts.geom.Point;
 public class MongoFilterSplitter extends PostPreProcessFilterSplittingVisitor {
 
     private MongoCollectionMeta mongoCollectionMeta;
+
     /**
      * Create a new instance.
      *

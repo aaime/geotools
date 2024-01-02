@@ -52,79 +52,108 @@ public class DefaultResourceInfo implements ResourceInfo {
         this.crs = copy.getCRS();
         this.bounds = copy.getBounds();
     }
-    /** @return the title */
+
+    /**
+     * @return the title
+     */
     @Override
     public String getTitle() {
         return title;
     }
 
-    /** @return the schema */
+    /**
+     * @return the schema
+     */
     @Override
     public URI getSchema() {
         return schema;
     }
 
-    /** @return the name */
+    /**
+     * @return the name
+     */
     @Override
     public String getName() {
         return name;
     }
 
-    /** @return the keywords */
+    /**
+     * @return the keywords
+     */
     @Override
     public Set<String> getKeywords() {
         return keywords;
     }
 
-    /** @return the description */
+    /**
+     * @return the description
+     */
     @Override
     public String getDescription() {
         return description;
     }
 
-    /** @return the bounds */
+    /**
+     * @return the bounds
+     */
     @Override
     public ReferencedEnvelope getBounds() {
         return bounds;
     }
 
-    /** @return the crs */
+    /**
+     * @return the crs
+     */
     @Override
     public CoordinateReferenceSystem getCRS() {
         return crs;
     }
 
-    /** @param crs the crs to set */
+    /**
+     * @param crs the crs to set
+     */
     public void setCRS(CoordinateReferenceSystem crs) {
         this.crs = crs;
     }
 
-    /** @param title the title to set */
+    /**
+     * @param title the title to set
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /** @param schema the schema to set */
+    /**
+     * @param schema the schema to set
+     */
     public void setSchema(URI schema) {
         this.schema = schema;
     }
 
-    /** @param name the name to set */
+    /**
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /** @param keywords the keywords to set */
+    /**
+     * @param keywords the keywords to set
+     */
     public void setKeywords(Set<String> keywords) {
         this.keywords = keywords;
     }
 
-    /** @param description the description to set */
+    /**
+     * @param description the description to set
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /** @param bounds the bounds to set */
+    /**
+     * @param bounds the bounds to set
+     */
     public void setBounds(ReferencedEnvelope bounds) {
         this.bounds = bounds;
     }

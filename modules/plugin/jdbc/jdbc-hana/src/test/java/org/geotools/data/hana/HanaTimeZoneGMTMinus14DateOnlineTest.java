@@ -21,7 +21,9 @@ import net.jcip.annotations.NotThreadSafe;
 import org.geotools.jdbc.JDBCDateTestSetup;
 import org.geotools.jdbc.JDBCTimeZoneDateOnlineTest;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 @NotThreadSafe
 public class HanaTimeZoneGMTMinus14DateOnlineTest extends JDBCTimeZoneDateOnlineTest {
 

@@ -35,10 +35,13 @@ public abstract class SubHandler {
 
     private String srs = null;
 
-    /** @return the srs */
+    /**
+     * @return the srs
+     */
     protected String getSRS() {
         return srs;
     }
+
     /**
      * Creates a basic SRID by looking at the provided srs.
      *

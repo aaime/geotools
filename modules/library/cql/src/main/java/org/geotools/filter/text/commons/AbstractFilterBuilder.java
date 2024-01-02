@@ -362,6 +362,7 @@ public abstract class AbstractFilterBuilder {
                     "Unsupported date time format: " + e.getMessage(), this.cqlSource);
         }
     }
+
     /**
      * Transforms the cqlDateTime to a literal date.
      *
@@ -599,7 +600,10 @@ public abstract class AbstractFilterBuilder {
 
         return property;
     }
-    /** @return PropertyName */
+
+    /**
+     * @return PropertyName
+     */
     public PropertyName buildCompoundAttribute(
             final int nodeSimpleAttr, final String nodeAttrSeparator) throws CQLException {
 
@@ -713,6 +717,7 @@ public abstract class AbstractFilterBuilder {
 
         return filter;
     }
+
     /** Build the intersection matrix pattern */
     public Literal buildDE9IM(final String tokenImage) {
 
@@ -973,7 +978,9 @@ public abstract class AbstractFilterBuilder {
         return filter;
     }
 
-    /** @return PropertyIsLessThan */
+    /**
+     * @return PropertyIsLessThan
+     */
     public PropertyIsLessThan buildPropertyIsLTFirsDate() throws CQLException {
         PeriodNode period = this.resultStack.popPeriodNode();
 
@@ -986,7 +993,9 @@ public abstract class AbstractFilterBuilder {
         return filter;
     }
 
-    /** @return PropertyIsLessThanOrEqualTo */
+    /**
+     * @return PropertyIsLessThanOrEqualTo
+     */
     public PropertyIsLessThanOrEqualTo buildPropertyIsLTELastDate() throws CQLException {
         PeriodNode period = this.resultStack.popPeriodNode();
 
@@ -999,7 +1008,9 @@ public abstract class AbstractFilterBuilder {
         return filter;
     }
 
-    /** @return PropertyIsEqualTo */
+    /**
+     * @return PropertyIsEqualTo
+     */
     public PropertyIsEqualTo buildEquals() throws CQLException {
 
         Expression right = this.resultStack.popExpression();
@@ -1008,14 +1019,18 @@ public abstract class AbstractFilterBuilder {
         return filterFactory.equals(left, right);
     }
 
-    /** @return PropertyIsGreaterThan */
+    /**
+     * @return PropertyIsGreaterThan
+     */
     public PropertyIsGreaterThan buildGreater() throws CQLException {
         Expression right = this.resultStack.popExpression();
         Expression left = this.resultStack.popExpression();
         return filterFactory.greater(left, right);
     }
 
-    /** @return PropertyIsLessThan */
+    /**
+     * @return PropertyIsLessThan
+     */
     public PropertyIsLessThan buildLess() throws CQLException {
 
         Expression right = this.resultStack.popExpression();
@@ -1023,14 +1038,18 @@ public abstract class AbstractFilterBuilder {
         return filterFactory.less(left, right);
     }
 
-    /** @return PropertyIsGreaterThanOrEqualTo */
+    /**
+     * @return PropertyIsGreaterThanOrEqualTo
+     */
     public PropertyIsGreaterThanOrEqualTo buildGreaterOrEqual() throws CQLException {
         Expression right = this.resultStack.popExpression();
         Expression left = this.resultStack.popExpression();
         return filterFactory.greaterOrEqual(left, right);
     }
 
-    /** @return PropertyIsLessThanOrEqualTo */
+    /**
+     * @return PropertyIsLessThanOrEqualTo
+     */
     public PropertyIsLessThanOrEqualTo buildLessOrEqual() throws CQLException {
 
         Expression right = this.resultStack.popExpression();
@@ -1339,6 +1358,7 @@ public abstract class AbstractFilterBuilder {
 
         return filter;
     }
+
     /**
      * Builds an Or filter composed of Before and During filters.
      *

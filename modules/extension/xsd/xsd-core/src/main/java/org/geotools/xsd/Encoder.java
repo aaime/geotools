@@ -188,6 +188,7 @@ public class Encoder {
 
     /** name of type of root element to encode */
     private QName rootElementType;
+
     /** Logger logger; */
     private Logger logger;
 
@@ -496,22 +497,30 @@ public class Encoder {
         schemaLocations.put(namespaceURI, location);
     }
 
-    /** @return The walker used to traverse bindings, this method is for internal use only. */
+    /**
+     * @return The walker used to traverse bindings, this method is for internal use only.
+     */
     public BindingWalker getBindingWalker() {
         return bindingWalker;
     }
 
-    /** @return The index of schema components, this method is for internal use only. */
+    /**
+     * @return The index of schema components, this method is for internal use only.
+     */
     public SchemaIndex getSchemaIndex() {
         return index;
     }
 
-    /** @return the schema. */
+    /**
+     * @return the schema.
+     */
     public XSDSchema getSchema() {
         return schema;
     }
 
-    /** @return The document used as a factory to create dom nodes. */
+    /**
+     * @return The document used as a factory to create dom nodes.
+     */
     public Document getDocument() {
         return doc;
     }

@@ -58,7 +58,9 @@ public class ElementHandlerFactory {
         logger = l;
     }
 
-    /** @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)
+     */
     public void endPrefixMapping(String prefix) {
         URI s = prefixURIs.remove(prefix);
 
@@ -67,7 +69,9 @@ public class ElementHandlerFactory {
         }
     }
 
-    /** @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+     */
     public void startPrefixMapping(String prefix, String targ, URI uri) throws SAXException {
         logger.finest("Target == '" + targ + "'");
         logger.finest("URI == '" + uri + "'");
@@ -105,7 +109,9 @@ public class ElementHandlerFactory {
         }
     }
 
-    /** @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+     */
     public void startPrefixMapping(String prefix, String targ) throws SAXException {
         logger.finest("Target == '" + targ + "'");
 
@@ -130,7 +136,9 @@ public class ElementHandlerFactory {
         }
     }
 
-    /** @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+     */
     protected void startPrefixMapping(String prefix, Schema targ) {
         logger.finest("Target == '" + targ + "'");
         if ((prefix == null) || "".equalsIgnoreCase(prefix)) {

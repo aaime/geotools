@@ -132,6 +132,7 @@ public class SymbolMBLayer extends MBLayer {
         /** The text is aligned to the right. */
         RIGHT
     }
+
     /** Text justification options. */
     public enum TextAnchor {
         /** The center of the text is placed closest to the anchor. */
@@ -233,6 +234,7 @@ public class SymbolMBLayer extends MBLayer {
         public static double getAnchorY(String jsonString) {
             return TextAnchor.parse(jsonString).getY();
         }
+
         /**
          * Quickly grab x justification for jsonString.
          *
@@ -289,7 +291,9 @@ public class SymbolMBLayer extends MBLayer {
         layout = super.getLayout();
     }
 
-    /** @return The default semantic type. */
+    /**
+     * @return The default semantic type.
+     */
     @Override
     protected SemanticType defaultSemanticType() {
         return SemanticType.ANY;
@@ -584,7 +588,9 @@ public class SymbolMBLayer extends MBLayer {
         return parse.optional(String.class, layout, "icon-image", null);
     }
 
-    /** @return True if the layer has a icon-image explicitly provided. */
+    /**
+     * @return True if the layer has a icon-image explicitly provided.
+     */
     public boolean hasIconImage() throws MBFormatException {
         return parse.isDefined(layout, "icon-image");
     }
@@ -816,7 +822,9 @@ public class SymbolMBLayer extends MBLayer {
         return parse.string(layout, "text-field", "");
     }
 
-    /** @return True if the layer has a text-field explicitly provided. */
+    /**
+     * @return True if the layer has a text-field explicitly provided.
+     */
     private boolean hasTextField() throws MBFormatException {
         return parse.isDefined(layout, "text-field");
     }
@@ -897,7 +905,9 @@ public class SymbolMBLayer extends MBLayer {
         return parse.percentage(layout, "text-max-width", 10.0);
     }
 
-    /** @return True if the layer has a text-max-width explicitly provided. */
+    /**
+     * @return True if the layer has a text-max-width explicitly provided.
+     */
     public boolean hasTextMaxWidth() throws MBFormatException {
         return parse.isDefined(layout, "text-max-width");
     }
@@ -1084,7 +1094,9 @@ public class SymbolMBLayer extends MBLayer {
         return parse.percentage(layout, "text-max-angle", 45.0);
     }
 
-    /** @return True if the layer has a text-max-angle explicitly provided. */
+    /**
+     * @return True if the layer has a text-max-angle explicitly provided.
+     */
     private boolean hasTextMaxAngle() throws MBFormatException {
         return parse.isDefined(layout, "text-max-angle");
     }

@@ -29,8 +29,10 @@ public class FilteringIterator<F extends Feature> implements Iterator<F> {
 
     /** Delegate iterator */
     Iterator<F> delegate;
+
     /** The Filter */
     Filter filter;
+
     /** Next feature */
     F next;
 

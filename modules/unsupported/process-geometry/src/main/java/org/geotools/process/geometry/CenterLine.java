@@ -82,6 +82,7 @@ public class CenterLine {
     public static Geometry getCenterLine(Geometry geom) {
         return getCenterLine(geom, 5.0);
     }
+
     /**
      * @param geom
      * @param perc_density TODO

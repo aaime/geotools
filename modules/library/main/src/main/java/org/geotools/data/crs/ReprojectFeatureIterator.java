@@ -129,6 +129,7 @@ public class ReprojectFeatureIterator implements Iterator<SimpleFeature>, Simple
     public void remove() {
         throw new UnsupportedOperationException("On the fly reprojection disables remove");
     }
+
     /**
      * Implement hasNext.
      *

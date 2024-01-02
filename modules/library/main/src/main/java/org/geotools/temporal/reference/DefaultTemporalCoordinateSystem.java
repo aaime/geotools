@@ -25,7 +25,9 @@ import org.geotools.api.util.InternationalString;
 import org.geotools.temporal.object.DefaultTemporalCoordinate;
 import org.geotools.util.Utilities;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultTemporalCoordinateSystem extends DefaultTemporalReferenceSystem
         implements TemporalCoordinateSystem {
 
@@ -34,6 +36,7 @@ public class DefaultTemporalCoordinateSystem extends DefaultTemporalReferenceSys
      * UTC.
      */
     private Date origin;
+
     /**
      * The name of a single unit of measure used as the base interval for the scale. it shall be one
      * of those units of measure for time specified by ISO 31-1, or a multiple of one of those

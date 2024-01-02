@@ -47,7 +47,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class ColorStyleTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.ColorStyleType;

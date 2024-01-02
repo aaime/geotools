@@ -56,6 +56,7 @@ public class SimpleSchema extends SchemaImpl {
 
     // schema namespace
     public static final String NAMESPACE = "http://www.geotools.org/simple";
+
     //
     // Builtin Java Types
     //
@@ -69,6 +70,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** STRING to String.class */
     public static final AttributeType STRING =
             factory.createAttributeType(
@@ -79,6 +81,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** HEXBINRAY to byte[].class */
     public static final AttributeType HEXBINARY =
             factory.createAttributeType(
@@ -89,6 +92,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** QNAME to byte[].class */
     public static final AttributeType QNAME =
             factory.createAttributeType(
@@ -99,6 +103,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** QNAME to byte[].class */
     public static final AttributeType URI =
             factory.createAttributeType(
@@ -109,6 +114,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     //
     // Numerics
     //
@@ -127,6 +133,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** INTEGER to BigInteger */
     public static final AttributeType INTEGER =
             factory.createAttributeType(
@@ -137,6 +144,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** FLOAT to java Float.class */
     public static final AttributeType FLOAT =
             factory.createAttributeType(
@@ -147,6 +155,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** DOUBLE to Double.class */
     public static final AttributeType DOUBLE =
             factory.createAttributeType(
@@ -157,6 +166,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** LONG to Long.class */
     public static final AttributeType LONG =
             factory.createAttributeType(
@@ -167,6 +177,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** SHORT to Short.class */
     public static final AttributeType SHORT =
             factory.createAttributeType(
@@ -177,6 +188,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** BYTE to Byte.class */
     public static final AttributeType BYTE =
             factory.createAttributeType(
@@ -201,6 +213,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** TIME to java.sq1.Time.class */
     public static final AttributeType TIME =
             factory.createAttributeType(
@@ -211,6 +224,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /**
      * DATETIME to java.sql.Timestamp
      *
@@ -240,6 +254,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** POINT (extends GEOMETRY) binds to Point.class */
     public static final GeometryType POINT =
             factory.createGeometryType(
@@ -251,6 +266,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** LINESTRING (extends GEOMETRY) binds to LineString.class */
     public static final GeometryType LINESTRING =
             factory.createGeometryType(
@@ -262,6 +278,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     //    /** LINEARRING (extends GEOMETRY) binds to LinearRing.class */
     //    public static final GeometryType LINEARRING = factory.createGeometryType(
     //        new Name(NAMESPACE,"LinearRingPropertyType"), LinearRing.class, null, false,
@@ -278,6 +295,7 @@ public class SimpleSchema extends SchemaImpl {
                     Collections.emptyList(),
                     null,
                     null);
+
     /** MULTIGEOMETRY (extends GEOMETRY) binds to GeometryCollection.class */
     public static final GeometryType MULTIGEOMETRY =
             factory.createGeometryType(

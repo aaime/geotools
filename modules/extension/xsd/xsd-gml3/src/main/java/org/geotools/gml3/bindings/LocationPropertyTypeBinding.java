@@ -54,7 +54,9 @@ import org.locationtech.jts.geom.Geometry;
  * @generated
  */
 public class LocationPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.LocationPropertyType;

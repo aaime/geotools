@@ -117,6 +117,7 @@ public class AnsiDialectEpsgFactory extends AbstractEpsgFactory {
             map.put(ANSI[i], ANSI[++i]);
         }
     }
+
     /**
      * Constructs an authority factory using the specified connection.
      *
@@ -129,6 +130,7 @@ public class AnsiDialectEpsgFactory extends AbstractEpsgFactory {
             map.put(ANSI[i], ANSI[++i]);
         }
     }
+
     /**
      * Constructs an authority factory using the specified connection.
      *

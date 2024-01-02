@@ -43,7 +43,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class StripOffPositionTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.stripOffPositionType;

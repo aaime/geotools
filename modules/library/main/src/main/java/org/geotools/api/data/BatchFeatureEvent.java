@@ -67,6 +67,7 @@ public class BatchFeatureEvent extends FeatureEvent {
     public void setType(Type type) {
         this.type = type;
     }
+
     /**
      * Indicate a change being batched.
      *

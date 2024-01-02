@@ -83,7 +83,8 @@ public class ProjectiveTransformBuilder extends MathTransformBuilder {
      *     {@linkplain MappedPosition MappedPosition}
      */
     public ProjectiveTransformBuilder(List<MappedPosition> vectors)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         super.setMappedPositions(vectors);
     }

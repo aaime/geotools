@@ -43,7 +43,9 @@ public class ProcessUtil {
         return new NameImpl(split[0], split[1]);
     }
 
-    /** @return The loaded {@link FunctionFactory}, or null if it could not be loaded. */
+    /**
+     * @return The loaded {@link FunctionFactory}, or null if it could not be loaded.
+     */
     public static FunctionFactory loadProcessFunctionFactory() {
         Class<?> functionFactoryClass = null;
         try {

@@ -63,7 +63,9 @@ public class LinearRingTypeBinding extends AbstractComplexBinding {
         this.csFactory = csFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.LinearRingType;

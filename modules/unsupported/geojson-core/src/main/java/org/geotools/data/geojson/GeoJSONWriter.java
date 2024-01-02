@@ -136,7 +136,9 @@ public class GeoJSONWriter implements AutoCloseable {
         generator = factory.createGenerator(out);
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     private void initialise() throws IOException {
         if (!singleFeature) {
             generator.writeStartObject();
@@ -364,12 +366,16 @@ public class GeoJSONWriter implements AutoCloseable {
         }
     }
 
-    /** @return the encodeFeatureCollectionBounds */
+    /**
+     * @return the encodeFeatureCollectionBounds
+     */
     public boolean isEncodeFeatureBounds() {
         return encodeFeatureBounds;
     }
 
-    /** @param encodeFeatureCollectionBounds the encodeFeatureCollectionBounds to set */
+    /**
+     * @param encodeFeatureCollectionBounds the encodeFeatureCollectionBounds to set
+     */
     public void setEncodeFeatureBounds(boolean encodeFeatureCollectionBounds) {
         this.encodeFeatureBounds = encodeFeatureCollectionBounds;
     }
@@ -432,7 +438,9 @@ public class GeoJSONWriter implements AutoCloseable {
         encodeFeatureCollectionCRS = b;
     }
 
-    /** @return true if the feature collections CRS will be encoded in the output */
+    /**
+     * @return true if the feature collections CRS will be encoded in the output
+     */
     public boolean isEncodeFeatureCollectionCRS() {
         return encodeFeatureCollectionCRS;
     }

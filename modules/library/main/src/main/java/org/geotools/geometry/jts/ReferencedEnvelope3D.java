@@ -315,6 +315,7 @@ public class ReferencedEnvelope3D extends ReferencedEnvelope implements Bounding
         double z = pt.getDimension() >= 3 ? pt.getOrdinate(2) : Double.NaN;
         expandToInclude(x, y, z);
     }
+
     /**
      * Translates this envelope by given amounts in the X and Y direction.
      *
@@ -376,7 +377,9 @@ public class ReferencedEnvelope3D extends ReferencedEnvelope implements Bounding
         return intersects(p.x, p.y, p.getZ());
     }
 
-    /** @deprecated Use #intersects instead. */
+    /**
+     * @deprecated Use #intersects instead.
+     */
     @Override
     @SuppressWarnings("deprecation")
     public boolean overlaps(Coordinate p) {

@@ -28,7 +28,9 @@ import org.geotools.api.referencing.operation.MathTransform;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Marco Peters */
+/**
+ * @author Marco Peters
+ */
 public class MollweideProviderTest {
 
     private String SEMI_MAJOR = Mollweide.MollweideProvider.SEMI_MAJOR.getName().getCode();

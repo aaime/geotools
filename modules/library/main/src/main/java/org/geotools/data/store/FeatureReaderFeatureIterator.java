@@ -82,10 +82,12 @@ final class FeatureReaderFeatureIterator implements SimpleFeatureIterator {
             throw problem;
         }
     }
+
     /** If this is a problem, a different iterator can be made based on FeatureWriter */
     public void remove() {
         throw new UnsupportedOperationException("Modification of contents is not supported");
     }
+
     /**
      * This method only needs package visability as only AbstractFeatureCollection is trusted enough
      * to call it.

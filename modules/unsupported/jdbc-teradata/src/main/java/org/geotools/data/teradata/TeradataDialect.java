@@ -630,6 +630,7 @@ public class TeradataDialect extends PreparedStatementSQLDialect {
 
         return null;
     }
+
     /** Looks up tessellation info for the schema/table/geometry. */
     TessellationInfo lookupTessellationInfo(
             Connection cx, String schemaName, String tableName, String columnName)

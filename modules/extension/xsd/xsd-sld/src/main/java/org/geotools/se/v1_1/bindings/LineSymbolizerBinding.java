@@ -51,7 +51,9 @@ public class LineSymbolizerBinding extends SLDLineSymbolizerBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.LineSymbolizer;

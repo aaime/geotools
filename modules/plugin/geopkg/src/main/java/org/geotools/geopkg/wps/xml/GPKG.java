@@ -57,35 +57,65 @@ public final class GPKG extends XSD {
         return getClass().getResource("gpkg.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/gpkg";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName coveragetype =
             new QName("http://www.opengis.net/gpkg", "coveragetype");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName geopkgtype = new QName("http://www.opengis.net/gpkg", "geopkgtype");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName gridsettype = new QName("http://www.opengis.net/gpkg", "gridsettype");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName gridtype = new QName("http://www.opengis.net/gpkg", "gridtype");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName layertype = new QName("http://www.opengis.net/gpkg", "layertype");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName geopkgtype_features =
             new QName("http://www.opengis.net/gpkg", "geopkgtype_features");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName geopkgtype_tiles =
             new QName("http://www.opengis.net/gpkg", "geopkgtype_tiles");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName gridsettype_grids =
             new QName("http://www.opengis.net/gpkg", "gridsettype_grids");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName bboxtype = new QName("http://www.opengis.net/gpkg", "bboxtype");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName geopackage = new QName("http://www.opengis.net/gpkg", "geopackage");
 
     public static final QName overview = new QName("http://www.opengis.net/gpkg", "overview");

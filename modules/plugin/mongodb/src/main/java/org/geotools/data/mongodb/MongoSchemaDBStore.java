@@ -30,7 +30,9 @@ import java.util.List;
 import org.geotools.api.feature.simple.SimpleFeatureType;
 import org.geotools.api.feature.type.Name;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 @SuppressWarnings("deprecation") // DB was replaced by MongoDatabase but API is not the same
 public class MongoSchemaDBStore implements MongoSchemaStore {
 

@@ -90,7 +90,9 @@ public class EnvelopeTypeBinding extends AbstractComplexBinding {
         this.srsSyntax = srsSyntax;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.EnvelopeType;

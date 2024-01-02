@@ -1190,6 +1190,7 @@ public final class ImageUtilities {
         }
         return values;
     }
+
     /**
      * Allow to dispose this image, as well as the related image sources, readers, stream, ROI.
      *

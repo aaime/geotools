@@ -30,10 +30,13 @@ public class DefaultIntervalLength extends DefaultDuration implements IntervalLe
 
     /** This is the name of the unit of measure used to express the length of the interval. */
     private Unit unit;
+
     /** This is the base of the multiplier of the unit. */
     private int radix;
+
     /** This is the exponent of the base. */
     private int factor;
+
     /**
      * This is the length of the time interval as an integer multiple of one radix(exp -factor) of
      * the specified unit.

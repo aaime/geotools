@@ -109,6 +109,7 @@ public class IsSupportedFilterVisitor implements FilterVisitor, ExpressionVisito
     public Object visit(ExcludeFilter filter, Object extraData) {
         return false;
     }
+
     /** INCLUDE and EXCLUDE are never supported */
     @Override
     public Object visit(IncludeFilter filter, Object extraData) {

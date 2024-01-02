@@ -42,7 +42,9 @@ public class FeatureTypeType_NoSRSBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.FeatureTypeType_NoSRS;

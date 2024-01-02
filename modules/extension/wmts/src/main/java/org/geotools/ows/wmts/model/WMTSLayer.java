@@ -50,17 +50,23 @@ public class WMTSLayer extends Layer {
 
     private StyleImpl defaultStyle;
 
-    /** @param title */
+    /**
+     * @param title
+     */
     public WMTSLayer(String title) {
         super(title);
     }
 
-    /** @return the limits */
+    /**
+     * @return the limits
+     */
     public Map<String, TileMatrixSetLink> getTileMatrixLinks() {
         return limits;
     }
 
-    /** @param limitList */
+    /**
+     * @param limitList
+     */
     public void addTileMatrixLinks(List<TileMatrixSetLink> limitList) {
 
         for (TileMatrixSetLink limit : limitList) {
@@ -72,22 +78,30 @@ public class WMTSLayer extends Layer {
         limits.put(link.getIdentifier(), link);
     }
 
-    /** @return the formats */
+    /**
+     * @return the formats
+     */
     public List<String> getFormats() {
         return formats;
     }
 
-    /** @param formats the formats to set */
+    /**
+     * @param formats the formats to set
+     */
     public void setFormats(List<String> formats) {
         this.formats = formats;
     }
 
-    /** @return the infoFormats */
+    /**
+     * @return the infoFormats
+     */
     public List<String> getInfoFormats() {
         return infoFormats;
     }
 
-    /** @param infoFormats the infoFormats to set */
+    /**
+     * @param infoFormats the infoFormats to set
+     */
     public void setInfoFormats(List<String> infoFormats) {
         this.infoFormats = infoFormats;
     }
@@ -109,22 +123,30 @@ public class WMTSLayer extends Layer {
         srs.add(CRS.toSRS(crs));
     }
 
-    /** @return the preferredCRS */
+    /**
+     * @return the preferredCRS
+     */
     public CoordinateReferenceSystem getPreferredCRS() {
         return preferredCRS;
     }
 
-    /** @param preferredCRS the preferredCRS to set */
+    /**
+     * @param preferredCRS the preferredCRS to set
+     */
     public void setPreferredCRS(CoordinateReferenceSystem preferredCRS) {
         this.preferredCRS = preferredCRS;
     }
 
-    /** @param style */
+    /**
+     * @param style
+     */
     public void setDefaultStyle(StyleImpl style) {
         defaultStyle = style;
     }
 
-    /** @return the defaultStyle */
+    /**
+     * @return the defaultStyle
+     */
     public StyleImpl getDefaultStyle() {
         return defaultStyle;
     }

@@ -55,7 +55,9 @@ import org.locationtech.jts.geom.MultiLineString;
  * @generated
  */
 public class GMLMultiLineStringPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiLineStringPropertyType;

@@ -52,7 +52,9 @@ import org.geotools.xsd.Node;
  */
 public class PolygonTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PolygonType;

@@ -36,23 +36,35 @@ import org.xml.sax.SAXException;
  * @author Justin Deoliveira,Refractions Research Inc.,jdeolive@refractions.net
  */
 public interface Handler {
-    /** @return The entity of the schema that corresponds to the handler. */
+    /**
+     * @return The entity of the schema that corresponds to the handler.
+     */
     XSDSchemaContent getSchemaContent();
 
-    /** @return The instance of the schema content that is currently being handled. */
+    /**
+     * @return The instance of the schema content that is currently being handled.
+     */
     InstanceComponent getComponent();
 
-    /** @return The parse tree for the handler. */
+    /**
+     * @return The parse tree for the handler.
+     */
     Node getParseNode();
 
-    /** @return A value which corresponds to an instance of the entity of the handler. */
+    /**
+     * @return A value which corresponds to an instance of the entity of the handler.
+     */
 
     // Object getValue();
 
-    /** @return The context or container in which the instance is to be parsed in. */
+    /**
+     * @return The context or container in which the instance is to be parsed in.
+     */
     MutablePicoContainer getContext();
 
-    /** @param context The context in which the the instance is to be parsed in. */
+    /**
+     * @param context The context in which the the instance is to be parsed in.
+     */
     void setContext(MutablePicoContainer context);
 
     /**
@@ -77,7 +89,9 @@ public interface Handler {
      */
     Handler createChildHandler(QName qName);
 
-    /** @return The current list of child handlers executing. */
+    /**
+     * @return The current list of child handlers executing.
+     */
 
     // List getChildHandlers();
 

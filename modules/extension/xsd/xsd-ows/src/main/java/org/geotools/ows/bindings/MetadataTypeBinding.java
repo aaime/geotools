@@ -59,7 +59,9 @@ public class MetadataTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.MetadataType;

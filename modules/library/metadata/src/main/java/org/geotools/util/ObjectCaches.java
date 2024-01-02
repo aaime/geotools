@@ -180,6 +180,7 @@ public final class ObjectCaches {
             }
         };
     }
+
     /** Utility method used to produce cache based on provide Hint */
     public static <K, V> ObjectCache<K, V> create(Hints hints) throws FactoryRegistryException {
         if (hints == null) hints = GeoTools.getDefaultHints();
@@ -187,6 +188,7 @@ public final class ObjectCaches {
         int limit = Hints.CACHE_LIMIT.toValue(hints);
         return create(policy, limit);
     }
+
     /**
      * Utility method used to produce an ObjectCache.
      *

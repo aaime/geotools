@@ -22,7 +22,9 @@ import java.util.List;
 import org.geotools.api.feature.simple.SimpleFeatureType;
 import org.geotools.api.feature.type.Name;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public interface MongoSchemaStore {
 
     void storeSchema(SimpleFeatureType schema) throws IOException;

@@ -63,7 +63,9 @@ public class GetCapabilitiesRequestTest {
     }
 
     protected class Request extends AbstractGetCapabilitiesRequest {
-        /** @param serverURL */
+        /**
+         * @param serverURL
+         */
         public Request(URL serverURL) {
             super(serverURL);
 

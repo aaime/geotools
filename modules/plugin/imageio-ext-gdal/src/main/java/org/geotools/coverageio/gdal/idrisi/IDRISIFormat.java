@@ -68,7 +68,9 @@ public final class IDRISIFormat extends BaseGDALGridFormat implements Format {
         readParameters = getDefaultParameterGroup(info);
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public IDRISIReader getReader(Object source, Hints hints) {
         try {

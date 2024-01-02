@@ -45,7 +45,9 @@ import org.locationtech.jts.geom.LinearRing;
  * @generated
  */
 public class LinearRingPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.LinearRingPropertyType;

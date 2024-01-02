@@ -28,7 +28,9 @@ import org.eclipse.xsd.XSDSimpleTypeDefinition;
 import org.eclipse.xsd.XSDTypeDefinition;
 
 public interface SchemaIndex {
-    /** @return The schema itself. */
+    /**
+     * @return The schema itself.
+     */
     XSDSchema[] getSchemas();
 
     /**

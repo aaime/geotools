@@ -60,7 +60,9 @@ public class CoordinateOperationFactoryUsingWKTTest {
     private static final double[] SRC_TEST_POINT = {3.084896111, 39.592654167};
     private static final double[] DST_TEST_POINT = {3.0844689951999427, 39.594235744481225};
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {
         ReferencingFactoryFinder.addAuthorityFactory(
@@ -79,7 +81,9 @@ public class CoordinateOperationFactoryUsingWKTTest {
         properties.load(this.getClass().getResourceAsStream(DEFINITIONS_FILE_NAME));
     }
 
-    /** @throws Exception */
+    /**
+     * @throws Exception
+     */
     @Test
     public void testExtraDirectoryHint() throws Exception {
         Hints hints =

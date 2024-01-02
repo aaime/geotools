@@ -392,6 +392,7 @@ public class StyleGenerator {
 
         return rule;
     }
+
     /** Used to update an existing style based on the provided input. */
     public static void modifyFTS(FeatureTypeStyle fts, int ruleIndex, String styleExpression)
             throws IllegalFilterException {

@@ -103,7 +103,9 @@ public final class JP2KFormat extends AbstractGridFormat implements Format {
                                 }));
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public AbstractGridCoverage2DReader getReader(Object source, Hints hints) {
         try {
@@ -115,7 +117,9 @@ public final class JP2KFormat extends AbstractGridFormat implements Format {
         }
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object)
+     */
     @Override
     public AbstractGridCoverage2DReader getReader(Object source) {
         return getReader(source, null);
@@ -155,7 +159,9 @@ public final class JP2KFormat extends AbstractGridFormat implements Format {
                 "This plugin does not support writing at this time.");
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(java.lang.Object input) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(java.lang.Object input)
+     */
     @Override
     public boolean accepts(Object input, Hints hints) {
         // Directories aren't accepted

@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCTestSetup;
 import org.geotools.jdbc.JDBCTransactionOnlineTest;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaTransactionOnlineTest extends JDBCTransactionOnlineTest {
 
     @Override

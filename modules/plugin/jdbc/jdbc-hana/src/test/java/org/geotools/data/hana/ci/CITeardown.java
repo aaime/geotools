@@ -25,7 +25,9 @@ import java.util.Properties;
 import java.util.logging.Logger;
 import org.geotools.util.logging.Logging;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public final class CITeardown extends CIBase {
 
     private static Logger LOGGER = Logging.getLogger(CITeardown.class);

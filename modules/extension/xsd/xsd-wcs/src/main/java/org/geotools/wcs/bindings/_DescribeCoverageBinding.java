@@ -50,7 +50,9 @@ import org.geotools.xsd.Node;
  */
 public class _DescribeCoverageBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS._DescribeCoverage;

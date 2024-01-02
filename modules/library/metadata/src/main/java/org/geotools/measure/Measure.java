@@ -52,26 +52,31 @@ public final class Measure extends Number {
     public double doubleValue() {
         return value;
     }
+
     /** Returns the scalar value. */
     @Override
     public float floatValue() {
         return (float) value;
     }
+
     /** Returns the scalar value. */
     @Override
     public long longValue() {
         return (long) value;
     }
+
     /** Returns the scalar value. */
     @Override
     public int intValue() {
         return (int) value;
     }
+
     /** Returns the scalar value. */
     @Override
     public short shortValue() {
         return (short) value;
     }
+
     /** Returns the scalar value. */
     @Override
     public byte byteValue() {

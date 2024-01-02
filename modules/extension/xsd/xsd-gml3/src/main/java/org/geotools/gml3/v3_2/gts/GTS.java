@@ -64,19 +64,28 @@ public final class GTS extends GML.DelegatingXSD {
         return getClass().getResource("gts.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.isotc211.org/2005/gts";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TM_PeriodDuration_PropertyType =
             new QName("http://www.isotc211.org/2005/gts", "TM_PeriodDuration_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TM_Primitive_PropertyType =
             new QName("http://www.isotc211.org/2005/gts", "TM_Primitive_PropertyType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TM_PeriodDuration =
             new QName("http://www.isotc211.org/2005/gts", "TM_PeriodDuration");
 

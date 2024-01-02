@@ -39,6 +39,7 @@ import org.geotools.util.logging.Logging;
 public class GeoJSONFeatureWriter
         implements FeatureWriter<SimpleFeatureType, SimpleFeature>, AutoCloseable {
     Logger LOGGER = Logging.getLogger("org.geotools.data.geojson");
+
     /** State of current transaction */
     private ContentState state;
 
@@ -166,7 +167,9 @@ public class GeoJSONFeatureWriter
         }
     }
 
-    /** @param writeBounds */
+    /**
+     * @param writeBounds
+     */
     public void setWriteBounds(boolean writeBounds) {
         this.writeBounds = writeBounds;
     }

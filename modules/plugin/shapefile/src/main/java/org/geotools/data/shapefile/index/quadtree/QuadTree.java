@@ -174,7 +174,9 @@ public class QuadTree implements Closeable {
         node.addShapeId(recno);
     }
 
-    /** @return A List of Integer */
+    /**
+     * @return A List of Integer
+     */
     public CloseableIterator<Data> search(Envelope bounds) throws StoreException {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.log(Level.FINEST, "Querying " + bounds);
@@ -269,32 +271,44 @@ public class QuadTree implements Closeable {
         return ret;
     }
 
-    /** @return Returns the maxDepth. */
+    /**
+     * @return Returns the maxDepth.
+     */
     public int getMaxDepth() {
         return this.maxDepth;
     }
 
-    /** @param maxDepth The maxDepth to set. */
+    /**
+     * @param maxDepth The maxDepth to set.
+     */
     public void setMaxDepth(int maxDepth) {
         this.maxDepth = maxDepth;
     }
 
-    /** @return Returns the numShapes. */
+    /**
+     * @return Returns the numShapes.
+     */
     public int getNumShapes() {
         return this.numShapes;
     }
 
-    /** @param numShapes The numShapes to set. */
+    /**
+     * @param numShapes The numShapes to set.
+     */
     public void setNumShapes(int numShapes) {
         this.numShapes = numShapes;
     }
 
-    /** @return Returns the root. */
+    /**
+     * @return Returns the root.
+     */
     public Node getRoot() {
         return this.root;
     }
 
-    /** @param root The root to set. */
+    /**
+     * @param root The root to set.
+     */
     public void setRoot(Node root) {
         this.root = root;
     }

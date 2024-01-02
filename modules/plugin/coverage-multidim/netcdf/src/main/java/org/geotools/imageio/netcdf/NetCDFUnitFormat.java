@@ -208,5 +208,6 @@ public class NetCDFUnitFormat {
     }
 
     /** Utility class, no instantiation */
-    private NetCDFUnitFormat() {};
+    private NetCDFUnitFormat() {}
+    ;
 }

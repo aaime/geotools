@@ -78,7 +78,8 @@ public class ForceCoordinateFeatureResultsTest {
                     public void accepts(FeatureVisitor visitor, ProgressListener progress)
                             throws java.io.IOException {
                         lastVisitor = visitor;
-                    };
+                    }
+                    ;
 
                     @Override
                     public SimpleFeatureCollection subCollection(Filter filter) {

@@ -46,7 +46,9 @@ import org.geotools.xsd.ows.OWS;
 public class MimeTypeBinding extends AbstractSimpleBinding {
     public MimeTypeBinding(Ows10Factory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.MimeType;

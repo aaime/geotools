@@ -156,6 +156,7 @@ public class ECQLINPredicateTest {
         Assert.assertFalse(
                 "one or more expressions in Or filter was expected", filterList.isEmpty());
     }
+
     /**
      * This is successful if each PropertyIsEqual filter has on the left hand the same property
      * name.

@@ -8,7 +8,9 @@ import static org.junit.Assert.assertTrue;
 import org.geotools.util.SimpleInternationalString;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 public class TestDefaultProgressListener {
 
     @Test

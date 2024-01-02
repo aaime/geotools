@@ -51,7 +51,10 @@ public class SubFeatureCollection extends BaseSimpleFeatureCollection {
     public SubFeatureCollection(SimpleFeatureCollection collection) {
         this(collection, Filter.INCLUDE);
     }
-    /** @param collection Collection or AbstractFeatureCollection */
+
+    /**
+     * @param collection Collection or AbstractFeatureCollection
+     */
     public SubFeatureCollection(SimpleFeatureCollection collection, Filter subfilter) {
         super(collection.getSchema());
 
@@ -93,6 +96,7 @@ public class SubFeatureCollection extends BaseSimpleFeatureCollection {
         }
         return count;
     }
+
     /**
      * Generate filter to use for content, makes use of {@link #createFilter()} if needed.
      *

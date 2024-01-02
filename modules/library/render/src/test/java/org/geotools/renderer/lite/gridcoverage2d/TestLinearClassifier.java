@@ -46,7 +46,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public class TestLinearClassifier extends Assert {
 
     @Before
@@ -557,6 +559,7 @@ public class TestLinearClassifier extends Assert {
             finalImage.dispose();
         }
     }
+
     /**
      * Building an image based on SWAN data.
      *

@@ -31,6 +31,7 @@ public class DefaultPeriod extends DefaultTemporalGeometricPrimitive implements 
 
     /** This is the TM_Instant at which this Period starts. */
     private Instant begining;
+
     /** This is the TM_Instant at which this Period ends. */
     private Instant ending;
 

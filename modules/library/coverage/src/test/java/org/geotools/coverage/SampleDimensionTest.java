@@ -44,6 +44,7 @@ public final class SampleDimensionTest {
             return new SimpleInternationalString("overridden");
         }
     }
+
     /** The categories making the sample dimension to test. */
     private static final String[] CATEGORIES = {"No data", "Clouds", "Lands"};
 

@@ -215,7 +215,9 @@ public class VariableAdapter extends CoverageSourceDescriptor {
 
     public class UnidataTemporalDomain extends TemporalDomain {
 
-        /** @param adaptee */
+        /**
+         * @param adaptee
+         */
         UnidataTemporalDomain(CoordinateVariable<?> adaptee) {
             if (!Date.class.isAssignableFrom(adaptee.getType())) {
                 throw new IllegalArgumentException(
@@ -269,7 +271,9 @@ public class VariableAdapter extends CoverageSourceDescriptor {
 
         final CoordinateVariable<? extends Number> adaptee;
 
-        /** @param cv */
+        /**
+         * @param cv
+         */
         UnidataVerticalDomain(CoordinateVariable<?> cv) {
             if (!Number.class.isAssignableFrom(cv.getType())) {
                 throw new IllegalArgumentException(
@@ -379,7 +383,9 @@ public class VariableAdapter extends CoverageSourceDescriptor {
 
         final CoordinateVariable<?> adaptee;
 
-        /** @param adaptee TODO missing support for Range TODO missing support for String domains */
+        /**
+         * @param adaptee TODO missing support for Range TODO missing support for String domains
+         */
         UnidataAdditionalDomain(CoordinateVariable<?> adaptee) throws IOException {
             this.adaptee = adaptee;
             name = adaptee.getName();
@@ -488,7 +494,9 @@ public class VariableAdapter extends CoverageSourceDescriptor {
         return variableDS.getRank() - ignoredDimensions.size();
     }
 
-    /** @throws Exception */
+    /**
+     * @throws Exception
+     */
     private void initSlicesInfo() throws Exception {
         int[] shape = variableDS.getShape();
         numberOfSlices = 1;
@@ -499,7 +507,9 @@ public class VariableAdapter extends CoverageSourceDescriptor {
         }
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     private void initSpatialElements() throws Exception {
 
         final List<DimensionDescriptor> dimensions = new ArrayList<>();
@@ -1091,12 +1101,16 @@ public class VariableAdapter extends CoverageSourceDescriptor {
         return (UnidataVerticalDomain) super.getVerticalDomain();
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     public int getWidth() {
         return width;
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     public int getHeight() {
         return height;
     }
@@ -1162,12 +1176,16 @@ public class VariableAdapter extends CoverageSourceDescriptor {
         return resultIndex;
     }
 
-    /** @return the numberOfSlices */
+    /**
+     * @return the numberOfSlices
+     */
     public int getNumberOfSlices() {
         return QUICK_SCAN ? 1 : numberOfSlices;
     }
 
-    /** @return the shape */
+    /**
+     * @return the shape
+     */
     public int[] getShape() {
         return variableDS.getShape();
     }

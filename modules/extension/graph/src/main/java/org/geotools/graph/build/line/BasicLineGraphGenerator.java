@@ -190,19 +190,25 @@ public class BasicLineGraphGenerator implements LineGraphGenerator {
         return (e);
     }
 
-    /** @see GraphGenerator#setGraphBuilder(GraphBuilder) */
+    /**
+     * @see GraphGenerator#setGraphBuilder(GraphBuilder)
+     */
     @Override
     public void setGraphBuilder(GraphBuilder builder) {
         m_builder = builder;
     }
 
-    /** @see GraphGenerator#getGraphBuilder() */
+    /**
+     * @see GraphGenerator#getGraphBuilder()
+     */
     @Override
     public GraphBuilder getGraphBuilder() {
         return (m_builder);
     }
 
-    /** @see GraphGenerator#getGraph() */
+    /**
+     * @see GraphGenerator#getGraph()
+     */
     @Override
     public Graph getGraph() {
         return (getGraphBuilder().getGraph());

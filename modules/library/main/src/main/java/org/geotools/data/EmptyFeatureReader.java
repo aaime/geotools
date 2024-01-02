@@ -38,7 +38,9 @@ public class EmptyFeatureReader<T extends FeatureType, F extends Feature>
         this.featureType = featureType;
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public T getFeatureType() {
         return featureType;

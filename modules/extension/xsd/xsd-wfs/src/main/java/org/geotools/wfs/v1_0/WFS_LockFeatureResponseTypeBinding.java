@@ -90,7 +90,9 @@ public class WFS_LockFeatureResponseTypeBinding extends AbstractComplexEMFBindin
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.WFS_LockFeatureResponseType;

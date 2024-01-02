@@ -64,7 +64,9 @@ public class FilteringFeatureReader<T extends FeatureType, F extends Feature>
         next = null;
     }
 
-    /** @return THe delegate reader. */
+    /**
+     * @return THe delegate reader.
+     */
     @Override
     public FeatureReader<T, F> getDelegate() {
         return featureReader;

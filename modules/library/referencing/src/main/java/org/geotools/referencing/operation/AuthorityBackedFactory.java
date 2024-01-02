@@ -493,6 +493,7 @@ public class AuthorityBackedFactory extends DefaultCoordinateOperationFactory
     private static void log(final Exception exception, final AuthorityFactory factory) {
         log(exception, factory, Level.WARNING);
     }
+
     /** Logs a warning when an object can't be created from the specified factory. */
     private static void log(
             final Exception exception, final AuthorityFactory factory, Level level) {

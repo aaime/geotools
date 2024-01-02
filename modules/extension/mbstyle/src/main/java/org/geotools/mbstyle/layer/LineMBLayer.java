@@ -516,12 +516,16 @@ public class LineMBLayer extends MBLayer {
         return parse.string(paint, "line-pattern", null);
     }
 
-    /** @return True if the layer has a line-pattern explicitly provided. */
+    /**
+     * @return True if the layer has a line-pattern explicitly provided.
+     */
     public boolean hasLinePattern() {
         return parse.isDefined(paint, "line-pattern");
     }
 
-    /** @return True if the layer has a line-gap-width explicitly provided. */
+    /**
+     * @return True if the layer has a line-gap-width explicitly provided.
+     */
     public boolean hasLineGapWidth() {
         return parse.isDefined(paint, "line-gap-width");
     }

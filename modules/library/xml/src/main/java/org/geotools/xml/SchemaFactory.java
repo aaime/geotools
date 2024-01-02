@@ -214,6 +214,7 @@ public class SchemaFactory {
             return null;
         }
     }
+
     /**
      * Returns an instance of the targetNamespace if it can be found ... null otherwise.
      * targetNamespaces which can be found are either hard-coded namespaces
@@ -703,79 +704,105 @@ public class SchemaFactory {
             }
         }
 
-        /** @see schema.Schema#getAttributeGroups() */
+        /**
+         * @see schema.Schema#getAttributeGroups()
+         */
         @Override
         public AttributeGroup[] getAttributeGroups() {
             return attributeGroups;
         }
 
-        /** @see schema.Schema#getAttributeDescriptors() */
+        /**
+         * @see schema.Schema#getAttributeDescriptors()
+         */
         @Override
         public Attribute[] getAttributes() {
             return attributes;
         }
 
-        /** @see schema.Schema#getBlockDefault() */
+        /**
+         * @see schema.Schema#getBlockDefault()
+         */
         @Override
         public int getBlockDefault() {
             return block;
         }
 
-        /** @see schema.Schema#getComplexTypes() */
+        /**
+         * @see schema.Schema#getComplexTypes()
+         */
         @Override
         public ComplexType[] getComplexTypes() {
             return complexTypes;
         }
 
-        /** @see schema.Schema#getElements() */
+        /**
+         * @see schema.Schema#getElements()
+         */
         @Override
         public Element[] getElements() {
             return elements;
         }
 
-        /** @see schema.Schema#getFinalDefault() */
+        /**
+         * @see schema.Schema#getFinalDefault()
+         */
         @Override
         public int getFinalDefault() {
             return finaL;
         }
 
-        /** @see schema.Schema#getGroups() */
+        /**
+         * @see schema.Schema#getGroups()
+         */
         @Override
         public Group[] getGroups() {
             return groups;
         }
 
-        /** @see schema.Schema#getId() */
+        /**
+         * @see schema.Schema#getId()
+         */
         @Override
         public String getId() {
             return id;
         }
 
-        /** @see schema.Schema#getImports() */
+        /**
+         * @see schema.Schema#getImports()
+         */
         @Override
         public Schema[] getImports() {
             return imports;
         }
 
-        /** @see schema.Schema#getSimpleTypes() */
+        /**
+         * @see schema.Schema#getSimpleTypes()
+         */
         @Override
         public SimpleType[] getSimpleTypes() {
             return simpleTypes;
         }
 
-        /** @see schema.Schema#getTargetNamespace() */
+        /**
+         * @see schema.Schema#getTargetNamespace()
+         */
         @Override
         public URI getTargetNamespace() {
             return targetNamespace;
         }
 
-        /** @see schema.Schema#getVersion() */
+        /**
+         * @see schema.Schema#getVersion()
+         */
         @Override
         public String getVersion() {
             return version;
         }
 
-        /** @see schema.Schema#includesURI(java.net.URI) */
+        /**
+         * @see schema.Schema#includesURI(java.net.URI)
+         */
         @Override
         public boolean includesURI(URI uri1) {
             if (uri1 == null || this.uri == null) {
@@ -785,19 +812,25 @@ public class SchemaFactory {
             return this.uri.equals(uri1);
         }
 
-        /** @see schema.Schema#isAttributeFormDefault() */
+        /**
+         * @see schema.Schema#isAttributeFormDefault()
+         */
         @Override
         public boolean isAttributeFormDefault() {
             return aForm;
         }
 
-        /** @see schema.Schema#isElementFormDefault() */
+        /**
+         * @see schema.Schema#isElementFormDefault()
+         */
         @Override
         public boolean isElementFormDefault() {
             return eForm;
         }
 
-        /** @see schema.Schema#getURIs() */
+        /**
+         * @see schema.Schema#getURIs()
+         */
         @Override
         public URI getURI() {
             return uri;

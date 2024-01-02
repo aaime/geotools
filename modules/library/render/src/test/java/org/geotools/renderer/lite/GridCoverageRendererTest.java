@@ -143,7 +143,9 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.locationtech.jts.geom.Envelope;
 
-/** @author Simone Giannecchini */
+/**
+ * @author Simone Giannecchini
+ */
 public class GridCoverageRendererTest {
 
     @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -1592,7 +1594,9 @@ public class GridCoverageRendererTest {
     }
 
     private void applyAndAssertContrastEnhancement(GridCoverage2DReader reader)
-            throws TransformException, NoninvertibleTransformException, FactoryException,
+            throws TransformException,
+                    NoninvertibleTransformException,
+                    FactoryException,
                     IOException {
         ReferencedEnvelope mapExtent =
                 new ReferencedEnvelope(0, 90, 0, 90, DefaultGeographicCRS.WGS84);
@@ -2588,7 +2592,9 @@ public class GridCoverageRendererTest {
     }
 
     private void testImage(GeoTiffReader reader, ReferencedEnvelope vaiEnvelope, String fileName)
-            throws TransformException, NoninvertibleTransformException, FactoryException,
+            throws TransformException,
+                    NoninvertibleTransformException,
+                    FactoryException,
                     IOException {
         ReferencedEnvelope mapExtent = vaiEnvelope;
         Rectangle screenSize =

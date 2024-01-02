@@ -57,7 +57,9 @@ import org.locationtech.jts.geom.Envelope;
  * @generated
  */
 public class GMLBoxTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.BoxType;

@@ -43,8 +43,10 @@ import java.util.Base64;
 public class Base64Binary {
     /** Thread safe Base64 Decoder */
     static final Base64.Decoder DECODER = Base64.getDecoder();
+
     /** Thread safe Base64 Encoder */
     static final Base64.Encoder ENCODER = Base64.getEncoder();
+
     /** Creates a clone of the byte array <code>pValue</code>. */
     public static byte[] getClone(byte[] pValue) {
         byte[] result = new byte[pValue.length];

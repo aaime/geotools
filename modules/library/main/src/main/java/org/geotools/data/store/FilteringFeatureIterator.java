@@ -30,8 +30,10 @@ public class FilteringFeatureIterator<F extends Feature> implements FeatureItera
 
     /** delegate iterator */
     protected FeatureIterator<F> delegate;
+
     /** The Filter */
     protected Filter filter;
+
     /** Next feature */
     protected F next;
 

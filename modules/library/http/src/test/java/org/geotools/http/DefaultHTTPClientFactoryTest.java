@@ -32,7 +32,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class DefaultHTTPClientFactoryTest {
 
     private URL url;

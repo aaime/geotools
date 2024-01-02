@@ -48,7 +48,9 @@ public class OGCDisjointBinding extends AbstractComplexBinding {
         this.geometryFactory = geometryFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Disjoint;

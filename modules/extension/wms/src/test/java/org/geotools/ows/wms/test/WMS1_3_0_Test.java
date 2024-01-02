@@ -41,7 +41,9 @@ import org.geotools.xml.handlers.DocumentHandler;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author rgould */
+/**
+ * @author rgould
+ */
 public class WMS1_3_0_Test {
 
     protected static final Logger LOGGER = Logging.getLogger(WMS1_3_0_Test.class);

@@ -34,6 +34,7 @@ public class DefaultDateAndTime extends DefaultTemporalPosition implements DateA
 
     /** This is the name of the calendar era to which the date is referenced. */
     private InternationalString calendarEraName;
+
     /**
      * This is a sequence of positive integers in which the first integeridentifies a specific
      * instance of the unit used at the highest level of the calendar hierarchy, the second integer
@@ -42,6 +43,7 @@ public class DefaultDateAndTime extends DefaultTemporalPosition implements DateA
      * date that is composed of values for year, month and day.
      */
     private int[] calendarDate;
+
     /** This is a sequence of positive numbers with a structure similar to a CalendarDate. */
     private Number[] clockTime;
 

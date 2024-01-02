@@ -41,6 +41,7 @@ public final class GranuleTest extends BaseJP2K {
 
     private static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(GranuleTest.class);
+
     /** Creates a new instance of GranuleTest */
     public GranuleTest() {}
 

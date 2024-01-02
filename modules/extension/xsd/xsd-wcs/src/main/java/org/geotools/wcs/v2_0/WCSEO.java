@@ -56,16 +56,24 @@ public final class WCSEO extends XSD {
         return getClass().getResource("wcseo/v1_0/wcsEODescribeEOCoverageSet.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/wcseo/1.0";
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DescribeEOCoverageSetType =
             new QName(NAMESPACE, "DescribeEOCoverageSetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Sections = new QName(NAMESPACE, "Sections");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Section = new QName(NAMESPACE, "Section");
 }

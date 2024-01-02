@@ -52,7 +52,9 @@ import org.locationtech.jts.geom.Point;
  * @generated
  */
 public class GMLPointMemberTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PointMemberType;

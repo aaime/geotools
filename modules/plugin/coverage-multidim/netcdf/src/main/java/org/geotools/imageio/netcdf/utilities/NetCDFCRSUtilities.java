@@ -117,6 +117,7 @@ public class NetCDFCRSUtilities {
     private static final String[] SECONDS = {"second", "sec", "seconds since"};
 
     public static final Set<String> VERTICAL_AXIS_NAMES = new HashSet<>();
+
     /** The mapping between UCAR axis type and ISO axis directions. */
     private static final Map<AxisType, String> DIRECTIONS = new HashMap<>(16);
 
@@ -447,6 +448,7 @@ public class NetCDFCRSUtilities {
         }
         WGS84 = internalWGS84;
     }
+
     /**
      * Build a proper {@link CoordinateSystemAxis} given the set composed of axisName, axisDirection
      * and axis unit of measure.

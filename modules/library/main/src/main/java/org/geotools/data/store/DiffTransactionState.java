@@ -208,7 +208,9 @@ public class DiffTransactionState implements Transaction.State {
     }
 
     @Override
-    /** @see Transaction.State#rollback() */
+    /**
+     * @see Transaction.State#rollback()
+     */
     public synchronized void rollback() throws IOException {
         diff.clear(); // rollback differences
         state.fireBatchFeatureEvent(false);
@@ -216,7 +218,9 @@ public class DiffTransactionState implements Transaction.State {
 
     @Override
 
-    /** @see Transaction.State#addAuthorization(java.lang.String) */
+    /**
+     * @see Transaction.State#addAuthorization(java.lang.String)
+     */
     public synchronized void addAuthorization(String AuthID) throws IOException {
         // not required for TransactionStateDiff
     }

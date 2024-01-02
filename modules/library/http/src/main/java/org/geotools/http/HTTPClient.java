@@ -121,33 +121,53 @@ public interface HTTPClient {
         return get(url);
     }
 
-    /** @return the HTTP BASIC Authentication user name, or {@code null} if not set */
+    /**
+     * @return the HTTP BASIC Authentication user name, or {@code null} if not set
+     */
     public String getUser();
 
-    /** @param user the HTTP BASIC Authentication user name */
+    /**
+     * @param user the HTTP BASIC Authentication user name
+     */
     public void setUser(String user);
 
-    /** @return the HTTP BASIC Authentication password, or {@code null} if not set */
+    /**
+     * @return the HTTP BASIC Authentication password, or {@code null} if not set
+     */
     public String getPassword();
 
-    /** @param password the HTTP BASIC Authentication password */
+    /**
+     * @param password the HTTP BASIC Authentication password
+     */
     public void setPassword(String password);
 
-    /** @return the tcp/ip connect timeout in seconds */
+    /**
+     * @return the tcp/ip connect timeout in seconds
+     */
     public int getConnectTimeout();
 
-    /** @param connectTimeout tcp/ip connect timeout in seconds */
+    /**
+     * @param connectTimeout tcp/ip connect timeout in seconds
+     */
     public void setConnectTimeout(int connectTimeout);
 
-    /** @return the socket read timeout in seconds */
+    /**
+     * @return the socket read timeout in seconds
+     */
     public int getReadTimeout();
 
-    /** @param readTimeout socket read timeout in seconds */
+    /**
+     * @param readTimeout socket read timeout in seconds
+     */
     public void setReadTimeout(int readTimeout);
 
-    /** @param tryGZIP */
+    /**
+     * @param tryGZIP
+     */
     void setTryGzip(boolean tryGZIP);
 
-    /** @return whether gzip content encoding will be attempted; defaults to {@code false} */
+    /**
+     * @return whether gzip content encoding will be attempted; defaults to {@code false}
+     */
     boolean isTryGzip();
 }

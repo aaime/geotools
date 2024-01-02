@@ -20,13 +20,19 @@ import org.eclipse.xsd.XSDNamedComponent;
 import org.eclipse.xsd.XSDTypeDefinition;
 
 public interface InstanceComponent {
-    /** @return The object containing the type definiton of the instance. */
+    /**
+     * @return The object containing the type definiton of the instance.
+     */
     XSDTypeDefinition getTypeDefinition();
 
-    /** @return The feature describing the component instance. */
+    /**
+     * @return The feature describing the component instance.
+     */
     XSDNamedComponent getDeclaration();
 
-    /** @return The namespace of the element; */
+    /**
+     * @return The namespace of the element;
+     */
     String getNamespace();
 
     /**
@@ -36,7 +42,9 @@ public interface InstanceComponent {
      */
     void setNamespace(String namespace);
 
-    /** @return The name of the element. */
+    /**
+     * @return The name of the element.
+     */
     String getName();
 
     /**

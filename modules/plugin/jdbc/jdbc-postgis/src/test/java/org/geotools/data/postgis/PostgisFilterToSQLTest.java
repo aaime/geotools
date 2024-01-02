@@ -125,7 +125,9 @@ public class PostgisFilterToSQLTest extends SQLFilterTestSupport {
 
     @Test
     public void testEncodeBBOX3D()
-            throws FilterToSQLException, MismatchedDimensionException, NoSuchAuthorityCodeException,
+            throws FilterToSQLException,
+                    MismatchedDimensionException,
+                    NoSuchAuthorityCodeException,
                     FactoryException {
         filterToSql.setFeatureType(testSchema);
         BBOX3D bbox3d =

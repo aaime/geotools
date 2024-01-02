@@ -31,7 +31,9 @@ import java.util.logging.Logger;
 import org.geotools.api.feature.simple.SimpleFeature;
 import org.geotools.util.logging.Logging;
 
-/** @author Niels Charlier */
+/**
+ * @author Niels Charlier
+ */
 class FSDateExtractor extends PropertiesCollector {
 
     private static final Logger LOGGER = Logging.getLogger(FSDateExtractor.class);

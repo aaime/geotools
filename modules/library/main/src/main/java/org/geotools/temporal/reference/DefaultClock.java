@@ -25,16 +25,20 @@ import org.geotools.api.temporal.ClockTime;
 import org.geotools.api.util.InternationalString;
 import org.geotools.util.Utilities;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultClock extends DefaultTemporalReferenceSystem implements Clock {
 
     /** Provide the name or description of an event, such as solar noon or sunrise. */
     private InternationalString referenceEvent;
+
     /**
      * Provide the time of day associated with the reference event expressed as a time of day in the
      * given clock, the reference time is usually the origin of the clock scale.
      */
     private ClockTime referenceTime;
+
     /** This is the 24-hour local or UTC time that corresponds to the reference time. */
     private ClockTime utcReference;
 

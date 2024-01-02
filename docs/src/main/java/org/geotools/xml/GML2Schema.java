@@ -36,6 +36,7 @@ public class GML2Schema {
         /** optional */
         public Envelope boundedBy();
     }
+
     /** A feature collection contains zero or more featureMember elements. */
     public static interface AbstractFeatureCollectionType {
         List<Feature> featureMemeber();

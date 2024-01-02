@@ -57,413 +57,896 @@ public final class SE extends XSD {
         return getClass().getResource("FeatureStyle.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/se";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AnchorPointType =
             new QName("http://www.opengis.net/se", "AnchorPointType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BaseSymbolizerType =
             new QName("http://www.opengis.net/se", "BaseSymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CategorizeType =
             new QName("http://www.opengis.net/se", "CategorizeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ChangeCaseType =
             new QName("http://www.opengis.net/se", "ChangeCaseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ChannelSelectionType =
             new QName("http://www.opengis.net/se", "ChannelSelectionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ColorMapType = new QName("http://www.opengis.net/se", "ColorMapType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ColorReplacementType =
             new QName("http://www.opengis.net/se", "ColorReplacementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ConcatenateType =
             new QName("http://www.opengis.net/se", "ConcatenateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ContrastEnhancementType =
             new QName("http://www.opengis.net/se", "ContrastEnhancementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageStyleType =
             new QName("http://www.opengis.net/se", "CoverageStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescriptionType =
             new QName("http://www.opengis.net/se", "DescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName directionType =
             new QName("http://www.opengis.net/se", "directionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DisplacementType =
             new QName("http://www.opengis.net/se", "DisplacementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ElseFilterType =
             new QName("http://www.opengis.net/se", "ElseFilterType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExternalGraphicType =
             new QName("http://www.opengis.net/se", "ExternalGraphicType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeStyleType =
             new QName("http://www.opengis.net/se", "FeatureTypeStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FillType = new QName("http://www.opengis.net/se", "FillType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FontType = new QName("http://www.opengis.net/se", "FontType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FormatDateType =
             new QName("http://www.opengis.net/se", "FormatDateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FormatNumberType =
             new QName("http://www.opengis.net/se", "FormatNumberType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FunctionType = new QName("http://www.opengis.net/se", "FunctionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GeometryType = new QName("http://www.opengis.net/se", "GeometryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GraphicFillType =
             new QName("http://www.opengis.net/se", "GraphicFillType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GraphicStrokeType =
             new QName("http://www.opengis.net/se", "GraphicStrokeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GraphicType = new QName("http://www.opengis.net/se", "GraphicType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName HaloType = new QName("http://www.opengis.net/se", "HaloType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName HistogramType =
             new QName("http://www.opengis.net/se", "HistogramType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ImageOutlineType =
             new QName("http://www.opengis.net/se", "ImageOutlineType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InlineContentType =
             new QName("http://www.opengis.net/se", "InlineContentType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InterpolateType =
             new QName("http://www.opengis.net/se", "InterpolateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InterpolationPointType =
             new QName("http://www.opengis.net/se", "InterpolationPointType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LabelPlacementType =
             new QName("http://www.opengis.net/se", "LabelPlacementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LegendGraphicType =
             new QName("http://www.opengis.net/se", "LegendGraphicType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinePlacementType =
             new QName("http://www.opengis.net/se", "LinePlacementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineSymbolizerType =
             new QName("http://www.opengis.net/se", "LineSymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MapItemType = new QName("http://www.opengis.net/se", "MapItemType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MarkType = new QName("http://www.opengis.net/se", "MarkType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MethodType = new QName("http://www.opengis.net/se", "MethodType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ModeType = new QName("http://www.opengis.net/se", "ModeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NormalizeType =
             new QName("http://www.opengis.net/se", "NormalizeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OnlineResourceType =
             new QName("http://www.opengis.net/se", "OnlineResourceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ParameterValueType =
             new QName("http://www.opengis.net/se", "ParameterValueType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointPlacementType =
             new QName("http://www.opengis.net/se", "PointPlacementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointSymbolizerType =
             new QName("http://www.opengis.net/se", "PointSymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolygonSymbolizerType =
             new QName("http://www.opengis.net/se", "PolygonSymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RasterSymbolizerType =
             new QName("http://www.opengis.net/se", "RasterSymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecodeType = new QName("http://www.opengis.net/se", "RecodeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RuleType = new QName("http://www.opengis.net/se", "RuleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName searchDirectionType =
             new QName("http://www.opengis.net/se", "searchDirectionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SelectedChannelType =
             new QName("http://www.opengis.net/se", "SelectedChannelType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ShadedReliefType =
             new QName("http://www.opengis.net/se", "ShadedReliefType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StringLengthType =
             new QName("http://www.opengis.net/se", "StringLengthType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StringPositionType =
             new QName("http://www.opengis.net/se", "StringPositionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName stripOffPositionType =
             new QName("http://www.opengis.net/se", "stripOffPositionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StrokeType = new QName("http://www.opengis.net/se", "StrokeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SubstringType =
             new QName("http://www.opengis.net/se", "SubstringType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SvgParameterType =
             new QName("http://www.opengis.net/se", "SvgParameterType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SymbolizerType =
             new QName("http://www.opengis.net/se", "SymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TextSymbolizerType =
             new QName("http://www.opengis.net/se", "TextSymbolizerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ThreshholdsBelongToType =
             new QName("http://www.opengis.net/se", "ThreshholdsBelongToType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TrimType = new QName("http://www.opengis.net/se", "TrimType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName VersionType = new QName("http://www.opengis.net/se", "VersionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _OverlapBehavior =
             new QName("http://www.opengis.net/se", "_OverlapBehavior");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AnchorPoint = new QName("http://www.opengis.net/se", "AnchorPoint");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AnchorPointX = new QName("http://www.opengis.net/se", "AnchorPointX");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AnchorPointY = new QName("http://www.opengis.net/se", "AnchorPointY");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BaseSymbolizer =
             new QName("http://www.opengis.net/se", "BaseSymbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BlueChannel = new QName("http://www.opengis.net/se", "BlueChannel");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BrightnessOnly =
             new QName("http://www.opengis.net/se", "BrightnessOnly");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Categorize = new QName("http://www.opengis.net/se", "Categorize");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ChangeCase = new QName("http://www.opengis.net/se", "ChangeCase");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ChannelSelection =
             new QName("http://www.opengis.net/se", "ChannelSelection");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ColorMap = new QName("http://www.opengis.net/se", "ColorMap");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ColorReplacement =
             new QName("http://www.opengis.net/se", "ColorReplacement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Concatenate = new QName("http://www.opengis.net/se", "Concatenate");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ContrastEnhancement =
             new QName("http://www.opengis.net/se", "ContrastEnhancement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageName = new QName("http://www.opengis.net/se", "CoverageName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageStyle =
             new QName("http://www.opengis.net/se", "CoverageStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Data = new QName("http://www.opengis.net/se", "Data");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DateValue = new QName("http://www.opengis.net/se", "DateValue");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Description = new QName("http://www.opengis.net/se", "Description");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Displacement = new QName("http://www.opengis.net/se", "Displacement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DisplacementX =
             new QName("http://www.opengis.net/se", "DisplacementX");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DisplacementY =
             new QName("http://www.opengis.net/se", "DisplacementY");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ElseFilter = new QName("http://www.opengis.net/se", "ElseFilter");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExternalGraphic =
             new QName("http://www.opengis.net/se", "ExternalGraphic");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeName =
             new QName("http://www.opengis.net/se", "FeatureTypeName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeStyle =
             new QName("http://www.opengis.net/se", "FeatureTypeStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Fill = new QName("http://www.opengis.net/se", "Fill");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Font = new QName("http://www.opengis.net/se", "Font");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Format = new QName("http://www.opengis.net/se", "Format");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FormatDate = new QName("http://www.opengis.net/se", "FormatDate");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FormatNumber = new QName("http://www.opengis.net/se", "FormatNumber");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Function = new QName("http://www.opengis.net/se", "Function");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GammaValue = new QName("http://www.opengis.net/se", "GammaValue");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Gap = new QName("http://www.opengis.net/se", "Gap");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GeneralizeLine =
             new QName("http://www.opengis.net/se", "GeneralizeLine");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Geometry = new QName("http://www.opengis.net/se", "Geometry");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Graphic = new QName("http://www.opengis.net/se", "Graphic");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GraphicFill = new QName("http://www.opengis.net/se", "GraphicFill");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GraphicStroke =
             new QName("http://www.opengis.net/se", "GraphicStroke");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GrayChannel = new QName("http://www.opengis.net/se", "GrayChannel");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GreenChannel = new QName("http://www.opengis.net/se", "GreenChannel");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Halo = new QName("http://www.opengis.net/se", "Halo");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Histogram = new QName("http://www.opengis.net/se", "Histogram");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ImageOutline = new QName("http://www.opengis.net/se", "ImageOutline");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InitialGap = new QName("http://www.opengis.net/se", "InitialGap");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InlineContent =
             new QName("http://www.opengis.net/se", "InlineContent");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Interpolate = new QName("http://www.opengis.net/se", "Interpolate");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InterpolationPoint =
             new QName("http://www.opengis.net/se", "InterpolationPoint");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName IsAligned = new QName("http://www.opengis.net/se", "IsAligned");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName IsRepeated = new QName("http://www.opengis.net/se", "IsRepeated");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Label = new QName("http://www.opengis.net/se", "Label");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LabelPlacement =
             new QName("http://www.opengis.net/se", "LabelPlacement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LegendGraphic =
             new QName("http://www.opengis.net/se", "LegendGraphic");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Length = new QName("http://www.opengis.net/se", "Length");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinePlacement =
             new QName("http://www.opengis.net/se", "LinePlacement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineSymbolizer =
             new QName("http://www.opengis.net/se", "LineSymbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LookupString = new QName("http://www.opengis.net/se", "LookupString");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LookupValue = new QName("http://www.opengis.net/se", "LookupValue");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MapItem = new QName("http://www.opengis.net/se", "MapItem");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Mark = new QName("http://www.opengis.net/se", "Mark");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MarkIndex = new QName("http://www.opengis.net/se", "MarkIndex");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MaxScaleDenominator =
             new QName("http://www.opengis.net/se", "MaxScaleDenominator");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MinScaleDenominator =
             new QName("http://www.opengis.net/se", "MinScaleDenominator");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Name = new QName("http://www.opengis.net/se", "Name");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NegativePattern =
             new QName("http://www.opengis.net/se", "NegativePattern");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Normalize = new QName("http://www.opengis.net/se", "Normalize");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NumericValue = new QName("http://www.opengis.net/se", "NumericValue");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OnlineResource =
             new QName("http://www.opengis.net/se", "OnlineResource");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Opacity = new QName("http://www.opengis.net/se", "Opacity");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OverlapBehavior =
             new QName("http://www.opengis.net/se", "OverlapBehavior");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Pattern = new QName("http://www.opengis.net/se", "Pattern");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PerpendicularOffset =
             new QName("http://www.opengis.net/se", "PerpendicularOffset");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointPlacement =
             new QName("http://www.opengis.net/se", "PointPlacement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointSymbolizer =
             new QName("http://www.opengis.net/se", "PointSymbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolygonSymbolizer =
             new QName("http://www.opengis.net/se", "PolygonSymbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Position = new QName("http://www.opengis.net/se", "Position");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Radius = new QName("http://www.opengis.net/se", "Radius");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RasterSymbolizer =
             new QName("http://www.opengis.net/se", "RasterSymbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Recode = new QName("http://www.opengis.net/se", "Recode");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RedChannel = new QName("http://www.opengis.net/se", "RedChannel");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ReliefFactor = new QName("http://www.opengis.net/se", "ReliefFactor");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Rotation = new QName("http://www.opengis.net/se", "Rotation");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Rule = new QName("http://www.opengis.net/se", "Rule");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SemanticTypeIdentifier =
             new QName("http://www.opengis.net/se", "SemanticTypeIdentifier");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ShadedRelief = new QName("http://www.opengis.net/se", "ShadedRelief");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Size = new QName("http://www.opengis.net/se", "Size");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SourceChannelName =
             new QName("http://www.opengis.net/se", "SourceChannelName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StringLength = new QName("http://www.opengis.net/se", "StringLength");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StringPosition =
             new QName("http://www.opengis.net/se", "StringPosition");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StringValue = new QName("http://www.opengis.net/se", "StringValue");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Stroke = new QName("http://www.opengis.net/se", "Stroke");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Substring = new QName("http://www.opengis.net/se", "Substring");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SvgParameter = new QName("http://www.opengis.net/se", "SvgParameter");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Symbolizer = new QName("http://www.opengis.net/se", "Symbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TextSymbolizer =
             new QName("http://www.opengis.net/se", "TextSymbolizer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Threshold = new QName("http://www.opengis.net/se", "Threshold");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Trim = new QName("http://www.opengis.net/se", "Trim");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Value = new QName("http://www.opengis.net/se", "Value");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName WellKnownName =
             new QName("http://www.opengis.net/se", "WellKnownName");
 

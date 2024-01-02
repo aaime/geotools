@@ -690,6 +690,7 @@ public class FilterEncodingPreProcessor implements FilterVisitor {
         visit(filter);
         return extraData;
     }
+
     //
     // Filter Visitor Methods
     //
@@ -831,6 +832,7 @@ public class FilterEncodingPreProcessor implements FilterVisitor {
         visitGeometryFilter(filter);
         return extraData;
     }
+
     //
     // Temporal Filters (UNSUPPORTED)
     //

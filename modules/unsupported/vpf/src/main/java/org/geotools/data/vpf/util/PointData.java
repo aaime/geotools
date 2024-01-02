@@ -29,7 +29,9 @@ import org.locationtech.jts.geom.GeometryFactory;
  * @author  <a href="mailto:knuterik@onemap.org">Knut-Erik Johnsen</a>, Project OneMap
  * @source $URL$
  */
-/** @source $URL$ */
+/**
+ * @source $URL$
+ */
 public class PointData extends HashMap<Object, Object> {
     @Override
     public Object put(Object key, Object value) {

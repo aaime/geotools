@@ -127,6 +127,7 @@ public class ImageTiler {
         System.out.println(
                 "-htc horizontalTileCount<default:16> -vtc verticalTileCount<default:8>");
     }
+
     // docs end main
 
     /**
@@ -147,6 +148,7 @@ public class ImageTiler {
 
         return (GridCoverage2D) processor.doOperation(param);
     }
+
     // docs end cropping
 
     /**
@@ -179,6 +181,7 @@ public class ImageTiler {
         return new ReferencedEnvelope(
                 envelopeStartX, envelopeEndX, envelopeStartY, envelopeEndY, targetCRS);
     }
+
     // docs end make envelope
 
     // docs start load coverage
@@ -252,6 +255,7 @@ public class ImageTiler {
             }
         }
     }
+
     // docs end envelope
 
     // docs start scale

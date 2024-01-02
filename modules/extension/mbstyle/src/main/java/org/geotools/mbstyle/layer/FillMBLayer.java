@@ -246,7 +246,9 @@ public class FillMBLayer extends MBLayer {
         return parse.string(paint, "fill-pattern", null);
     }
 
-    /** @return True if the layer has a fill-pattern explicitly provided. */
+    /**
+     * @return True if the layer has a fill-pattern explicitly provided.
+     */
     public boolean hasFillPattern() {
         return parse.isDefined(paint, "fill-pattern");
     }

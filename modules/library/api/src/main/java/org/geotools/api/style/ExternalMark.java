@@ -34,7 +34,9 @@ public interface ExternalMark {
      */
     OnLineResource getOnlineResource();
 
-    /** @param resource Online resource with format defined by getFormat() */
+    /**
+     * @param resource Online resource with format defined by getFormat()
+     */
     void setOnlineResource(OnLineResource resource);
 
     /**
@@ -71,7 +73,9 @@ public interface ExternalMark {
      */
     String getFormat();
 
-    /** @param mimeType Mime type of external (or internal) resource */
+    /**
+     * @param mimeType Mime type of external (or internal) resource
+     */
     void setFormat(String mimeType);
 
     /**

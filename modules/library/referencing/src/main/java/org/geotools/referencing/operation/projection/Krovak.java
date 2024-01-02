@@ -141,6 +141,7 @@ public class Krovak extends MapProjection {
     boolean esriDefinition;
 
     private MathTransform axisTransform = null;
+
     /** Latitude of pseudo standard parallel. */
     protected final double pseudoStandardParallel;
 

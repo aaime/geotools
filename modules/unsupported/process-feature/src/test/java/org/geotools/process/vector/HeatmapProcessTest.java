@@ -35,7 +35,9 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.MultiPoint;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequenceFactory;
 
-/** @author Martin Davis - OpenGeo */
+/**
+ * @author Martin Davis - OpenGeo
+ */
 public class HeatmapProcessTest {
 
     /**

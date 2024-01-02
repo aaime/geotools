@@ -26,6 +26,7 @@ class CurrentTransactionLock extends FeatureLock {
     CurrentTransactionLock() {
         super(null, -1);
     }
+
     /**
      * Transaction locks do not require Authorization.
      *

@@ -42,7 +42,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class WMSLayerTest {
     private WebMapServer server;
 
@@ -56,16 +58,24 @@ public class WMSLayerTest {
             result.put(pair.getName().toUpperCase(), pair.getValue());
         }
         return result;
-    };
-    /** @throws java.lang.Exception */
+    }
+    ;
+
+    /**
+     * @throws java.lang.Exception
+     */
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {}
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @AfterClass
     public static void tearDownAfterClass() throws Exception {}
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {
         HTTPClient client =
@@ -93,7 +103,9 @@ public class WMSLayerTest {
         server = new WebMapServer(new URL("http://geoserver.org/geoserver/wms"), client);
     }
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @After
     public void tearDown() throws Exception {}
 

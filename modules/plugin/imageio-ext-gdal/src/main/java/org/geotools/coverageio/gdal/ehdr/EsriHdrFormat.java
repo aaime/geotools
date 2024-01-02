@@ -57,7 +57,9 @@ public final class EsriHdrFormat extends BaseGDALGridFormat implements Format {
         setInfo(INFO);
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public EsriHdrReader getReader(Object source, Hints hints) {
         try {

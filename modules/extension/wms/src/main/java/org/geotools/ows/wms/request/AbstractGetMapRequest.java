@@ -38,7 +38,9 @@ import org.geotools.util.factory.GeoTools;
 import org.geotools.util.factory.Hints;
 import org.geotools.util.logging.Logging;
 
-/** @author Richard Gould */
+/**
+ * @author Richard Gould
+ */
 public abstract class AbstractGetMapRequest extends AbstractWMSRequest implements GetMapRequest {
 
     Stack<String> layers = new Stack<>();
@@ -238,6 +240,7 @@ public abstract class AbstractGetMapRequest extends AbstractWMSRequest implement
                 || GeoTools.getDefaultHints().get(Hints.FORCE_LONGITUDE_FIRST_AXIS_ORDER)
                         == Boolean.TRUE;
     }
+
     /** Sets BBOX and SRS using the provided Envelope. */
     @Override
     public void setBBox(Bounds envelope) {
@@ -260,6 +263,7 @@ public abstract class AbstractGetMapRequest extends AbstractWMSRequest implement
         sb.append(bbox.getMaximum(1));
         setBBox(sb.toString());
     }
+
     /**
      * From the Web Map Service Implementation Specification: "The required FORMAT parameter states
      * the desired format of the response to an operation. Supported values for a GetMap request on

@@ -90,7 +90,9 @@ public abstract class WFSRequest extends AbstractRequest implements Request {
         this.handle = handle;
     }
 
-    /** @param outputFormat the outputFormat to set */
+    /**
+     * @param outputFormat the outputFormat to set
+     */
     public void setOutputFormat(String outputFormat) {
         this.outputFormat = outputFormat;
     }

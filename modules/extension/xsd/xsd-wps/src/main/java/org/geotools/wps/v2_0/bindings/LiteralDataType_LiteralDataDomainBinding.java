@@ -66,7 +66,9 @@ public class LiteralDataType_LiteralDataDomainBinding extends AbstractComplexEMF
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WPS.LiteralDataType_LiteralDataDomain;

@@ -52,6 +52,7 @@ public final class LazySet<E> extends AbstractSet<E> {
         this.iterator = iterator;
         elements = (E[]) new Object[4];
     }
+
     /**
      * Construct a set to be filled using the specified iterator. Iteration in the given iterator
      * will occurs only when needed.

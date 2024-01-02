@@ -52,7 +52,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class CSVWriteOptionsTest {
     File tmp;
     File statesfile;

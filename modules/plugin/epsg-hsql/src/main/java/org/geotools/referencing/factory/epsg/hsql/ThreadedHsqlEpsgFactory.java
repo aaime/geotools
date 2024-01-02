@@ -71,6 +71,7 @@ import org.hsqldb.jdbc.JDBCDataSource;
  */
 public class ThreadedHsqlEpsgFactory extends ThreadedEpsgFactory {
     public static final Logger LOGGER = Logging.getLogger(ThreadedHsqlEpsgFactory.class);
+
     /**
      * Current version of EPSG-HSQL plugin. This is usually the same version number than the one in
      * the EPSG database bundled in this plugin. However this field may contains additional minor

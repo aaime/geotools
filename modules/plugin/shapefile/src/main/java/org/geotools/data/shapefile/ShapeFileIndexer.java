@@ -137,7 +137,10 @@ class ShapeFileIndexer implements FileWriter {
      * @return The number of indexed records
      */
     public int index(boolean verbose, /*unused*/ ProgressListener listener)
-            throws MalformedURLException, IOException, TreeException, StoreException,
+            throws MalformedURLException,
+                    IOException,
+                    TreeException,
+                    StoreException,
                     LockTimeoutException {
 
         if (this.shpFiles == null) {
@@ -387,12 +390,16 @@ class ShapeFileIndexer implements FileWriter {
         maxDepth = i;
     }
 
-    /** @param shpFiles */
+    /**
+     * @param shpFiles
+     */
     public void setShapeFileName(ShpFiles shpFiles) {
         this.shpFiles = shpFiles;
     }
 
-    /** @param byteOrder The byteOrder to set. */
+    /**
+     * @param byteOrder The byteOrder to set.
+     */
     public void setByteOrder(String byteOrder) {
         this.byteOrder = byteOrder;
     }

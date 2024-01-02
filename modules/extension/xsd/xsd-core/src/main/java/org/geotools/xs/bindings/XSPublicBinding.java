@@ -42,7 +42,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSPublicBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.PUBLIC;

@@ -75,7 +75,9 @@ import org.geotools.util.NumberRange;
 import org.geotools.util.factory.Hints;
 import org.junit.Test;
 
-/** @author Nicola Lagomarsini Geosolutions */
+/**
+ * @author Nicola Lagomarsini Geosolutions
+ */
 public class CoverageTest {
 
     private static final TestDriverNew driver = new TestDriverNew();

@@ -52,7 +52,9 @@ public class OperationsTypeBinding extends AbstractComplexEMFBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.OperationsType;

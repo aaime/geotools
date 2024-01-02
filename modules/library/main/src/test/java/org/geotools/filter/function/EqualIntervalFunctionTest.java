@@ -36,7 +36,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 
-/** @author James */
+/**
+ * @author James
+ */
 public class EqualIntervalFunctionTest extends FunctionTestSupport {
 
     private static final org.geotools.api.filter.FilterFactory ff =

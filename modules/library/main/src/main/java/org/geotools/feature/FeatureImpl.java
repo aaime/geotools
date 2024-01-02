@@ -71,6 +71,7 @@ public class FeatureImpl extends ComplexAttributeImpl implements Feature {
     public FeatureId getIdentifier() {
         return (FeatureId) this.id;
     }
+
     /**
      * Get the total bounds of this feature which is calculated by doing a union of the bounds of
      * each geometry this feature is associated with.

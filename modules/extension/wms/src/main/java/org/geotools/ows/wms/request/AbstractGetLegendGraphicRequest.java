@@ -26,7 +26,9 @@ import java.net.URL;
 public abstract class AbstractGetLegendGraphicRequest extends AbstractWMSRequest
         implements GetLegendGraphicRequest {
 
-    /** @param onlineResource */
+    /**
+     * @param onlineResource
+     */
     public AbstractGetLegendGraphicRequest(URL onlineResource) {
         super(onlineResource, null);
     }

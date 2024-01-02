@@ -16,7 +16,9 @@
  */
 package org.geotools.data.shapefile.index;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class LockManager {
     private static final int EXCLUSIVE_LOCK_TIMEOUT = 20;
     private static final int SHARED_LOCK_TIMEOUT = 10;
@@ -86,16 +88,22 @@ public class LockManager {
         return new LockImpl(Lock.SHARED);
     }
 
-    /** @author Tommaso Nolli */
+    /**
+     * @author Tommaso Nolli
+     */
     private class LockImpl implements Lock {
         private short type;
 
-        /** @param type */
+        /**
+         * @param type
+         */
         public LockImpl(short type) {
             this.type = type;
         }
 
-        /** @see org.geotools.index.Lock#getType() */
+        /**
+         * @see org.geotools.index.Lock#getType()
+         */
         @Override
         public short getType() {
             return this.type;

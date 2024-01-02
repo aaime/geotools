@@ -23,7 +23,9 @@ import org.geotools.api.filter.FilterFactory;
 import org.geotools.appschema.util.IndexQueryUtils;
 import org.geotools.factory.CommonFactoryFinder;
 
-/** @author Fernando Miño, Geosolutions */
+/**
+ * @author Fernando Miño, Geosolutions
+ */
 public abstract class IndexesTest {
 
     protected FilterFactory ff = CommonFactoryFinder.getFilterFactory();

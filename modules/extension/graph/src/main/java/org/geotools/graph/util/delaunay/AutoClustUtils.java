@@ -30,7 +30,9 @@ import org.geotools.graph.structure.basic.BasicGraph;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Point;
 
-/** @author jfc173 */
+/**
+ * @author jfc173
+ */
 public class AutoClustUtils {
 
     /** Creates a new instance of AutoClustUtils */

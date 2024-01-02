@@ -50,31 +50,41 @@ public class OptDirectedEdge extends OptGraphable implements DirectedEdge {
         m_out = out;
     }
 
-    /** @see DirectedEdge#getInNode() */
+    /**
+     * @see DirectedEdge#getInNode()
+     */
     @Override
     public DirectedNode getInNode() {
         return (m_in);
     }
 
-    /** @see DirectedEdge#getOutNode() */
+    /**
+     * @see DirectedEdge#getOutNode()
+     */
     @Override
     public DirectedNode getOutNode() {
         return (m_out);
     }
 
-    /** @see Edge#getNodeA() */
+    /**
+     * @see Edge#getNodeA()
+     */
     @Override
     public Node getNodeA() {
         return (m_in);
     }
 
-    /** @see Edge#getNodeB() */
+    /**
+     * @see Edge#getNodeB()
+     */
     @Override
     public Node getNodeB() {
         return (m_out);
     }
 
-    /** @see Edge#getOtherNode(Node) */
+    /**
+     * @see Edge#getOtherNode(Node)
+     */
     @Override
     public Node getOtherNode(Node node) {
         return (node == m_in ? m_out : node == m_out ? m_in : null);
@@ -86,7 +96,9 @@ public class OptDirectedEdge extends OptGraphable implements DirectedEdge {
         throw new UnsupportedOperationException(getClass().getName() + "#reverse()");
     }
 
-    /** @see Edge#compareNodes(Edge) */
+    /**
+     * @see Edge#compareNodes(Edge)
+     */
     @Override
     public int compareNodes(Edge other) {
         if (m_in.equals(other.getNodeA()) && m_out.equals(other.getNodeB()))
@@ -98,7 +110,9 @@ public class OptDirectedEdge extends OptGraphable implements DirectedEdge {
         return (Edge.UNEQUAL_NODE_ORIENTATION);
     }
 
-    /** @see Graphable#getRelated() */
+    /**
+     * @see Graphable#getRelated()
+     */
     @Override
     public Iterator<? extends Graphable> getRelated() {
         ArrayList<Edge> related = new ArrayList<>(m_in.getDegree() + m_out.getDegree() - 2);
@@ -140,13 +154,17 @@ public class OptDirectedEdge extends OptGraphable implements DirectedEdge {
         return (related.iterator());
     }
 
-    /** @see DirectedGraphable#getInRelated() */
+    /**
+     * @see DirectedGraphable#getInRelated()
+     */
     @Override
     public Iterator<? extends Graphable> getInRelated() {
         return (new RelatedIterator(RelatedIterator.IN));
     }
 
-    /** @see DirectedGraphable#getOutRelated() */
+    /**
+     * @see DirectedGraphable#getOutRelated()
+     */
     @Override
     public Iterator<? extends Graphable> getOutRelated() {
         return (new RelatedIterator(RelatedIterator.OUT));

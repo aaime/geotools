@@ -65,13 +65,17 @@ public abstract class FacetHandler extends XSIElementHandler {
     //    public static final int TOTALDIGITS = 1024;
     private String value;
 
-    /** @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String namespaceURI, String localName) {
         // do nothing
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     @SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
     public int hashCode() {
@@ -81,13 +85,17 @@ public abstract class FacetHandler extends XSIElementHandler {
     /** Return the int mask for the facet type. */
     public abstract int getType();
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandlerType() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandlerType()
+     */
     @Override
     public int getHandlerType() {
         return FACET;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XSIElementHandler getHandler(String namespaceURI, String localName) throws SAXException {
         if (localName.equalsIgnoreCase("annotation")

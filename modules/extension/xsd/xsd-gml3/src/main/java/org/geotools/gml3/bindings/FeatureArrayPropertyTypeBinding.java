@@ -48,7 +48,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class FeatureArrayPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.FeatureArrayPropertyType;

@@ -306,7 +306,9 @@ public abstract class GeoToolsWriteParams extends ImageWriteParam {
         this.adaptee = adaptee;
     }
 
-    /** @param locale */
+    /**
+     * @param locale
+     */
     public GeoToolsWriteParams(final ImageWriteParam adaptee, Locale locale) {
 
         super(locale);

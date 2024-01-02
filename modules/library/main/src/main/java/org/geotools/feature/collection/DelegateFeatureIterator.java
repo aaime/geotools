@@ -34,6 +34,7 @@ import org.geotools.feature.FeatureIterator;
  */
 public class DelegateFeatureIterator<F extends Feature> implements FeatureIterator<F> {
     Iterator<F> delegate;
+
     /**
      * Wrap the provided iterator up as a FeatureIterator.
      *

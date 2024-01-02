@@ -112,7 +112,9 @@ public class InterpolationConverterFactory implements ConverterFactory {
         }
     }
 
-    /** @author Simone Giannecchini, GeoSolutions */
+    /**
+     * @author Simone Giannecchini, GeoSolutions
+     */
     enum InterpolationParser {
         INTERPOLATIONNEAREST {
 

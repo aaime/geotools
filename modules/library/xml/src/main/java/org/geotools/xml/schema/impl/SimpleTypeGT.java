@@ -36,7 +36,9 @@ import org.geotools.xml.schema.SimpleType;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class SimpleTypeGT implements SimpleType {
     // file visible to avoid set* methods
     private int finaL;
@@ -73,44 +75,58 @@ public class SimpleTypeGT implements SimpleType {
         }
     }
 
-    /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+    /**
+     * @see org.geotools.xml.xsi.Type#getInstanceType()
+     */
     @Override
     public Class getInstanceType() {
         // if it's a union ... deal with it i guess
         return parents[0].getInstanceType();
     }
 
-    /** @see org.geotools.xml.schema.Type#findChildElement(java.lang.String) */
+    /**
+     * @see org.geotools.xml.schema.Type#findChildElement(java.lang.String)
+     */
     @Override
     public Element findChildElement(String name1) {
         return null; // will never happen
     }
 
-    /** @see org.geotools.xml.xsi.SimpleType#getFinal() */
+    /**
+     * @see org.geotools.xml.xsi.SimpleType#getFinal()
+     */
     @Override
     public int getFinal() {
         return finaL;
     }
 
-    /** @see org.geotools.xml.xsi.SimpleType#getId() */
+    /**
+     * @see org.geotools.xml.xsi.SimpleType#getId()
+     */
     @Override
     public String getId() {
         return id;
     }
 
-    /** @see org.geotools.xml.xsi.Type#getLocalName() */
+    /**
+     * @see org.geotools.xml.xsi.Type#getLocalName()
+     */
     @Override
     public String getName() {
         return name;
     }
 
-    /** @see org.geotools.xml.xsi.Type#getLocalName() */
+    /**
+     * @see org.geotools.xml.xsi.Type#getLocalName()
+     */
     @Override
     public URI getNamespace() {
         return namespace;
     }
 
-    /** @see org.geotools.xml.xsi.Type#getParent() */
+    /**
+     * @see org.geotools.xml.xsi.Type#getParent()
+     */
     @Override
     public SimpleType[] getParents() {
         return parents;
@@ -399,13 +415,17 @@ public class SimpleTypeGT implements SimpleType {
         return o;
     }
 
-    /** @see org.geotools.xml.schema.SimpleType#getChildType() */
+    /**
+     * @see org.geotools.xml.schema.SimpleType#getChildType()
+     */
     @Override
     public int getChildType() {
         return type;
     }
 
-    /** @see org.geotools.xml.schema.SimpleType#getFacets() */
+    /**
+     * @see org.geotools.xml.schema.SimpleType#getFacets()
+     */
     @Override
     public Facet[] getFacets() {
         return constraints;

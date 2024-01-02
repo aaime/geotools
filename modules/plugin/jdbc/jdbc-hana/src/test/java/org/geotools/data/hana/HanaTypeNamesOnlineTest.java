@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCTypeNamesOnlineTest;
 import org.geotools.jdbc.JDBCTypeNamesTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaTypeNamesOnlineTest extends JDBCTypeNamesOnlineTest {
 
     @Override

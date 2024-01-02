@@ -23,7 +23,9 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.io.WKTReader;
 
-/** @author mdavis */
+/**
+ * @author mdavis
+ */
 public class GeometryFunctionsTest {
 
     static WKTReader wktRdr = new WKTReader();

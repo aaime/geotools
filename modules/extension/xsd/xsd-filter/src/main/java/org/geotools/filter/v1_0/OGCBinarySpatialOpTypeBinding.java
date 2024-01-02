@@ -55,7 +55,9 @@ import org.picocontainer.MutablePicoContainer;
  */
 public class OGCBinarySpatialOpTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.BinarySpatialOpType;

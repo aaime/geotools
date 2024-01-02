@@ -102,7 +102,9 @@ public class Parser {
         configuration.setupParser(this);
     }
 
-    /** @return The underlying parser handler. */
+    /**
+     * @return The underlying parser handler.
+     */
     ParserHandler getParserHandler() {
         return handler;
     }
@@ -216,7 +218,9 @@ public class Parser {
         handler.setValidating(validating);
     }
 
-    /** @return Flag determining if the parser is validatin or not. */
+    /**
+     * @return Flag determining if the parser is validatin or not.
+     */
     public boolean isValidating() {
         return handler.isValidating();
     }
@@ -237,7 +241,9 @@ public class Parser {
         handler.setFailOnValidationError(fail);
     }
 
-    /** @return The flag determining how the parser deals with validation errors. */
+    /**
+     * @return The flag determining how the parser deals with validation errors.
+     */
     public boolean isFailOnValidationError() {
         return handler.isFailOnValidationError();
     }

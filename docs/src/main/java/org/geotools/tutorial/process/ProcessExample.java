@@ -40,7 +40,9 @@ import org.locationtech.jts.io.WKTReader;
 
 public class ProcessExample {
 
-    /** @param args */
+    /**
+     * @param args
+     */
     public static void main(String[] args) throws Exception {
         example1();
         //        example2();

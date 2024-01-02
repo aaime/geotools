@@ -63,22 +63,30 @@ public class GetTileResponse extends Response {
         }
     }
 
-    /** @return the type */
+    /**
+     * @return the type
+     */
     public WMTSServiceType getType() {
         return type;
     }
 
-    /** @param type the type to set */
+    /**
+     * @param type the type to set
+     */
     public void setType(WMTSServiceType type) {
         this.type = type;
     }
 
-    /** @return the requestURL */
+    /**
+     * @return the requestURL
+     */
     public URL getRequestURL() {
         return requestURL;
     }
 
-    /** @param requestURL the requestURL to set */
+    /**
+     * @param requestURL the requestURL to set
+     */
     public void setRequestURL(URL requestURL) {
         this.requestURL = requestURL;
     }

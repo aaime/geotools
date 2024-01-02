@@ -644,8 +644,11 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
 
     @Test
     public void timePyramid()
-            throws IOException, MismatchedDimensionException, NoSuchAuthorityCodeException,
-                    InvalidParameterValueException, ParseException {
+            throws IOException,
+                    MismatchedDimensionException,
+                    NoSuchAuthorityCodeException,
+                    InvalidParameterValueException,
+                    ParseException {
 
         //
         // Get the resource.
@@ -728,8 +731,11 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
      */
     @Test
     public void timePyramidForGeoserver()
-            throws IOException, MismatchedDimensionException, NoSuchAuthorityCodeException,
-                    InvalidParameterValueException, ParseException {
+            throws IOException,
+                    MismatchedDimensionException,
+                    NoSuchAuthorityCodeException,
+                    InvalidParameterValueException,
+                    ParseException {
 
         //
         // Get the resource.
@@ -809,8 +815,11 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
     /** */
     @Test
     public void multicoveragePyramid()
-            throws IOException, MismatchedDimensionException, NoSuchAuthorityCodeException,
-                    InvalidParameterValueException, ParseException {
+            throws IOException,
+                    MismatchedDimensionException,
+                    NoSuchAuthorityCodeException,
+                    InvalidParameterValueException,
+                    ParseException {
 
         //
         // Get the resource.

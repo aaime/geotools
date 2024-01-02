@@ -43,7 +43,9 @@ import org.locationtech.jts.geom.LineString;
  */
 public class AbstractRingTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractRingType;

@@ -48,7 +48,9 @@ public class OGCBeyondBinding extends AbstractComplexBinding {
         this.geometryFactory = geometryFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Beyond;

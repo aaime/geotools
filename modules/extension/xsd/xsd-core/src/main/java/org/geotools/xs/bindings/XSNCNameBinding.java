@@ -50,7 +50,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class XSNCNameBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.NCNAME;

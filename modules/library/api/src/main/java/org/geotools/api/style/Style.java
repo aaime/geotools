@@ -84,7 +84,9 @@ public interface Style {
      */
     Object accept(TraversingStyleVisitor visitor, Object extraData);
 
-    /** @param defaultSymbolizer To be used if a feature is not rendered by any of the rules */
+    /**
+     * @param defaultSymbolizer To be used if a feature is not rendered by any of the rules
+     */
     void setDefaultSpecification(Symbolizer defaultSymbolizer);
 
     /** Used to navigate Style information during portrayal. */

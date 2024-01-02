@@ -659,7 +659,9 @@ public final class GridCoverageRenderer {
             final Color background,
             final int tileSizeX,
             final int tileSizeY)
-            throws FactoryException, TransformException, NoninvertibleTransformException,
+            throws FactoryException,
+                    TransformException,
+                    NoninvertibleTransformException,
                     IOException {
         // setup the hints
         setupTilingHints(tileSizeX, tileSizeY);

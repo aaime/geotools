@@ -49,7 +49,9 @@ import org.geotools.xsd.InstanceComponent;
 public class OperationTypeBinding extends AbstractSimpleBinding {
     public OperationTypeBinding(WfsFactory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.OperationType;

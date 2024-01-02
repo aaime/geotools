@@ -25,7 +25,9 @@ import org.geotools.xsd.Node;
 
 /** Binding object for the lower boundary of a property is between filter */
 public class LowerBoundaryTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.LowerBoundaryType;

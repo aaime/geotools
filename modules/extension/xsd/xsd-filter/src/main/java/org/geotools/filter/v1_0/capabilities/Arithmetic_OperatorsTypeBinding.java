@@ -50,7 +50,9 @@ public class Arithmetic_OperatorsTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Arithmetic_OperatorsType;

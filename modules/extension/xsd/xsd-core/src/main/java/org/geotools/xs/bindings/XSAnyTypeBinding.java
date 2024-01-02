@@ -51,7 +51,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSAnyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.ANYTYPE;

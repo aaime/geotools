@@ -52,7 +52,9 @@ public class RuleBinding extends SLDRuleBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Rule;

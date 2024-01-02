@@ -91,13 +91,17 @@ public abstract class AbstractLazyAttributeTypeImpl implements AttributeType {
      */
     public abstract AttributeType buildSuper();
 
-    /** @see org.geotools.api.feature.type.AttributeType#isIdentified() */
+    /**
+     * @see org.geotools.api.feature.type.AttributeType#isIdentified()
+     */
     @Override
     public boolean isIdentified() {
         return identified;
     }
 
-    /** @see org.geotools.api.feature.type.AttributeType#getSuper() */
+    /**
+     * @see org.geotools.api.feature.type.AttributeType#getSuper()
+     */
     @Override
     public AttributeType getSuper() {
         if (superType == null) {
@@ -106,37 +110,49 @@ public abstract class AbstractLazyAttributeTypeImpl implements AttributeType {
         return superType;
     }
 
-    /** @see org.geotools.api.feature.type.PropertyType#getName() */
+    /**
+     * @see org.geotools.api.feature.type.PropertyType#getName()
+     */
     @Override
     public Name getName() {
         return name;
     }
 
-    /** @see org.geotools.api.feature.type.PropertyType#getBinding() */
+    /**
+     * @see org.geotools.api.feature.type.PropertyType#getBinding()
+     */
     @Override
     public Class<?> getBinding() {
         return binding;
     }
 
-    /** @see org.geotools.api.feature.type.PropertyType#isAbstract() */
+    /**
+     * @see org.geotools.api.feature.type.PropertyType#isAbstract()
+     */
     @Override
     public boolean isAbstract() {
         return isAbstract;
     }
 
-    /** @see org.geotools.api.feature.type.PropertyType#getRestrictions() */
+    /**
+     * @see org.geotools.api.feature.type.PropertyType#getRestrictions()
+     */
     @Override
     public List<Filter> getRestrictions() {
         return restrictions;
     }
 
-    /** @see org.geotools.api.feature.type.PropertyType#getDescription() */
+    /**
+     * @see org.geotools.api.feature.type.PropertyType#getDescription()
+     */
     @Override
     public InternationalString getDescription() {
         return description;
     }
 
-    /** @see org.geotools.api.feature.type.PropertyType#getUserData() */
+    /**
+     * @see org.geotools.api.feature.type.PropertyType#getUserData()
+     */
     @Override
     public Map<Object, Object> getUserData() {
         return userData;
@@ -158,13 +174,17 @@ public abstract class AbstractLazyAttributeTypeImpl implements AttributeType {
         }
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
         return name.hashCode();
     }
 
-    /** @see java.lang.Object#toString() */
+    /**
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         return "LazyAttributeType: " + getName();

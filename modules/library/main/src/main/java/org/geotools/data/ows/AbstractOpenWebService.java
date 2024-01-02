@@ -189,6 +189,7 @@ public abstract class AbstractOpenWebService<C extends Capabilities, R extends O
             return info;
         }
     }
+
     /**
      * Implemented by a subclass to describe service
      *

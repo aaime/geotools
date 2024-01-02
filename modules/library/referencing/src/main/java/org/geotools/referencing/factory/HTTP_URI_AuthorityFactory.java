@@ -64,7 +64,9 @@ public class HTTP_URI_AuthorityFactory extends Abstract_URI_AuthorityFactory {
         super(factory);
     }
 
-    /** @see org.geotools.referencing.factory.AuthorityFactoryAdapter#getAuthority() */
+    /**
+     * @see org.geotools.referencing.factory.AuthorityFactoryAdapter#getAuthority()
+     */
     @Override
     public Citation getAuthority() {
         return Citations.HTTP_URI_OGC;

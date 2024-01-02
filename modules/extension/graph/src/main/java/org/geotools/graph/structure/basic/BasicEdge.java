@@ -46,13 +46,17 @@ public class BasicEdge extends BasicGraphable implements Edge {
         m_nodeB = nodeB;
     }
 
-    /** @see Edge#getNodeA() */
+    /**
+     * @see Edge#getNodeA()
+     */
     @Override
     public Node getNodeA() {
         return (m_nodeA);
     }
 
-    /** @see Edge#getNodeB() */
+    /**
+     * @see Edge#getNodeB()
+     */
     @Override
     public Node getNodeB() {
         return (m_nodeB);
@@ -103,7 +107,9 @@ public class BasicEdge extends BasicGraphable implements Edge {
         return (adj.iterator());
     }
 
-    /** @see Edge#reverse() */
+    /**
+     * @see Edge#reverse()
+     */
     @Override
     public void reverse() {
         Node n = m_nodeA;
@@ -111,7 +117,9 @@ public class BasicEdge extends BasicGraphable implements Edge {
         m_nodeB = n;
     }
 
-    /** @see Edge#compareNodes(Edge) */
+    /**
+     * @see Edge#compareNodes(Edge)
+     */
     @Override
     public int compareNodes(Edge other) {
         if (m_nodeA.equals(other.getNodeA()) && m_nodeB.equals(other.getNodeB()))

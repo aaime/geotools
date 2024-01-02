@@ -66,6 +66,7 @@ public class QueryLab extends JFrame {
         JFrame frame = new QueryLab();
         frame.setVisible(true);
     }
+
     // docs end main
 
     // docs start constructor
@@ -153,6 +154,7 @@ public class QueryLab extends JFrame {
                     }
                 });
     }
+
     // docs end constructor
 
     // docs start connect
@@ -168,6 +170,7 @@ public class QueryLab extends JFrame {
             updateUI();
         }
     }
+
     // docs end connect
 
     // docs start update
@@ -177,6 +180,7 @@ public class QueryLab extends JFrame {
 
         table.setModel(new DefaultTableModel(5, 5));
     }
+
     // docs end update
 
     // docs start filterFeatures
@@ -189,6 +193,7 @@ public class QueryLab extends JFrame {
         FeatureCollectionTableModel model = new FeatureCollectionTableModel(features);
         table.setModel(model);
     }
+
     // docs end filterFeatures
 
     // docs start countFeatures
@@ -202,6 +207,7 @@ public class QueryLab extends JFrame {
         int count = features.size();
         JOptionPane.showMessageDialog(text, "Number of selected features:" + count);
     }
+
     // docs end countFeatures
 
     // docs start queryFeatures
@@ -221,6 +227,7 @@ public class QueryLab extends JFrame {
         FeatureCollectionTableModel model = new FeatureCollectionTableModel(features);
         table.setModel(model);
     }
+
     // docs end queryFeatures
 
     // docs start centerFeatures

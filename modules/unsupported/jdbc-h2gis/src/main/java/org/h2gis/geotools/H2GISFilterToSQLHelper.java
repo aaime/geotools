@@ -79,7 +79,9 @@ public class H2GISFilterToSQLHelper {
     FilterToSQL filterToSQL;
     Writer out;
 
-    /** @param filterToSQL */
+    /**
+     * @param filterToSQL
+     */
     public H2GISFilterToSQLHelper(FilterToSQL filterToSQL) {
         this.filterToSQL = filterToSQL;
     }

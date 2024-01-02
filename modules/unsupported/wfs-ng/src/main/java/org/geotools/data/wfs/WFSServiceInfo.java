@@ -30,6 +30,8 @@ import org.geotools.api.data.ServiceInfo;
  */
 public interface WFSServiceInfo extends ServiceInfo {
 
-    /** @return the WFS protocol version */
+    /**
+     * @return the WFS protocol version
+     */
     public String getVersion();
 }

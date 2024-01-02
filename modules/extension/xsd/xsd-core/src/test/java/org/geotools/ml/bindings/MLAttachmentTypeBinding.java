@@ -43,7 +43,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class MLAttachmentTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return ML.ATTACHMENTTYPE;

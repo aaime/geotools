@@ -56,7 +56,9 @@ public class GMLCoordTypeBinding extends AbstractComplexBinding {
         this.csFactory = csFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.CoordType;

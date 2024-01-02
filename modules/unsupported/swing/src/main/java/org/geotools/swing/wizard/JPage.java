@@ -134,6 +134,7 @@ public abstract class JPage {
         panel = new JPanel();
         return panel;
     }
+
     /**
      * Called just before the panel is to be displayed.
      *

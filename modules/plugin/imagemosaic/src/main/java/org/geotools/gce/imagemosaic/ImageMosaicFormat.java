@@ -303,7 +303,9 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
         writeParameters = null;
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object)
+     */
     @Override
     public ImageMosaicReader getReader(Object source) {
         return getReader(source, null);
@@ -325,7 +327,9 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
         }
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(Object input) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(Object input)
+     */
     @Override
     public boolean accepts(Object source) {
         return accepts(source, null);
@@ -553,7 +557,9 @@ public final class ImageMosaicFormat extends AbstractGridFormat implements Forma
         }
     }
 
-    /** @see AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public ImageMosaicReader getReader(Object source, Hints hints) {
         try {

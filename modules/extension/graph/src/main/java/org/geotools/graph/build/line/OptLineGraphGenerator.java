@@ -129,19 +129,25 @@ public class OptLineGraphGenerator implements LineGraphGenerator {
         throw new UnsupportedOperationException(getClass().getName() + "#remove(Object)");
     }
 
-    /** @see GraphGenerator#setGraphBuilder(GraphBuilder) */
+    /**
+     * @see GraphGenerator#setGraphBuilder(GraphBuilder)
+     */
     @Override
     public void setGraphBuilder(GraphBuilder builder) {
         m_builder = builder;
     }
 
-    /** @see GraphGenerator#getGraphBuilder() */
+    /**
+     * @see GraphGenerator#getGraphBuilder()
+     */
     @Override
     public GraphBuilder getGraphBuilder() {
         return (m_builder);
     }
 
-    /** @see GraphGenerator#getGraph() */
+    /**
+     * @see GraphGenerator#getGraph()
+     */
     @Override
     public Graph getGraph() {
         return (m_builder.getGraph());

@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCAggregateFunctionOnlineTest;
 import org.geotools.jdbc.JDBCAggregateTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaAggregateFunctionOnlineTest extends JDBCAggregateFunctionOnlineTest {
 
     @Override

@@ -48,7 +48,9 @@ import org.geotools.xsd.ows.OWS;
 public class PositionType2DBinding extends AbstractSimpleBinding {
     public PositionType2DBinding(Ows10Factory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.PositionType2D;

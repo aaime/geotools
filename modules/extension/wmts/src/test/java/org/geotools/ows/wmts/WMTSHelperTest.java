@@ -21,7 +21,9 @@ import java.util.HashMap;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class WMTSHelperTest {
 
     @Test

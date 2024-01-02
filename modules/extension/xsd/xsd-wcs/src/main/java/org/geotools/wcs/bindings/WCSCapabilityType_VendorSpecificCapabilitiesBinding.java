@@ -45,7 +45,9 @@ import org.geotools.xsd.Node;
  */
 public class WCSCapabilityType_VendorSpecificCapabilitiesBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.WCSCapabilityType_VendorSpecificCapabilities;

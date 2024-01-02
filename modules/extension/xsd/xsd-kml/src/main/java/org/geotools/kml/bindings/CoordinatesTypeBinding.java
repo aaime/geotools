@@ -49,7 +49,9 @@ public class CoordinatesTypeBinding extends AbstractSimpleBinding {
         this.csFactory = csFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.CoordinatesType;

@@ -38,7 +38,9 @@ import org.locationtech.jts.geom.Geometry;
 @SuppressFBWarnings("DLS_DEAD_LOCAL_STORE")
 public class JoinExample {
 
-    /** @param args shapefile to use, if not provided the user will be prompted */
+    /**
+     * @param args shapefile to use, if not provided the user will be prompted
+     */
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to GeoTools:" + GeoTools.getVersion());
 

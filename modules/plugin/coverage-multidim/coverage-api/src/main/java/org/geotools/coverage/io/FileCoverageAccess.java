@@ -19,7 +19,9 @@ package org.geotools.coverage.io;
 import java.net.URL;
 import java.util.Set;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public interface FileCoverageAccess extends CoverageAccess {
 
     public Set<URL> getFileSet();

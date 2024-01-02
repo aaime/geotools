@@ -42,6 +42,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
         this.csvStrategy = csvStrategy;
         this.csvFileState = csvFileState;
     }
+
     // header end
     // getWriter start
     //
@@ -52,6 +53,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
             Query query, int flags) throws IOException {
         return new CSVFeatureWriter(this.csvFileState, this.csvStrategy, query);
     }
+
     // getWriter end
 
     // transaction start
@@ -76,6 +78,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
             delegate.setTransaction(transaction);
         }
     }
+
     // transaction end
 
     // internal start
@@ -103,6 +106,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
             throws IOException {
         return delegate.getReaderInternal(query);
     }
+
     // internal end
 
     // public start

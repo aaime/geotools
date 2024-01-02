@@ -149,49 +149,65 @@ public abstract class OnlineTestSupport {
     /** The delegate {@link OnlineTestCase} adapter. */
     private class DelegateOnlineTestCase extends OnlineTestCase {
 
-        /** @see org.geotools.test.OnlineTestCase#getFixtureId() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#getFixtureId()
+         */
         @Override
         protected String getFixtureId() {
             return OnlineTestSupport.this.getFixtureId();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#connect() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#connect()
+         */
         @Override
         protected void connect() throws Exception {
             OnlineTestSupport.this.connect();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#disconnect() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#disconnect()
+         */
         @Override
         protected void disconnect() throws Exception {
             OnlineTestSupport.this.disconnect();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#isOnline() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#isOnline()
+         */
         @Override
         protected boolean isOnline() throws Exception {
             return OnlineTestSupport.this.isOnline();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#setUpInternal() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#setUpInternal()
+         */
         @Override
         protected void setUpInternal() throws Exception {
             OnlineTestSupport.this.setUpInternal();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#tearDownInternal() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#tearDownInternal()
+         */
         @Override
         protected void tearDownInternal() throws Exception {
             OnlineTestSupport.this.tearDownInternal();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#createExampleFixture() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#createExampleFixture()
+         */
         @Override
         protected Properties createExampleFixture() {
             return OnlineTestSupport.this.createExampleFixture();
         }
 
-        /** @see org.geotools.test.OnlineTestCase#createOfflineFixture() */
+        /**
+         * @see org.geotools.test.OnlineTestCase#createOfflineFixture()
+         */
         @Override
         protected Properties createOfflineFixture() {
             return OnlineTestSupport.this.createOfflineFixture();

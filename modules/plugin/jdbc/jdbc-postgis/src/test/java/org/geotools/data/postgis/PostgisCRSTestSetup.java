@@ -21,7 +21,9 @@ import java.util.logging.Logger;
 import org.geotools.jdbc.JDBCDelegatingTestSetup;
 import org.geotools.util.logging.Logging;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class PostgisCRSTestSetup extends JDBCDelegatingTestSetup {
 
     private static Logger LOGGER = Logging.getLogger(PostgisCRSTestSetup.class);

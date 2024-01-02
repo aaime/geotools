@@ -27,10 +27,13 @@ import org.geotools.api.data.Transaction.State;
 final class JDBCTransactionState implements State {
     /** The datastore */
     JDBCDataStore dataStore;
+
     /** the current transaction */
     Transaction tx;
+
     /** The current connection */
     Connection cx;
+
     /**
      * Whether the connection is internally managed, or externally provided (in the latter case no
      * attempt to commit, rollback or close will be done)

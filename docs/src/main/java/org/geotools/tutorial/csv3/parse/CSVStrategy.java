@@ -34,6 +34,7 @@ public abstract class CSVStrategy {
     public CSVIterator iterator() throws IOException {
         return new CSVIterator(csvFileState, this);
     }
+
     // docs end CSVStrategy
 
     protected abstract SimpleFeatureType buildFeatureType();

@@ -119,6 +119,7 @@ public class sldSchema implements Schema {
     public Attribute[] getAttributes() {
         return null;
     }
+
     /** TODO comment here */
     private static ComplexType[] complexTypes = null;
 
@@ -134,6 +135,7 @@ public class sldSchema implements Schema {
         }
         return complexTypes;
     }
+
     /** TODO comment here */
     private static Element[] elements = null;
 

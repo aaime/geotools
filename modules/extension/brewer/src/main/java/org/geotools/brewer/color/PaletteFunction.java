@@ -30,7 +30,9 @@ import org.geotools.filter.FunctionExpressionImpl;
 import org.geotools.filter.capability.FunctionNameImpl;
 import org.geotools.filter.function.ClassificationFunction;
 
-/** @author James Macgill */
+/**
+ * @author James Macgill
+ */
 public class PaletteFunction extends FunctionExpressionImpl {
     ClassificationFunction classifier;
     String paletteName;

@@ -134,6 +134,7 @@ public class PropertyFeatureStore extends ContentFeatureStore {
     protected boolean handleVisitor(Query query, FeatureVisitor visitor) throws IOException {
         return delegate.handleVisitor(query, visitor);
     }
+
     //
     // Public Delegate Methods
     // Implement FeatureSource methods using CSVFeatureSource implementation

@@ -52,7 +52,9 @@ public class Scalar_CapabilitiesTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Scalar_CapabilitiesType;

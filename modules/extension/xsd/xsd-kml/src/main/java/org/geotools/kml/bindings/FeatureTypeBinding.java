@@ -124,7 +124,9 @@ public class FeatureTypeBinding extends AbstractComplexBinding {
         this.schemaRegistry = schemaRegistry;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.FeatureType;

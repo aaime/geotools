@@ -70,6 +70,7 @@ public class XmlMappingFeatureIterator extends DataAccessMappingFeatureIterator 
     private int indexCounter = 1;
 
     private String idXpath;
+
     /**
      * @param mapping place holder for the target type, the surrogate FeatureSource and the mappings
      *     between them.

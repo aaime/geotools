@@ -154,7 +154,9 @@ final class WeakObjectCache<K, V> implements ObjectCache<K, V> {
         writeUnLock(key);
     }
 
-    /** @return the keys of the object currently in the set */
+    /**
+     * @return the keys of the object currently in the set
+     */
     @Override
     public Set<K> getKeys() {
         return new HashSet<>(cache.keySet());

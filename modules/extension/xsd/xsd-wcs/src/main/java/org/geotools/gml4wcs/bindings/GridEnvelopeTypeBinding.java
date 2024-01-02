@@ -53,7 +53,9 @@ import org.w3c.dom.Element;
  */
 public class GridEnvelopeTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.GridEnvelopeType;

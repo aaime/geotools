@@ -145,13 +145,17 @@ public class NetCDFImageReaderSpi extends ImageReaderSpi {
         LOGGER.fine("NetCDFImageReaderSpi Constructor");
     }
 
-    /** @see javax.imageio.spi.ImageReaderSpi#createReaderInstance(java.lang.Object) */
+    /**
+     * @see javax.imageio.spi.ImageReaderSpi#createReaderInstance(java.lang.Object)
+     */
     @Override
     public ImageReader createReaderInstance(Object extension) throws IOException {
         return new NetCDFImageReader(this);
     }
 
-    /** @see javax.imageio.spi.IIOServiceProvider#getDescription(java.util.Locale) */
+    /**
+     * @see javax.imageio.spi.IIOServiceProvider#getDescription(java.util.Locale)
+     */
     @Override
     public String getDescription(Locale locale) {
         return new StringBuffer("NetCDF-CF Image Reader, version ").append(version).toString();

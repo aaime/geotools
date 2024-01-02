@@ -51,7 +51,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSLanguageBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.LANGUAGE;

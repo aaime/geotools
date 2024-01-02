@@ -85,12 +85,16 @@ public class TransformFeatureCollectionTest {
             return new TransformFeatureCollectionWrapper(this, transformer, query);
         }
 
-        /** @return the passedDown */
+        /**
+         * @return the passedDown
+         */
         public boolean isPassedDown() {
             return passedDown;
         }
 
-        /** @param passedDown the passedDown to set */
+        /**
+         * @param passedDown the passedDown to set
+         */
         public void setPassedDown(boolean passedDown) {
             this.passedDown = passedDown;
         }

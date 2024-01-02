@@ -140,6 +140,7 @@ public abstract class AbstractFeatureCollection implements SimpleFeatureCollecti
         }
         return true;
     }
+
     //
     // Contents
     //
@@ -160,7 +161,9 @@ public abstract class AbstractFeatureCollection implements SimpleFeatureCollecti
         return iterator;
     }
 
-    /** @return <tt>true</tt> if this collection contains no elements. */
+    /**
+     * @return <tt>true</tt> if this collection contains no elements.
+     */
     @Override
     public boolean isEmpty() {
         Iterator<SimpleFeature> iterator = iterator();

@@ -65,14 +65,21 @@ public final class GSS extends GML.DelegatingXSD {
         return getClass().getResource("gss.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.isotc211.org/2005/gss";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GM_Object_PropertyType =
             new QName("http://www.isotc211.org/2005/gss", "GM_Object_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GM_Point_PropertyType =
             new QName("http://www.isotc211.org/2005/gss", "GM_Point_PropertyType");
 

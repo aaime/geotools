@@ -84,6 +84,7 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
         super(CommonFactoryFinder.getStyleFactory(null), filterFactory);
         this.scale = scale;
     }
+
     /**
      * Used to rescale the provided expr.
      *
@@ -347,7 +348,8 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
         } else if (defaultValue != 0) {
             options.put(key, String.valueOf(defaultValue * scaleFactor));
         }
-    };
+    }
+    ;
 
     /** Rescales the specified vendor option */
     protected void rescaleOption(Map<String, String> options, String key, int defaultValue) {
@@ -362,7 +364,8 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
         } else if (defaultValue != 0) {
             options.put(key, String.valueOf((int) Math.round(defaultValue * scaleFactor)));
         }
-    };
+    }
+    ;
 
     /** Rescales the specified vendor option */
     protected void rescaleArrayOption(Map<String, String> options, String key, int defaultValue) {
@@ -380,5 +383,6 @@ public class RescaleStyleVisitor extends DuplicatingStyleVisitor {
         } else if (defaultValue != 0) {
             options.put(key, String.valueOf((int) Math.round(defaultValue * scaleFactor)));
         }
-    };
+    }
+    ;
 }

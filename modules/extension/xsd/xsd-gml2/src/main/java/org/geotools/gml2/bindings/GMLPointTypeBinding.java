@@ -67,7 +67,9 @@ public class GMLPointTypeBinding extends AbstractComplexBinding {
         return BEFORE;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PointType;

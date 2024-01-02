@@ -123,7 +123,9 @@ public class FeatureTypeTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.FeatureTypeType;

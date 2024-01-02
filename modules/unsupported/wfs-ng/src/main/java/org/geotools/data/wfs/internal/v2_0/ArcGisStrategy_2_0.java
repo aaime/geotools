@@ -20,15 +20,19 @@ import java.util.logging.Logger;
 import org.geotools.data.wfs.internal.GetFeatureRequest.ResultType;
 import org.geotools.util.logging.Logging;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class ArcGisStrategy_2_0 extends StrictWFS_2_0_Strategy {
     private static final Logger LOGGER = Logging.getLogger(StrictWFS_2_0_Strategy.class);
+
     /** */
     public ArcGisStrategy_2_0() {
         super();
         LOGGER.warning(
                 "This ArcGIS server WFS strategy is unsupported - consider using the better tested (and supported) version 1.0.0.");
     }
+
     /**
      * Pull Parser doesn't manage to parse feature count from response, so asking for HITS is a
      * waste of time currently.

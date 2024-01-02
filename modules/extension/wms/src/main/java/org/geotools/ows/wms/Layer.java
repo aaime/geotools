@@ -304,6 +304,7 @@ public class Layer implements Comparable<Layer> {
         }
         clearCache();
     }
+
     /** Look up a Dimension; note this looks up any parent supplied definitions as well */
     public Dimension getDimension(String name) {
         return getDimensions().get(name);
@@ -323,6 +324,7 @@ public class Layer implements Comparable<Layer> {
     public List<Extent> getLayerExtents() {
         return extents;
     }
+
     /**
      * The Extents valid for this layer; this includes both extents defined by this layer and all
      * extents contributed by parent layers.
@@ -527,7 +529,9 @@ public class Layer implements Comparable<Layer> {
         return this.getTitle().compareTo(layer.getTitle());
     }
 
-    /** @return Returns the parent. */
+    /**
+     * @return Returns the parent.
+     */
     public Layer getParent() {
         return parent;
     }
@@ -653,7 +657,9 @@ public class Layer implements Comparable<Layer> {
         return _abstract;
     }
 
-    /** @param _abstract The _abstract to set. */
+    /**
+     * @param _abstract The _abstract to set.
+     */
     public void set_abstract(String _abstract) {
         this._abstract = _abstract;
     }
@@ -667,7 +673,9 @@ public class Layer implements Comparable<Layer> {
         return keywords;
     }
 
-    /** @param keywords The keywords to set. */
+    /**
+     * @param keywords The keywords to set.
+     */
     public void setKeywords(String[] keywords) {
         this.keywords = keywords;
     }

@@ -742,6 +742,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Finished by not supported by GeoTools filters");
     }
+
     /**
      * FINISHING Temporal Filter Not Supported
      *
@@ -755,6 +756,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Finishing not supported by GeoTools filters");
     }
+
     /**
      * INTERSECTS Temporal Filter Not Supported
      *
@@ -768,6 +770,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("TIntersects not supported by GeoTools filters");
     }
+
     /**
      * MEETS Temporal Filter Not Supported
      *
@@ -780,6 +783,7 @@ final class CQLJsonFilterBuilder {
     public Filter convertMeets(ArrayNode args) throws CQLException, IOException, ParseException {
         throw new CQLException("Meets not supported by GeoTools filters");
     }
+
     /**
      * MET BY Temporal Filter Not Supported
      *
@@ -792,6 +796,7 @@ final class CQLJsonFilterBuilder {
     public Filter convertMetBy(ArrayNode args) throws CQLException, IOException, ParseException {
         throw new CQLException("Met by not supported by GeoTools filters");
     }
+
     /**
      * OVERLAPPED BY Temporal Filter Not Supported
      *
@@ -805,6 +810,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Overlapped by not supported by GeoTools filters");
     }
+
     /**
      * OVERLAPS Temporal Filter Not Supported
      *
@@ -818,6 +824,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Time Overlaps not supported by GeoTools filters");
     }
+
     /**
      * STARTED BY Temporal Filter Not Supported
      *
@@ -831,6 +838,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Started by not supported by GeoTools filters");
     }
+
     /**
      * STARTS Temporal Filter Not Supported
      *
@@ -843,6 +851,7 @@ final class CQLJsonFilterBuilder {
     public Filter convertStarts(ArrayNode args) throws CQLException, IOException, ParseException {
         throw new CQLException("Starts not supported by GeoTools filters");
     }
+
     /**
      * CONTAINED BY Array Filter Not Supported
      *
@@ -856,6 +865,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Array Contained By not supported by GeoTools filters");
     }
+
     /**
      * CONTAINING Array Filter Not Supported
      *
@@ -869,6 +879,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Array Containing not supported by GeoTools filters");
     }
+
     /**
      * EQUALS Array Filter Not Supported
      *
@@ -882,6 +893,7 @@ final class CQLJsonFilterBuilder {
             throws CQLException, IOException, ParseException {
         throw new CQLException("Array Equals not supported by GeoTools filters");
     }
+
     /**
      * OVERLAPS Array Filter Not Supported
      *

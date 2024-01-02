@@ -68,7 +68,9 @@ abstract class ImageMosaicWalker<T> implements Runnable {
         return transaction;
     }
 
-    /** @param configHandler configuration handler being used */
+    /**
+     * @param configHandler configuration handler being used
+     */
     public ImageMosaicWalker(
             ImageMosaicConfigHandler configHandler, ImageMosaicEventHandlers eventHandler) {
         Utilities.ensureNonNull("config handler", configHandler);
@@ -116,22 +118,30 @@ abstract class ImageMosaicWalker<T> implements Runnable {
         return true;
     }
 
-    /** @return the elementIndex */
+    /**
+     * @return the elementIndex
+     */
     public int getElementIndex() {
         return elementIndex;
     }
 
-    /** @return the numElements */
+    /**
+     * @return the numElements
+     */
     public int getNumElements() {
         return numElements;
     }
 
-    /** @param elementIndex the elementIndex to set */
+    /**
+     * @param elementIndex the elementIndex to set
+     */
     public void setElementIndex(int elementIndex) {
         this.elementIndex = elementIndex;
     }
 
-    /** @param numElements the numElements to set */
+    /**
+     * @param numElements the numElements to set
+     */
     public void setNumElements(int numElements) {
         this.numElements = numElements;
     }

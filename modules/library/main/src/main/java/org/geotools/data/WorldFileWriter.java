@@ -262,6 +262,7 @@ public class WorldFileWriter {
         // create a writer
         write(new BufferedWriter(new FileWriter(outLocation), buffSize), transform);
     }
+
     /**
      * Constructor.
      *

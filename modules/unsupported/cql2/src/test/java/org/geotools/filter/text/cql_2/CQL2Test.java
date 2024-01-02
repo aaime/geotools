@@ -295,6 +295,7 @@ public class CQL2Test {
 
         Assert.assertEquals(expectedCQL, cqlResult);
     }
+
     /** Verify the parser uses the provided FilterFactory implementation */
     @Test
     public void toExpressionUsesProvidedFilterFactory() throws Exception {

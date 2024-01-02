@@ -37,7 +37,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class MLBodyTypeBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return ML.BODYTYPE;

@@ -57,7 +57,9 @@ import org.locationtech.jts.geom.Envelope;
  */
 public abstract class LayertypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GPKG.layertype;

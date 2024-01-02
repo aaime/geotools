@@ -210,27 +210,37 @@ public class Contours {
         return lines;
     }
 
-    /** @return the levels */
+    /**
+     * @return the levels
+     */
     public double[] getLevels() {
         return levels;
     }
 
-    /** @param levels the levels to set */
+    /**
+     * @param levels the levels to set
+     */
     public void setLevels(double[] levels) {
         this.levels = levels;
     }
 
-    /** @param booleanValue */
+    /**
+     * @param booleanValue
+     */
     public void setSmooth(boolean booleanValue) {
         smooth = booleanValue;
     }
 
-    /** @param booleanValue */
+    /**
+     * @param booleanValue
+     */
     public void setSimplify(boolean booleanValue) {
         simplify = booleanValue;
     }
 
-    /** @param progressListener */
+    /**
+     * @param progressListener
+     */
     public void setProgressListener(ProgressListener progressListener) {
         this.progressListener = progressListener;
     }

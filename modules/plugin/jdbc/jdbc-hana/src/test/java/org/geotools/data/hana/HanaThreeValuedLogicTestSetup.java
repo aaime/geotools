@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCTestSetup;
 import org.geotools.jdbc.JDBCThreeValuedLogicTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaThreeValuedLogicTestSetup extends JDBCThreeValuedLogicTestSetup {
 
     private static final String TABLE = "abc";

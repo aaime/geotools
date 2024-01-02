@@ -39,7 +39,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.MultiPolygon;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class FeatureTypeDBObjectTest {
 
     public FeatureTypeDBObjectTest() {}

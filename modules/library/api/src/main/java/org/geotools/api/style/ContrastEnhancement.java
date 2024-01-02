@@ -88,10 +88,14 @@ public interface ContrastEnhancement {
     /** Traversal of the style data structure. */
     void accept(StyleVisitor visitor);
 
-    /** @param options a Map of VendorOptions */
+    /**
+     * @param options a Map of VendorOptions
+     */
     void setOptions(Map<String, Expression> options);
 
-    /** @return An expression for the matching VendorOption */
+    /**
+     * @return An expression for the matching VendorOption
+     */
     Expression getOption(String string);
 
     /**

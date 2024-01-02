@@ -43,6 +43,7 @@ public class FilteringFeatureCollection<T extends FeatureType, F extends Feature
 
     /** The original feature collection. */
     FeatureCollection<T, F> delegate;
+
     /** the filter */
     Filter filter;
 

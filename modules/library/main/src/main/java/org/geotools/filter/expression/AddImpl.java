@@ -72,6 +72,7 @@ public class AddImpl extends MathExpressionImpl implements Add {
             return false;
         }
     }
+
     /**
      * Override of hashCode method.
      *

@@ -27,6 +27,7 @@ package org.geotools.data.vpf;
 class ColumnPair {
     /** The first column to join */
     public VPFColumn column1;
+
     /** The second column to join */
     public VPFColumn column2;
 

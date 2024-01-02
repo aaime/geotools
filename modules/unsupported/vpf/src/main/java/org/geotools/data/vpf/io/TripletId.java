@@ -34,10 +34,12 @@ import org.geotools.util.logging.Logging;
 public class TripletId extends Number {
     /** serialVersionUID */
     private static final long serialVersionUID = -3584133713173893007L;
+
     /** The raw data that can be decomposed into as many as three separate numbers */
     private byte[] rawData = null;
 
     static final Logger LOGGER = Logging.getLogger(TripletId.class);
+
     /**
      * Creates a new <code>TripletId</code> instance.
      *

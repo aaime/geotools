@@ -27,16 +27,24 @@ import org.geotools.util.factory.Hints;
  */
 public abstract class CoverageRequest {
 
-    /** @uml.property name="name" */
+    /**
+     * @uml.property name="name"
+     */
     private Name name;
 
-    /** @uml.property name="handle" */
+    /**
+     * @uml.property name="handle"
+     */
     private String handle;
 
-    /** @uml.property name="hints" */
+    /**
+     * @uml.property name="hints"
+     */
     private Hints hints;
 
-    /** @uml.property name="additionalParameters" */
+    /**
+     * @uml.property name="additionalParameters"
+     */
     private Map<String, Parameter<?>> additionalParameters;
 
     /**
@@ -51,7 +59,9 @@ public abstract class CoverageRequest {
         return handle;
     }
 
-    /** @see org.geotools.coverage.io.CoverageRequest#setHandle(java.lang.String) */
+    /**
+     * @see org.geotools.coverage.io.CoverageRequest#setHandle(java.lang.String)
+     */
     public void setHandle(String handle) {
         this.handle = handle;
     }
@@ -74,27 +84,37 @@ public abstract class CoverageRequest {
         return hints;
     }
 
-    /** @see org.geotools.coverage.io.CoverageRequest#setHints(Hints) */
+    /**
+     * @see org.geotools.coverage.io.CoverageRequest#setHints(Hints)
+     */
     public void setHints(Hints hints) {
         this.hints = hints;
     }
 
-    /** @see org.geotools.coverage.io.CoverageRequest#setAdditionalParameters(Map) */
+    /**
+     * @see org.geotools.coverage.io.CoverageRequest#setAdditionalParameters(Map)
+     */
     public void setAdditionalParameters(Map<String, Parameter<?>> additionalParameters) {
         this.additionalParameters = additionalParameters;
     }
 
-    /** @see org.geotools.coverage.io.CoverageRequest#getAdditionalParameters() */
+    /**
+     * @see org.geotools.coverage.io.CoverageRequest#getAdditionalParameters()
+     */
     public Map<String, Parameter<?>> getAdditionalParameters() {
         return additionalParameters;
     }
 
-    /** @see org.geotools.coverage.io.CoverageRequest#getName() */
+    /**
+     * @see org.geotools.coverage.io.CoverageRequest#getName()
+     */
     public Name getName() {
         return name;
     }
 
-    /** @see org.geotools.coverage.io.CoverageRequest#setName(org.geotools.api.feature.type.Name) */
+    /**
+     * @see org.geotools.coverage.io.CoverageRequest#setName(org.geotools.api.feature.type.Name)
+     */
     public void setName(Name name) {
         this.name = name;
     }

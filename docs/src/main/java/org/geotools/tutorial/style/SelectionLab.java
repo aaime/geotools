@@ -105,6 +105,7 @@ public class SelectionLab {
 
         me.displayShapefile(file);
     }
+
     // docs end main
 
     // docs start display shapefile
@@ -164,6 +165,7 @@ public class SelectionLab {
         mapFrame.setSize(600, 600);
         mapFrame.setVisible(true);
     }
+
     // docs end display shapefile
 
     // docs start select features
@@ -225,6 +227,7 @@ public class SelectionLab {
             ex.printStackTrace();
         }
     }
+
     // docs end select features
 
     // docs start display selected
@@ -248,6 +251,7 @@ public class SelectionLab {
         ((FeatureLayer) layer).setStyle(style);
         mapFrame.getMapPane().repaint();
     }
+
     // docs end display selected
 
     // docs start default style
@@ -262,6 +266,7 @@ public class SelectionLab {
         style.featureTypeStyles().add(fts);
         return style;
     }
+
     // docs end default style
 
     // docs start selected style
@@ -284,6 +289,7 @@ public class SelectionLab {
         style.featureTypeStyles().add(fts);
         return style;
     }
+
     // docs end selected style
 
     // docs start create rule
@@ -325,6 +331,7 @@ public class SelectionLab {
         rule.symbolizers().add(symbolizer);
         return rule;
     }
+
     // docs end create rule
 
     // docs start set geometry

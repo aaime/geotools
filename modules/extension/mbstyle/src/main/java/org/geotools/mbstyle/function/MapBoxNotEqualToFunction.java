@@ -68,7 +68,9 @@ class MapBoxNotEqualToFunction extends FunctionExpressionImpl {
         super(NAME);
     }
 
-    /** @see org.geotools.filter.FunctionExpressionImpl#equals(java.lang.Object) */
+    /**
+     * @see org.geotools.filter.FunctionExpressionImpl#equals(java.lang.Object)
+     */
     @Override
     public Object evaluate(Object feature) {
         Object arg0;

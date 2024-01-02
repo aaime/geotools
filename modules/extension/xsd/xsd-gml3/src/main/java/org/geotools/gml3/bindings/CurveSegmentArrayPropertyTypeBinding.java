@@ -46,7 +46,9 @@ import org.locationtech.jts.geom.LineString;
  * @generated
  */
 public class CurveSegmentArrayPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.CurveSegmentArrayPropertyType;

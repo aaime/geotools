@@ -1,4 +1,5 @@
 package org.geotools.data.geojson.store;
+
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org

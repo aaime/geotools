@@ -18,7 +18,9 @@ package org.geotools.styling;
 
 import org.geotools.api.style.ContrastMethod;
 
-/** @author iant */
+/**
+ * @author iant
+ */
 public class HistogramContrastMethodStrategy extends AbstractContrastMethodStrategy {
 
     public HistogramContrastMethodStrategy() {

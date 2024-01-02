@@ -63,6 +63,7 @@ public class CSVIterator implements Iterator<SimpleFeature> {
         }
         return null;
     }
+
     // docs end readFeature
 
     @Override

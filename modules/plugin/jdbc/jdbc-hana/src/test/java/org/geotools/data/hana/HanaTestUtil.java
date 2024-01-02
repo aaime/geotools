@@ -28,7 +28,9 @@ import java.util.Properties;
 import org.geotools.data.hana.metadata.MetadataDdl;
 import org.geotools.data.hana.metadata.Srs;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaTestUtil {
 
     private static final String HANA_UUID = "8E468249703240F0ACDE78162124A62F";

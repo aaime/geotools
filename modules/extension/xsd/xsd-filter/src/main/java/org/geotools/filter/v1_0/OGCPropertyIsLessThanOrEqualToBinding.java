@@ -46,7 +46,9 @@ public class OGCPropertyIsLessThanOrEqualToBinding extends AbstractComplexBindin
         this.filterfactory = filterfactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.PropertyIsLessThanOrEqualTo;

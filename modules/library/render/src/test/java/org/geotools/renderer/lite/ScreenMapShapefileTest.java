@@ -48,7 +48,9 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
-/** @author Sebastian Graca, ISPiK S.A. */
+/**
+ * @author Sebastian Graca, ISPiK S.A.
+ */
 public class ScreenMapShapefileTest {
 
     private DataStore shapeFileDataStore;

@@ -75,6 +75,7 @@ public class TypesTest {
 
         Assert.assertNotNull(feature);
     }
+
     /** This utility class is used by Types to prevent attribute modification. */
     @Test
     public void testRestrictionCheck() {

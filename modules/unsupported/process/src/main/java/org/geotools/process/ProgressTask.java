@@ -140,8 +140,10 @@ public class ProgressTask implements Runnable, Progress {
 
         /** State for process running */
         private static final int RUNNING = 1;
+
         /** State for process completed */
         private static final int COMPLETED = 2;
+
         /** State for process canceled */
         private static final int CANCELED = 4;
 

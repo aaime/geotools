@@ -108,6 +108,7 @@ public class CRSLab {
         mapFrame.setSize(800, 600);
         mapFrame.setVisible(true);
     }
+
     // docs end display
 
     /**
@@ -178,6 +179,7 @@ public class CRSLab {
             transaction.close();
         }
     }
+
     // docs end export
 
     /**
@@ -238,6 +240,7 @@ public class CRSLab {
             transaction.close();
         }
     }
+
     // docs end export2
 
     /**
@@ -273,6 +276,7 @@ public class CRSLab {
         featureCollection.accepts(visitor, progress);
         return visitor.numInvalidGeometries;
     }
+
     // docs end validate
 
     /**
@@ -291,6 +295,7 @@ public class CRSLab {
             exportToShapefile();
         }
     }
+
     // docs end export action
 
     /**
@@ -316,6 +321,7 @@ public class CRSLab {
                     null, msg, "Geometry results", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
     // docs end validate action
 
     /**

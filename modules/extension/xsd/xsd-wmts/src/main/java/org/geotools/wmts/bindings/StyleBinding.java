@@ -81,7 +81,9 @@ public class StyleBinding extends DescriptionTypeBinding {
         this.wmtsv_1Factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WMTS.Style;

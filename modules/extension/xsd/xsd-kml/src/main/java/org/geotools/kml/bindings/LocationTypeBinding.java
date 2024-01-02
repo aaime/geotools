@@ -47,7 +47,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class LocationTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.LocationType;

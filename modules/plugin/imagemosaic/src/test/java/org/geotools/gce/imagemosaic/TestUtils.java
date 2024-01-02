@@ -46,7 +46,9 @@ import org.geotools.util.URLs;
 import org.geotools.util.factory.Hints;
 import org.junit.Assert;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 final class TestUtils extends Assert {
 
     private TestUtils() {
@@ -200,6 +202,7 @@ final class TestUtils extends Assert {
         if (checkForNull) Assert.assertNotNull(reader);
         return reader;
     }
+
     /**
      * Shows the provided {@link RenderedImage} ina {@link JFrame} using the provided <code>title
      * </code> as the frame's title.

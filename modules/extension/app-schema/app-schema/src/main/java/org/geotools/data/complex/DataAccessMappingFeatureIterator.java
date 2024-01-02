@@ -132,6 +132,7 @@ public class DataAccessMappingFeatureIterator extends AbstractMappingFeatureIter
     private boolean isFiltered;
 
     private ArrayList<String> filteredFeatures;
+
     /** Temporary/experimental changes for enabling subsetting for isList only. */
     private Filter listFilter;
 

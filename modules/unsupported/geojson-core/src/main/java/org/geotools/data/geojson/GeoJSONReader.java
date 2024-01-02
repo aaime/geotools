@@ -76,6 +76,7 @@ public class GeoJSONReader implements AutoCloseable {
     public static final String GEOMETRY_NAME = "geometry";
 
     private static final Logger LOGGER = Logging.getLogger(GeoJSONReader.class);
+
     /** Top Level Attributes Not Included in Properties */
     public static final Object TOP_LEVEL_ATTRIBUTES = "topLevelAttributes";
 
@@ -724,17 +725,23 @@ public class GeoJSONReader implements AutoCloseable {
         return schema;
     }
 
-    /** @param schema the schema to set */
+    /**
+     * @param schema the schema to set
+     */
     public void setSchema(SimpleFeatureType schema) {
         this.schema = schema;
     }
 
-    /** @return the schemaChanged */
+    /**
+     * @return the schemaChanged
+     */
     public boolean isSchemaChanged() {
         return schemaChanged;
     }
 
-    /** @param schemaChanged the schemaChanged to set */
+    /**
+     * @param schemaChanged the schemaChanged to set
+     */
     public void setSchemaChanged(boolean schemaChanged) {
         this.schemaChanged = schemaChanged;
     }

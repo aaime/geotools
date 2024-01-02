@@ -35,6 +35,7 @@ public class JTDSSqlServerDataStoreFactory extends SQLServerDataStoreFactory {
                     true,
                     "jtds-sqlserver",
                     Collections.singletonMap(Parameter.LEVEL, "program"));
+
     /* (non-Javadoc)
      * @see org.geotools.data.sqlserver.SQLServerDataStoreFactory#getDescription()
      */

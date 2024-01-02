@@ -77,7 +77,10 @@ class ZGroupLayer extends Layer {
         "PMD.UseTryWithResources"
     }) // assured closed in the finally method
     public void drawFeatures(Graphics2D graphics, final StreamingRenderer renderer, String layerId)
-            throws IOException, FactoryException, NoninvertibleTransformException, SchemaException,
+            throws IOException,
+                    FactoryException,
+                    NoninvertibleTransformException,
+                    SchemaException,
                     TransformException {
         // 1) init all the readers and the lfts associated to them (one at a time to avoid deadlock)
         // and create one RenderableFeature for each
@@ -91,7 +94,8 @@ class ZGroupLayer extends Layer {
                     @Override
                     public boolean isCanceled() {
                         return renderer.renderingStopRequested;
-                    };
+                    }
+                    ;
                 };
 
         List<ZGroupLayerPainter> painters = null;
@@ -164,7 +168,10 @@ class ZGroupLayer extends Layer {
             StreamingRenderer renderer,
             String layerId,
             ProgressListener cancellationListener)
-            throws IOException, FactoryException, NoninvertibleTransformException, SchemaException,
+            throws IOException,
+                    FactoryException,
+                    NoninvertibleTransformException,
+                    SchemaException,
                     TransformException {
         List<ZGroupLayerPainter> painters = new ArrayList<>();
         boolean closePainters = true;

@@ -94,6 +94,7 @@ public final class CommonFactoryFinder extends FactoryFinder {
         hints = mergeSystemHints(hints);
         return lookup(StyleFactory.class, hints, Hints.STYLE_FACTORY);
     }
+
     /**
      * Returns the first implementation of {@link StyleFactory}. If no implementation matches, a new
      * one is created if possible or an exception is thrown otherwise.

@@ -27,7 +27,9 @@ public class Data {
     private DataDefinition def;
     private ArrayList<Object> values;
 
-    /** @param def */
+    /**
+     * @param def
+     */
     public Data(DataDefinition def) {
         this.def = def;
         this.values = new ArrayList<>(def.getFieldsCount());
@@ -52,7 +54,9 @@ public class Data {
         return ret;
     }
 
-    /** @return - this Data object */
+    /**
+     * @return - this Data object
+     */
     public Data addValue(Object val) throws TreeException {
         if (this.values.size() == def.getFieldsCount()) {
             throw new TreeException("Max number of values reached!");
@@ -79,12 +83,16 @@ public class Data {
         return this.values.size();
     }
 
-    /** @param i */
+    /**
+     * @param i
+     */
     public Object getValue(int i) {
         return this.values.get(i);
     }
 
-    /** @see java.lang.Object#toString() */
+    /**
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
         StringBuffer ret = new StringBuffer();

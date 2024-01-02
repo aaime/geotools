@@ -85,7 +85,8 @@ public class RasterLayerRequest {
 
     private FootprintBehavior footprintBehavior = FootprintBehavior.None;
 
-    private int defaultArtifactsFilterThreshold = Integer.MIN_VALUE;;
+    private int defaultArtifactsFilterThreshold = Integer.MIN_VALUE;
+    ;
 
     private double artifactsFilterPTileThreshold;
 
@@ -945,12 +946,16 @@ public class RasterLayerRequest {
         }
     }
 
-    /** @return the accurateResolution */
+    /**
+     * @return the accurateResolution
+     */
     public boolean isAccurateResolution() {
         return accurateResolution;
     }
 
-    /** @param accurateResolution the accurateResolution to set */
+    /**
+     * @param accurateResolution the accurateResolution to set
+     */
     public void setAccurateResolution(boolean accurateResolution) {
         this.accurateResolution = accurateResolution;
     }

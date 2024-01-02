@@ -45,6 +45,7 @@ import org.locationtech.jts.geom.GeometryCollection;
 public class CropCoverage implements RasterProcess {
 
     private static final CoverageProcessor PROCESSOR = CoverageProcessor.getInstance();
+
     // private static final Operation CROP = PROCESSOR.getOperation("CoverageCrop");
 
     @DescribeResult(name = "result", description = "Cropped raster")

@@ -27,7 +27,9 @@ import org.junit.Before;
 import org.junit.Test;
 import si.uom.SI;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultIntervalLengthTest {
 
     private IntervalLength intervalLength1;

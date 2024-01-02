@@ -53,6 +53,7 @@ public class MemoryFeatureSource extends ContentFeatureSource {
     public MemoryState getState() {
         return (MemoryState) super.getState();
     }
+
     /** The entry for the feature source. */
     @Override
     public MemoryEntry getEntry() {

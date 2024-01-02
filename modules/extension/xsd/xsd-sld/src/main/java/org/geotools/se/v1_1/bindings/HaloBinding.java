@@ -49,7 +49,9 @@ public class HaloBinding extends SLDHaloBinding {
         super(styleFactory, filterFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Halo;

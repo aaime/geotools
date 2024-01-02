@@ -87,6 +87,7 @@ public class Extrema extends BaseStatisticsOperationJAI {
 
     /** {@link String} key for getting the maximum vector. */
     public static final String GT_SYNTHETIC_PROPERTY_MAXIMUM = "maximum";
+
     /** Locations of min values. */
     public static final String GT_SYNTHETIC_PROPERTY_MIN_LOCATIONS = "minLocations";
 

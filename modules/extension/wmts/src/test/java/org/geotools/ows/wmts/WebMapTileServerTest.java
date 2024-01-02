@@ -56,7 +56,9 @@ import org.geotools.tile.Tile;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Emanuele Tajariol (etj at geo-solutions dot it) */
+/**
+ * @author Emanuele Tajariol (etj at geo-solutions dot it)
+ */
 public class WebMapTileServerTest {
 
     @Test

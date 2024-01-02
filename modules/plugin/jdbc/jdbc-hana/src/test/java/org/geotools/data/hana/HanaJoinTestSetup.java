@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCJoinTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaJoinTestSetup extends JDBCJoinTestSetup {
 
     private static final String TABLE1 = "ftjoin";

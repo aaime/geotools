@@ -545,7 +545,9 @@ public class ImageMosaicReader extends AbstractGridCoverage2DReader
         this(source, null);
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new ImageMosaicFormat();
@@ -660,7 +662,9 @@ public class ImageMosaicReader extends AbstractGridCoverage2DReader
         return super.highestRes;
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     double[][] getOverviewsResolution() {
         return super.overViewResolutions;
     }

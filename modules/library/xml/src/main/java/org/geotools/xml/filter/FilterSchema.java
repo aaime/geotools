@@ -267,55 +267,73 @@ public class FilterSchema implements Schema {
         return elements;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getAttributeGroups() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getAttributeGroups()
+     */
     @Override
     public AttributeGroup[] getAttributeGroups() {
         return null;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getAttributes() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getAttributes()
+     */
     @Override
     public Attribute[] getAttributes() {
         return null;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getBlockDefault() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getBlockDefault()
+     */
     @Override
     public int getBlockDefault() {
         return NONE;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getComplexTypes() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getComplexTypes()
+     */
     @Override
     public ComplexType[] getComplexTypes() {
         return complexTypes;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getElements() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getElements()
+     */
     @Override
     public Element[] getElements() {
         return elements;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getFinalDefault() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getFinalDefault()
+     */
     @Override
     public int getFinalDefault() {
         return NONE;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getGroups() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getGroups()
+     */
     @Override
     public Group[] getGroups() {
         return null;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getId() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getId()
+     */
     @Override
     public String getId() {
         return null;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getImports() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getImports()
+     */
     @Override
     public Schema[] getImports() {
         return new Schema[] {
@@ -323,37 +341,49 @@ public class FilterSchema implements Schema {
         };
     }
 
-    /** @see org.geotools.xml.schema.Schema#getURI() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getURI()
+     */
     @Override
     public URI getURI() {
         return NAMESPACE;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getPrefix() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getPrefix()
+     */
     @Override
     public String getPrefix() {
         return "ogc";
     }
 
-    /** @see org.geotools.xml.schema.Schema#getSimpleTypes() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getSimpleTypes()
+     */
     @Override
     public SimpleType[] getSimpleTypes() {
         return null;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getTargetNamespace() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getTargetNamespace()
+     */
     @Override
     public URI getTargetNamespace() {
         return NAMESPACE;
     }
 
-    /** @see org.geotools.xml.schema.Schema#getVersion() */
+    /**
+     * @see org.geotools.xml.schema.Schema#getVersion()
+     */
     @Override
     public String getVersion() {
         return "1.0.0";
     }
 
-    /** @see org.geotools.xml.schema.Schema#includesURI(java.net.URI) */
+    /**
+     * @see org.geotools.xml.schema.Schema#includesURI(java.net.URI)
+     */
     @Override
     public boolean includesURI(URI uri) {
         //        if (uri.toString().toLowerCase().endsWith("filter.xsd")
@@ -369,13 +399,17 @@ public class FilterSchema implements Schema {
         return true;
     }
 
-    /** @see org.geotools.xml.schema.Schema#isAttributeFormDefault() */
+    /**
+     * @see org.geotools.xml.schema.Schema#isAttributeFormDefault()
+     */
     @Override
     public boolean isAttributeFormDefault() {
         return false;
     }
 
-    /** @see org.geotools.xml.schema.Schema#isElementFormDefault() */
+    /**
+     * @see org.geotools.xml.schema.Schema#isElementFormDefault()
+     */
     @Override
     public boolean isElementFormDefault() {
         return true;
@@ -415,97 +449,129 @@ public class FilterSchema implements Schema {
             this.substitutionGroup = substitutionGroup;
         }
 
-        /** @see org.geotools.xml.schema.Element#isAbstract() */
+        /**
+         * @see org.geotools.xml.schema.Element#isAbstract()
+         */
         @Override
         public boolean isAbstract() {
             return false;
         }
 
-        /** @see org.geotools.xml.schema.Element#getBlock() */
+        /**
+         * @see org.geotools.xml.schema.Element#getBlock()
+         */
         @Override
         public int getBlock() {
             return NONE;
         }
 
-        /** @see org.geotools.xml.schema.Element#getDefault() */
+        /**
+         * @see org.geotools.xml.schema.Element#getDefault()
+         */
         @Override
         public String getDefault() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.Element#getFinal() */
+        /**
+         * @see org.geotools.xml.schema.Element#getFinal()
+         */
         @Override
         public int getFinal() {
             return NONE;
         }
 
-        /** @see org.geotools.xml.schema.Element#getFixed() */
+        /**
+         * @see org.geotools.xml.schema.Element#getFixed()
+         */
         @Override
         public String getFixed() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.Element#isForm() */
+        /**
+         * @see org.geotools.xml.schema.Element#isForm()
+         */
         @Override
         public boolean isForm() {
             return false;
         }
 
-        /** @see org.geotools.xml.schema.Element#getId() */
+        /**
+         * @see org.geotools.xml.schema.Element#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.Element#getMaxOccurs() */
+        /**
+         * @see org.geotools.xml.schema.Element#getMaxOccurs()
+         */
         @Override
         public int getMaxOccurs() {
             return 1;
         }
 
-        /** @see org.geotools.xml.schema.Element#getMinOccurs() */
+        /**
+         * @see org.geotools.xml.schema.Element#getMinOccurs()
+         */
         @Override
         public int getMinOccurs() {
             return 1;
         }
 
-        /** @see org.geotools.xml.schema.Element#getName() */
+        /**
+         * @see org.geotools.xml.schema.Element#getName()
+         */
         @Override
         public String getName() {
             return name;
         }
 
-        /** @see org.geotools.xml.schema.Element#getNamespace() */
+        /**
+         * @see org.geotools.xml.schema.Element#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return NAMESPACE;
         }
 
-        /** @see org.geotools.xml.schema.Element#isNillable() */
+        /**
+         * @see org.geotools.xml.schema.Element#isNillable()
+         */
         @Override
         public boolean isNillable() {
             return false;
         }
 
-        /** @see org.geotools.xml.schema.Element#getSubstitutionGroup() */
+        /**
+         * @see org.geotools.xml.schema.Element#getSubstitutionGroup()
+         */
         @Override
         public Element getSubstitutionGroup() {
             return substitutionGroup;
         }
 
-        /** @see org.geotools.xml.schema.Element#getType() */
+        /**
+         * @see org.geotools.xml.schema.Element#getType()
+         */
         @Override
         public Type getType() {
             return type;
         }
 
-        /** @see org.geotools.xml.schema.ElementGrouping#getGrouping() */
+        /**
+         * @see org.geotools.xml.schema.ElementGrouping#getGrouping()
+         */
         @Override
         public int getGrouping() {
             return ELEMENT;
         }
 
-        /** @see org.geotools.xml.schema.ElementGrouping#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.schema.ElementGrouping#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(String name1) {
             return (((getName() != null) && getName().equals(name1)) ? this : null);
@@ -522,55 +588,73 @@ public class FilterSchema implements Schema {
     }
 
     abstract static class FilterComplexType implements ComplexType {
-        /** @see org.geotools.xml.schema.ComplexType#getParent() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getParent()
+         */
         @Override
         public Type getParent() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#isAbstract() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#isAbstract()
+         */
         @Override
         public boolean isAbstract() {
             return false;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getAnyAttributeNameSpace() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getAnyAttributeNameSpace()
+         */
         @Override
         public String getAnyAttributeNameSpace() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getAttributes() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getAttributes()
+         */
         @Override
         public Attribute[] getAttributes() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getBlock() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getBlock()
+         */
         @Override
         public int getBlock() {
             return Schema.NONE;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getFinal() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getFinal()
+         */
         @Override
         public int getFinal() {
             return Schema.NONE;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getId() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getId()
+         */
         @Override
         public String getId() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#isMixed() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#isMixed()
+         */
         @Override
         public boolean isMixed() {
             return false;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#isDerived() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#isDerived()
+         */
         @Override
         public boolean isDerived() {
             return false;
@@ -585,13 +669,17 @@ public class FilterSchema implements Schema {
             return true;
         }
 
-        /** @see org.geotools.xml.schema.Type#getNamespace() */
+        /**
+         * @see org.geotools.xml.schema.Type#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return FilterSchema.NAMESPACE;
         }
 
-        /** @see org.geotools.xml.schema.Type#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.schema.Type#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(String name) {
             return (getChild() == null) ? null : getChild().findChildElement(name);

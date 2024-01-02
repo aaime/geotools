@@ -30,157 +30,247 @@ public final class OGC extends XSD {
     /** singleton instance */
     private static final OGC instance = new OGC();
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/ogc";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Arithmetic_OperatorsType =
             new QName("http://www.opengis.net/ogc", "Arithmetic_OperatorsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Comparison_OperatorsType =
             new QName("http://www.opengis.net/ogc", "Comparison_OperatorsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Function_NamesType =
             new QName("http://www.opengis.net/ogc", "Function_NamesType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Function_NameType =
             new QName("http://www.opengis.net/ogc", "Function_NameType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName FunctionsType =
             new QName("http://www.opengis.net/ogc", "FunctionsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Scalar_CapabilitiesType =
             new QName("http://www.opengis.net/ogc", "Scalar_CapabilitiesType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Spatial_CapabilitiesType =
             new QName("http://www.opengis.net/ogc", "Spatial_CapabilitiesType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Spatial_OperatorsType =
             new QName("http://www.opengis.net/ogc", "Spatial_OperatorsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _BBOX = new QName("http://www.opengis.net/ogc", "_BBOX");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Between = new QName("http://www.opengis.net/ogc", "_Between");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Beyond = new QName("http://www.opengis.net/ogc", "_Beyond");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Contains = new QName("http://www.opengis.net/ogc", "_Contains");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Crosses = new QName("http://www.opengis.net/ogc", "_Crosses");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Disjoint = new QName("http://www.opengis.net/ogc", "_Disjoint");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _DWithin = new QName("http://www.opengis.net/ogc", "_DWithin");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Equals = new QName("http://www.opengis.net/ogc", "_Equals");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Filter_Capabilities =
             new QName("http://www.opengis.net/ogc", "_Filter_Capabilities");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Intersect = new QName("http://www.opengis.net/ogc", "_Intersect");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Like = new QName("http://www.opengis.net/ogc", "_Like");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Logical_Operators =
             new QName("http://www.opengis.net/ogc", "_Logical_Operators");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _NullCheck = new QName("http://www.opengis.net/ogc", "_NullCheck");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Overlaps = new QName("http://www.opengis.net/ogc", "_Overlaps");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Simple_Arithmetic =
             new QName("http://www.opengis.net/ogc", "_Simple_Arithmetic");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Simple_Comparisons =
             new QName("http://www.opengis.net/ogc", "_Simple_Comparisons");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Touches = new QName("http://www.opengis.net/ogc", "_Touches");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _Within = new QName("http://www.opengis.net/ogc", "_Within");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName BBOX = new QName("http://www.opengis.net/ogc", "BBOX");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Between = new QName("http://www.opengis.net/ogc", "Between");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Beyond = new QName("http://www.opengis.net/ogc", "Beyond");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Contains = new QName("http://www.opengis.net/ogc", "Contains");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Crosses = new QName("http://www.opengis.net/ogc", "Crosses");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Disjoint = new QName("http://www.opengis.net/ogc", "Disjoint");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DWithin = new QName("http://www.opengis.net/ogc", "DWithin");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Equals = new QName("http://www.opengis.net/ogc", "Equals");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Filter_Capabilities =
             new QName("http://www.opengis.net/ogc", "Filter_Capabilities");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Intersect = new QName("http://www.opengis.net/ogc", "Intersect");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Like = new QName("http://www.opengis.net/ogc", "Like");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Logical_Operators =
             new QName("http://www.opengis.net/ogc", "Logical_Operators");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName NullCheck = new QName("http://www.opengis.net/ogc", "NullCheck");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Overlaps = new QName("http://www.opengis.net/ogc", "Overlaps");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Simple_Arithmetic =
             new QName("http://www.opengis.net/ogc", "Simple_Arithmetic");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Simple_Comparisons =
             new QName("http://www.opengis.net/ogc", "Simple_Comparisons");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Touches = new QName("http://www.opengis.net/ogc", "Touches");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Within = new QName("http://www.opengis.net/ogc", "Within");
 
     /** private constructor */

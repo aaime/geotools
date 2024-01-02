@@ -52,7 +52,9 @@ import org.locationtech.jts.geom.Polygon;
  * @generated
  */
 public class GMLPolygonMemberTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PolygonMemberType;

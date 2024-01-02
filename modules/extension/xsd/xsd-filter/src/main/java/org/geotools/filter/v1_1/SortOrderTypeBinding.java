@@ -49,7 +49,9 @@ public class SortOrderTypeBinding extends AbstractSimpleBinding {
         this.filterfactory = filterfactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.SortOrderType;

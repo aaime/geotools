@@ -61,7 +61,9 @@ public class _OperationsMetadataBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS._OperationsMetadata;

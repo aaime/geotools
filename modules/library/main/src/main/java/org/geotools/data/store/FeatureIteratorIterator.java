@@ -52,13 +52,17 @@ public class FeatureIteratorIterator<F extends Feature> implements Iterator<F> {
         return delegate.next();
     }
 
-    /** @throws UnsupportedOperationException */
+    /**
+     * @throws UnsupportedOperationException
+     */
     @Override
     public void remove() {
         throw new UnsupportedOperationException("remove is not supported");
     }
 
-    /** @return The underlying delegate. */
+    /**
+     * @return The underlying delegate.
+     */
     public FeatureIterator<F> getDelegate() {
         return delegate;
     }

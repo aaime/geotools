@@ -163,7 +163,9 @@ class Tile {
         return (tileWidth * tileHeight) == coverageCount;
     }
 
-    /** @return the bbox of this tile in world coordinates */
+    /**
+     * @return the bbox of this tile in world coordinates
+     */
     public Polygon getTileBBox() {
         return tileBBox;
     }

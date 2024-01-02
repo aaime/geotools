@@ -158,7 +158,9 @@ public class SampleFeatureFixtures {
         //        return tb.buildFeatureType();
     }
 
-    /** @throws SchemaException */
+    /**
+     * @throws SchemaException
+     */
     public static SimpleFeatureType createTestType() throws SchemaException {
         SimpleFeatureTypeBuilder tb = new SimpleFeatureTypeBuilder();
         tb.setName("test");

@@ -42,7 +42,9 @@ import javax.xml.namespace.NamespaceContext;
 import javax.xml.namespace.QName;
 import org.geotools.util.factory.Hints;
 
-/** @author <a href="mailto:joe@ispsoft.de">Jochen Wiedmann</a> */
+/**
+ * @author <a href="mailto:joe@ispsoft.de">Jochen Wiedmann</a>
+ */
 public class DatatypeConverterImpl implements DatatypeConverterInterface {
 
     private static DatatypeConverterImpl instance = new DatatypeConverterImpl();

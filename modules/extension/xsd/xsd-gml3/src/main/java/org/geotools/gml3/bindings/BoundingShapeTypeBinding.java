@@ -49,7 +49,9 @@ import org.locationtech.jts.geom.Polygon;
  * @generated
  */
 public class BoundingShapeTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.BoundingShapeType;

@@ -200,7 +200,9 @@ public interface TemporalFactory {
      */
     Period createPeriod(Instant begin, Instant end);
 
-    /** @return PeriodDuration */
+    /**
+     * @return PeriodDuration
+     */
     PeriodDuration createPeriodDuration(
             InternationalString years,
             InternationalString months,

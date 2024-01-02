@@ -226,7 +226,10 @@ public class ExecuteRequestTypeBinding extends AbstractComplexEMFBinding {
     public ExecuteRequestTypeBinding(Wps20Factory factory) {
         super(factory);
     }
-    /** @generated */
+
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WPS.ExecuteRequestType;

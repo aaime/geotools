@@ -86,6 +86,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
         writer.write("_=");
         writer.write(DataUtilities.encodeType(type));
     }
+
     // constructor end
 
     // getFeatureType start
@@ -93,6 +94,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
     public SimpleFeatureType getFeatureType() {
         return state.getFeatureType();
     }
+
     // getFeatureType end
 
     // hasNext start
@@ -111,6 +113,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
         }
         return delegate.hasNext();
     }
+
     // hasNext end
 
     // writeImplementation start
@@ -164,6 +167,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
             writer.write(txt);
         }
     }
+
     // writeImplementation end
 
     // next start
@@ -199,6 +203,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
             throw new DataSourceException(message, e);
         }
     }
+
     // next end
 
     // write start
@@ -227,6 +232,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
         origional = null;
         live = null;
     }
+
     // write end
 
     // remove start
@@ -245,6 +251,7 @@ public class PropertyFeatureWriter implements FeatureWriter<SimpleFeatureType, S
         origional = null;
         live = null; // prevent live and remove from being written out
     }
+
     // remove end
 
     // close start

@@ -116,6 +116,7 @@ public class Filters {
     public Filters() {
         this(CommonFactoryFinder.getFilterFactory(null));
     }
+
     /** Create a Filters helper using the provided FilterFactory */
     public Filters(org.geotools.api.filter.FilterFactory factory) {
         ff = factory;
@@ -236,6 +237,7 @@ public class Filters {
         Filter copy = (Filter) filter.accept(xerox, ff);
         return copy;
     }
+
     /**
      * Convert expression to a constant for use in switch statements. This is an alternative to
      * performing instanceof checks. p> This utility method for those upgrading to a newer version
@@ -476,6 +478,7 @@ public class Filters {
         }
         return null; // give up
     }
+
     /**
      * Convert provided number to a suitable text representation
      *
@@ -494,6 +497,7 @@ public class Filters {
         }
         return Double.toString(number);
     }
+
     /**
      * Inverse of eval, used to softly type supported types into Text for use as literals.
      *
@@ -543,6 +547,7 @@ public class Filters {
 
         return "#" + redCode + greenCode + blueCode;
     }
+
     //
     // FilterUtils from Eric Sword
     //
@@ -774,6 +779,7 @@ public class Filters {
     public static Set<PropertyName> propertyNames(Expression expression) {
         return propertyNames(expression, null);
     }
+
     /**
      * True if the filter makes use of propertyName
      *
@@ -799,11 +805,13 @@ public class Filters {
                 }
                 return data;
             }
-        };
+        }
+        ;
         SearchFilterVisitor search = new SearchFilterVisitor();
         boolean found = (Boolean) filter.accept(search, false);
         return found;
     }
+
     /**
      * Check if the provided filter has child filters of some sort.
      *
@@ -847,6 +855,7 @@ public class Filters {
     public static ArrayList<Filter> children(Filter filter) {
         return children(filter, false);
     }
+
     /**
      * List of child filters.
      *
@@ -976,7 +985,8 @@ public class Filters {
             public Object visit(PropertyName name, Object data) {
                 return name.getPropertyName();
             }
-        };
+        }
+        ;
         SearchFilterVisitor search = new SearchFilterVisitor();
         return (String) filter.accept(search, null);
     }

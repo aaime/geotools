@@ -41,6 +41,7 @@ public class EsriUnitFormatTest {
     public void testFormatUnitOfQAppendable() throws IOException {
         UnitFormatTest.doTestNotModifiedUnits(SI.CELSIUS, esriUnitFormatter);
     }
+
     /**
      * Test ESRI representation of {@link systems.uom.common.USCustomary#FOOT_SURVEY) for formatting and parsing.
      */

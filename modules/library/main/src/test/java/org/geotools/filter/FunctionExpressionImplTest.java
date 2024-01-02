@@ -141,8 +141,12 @@ public class FunctionExpressionImplTest {
 
     @Test
     public void testImplementations()
-            throws IOException, ClassNotFoundException, InstantiationException,
-                    IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+            throws IOException,
+                    ClassNotFoundException,
+                    InstantiationException,
+                    IllegalAccessException,
+                    NoSuchMethodException,
+                    InvocationTargetException {
 
         List<Class<?>> functionClasses = loadFunctionClasses();
 
@@ -177,7 +181,9 @@ public class FunctionExpressionImplTest {
 
     @SuppressWarnings("ReturnValueIgnored")
     private void testFunction(Function function, List<String> errors)
-            throws InstantiationException, IllegalAccessException, NoSuchMethodException,
+            throws InstantiationException,
+                    IllegalAccessException,
+                    NoSuchMethodException,
                     InvocationTargetException {
         final String functionClass = function.getClass().getName();
 
@@ -228,7 +234,9 @@ public class FunctionExpressionImplTest {
     }
 
     private void testDeprecatedMethods(FunctionExpression function, List<String> errors)
-            throws InstantiationException, IllegalAccessException, NoSuchMethodException,
+            throws InstantiationException,
+                    IllegalAccessException,
+                    NoSuchMethodException,
                     InvocationTargetException {
         final String functionClass = function.getClass().getName();
         int argCount = function.getFunctionName().getArgumentCount();

@@ -47,13 +47,17 @@ public class OGCFeatureIdTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.FeatureIdType;
     }
 
-    /** @generated modifiable */
+    /**
+     * @generated modifiable
+     */
     @Override
     public Class getType() {
         return FeatureId.class;

@@ -92,6 +92,7 @@ public class VPFFile {
     private static String ACCESS_MODE = "r";
 
     static final Logger LOGGER = Logging.getLogger(VPFFile.class);
+
     /**
      * Variable <code>byteOrder</code> keeps value of byte order in which table is written:
      *
@@ -101,6 +102,7 @@ public class VPFFile {
      * </ul>
      */
     private char byteOrder = LEAST_SIGNIF_FIRST;
+
     /** The columns of the file. This list shall contain objects of type <code>VPFColumn</code> */
     private final List<VPFColumn> columns = new ArrayList<>();
 
@@ -526,6 +528,7 @@ public class VPFFile {
         return new VPFColumn(
                 name, type, elements, key, colDesc, descTableName, indexFile, narrTable);
     }
+
     /**
      * Constructs an object which is an instance of Geometry by reading values from the file.
      *
@@ -950,6 +953,7 @@ public class VPFFile {
             // This just means there is nothing in the table
         }
     }
+
     /**
      * Close the input stream pointed to by the object
      *
@@ -961,6 +965,7 @@ public class VPFFile {
             variableIndex.close();
         }
     }
+
     /**
      * Sets the position in the stream
      *

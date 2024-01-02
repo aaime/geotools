@@ -34,7 +34,9 @@ import org.geotools.referencing.operation.matrix.XAffineTransform;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public class SpatialRequestHelperTest extends Assert {
 
     /**

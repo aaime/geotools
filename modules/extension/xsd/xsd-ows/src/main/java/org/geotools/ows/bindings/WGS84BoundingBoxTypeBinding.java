@@ -78,7 +78,9 @@ public class WGS84BoundingBoxTypeBinding extends BoundingBoxTypeBinding {
         super(owsFactory, target);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.WGS84BoundingBoxType;

@@ -141,6 +141,7 @@ public class ShapefileDataStoreFactory implements FileDataStoreFactorySpi {
                     return ((Charset) value).name();
                 }
             };
+
     /**
      * Optional parameter used to indicate 'shape-ng' (as a marker to select the implementation of
      * DataStore to use).
@@ -157,6 +158,7 @@ public class ShapefileDataStoreFactory implements FileDataStoreFactorySpi {
                             "advanced",
                             Param.OPTIONS,
                             Arrays.asList(new String[] {"shape-ng", "shape", "index"})));
+
     /** Optional - timezone to decode dates from the DBF file */
     public static final Param DBFTIMEZONE =
             new Param(

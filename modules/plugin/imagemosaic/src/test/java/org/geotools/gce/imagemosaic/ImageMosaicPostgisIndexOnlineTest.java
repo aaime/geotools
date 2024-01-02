@@ -85,6 +85,7 @@ public class ImageMosaicPostgisIndexOnlineTest extends OnlineTestCase {
 
     static final String VERY_LONG_NAME =
             "very_very_long_name_with_number_of_chars_greater_than_64_to_test_the_postgis_wrapper";
+
     /**
      * Simple Class for better testing raster manager
      *

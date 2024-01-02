@@ -90,6 +90,7 @@ public class ExpressionToText implements ExpressionVisitor {
         }
         return new StringBuilder();
     }
+
     /**
      * Uses the format <code>yyyy-MM-dd'T'HH:mm:ss'[+|-]##:##'</code> for output the provided date.
      *

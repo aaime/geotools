@@ -50,7 +50,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class MLEnvelopeTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return ML.ENVELOPETYPE;

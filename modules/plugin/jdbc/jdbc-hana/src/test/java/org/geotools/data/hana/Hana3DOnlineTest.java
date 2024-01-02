@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBC3DOnlineTest;
 import org.geotools.jdbc.JDBC3DTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class Hana3DOnlineTest extends JDBC3DOnlineTest {
 
     @Override

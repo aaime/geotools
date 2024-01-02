@@ -49,7 +49,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSLongBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.LONG;

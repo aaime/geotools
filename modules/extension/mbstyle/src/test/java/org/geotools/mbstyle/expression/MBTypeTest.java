@@ -320,6 +320,7 @@ public class MBTypeTest extends AbstractMBExpressionTest {
         } catch (IllegalArgumentException e) {
         }
     }
+
     /** Verify that the "array" MBTypes expression can be parsed and evaluated correctly. */
     @Test
     public void testParseArrayExpression() {

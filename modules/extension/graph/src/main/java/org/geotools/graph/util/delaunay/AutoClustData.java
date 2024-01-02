@@ -19,7 +19,9 @@ package org.geotools.graph.util.delaunay;
 import java.util.List;
 import org.geotools.graph.structure.Edge;
 
-/** @author jfc173 */
+/**
+ * @author jfc173
+ */
 public class AutoClustData {
 
     double localMean;

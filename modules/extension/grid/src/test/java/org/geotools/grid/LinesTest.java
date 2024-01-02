@@ -23,7 +23,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author michael */
+/**
+ * @author michael
+ */
 public class LinesTest {
 
     private static final ReferencedEnvelope BOUNDS =

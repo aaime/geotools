@@ -158,6 +158,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
         // make hints unmodifiable
         hints = Collections.unmodifiableSet(hints);
     }
+
     /** The entry for the feature source. */
     public ContentEntry getEntry() {
         return entry;
@@ -187,6 +188,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
     public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
     }
+
     /**
      * The current state for the feature source.
      *
@@ -212,6 +214,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
     public final boolean isView() {
         return query != null && query != Query.ALL;
     }
+
     /**
      * A default ResourceInfo with a generic description.
      *
@@ -1082,6 +1085,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
     public final Set<RenderingHints.Key> getSupportedHints() {
         return (Set<RenderingHints.Key>) (Set<?>) hints;
     }
+
     //
     // Internal API
     //
@@ -1120,6 +1124,7 @@ public abstract class ContentFeatureSource implements SimpleFeatureSource {
     protected Filter resolvePropertyNames(Filter filter) {
         return DataUtilities.resolvePropertyNames(filter, getSchema());
     }
+
     /**
      * Creates the feature type or schema for the feature source.
      *

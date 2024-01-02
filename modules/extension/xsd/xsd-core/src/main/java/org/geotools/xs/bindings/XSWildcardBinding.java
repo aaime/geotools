@@ -54,7 +54,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSWildcardBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.WILDCARD;

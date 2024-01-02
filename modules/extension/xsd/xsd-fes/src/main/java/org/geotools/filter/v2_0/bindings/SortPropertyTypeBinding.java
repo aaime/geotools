@@ -47,7 +47,9 @@ public class SortPropertyTypeBinding extends org.geotools.filter.v1_1.SortProper
         super(filterfactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.SortPropertyType;

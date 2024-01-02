@@ -80,6 +80,7 @@ public abstract class FeatureBuilder<FT extends FeatureType, F extends Feature> 
         // to strings for the rest, so the only non word character is really ":"
         return "fid-" + new UID().toString().replace(':', '_');
     }
+
     /**
      * Internal method for a temporary FeatureId that can be assigned a real value after a commit.
      *

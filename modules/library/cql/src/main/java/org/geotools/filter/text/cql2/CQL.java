@@ -199,6 +199,7 @@ public class CQL {
 
         return output.toString();
     }
+
     /**
      * Generates the expression text associated to the {@link Expression} object.
      *
@@ -211,6 +212,7 @@ public class CQL {
 
         return output.toString();
     }
+
     /**
      * Parses the input string which has to be a list of OGC CQL predicates separated by "<code>;
      * </code>" into a <code>List</code> of <code>Filter</code>s, using the provided FilterFactory.
@@ -231,6 +233,7 @@ public class CQL {
 
         return filters;
     }
+
     /** Command line expression tester used to try out filters and expressions. */
     @SuppressWarnings({"PMD.SystemPrintln", "PMD.CloseResource"})
     public static final void main(String[] args) {

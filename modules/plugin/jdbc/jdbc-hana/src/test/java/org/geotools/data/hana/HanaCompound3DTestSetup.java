@@ -22,7 +22,9 @@ import org.geotools.data.hana.metadata.Srs;
 import org.geotools.jdbc.JDBCCompound3DTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaCompound3DTestSetup extends JDBCCompound3DTestSetup {
 
     private static final String TABLE_POINT = "pointCompound3d";

@@ -58,6 +58,7 @@ public class Definition {
     public Definition(String name) {
         this(name, null, null);
     }
+
     /**
      * Creates a new property definition with a description
      *

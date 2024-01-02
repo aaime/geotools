@@ -133,7 +133,9 @@ public abstract class BaseGDALGridFormat extends AbstractGridFormat implements F
                 "This plugin does not support writing at this time.");
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(java.lang.Object input) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(java.lang.Object input)
+     */
     @Override
     public boolean accepts(Object input, Hints hints) {
         try {
@@ -156,7 +158,9 @@ public abstract class BaseGDALGridFormat extends AbstractGridFormat implements F
         return new ParameterGroup(new DefaultParameterDescriptorGroup(mInfo, PARAM_DESCRIPTOR));
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object source) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object source)
+     */
     @Override
     public AbstractGridCoverage2DReader getReader(Object source) {
         return getReader(source, null);

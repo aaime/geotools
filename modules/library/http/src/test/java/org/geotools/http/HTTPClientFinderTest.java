@@ -25,7 +25,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class HTTPClientFinderTest {
 
     @Before

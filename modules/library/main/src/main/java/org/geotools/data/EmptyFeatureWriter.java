@@ -35,7 +35,9 @@ public class EmptyFeatureWriter implements FeatureWriter<SimpleFeatureType, Simp
         this.featureType = featureType;
     }
 
-    /** @see FeatureWriter#getFeatureType() */
+    /**
+     * @see FeatureWriter#getFeatureType()
+     */
     @Override
     public SimpleFeatureType getFeatureType() {
         return featureType;
@@ -52,13 +54,17 @@ public class EmptyFeatureWriter implements FeatureWriter<SimpleFeatureType, Simp
         throw new NoSuchElementException("FeatureWriter is empty");
     }
 
-    /** @see FeatureWriter#remove() */
+    /**
+     * @see FeatureWriter#remove()
+     */
     @Override
     public void remove() throws IOException {
         throw new IOException("FeatureWriter is empty and does not support remove()");
     }
 
-    /** @see FeatureWriter#remove() */
+    /**
+     * @see FeatureWriter#remove()
+     */
     @Override
     public void write() throws IOException {
         throw new IOException("FeatureWriter is empty and does not support write()");

@@ -48,6 +48,7 @@ public final class RangedClassifier extends Classifier {
             titles[i] = generateTitle(min[i], max[i]);
         }
     }
+
     /**
      * Null safe title generation.
      *
@@ -64,6 +65,7 @@ public final class RangedClassifier extends Classifier {
             return truncateZeros(String.valueOf(min)) + ".." + truncateZeros(String.valueOf(max));
         }
     }
+
     /**
      * Used to remove trailing zeros; preventing out put like 1.00000.
      *

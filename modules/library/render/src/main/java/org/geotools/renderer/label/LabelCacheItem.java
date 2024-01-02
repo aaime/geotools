@@ -203,7 +203,9 @@ public class LabelCacheItem implements Comparable<LabelCacheItem> {
         this.textStyle = textStyle;
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
 
     /** Returns an example geometry from the list of geometries. */
     public Geometry getGeometry() {

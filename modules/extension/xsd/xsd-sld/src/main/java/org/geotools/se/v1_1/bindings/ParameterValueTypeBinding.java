@@ -52,7 +52,9 @@ public class ParameterValueTypeBinding extends SLDParameterValueTypeBinding {
         super(filterFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.ParameterValueType;

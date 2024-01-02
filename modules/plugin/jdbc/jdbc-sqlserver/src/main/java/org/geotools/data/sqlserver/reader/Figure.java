@@ -21,7 +21,9 @@ package org.geotools.data.sqlserver.reader;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author Anders Bakkevold, Bouvet */
+/**
+ * @author Anders Bakkevold, Bouvet
+ */
 public class Figure {
 
     enum SequenceType {

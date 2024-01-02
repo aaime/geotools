@@ -49,11 +49,13 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
 
     /** visit each expression and check that they are static */
     protected IsStaticExpressionVisitor() {}
+
     /** visit each expression and check that they are static */
     @Override
     public Boolean visit(NilExpression expression, Object data) {
         return true;
     }
+
     /** visit each expression and check that they are static */
     @Override
     public Boolean visit(Add expression, Object data) {
@@ -62,6 +64,7 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
         isStatic = (Boolean) expression.getExpression2().accept(this, data);
         return isStatic;
     }
+
     /** visit each expression and check that they are static */
     @Override
     public Boolean visit(Divide expression, Object data) {
@@ -70,6 +73,7 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
         isStatic = (Boolean) expression.getExpression2().accept(this, data);
         return isStatic;
     }
+
     /** Visit each parameter and check if they are static */
     @Override
     public Boolean visit(Function expression, Object data) {
@@ -82,6 +86,7 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
         }
         return isStatic;
     }
+
     /**
      * Literal expressions are always static.
      *
@@ -91,6 +96,7 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
     public Boolean visit(Literal expression, Object data) {
         return true;
     }
+
     /**
      * visit each expression and check that they are static.
      *
@@ -103,6 +109,7 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
         isStatic = (Boolean) expression.getExpression2().accept(this, data);
         return isStatic;
     }
+
     /**
      * If even a single PropertyName is found in the expression the expression is not static.
      *
@@ -112,6 +119,7 @@ public class IsStaticExpressionVisitor implements ExpressionVisitor {
     public Boolean visit(PropertyName expression, Object data) {
         return false;
     }
+
     /**
      * visit each expression and check that they are static.
      *

@@ -84,6 +84,7 @@ public abstract class MBLayer {
 
         this.id = (String) json.get("id");
     }
+
     //
     // Factory methods
     //
@@ -359,6 +360,7 @@ public abstract class MBLayer {
         }
         return style;
     }
+
     /**
      * Transforms a given {@link MBLayer} to a GeoTools {@link FeatureTypeStyle}.
      *

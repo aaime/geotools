@@ -81,6 +81,7 @@ public class JTSTest extends JTSTestBase {
                     + "    PARAMETER[\"Scale_Factor\",0.9996],\n"
                     + "    PARAMETER[\"Latitude_Of_Origin\",0],\n"
                     + "  UNIT[\"Meter\",1]]";
+
     /** A CRS for testing purpose. */
     static final String NAD83_BC =
             "PROJCS[\"NAD83 / BC Albers\",\n"

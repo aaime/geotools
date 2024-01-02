@@ -21,7 +21,9 @@ import org.geotools.api.filter.Filter;
 import org.geotools.api.filter.FilterVisitor;
 import org.geotools.api.filter.Or;
 
-/** @author jdeolive */
+/**
+ * @author jdeolive
+ */
 public class OrImpl extends LogicFilterImpl implements Or {
 
     protected OrImpl(List<Filter> children) {

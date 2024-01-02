@@ -33,9 +33,13 @@ public interface GetStylesRequest extends Request {
      */
     public void setLayers(String layers);
 
-    /** @param sldVer the SLD version requested for the SLD document */
+    /**
+     * @param sldVer the SLD version requested for the SLD document
+     */
     public void setSLDver(String sldVer);
 
-    /** @return an array containing named layers */
+    /**
+     * @return an array containing named layers
+     */
     public Layer[] getLayers();
 }

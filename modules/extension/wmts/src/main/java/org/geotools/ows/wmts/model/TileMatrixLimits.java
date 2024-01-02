@@ -32,52 +32,72 @@ public class TileMatrixLimits {
 
     long minrow, maxrow, mincol, maxcol;
 
-    /** @return the tileMatix */
+    /**
+     * @return the tileMatix
+     */
     public String getTileMatix() {
         return tileMatix;
     }
 
-    /** @param tileMatix the tileMatix to set */
+    /**
+     * @param tileMatix the tileMatix to set
+     */
     public void setTileMatix(String tileMatix) {
         this.tileMatix = tileMatix;
     }
 
-    /** @return the minrow */
+    /**
+     * @return the minrow
+     */
     public long getMinrow() {
         return minrow;
     }
 
-    /** @param minrow the minrow to set */
+    /**
+     * @param minrow the minrow to set
+     */
     public void setMinRow(long minrow) {
         this.minrow = minrow;
     }
 
-    /** @return the maxrow */
+    /**
+     * @return the maxrow
+     */
     public long getMaxrow() {
         return maxrow;
     }
 
-    /** @param maxrow the maxrow to set */
+    /**
+     * @param maxrow the maxrow to set
+     */
     public void setMaxRow(long maxrow) {
         this.maxrow = maxrow;
     }
 
-    /** @return the mincol */
+    /**
+     * @return the mincol
+     */
     public long getMincol() {
         return mincol;
     }
 
-    /** @param mincol the mincol to set */
+    /**
+     * @param mincol the mincol to set
+     */
     public void setMinCol(long mincol) {
         this.mincol = mincol;
     }
 
-    /** @return the maxcol */
+    /**
+     * @return the maxcol
+     */
     public long getMaxcol() {
         return maxcol;
     }
 
-    /** @param maxcol the maxcol to set */
+    /**
+     * @param maxcol the maxcol to set
+     */
     public void setMaxCol(long maxcol) {
         this.maxcol = maxcol;
     }

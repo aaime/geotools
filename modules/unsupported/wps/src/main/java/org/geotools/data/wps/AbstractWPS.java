@@ -107,7 +107,9 @@ public abstract class AbstractWPS<C extends WPSCapabilitiesType, R extends Objec
         }
     }
 
-    /** @param capabilities */
+    /**
+     * @param capabilities
+     */
     private void setupSpecification(final C capabilities) {
         for (Specification spec : specs) {
             if (spec.getVersion().equals(capabilities.getVersion())) {

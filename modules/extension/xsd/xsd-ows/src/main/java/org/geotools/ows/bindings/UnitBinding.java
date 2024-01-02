@@ -45,7 +45,9 @@ public class UnitBinding extends AbstractSimpleBinding {
         return OVERRIDE;
     }
 
-    /** @override */
+    /**
+     * @override
+     */
     @Override
     public Object parse(InstanceComponent instance, Object value) throws Exception {
         // Object parseObject = UnitFormat.getInstance().parseObject((String) value);

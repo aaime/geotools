@@ -123,11 +123,13 @@ public class FunctionBuilder implements Builder<Function> {
         this.name = function;
         return this;
     }
+
     /** Inline fallback value to use if named function is not implemented */
     public FunctionBuilder fallback(Object obj) {
         literal.value(obj);
         return this;
     }
+
     /** Literal fallback value to use if named function is not implemented */
     public LiteralBuilder fallback() {
         return literal;

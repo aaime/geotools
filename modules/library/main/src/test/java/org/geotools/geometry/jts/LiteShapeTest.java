@@ -36,7 +36,9 @@ import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.TopologyException;
 
-/** @author jamesm,iant */
+/**
+ * @author jamesm,iant
+ */
 public class LiteShapeTest {
 
     @Test

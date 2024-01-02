@@ -37,7 +37,9 @@ import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class SpatialIndexFeatureCollectionTest extends FeatureCollectionWrapperTestSupport {
     private static final Logger LOGGER = Logger.getLogger("SpatialIndexFeatureCollectionTest");
 

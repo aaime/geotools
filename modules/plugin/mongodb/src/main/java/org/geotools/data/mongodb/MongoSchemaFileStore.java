@@ -32,7 +32,9 @@ import java.util.List;
 import org.geotools.api.feature.simple.SimpleFeatureType;
 import org.geotools.api.feature.type.Name;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoSchemaFileStore implements MongoSchemaStore {
 
     static final String SUFFIX_json = ".json";

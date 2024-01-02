@@ -51,7 +51,9 @@ public class SpatialOperatorsTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.SpatialOperatorsType;

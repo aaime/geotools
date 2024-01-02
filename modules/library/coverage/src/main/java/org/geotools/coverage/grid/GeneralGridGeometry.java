@@ -416,6 +416,7 @@ public class GeneralGridGeometry implements GridGeometry, Serializable {
             }
         }
     }
+
     /**
      * Constructs a new grid geometry from an envelope and a {@linkplain MathTransform math
      * transform}. According OGC specification, the math transform should map {@linkplain

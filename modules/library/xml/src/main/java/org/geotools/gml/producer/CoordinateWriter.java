@@ -56,6 +56,7 @@ public class CoordinateWriter {
 
     /** Flag controlling wether namespaces should be ignored. */
     private boolean namespaceAware = true;
+
     /** Namepsace prefix + uri, default to gml */
     private String prefix = "gml";
 

@@ -27,6 +27,7 @@ public interface Matrix extends Cloneable {
      * @return The number of rows in this matrix.
      */
     int getNumRow();
+
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
@@ -35,6 +36,7 @@ public interface Matrix extends Cloneable {
      * @return The number of columns in this matrix.
      */
     int getNumCol();
+
     // Same signature than GMatrix, for straightforward implementation.
 
     /**

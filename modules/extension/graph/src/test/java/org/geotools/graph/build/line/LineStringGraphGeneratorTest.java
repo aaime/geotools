@@ -28,7 +28,9 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
 import org.locationtech.jts.geom.Point;
 
-/** @author Anders Bakkevold, Bouvet AS, bakkedev@gmail.com */
+/**
+ * @author Anders Bakkevold, Bouvet AS, bakkedev@gmail.com
+ */
 public class LineStringGraphGeneratorTest {
 
     private Coordinate c1, c2, c3, c4, c6, c7;

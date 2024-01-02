@@ -18,7 +18,9 @@ package org.geotools.data.shapefile.index.quadtree;
 
 import java.io.IOException;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class StoreException extends IOException {
 
     private static final long serialVersionUID = -3356954193373344773L;

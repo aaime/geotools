@@ -185,7 +185,8 @@ public abstract class MathTransformBuilder {
      * @throws MismatchedReferenceSystemException if CRS is not the same for all points.
      */
     public void setMappedPositions(final List<MappedPosition> positions)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         final CoordinateReferenceSystem source =
                 ensureValid(getPoints(positions, false), "sourcePoints");
@@ -273,7 +274,8 @@ public abstract class MathTransformBuilder {
      * @throws MismatchedReferenceSystemException if CRS is not the same for all points.
      */
     public void setSourcePoints(final Position... points)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         // Set the points only after we checked them.
         sourceCRS = ensureValid(points, "sourcePoints");
@@ -301,7 +303,8 @@ public abstract class MathTransformBuilder {
      * @throws MismatchedReferenceSystemException if CRS is not the same for all points.
      */
     public void setTargetPoints(final Position... points)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         // Set the points only after we checked them.
         targetCRS = ensureValid(points, "targetPoints");
@@ -573,7 +576,8 @@ public abstract class MathTransformBuilder {
      * @return The CRS used for the specified points, or {@code null} if unknown.
      */
     private CoordinateReferenceSystem ensureValid(final Position[] points, final String label)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         final int necessaryNumber = getMinimumPointCount();
         if (points.length < necessaryNumber) {

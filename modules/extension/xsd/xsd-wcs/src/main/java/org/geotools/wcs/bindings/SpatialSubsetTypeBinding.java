@@ -62,7 +62,9 @@ import org.geotools.xsd.Node;
  */
 public class SpatialSubsetTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.SpatialSubsetType;

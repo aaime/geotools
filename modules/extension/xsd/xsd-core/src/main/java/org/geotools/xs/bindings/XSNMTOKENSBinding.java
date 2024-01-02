@@ -58,7 +58,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSNMTOKENSBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.NMTOKENS;

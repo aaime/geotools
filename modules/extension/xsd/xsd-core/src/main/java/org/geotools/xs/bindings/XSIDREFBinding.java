@@ -41,7 +41,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSIDREFBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.IDREF;

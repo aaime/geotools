@@ -52,7 +52,9 @@ public class StrokeBinding extends SLDStrokeBinding {
         super(styleFactory, filterFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Stroke;

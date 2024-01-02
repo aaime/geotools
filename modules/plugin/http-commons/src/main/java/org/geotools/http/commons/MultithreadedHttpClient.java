@@ -181,7 +181,9 @@ public class MultithreadedHttpClient extends AbstractHttpClient
         return response;
     }
 
-    /** @return the http status code of the execution */
+    /**
+     * @return the http status code of the execution
+     */
     private HttpMethodResponse executeMethod(HttpRequestBase method)
             throws IOException, HttpException {
 
@@ -336,7 +338,9 @@ public class MultithreadedHttpClient extends AbstractHttpClient
             this.methodResponse = methodResponse;
         }
 
-        /** @return */
+        /**
+         * @return
+         */
         public int getStatusCode() {
             if (methodResponse != null) {
                 StatusLine statusLine = methodResponse.getStatusLine();
@@ -386,7 +390,9 @@ public class MultithreadedHttpClient extends AbstractHttpClient
             return responseBodyAsStream;
         }
 
-        /** @see org.geotools.data.ows.HTTPResponse#getResponseCharset() */
+        /**
+         * @see org.geotools.data.ows.HTTPResponse#getResponseCharset()
+         */
         @Override
         public String getResponseCharset() {
             final Header encoding = methodResponse.getEntity().getContentEncoding();

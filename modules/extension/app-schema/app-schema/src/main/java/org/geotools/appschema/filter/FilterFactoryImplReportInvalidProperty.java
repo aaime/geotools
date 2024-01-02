@@ -21,7 +21,9 @@ import org.geotools.api.filter.expression.PropertyName;
 import org.geotools.filter.AttributeExpressionImpl;
 import org.geotools.filter.FilterFactoryImpl;
 
-/** @author Niels Charlier (Curtin University of Technology) */
+/**
+ * @author Niels Charlier (Curtin University of Technology)
+ */
 public class FilterFactoryImplReportInvalidProperty extends FilterFactoryImpl {
 
     // @Override

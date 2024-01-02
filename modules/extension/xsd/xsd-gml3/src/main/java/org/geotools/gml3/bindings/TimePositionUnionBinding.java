@@ -60,7 +60,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class TimePositionUnionBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.TimePositionUnion;

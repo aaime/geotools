@@ -21,7 +21,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCDataStoreAPITestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaDataStoreAPITestSetup extends JDBCDataStoreAPITestSetup {
 
     private static final String LAKE_TABLE = "lake";

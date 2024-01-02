@@ -48,6 +48,7 @@ public class GridCoverageLayer extends RasterLayer {
         super(style);
         this.coverage = coverage;
     }
+
     /** Create layer to draw the provided grid coverage. */
     public GridCoverageLayer(GridCoverage2D coverage, Style style, String title) {
         super(style, title);
@@ -79,6 +80,7 @@ public class GridCoverageLayer extends RasterLayer {
     public GridCoverage2D getCoverage() {
         return coverage;
     }
+
     /**
      * Layer bounds generated from the grid coverage.
      *

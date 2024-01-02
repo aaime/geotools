@@ -18,7 +18,9 @@ package org.geotools.data.shapefile.index;
 
 import java.io.IOException;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class TreeException extends IOException {
 
     private static final long serialVersionUID = 1988241322009839486L;
@@ -27,7 +29,9 @@ public class TreeException extends IOException {
         super();
     }
 
-    /** @param message */
+    /**
+     * @param message
+     */
     public TreeException(String message) {
         super(message);
     }
@@ -38,7 +42,9 @@ public class TreeException extends IOException {
         initCause(cause);
     }
 
-    /** @param cause */
+    /**
+     * @param cause
+     */
     public TreeException(Throwable cause) {
         super();
         initCause(cause);

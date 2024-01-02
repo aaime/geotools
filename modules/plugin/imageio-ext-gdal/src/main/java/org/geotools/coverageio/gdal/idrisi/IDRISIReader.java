@@ -57,7 +57,9 @@ public final class IDRISIReader extends BaseGDALGridCoverage2DReader implements 
         super(input, hints, DEFAULT_WORLDFILE_EXT, new IDRISIImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new IDRISIFormat();

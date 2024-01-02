@@ -131,6 +131,7 @@ public class SimpleFeatureTypeBuilder {
     protected String defaultGeometry;
 
     protected boolean defaultCrsSet = false;
+
     /** default coordinate reference system of the type */
     protected CoordinateReferenceSystem defaultCrs;
 
@@ -166,6 +167,7 @@ public class SimpleFeatureTypeBuilder {
     public void setFeatureTypeFactory(FeatureTypeFactory factory) {
         this.factory = factory;
     }
+
     /** The factory used to create feature and feature collection types. */
     public FeatureTypeFactory getFeatureTypeFactory() {
         return factory;
@@ -225,14 +227,17 @@ public class SimpleFeatureTypeBuilder {
             setNamespaceURI((String) null);
         }
     }
+
     /** The namespace uri of the built type. */
     public String getNamespaceURI() {
         return uri;
     }
+
     /** Sets the name of the built type. */
     public void setName(String name) {
         this.local = name;
     }
+
     /** The name of the built type. */
     public String getName() {
         return local;
@@ -248,6 +253,7 @@ public class SimpleFeatureTypeBuilder {
     public void setDescription(InternationalString description) {
         this.description = description;
     }
+
     /** The description of the built type. */
     public InternationalString getDescription() {
         return description;
@@ -257,6 +263,7 @@ public class SimpleFeatureTypeBuilder {
     public void setDefaultGeometry(String defaultGeometryName) {
         this.defaultGeometry = defaultGeometryName;
     }
+
     /** The name of the default geometry attribute of the built type. */
     public String getDefaultGeometry() {
         return defaultGeometry;
@@ -315,6 +322,7 @@ public class SimpleFeatureTypeBuilder {
     public void setSuperType(SimpleFeatureType superType) {
         this.superType = superType;
     }
+
     /** The super type of the built type. */
     public SimpleFeatureType getSuperType() {
         return superType;
@@ -378,6 +386,7 @@ public class SimpleFeatureTypeBuilder {
         attributeBuilder.setMinOccurs(minOccurs);
         return this;
     }
+
     /**
      * Sets the maxOccurs of the next attribute added to the feature type.
      *
@@ -387,6 +396,7 @@ public class SimpleFeatureTypeBuilder {
         attributeBuilder.setMaxOccurs(maxOccurs);
         return this;
     }
+
     /**
      * Sets the nullability of the next attribute added to the feature type.
      *
@@ -441,6 +451,7 @@ public class SimpleFeatureTypeBuilder {
         attributeBuilder.addRestriction(filter);
         return this;
     }
+
     /**
      * Adds a collection of restrictions to the next attribute added to the
      *
@@ -462,6 +473,7 @@ public class SimpleFeatureTypeBuilder {
         attributeBuilder.setDescription(description);
         return this;
     }
+
     /**
      * Sets the default value of the next attribute added to the feature type.
      *
@@ -661,6 +673,7 @@ public class SimpleFeatureTypeBuilder {
                 add(ad);
             }
     }
+
     /**
      * Adds an array of descriptors directly to the builder.
      *
@@ -754,6 +767,7 @@ public class SimpleFeatureTypeBuilder {
     public void set(int index, AttributeDescriptor descriptor) {
         attributes().set(index, descriptor);
     }
+
     /** Replace the descriptor at the provided index. */
     public void set(AttributeDescriptor descriptor) {
         int index = indexOf(descriptor.getLocalName());
@@ -764,6 +778,7 @@ public class SimpleFeatureTypeBuilder {
         }
         set(index, descriptor);
     }
+
     /** Replace the descriptor at the provided index. */
     public void set(String attributeName, AttributeDescriptor descriptor) {
         int index = indexOf(attributeName);
@@ -785,6 +800,7 @@ public class SimpleFeatureTypeBuilder {
         }
         return -1;
     }
+
     /** Replace the descriptor at the provided index. */
     public void set(String attributeName, AttributeTypeBuilder attributeBuilder) {
         AttributeDescriptor descriptor = attributeBuilder.buildDescriptor(attributeName);

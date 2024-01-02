@@ -235,6 +235,7 @@ public class FunctionNameImpl extends OperatorImpl implements FunctionName {
     public static <T> Parameter<T> parameter(String name, Class<T> type) {
         return new org.geotools.api.data.Parameter<>(name, type);
     }
+
     /**
      * Named parameter (argument or result).
      *
@@ -247,6 +248,7 @@ public class FunctionNameImpl extends OperatorImpl implements FunctionName {
     public static <T> Parameter<T> parameter(String name, Class<T> type, int min, int max) {
         return new org.geotools.api.data.Parameter<>(name, type, min, max);
     }
+
     /**
      * @param name name of parameter
      * @param type type of parameter

@@ -49,7 +49,9 @@ public final class XML extends XSD {
         return getClass().getResource("xml.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.w3.org/XML/1998/namespace";
 
     /* Type Definitions */
@@ -57,12 +59,23 @@ public final class XML extends XSD {
     /* Elements */
 
     /* Attributes */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName base = new QName("http://www.w3.org/XML/1998/namespace", "base");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName id = new QName("http://www.w3.org/XML/1998/namespace", "id");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName lang = new QName("http://www.w3.org/XML/1998/namespace", "lang");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName space = new QName("http://www.w3.org/XML/1998/namespace", "space");
 }

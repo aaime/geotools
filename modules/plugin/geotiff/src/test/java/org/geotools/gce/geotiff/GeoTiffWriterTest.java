@@ -70,7 +70,9 @@ import org.geotools.util.factory.Hints;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Simone Giannecchini */
+/**
+ * @author Simone Giannecchini
+ */
 public class GeoTiffWriterTest extends Assert {
     private static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(GeoTiffWriterTest.class);
@@ -116,8 +118,12 @@ public class GeoTiffWriterTest extends Assert {
     @Test
     @SuppressWarnings("PMD.SimplifiableTestAssertion")
     public void testWriteCroppedCoverage()
-            throws IllegalArgumentException, IOException, UnsupportedOperationException,
-                    ParseException, FactoryException, TransformException {
+            throws IllegalArgumentException,
+                    IOException,
+                    UnsupportedOperationException,
+                    ParseException,
+                    FactoryException,
+                    TransformException {
 
         // /////////////////////////////////////////////////////////////////////
         //

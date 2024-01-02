@@ -22,13 +22,17 @@ import org.geotools.api.temporal.OrdinalEra;
 import org.geotools.api.util.InternationalString;
 import org.geotools.util.Utilities;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultOrdinalEra implements OrdinalEra {
 
     /** This is a string that identifies the ordinal era within the TM_OrdinalReferenceSystem. */
     private InternationalString name;
+
     /** This is the temporal position at which the ordinal era began, if it is known. */
     private Date beginning;
+
     /** This is the temporal position at which the ordinal era ended. */
     private Date end;
 

@@ -64,7 +64,9 @@ public class StyleTypeBinding extends AbstractComplexBinding {
         this.styleMap = styleMap;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.StyleType;

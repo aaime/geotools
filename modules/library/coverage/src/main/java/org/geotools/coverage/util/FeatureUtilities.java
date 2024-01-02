@@ -103,6 +103,7 @@ public final class FeatureUtilities {
     private static Polygon getPolygon(final Rectangle2D rect) {
         return getPolygon(rect, 0);
     }
+
     /**
      * Returns the polygon surrounding the specified rectangle. Code lifted from ArcGridDataSource
      * (temporary).

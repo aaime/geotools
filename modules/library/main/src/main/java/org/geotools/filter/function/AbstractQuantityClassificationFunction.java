@@ -182,6 +182,8 @@ public abstract class AbstractQuantityClassificationFunction extends Classificat
         return percentages;
     }
 
-    /** @return true if percentages computation is enabled, false if not */
+    /**
+     * @return true if percentages computation is enabled, false if not
+     */
     protected abstract boolean percentages();
 }

@@ -80,7 +80,9 @@ public class MultiSurfaceTypeBinding extends AbstractComplexBinding {
         this.arcParameters = arcParameters;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiSurfaceType;

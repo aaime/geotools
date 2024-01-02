@@ -160,6 +160,7 @@ public class CSVDataStoreFactory implements FileDataStoreFactorySpi {
         }
         return false;
     }
+
     // doc end canProcess
 
     // docs start isAvailable
@@ -173,6 +174,7 @@ public class CSVDataStoreFactory implements FileDataStoreFactorySpi {
         }
         return true;
     }
+
     // docs end isAvailable
 
     @Override
@@ -194,6 +196,7 @@ public class CSVDataStoreFactory implements FileDataStoreFactorySpi {
         Map<String, Serializable> noParams = Collections.emptyMap();
         return createDataStoreFromFile(file, namespace, noParams);
     }
+
     // docs end createDataStoreFromFile
 
     @Override
@@ -274,6 +277,7 @@ public class CSVDataStoreFactory implements FileDataStoreFactorySpi {
     public boolean canProcess(URL url) {
         return canProcessExtension(URLs.urlToFile(url).toString());
     }
+
     // docs end canProcess
 
     @Override

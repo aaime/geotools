@@ -57,7 +57,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSDoubleBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.DOUBLE;

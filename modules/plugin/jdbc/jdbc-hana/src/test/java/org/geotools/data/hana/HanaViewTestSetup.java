@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import java.sql.Connection;
 import org.geotools.jdbc.JDBCViewTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaViewTestSetup extends JDBCViewTestSetup {
 
     private static final String TABLE = "lakes";

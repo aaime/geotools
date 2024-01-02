@@ -237,6 +237,7 @@ public class FeatureEvent extends EventObject {
     public void setFeatureSource(FeatureSource featureSource) {
         source = featureSource;
     }
+
     /**
      * Provides information on the type of change that has occured. Possible types are: add, remove,
      * change

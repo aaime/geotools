@@ -108,7 +108,9 @@ public abstract class AdaptorFeatureCollection implements SimpleFeatureCollectio
     //
     // Resource Collection management
     //
-    /** @return <tt>true</tt> if this collection contains no elements. */
+    /**
+     * @return <tt>true</tt> if this collection contains no elements.
+     */
     @Override
     public boolean isEmpty() {
         return size() == 0;
@@ -201,6 +203,7 @@ public abstract class AdaptorFeatureCollection implements SimpleFeatureCollectio
             close(e);
         }
     }
+
     //  String conversion
 
     /**
@@ -281,6 +284,7 @@ public abstract class AdaptorFeatureCollection implements SimpleFeatureCollectio
             // TODO Log e = ln
         }
     }
+
     /**
      * Open an Iterator, we will call close( iterator ).
      *

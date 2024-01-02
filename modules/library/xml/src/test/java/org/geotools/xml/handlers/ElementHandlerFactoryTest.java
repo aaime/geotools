@@ -25,7 +25,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-/** @author Mauro Bartolomeoli - mauro.bartolomeoli@geo-solutions.it */
+/**
+ * @author Mauro Bartolomeoli - mauro.bartolomeoli@geo-solutions.it
+ */
 public class ElementHandlerFactoryTest {
     private static final Logger logger =
             Logger.getLogger(ElementHandlerFactoryTest.class.getName());

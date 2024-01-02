@@ -68,7 +68,9 @@ import org.geotools.xsd.Node;
  */
 public class ServiceTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.ServiceType;

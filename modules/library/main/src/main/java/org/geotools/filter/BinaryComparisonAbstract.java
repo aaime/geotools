@@ -50,6 +50,7 @@ public abstract class BinaryComparisonAbstract extends AbstractFilter implements
     protected BinaryComparisonAbstract(Expression expression1, Expression expression2) {
         this(expression1, expression2, true);
     }
+
     /** Immutable constructor for use by FilterFactory */
     protected BinaryComparisonAbstract(
             Expression expression1, Expression expression2, boolean matchingCase) {
@@ -82,6 +83,7 @@ public abstract class BinaryComparisonAbstract extends AbstractFilter implements
     public MatchAction getMatchAction() {
         return MatchAction.ANY; // default
     }
+
     /**
      * Convenience method which evaluates the expressions and trys to align the values to be of the
      * same type.

@@ -35,11 +35,15 @@ public interface Sequence extends ElementGrouping {
     /** The Schema ID for this sequence definition. */
     public String getId();
 
-    /** @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs() */
+    /**
+     * @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs()
+     */
     @Override
     public int getMaxOccurs();
 
-    /** @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs() */
+    /**
+     * @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs()
+     */
     @Override
     public int getMinOccurs();
 }

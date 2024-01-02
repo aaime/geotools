@@ -15,7 +15,9 @@ import org.geotools.geometry.Position2D;
 import org.geotools.swing.event.MapMouseAdapter;
 import org.geotools.swing.event.MapMouseEvent;
 
-/** @author michael */
+/**
+ * @author michael
+ */
 public class JMapPaneExamples {
 
     void listenForClicks(JMapPane myMapPane) {

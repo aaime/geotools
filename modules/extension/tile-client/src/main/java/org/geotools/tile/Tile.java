@@ -243,12 +243,16 @@ public abstract class Tile implements ImageLoader {
      * java.util.logging.Logger.getGlobal().log(java.util.logging.Level.INFO, "", ex); } } }
      */
 
-    /** @return The size of the tile in pixels. */
+    /**
+     * @return The size of the tile in pixels.
+     */
     public int getTileSize() {
         return tileSize;
     }
 
-    /** @return the bounds of the tile */
+    /**
+     * @return the bounds of the tile
+     */
     public ReferencedEnvelope getExtent() {
         return env;
     }

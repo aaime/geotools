@@ -35,7 +35,9 @@ import org.geotools.referencing.CRS;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Richard Gould */
+/**
+ * @author Richard Gould
+ */
 public class WebMapServerOnlineTest extends WMSOnlineTestSupport {
     /*
      * Class under test for void WebMapServer(URL)

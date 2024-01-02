@@ -23,7 +23,9 @@ import java.util.Properties;
 import org.geotools.jdbc.JDBCDelegatingTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaDisableSimplificationTestSetup extends JDBCDelegatingTestSetup {
 
     private static final String TABLE_NAME = "testtab";

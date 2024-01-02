@@ -124,11 +124,13 @@ public class OrderedAxisCRSAuthorityFactory extends TransformedAuthorityFactory
         AxisDirection.DISPLAY_UP,
         AxisDirection.FUTURE
     };
+
     /**
      * The rank to be given to each axis direction. The rank is stored at the indice corresponding
      * to the direction {@linkplain AxisDirection#ordinal ordinal} value.
      */
     protected final int[] directionRanks;
+
     /**
      * {@code true} if this authority factory should also force the axis to their standard
      * direction. For example if {@code true}, then axis with increasing values toward South will be
@@ -138,6 +140,7 @@ public class OrderedAxisCRSAuthorityFactory extends TransformedAuthorityFactory
      * @since 2.3
      */
     protected final boolean forceStandardDirections;
+
     /**
      * {@code true} if this authority factory should also force all angular units to decimal degrees
      * and linear units to meters. The default value is {@code false}.

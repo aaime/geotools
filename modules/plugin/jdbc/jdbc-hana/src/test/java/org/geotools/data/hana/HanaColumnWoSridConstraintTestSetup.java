@@ -18,7 +18,9 @@ package org.geotools.data.hana;
 
 import java.sql.Connection;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaColumnWoSridConstraintTestSetup extends HanaTestSetupPSPooling {
 
     private static final String TABLE = "tabwosc";

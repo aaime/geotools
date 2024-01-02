@@ -631,6 +631,7 @@ public class StrokeImpl implements Stroke, Cloneable {
                     return this; // we are constant
                 }
             };
+
     /**
      * Null Stroke capturing the defaults indicated by the standard.
      *

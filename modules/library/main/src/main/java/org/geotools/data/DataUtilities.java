@@ -1113,6 +1113,7 @@ public class DataUtilities {
         SimpleFeatureSource source = source(features);
         return dataStore(source);
     }
+
     /**
      * Adapt a single FeatureSource as a read-only DataStore.
      *
@@ -1124,6 +1125,7 @@ public class DataUtilities {
     public static DataStore dataStore(SimpleFeatureSource source) {
         return new DataStoreAdaptor(source);
     }
+
     /**
      * Adapt a collection to a reader for use with FeatureStore.setFeatures( reader ).
      *
@@ -1450,6 +1452,7 @@ public class DataUtilities {
         throw new IllegalArgumentException(
                 "The provided feature store contains complex features, cannot be bridged to a simple one");
     }
+
     //
     // FeatureCollection Utility Methods
     //
@@ -1468,6 +1471,7 @@ public class DataUtilities {
         }
         return list;
     }
+
     /**
      * Copies the provided fetaures into a List.
      *
@@ -1485,6 +1489,7 @@ public class DataUtilities {
         }
         return list;
     }
+
     /**
      * Iteator wrapped around the provided FeatureIterator, implementing {@link Closeable}.
      *
@@ -1508,6 +1513,7 @@ public class DataUtilities {
         }
         return fids;
     }
+
     //
     // Conversion to java.util.Collection
     //
@@ -1526,6 +1532,7 @@ public class DataUtilities {
                     "Require access to SimpleFeatureCollection implementing Collecion.add");
         }
     }
+
     //
     // Conversion to FeatureCollection
     //
@@ -1626,6 +1633,7 @@ public class DataUtilities {
         }
         return collection;
     }
+
     //
     // Attribute Value Utility Methods
     //
@@ -1688,6 +1696,7 @@ public class DataUtilities {
         return createSubType(
                 featureType, properties, override, featureType.getTypeName(), namespaceURI);
     }
+
     /**
      * Create a derived FeatureType
      *
@@ -1822,6 +1831,7 @@ public class DataUtilities {
             }
         }
     }
+
     //
     // Decoding (ie Parsing) support for PropertyAttributeReader and tutorials
     //
@@ -2112,6 +2122,7 @@ public class DataUtilities {
         }
         return text;
     }
+
     /**
      * Reads an attribute value out of the raw text supplied to {@link #createFeature}.
      *
@@ -2156,6 +2167,7 @@ public class DataUtilities {
         }
         return value;
     }
+
     /**
      * Produce a String encoding of SimpleFeature for use with {@link #createFeature}.
      *
@@ -2167,6 +2179,7 @@ public class DataUtilities {
     public static String encodeFeature(SimpleFeature feature) {
         return encodeFeature(feature, true);
     }
+
     /**
      * Produce a String encoding of SimpleFeature for use with {@link #createFeature}.
      *
@@ -2273,6 +2286,7 @@ public class DataUtilities {
 
         return txt;
     }
+
     /**
      * Internal method to access java binding using readable typename.
      *
@@ -2284,6 +2298,7 @@ public class DataUtilities {
         }
         return Class.forName(typeName);
     }
+
     /**
      * Internal method to access the readable typename for the provided class.
      *
@@ -2295,6 +2310,7 @@ public class DataUtilities {
         }
         return type.getName();
     }
+
     //
     // Query Support Methods for DataStore implementators
     //
@@ -2688,6 +2704,7 @@ public class DataUtilities {
         }
         return count;
     }
+
     /**
      * Manually count the number of features in a feature collection using using {@link
      * FeatureCollection#features()}.
@@ -2709,6 +2726,7 @@ public class DataUtilities {
             return count;
         }
     }
+
     /**
      * Manually calculate the bounds from the provided FeatureIteator. This implementation is
      * intended for FeatureCollection implementors and test case verification. Client code should
@@ -2740,6 +2758,7 @@ public class DataUtilities {
             iterator.close();
         }
     }
+
     /**
      * Manually calculates the bounds of a feature collection using {@link
      * FeatureCollection#features()}.

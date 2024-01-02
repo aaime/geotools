@@ -79,7 +79,9 @@ public class XSISimpleTypes {
         return r;
     }
 
-    /** @return SimpleType */
+    /**
+     * @return SimpleType
+     */
     public static SimpleType find(Class type) {
         // assuming strings and class values will not conflict
         if (m == null) {
@@ -199,7 +201,9 @@ public class XSISimpleTypes {
      * @author dzwiers
      */
     protected abstract static class XSISimpleType implements SimpleType {
-        /** @see org.geotools.xml.schema.Type#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.schema.Type#findChildElement(java.lang.String)
+         */
         public Element findChildElement(String name) {
             return null;
         }
@@ -275,48 +279,64 @@ public class XSISimpleTypes {
             throw new RuntimeException("This method must be overwritten");
         }
 
-        /** @see org.geotools.xml.xsi.Type#getParent() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getParent()
+         */
         public Type getParent() {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getNamespace() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return NAMESPACE;
         }
 
-        /** @see org.geotools.xml.xsi.SimpleType#getFinal() */
+        /**
+         * @see org.geotools.xml.xsi.SimpleType#getFinal()
+         */
         @Override
         public int getFinal() {
             return SimpleType.NONE;
         }
 
-        /** @see org.geotools.xml.xsi.SimpleType#getId() */
+        /**
+         * @see org.geotools.xml.xsi.SimpleType#getId()
+         */
         @Override
         public java.lang.String getId() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.SimpleType#getChildType() */
+        /**
+         * @see org.geotools.xml.schema.SimpleType#getChildType()
+         */
         @Override
         public int getChildType() {
             return NONE; // this should be ok
         }
 
-        /** @see org.geotools.xml.schema.SimpleType#getParents() */
+        /**
+         * @see org.geotools.xml.schema.SimpleType#getParents()
+         */
         @Override
         public SimpleType[] getParents() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.SimpleType#getFacets() */
+        /**
+         * @see org.geotools.xml.schema.SimpleType#getFacets()
+         */
         @Override
         public Facet[] getFacets() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.Type#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.schema.Type#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(java.lang.String name) {
             return null;
@@ -331,7 +351,9 @@ public class XSISimpleTypes {
     public static class Integer extends XSISimpleType {
         private static SimpleType instance = new Integer();
 
-        /** @see org.geotools.xml.xsi.Type#getLocalName() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "integer";
@@ -356,13 +378,17 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
         }
 
-        /** @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
@@ -376,12 +402,16 @@ public class XSISimpleTypes {
     public static class Decimal extends XSISimpleType {
         private static SimpleType instance = new Decimal();
 
-        /** @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getLocalName() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "decimal";
@@ -406,7 +436,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Double.class;
@@ -421,12 +453,16 @@ public class XSISimpleTypes {
     public static class NegativeInteger extends XSISimpleType {
         private static SimpleType instance = new NegativeInteger();
 
-        /** @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getLocalName() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "negativeInteger";
@@ -454,7 +490,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
@@ -469,12 +507,16 @@ public class XSISimpleTypes {
     public static class NonNegativeInteger extends XSISimpleType {
         private static SimpleType instance = new NonNegativeInteger();
 
-        /** @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see org.geotools.xml.schemas.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getLocalName() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "nonNegativeInteger";
@@ -505,7 +547,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
@@ -520,18 +564,24 @@ public class XSISimpleTypes {
     public static class PositiveInteger extends XSISimpleType {
         private static SimpleType instance = new PositiveInteger();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "positiveInteger";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -550,7 +600,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
@@ -565,18 +617,24 @@ public class XSISimpleTypes {
     public static class NonPositiveInteger extends XSISimpleType {
         private static SimpleType instance = new NonPositiveInteger();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "nonPositiveInteger";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -595,7 +653,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
@@ -610,18 +670,24 @@ public class XSISimpleTypes {
     public static class Long extends XSISimpleType {
         private static SimpleType instance = new Long();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "long";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -639,7 +705,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Long.class;
@@ -654,18 +722,24 @@ public class XSISimpleTypes {
     public static class Int extends XSISimpleType {
         private static SimpleType instance = new Int();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "int";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -684,7 +758,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
@@ -699,18 +775,24 @@ public class XSISimpleTypes {
     public static class Short extends XSISimpleType {
         private static SimpleType instance = new Short();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "short";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -728,7 +810,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Short.class;
@@ -743,18 +827,24 @@ public class XSISimpleTypes {
     public static class Byte extends XSISimpleType {
         private static SimpleType instance = new Byte();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "byte";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -772,7 +862,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Byte.class;
@@ -787,18 +879,24 @@ public class XSISimpleTypes {
     public static class UnsignedLong extends XSISimpleType {
         private static SimpleType instance = new UnsignedLong();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "unsignedLong";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -816,7 +914,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Long.class;
@@ -831,18 +931,24 @@ public class XSISimpleTypes {
     public static class UnsignedShort extends XSISimpleType {
         private static SimpleType instance = new UnsignedShort();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "unsignedShort";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -860,7 +966,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Short.class;
@@ -875,18 +983,24 @@ public class XSISimpleTypes {
     public static class UnsignedInt extends XSISimpleType {
         private static SimpleType instance = new UnsignedInt();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "unsignedInt";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -905,7 +1019,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Integer.class;
@@ -920,18 +1036,24 @@ public class XSISimpleTypes {
     public static class UnsignedByte extends XSISimpleType {
         private static SimpleType instance = new UnsignedByte();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "unsignedByte";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -949,7 +1071,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Byte.class;
@@ -964,18 +1088,24 @@ public class XSISimpleTypes {
     public static class Float extends XSISimpleType {
         private static SimpleType instance = new Float();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "float";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -993,7 +1123,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Float.class;
@@ -1008,18 +1140,24 @@ public class XSISimpleTypes {
     public static class Double extends XSISimpleType {
         private static SimpleType instance = new Double();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "double";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1038,7 +1176,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Double.class;
@@ -1053,18 +1193,24 @@ public class XSISimpleTypes {
     public static class Date extends XSISimpleType {
         private static SimpleType instance = new Date();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "date";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1104,7 +1250,9 @@ public class XSISimpleTypes {
             super.encode(element, value, output, hints);
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1119,18 +1267,24 @@ public class XSISimpleTypes {
     public static class DateTime extends XSISimpleType {
         private static SimpleType instance = new DateTime();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "dateTime";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1152,7 +1306,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1180,18 +1336,24 @@ public class XSISimpleTypes {
     public static class Duration extends XSISimpleType {
         private static SimpleType instance = new Duration();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "duration";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1287,7 +1449,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1302,18 +1466,24 @@ public class XSISimpleTypes {
     public static class gDay extends XSISimpleType {
         private static SimpleType instance = new gDay();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "gDay";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1334,7 +1504,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1349,18 +1521,24 @@ public class XSISimpleTypes {
     public static class gMonth extends XSISimpleType {
         private static SimpleType instance = new gMonth();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "gMonth";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1381,7 +1559,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1396,18 +1576,24 @@ public class XSISimpleTypes {
     public static class gMonthDay extends XSISimpleType {
         private static SimpleType instance = new gMonthDay();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "gMonthDay";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1429,7 +1615,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1444,18 +1632,24 @@ public class XSISimpleTypes {
     public static class gYear extends XSISimpleType {
         private static SimpleType instance = new gYear();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "gYear";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1476,7 +1670,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1491,18 +1687,24 @@ public class XSISimpleTypes {
     public static class gYearMonth extends XSISimpleType {
         private static SimpleType instance = new gYearMonth();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "gYearMonth";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1524,7 +1726,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1539,18 +1743,24 @@ public class XSISimpleTypes {
     public static class Time extends XSISimpleType {
         private static SimpleType instance = new Time();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "time";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1572,7 +1782,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.util.Date.class;
@@ -1587,18 +1799,24 @@ public class XSISimpleTypes {
     public static class ID extends XSISimpleType {
         private static SimpleType instance = new ID();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "ID";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1614,7 +1832,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -1629,18 +1849,24 @@ public class XSISimpleTypes {
     public static class IDREF extends XSISimpleType {
         private static SimpleType instance = new IDREF();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "IDREF";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1656,7 +1882,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -1671,18 +1899,24 @@ public class XSISimpleTypes {
     public static class IDREFS extends XSISimpleType {
         private static SimpleType instance = new IDREFS();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "IDREFS";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1698,7 +1932,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String[].class;
@@ -1713,18 +1949,24 @@ public class XSISimpleTypes {
     public static class ENTITY extends XSISimpleType {
         private static SimpleType instance = new ENTITY();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "ENTITY";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1740,7 +1982,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -1755,18 +1999,24 @@ public class XSISimpleTypes {
     public static class ENTITIES extends XSISimpleType {
         private static SimpleType instance = new ENTITIES();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "ENTITIES";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1782,7 +2032,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String[].class;
@@ -1797,18 +2049,24 @@ public class XSISimpleTypes {
     public static class NMTOKEN extends XSISimpleType {
         private static SimpleType instance = new NMTOKEN();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "NMTOKEN";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1824,7 +2082,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -1839,18 +2099,24 @@ public class XSISimpleTypes {
     public static class NMTOKENS extends XSISimpleType {
         private static SimpleType instance = new NMTOKENS();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "NMTOKENS";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1866,7 +2132,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String[].class;
@@ -1881,18 +2149,24 @@ public class XSISimpleTypes {
     public static class NOTATION extends XSISimpleType {
         private static SimpleType instance = new NOTATION();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "NOTATION";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1908,7 +2182,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -1923,18 +2199,24 @@ public class XSISimpleTypes {
     public static class String extends XSISimpleType {
         private static SimpleType instance = new String();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "string";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1950,7 +2232,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -1965,18 +2249,24 @@ public class XSISimpleTypes {
     public static class NormalizedString extends XSISimpleType {
         private static SimpleType instance = new NormalizedString();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "normalizedString";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -1993,7 +2283,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2008,18 +2300,24 @@ public class XSISimpleTypes {
     public static class Token extends XSISimpleType {
         private static SimpleType instance = new Token();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "token";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2036,7 +2334,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2051,18 +2351,24 @@ public class XSISimpleTypes {
     public static class QName extends XSISimpleType {
         private static SimpleType instance = new QName();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "QName";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2078,7 +2384,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2093,18 +2401,24 @@ public class XSISimpleTypes {
     public static class Name extends XSISimpleType {
         private static SimpleType instance = new Name();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "Name";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2120,7 +2434,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2135,18 +2451,24 @@ public class XSISimpleTypes {
     public static class NCName extends XSISimpleType {
         private static SimpleType instance = new NCName();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "NCName";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2162,7 +2484,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2177,18 +2501,24 @@ public class XSISimpleTypes {
     public static class Boolean extends XSISimpleType {
         private static SimpleType instance = new Boolean();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "boolean";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2207,7 +2537,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.Boolean.class;
@@ -2222,18 +2554,24 @@ public class XSISimpleTypes {
     public static class AnyURI extends XSISimpleType {
         private static SimpleType instance = new AnyURI();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "anyURI";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2254,7 +2592,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return URI.class;
@@ -2269,18 +2609,24 @@ public class XSISimpleTypes {
     public static class Base64Binary extends XSISimpleType {
         private static SimpleType instance = new Base64Binary();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "base64Binary";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2296,7 +2642,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2311,18 +2659,24 @@ public class XSISimpleTypes {
     public static class HexBinary extends XSISimpleType {
         private static SimpleType instance = new HexBinary();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "hexBinary";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2338,7 +2692,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return java.lang.String.class;
@@ -2353,18 +2709,24 @@ public class XSISimpleTypes {
     public static class Language extends XSISimpleType {
         private static SimpleType instance = new Language();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }
 
-        /** @see schema.SimpleType#getLocalName() */
+        /**
+         * @see schema.SimpleType#getLocalName()
+         */
         @Override
         public java.lang.String getName() {
             return "language";
         }
 
-        /** @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes) */
+        /**
+         * @see schema.Type#getValue(java.lang.Object, org.xml.sax.Attributes)
+         */
         @Override
         public Object getValue(
                 Element element,
@@ -2380,7 +2742,9 @@ public class XSISimpleTypes {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.xsi.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Locale.class;
@@ -2391,7 +2755,9 @@ public class XSISimpleTypes {
 
         private static SimpleType instance = new AnyType();
 
-        /** @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance() */
+        /**
+         * @see schema.xsi.XSISimpleTypes.XSISimpleType#getInstance()
+         */
         public static SimpleType getInstance() {
             return instance;
         }

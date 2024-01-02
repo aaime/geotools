@@ -210,6 +210,7 @@ public abstract class AbstractCachedAuthorityFactory extends AbstractAuthorityFa
         exception.initCause(cause);
         return exception;
     }
+
     //
     // AuthorityFactory
     //
@@ -385,6 +386,7 @@ public abstract class AbstractCachedAuthorityFactory extends AbstractAuthorityFa
             throw noSuchAuthorityCode(VerticalCRS.class, code, exception);
         }
     }
+
     //
     // CSAuthority
     //

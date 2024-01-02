@@ -29,38 +29,54 @@ import org.geotools.api.coverage.Coverage;
  */
 public class CoverageUpdateRequest extends CoverageRequest {
 
-    /** @uml.property name="data" */
+    /**
+     * @uml.property name="data"
+     */
     private Collection<? extends Coverage> data;
 
-    /** @uml.property name="metadata" */
+    /**
+     * @uml.property name="metadata"
+     */
     private Map<String, String> metadata;
 
-    /** @see org.geotools.coverage.io.CoverageUpdateRequest#getMetadataNames() */
+    /**
+     * @see org.geotools.coverage.io.CoverageUpdateRequest#getMetadataNames()
+     */
     public java.lang.String[] getMetadataNames() throws java.io.IOException {
         return null;
     }
 
-    /** @see org.geotools.coverage.io.CoverageUpdateRequest#getMetadataValue(java.lang.String) */
+    /**
+     * @see org.geotools.coverage.io.CoverageUpdateRequest#getMetadataValue(java.lang.String)
+     */
     public java.lang.String getMetadataValue(java.lang.String arg0) throws java.io.IOException {
         return arg0;
     }
 
-    /** @see org.geotools.coverage.io.CoverageUpdateRequest#setMetadata(java.util.Map) */
+    /**
+     * @see org.geotools.coverage.io.CoverageUpdateRequest#setMetadata(java.util.Map)
+     */
     public void setMetadata(Map<String, String> metadata) throws java.io.IOException {
         this.metadata = new HashMap<>(metadata);
     }
 
-    /** @see org.geotools.coverage.io.CoverageUpdateRequest#getMetadata() */
+    /**
+     * @see org.geotools.coverage.io.CoverageUpdateRequest#getMetadata()
+     */
     public Map<String, String> getMetadata() throws java.io.IOException {
         return new HashMap<>(this.metadata);
     }
 
-    /** @see org.geotools.coverage.io.CoverageUpdateRequest#setData(java.util.Collection) */
+    /**
+     * @see org.geotools.coverage.io.CoverageUpdateRequest#setData(java.util.Collection)
+     */
     public void setData(Collection<? extends Coverage> data) {
         this.data = data;
     }
 
-    /** @see org.geotools.coverage.io.CoverageUpdateRequest#getData() */
+    /**
+     * @see org.geotools.coverage.io.CoverageUpdateRequest#getData()
+     */
     public Collection<? extends Coverage> getData() {
         return data;
     }

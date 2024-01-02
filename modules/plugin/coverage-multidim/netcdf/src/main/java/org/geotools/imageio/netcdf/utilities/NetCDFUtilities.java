@@ -138,6 +138,7 @@ public class NetCDFUtilities {
     public static final String UNKNOWN = "unknown";
 
     public static final double DEFAULT_EARTH_RADIUS = 6371229.0d;
+
     /**
      * When true, the stack trace that created a reader that wasn't closed is recorded and then
      * printed out when warning the user about this.
@@ -1093,12 +1094,16 @@ public class NetCDFUtilities {
         return indexSchema;
     }
 
-    /** @return true if the GRIB library is available */
+    /**
+     * @return true if the GRIB library is available
+     */
     public static boolean isGribAvailable() {
         return IS_GRIB_AVAILABLE;
     }
 
-    /** @return true if the C Native NetCDF 4 library is available */
+    /**
+     * @return true if the C Native NetCDF 4 library is available
+     */
     public static boolean isNC4CAvailable() {
         return IS_NC4_LIBRARY_AVAILABLE;
     }
@@ -1107,7 +1112,9 @@ public class NetCDFUtilities {
         return CHECK_COORDINATE_PLUGINS;
     }
 
-    /** @return An unmodifiable Set of Unsupported Dimension names */
+    /**
+     * @return An unmodifiable Set of Unsupported Dimension names
+     */
     public static Set<String> getUnsupportedDimensions() {
         return UNSUPPORTED_DIMENSIONS;
     }

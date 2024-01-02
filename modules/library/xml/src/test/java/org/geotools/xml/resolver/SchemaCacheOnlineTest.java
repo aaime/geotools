@@ -58,13 +58,17 @@ public class SchemaCacheOnlineTest extends OnlineTestSupport {
         SCHEMA_FILENAME = parts[parts.length - 1];
     }
 
-    /** @see org.geotools.test.OnlineTestSupport#getFixtureId() */
+    /**
+     * @see org.geotools.test.OnlineTestSupport#getFixtureId()
+     */
     @Override
     protected String getFixtureId() {
         return "schema-resolver";
     }
 
-    /** @see org.geotools.test.OnlineTestSupport#before() */
+    /**
+     * @see org.geotools.test.OnlineTestSupport#before()
+     */
     @Before
     @Override
     public void before() throws Exception {
@@ -72,7 +76,9 @@ public class SchemaCacheOnlineTest extends OnlineTestSupport {
         SchemaCache.delete(CACHE_DIRECTORY);
     }
 
-    /** @see org.geotools.test.OnlineTestSupport#after() */
+    /**
+     * @see org.geotools.test.OnlineTestSupport#after()
+     */
     @After
     @Override
     public void after() throws Exception {

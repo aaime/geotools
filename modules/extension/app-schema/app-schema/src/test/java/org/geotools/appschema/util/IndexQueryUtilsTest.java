@@ -27,7 +27,9 @@ import org.geotools.data.complex.TestFeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
 import org.junit.Test;
 
-/** @author Fernando Miño, Geosolutions */
+/**
+ * @author Fernando Miño, Geosolutions
+ */
 public class IndexQueryUtilsTest {
 
     @Test

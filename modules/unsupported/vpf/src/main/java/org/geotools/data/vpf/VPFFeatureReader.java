@@ -127,6 +127,7 @@ public class VPFFeatureReader implements FeatureReader<SimpleFeatureType, Simple
         }
         return result;
     }
+
     /**
      * Returns the VPFFile for a particular column. It will only find the first match, but that
      * should be okay because duplicate columns will cause even bigger problems elsewhere.
@@ -148,6 +149,7 @@ public class VPFFeatureReader implements FeatureReader<SimpleFeatureType, Simple
         }
         return result;
     }
+
     /** Need to reset the stream for the next time Resets the iterator by resetting the stream. */
     public synchronized void reset() {
         VPFFeatureClass featureClass = featureType.getFeatureClass();

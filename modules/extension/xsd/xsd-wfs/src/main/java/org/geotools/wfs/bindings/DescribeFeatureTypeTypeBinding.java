@@ -103,7 +103,9 @@ public class DescribeFeatureTypeTypeBinding extends AbstractComplexEMFBinding {
         this.wfsFactory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.DescribeFeatureTypeType;

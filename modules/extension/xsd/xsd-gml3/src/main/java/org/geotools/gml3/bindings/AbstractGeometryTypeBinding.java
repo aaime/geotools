@@ -79,7 +79,9 @@ public class AbstractGeometryTypeBinding extends AbstractComplexBinding {
         this.srsSyntax = srsSyntax;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractGeometryType;

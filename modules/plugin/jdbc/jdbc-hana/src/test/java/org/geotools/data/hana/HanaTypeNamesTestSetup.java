@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import java.sql.Connection;
 import org.geotools.jdbc.JDBCTypeNamesTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaTypeNamesTestSetup extends JDBCTypeNamesTestSetup {
 
     private static final String TABLE = "ftntable";

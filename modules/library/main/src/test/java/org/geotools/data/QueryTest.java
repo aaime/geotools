@@ -35,7 +35,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.helpers.NamespaceSupport;
 
-/** @author jamesm */
+/**
+ * @author jamesm
+ */
 public class QueryTest {
 
     @Test

@@ -28,7 +28,9 @@ import org.geotools.data.shapefile.index.quadtree.StoreException;
 import org.geotools.util.NIOUtilities;
 import org.locationtech.jts.geom.Envelope;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class FileSystemNode extends Node {
     static final int[] ZERO = new int[0];
 
@@ -55,28 +57,38 @@ public class FileSystemNode extends Node {
         return copy;
     }
 
-    /** @return Returns the numSubNodes. */
+    /**
+     * @return Returns the numSubNodes.
+     */
     @Override
     public int getNumSubNodes() {
         return this.numSubNodes;
     }
 
-    /** @param numSubNodes The numSubNodes to set. */
+    /**
+     * @param numSubNodes The numSubNodes to set.
+     */
     public void setNumSubNodes(int numSubNodes) {
         this.numSubNodes = numSubNodes;
     }
 
-    /** @return Returns the subNodeStartByte. */
+    /**
+     * @return Returns the subNodeStartByte.
+     */
     public int getSubNodeStartByte() {
         return this.subNodeStartByte;
     }
 
-    /** @return Returns the subNodesLength. */
+    /**
+     * @return Returns the subNodesLength.
+     */
     public int getSubNodesLength() {
         return this.subNodesLength;
     }
 
-    /** @see org.geotools.index.quadtree.Node#getSubNode(int) */
+    /**
+     * @see org.geotools.index.quadtree.Node#getSubNode(int)
+     */
     @Override
     public Node getSubNode(int pos) throws StoreException {
         if (this.subNodes.size() > pos) {
@@ -156,6 +168,7 @@ public class FileSystemNode extends Node {
         FileChannel channel;
         ByteOrder order;
         ByteBuffer buffer;
+
         /** the initial position of the buffer in the channel */
         long bufferStart;
 

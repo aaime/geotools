@@ -49,7 +49,9 @@ public class ImageOutlineBinding extends SLDImageOutlineBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.ImageOutline;

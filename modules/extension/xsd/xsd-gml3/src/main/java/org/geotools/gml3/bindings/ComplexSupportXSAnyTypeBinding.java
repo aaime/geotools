@@ -77,7 +77,9 @@ public class ComplexSupportXSAnyTypeBinding extends XSAnyTypeBinding {
         this.idSet = idRegistry;
     }
 
-    /** @see AbstractComplexBinding#getProperty(java.lang.Object, javax.xml.namespace.QName) */
+    /**
+     * @see AbstractComplexBinding#getProperty(java.lang.Object, javax.xml.namespace.QName)
+     */
     @Override
     public Object getProperty(Object object, QName name) throws Exception {
         if (object instanceof ComplexAttribute) {

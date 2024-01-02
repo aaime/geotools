@@ -66,6 +66,7 @@ class ColorMapNode extends StyleVisitorCoverageProcessingNodeAdapter
         implements StyleVisitor, CoverageProcessingNode {
 
     public static int TYPE_NONE = -1;
+
     /*
      * (non-Javadoc)
      * @see CoverageProcessingNode#getName()

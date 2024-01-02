@@ -57,7 +57,9 @@ import org.locationtech.jts.geom.Geometry;
  */
 public class AbstractGeometryTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractGeometryType;

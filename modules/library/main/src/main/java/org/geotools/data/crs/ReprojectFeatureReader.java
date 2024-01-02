@@ -112,7 +112,9 @@ public class ReprojectFeatureReader
      */
     public ReprojectFeatureReader(
             FeatureReader<SimpleFeatureType, SimpleFeature> reader, CoordinateReferenceSystem cs)
-            throws SchemaException, OperationNotFoundException, NoSuchElementException,
+            throws SchemaException,
+                    OperationNotFoundException,
+                    NoSuchElementException,
                     FactoryException {
         this(reader, FeatureTypes.transform(reader.getFeatureType(), cs, false, true));
     }
@@ -126,7 +128,9 @@ public class ReprojectFeatureReader
      */
     public ReprojectFeatureReader(
             FeatureReader<SimpleFeatureType, SimpleFeature> reader, SimpleFeatureType schema)
-            throws SchemaException, OperationNotFoundException, NoSuchElementException,
+            throws SchemaException,
+                    OperationNotFoundException,
+                    NoSuchElementException,
                     FactoryException {
         this.originalType = reader.getFeatureType();
         this.schema = schema;

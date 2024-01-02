@@ -47,7 +47,9 @@ public class TOverlapsBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.TOverlaps;

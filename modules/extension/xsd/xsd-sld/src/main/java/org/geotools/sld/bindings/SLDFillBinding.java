@@ -65,7 +65,9 @@ public class SLDFillBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.FILL;

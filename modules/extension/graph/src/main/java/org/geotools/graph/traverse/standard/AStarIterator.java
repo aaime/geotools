@@ -72,8 +72,10 @@ import org.geotools.graph.traverse.basic.SourceGraphIterator;
 public class AStarIterator extends SourceGraphIterator {
     /** function necessaries for A Star algorithm */
     private AStarFunctions m_afuncs;
+
     /** queue that represents the open list of the A Star algorithm */
     private PriorityQueue<AStarNode> m_pqueue;
+
     /** map of graph node to internal A* node * */
     private HashMap<Node, AStarNode> m_nodemap;
 

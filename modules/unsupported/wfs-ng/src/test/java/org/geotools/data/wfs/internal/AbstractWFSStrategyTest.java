@@ -29,7 +29,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.EntityResolver;
 
-/** @author Matthias Schulze - Landesamt für Digitalisierung, Breitband und Vermessung */
+/**
+ * @author Matthias Schulze - Landesamt für Digitalisierung, Breitband und Vermessung
+ */
 public class AbstractWFSStrategyTest {
 
     /**

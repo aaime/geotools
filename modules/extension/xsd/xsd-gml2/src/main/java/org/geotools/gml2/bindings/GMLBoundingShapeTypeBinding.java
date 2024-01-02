@@ -49,7 +49,9 @@ import org.locationtech.jts.geom.Envelope;
  * @generated
  */
 public class GMLBoundingShapeTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.BoundingShapeType;

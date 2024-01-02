@@ -27,6 +27,7 @@ public class ColorReductionDescriptor extends OperationDescriptorImpl {
 
     /** */
     private static final long serialVersionUID = -8931287738914712392L;
+
     /** The operation name, which is {@value}. */
     public static final String OPERATION_NAME = "org.geotools.ColorReduction";
 

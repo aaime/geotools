@@ -28,7 +28,9 @@ import org.geotools.api.util.ProgressListener;
 import org.geotools.gce.grassraster.core.GrassBinaryRasterWriteHandler;
 import org.geotools.gce.grassraster.spi.GrassBinaryImageWriterSpi;
 
-/** @author Andrea Antonello - www.hydrologis.com */
+/**
+ * @author Andrea Antonello - www.hydrologis.com
+ */
 public class GrassBinaryImageWriter extends ImageWriter {
     /** <code>true</code> if there are some listeners attached to this writer */
     private boolean hasListeners = false;
@@ -171,7 +173,9 @@ public class GrassBinaryImageWriter extends ImageWriter {
         return null;
     }
 
-    /** @see javax.imageio.ImageWriter#getDefaultIStreamMetadata(javax.imageio.ImageWriteParam) */
+    /**
+     * @see javax.imageio.ImageWriter#getDefaultIStreamMetadata(javax.imageio.ImageWriteParam)
+     */
     @Override
     public IIOMetadata getDefaultStreamMetadata(ImageWriteParam param) {
         return null;

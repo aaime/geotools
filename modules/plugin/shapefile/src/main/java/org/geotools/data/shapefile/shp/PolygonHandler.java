@@ -272,7 +272,9 @@ public class PolygonHandler implements ShapeHandler {
         }
     }
 
-    /** @param flatFeature */
+    /**
+     * @param flatFeature
+     */
     private CoordinateSequence readCoordinates(
             final ByteBuffer buffer,
             final int numPoints,

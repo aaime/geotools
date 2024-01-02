@@ -122,12 +122,16 @@ public class GeoJSONDataStore extends ContentDataStore implements FileDataStore 
         schema = featureType;
     }
 
-    /** @return the crs */
+    /**
+     * @return the crs
+     */
     public CoordinateReferenceSystem getCrs() {
         return crs;
     }
 
-    /** @param crs the crs to set */
+    /**
+     * @param crs the crs to set
+     */
     public void setCrs(CoordinateReferenceSystem crs) {
         this.crs = crs;
     }
@@ -180,22 +184,30 @@ public class GeoJSONDataStore extends ContentDataStore implements FileDataStore 
         }
     }
 
-    /** @param booleanValue */
+    /**
+     * @param booleanValue
+     */
     public void setWriteBounds(boolean booleanValue) {
         writeBounds = booleanValue;
     }
 
-    /** @return the writeBounds */
+    /**
+     * @return the writeBounds
+     */
     public boolean isWriteBounds() {
         return writeBounds;
     }
 
-    /** @param booleanValue */
+    /**
+     * @param booleanValue
+     */
     public void setQuickSchema(boolean booleanValue) {
         quick = booleanValue;
     }
 
-    /** @return the quick */
+    /**
+     * @return the quick
+     */
     public boolean isQuick() {
         return quick;
     }

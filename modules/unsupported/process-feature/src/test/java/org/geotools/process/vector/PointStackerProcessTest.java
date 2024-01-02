@@ -319,7 +319,9 @@ public class PointStackerProcessTest {
      */
     @Test
     public void testReprojected()
-            throws NoSuchAuthorityCodeException, FactoryException, ProcessException,
+            throws NoSuchAuthorityCodeException,
+                    FactoryException,
+                    ProcessException,
                     TransformException {
 
         ReferencedEnvelope inBounds =
@@ -366,7 +368,9 @@ public class PointStackerProcessTest {
 
     @Test
     public void testWeightClusterPosition()
-            throws NoSuchAuthorityCodeException, FactoryException, ProcessException,
+            throws NoSuchAuthorityCodeException,
+                    FactoryException,
+                    ProcessException,
                     TransformException {
 
         ReferencedEnvelope inBounds =

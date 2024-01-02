@@ -65,6 +65,7 @@ public class ImageLab {
         ImageLab me = new ImageLab();
         me.getLayersAndDisplay();
     }
+
     // docs end main
 
     // docs start get layers

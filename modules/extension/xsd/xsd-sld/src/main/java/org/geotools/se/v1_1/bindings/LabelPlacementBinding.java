@@ -49,7 +49,9 @@ public class LabelPlacementBinding extends SLDLabelPlacementBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.LabelPlacement;

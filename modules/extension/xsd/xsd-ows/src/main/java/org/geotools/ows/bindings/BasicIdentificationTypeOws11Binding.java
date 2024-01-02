@@ -83,7 +83,9 @@ public class BasicIdentificationTypeOws11Binding extends DescriptionTypeOws11Bin
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.BasicIdentificationType;

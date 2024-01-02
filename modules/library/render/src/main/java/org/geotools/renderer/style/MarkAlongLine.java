@@ -93,7 +93,9 @@ public class MarkAlongLine implements Stroke {
         this.wktShape = new MarkAlongLiteShape(at.transform(wkt), null, false);
     }
 
-    /** @return the scaleImit */
+    /**
+     * @return the scaleImit
+     */
     public float getScaleImit() {
         return scaleImit;
     }
@@ -114,7 +116,9 @@ public class MarkAlongLine implements Stroke {
         if (LOGGER.isLoggable(Level.FINE)) LOGGER.fine("Scale Limit set to " + this.scaleImit);
     }
 
-    /** @return the simplicationTolerance */
+    /**
+     * @return the simplicationTolerance
+     */
     public float getSimplicationFactor() {
         return simplicationFactor;
     }

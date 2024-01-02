@@ -95,7 +95,9 @@ import org.w3c.dom.Node;
 import si.uom.SI;
 import tech.units.indriya.AbstractUnit;
 
-/** @author Daniele Romagnoli, GeoSolutions */
+/**
+ * @author Daniele Romagnoli, GeoSolutions
+ */
 public class Utilities {
 
     private static final Logger LOGGER =

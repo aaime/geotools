@@ -59,6 +59,7 @@ public class FeatureTypeFactoryImpl implements FeatureTypeFactory {
         this.crsFactory = null;
         this.filterFactory = null;
     }
+
     /** Constructor injection */
     public FeatureTypeFactoryImpl(CRSFactory crsFactory, FilterFactory filterFactory) {
         this.crsFactory = crsFactory;

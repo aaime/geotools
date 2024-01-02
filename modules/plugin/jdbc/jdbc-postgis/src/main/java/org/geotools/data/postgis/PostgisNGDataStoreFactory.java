@@ -132,6 +132,7 @@ public class PostgisNGDataStoreFactory extends JDBCDataStoreFactory {
                     "When enabled, operations such as map rendering will pass a hint that will enable the usage of a simplification function",
                     false,
                     Boolean.TRUE);
+
     /** Simplification method to use if SIMPLIFY is true. By default ST_Simplify is used. */
     public static final Param SIMPLIFICATION_METHOD =
             new Param(

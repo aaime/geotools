@@ -49,6 +49,7 @@ public class CSVDataStore extends ContentDataStore implements FileDataStore {
             return new NameImpl(csvFileState.getTypeName());
         }
     }
+
     // docs end getTypeName
 
     // docs start dataStoreOperations

@@ -72,7 +72,9 @@ public class Geopkgtype_tilesBinding extends LayertypeBinding {
         this.namespaceContext = namespaceContext;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GPKG.geopkgtype_tiles;

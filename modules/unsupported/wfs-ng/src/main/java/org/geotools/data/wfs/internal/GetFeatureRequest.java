@@ -98,32 +98,44 @@ public class GetFeatureRequest extends WFSRequest {
         return sortBy;
     }
 
-    /** @param propertyNames the propertyNames to set */
+    /**
+     * @param propertyNames the propertyNames to set
+     */
     public void setPropertyNames(String[] propertyNames) {
         this.propertyNames = propertyNames;
     }
 
-    /** @param srsName the srsName to set */
+    /**
+     * @param srsName the srsName to set
+     */
     public void setSrsName(String srsName) {
         this.srsName = srsName;
     }
 
-    /** @param filter the filter to set */
+    /**
+     * @param filter the filter to set
+     */
     public void setFilter(Filter filter) {
         this.filter = filter;
     }
 
-    /** @param maxFeatures the maxFeatures to set */
+    /**
+     * @param maxFeatures the maxFeatures to set
+     */
     public void setMaxFeatures(Integer maxFeatures) {
         this.maxFeatures = maxFeatures;
     }
 
-    /** @param resultType the resultType to set */
+    /**
+     * @param resultType the resultType to set
+     */
     public void setResultType(ResultType resultType) {
         this.resultType = resultType;
     }
 
-    /** @param sortBy the sortBy to set */
+    /**
+     * @param sortBy the sortBy to set
+     */
     public void setSortBy(SortBy[] sortBy) {
         this.sortBy = sortBy;
     }

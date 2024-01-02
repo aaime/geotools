@@ -34,14 +34,18 @@ public class DefaultCSBuilder implements CSBuilder {
     private Coordinate[] coordinateArray;
     private CoordinateSequenceFactory factory = CoordinateArraySequenceFactory.instance();
 
-    /** @see org.geotools.geometry.coordinatesequence.CSBuilder#start(int, int) */
+    /**
+     * @see org.geotools.geometry.coordinatesequence.CSBuilder#start(int, int)
+     */
     @Override
     public void start(int size, int dimensions) {
         coordinateArray = new Coordinate[size];
         for (int i = 0; i < size; i++) coordinateArray[i] = new Coordinate();
     }
 
-    /** @see org.geotools.geometry.coordinatesequence.CSBuilder#getCoordinateSequence() */
+    /**
+     * @see org.geotools.geometry.coordinatesequence.CSBuilder#getCoordinateSequence()
+     */
     @Override
     public CoordinateSequence end() {
         CoordinateSequence cs = factory.create(coordinateArray);
@@ -49,7 +53,9 @@ public class DefaultCSBuilder implements CSBuilder {
         return cs;
     }
 
-    /** @see org.geotools.geometry.coordinatesequence.CSBuilder#setOrdinate(double, int, int) */
+    /**
+     * @see org.geotools.geometry.coordinatesequence.CSBuilder#setOrdinate(double, int, int)
+     */
     @Override
     public void setOrdinate(double value, int ordinateIndex, int coordinateIndex) {
         Coordinate c = coordinateArray[coordinateIndex];
@@ -66,7 +72,9 @@ public class DefaultCSBuilder implements CSBuilder {
         }
     }
 
-    /** @see org.geotools.geometry.coordinatesequence.CSBuilder#getOrdinate(int, int) */
+    /**
+     * @see org.geotools.geometry.coordinatesequence.CSBuilder#getOrdinate(int, int)
+     */
     @Override
     public double getOrdinate(int ordinateIndex, int coordinateIndex) {
         Coordinate c = coordinateArray[coordinateIndex];
@@ -82,7 +90,9 @@ public class DefaultCSBuilder implements CSBuilder {
         }
     }
 
-    /** @see org.geotools.geometry.coordinatesequence.CSBuilder#getSize() */
+    /**
+     * @see org.geotools.geometry.coordinatesequence.CSBuilder#getSize()
+     */
     @Override
     public int getSize() {
         if (coordinateArray != null) {
@@ -92,7 +102,9 @@ public class DefaultCSBuilder implements CSBuilder {
         }
     }
 
-    /** @see org.geotools.geometry.coordinatesequence.CSBuilder#getDimension() */
+    /**
+     * @see org.geotools.geometry.coordinatesequence.CSBuilder#getDimension()
+     */
     @Override
     public int getDimension() {
         if (coordinateArray != null) {

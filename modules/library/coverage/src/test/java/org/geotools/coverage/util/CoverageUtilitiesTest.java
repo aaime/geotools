@@ -98,6 +98,7 @@ public final class CoverageUtilitiesTest {
             return false;
         }
     }
+
     /** Tests the checkEmptySourceRegion method. */
     @Test
     public void testCheckEmptySourceRegion() {

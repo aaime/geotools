@@ -73,7 +73,9 @@ public abstract class ClassificationFunction extends DefaultExpression
         this.name = name;
     }
 
-    /** @see org.geotools.api.filter.expression.Expression#accept(ExpressionVisitor, Object) */
+    /**
+     * @see org.geotools.api.filter.expression.Expression#accept(ExpressionVisitor, Object)
+     */
     @Override
     public Object accept(ExpressionVisitor visitor, Object extraData) {
         return visitor.visit(this, extraData);

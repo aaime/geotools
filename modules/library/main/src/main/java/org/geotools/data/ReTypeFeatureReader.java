@@ -155,13 +155,17 @@ public class ReTypeFeatureReader
         return types;
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public SimpleFeatureType getFeatureType() {
         return featureType;
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public SimpleFeature next()
             throws IOException, IllegalAttributeException, NoSuchElementException {
@@ -187,13 +191,17 @@ public class ReTypeFeatureReader
         return feature;
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() throws IOException {
         return reader.hasNext();
     }
 
-    /** @see FeatureReader#close() */
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() throws IOException {
         if (reader != null) {

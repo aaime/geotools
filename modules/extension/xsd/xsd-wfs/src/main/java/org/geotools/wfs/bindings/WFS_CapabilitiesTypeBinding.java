@@ -71,7 +71,9 @@ public class WFS_CapabilitiesTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.WFS_CapabilitiesType;

@@ -23,7 +23,9 @@ import org.geotools.api.temporal.OrdinalEra;
 import org.geotools.api.temporal.OrdinalReferenceSystem;
 import org.geotools.util.Utilities;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultOrdinalReferenceSystem extends DefaultTemporalReferenceSystem
         implements OrdinalReferenceSystem {
 

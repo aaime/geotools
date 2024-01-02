@@ -54,7 +54,9 @@ public class _Filter_CapabilitiesBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC._Filter_Capabilities;

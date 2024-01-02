@@ -26,10 +26,14 @@ import java.util.List;
  * @author Justin Deoliveira,Refractions Research Inc.,jdeolive@refractions.net
  */
 public interface Node {
-    /** @return The component instance. */
+    /**
+     * @return The component instance.
+     */
     InstanceComponent getComponent();
 
-    /** @return The parsed value of the instance component. */
+    /**
+     * @return The parsed value of the instance component.
+     */
     Object getValue();
 
     /**

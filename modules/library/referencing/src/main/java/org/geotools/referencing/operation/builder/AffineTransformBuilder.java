@@ -65,7 +65,8 @@ public class AffineTransformBuilder extends ProjectiveTransformBuilder {
      * @param vectors list of {@linkplain MappedPosition MappedPosition}
      */
     public AffineTransformBuilder(List<MappedPosition> vectors)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         super.setMappedPositions(vectors);
     }

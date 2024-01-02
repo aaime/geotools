@@ -19,7 +19,9 @@ package org.geotools.temporal.reference;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     org.geotools.temporal.reference.DefaultTemporalReferenceSystemTest.class,

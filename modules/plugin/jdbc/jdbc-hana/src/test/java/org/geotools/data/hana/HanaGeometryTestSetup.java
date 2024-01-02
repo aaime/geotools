@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCGeometryTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaGeometryTestSetup extends JDBCGeometryTestSetup {
 
     public HanaGeometryTestSetup(JDBCTestSetup delegate) {

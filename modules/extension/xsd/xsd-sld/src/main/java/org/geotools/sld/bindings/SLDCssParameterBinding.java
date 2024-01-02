@@ -61,7 +61,9 @@ public class SLDCssParameterBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.CSSPARAMETER;

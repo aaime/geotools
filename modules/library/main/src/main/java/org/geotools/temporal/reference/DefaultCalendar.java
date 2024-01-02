@@ -36,11 +36,14 @@ import org.geotools.temporal.object.DefaultJulianDate;
 import org.geotools.util.SimpleInternationalString;
 import org.geotools.util.Utilities;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultCalendar extends DefaultTemporalReferenceSystem implements Calendar {
 
     /** Collection of CalendarEra which uses this Calendar as a reference. */
     private Collection<CalendarEra> basis;
+
     /** */
     private Clock timeBasis;
 

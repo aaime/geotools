@@ -507,6 +507,7 @@ public class Operations {
             throws CoverageProcessingException {
         return warp(source, warp, Interpolation.getInstance(Interpolation.INTERP_NEAREST));
     }
+
     /**
      * Translates and resizes an image.
      *
@@ -615,6 +616,7 @@ public class Operations {
                         "scaleX", Double.valueOf(scaleX),
                         "scaleY", Double.valueOf(scaleY));
     }
+
     /**
      * Subsamples an image using the default values. The scale factor is 2 and the filter is a
      * quadrant symmetric filter generated from a Gaussian kernel.
@@ -748,7 +750,8 @@ public class Operations {
             final Coverage source,
             final String argumentName1,
             final Object argumentValue1)
-            throws OperationNotFoundException, InvalidParameterNameException,
+            throws OperationNotFoundException,
+                    InvalidParameterNameException,
                     CoverageProcessingException {
         final Operation operation = processor.getOperation(operationName);
         final ParameterValueGroup parameters = operation.getParameters();
@@ -779,7 +782,8 @@ public class Operations {
             final Object argumentValue1,
             final String argumentName2,
             final Object argumentValue2)
-            throws OperationNotFoundException, InvalidParameterNameException,
+            throws OperationNotFoundException,
+                    InvalidParameterNameException,
                     CoverageProcessingException {
         final Operation operation = processor.getOperation(operationName);
         final ParameterValueGroup parameters = operation.getParameters();
@@ -815,7 +819,8 @@ public class Operations {
             final Object argumentValue2,
             final String argumentName3,
             final Object argumentValue3)
-            throws OperationNotFoundException, InvalidParameterNameException,
+            throws OperationNotFoundException,
+                    InvalidParameterNameException,
                     CoverageProcessingException {
         final Operation operation = processor.getOperation(operationName);
         final ParameterValueGroup parameters = operation.getParameters();
@@ -849,7 +854,8 @@ public class Operations {
             final Object argumentValue3,
             final String argumentName4,
             final Object argumentValue4)
-            throws OperationNotFoundException, InvalidParameterNameException,
+            throws OperationNotFoundException,
+                    InvalidParameterNameException,
                     CoverageProcessingException {
         final Operation operation = processor.getOperation(operationName);
         final ParameterValueGroup parameters = operation.getParameters();
@@ -886,7 +892,8 @@ public class Operations {
             final Object argumentValue4,
             final String argumentName5,
             final Object argumentValue5)
-            throws OperationNotFoundException, InvalidParameterNameException,
+            throws OperationNotFoundException,
+                    InvalidParameterNameException,
                     CoverageProcessingException {
         final Operation operation = processor.getOperation(operationName);
         final ParameterValueGroup parameters = operation.getParameters();
@@ -926,7 +933,8 @@ public class Operations {
             final Object argumentValue5,
             final String argumentName6,
             final Object argumentValue6)
-            throws OperationNotFoundException, InvalidParameterNameException,
+            throws OperationNotFoundException,
+                    InvalidParameterNameException,
                     CoverageProcessingException {
         final Operation operation = processor.getOperation(operationName);
         final ParameterValueGroup parameters = operation.getParameters();

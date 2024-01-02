@@ -89,6 +89,7 @@ public class RootEncoder extends YsldEncodeHandler<StyledLayerDescriptor> {
         if (layer == null) return;
         put("layer-name", layer.getName());
     }
+
     /**
      * Look up layer (example UserLayer) containing the provided style.
      *

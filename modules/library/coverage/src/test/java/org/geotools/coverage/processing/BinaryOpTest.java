@@ -39,6 +39,7 @@ import org.junit.Test;
 public class BinaryOpTest extends GridProcessingTestBase {
 
     private static final double DELTA = 1E-6d;
+
     /** The processor to be used for all tests. */
     private CoverageProcessor processor;
 

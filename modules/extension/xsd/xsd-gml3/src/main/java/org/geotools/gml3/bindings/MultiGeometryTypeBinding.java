@@ -58,7 +58,9 @@ public class MultiGeometryTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiGeometryType;

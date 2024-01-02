@@ -32,6 +32,7 @@ public class GMLFeatureCollection extends DefaultFeatureCollection {
         super(id, null);
         bounds = ReferencedEnvelope.reference(b);
     }
+
     /* (non-Javadoc)
      * @see org.geotools.feature.FeatureCollection#getBounds()
      */

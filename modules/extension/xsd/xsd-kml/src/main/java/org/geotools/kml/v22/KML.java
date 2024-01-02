@@ -58,978 +58,2046 @@ public final class KML extends XSD {
         return getClass().getResource("ogckml22.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/kml/2.2";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractColorStyleType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractColorStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractContainerType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractContainerType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractFeatureType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractFeatureType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometryType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractGeometryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractLatLonBoxType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractLatLonBoxType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractObjectType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractObjectType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractOverlayType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractOverlayType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractStyleSelectorType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractStyleSelectorType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSubStyleType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractSubStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractTimePrimitiveType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractTimePrimitiveType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractViewType =
             new QName("http://www.opengis.net/kml/2.2", "AbstractViewType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AliasType = new QName("http://www.opengis.net/kml/2.2", "AliasType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName altitudeModeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "altitudeModeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName angle180Type =
             new QName("http://www.opengis.net/kml/2.2", "angle180Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName angle360Type =
             new QName("http://www.opengis.net/kml/2.2", "angle360Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName angle90Type =
             new QName("http://www.opengis.net/kml/2.2", "angle90Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName anglepos180Type =
             new QName("http://www.opengis.net/kml/2.2", "anglepos180Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName anglepos90Type =
             new QName("http://www.opengis.net/kml/2.2", "anglepos90Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BalloonStyleType =
             new QName("http://www.opengis.net/kml/2.2", "BalloonStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BasicLinkType =
             new QName("http://www.opengis.net/kml/2.2", "BasicLinkType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BoundaryType =
             new QName("http://www.opengis.net/kml/2.2", "BoundaryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CameraType =
             new QName("http://www.opengis.net/kml/2.2", "CameraType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ChangeType =
             new QName("http://www.opengis.net/kml/2.2", "ChangeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName colorModeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "colorModeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName colorType = new QName("http://www.opengis.net/kml/2.2", "colorType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName coordinatesType =
             new QName("http://www.opengis.net/kml/2.2", "coordinatesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CreateType =
             new QName("http://www.opengis.net/kml/2.2", "CreateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DataType = new QName("http://www.opengis.net/kml/2.2", "DataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName dateTimeType =
             new QName("http://www.opengis.net/kml/2.2", "dateTimeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DeleteType =
             new QName("http://www.opengis.net/kml/2.2", "DeleteType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName displayModeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "displayModeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DocumentType =
             new QName("http://www.opengis.net/kml/2.2", "DocumentType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExtendedDataType =
             new QName("http://www.opengis.net/kml/2.2", "ExtendedDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FolderType =
             new QName("http://www.opengis.net/kml/2.2", "FolderType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName gridOriginEnumType =
             new QName("http://www.opengis.net/kml/2.2", "gridOriginEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GroundOverlayType =
             new QName("http://www.opengis.net/kml/2.2", "GroundOverlayType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName IconStyleType =
             new QName("http://www.opengis.net/kml/2.2", "IconStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ImagePyramidType =
             new QName("http://www.opengis.net/kml/2.2", "ImagePyramidType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName itemIconStateEnumType =
             new QName("http://www.opengis.net/kml/2.2", "itemIconStateEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName itemIconStateType =
             new QName("http://www.opengis.net/kml/2.2", "itemIconStateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ItemIconType =
             new QName("http://www.opengis.net/kml/2.2", "ItemIconType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName KmlType = new QName("http://www.opengis.net/kml/2.2", "KmlType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LabelStyleType =
             new QName("http://www.opengis.net/kml/2.2", "LabelStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonAltBoxType =
             new QName("http://www.opengis.net/kml/2.2", "LatLonAltBoxType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonBoxType =
             new QName("http://www.opengis.net/kml/2.2", "LatLonBoxType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinearRingType =
             new QName("http://www.opengis.net/kml/2.2", "LinearRingType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStringType =
             new QName("http://www.opengis.net/kml/2.2", "LineStringType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStyleType =
             new QName("http://www.opengis.net/kml/2.2", "LineStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinkType = new QName("http://www.opengis.net/kml/2.2", "LinkType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName listItemTypeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "listItemTypeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStyleType =
             new QName("http://www.opengis.net/kml/2.2", "ListStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LocationType =
             new QName("http://www.opengis.net/kml/2.2", "LocationType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LodType = new QName("http://www.opengis.net/kml/2.2", "LodType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LookAtType =
             new QName("http://www.opengis.net/kml/2.2", "LookAtType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MetadataType =
             new QName("http://www.opengis.net/kml/2.2", "MetadataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ModelType = new QName("http://www.opengis.net/kml/2.2", "ModelType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiGeometryType =
             new QName("http://www.opengis.net/kml/2.2", "MultiGeometryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkControlType =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkControlType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkType =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OrientationType =
             new QName("http://www.opengis.net/kml/2.2", "OrientationType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PairType = new QName("http://www.opengis.net/kml/2.2", "PairType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PhotoOverlayType =
             new QName("http://www.opengis.net/kml/2.2", "PhotoOverlayType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PlacemarkType =
             new QName("http://www.opengis.net/kml/2.2", "PlacemarkType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointType = new QName("http://www.opengis.net/kml/2.2", "PointType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolygonType =
             new QName("http://www.opengis.net/kml/2.2", "PolygonType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolyStyleType =
             new QName("http://www.opengis.net/kml/2.2", "PolyStyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName refreshModeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "refreshModeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RegionType =
             new QName("http://www.opengis.net/kml/2.2", "RegionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceMapType =
             new QName("http://www.opengis.net/kml/2.2", "ResourceMapType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScaleType = new QName("http://www.opengis.net/kml/2.2", "ScaleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaDataType =
             new QName("http://www.opengis.net/kml/2.2", "SchemaDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaType =
             new QName("http://www.opengis.net/kml/2.2", "SchemaType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScreenOverlayType =
             new QName("http://www.opengis.net/kml/2.2", "ScreenOverlayType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName shapeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "shapeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleDataType =
             new QName("http://www.opengis.net/kml/2.2", "SimpleDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleFieldType =
             new QName("http://www.opengis.net/kml/2.2", "SimpleFieldType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SnippetType =
             new QName("http://www.opengis.net/kml/2.2", "SnippetType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleMapType =
             new QName("http://www.opengis.net/kml/2.2", "StyleMapType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName styleStateEnumType =
             new QName("http://www.opengis.net/kml/2.2", "styleStateEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleType = new QName("http://www.opengis.net/kml/2.2", "StyleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeSpanType =
             new QName("http://www.opengis.net/kml/2.2", "TimeSpanType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeStampType =
             new QName("http://www.opengis.net/kml/2.2", "TimeStampType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName unitsEnumType =
             new QName("http://www.opengis.net/kml/2.2", "unitsEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpdateType =
             new QName("http://www.opengis.net/kml/2.2", "UpdateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName vec2Type = new QName("http://www.opengis.net/kml/2.2", "vec2Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName viewRefreshModeEnumType =
             new QName("http://www.opengis.net/kml/2.2", "viewRefreshModeEnumType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ViewVolumeType =
             new QName("http://www.opengis.net/kml/2.2", "ViewVolumeType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractColorStyleGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractColorStyleGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractColorStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractColorStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractColorStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractColorStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractContainerGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractContainerGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractContainerObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractContainerObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractContainerSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractContainerSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractFeatureGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractFeatureGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractFeatureObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractFeatureObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractFeatureSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractFeatureSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometryGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractGeometryGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometryObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractGeometryObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractGeometrySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractGeometrySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractLatLonBoxObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractLatLonBoxObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractLatLonBoxSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractLatLonBoxSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractObjectGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractObjectGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractOverlayGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractOverlayGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractOverlayObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractOverlayObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractOverlaySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractOverlaySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractStyleSelectorGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractStyleSelectorGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractStyleSelectorObjectExtensionGroup =
             new QName(
                     "http://www.opengis.net/kml/2.2", "AbstractStyleSelectorObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractStyleSelectorSimpleExtensionGroup =
             new QName(
                     "http://www.opengis.net/kml/2.2", "AbstractStyleSelectorSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSubStyleGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractSubStyleGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSubStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractSubStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractSubStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractSubStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractTimePrimitiveGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractTimePrimitiveGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractTimePrimitiveObjectExtensionGroup =
             new QName(
                     "http://www.opengis.net/kml/2.2", "AbstractTimePrimitiveObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractTimePrimitiveSimpleExtensionGroup =
             new QName(
                     "http://www.opengis.net/kml/2.2", "AbstractTimePrimitiveSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractViewGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractViewGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractViewObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractViewObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractViewSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AbstractViewSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName address = new QName("http://www.opengis.net/kml/2.2", "address");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Alias = new QName("http://www.opengis.net/kml/2.2", "Alias");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AliasObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AliasObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AliasSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "AliasSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName altitude = new QName("http://www.opengis.net/kml/2.2", "altitude");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName altitudeMode =
             new QName("http://www.opengis.net/kml/2.2", "altitudeMode");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName altitudeModeGroup =
             new QName("http://www.opengis.net/kml/2.2", "altitudeModeGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BalloonStyle =
             new QName("http://www.opengis.net/kml/2.2", "BalloonStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BalloonStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "BalloonStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BalloonStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "BalloonStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BasicLinkObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "BasicLinkObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BasicLinkSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "BasicLinkSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName begin = new QName("http://www.opengis.net/kml/2.2", "begin");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName bgColor = new QName("http://www.opengis.net/kml/2.2", "bgColor");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName bottomFov = new QName("http://www.opengis.net/kml/2.2", "bottomFov");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BoundaryObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "BoundaryObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BoundarySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "BoundarySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Camera = new QName("http://www.opengis.net/kml/2.2", "Camera");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CameraObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "CameraObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CameraSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "CameraSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Change = new QName("http://www.opengis.net/kml/2.2", "Change");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName color = new QName("http://www.opengis.net/kml/2.2", "color");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName colorMode = new QName("http://www.opengis.net/kml/2.2", "colorMode");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName cookie = new QName("http://www.opengis.net/kml/2.2", "cookie");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName coordinates =
             new QName("http://www.opengis.net/kml/2.2", "coordinates");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Create = new QName("http://www.opengis.net/kml/2.2", "Create");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Data = new QName("http://www.opengis.net/kml/2.2", "Data");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DataExtension =
             new QName("http://www.opengis.net/kml/2.2", "DataExtension");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Delete = new QName("http://www.opengis.net/kml/2.2", "Delete");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName description =
             new QName("http://www.opengis.net/kml/2.2", "description");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName displayMode =
             new QName("http://www.opengis.net/kml/2.2", "displayMode");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName displayName =
             new QName("http://www.opengis.net/kml/2.2", "displayName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Document = new QName("http://www.opengis.net/kml/2.2", "Document");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DocumentObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "DocumentObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DocumentSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "DocumentSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName drawOrder = new QName("http://www.opengis.net/kml/2.2", "drawOrder");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName east = new QName("http://www.opengis.net/kml/2.2", "east");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName end = new QName("http://www.opengis.net/kml/2.2", "end");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName expires = new QName("http://www.opengis.net/kml/2.2", "expires");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExtendedData =
             new QName("http://www.opengis.net/kml/2.2", "ExtendedData");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName extrude = new QName("http://www.opengis.net/kml/2.2", "extrude");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName fill = new QName("http://www.opengis.net/kml/2.2", "fill");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName flyToView = new QName("http://www.opengis.net/kml/2.2", "flyToView");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Folder = new QName("http://www.opengis.net/kml/2.2", "Folder");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FolderObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "FolderObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FolderSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "FolderSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName gridOrigin =
             new QName("http://www.opengis.net/kml/2.2", "gridOrigin");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GroundOverlay =
             new QName("http://www.opengis.net/kml/2.2", "GroundOverlay");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GroundOverlayObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "GroundOverlayObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GroundOverlaySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "GroundOverlaySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName heading = new QName("http://www.opengis.net/kml/2.2", "heading");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName hotSpot = new QName("http://www.opengis.net/kml/2.2", "hotSpot");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName href = new QName("http://www.opengis.net/kml/2.2", "href");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName httpQuery = new QName("http://www.opengis.net/kml/2.2", "httpQuery");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Icon = new QName("http://www.opengis.net/kml/2.2", "Icon");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName IconStyle = new QName("http://www.opengis.net/kml/2.2", "IconStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName IconStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "IconStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName IconStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "IconStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ImagePyramid =
             new QName("http://www.opengis.net/kml/2.2", "ImagePyramid");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ImagePyramidObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ImagePyramidObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ImagePyramidSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ImagePyramidSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName innerBoundaryIs =
             new QName("http://www.opengis.net/kml/2.2", "innerBoundaryIs");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ItemIcon = new QName("http://www.opengis.net/kml/2.2", "ItemIcon");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ItemIconObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ItemIconObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ItemIconSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ItemIconSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName key = new QName("http://www.opengis.net/kml/2.2", "key");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName kml = new QName("http://www.opengis.net/kml/2.2", "kml");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName KmlObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "KmlObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName KmlSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "KmlSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LabelStyle =
             new QName("http://www.opengis.net/kml/2.2", "LabelStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LabelStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LabelStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LabelStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LabelStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName latitude = new QName("http://www.opengis.net/kml/2.2", "latitude");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonAltBox =
             new QName("http://www.opengis.net/kml/2.2", "LatLonAltBox");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonAltBoxObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LatLonAltBoxObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonAltBoxSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LatLonAltBoxSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonBox = new QName("http://www.opengis.net/kml/2.2", "LatLonBox");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonBoxObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LatLonBoxObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LatLonBoxSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LatLonBoxSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName leftFov = new QName("http://www.opengis.net/kml/2.2", "leftFov");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinearRing =
             new QName("http://www.opengis.net/kml/2.2", "LinearRing");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinearRingObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LinearRingObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinearRingSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LinearRingSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineString =
             new QName("http://www.opengis.net/kml/2.2", "LineString");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStringObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LineStringObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStringSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LineStringSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStyle = new QName("http://www.opengis.net/kml/2.2", "LineStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LineStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LineStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LineStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Link = new QName("http://www.opengis.net/kml/2.2", "Link");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName linkDescription =
             new QName("http://www.opengis.net/kml/2.2", "linkDescription");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName linkName = new QName("http://www.opengis.net/kml/2.2", "linkName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinkObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LinkObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LinkSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LinkSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName linkSnippet =
             new QName("http://www.opengis.net/kml/2.2", "linkSnippet");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName listItemType =
             new QName("http://www.opengis.net/kml/2.2", "listItemType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStyle = new QName("http://www.opengis.net/kml/2.2", "ListStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ListStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ListStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Location = new QName("http://www.opengis.net/kml/2.2", "Location");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LocationObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LocationObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LocationSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LocationSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Lod = new QName("http://www.opengis.net/kml/2.2", "Lod");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LodObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LodObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LodSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LodSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName longitude = new QName("http://www.opengis.net/kml/2.2", "longitude");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LookAt = new QName("http://www.opengis.net/kml/2.2", "LookAt");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LookAtObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LookAtObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LookAtSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "LookAtSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxAltitude =
             new QName("http://www.opengis.net/kml/2.2", "maxAltitude");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxFadeExtent =
             new QName("http://www.opengis.net/kml/2.2", "maxFadeExtent");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxHeight = new QName("http://www.opengis.net/kml/2.2", "maxHeight");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxLodPixels =
             new QName("http://www.opengis.net/kml/2.2", "maxLodPixels");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxSessionLength =
             new QName("http://www.opengis.net/kml/2.2", "maxSessionLength");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxSnippetLines =
             new QName("http://www.opengis.net/kml/2.2", "maxSnippetLines");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName maxWidth = new QName("http://www.opengis.net/kml/2.2", "maxWidth");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName message = new QName("http://www.opengis.net/kml/2.2", "message");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Metadata = new QName("http://www.opengis.net/kml/2.2", "Metadata");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName minAltitude =
             new QName("http://www.opengis.net/kml/2.2", "minAltitude");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName minFadeExtent =
             new QName("http://www.opengis.net/kml/2.2", "minFadeExtent");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName minLodPixels =
             new QName("http://www.opengis.net/kml/2.2", "minLodPixels");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName minRefreshPeriod =
             new QName("http://www.opengis.net/kml/2.2", "minRefreshPeriod");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Model = new QName("http://www.opengis.net/kml/2.2", "Model");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ModelObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ModelObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ModelSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ModelSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiGeometry =
             new QName("http://www.opengis.net/kml/2.2", "MultiGeometry");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiGeometryObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "MultiGeometryObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiGeometrySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "MultiGeometrySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName name = new QName("http://www.opengis.net/kml/2.2", "name");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName near = new QName("http://www.opengis.net/kml/2.2", "near");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLink =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLink");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkControl =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkControl");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkControlObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkControlObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkControlSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkControlSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "NetworkLinkSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName north = new QName("http://www.opengis.net/kml/2.2", "north");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ObjectSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ObjectSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName open = new QName("http://www.opengis.net/kml/2.2", "open");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Orientation =
             new QName("http://www.opengis.net/kml/2.2", "Orientation");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OrientationObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "OrientationObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OrientationSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "OrientationSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName outerBoundaryIs =
             new QName("http://www.opengis.net/kml/2.2", "outerBoundaryIs");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName outline = new QName("http://www.opengis.net/kml/2.2", "outline");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName overlayXY = new QName("http://www.opengis.net/kml/2.2", "overlayXY");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Pair = new QName("http://www.opengis.net/kml/2.2", "Pair");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PairObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PairObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PairSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PairSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName phoneNumber =
             new QName("http://www.opengis.net/kml/2.2", "phoneNumber");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PhotoOverlay =
             new QName("http://www.opengis.net/kml/2.2", "PhotoOverlay");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PhotoOverlayObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PhotoOverlayObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PhotoOverlaySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PhotoOverlaySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Placemark = new QName("http://www.opengis.net/kml/2.2", "Placemark");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PlacemarkObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PlacemarkObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PlacemarkSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PlacemarkSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Point = new QName("http://www.opengis.net/kml/2.2", "Point");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PointObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PointSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PointSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Polygon = new QName("http://www.opengis.net/kml/2.2", "Polygon");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolygonObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PolygonObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolygonSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PolygonSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolyStyle = new QName("http://www.opengis.net/kml/2.2", "PolyStyle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolyStyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PolyStyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PolyStyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "PolyStyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName range = new QName("http://www.opengis.net/kml/2.2", "range");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName refreshInterval =
             new QName("http://www.opengis.net/kml/2.2", "refreshInterval");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName refreshMode =
             new QName("http://www.opengis.net/kml/2.2", "refreshMode");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName refreshVisibility =
             new QName("http://www.opengis.net/kml/2.2", "refreshVisibility");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Region = new QName("http://www.opengis.net/kml/2.2", "Region");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RegionObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "RegionObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RegionSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "RegionSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceMap =
             new QName("http://www.opengis.net/kml/2.2", "ResourceMap");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceMapObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ResourceMapObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResourceMapSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ResourceMapSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName rightFov = new QName("http://www.opengis.net/kml/2.2", "rightFov");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName roll = new QName("http://www.opengis.net/kml/2.2", "roll");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName rotation = new QName("http://www.opengis.net/kml/2.2", "rotation");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName rotationXY =
             new QName("http://www.opengis.net/kml/2.2", "rotationXY");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName scale = new QName("http://www.opengis.net/kml/2.2", "scale");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Scale = new QName("http://www.opengis.net/kml/2.2", "Scale");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScaleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ScaleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScaleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ScaleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Schema = new QName("http://www.opengis.net/kml/2.2", "Schema");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaData =
             new QName("http://www.opengis.net/kml/2.2", "SchemaData");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaDataExtension =
             new QName("http://www.opengis.net/kml/2.2", "SchemaDataExtension");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaExtension =
             new QName("http://www.opengis.net/kml/2.2", "SchemaExtension");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScreenOverlay =
             new QName("http://www.opengis.net/kml/2.2", "ScreenOverlay");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScreenOverlayObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ScreenOverlayObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScreenOverlaySimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ScreenOverlaySimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName screenXY = new QName("http://www.opengis.net/kml/2.2", "screenXY");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName shape = new QName("http://www.opengis.net/kml/2.2", "shape");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleData =
             new QName("http://www.opengis.net/kml/2.2", "SimpleData");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleField =
             new QName("http://www.opengis.net/kml/2.2", "SimpleField");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleFieldExtension =
             new QName("http://www.opengis.net/kml/2.2", "SimpleFieldExtension");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName size = new QName("http://www.opengis.net/kml/2.2", "size");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName snippet = new QName("http://www.opengis.net/kml/2.2", "snippet");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Snippet = new QName("http://www.opengis.net/kml/2.2", "Snippet");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName sourceHref =
             new QName("http://www.opengis.net/kml/2.2", "sourceHref");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName south = new QName("http://www.opengis.net/kml/2.2", "south");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName state = new QName("http://www.opengis.net/kml/2.2", "state");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Style = new QName("http://www.opengis.net/kml/2.2", "Style");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleMap = new QName("http://www.opengis.net/kml/2.2", "StyleMap");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleMapObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "StyleMapObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleMapSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "StyleMapSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "StyleObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StyleSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "StyleSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName styleUrl = new QName("http://www.opengis.net/kml/2.2", "styleUrl");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName targetHref =
             new QName("http://www.opengis.net/kml/2.2", "targetHref");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName tessellate =
             new QName("http://www.opengis.net/kml/2.2", "tessellate");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName text = new QName("http://www.opengis.net/kml/2.2", "text");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName textColor = new QName("http://www.opengis.net/kml/2.2", "textColor");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName tileSize = new QName("http://www.opengis.net/kml/2.2", "tileSize");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName tilt = new QName("http://www.opengis.net/kml/2.2", "tilt");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeSpan = new QName("http://www.opengis.net/kml/2.2", "TimeSpan");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeSpanObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "TimeSpanObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeSpanSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "TimeSpanSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeStamp = new QName("http://www.opengis.net/kml/2.2", "TimeStamp");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeStampObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "TimeStampObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TimeStampSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "TimeStampSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName topFov = new QName("http://www.opengis.net/kml/2.2", "topFov");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Update = new QName("http://www.opengis.net/kml/2.2", "Update");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpdateExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "UpdateExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpdateOpExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "UpdateOpExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Url = new QName("http://www.opengis.net/kml/2.2", "Url");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName value = new QName("http://www.opengis.net/kml/2.2", "value");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName viewBoundScale =
             new QName("http://www.opengis.net/kml/2.2", "viewBoundScale");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName viewFormat =
             new QName("http://www.opengis.net/kml/2.2", "viewFormat");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName viewRefreshMode =
             new QName("http://www.opengis.net/kml/2.2", "viewRefreshMode");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName viewRefreshTime =
             new QName("http://www.opengis.net/kml/2.2", "viewRefreshTime");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ViewVolume =
             new QName("http://www.opengis.net/kml/2.2", "ViewVolume");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ViewVolumeObjectExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ViewVolumeObjectExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ViewVolumeSimpleExtensionGroup =
             new QName("http://www.opengis.net/kml/2.2", "ViewVolumeSimpleExtensionGroup");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName visibility =
             new QName("http://www.opengis.net/kml/2.2", "visibility");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName west = new QName("http://www.opengis.net/kml/2.2", "west");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName when = new QName("http://www.opengis.net/kml/2.2", "when");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName width = new QName("http://www.opengis.net/kml/2.2", "width");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName x = new QName("http://www.opengis.net/kml/2.2", "x");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName y = new QName("http://www.opengis.net/kml/2.2", "y");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName z = new QName("http://www.opengis.net/kml/2.2", "z");
 
     /* Attributes */

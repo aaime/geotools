@@ -43,7 +43,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class SLDPerpendicularOffsetBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.PERPENDICULAROFFSET;

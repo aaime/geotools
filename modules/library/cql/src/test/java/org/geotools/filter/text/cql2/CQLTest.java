@@ -283,6 +283,7 @@ public class CQLTest {
         CQL.toFilter("attName > 20", ff);
         Assert.assertTrue("Provided FilterFactory was not called", called[0]);
     }
+
     /** Verify the parser uses the provided FilterFactory implementation */
     @Test
     public void toExpressionUsesProvidedFilterFactory() throws Exception {

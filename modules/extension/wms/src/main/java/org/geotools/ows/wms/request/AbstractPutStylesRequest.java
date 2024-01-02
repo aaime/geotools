@@ -40,7 +40,9 @@ public abstract class AbstractPutStylesRequest extends AbstractWMSRequest
     @Override
     protected abstract void initVersion();
 
-    /** @see PutStylesRequest#setMode(java.lang.String) */
+    /**
+     * @see PutStylesRequest#setMode(java.lang.String)
+     */
     @Override
     public void setMode(String mode) {
         setProperty(MODE, mode);

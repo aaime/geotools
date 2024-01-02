@@ -54,7 +54,9 @@ public class MultiCurvePropertyTypeBinding extends GeometryPropertyTypeBindingBa
         super(encodingUtils, idRegistry);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiCurvePropertyType;

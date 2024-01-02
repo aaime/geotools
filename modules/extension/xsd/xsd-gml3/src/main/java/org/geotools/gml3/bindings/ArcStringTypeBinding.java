@@ -104,7 +104,9 @@ public class ArcStringTypeBinding extends AbstractComplexBinding implements Comp
         this.arcParameters = arcParameters;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.ArcStringType;

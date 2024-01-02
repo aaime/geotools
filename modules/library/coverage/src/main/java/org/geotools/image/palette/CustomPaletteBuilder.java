@@ -273,6 +273,7 @@ public final class CustomPaletteBuilder {
         }
         return 0;
     }
+
     //
     //
     //  RectIter dies on this

@@ -302,12 +302,16 @@ class RasterManager {
             setBaseParameters();
             prepareCoverageSpatialElements();
         }
+
         /** The base envelope 2D */
         ReferencedEnvelope coverageBBox;
+
         /** The CRS for the coverage */
         CoordinateReferenceSystem coverageCRS;
+
         /** The CRS related to the base envelope 2D */
         CoordinateReferenceSystem coverageCRS2D;
+
         // ////////////////////////////////////////////////////////////////////////
         //
         // Base coverage properties
@@ -317,13 +321,16 @@ class RasterManager {
         GeneralBounds coverageEnvelope = null;
 
         double[] coverageFullResolution;
+
         /** WGS84 envelope 2D for this coverage */
         ReferencedEnvelope coverageGeographicBBox;
 
         CoordinateReferenceSystem coverageGeographicCRS2D;
         MathTransform2D coverageGridToWorld2D;
+
         /** The base grid range for the coverage */
         Rectangle coverageRasterArea;
+
         /** Initialize the 2D properties (CRS and Envelope) of this coverage */
         private void prepareCoverageSpatialElements() throws TransformException, FactoryException {
             //
@@ -349,6 +356,7 @@ class RasterManager {
                 coverageBBox = new ReferencedEnvelope(coverageEnvelope);
             }
         }
+
         /**
          * Set the main parameters of this coverage request, getting basic information from the
          * reader.
@@ -365,8 +373,10 @@ class RasterManager {
             coverageFullResolution[1] = highestLevel.resolutionY;
         }
     }
+
     /** The CRS of the input coverage */
     private CoordinateReferenceSystem coverageCRS;
+
     /** The base envelope related to the input coverage */
     private GeneralBounds coverageEnvelope;
 
@@ -377,12 +387,14 @@ class RasterManager {
     private String coverageIdentifier;
 
     private double[] highestRes;
+
     /** The hints to be used to produce this coverage */
     private Hints hints;
 
     private URL inputURL;
     private int numberOfOverviews;
     private double[][] overviewsResolution;
+
     // ////////////////////////////////////////////////////////////////////////
     //
     // Information obtained by the coverageRequest instance

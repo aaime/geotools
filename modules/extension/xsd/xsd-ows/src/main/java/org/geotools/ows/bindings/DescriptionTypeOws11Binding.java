@@ -66,7 +66,9 @@ public class DescriptionTypeOws11Binding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.DescriptionType;

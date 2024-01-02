@@ -41,7 +41,9 @@ public class PutStylesResponse extends Response {
         }
     }
 
-    /** @return true if the request successfully executed, false otherwise */
+    /**
+     * @return true if the request successfully executed, false otherwise
+     */
     public boolean success() {
         return success;
     }

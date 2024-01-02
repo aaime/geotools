@@ -20,7 +20,9 @@ import org.geotools.data.hana.metadata.Uom.Type;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class UomTest {
 
     @Test

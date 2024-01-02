@@ -27,7 +27,9 @@ import org.geotools.graph.structure.Graph;
 import org.geotools.graph.structure.Node;
 import org.geotools.graph.structure.basic.BasicGraph;
 
-/** @author jfc173 */
+/**
+ * @author jfc173
+ */
 public class PoissonClusterer {
 
     private static double threshold = 1.0E-10;

@@ -20,7 +20,9 @@ import org.geotools.api.filter.FilterVisitor;
 import org.geotools.api.filter.PropertyIsGreaterThanOrEqualTo;
 import org.geotools.api.filter.expression.Expression;
 
-/** @author jdeolive */
+/**
+ * @author jdeolive
+ */
 public class IsGreaterThanOrEqualToImpl extends MultiCompareFilterImpl
         implements PropertyIsGreaterThanOrEqualTo {
 

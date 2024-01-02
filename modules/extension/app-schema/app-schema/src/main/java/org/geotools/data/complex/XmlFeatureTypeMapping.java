@@ -73,6 +73,7 @@ public class XmlFeatureTypeMapping extends FeatureTypeMapping {
     AttributeMapping rootAttribute;
 
     private FilterFactory ff = CommonFactoryFinder.getFilterFactory(null);
+
     /** Attributes that don't have their own label, therefore are children of another node. */
     List<AttributeMapping> setterAttributes = new ArrayList<>();
 

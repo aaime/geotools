@@ -28,7 +28,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-/** @author dzwiers www.refractions.net */
+/**
+ * @author dzwiers www.refractions.net
+ */
 public class XMLParserTest {
 
     @Test

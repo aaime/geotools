@@ -86,6 +86,7 @@ public class JTSFactoryFinder extends FactoryFinder {
         return getServiceRegistry()
                 .getFactory(GeometryFactory.class, null, hints, Hints.JTS_GEOMETRY_FACTORY);
     }
+
     /**
      * Returns the first implementation of {@link GeometryFactory}, a new one is created if possible
      * or an exception is thrown otherwise.
@@ -98,6 +99,7 @@ public class JTSFactoryFinder extends FactoryFinder {
             throws FactoryRegistryException {
         return getGeometryFactory(null);
     }
+
     /**
      * Returns a set of all available implementations for the {@link GeometryFactory} category.
      *

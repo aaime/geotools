@@ -21,7 +21,9 @@ import org.geotools.api.filter.Filter;
 import org.geotools.api.filter.FilterVisitor;
 import org.geotools.api.filter.Not;
 
-/** @author jdeolive */
+/**
+ * @author jdeolive
+ */
 public class NotImpl extends LogicFilterImpl implements Not {
 
     protected NotImpl(Filter filter) {

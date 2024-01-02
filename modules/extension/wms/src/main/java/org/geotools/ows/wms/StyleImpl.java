@@ -20,7 +20,9 @@ import java.net.URL;
 import java.util.List;
 import org.geotools.api.util.InternationalString;
 
-/** @author Richard Gould */
+/**
+ * @author Richard Gould
+ */
 public class StyleImpl {
 
     private String name;
@@ -129,12 +131,16 @@ public class StyleImpl {
         return true;
     }
 
-    /** @return the isDefault */
+    /**
+     * @return the isDefault
+     */
     public boolean isDefault() {
         return isDefault;
     }
 
-    /** @param isDefault the isDefault to set */
+    /**
+     * @param isDefault the isDefault to set
+     */
     public void setDefault(boolean isDefault) {
         this.isDefault = isDefault;
     }

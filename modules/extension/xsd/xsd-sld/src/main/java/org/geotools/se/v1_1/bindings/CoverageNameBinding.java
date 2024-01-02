@@ -37,7 +37,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class CoverageNameBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.CoverageName;

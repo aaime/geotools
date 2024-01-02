@@ -40,6 +40,7 @@ public class Matrix3 implements XMatrix, Serializable {
     public static final int SIZE = 3;
 
     DMatrix3x3 mat;
+
     /** Creates a new identity matrix. */
     public Matrix3() {
         mat = new DMatrix3x3();
@@ -81,6 +82,7 @@ public class Matrix3 implements XMatrix, Serializable {
             }
         }
     }
+
     /**
      * Cast (or convert) Matrix to internal DMatrixRMaj representation required for CommonOps_DDF3.
      */
@@ -102,6 +104,7 @@ public class Matrix3 implements XMatrix, Serializable {
             return a;
         }
     }
+
     /**
      * Returns the number of rows in this matrix, which is always {@value #SIZE} in this
      * implementation.

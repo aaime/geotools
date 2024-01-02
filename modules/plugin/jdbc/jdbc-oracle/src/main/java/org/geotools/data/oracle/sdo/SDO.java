@@ -1568,6 +1568,7 @@ public final class SDO {
             throw new IllegalArgumentException(msg);
         }
     }
+
     /**
      * A version of assert that indicates range pre/post condition.
      *
@@ -1600,6 +1601,7 @@ public final class SDO {
         String msg = MessageFormat.format(condition, new Object[] {Integer.valueOf(actual), array});
         throw new IllegalArgumentException(msg);
     }
+
     /**
      * Returns the "length" of the ordinate array used for the CoordinateSequence, GTYPE is used to
      * determine the dimension.
@@ -1624,6 +1626,7 @@ public final class SDO {
         }
         return coords.size() * D(GTYPE);
     }
+
     /**
      * ETYPE access for the elemInfo triplet indicated.
      *

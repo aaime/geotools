@@ -66,7 +66,9 @@ import org.geotools.filter.visitor.PostPreProcessFilterSplittingVisitor;
 import org.geotools.util.factory.Hints;
 import org.geotools.util.logging.Logging;
 
-/** @author Niels Charlier (Curtin University of Technology) */
+/**
+ * @author Niels Charlier (Curtin University of Technology)
+ */
 public class ComplexFilterSplitter extends PostPreProcessFilterSplittingVisitor {
 
     private static final Logger LOGGER = Logging.getLogger(ComplexFilterSplitter.class);

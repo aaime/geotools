@@ -44,6 +44,7 @@ public class SLDTest {
 
     @Before
     public void setUp() throws Exception {}
+
     /**
      * We should have a test case for the expected default values so we can be sure of correct SLD
      * rendering.
@@ -54,6 +55,7 @@ public class SLDTest {
         assertEquals("default stroke width is one", 1, SLD.width(stroke));
         assertEquals("default stroke color is black", Color.BLACK, SLD.color(stroke));
     }
+
     /** See http://jira.codehaus.org/browse/UDIG-1374 */
     @Test
     public void testStroke() {

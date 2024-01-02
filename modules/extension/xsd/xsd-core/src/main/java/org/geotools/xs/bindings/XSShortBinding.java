@@ -44,7 +44,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSShortBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.SHORT;

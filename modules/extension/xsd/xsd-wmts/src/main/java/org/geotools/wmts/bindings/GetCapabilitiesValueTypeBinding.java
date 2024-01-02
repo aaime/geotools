@@ -51,7 +51,9 @@ public class GetCapabilitiesValueTypeBinding extends AbstractSimpleBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WMTS.GetCapabilitiesValueType;

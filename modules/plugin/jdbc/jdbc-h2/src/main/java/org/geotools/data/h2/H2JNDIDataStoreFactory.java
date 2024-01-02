@@ -36,12 +36,16 @@ public class H2JNDIDataStoreFactory extends JDBCJNDIDataStoreFactory {
         super(new H2DataStoreFactory());
     }
 
-    /** @see H2DataStoreFactory#setBaseDirectory(File) */
+    /**
+     * @see H2DataStoreFactory#setBaseDirectory(File)
+     */
     public void setBaseDirectory(File baseDirectory) {
         ((H2DataStoreFactory) delegate).setBaseDirectory(baseDirectory);
     }
 
-    /** @see H2DataStoreFactory#getBaseDirectory() */
+    /**
+     * @see H2DataStoreFactory#getBaseDirectory()
+     */
     public File getBaseDirectory() {
         return ((H2DataStoreFactory) delegate).getBaseDirectory();
     }

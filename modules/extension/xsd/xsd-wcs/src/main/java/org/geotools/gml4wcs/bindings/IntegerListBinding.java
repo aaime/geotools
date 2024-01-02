@@ -46,7 +46,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class IntegerListBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.integerList;

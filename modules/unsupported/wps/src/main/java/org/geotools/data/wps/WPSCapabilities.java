@@ -38,7 +38,9 @@ public class WPSCapabilities extends Capabilities {
         return request;
     }
 
-    /** @param request The request to set. */
+    /**
+     * @param request The request to set.
+     */
     public void setRequest(WPSRequest request) {
         this.request = request;
     }

@@ -39,6 +39,7 @@ public class VPFDate {
     private byte[] dateBin = null;
 
     static final Logger LOGGER = Logging.getLogger(VPFDate.class);
+
     /**
      * Creates a new <code>VPFDate</code> instance.
      *

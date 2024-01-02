@@ -61,7 +61,9 @@ public interface Rule {
      */
     void setFilter(Filter filter);
 
-    /** @param isElse if this rule should accept any features not already rendered */
+    /**
+     * @param isElse if this rule should accept any features not already rendered
+     */
     void setElseFilter(boolean isElse);
 
     /** */
@@ -130,7 +132,9 @@ public interface Rule {
      */
     double getMaxScaleDenominator();
 
-    /** @param legend */
+    /**
+     * @param legend
+     */
     void setLegend(GraphicLegend legend);
 
     /**
@@ -156,7 +160,9 @@ public interface Rule {
      */
     List<Symbolizer> symbolizers();
 
-    /** @return Location where this style is defined; file or server; or null if unknown */
+    /**
+     * @return Location where this style is defined; file or server; or null if unknown
+     */
     OnLineResource getOnlineResource();
 
     /**
@@ -166,7 +172,9 @@ public interface Rule {
      */
     Object accept(TraversingStyleVisitor visitor, Object extraData);
 
-    /** @param resource Indicates where this style is defined */
+    /**
+     * @param resource Indicates where this style is defined
+     */
     void setOnlineResource(OnLineResource resource);
 
     /** Determines if a vendor option with the specific key has been set on this Rule. */

@@ -62,7 +62,9 @@ public class ItemsBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public QName getTarget() {
         return PO.Items;
     }

@@ -61,7 +61,9 @@ import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class GeoJSONReaderTest {
 
     private final GeometryFactory gf = new GeometryFactory();

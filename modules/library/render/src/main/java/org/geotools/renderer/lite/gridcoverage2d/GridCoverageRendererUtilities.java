@@ -75,7 +75,9 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.util.AffineTransformation;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public final class GridCoverageRendererUtilities {
 
     private static final double EPS = 1e-6;

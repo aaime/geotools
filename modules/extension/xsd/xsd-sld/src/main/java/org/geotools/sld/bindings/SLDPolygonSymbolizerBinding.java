@@ -67,7 +67,9 @@ public class SLDPolygonSymbolizerBinding extends AbstractComplexBinding {
         this.styleFactory = styleFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.POLYGONSYMBOLIZER;

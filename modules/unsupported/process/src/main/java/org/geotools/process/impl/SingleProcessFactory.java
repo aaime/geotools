@@ -53,7 +53,9 @@ public abstract class SingleProcessFactory implements ProcessFactory {
         processName = new NameImpl(GT_NAMESPACE, localName);
     }
 
-    /** @param processName */
+    /**
+     * @param processName
+     */
     protected SingleProcessFactory(Name processName) {
         if (processName == null) throw new NullPointerException("Process name cannot be null");
         this.processName = processName;

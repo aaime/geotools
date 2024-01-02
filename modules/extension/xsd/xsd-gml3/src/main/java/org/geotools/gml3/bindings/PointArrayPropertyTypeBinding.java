@@ -47,7 +47,9 @@ import org.locationtech.jts.geom.Point;
  * @generated
  */
 public class PointArrayPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PointArrayPropertyType;

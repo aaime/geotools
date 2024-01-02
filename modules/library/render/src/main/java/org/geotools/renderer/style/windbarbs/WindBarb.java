@@ -240,7 +240,9 @@ class WindBarb {
         }
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     private Shape buildStandardBarb() {
         int positionOnPath = -windBarbDefinition.vectorLength;
 

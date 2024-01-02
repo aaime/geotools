@@ -112,7 +112,9 @@ public class H2GISFilterToSQL extends FilterToSQL {
         return h2GISFilterToSQLHelper.cast(encodedProperty, target);
     }
 
-    /** @param functionEncodingEnabled */
+    /**
+     * @param functionEncodingEnabled
+     */
     public void setFunctionEncodingEnabled(boolean functionEncodingEnabled) {
         this.functionEncodingEnabled = functionEncodingEnabled;
     }

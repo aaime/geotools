@@ -58,7 +58,9 @@ public class LookAtTypeBinding extends AbstractComplexBinding {
 
     private GeometryFactory geometryFactory;
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.LookAtType;

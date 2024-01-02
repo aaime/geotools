@@ -389,6 +389,7 @@ public class WMSSchema implements Schema {
             this.min = 1;
             this.max = 1;
         }
+
         /** */
         public WMSElement(String name, Type type, int min, int max) {
             super();
@@ -612,6 +613,7 @@ public class WMSSchema implements Schema {
             // TODO Auto-generated method stub
             return false;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#encode(org.geotools.xml.schema.Element, java.lang.Object, org.geotools.xml.PrintHandler, java.util.Map)
          */
@@ -621,6 +623,7 @@ public class WMSSchema implements Schema {
             // TODO Auto-generated method stub
 
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#findChildElement(java.lang.String)
          */
@@ -629,6 +632,7 @@ public class WMSSchema implements Schema {
             // TODO Auto-generated method stub
             return null;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getInstanceType()
          */
@@ -637,6 +641,7 @@ public class WMSSchema implements Schema {
             // TODO Auto-generated method stub
             return null;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getName()
          */
@@ -645,6 +650,7 @@ public class WMSSchema implements Schema {
             // TODO Auto-generated method stub
             return "Ignore";
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getNamespace()
          */
@@ -652,6 +658,7 @@ public class WMSSchema implements Schema {
         public URI getNamespace() {
             return NAMESPACE;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getValue(org.geotools.xml.schema.Element, org.geotools.xml.schema.ElementValue[], org.xml.sax.Attributes, java.util.Map)
          */

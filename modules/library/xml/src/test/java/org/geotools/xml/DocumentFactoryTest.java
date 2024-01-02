@@ -182,7 +182,8 @@ public class DocumentFactoryTest {
     }
 
     void verifyDisableExternalEntities(boolean disabledExternalEntities)
-            throws SAXNotRecognizedException, SAXNotSupportedException,
+            throws SAXNotRecognizedException,
+                    SAXNotSupportedException,
                     ParserConfigurationException {
 
         // double check DTD support disabled

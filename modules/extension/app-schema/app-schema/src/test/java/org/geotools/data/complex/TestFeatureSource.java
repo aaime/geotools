@@ -30,7 +30,9 @@ import org.geotools.api.feature.type.FeatureType;
 import org.geotools.api.feature.type.Name;
 import org.geotools.data.complex.feature.type.Types;
 
-/** @author Fernando Miño, Geosolutions */
+/**
+ * @author Fernando Miño, Geosolutions
+ */
 public class TestFeatureSource implements Closeable {
 
     private String schemaBase = "/test-data/index/";

@@ -114,11 +114,13 @@ public class LogicSAXParser {
     public LogicSAXParser() {
         this(CommonFactoryFinder.getFilterFactory());
     }
+
     /** Constructor injection */
     public LogicSAXParser(FilterFactory factory) {
         ff = factory;
         LOGGER.finer("made new logic factory");
     }
+
     /** Setter injection */
     public void setFilterFactory(FilterFactory factory) {
         ff = factory;

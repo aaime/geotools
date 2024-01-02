@@ -77,6 +77,7 @@ public class Add extends BaseMathOperationJAI {
 
     private static final String ALGEBRIC = "algebric";
     private static final String ADD = "Add";
+
     /** */
     private static final long serialVersionUID = -4029879745691129215L;
 

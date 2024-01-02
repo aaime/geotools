@@ -95,6 +95,7 @@ public class CQLJsonCompiler implements ICompiler {
     public void compileExpression() throws CQLException {
         // Is this really necessary for CQL-JSON??
     }
+
     /**
      * Is this needed for CQL-JSON?
      *
@@ -104,6 +105,7 @@ public class CQLJsonCompiler implements ICompiler {
     public Expression getExpression() throws CQLException {
         return null;
     }
+
     /**
      * Is this needed for CQL-JSON?
      *
@@ -113,6 +115,7 @@ public class CQLJsonCompiler implements ICompiler {
     public void compileFilterList() throws CQLException {
         // Is this really necessary for CQL-JSON??
     }
+
     /**
      * Is this needed for CQL-JSON?
      *
@@ -122,6 +125,7 @@ public class CQLJsonCompiler implements ICompiler {
     public List<Filter> getFilterList() throws CQLException {
         return null;
     }
+
     /**
      * Is this needed for CQL-JSON?
      *

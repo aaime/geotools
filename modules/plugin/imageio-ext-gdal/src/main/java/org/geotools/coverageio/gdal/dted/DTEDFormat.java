@@ -56,7 +56,9 @@ public final class DTEDFormat extends BaseGDALGridFormat implements Format {
         setInfo(INFO);
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public DTEDReader getReader(Object source, Hints hints) {
         try {

@@ -55,7 +55,9 @@ public class AnyHandler extends ElementGroupingHandler {
     //    private int processContents;
     private DefaultAny cache = null;
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     @SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
     public int hashCode() {
@@ -63,7 +65,9 @@ public class AnyHandler extends ElementGroupingHandler {
                 + (minOccurs * maxOccurs);
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XSIElementHandler getHandler(String namespaceURI, String localName) {
         return null;
@@ -144,7 +148,9 @@ public class AnyHandler extends ElementGroupingHandler {
         }
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getLocalName() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getLocalName()
+     */
     @Override
     public String getLocalName() {
         return LOCALNAME;
@@ -210,13 +216,17 @@ public class AnyHandler extends ElementGroupingHandler {
         return cache;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandlerType() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandlerType()
+     */
     @Override
     public int getHandlerType() {
         return DEFAULT;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String namespaceURI, String localName) {
         // do nothing
@@ -240,31 +250,41 @@ public class AnyHandler extends ElementGroupingHandler {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Any#getId() */
+        /**
+         * @see org.geotools.xml.xsi.Any#getId()
+         */
         @Override
         public String getId() {
             return id;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs()
+         */
         @Override
         public int getMaxOccurs() {
             return maxOccurs;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs()
+         */
         @Override
         public int getMinOccurs() {
             return minOccurs;
         }
 
-        /** @see org.geotools.xml.xsi.Any#getNamespace() */
+        /**
+         * @see org.geotools.xml.xsi.Any#getNamespace()
+         */
         @Override
         public URI getNamespace() {
             return namespace;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getGrouping() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getGrouping()
+         */
         @Override
         public int getGrouping() {
             return ANY;

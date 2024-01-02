@@ -32,7 +32,9 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
-/** @author kbyte */
+/**
+ * @author kbyte
+ */
 public abstract class JDBCUuidOnlineTest extends JDBCTestSupport {
 
     @Override

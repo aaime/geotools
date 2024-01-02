@@ -61,15 +61,21 @@ public abstract class Classifier {
      */
     public abstract int classify(Object value);
 
-    /** @return the number of bins */
+    /**
+     * @return the number of bins
+     */
     public abstract int getSize();
 
-    /** @return percentages for each class */
+    /**
+     * @return percentages for each class
+     */
     public double[] getPercentages() {
         return percentages;
     }
 
-    /** @param percentages a double array with percentages for each class */
+    /**
+     * @param percentages a double array with percentages for each class
+     */
     public void setPercentages(double[] percentages) {
         this.percentages = percentages;
     }

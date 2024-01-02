@@ -43,7 +43,9 @@ public class PaletteType {
         this.suitableUnique = suitableUnique;
     }
 
-    /** @param suitableRanged true, false, or null (for don't care) */
+    /**
+     * @param suitableRanged true, false, or null (for don't care)
+     */
     public PaletteType(boolean suitableRanged, boolean suitableUnique) {
         this.name = null;
         this.suitableRanged = suitableRanged;

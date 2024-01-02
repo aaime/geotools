@@ -138,7 +138,9 @@ abstract class KeysFetcher {
             SimpleFeatureType featureType, SimpleFeature feature, Connection cx, Statement st)
             throws SQLException;
 
-    /** @return true if some key values must be fetched after insert. */
+    /**
+     * @return true if some key values must be fetched after insert.
+     */
     public abstract boolean isPostInsert();
 
     /**
@@ -152,7 +154,9 @@ abstract class KeysFetcher {
     protected abstract List<Object> getNextValues(Connection cx, SimpleFeature feature)
             throws IOException, SQLException;
 
-    /** @return true if the given field is part of the primary key. */
+    /**
+     * @return true if the given field is part of the primary key.
+     */
     public boolean isKey(String name) {
         return columnNames.contains(name);
     }

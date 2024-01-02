@@ -39,7 +39,9 @@ import org.geotools.util.factory.GeoTools;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author ImranR */
+/**
+ * @author ImranR
+ */
 public class MarkAlongLineTest {
 
     private static final long TIME = 5000;

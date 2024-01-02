@@ -39,7 +39,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultTemporalReferenceSystemTest {
 
     private TemporalReferenceSystem temporalReferenceSystem1;

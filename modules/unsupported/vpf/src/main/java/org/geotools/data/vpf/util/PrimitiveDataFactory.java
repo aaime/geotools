@@ -32,7 +32,9 @@ import org.geotools.util.logging.Logging;
  * @author  <a href="mailto:knuterik@onemap.org">Knut-Erik Johnsen</a>, Project OneMap
  * @source $URL$
  */
-/** @source $URL$ */
+/**
+ * @source $URL$
+ */
 public class PrimitiveDataFactory {
     static final Logger LOGGER = Logging.getLogger(PrimitiveDataFactory.class);
 

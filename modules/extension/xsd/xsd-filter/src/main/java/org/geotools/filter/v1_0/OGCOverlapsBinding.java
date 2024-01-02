@@ -48,7 +48,9 @@ public class OGCOverlapsBinding extends AbstractComplexBinding {
         this.geometryFactory = geometryFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Overlaps;

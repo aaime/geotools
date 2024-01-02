@@ -51,7 +51,9 @@ public class PurchaseOrderTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public QName getTarget() {
         return PO.PurchaseOrderType;
     }

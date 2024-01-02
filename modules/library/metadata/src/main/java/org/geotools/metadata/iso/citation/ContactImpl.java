@@ -53,6 +53,7 @@ public class ContactImpl extends MetadataEntity implements Contact {
         c.freeze();
         OGC = c;
     }
+
     /**
      * Contact informations for the <A HREF="http://www.opengis.org">OpenGIS consortium</A>.
      * "OpenGIS consortium" is the old name for "Open Geospatial consortium".

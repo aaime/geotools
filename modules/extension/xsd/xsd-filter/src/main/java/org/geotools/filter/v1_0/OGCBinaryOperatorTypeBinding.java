@@ -48,7 +48,9 @@ import org.picocontainer.MutablePicoContainer;
  */
 public class OGCBinaryOperatorTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.BinaryOperatorType;

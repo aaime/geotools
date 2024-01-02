@@ -77,6 +77,7 @@ import org.geotools.util.NumberRange;
 public class Invert extends BaseMathOperationJAI {
     private static final String ALGEBRIC = "algebric";
     private static final String INVERT = "Invert";
+
     /** Serial number for interoperability with different versions. */
     private static final long serialVersionUID = 7297641092994880308L;
 

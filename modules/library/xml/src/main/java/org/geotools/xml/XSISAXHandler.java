@@ -78,7 +78,9 @@ public class XSISAXHandler extends DefaultHandler {
         rootHandler = new RootHandler(uri);
     }
 
-    /** @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+     */
     @Override
     public void startPrefixMapping(String arg0, String arg1) {
         rootHandler.startPrefixMapping(arg0, arg1);
@@ -246,7 +248,9 @@ public class XSISAXHandler extends DefaultHandler {
         logger.severe("col " + locator.getColumnNumber() + ", line " + locator.getLineNumber());
     }
 
-    /** @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator) */
+    /**
+     * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)
+     */
     @Override
     public void setDocumentLocator(Locator locator) {
         super.setDocumentLocator(locator);

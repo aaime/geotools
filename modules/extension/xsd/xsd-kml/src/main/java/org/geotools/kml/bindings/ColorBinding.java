@@ -52,7 +52,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class ColorBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.color;

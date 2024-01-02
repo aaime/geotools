@@ -50,7 +50,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 public class PropertiesCollectorTest {
 
     @BeforeClass

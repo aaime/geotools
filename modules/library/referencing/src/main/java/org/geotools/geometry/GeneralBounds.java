@@ -157,6 +157,7 @@ public class GeneralBounds extends AbstractBounds implements Cloneable, Serializ
         this(crs.getCoordinateSystem().getDimension());
         this.crs = crs;
     }
+
     //  GeneralBounds(geosCRS, xMin, yMin, xMax - xMin, yMax - yMin)
     /**
      * Constructs an empty envelope with the specified coordinate reference system. All ordinates
@@ -175,6 +176,7 @@ public class GeneralBounds extends AbstractBounds implements Cloneable, Serializ
         this.setEnvelope(xMin, yMin, xMin + width, yMin + height);
         this.crs = crs;
     }
+
     /**
      * Converts the envelope to a general envelope, avoiding the construction of a new object in
      * case the input envelope is already a GeneralEnvelope
@@ -822,6 +824,7 @@ public class GeneralBounds extends AbstractBounds implements Cloneable, Serializ
         assert !isNull() : this;
         return false;
     }
+
     /**
      * Static method used to recognize an empty encoding of ordinates
      *
@@ -840,6 +843,7 @@ public class GeneralBounds extends AbstractBounds implements Cloneable, Serializ
         }
         return false;
     }
+
     /**
      * Returns {@code true} if at least one of the specified CRS is null, or both CRS are equals.
      * This special processing for {@code null} values is different from the usual contract of an
@@ -858,6 +862,7 @@ public class GeneralBounds extends AbstractBounds implements Cloneable, Serializ
         }
         return equalCrs;
     }
+
     /**
      * Adds a position to this bounds. The resulting bounds is the smallest bounds that contains
      * both the original bounds and the specified position. After adding a position, a call to
@@ -876,6 +881,7 @@ public class GeneralBounds extends AbstractBounds implements Cloneable, Serializ
     public void add(double x, double y) throws MismatchedDimensionException {
         add(new Position2D(getCoordinateReferenceSystem(), x, y));
     }
+
     /**
      * Adds a position to this bounds. The resulting bounds is the smallest bounds that contains
      * both the original bounds and the specified position. After adding a position, a call to

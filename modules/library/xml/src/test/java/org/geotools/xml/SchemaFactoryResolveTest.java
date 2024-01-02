@@ -28,7 +28,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author "Mauro Bartolomeoli - mauro.bartolomeoli@geo-solutions.it" */
+/**
+ * @author "Mauro Bartolomeoli - mauro.bartolomeoli@geo-solutions.it"
+ */
 public class SchemaFactoryResolveTest {
 
     private static File tempFolder = null;

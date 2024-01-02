@@ -53,7 +53,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class SLDOverlapBehaviorBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.OVERLAPBEHAVIOR;

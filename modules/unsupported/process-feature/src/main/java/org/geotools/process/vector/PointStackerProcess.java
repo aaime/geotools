@@ -445,6 +445,7 @@ public class PointStackerProcess implements VectorProcess {
         private Envelope boundingBox = null;
 
         private SimpleFeature feature;
+
         /**
          * Creates a new stacked point grid cell. The center point of the cell is supplied so that
          * it may be used as or influence the location of the final display point
@@ -481,6 +482,7 @@ public class PointStackerProcess implements VectorProcess {
             if (uniquePts == null) return 1;
             return uniquePts.size();
         }
+
         /** compute bounding box */
         public Envelope getBoundingBox() {
             return this.boundingBox;
@@ -498,7 +500,9 @@ public class PointStackerProcess implements VectorProcess {
             this.add(pt, false);
         }
 
-        /** @todo change GeometryFactory */
+        /**
+         * @todo change GeometryFactory
+         */
         public void add(Coordinate pt, boolean weightClusterPosition) {
             count++;
             /**

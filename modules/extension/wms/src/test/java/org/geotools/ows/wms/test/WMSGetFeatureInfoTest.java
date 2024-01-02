@@ -33,6 +33,7 @@ public class WMSGetFeatureInfoTest {
     protected static final Logger LOGGER = Logging.getLogger(WMS1_3_0_Test.class);
 
     public WMSGetFeatureInfoTest() {}
+
     // this tests checks the GEOS-9770 bug, WMS cascaded layer does the proper transformations to i,
     // j params
     // it uses the same data of the issue
@@ -137,5 +138,6 @@ public class WMSGetFeatureInfoTest {
             result.put(pair.getName().toUpperCase(), pair.getValue());
         }
         return result;
-    };
+    }
+    ;
 }

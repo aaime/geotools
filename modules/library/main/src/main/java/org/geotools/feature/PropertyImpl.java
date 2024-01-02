@@ -32,8 +32,10 @@ import org.geotools.util.Utilities;
 public abstract class PropertyImpl implements Property {
     /** content of the property */
     protected Object value;
+
     /** descriptor of the property */
     protected PropertyDescriptor descriptor;
+
     /** user data */
     protected final Map<Object, Object> userData;
 

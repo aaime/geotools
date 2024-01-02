@@ -76,7 +76,9 @@ import org.geotools.xsd.Node;
  */
 public class ValueRangeTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.valueRangeType;

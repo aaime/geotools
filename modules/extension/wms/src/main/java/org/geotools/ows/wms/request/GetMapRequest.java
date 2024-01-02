@@ -53,51 +53,70 @@ import org.geotools.ows.wms.StyleImpl;
 public interface GetMapRequest extends Request {
     /** Represents the ELEVATION parameter */
     public static final String ELEVATION = "ELEVATION"; // $NON-NLS-1$
+
     /** Represents the TIME parameter */
     public static final String TIME = "TIME"; // $NON-NLS-1$
+
     /** Represents the EXCEPTIONS parameter */
     public static final String EXCEPTIONS = "EXCEPTIONS"; // $NON-NLS-1$
+
     /** Represents the BGCOLOR parameter */
     public static final String BGCOLOR = "BGCOLOR"; // $NON-NLS-1$
+
     /** Represents the TRANSPARENT parameter */
     public static final String TRANSPARENT = "TRANSPARENT"; // $NON-NLS-1$
+
     /** Represents the WIDTH parameter */
     public static final String WIDTH = "WIDTH"; // $NON-NLS-1$
+
     /** Represents the HEIGHT parameter */
     public static final String HEIGHT = "HEIGHT"; // $NON-NLS-1$
+
     /** Represents the FORMAT parameter */
     public static final String FORMAT = "FORMAT"; // $NON-NLS-1$
+
     /** Represents the BBOX parameter */
     public static final String BBOX = "BBOX"; // $NON-NLS-1$
+
     /** Represents the SRS parameter */
     public static final String SRS = "SRS"; // $NON-NLS-1$
+
     /** Represents the LAYERS parameter */
     public static final String LAYERS = "LAYERS"; // $NON-NLS-1$
+
     /** Represents the STYLES parameter */
     public static final String STYLES = "STYLES"; // $NON-NLS-1$
 
     public static final String EXCEPTION_XML = "application/vnd.ogc.se_xml";
+
     /** Represents the EXCEPTION_INIMAGE value */
     public static final String EXCEPTION_INIMAGE = "application/vnd.ogc.se_inimage"; // $NON-NLS-1$
+
     /** Represents the EXCEPTION_BLANK value */
     public static final String EXCEPTION_BLANK = "application/vnd.ogc.se_blank"; // $NON-NLS-1$
 
     /** =============== BEGIN SLD SPECIFICATION PARAMETERS =============== * */
     /** Represents the SLD parameter */
     public static final String SLD = "SLD"; // $NON-NLS-1$
+
     /** Represents the SLD_BODY parameter */
     public static final String SLD_BODY = "SLD_BODY"; // $NON-NLS-1$
+
     /** Represents the WFS parameter mentioned briefly in 1.1.1 */
     public static final String WFS = "WFS"; // $NON-NLS-1$
+
     /** Represents REMOTE_OWS_TYPE parameter */
     public static final String REMOTE_OWS_TYPE = "REMOTE_OWS_TYPE"; // $NON-NLS-1$
+
     /** Represents REMOTE_OWS_URL parameter */
     public static final String REMOVE_OWS_URL = "REMOTE_OWS_URL"; // $NON-NLS-1$
 
     /** <code>REMOTE_OWS_WFS</code> indicates WFS as a REMOTE_OWS_TYPE */
     public static final String REMOTE_OWS_WFS = "WFS";
+
     /** <code>REMOTE_OWS_WCS</code> indicates WCS as a REMOTE_OWS_TYPE */
     public static final String REMOTE_OWS_WCS = "WCS";
+
     /** =============== END SLD SPECIFICATION PARAMETERS =============== * */
 
     /**
@@ -214,6 +233,7 @@ public interface GetMapRequest extends Request {
     public void setDimensions(int width, int height);
 
     public void setDimensions(Dimension imageDimension);
+
     // End required parameters, begin optional ones.
     // TODO Implement optional parameters.
 

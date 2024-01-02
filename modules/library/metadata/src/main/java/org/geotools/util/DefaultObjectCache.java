@@ -81,6 +81,7 @@ final class DefaultObjectCache<K, V> implements ObjectCache<K, V> {
 
         /** The lock used to manage the {@linkplain #value}. */
         private final ReadWriteLock lock = new ReentrantReadWriteLock();
+
         // formally ReentrantReadWriteLock
 
         /** Creates an entry with no initial value. */

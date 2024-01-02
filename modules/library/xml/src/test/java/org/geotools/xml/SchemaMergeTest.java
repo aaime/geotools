@@ -28,7 +28,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class SchemaMergeTest {
 
     protected SAXParser parser;

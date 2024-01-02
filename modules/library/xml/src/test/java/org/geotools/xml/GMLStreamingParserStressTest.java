@@ -29,7 +29,9 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/** @author dzwiers www.refractions.net */
+/**
+ * @author dzwiers www.refractions.net
+ */
 public class GMLStreamingParserStressTest {
 
     //    public void testOSDNFFeatures() throws SAXException, IOException {

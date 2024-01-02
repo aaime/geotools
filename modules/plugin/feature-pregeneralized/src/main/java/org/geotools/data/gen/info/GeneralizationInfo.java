@@ -90,7 +90,9 @@ public class GeneralizationInfo {
         return result;
     }
 
-    /** @return data source name for base feature. */
+    /**
+     * @return data source name for base feature.
+     */
     public String getDataSourceName() {
         if (dataSourceName != null) return dataSourceName;
         return parent.getDataSourceName();
@@ -100,7 +102,9 @@ public class GeneralizationInfo {
         this.dataSourceName = dataSourceName;
     }
 
-    /** @return workspace name for base feature, my be null */
+    /**
+     * @return workspace name for base feature, my be null
+     */
     public String getDataSourceNameSpace() {
         if (dataSourceNameSpace != null) return dataSourceNameSpace;
 

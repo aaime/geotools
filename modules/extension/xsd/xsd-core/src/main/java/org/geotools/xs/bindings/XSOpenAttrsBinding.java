@@ -49,7 +49,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSOpenAttrsBinding extends AbstractComplexBinding {
-    /** @generated modifiable */
+    /**
+     * @generated modifiable
+     */
     @Override
     public QName getTarget() {
         return XS.OPENATTRS;

@@ -48,19 +48,25 @@ public class DocumentHandler extends XMLElementHandler {
         this.ehf = ehf;
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getElement() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getElement()
+     */
     @Override
     public Element getElement() {
         return null;
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(URI namespaceURI, String localName, Map<String, Object> hints) {
         // do nothing
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XMLElementHandler getHandler(
             URI namespaceURI, String localName, Map<String, Object> hints) throws SAXException {
@@ -87,13 +93,17 @@ public class DocumentHandler extends XMLElementHandler {
         // do nothing
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getValue() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getValue()
+     */
     @Override
     public Object getValue() throws SAXException {
         return (xeh == null) ? null : xeh.getValue();
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getName() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getName()
+     */
     @Override
     public String getName() {
         return "";

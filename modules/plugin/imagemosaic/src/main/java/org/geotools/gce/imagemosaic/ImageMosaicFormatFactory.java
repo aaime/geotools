@@ -376,7 +376,9 @@ public final class ImageMosaicFormatFactory implements GridFormatFactorySpi {
         }
     }
 
-    /** @see GridFormatFactorySpi#createFormat(). */
+    /**
+     * @see GridFormatFactorySpi#createFormat().
+     */
     @Override
     public AbstractGridFormat createFormat() {
         return new ImageMosaicFormat();

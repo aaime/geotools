@@ -56,17 +56,23 @@ public class TileMatrix {
 
     private TileMatrixSet parent;
 
-    /** @return the identifier */
+    /**
+     * @return the identifier
+     */
     public String getIdentifier() {
         return identifier;
     }
 
-    /** @param identifier the identifier to set */
+    /**
+     * @param identifier the identifier to set
+     */
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
 
-    /** @return the denominator */
+    /**
+     * @return the denominator
+     */
     public double getDenominator() {
         return denominator;
     }
@@ -75,58 +81,80 @@ public class TileMatrix {
         return resolution;
     }
 
-    /** @param denominator the denominator to set */
+    /**
+     * @param denominator the denominator to set
+     */
     public void setDenominator(double denominator) {
         this.denominator = denominator;
         resolution = denominator * pixelWidth;
     }
 
-    /** @return the topLeft */
+    /**
+     * @return the topLeft
+     */
     public Point getTopLeft() {
         return topLeft;
     }
 
-    /** @param topLeft the topLeft to set */
+    /**
+     * @param topLeft the topLeft to set
+     */
     public void setTopLeft(Point topLeft) {
         this.topLeft = topLeft;
     }
 
-    /** @return the tileWidth */
+    /**
+     * @return the tileWidth
+     */
     public int getTileWidth() {
         return tileWidth;
     }
 
-    /** @param tileWidth the tileWidth to set */
+    /**
+     * @param tileWidth the tileWidth to set
+     */
     public void setTileWidth(int tileWidth) {
         this.tileWidth = tileWidth;
     }
 
-    /** @return the tileHeight */
+    /**
+     * @return the tileHeight
+     */
     public int getTileHeight() {
         return tileHeight;
     }
 
-    /** @param tileHeight the tileHeight to set */
+    /**
+     * @param tileHeight the tileHeight to set
+     */
     public void setTileHeight(int tileHeight) {
         this.tileHeight = tileHeight;
     }
 
-    /** @return the matrixWidth */
+    /**
+     * @return the matrixWidth
+     */
     public int getMatrixWidth() {
         return matrixWidth;
     }
 
-    /** @param matrixWidth the matrixWidth to set */
+    /**
+     * @param matrixWidth the matrixWidth to set
+     */
     public void setMatrixWidth(int matrixWidth) {
         this.matrixWidth = matrixWidth;
     }
 
-    /** @return the matrixHeight */
+    /**
+     * @return the matrixHeight
+     */
     public int getMatrixHeight() {
         return matrixHeight;
     }
 
-    /** @param matrixHeight the matrixHeight to set */
+    /**
+     * @param matrixHeight the matrixHeight to set
+     */
     public void setMatrixHeight(int matrixHeight) {
         this.matrixHeight = matrixHeight;
     }

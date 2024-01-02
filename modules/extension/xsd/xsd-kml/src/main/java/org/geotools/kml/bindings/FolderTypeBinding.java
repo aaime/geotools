@@ -67,7 +67,9 @@ public class FolderTypeBinding extends AbstractComplexBinding {
         FeatureType = tb.buildFeatureType();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.FolderType;

@@ -127,7 +127,9 @@ public class ForceCoordinateSystemFeatureResults extends AbstractFeatureCollecti
         }
     }
 
-    /** @see org.geotools.data.FeatureResults#getBounds() */
+    /**
+     * @see org.geotools.data.FeatureResults#getBounds()
+     */
     @Override
     public ReferencedEnvelope getBounds() {
         ReferencedEnvelope env = results.getBounds();
@@ -138,7 +140,9 @@ public class ForceCoordinateSystemFeatureResults extends AbstractFeatureCollecti
         return env;
     }
 
-    /** @see org.geotools.data.FeatureResults#collection() */
+    /**
+     * @see org.geotools.data.FeatureResults#collection()
+     */
     //    public SimpleFeatureCollection collection() throws IOException {
     //        SimpleFeatureCollection collection = FeatureCollections.newCollection();
     //

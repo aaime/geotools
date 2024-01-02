@@ -25,7 +25,9 @@ import org.geotools.xml.schema.Schema;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author dzwiers www.refractions.net */
+/**
+ * @author dzwiers www.refractions.net
+ */
 public class SchemaParser2Test {
     //	public void testMail(){
     //		runit("","test/mails.xsd");

@@ -35,7 +35,9 @@ import org.geotools.feature.simple.SimpleFeatureBuilder;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-/** @author Cory Horner, Refractions Research Inc. */
+/**
+ * @author Cory Horner, Refractions Research Inc.
+ */
 public class JenksFunctionTest extends FunctionTestSupport {
     @Test
     public void testInstance() {

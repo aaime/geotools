@@ -58,7 +58,9 @@ import org.geotools.xsd.Node;
  */
 public class ColorMapBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.ColorMap;

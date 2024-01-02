@@ -55,6 +55,7 @@ public interface Graphic {
      * @param opacity New value of property opacity.
      */
     void setOpacity(Expression opacity);
+
     /**
      * The Size element gives the absolute size of the graphic in uoms encoded as a floating- point
      * number. The default size for an object is context-dependent. Negative values are not allowed.

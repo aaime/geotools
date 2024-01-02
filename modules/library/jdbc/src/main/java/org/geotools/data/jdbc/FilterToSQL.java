@@ -241,12 +241,16 @@ public class FilterToSQL implements FilterVisitor, ExpressionVisitor {
         this.inEncodingEnabled = inEncodingEnabled;
     }
 
-    /** @return whether to escape backslash characters in string literals */
+    /**
+     * @return whether to escape backslash characters in string literals
+     */
     public boolean isEscapeBackslash() {
         return escapeBackslash;
     }
 
-    /** @param escapeBackslash whether to escape backslash characters in string literals */
+    /**
+     * @param escapeBackslash whether to escape backslash characters in string literals
+     */
     public void setEscapeBackslash(boolean escapeBackslash) {
         this.escapeBackslash = escapeBackslash;
     }
@@ -2047,7 +2051,9 @@ public class FilterToSQL implements FilterVisitor, ExpressionVisitor {
         sqlNameEscape = escape;
     }
 
-    /** @return the sqlNameEscape */
+    /**
+     * @return the sqlNameEscape
+     */
     public String getSqlNameEscape() {
         return sqlNameEscape;
     }
@@ -2087,7 +2093,8 @@ public class FilterToSQL implements FilterVisitor, ExpressionVisitor {
 
         public static DefaultFieldEncoder DEFAULT_FIELD_ENCODER = new DefaultFieldEncoder();
 
-        private DefaultFieldEncoder() {};
+        private DefaultFieldEncoder() {}
+        ;
 
         @Override
         public String encode(String s) {

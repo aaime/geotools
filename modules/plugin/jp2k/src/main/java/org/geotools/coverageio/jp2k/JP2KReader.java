@@ -179,22 +179,30 @@ public final class JP2KReader extends AbstractGridCoverage2DReader implements Gr
         // Additional settings due to "final" methods getOriginalXXX
     }
 
-    /** @param coverageEnvelope the envelope to set */
+    /**
+     * @param coverageEnvelope the envelope to set
+     */
     protected void setCoverageEnvelope(GeneralBounds coverageEnvelope) {
         this.nativeEnvelope = coverageEnvelope;
     }
 
-    /** @return the nativeEnvelope */
+    /**
+     * @return the nativeEnvelope
+     */
     protected GeneralBounds getCoverageEnvelope() {
         return nativeEnvelope;
     }
 
-    /** @param coverageGridRange the coverage grid range to set */
+    /**
+     * @param coverageGridRange the coverage grid range to set
+     */
     protected void setCoverageGridRange(GridEnvelope2D coverageGridRange) {
         this.nativeGridRange = coverageGridRange;
     }
 
-    /** @return the nativeGridRange */
+    /**
+     * @return the nativeGridRange
+     */
     protected GridEnvelope2D getCoverageGridRange() {
         return nativeGridRange;
     }
@@ -272,8 +280,12 @@ public final class JP2KReader extends AbstractGridCoverage2DReader implements Gr
     }
 
     private void getGMLJP2(XMLBoxMetadataNode xmlBox)
-            throws IOException, ParserConfigurationException, SAXException,
-                    XPathExpressionException, FactoryException, TransformException {
+            throws IOException,
+                    ParserConfigurationException,
+                    SAXException,
+                    XPathExpressionException,
+                    FactoryException,
+                    TransformException {
 
         DocumentBuilder b = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         String xml = xmlBox.getXml();
@@ -687,7 +699,9 @@ public final class JP2KReader extends AbstractGridCoverage2DReader implements Gr
         rasterManager = new RasterManager(this);
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new JP2KFormat();
@@ -734,7 +748,9 @@ public final class JP2KReader extends AbstractGridCoverage2DReader implements Gr
         return super.highestRes;
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     double[][] getOverviewsResolution() {
         return super.overViewResolutions;
     }

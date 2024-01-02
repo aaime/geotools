@@ -18,7 +18,9 @@
 
 package org.geotools.data.sqlserver.reader;
 
-/** @author Anders Bakkevold, Bouvet */
+/**
+ * @author Anders Bakkevold, Bouvet
+ */
 public class Shape {
 
     private int parentOffset;

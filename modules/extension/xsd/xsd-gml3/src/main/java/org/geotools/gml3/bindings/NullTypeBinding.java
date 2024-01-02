@@ -55,7 +55,9 @@ import org.locationtech.jts.geom.Envelope;
  */
 public class NullTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.NullType;

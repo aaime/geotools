@@ -28,30 +28,46 @@ import org.xml.sax.Attributes;
  * @author dzwiers
  */
 public interface PrintHandler {
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void startElement(URI namespaceURI, String localName, Attributes attributes)
             throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void element(URI namespaceURI, String localName, Attributes attributes)
             throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void endElement(URI namespaceURI, String localName) throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void characters(char[] arg0, int arg1, int arg2) throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void characters(String s) throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void ignorableWhitespace(char[] arg0, int arg1, int arg2) throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void startDocument() throws IOException;
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public void endDocument() throws IOException;
 
     /**

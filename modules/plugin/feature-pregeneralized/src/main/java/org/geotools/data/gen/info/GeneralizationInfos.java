@@ -119,7 +119,9 @@ public class GeneralizationInfos {
         return infoMap.values();
     }
 
-    /** @throws IOException if the validation of the generalization info objects fails */
+    /**
+     * @throws IOException if the validation of the generalization info objects fails
+     */
     public void validate() throws IOException {
         for (GeneralizationInfo gi : getGeneralizationInfoCollection()) {
             gi.validate();

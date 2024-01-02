@@ -55,7 +55,9 @@ public class DescriptionBinding extends AbstractComplexBinding {
         this.styleFactory = styleFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Description;

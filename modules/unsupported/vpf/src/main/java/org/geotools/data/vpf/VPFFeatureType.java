@@ -44,8 +44,10 @@ import org.geotools.api.util.InternationalString;
 public class VPFFeatureType implements SimpleFeatureType {
     /** The feature class that this feature type belongs to */
     private final VPFFeatureClass featureClass;
+
     /** The type name for this specific feature type */
     private final String typeName;
+
     /** The FACC code, a two-letter, 3-number code identifying the feature type */
     private final String faccCode;
 
@@ -124,6 +126,7 @@ public class VPFFeatureType implements SimpleFeatureType {
         tempTypeName = tempTypeName.replace(')', '_');
         typeName = tempTypeName;
     }
+
     /**
      * A constructor for feature types with no information in a char.vdt file.
      *
@@ -143,7 +146,9 @@ public class VPFFeatureType implements SimpleFeatureType {
         return featureClass.getAttributeCount();
     }
 
-    /** @return The <code>VPFCoverage</code> that this <code>FeatureType</code> belongs to. */
+    /**
+     * @return The <code>VPFCoverage</code> that this <code>FeatureType</code> belongs to.
+     */
     public VPFCoverage getCoverage() {
         return featureClass.getCoverage();
     }
@@ -155,7 +160,10 @@ public class VPFFeatureType implements SimpleFeatureType {
     public String getDirectoryName() {
         return featureClass.getDirectoryName();
     }
-    /** @return Returns the featureClass. */
+
+    /**
+     * @return Returns the featureClass.
+     */
     public VPFFeatureClass getFeatureClass() {
         return featureClass;
     }
@@ -172,6 +180,7 @@ public class VPFFeatureType implements SimpleFeatureType {
     public List getFileList() {
         return featureClass.getFileList();
     }
+
     /**
      * @return A <code>List</code> containing the <code>ColumnPair</code> objects which identify the
      *     file joins for the <code>VPFFeatureClass</code> that this <code>FeatureType</code>

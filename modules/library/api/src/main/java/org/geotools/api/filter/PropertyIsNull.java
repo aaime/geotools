@@ -24,6 +24,7 @@ import org.geotools.api.filter.expression.Expression;
 public interface PropertyIsNull extends Filter {
     /** Operator name used to check FilterCapabilities */
     public static String NAME = "NullCheck";
+
     /** Returns the expression whose value will be checked for {@code null}. */
     Expression getExpression();
 }

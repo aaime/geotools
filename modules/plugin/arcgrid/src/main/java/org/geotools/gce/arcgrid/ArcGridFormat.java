@@ -99,7 +99,9 @@ public final class ArcGridFormat extends AbstractGridFormat implements Format {
                                 mInfo, new GeneralParameterDescriptor[] {READ_GRIDGEOMETRY2D}));
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object source) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object source)
+     */
     @Override
     public ArcGridReader getReader(Object source) {
         return getReader(source, null);
@@ -135,7 +137,9 @@ public final class ArcGridFormat extends AbstractGridFormat implements Format {
         }
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(Object input) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(Object input)
+     */
     @Override
     public boolean accepts(Object input, Hints hints) {
         try {
@@ -146,7 +150,9 @@ public final class ArcGridFormat extends AbstractGridFormat implements Format {
         }
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public ArcGridReader getReader(Object source, Hints hints) {
         try {

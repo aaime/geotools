@@ -51,13 +51,17 @@ public class BasicNode extends BasicGraphable implements Node {
         m_edges.add(e);
     }
 
-    /** @see Node#remove(Edge) */
+    /**
+     * @see Node#remove(Edge)
+     */
     @Override
     public void remove(Edge e) {
         m_edges.remove(e);
     }
 
-    /** @see Node#getDegree() */
+    /**
+     * @see Node#getDegree()
+     */
     @Override
     public int getDegree() {
         // since edges that loop on a node add 2 to the degree
@@ -73,7 +77,9 @@ public class BasicNode extends BasicGraphable implements Node {
         return (degree);
     }
 
-    /** @see Node#getEdge(Node) */
+    /**
+     * @see Node#getEdge(Node)
+     */
     @Override
     public Edge getEdge(Node other) {
         // must explictley check that the edge has node other, and one node this,
@@ -85,7 +91,9 @@ public class BasicNode extends BasicGraphable implements Node {
         return (null);
     }
 
-    /** @see Node#getEdges(Node) */
+    /**
+     * @see Node#getEdges(Node)
+     */
     @Override
     public List<Edge> getEdges(Node other) {
         // must explictley check that the edge has node other, and one node this,
@@ -98,7 +106,9 @@ public class BasicNode extends BasicGraphable implements Node {
         return (edges);
     }
 
-    /** @see Node#getEdges() */
+    /**
+     * @see Node#getEdges()
+     */
     @Override
     public List<Edge> getEdges() {
         return (m_edges);

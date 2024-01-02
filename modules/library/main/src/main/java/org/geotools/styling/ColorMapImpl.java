@@ -59,13 +59,17 @@ public class ColorMapImpl implements org.geotools.api.style.ColorMap {
         return list.get(index);
     }
 
-    /** @see org.geotools.styling.ColorMap#getType() */
+    /**
+     * @see org.geotools.styling.ColorMap#getType()
+     */
     @Override
     public int getType() {
         return type;
     }
 
-    /** @see org.geotools.styling.ColorMap#setType(int) */
+    /**
+     * @see org.geotools.styling.ColorMap#setType(int)
+     */
     @Override
     public void setType(int type) {
         if ((type < org.geotools.api.style.ColorMap.TYPE_RAMP)

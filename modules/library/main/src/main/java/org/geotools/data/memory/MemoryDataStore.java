@@ -162,6 +162,7 @@ public class MemoryDataStore extends ContentDataStore {
             reader.close();
         }
     }
+
     /**
      * Configures MemoryDataStore with Collection.
      *
@@ -193,6 +194,7 @@ public class MemoryDataStore extends ContentDataStore {
             }
         }
     }
+
     /**
      * Configures MemoryDataStore with feature array.
      *

@@ -112,13 +112,17 @@ public class DiffFeatureReader<T extends FeatureType, F extends Feature>
         }
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public T getFeatureType() {
         return reader.getFeatureType();
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public F next() throws IOException, IllegalAttributeException, NoSuchElementException {
         if (hasNext()) {
@@ -131,7 +135,9 @@ public class DiffFeatureReader<T extends FeatureType, F extends Feature>
         throw new NoSuchElementException("No more Feature exists");
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() throws IOException {
         if (next != null) {
@@ -173,7 +179,9 @@ public class DiffFeatureReader<T extends FeatureType, F extends Feature>
         return next != null;
     }
 
-    /** @see FeatureReader#close() */
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() throws IOException {
         if (reader != null) {

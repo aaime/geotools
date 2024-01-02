@@ -64,7 +64,9 @@ public class SLDLineSymbolizerBinding extends AbstractComplexBinding {
         this.styleFactory = styleFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.LINESYMBOLIZER;

@@ -39,6 +39,7 @@ public class ExpresionEncodeTest {
     /** Standard logging instance */
     protected static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(ExpresionEncodeTest.class);
+
     /** Constructor with test name. */
     String dataFolder = "";
 

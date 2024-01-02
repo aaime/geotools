@@ -48,6 +48,7 @@ public class CSVDataStore extends ContentDataStore {
     public CSVDataStore(File file) {
         this.file = file;
     }
+
     // constructor end
 
     // reader start
@@ -62,6 +63,7 @@ public class CSVDataStore extends ContentDataStore {
         CsvReader csvReader = new CsvReader(reader);
         return csvReader;
     }
+
     // reader end
 
     // createTypeNames start
@@ -72,6 +74,7 @@ public class CSVDataStore extends ContentDataStore {
         Name typeName = new NameImpl(name);
         return Collections.singletonList(typeName);
     }
+
     // createTypeNames end
 
     // createSchema start
@@ -101,6 +104,7 @@ public class CSVDataStore extends ContentDataStore {
             writer.close();
         }
     }
+
     // createSchema end
 
     // createFeatureSource start

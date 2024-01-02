@@ -35,7 +35,9 @@ import org.junit.Test;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-/** @author fgdrf (Frank Gasdorf) */
+/**
+ * @author fgdrf (Frank Gasdorf)
+ */
 public class ExpressionDomParserTest {
 
     @Test(expected = NullPointerException.class)

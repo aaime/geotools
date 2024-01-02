@@ -65,7 +65,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 
-/** @author Nicola Lagomarsini Geosolutions */
+/**
+ * @author Nicola Lagomarsini Geosolutions
+ */
 public class GeoSpatialImageReaderTest {
 
     /** Default Logger * */

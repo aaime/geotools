@@ -45,7 +45,9 @@ public class SortByTypeBinding extends org.geotools.filter.v1_1.SortByTypeBindin
         super(filterfactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.SortByType;

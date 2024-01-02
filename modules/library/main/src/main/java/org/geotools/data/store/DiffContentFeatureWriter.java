@@ -121,7 +121,9 @@ public class DiffContentFeatureWriter implements FeatureWriter<SimpleFeatureType
         }
     }
 
-    /** @see FeatureWriter#remove() */
+    /**
+     * @see FeatureWriter#remove()
+     */
     @Override
     public void remove() throws IOException {
         if (live != null) {

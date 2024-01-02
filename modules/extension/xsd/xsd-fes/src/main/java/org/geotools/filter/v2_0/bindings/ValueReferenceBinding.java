@@ -50,7 +50,9 @@ public class ValueReferenceBinding extends AbstractSimpleBinding {
         this.namespaceSupport = namespaceSupport;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.ValueReference;

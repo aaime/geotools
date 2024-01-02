@@ -111,6 +111,7 @@ public final class ResampleTest extends GridProcessingTestBase {
                     + "AUTHORITY[\"EPSG\",\"3785\"],"
                     + "AXIS[\"X\",EAST],"
                     + "AXIS[\"Y\",NORTH]]";
+
     /**
      * The source grid coverage, to be initialized by {@link #setUp}. Contains 8-bits indexed color
      * model for a PNG image, with categories.

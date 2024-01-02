@@ -36,13 +36,16 @@ public class AttributeMapping implements Serializable {
 
     /** XPath expression addressing the target attribute in a target FeatureType. */
     private String targetAttributePath;
+
     /**
      * XPath expression addressing the input attribute in the input FeatureType if the source is a
      * data access containing complex features.
      */
     private String inputAttributePath;
+
     /** XPath expression indicating the node in xml of an individual feature. */
     private String identifierPath;
+
     /**
      * Expression whose evaluation result against a Feature of the source FeatureType is going to be
      * the value of the target attribute in output FeatureType.

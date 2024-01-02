@@ -170,6 +170,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -183,6 +184,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -246,6 +248,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -259,6 +262,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -326,6 +330,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -339,6 +344,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -411,6 +417,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -424,6 +431,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -524,6 +532,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -537,6 +546,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -633,6 +643,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -646,6 +657,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -745,6 +757,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -758,6 +771,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -828,6 +842,7 @@ public class sldComplexTypes2 {
                     1,
                     1)
         };
+
         /** */
         public _Parameter(String name, ElementGrouping child, Attribute[] attrs, Element[] elems) {
             super(name, child, attrs, elems);
@@ -900,6 +915,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -913,6 +929,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -965,6 +982,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -978,6 +996,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1045,6 +1064,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1058,6 +1078,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1124,6 +1145,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1137,6 +1159,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1196,6 +1219,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1209,6 +1233,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1286,6 +1311,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1299,6 +1325,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1370,6 +1397,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1383,6 +1411,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1454,6 +1483,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1467,6 +1497,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1567,6 +1598,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1580,6 +1612,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1679,6 +1712,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1692,6 +1726,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1780,6 +1815,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1793,6 +1829,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1863,6 +1900,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -1876,6 +1914,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -1987,6 +2026,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -2000,6 +2040,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -2091,6 +2132,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -2104,6 +2146,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -2200,6 +2243,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -2213,6 +2257,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -2307,6 +2352,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -2320,6 +2366,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -2394,6 +2441,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -2407,6 +2455,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -2503,6 +2552,7 @@ public class sldComplexTypes2 {
             return super.canEncode(element, value, hints);
             // TODO fill me in
         }
+
         /**
          * encode ...
          *
@@ -2516,6 +2566,7 @@ public class sldComplexTypes2 {
             super.encode(element, value, output, hints);
             // TODO fill me in
         }
+
         /**
          * getValue ...
          *
@@ -2587,6 +2638,7 @@ public class sldComplexTypes2 {
             // abstract type ...
             return super.canEncode(element, value, hints);
         }
+
         /**
          * encode ...
          *
@@ -2600,6 +2652,7 @@ public class sldComplexTypes2 {
             // abstract type ...
             super.encode(element, value, output, hints);
         }
+
         /**
          * getValue ...
          *

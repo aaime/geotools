@@ -25,7 +25,9 @@ import org.geotools.measure.UnitFormatter;
 import org.geotools.measure.Units;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class UnitFormatTest {
 
     /**

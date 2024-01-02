@@ -18,7 +18,9 @@ package org.geotools.jdbc;
 
 import java.sql.SQLException;
 
-/** @author Andrea Aime */
+/**
+ * @author Andrea Aime
+ */
 public abstract class JDBCGeometrylessTestSetup extends JDBCDelegatingTestSetup {
 
     protected JDBCGeometrylessTestSetup(JDBCTestSetup delegate) {

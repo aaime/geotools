@@ -36,7 +36,9 @@ import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 
-/** @author Jody Garnett */
+/**
+ * @author Jody Garnett
+ */
 public class CRSTest {
     /** Makes sure that the transform between two EPSG:4326 is the identity transform. */
     @Test
@@ -151,6 +153,7 @@ public class CRSTest {
         for (int i = 0; i < pts.length; i++)
             Assert.assertNotEquals("pts[" + i + "]", pts[i], tst[i]);
     }
+
     /** Taken from empty udig map calculation of scale. */
     @Test
     public void testSamplePixel() throws Exception {

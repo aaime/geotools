@@ -86,6 +86,7 @@ public class FilterFilter extends XMLFilterImpl implements GMLHandlerJTS {
     private StringBuffer characters;
 
     private boolean convertLiteralToNumber = true;
+
     /**
      * Constructor with parent, which must implement GMLHandlerJTS.
      *

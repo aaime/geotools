@@ -50,7 +50,9 @@ public class Id_CapabilitiesTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Id_CapabilitiesType;

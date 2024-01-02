@@ -37,7 +37,9 @@ import org.geotools.factory.CommonFactoryFinder;
  *
  * @author Ian Turton
  */
-/** @author ian */
+/**
+ * @author ian
+ */
 public abstract class AbstractContrastMethodStrategy implements ContrastMethodStrategy {
 
     /** ALGORITHM */
@@ -135,7 +137,9 @@ public abstract class AbstractContrastMethodStrategy implements ContrastMethodSt
         return options;
     }
 
-    /** @return the method that these values relate to. */
+    /**
+     * @return the method that these values relate to.
+     */
     @Override
     public ContrastMethod getMethod() {
         return method;
@@ -146,7 +150,9 @@ public abstract class AbstractContrastMethodStrategy implements ContrastMethodSt
         options.put(key, value);
     }
 
-    /** @param method the method to set */
+    /**
+     * @param method the method to set
+     */
     @Override
     public void setMethod(ContrastMethod method) {
         this.method = method;

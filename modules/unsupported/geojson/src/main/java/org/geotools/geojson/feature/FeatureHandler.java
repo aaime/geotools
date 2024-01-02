@@ -268,6 +268,7 @@ public class FeatureHandler extends DelegatingHandler<SimpleFeature> {
         incrementFID();
         return f;
     }
+
     // "{" +
     // " 'type': 'Feature'," +
     // " 'geometry': {" +

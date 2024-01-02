@@ -22,7 +22,9 @@ import org.geotools.api.filter.expression.Expression;
 import org.geotools.api.filter.expression.Literal;
 import org.geotools.util.Converters;
 
-/** @author jdeolive TODO: rename this class to IsEqualToImpl */
+/**
+ * @author jdeolive TODO: rename this class to IsEqualToImpl
+ */
 public class IsEqualsToImpl extends MultiCompareFilterImpl implements PropertyIsEqualTo {
 
     protected IsEqualsToImpl(Expression expression1, Expression expression2) {

@@ -78,8 +78,10 @@ public abstract class ContentFeatureStore extends ContentFeatureSource
 
     /** Flag writer for adding new content */
     protected final int WRITER_ADD = ContentDataStore.WRITER_ADD;
+
     /** Flag writer for updating content in place */
     protected final int WRITER_UPDATE = ContentDataStore.WRITER_UPDATE;
+
     /** Flag writer for commit (AUTO_COMMIT with no events) */
     protected final int WRITER_COMMIT = ContentDataStore.WRITER_COMMIT;
 

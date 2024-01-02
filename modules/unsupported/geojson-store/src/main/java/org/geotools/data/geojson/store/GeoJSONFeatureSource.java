@@ -147,12 +147,16 @@ public class GeoJSONFeatureSource extends ContentFeatureSource {
         return super.handleVisitor(query, visitor);
     }
 
-    /** @return the quick */
+    /**
+     * @return the quick
+     */
     public boolean isQuick() {
         return quick;
     }
 
-    /** @param quick the quick to set */
+    /**
+     * @param quick the quick to set
+     */
     public void setQuick(boolean quick) {
         this.quick = quick;
     }

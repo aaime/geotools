@@ -29,6 +29,7 @@ class OGRDataSource {
     static final Logger LOGGER = Logging.getLogger(OGRDataSource.class);
 
     protected static final String TRACE_ENABLED_KEY = "gt2.ogr.trace";
+
     /**
      * When true, the stack trace that created a reader that wasn't closed is recorded and then
      * printed out when warning the user about this.

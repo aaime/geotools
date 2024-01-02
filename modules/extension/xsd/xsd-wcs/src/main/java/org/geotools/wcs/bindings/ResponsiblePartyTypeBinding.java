@@ -71,7 +71,9 @@ import org.geotools.xsd.Node;
  */
 public class ResponsiblePartyTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.ResponsiblePartyType;

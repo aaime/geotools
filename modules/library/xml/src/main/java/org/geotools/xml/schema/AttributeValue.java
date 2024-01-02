@@ -16,7 +16,9 @@
  */
 package org.geotools.xml.schema;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public interface AttributeValue {
 
     public String getValue();

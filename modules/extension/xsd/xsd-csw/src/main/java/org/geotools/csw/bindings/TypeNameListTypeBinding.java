@@ -25,7 +25,9 @@ import org.geotools.xsd.InstanceComponent;
 public class TypeNameListTypeBinding extends AbstractSimpleBinding {
     public TypeNameListTypeBinding() {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return CSW.TypeNameListType;

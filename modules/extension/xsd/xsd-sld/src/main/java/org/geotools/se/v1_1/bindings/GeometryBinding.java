@@ -54,7 +54,9 @@ import org.geotools.sld.bindings.SLDGeometryBinding;
  */
 public class GeometryBinding extends SLDGeometryBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Geometry;

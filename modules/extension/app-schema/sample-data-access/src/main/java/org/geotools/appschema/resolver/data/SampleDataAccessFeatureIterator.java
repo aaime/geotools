@@ -44,19 +44,25 @@ public class SampleDataAccessFeatureIterator implements FeatureIterator<Feature>
         this.iterator = iterator;
     }
 
-    /** @see java.util.Iterator#hasNext() */
+    /**
+     * @see java.util.Iterator#hasNext()
+     */
     @Override
     public boolean hasNext() {
         return iterator.hasNext();
     }
 
-    /** @see java.util.Iterator#next() */
+    /**
+     * @see java.util.Iterator#next()
+     */
     @Override
     public Feature next() {
         return iterator.next();
     }
 
-    /** @see java.util.Iterator#remove() */
+    /**
+     * @see java.util.Iterator#remove()
+     */
     public void remove() {
         iterator.remove();
     }

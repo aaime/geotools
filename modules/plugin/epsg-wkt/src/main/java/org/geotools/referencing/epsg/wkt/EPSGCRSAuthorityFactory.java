@@ -59,6 +59,7 @@ public class EPSGCRSAuthorityFactory extends AbstractFactory implements CRSAutho
 
     public static final String AUTHORITY = "EPSG";
     public static final String AUTHORITY_PREFIX = "EPSG:";
+
     // would be nice to cache crs objects for codes that have already been requested
 
     /**

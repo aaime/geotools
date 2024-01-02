@@ -64,7 +64,9 @@ public class SLDExternalGraphicBinding extends AbstractComplexBinding {
         this.resourceLocator = resourceLocator;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.EXTERNALGRAPHIC;

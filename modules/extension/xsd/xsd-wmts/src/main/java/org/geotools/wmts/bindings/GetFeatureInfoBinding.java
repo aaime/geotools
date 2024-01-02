@@ -79,7 +79,9 @@ public class GetFeatureInfoBinding extends AbstractComplexEMFBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WMTS.GetFeatureInfo;

@@ -16,7 +16,9 @@
  */
 package org.geotools.gml3;
 
-/** @author Erik van de Pol */
+/**
+ * @author Erik van de Pol
+ */
 public interface LinearizationTolerance {
     /**
      * Returns the linearization tolerance for the arc linearization algorithm.

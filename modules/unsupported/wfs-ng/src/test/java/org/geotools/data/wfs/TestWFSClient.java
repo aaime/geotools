@@ -109,7 +109,9 @@ public class TestWFSClient extends WFSClient {
         return super.issueRequest(request);
     }
 
-    /** @return the request */
+    /**
+     * @return the request
+     */
     public GetFeatureRequest getRequest() {
         return request;
     }

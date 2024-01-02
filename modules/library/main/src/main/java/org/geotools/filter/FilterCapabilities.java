@@ -75,36 +75,50 @@ public class FilterCapabilities {
     // spatial masks
     /** Spatial Mask for bbox operation */
     public static final long SPATIAL_BBOX = 0x01;
+
     /** Spatial Mask for equals operation */
     public static final long SPATIAL_EQUALS = 0x01 << 1;
+
     /** Spatial Mask for disjoint operation */
     public static final long SPATIAL_DISJOINT = 0x01 << 2;
+
     /** Spatial Mask for intersect operation */
     public static final long SPATIAL_INTERSECT = 0x01 << 3;
+
     /** Spatial Mask for touches operation */
     public static final long SPATIAL_TOUCHES = 0x01 << 4;
+
     /** Spatial Mask for crosses operation */
     public static final long SPATIAL_CROSSES = 0x01 << 5;
+
     /** Spatial Mask for within operation */
     public static final long SPATIAL_WITHIN = 0x01 << 6;
+
     /** Spatial Mask for contains operation */
     public static final long SPATIAL_CONTAINS = 0x01 << 7;
+
     /** Spatial Mask for overlaps operation */
     public static final long SPATIAL_OVERLAPS = 0x01 << 8;
+
     /** Spatial Mask for beyond operation */
     public static final long SPATIAL_BEYOND = 0x01 << 9;
+
     /** Spatial Mask for dwithin operation */
     public static final long SPATIAL_DWITHIN = 0x01 << 10;
 
     // scalar masks
     /** Scalar Mask for like operation */
     public static final long LIKE = 0x01 << 11;
+
     /** Scalar Mask for between opelongion */
     public static final long BETWEEN = 0x01 << 12;
+
     /** Scalar Mask for null check operation */
     public static final long NULL_CHECK = 0x01 << 13;
+
     /** Scalar Mask for simple arithmetic operations */
     public static final long SIMPLE_ARITHMETIC = 0x01 << 14;
+
     /** Scalar Mask for function operations */
     public static final long FUNCTIONS = 0x01 << 15;
 
@@ -132,6 +146,7 @@ public class FilterCapabilities {
 
     /** Scalar Mask for logical operation */
     public static final long LOGICAL = (LOGIC_AND | LOGIC_OR | LOGIC_NOT);
+
     /** Scalar Mask for simple comparison operations */
     public static final long SIMPLE_COMPARISONS =
             COMPARE_EQUALS
@@ -396,6 +411,7 @@ public class FilterCapabilities {
                         | SPATIAL_TOUCHES
                         | SPATIAL_WITHIN);
     }
+
     /**
      * Translates a String into an object that represents the operation
      *
@@ -405,6 +421,7 @@ public class FilterCapabilities {
     public static FilterCapabilities findOperation(String name) {
         return FilterNameTypeMapping.findOperation(name);
     }
+
     /**
      * Translates a String into an object that represents function expression
      *

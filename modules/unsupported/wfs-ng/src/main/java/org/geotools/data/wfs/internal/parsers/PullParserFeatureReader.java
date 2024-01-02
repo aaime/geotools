@@ -101,7 +101,9 @@ public class PullParserFeatureReader implements GetParser<SimpleFeature> {
         this.parser.setURIHandler(httpHandler);
     }
 
-    /** @see GetParser<SimpleFeature>#close() */
+    /**
+     * @see GetParser<SimpleFeature>#close()
+     */
     @Override
     public void close() throws IOException {
         if (inputStream != null) {
@@ -119,7 +121,9 @@ public class PullParserFeatureReader implements GetParser<SimpleFeature> {
         }
     }
 
-    /** @see GetParser<SimpleFeature>#parse() */
+    /**
+     * @see GetParser<SimpleFeature>#parse()
+     */
     @Override
     public SimpleFeature parse() throws IOException {
         Object parsed;
@@ -184,7 +188,9 @@ public class PullParserFeatureReader implements GetParser<SimpleFeature> {
         return transformer.transform(geometry);
     }
 
-    /** @see GetParser<SimpleFeature>#getNumberOfFeatures() */
+    /**
+     * @see GetParser<SimpleFeature>#getNumberOfFeatures()
+     */
     @Override
     public int getNumberOfFeatures() {
         LOGGER.warning("Pull Parser doesn't implement counting features");

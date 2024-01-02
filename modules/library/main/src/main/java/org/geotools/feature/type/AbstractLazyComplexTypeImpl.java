@@ -87,14 +87,18 @@ public abstract class AbstractLazyComplexTypeImpl extends AbstractLazyAttributeT
         }
     }
 
-    /** @see org.geotools.feature.type.AbstractLazyAttributeTypeImpl#getBinding() */
+    /**
+     * @see org.geotools.feature.type.AbstractLazyAttributeTypeImpl#getBinding()
+     */
     @SuppressWarnings("unchecked")
     @Override
     public Class<Collection<Property>> getBinding() {
         return (Class<Collection<Property>>) super.getBinding();
     }
 
-    /** @see org.geotools.api.feature.type.ComplexType#getDescriptors() */
+    /**
+     * @see org.geotools.api.feature.type.ComplexType#getDescriptors()
+     */
     @Override
     public Collection<PropertyDescriptor> getDescriptors() {
         requireDescriptors();
@@ -111,13 +115,17 @@ public abstract class AbstractLazyComplexTypeImpl extends AbstractLazyAttributeT
         return descriptorMap.get(name);
     }
 
-    /** @see org.geotools.api.feature.type.ComplexType#isInline() */
+    /**
+     * @see org.geotools.api.feature.type.ComplexType#isInline()
+     */
     @Override
     public boolean isInline() {
         return false;
     }
 
-    /** @see org.geotools.feature.type.AbstractLazyAttributeTypeImpl#toString() */
+    /**
+     * @see org.geotools.feature.type.AbstractLazyAttributeTypeImpl#toString()
+     */
     @Override
     public String toString() {
         return "LazyComplexType: " + getName();

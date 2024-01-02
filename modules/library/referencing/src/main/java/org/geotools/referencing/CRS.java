@@ -1542,6 +1542,7 @@ public final class CRS {
             throws TransformException {
         return transform(transform, rectangle, (Rectangle2D) null);
     }
+
     /**
      * Transforms a rectangular envelope using the given {@linkplain MathTransform math transform}.
      * The transformation is only approximative. Invoking this method is equivalent to invoking the

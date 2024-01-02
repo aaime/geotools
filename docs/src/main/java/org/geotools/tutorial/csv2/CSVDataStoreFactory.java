@@ -114,6 +114,7 @@ public class CSVDataStoreFactory implements DataStoreFactorySpi {
         File file = (File) FILE_PARAM.lookUp(params);
         return new CSVDataStore(file);
     }
+
     // createDataStore end
 
     private static final Logger LOGGER = Logging.getLogger(CSVDataStoreFactory.class);

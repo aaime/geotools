@@ -33,12 +33,16 @@ import org.geotools.jdbc.PrimaryKeyColumn;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class GeoPkgFilterToSQL extends PreparedFilterToSQL {
 
     GeoPkgDialect dialect;
 
-    /** @param dialect */
+    /**
+     * @param dialect
+     */
     public GeoPkgFilterToSQL(GeoPkgDialect dialect) {
         super(dialect);
         this.dialect = dialect;
@@ -84,6 +88,7 @@ public class GeoPkgFilterToSQL extends PreparedFilterToSQL {
         }
         return super_result;
     }
+
     /**
      * Override done to ensure we don't complain if there is a BBOX filter, even if we claim not to
      * support it
@@ -113,7 +118,9 @@ public class GeoPkgFilterToSQL extends PreparedFilterToSQL {
         }
     }
 
-    /** @param out */
+    /**
+     * @param out
+     */
     public GeoPkgFilterToSQL(Writer out) {
         super(out);
         // TODO Auto-generated constructor stub

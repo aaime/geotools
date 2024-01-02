@@ -56,89 +56,198 @@ public final class DCT extends XSD {
         return getClass().getResource("rec-dcterms.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://purl.org/dc/terms/";
 
     /* Type Definitions */
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName recordAbstract = new QName("http://purl.org/dc/terms/", "abstract");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName accessRights = new QName("http://purl.org/dc/terms/", "accessRights");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName alternative = new QName("http://purl.org/dc/terms/", "alternative");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName audience = new QName("http://purl.org/dc/terms/", "audience");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName available = new QName("http://purl.org/dc/terms/", "available");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName bibliographicCitation =
             new QName("http://purl.org/dc/terms/", "bibliographicCitation");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName conformsTo = new QName("http://purl.org/dc/terms/", "conformsTo");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName created = new QName("http://purl.org/dc/terms/", "created");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName dateAccepted = new QName("http://purl.org/dc/terms/", "dateAccepted");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName dateCopyrighted =
             new QName("http://purl.org/dc/terms/", "dateCopyrighted");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName dateSubmitted =
             new QName("http://purl.org/dc/terms/", "dateSubmitted");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName educationLevel =
             new QName("http://purl.org/dc/terms/", "educationLevel");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName extent = new QName("http://purl.org/dc/terms/", "extent");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName hasFormat = new QName("http://purl.org/dc/terms/", "hasFormat");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName hasPart = new QName("http://purl.org/dc/terms/", "hasPart");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName hasVersion = new QName("http://purl.org/dc/terms/", "hasVersion");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName isFormatOf = new QName("http://purl.org/dc/terms/", "isFormatOf");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName isPartOf = new QName("http://purl.org/dc/terms/", "isPartOf");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName isReferencedBy =
             new QName("http://purl.org/dc/terms/", "isReferencedBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName isReplacedBy = new QName("http://purl.org/dc/terms/", "isReplacedBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName isRequiredBy = new QName("http://purl.org/dc/terms/", "isRequiredBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName issued = new QName("http://purl.org/dc/terms/", "issued");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName isVersionOf = new QName("http://purl.org/dc/terms/", "isVersionOf");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName license = new QName("http://purl.org/dc/terms/", "license");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName mediator = new QName("http://purl.org/dc/terms/", "mediator");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName medium = new QName("http://purl.org/dc/terms/", "medium");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName modified = new QName("http://purl.org/dc/terms/", "modified");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName provenance = new QName("http://purl.org/dc/terms/", "provenance");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName references = new QName("http://purl.org/dc/terms/", "references");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName replaces = new QName("http://purl.org/dc/terms/", "replaces");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName requires = new QName("http://purl.org/dc/terms/", "requires");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName rightsHolder = new QName("http://purl.org/dc/terms/", "rightsHolder");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName spatial = new QName("http://purl.org/dc/terms/", "spatial");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName tableOfContents =
             new QName("http://purl.org/dc/terms/", "tableOfContents");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName temporal = new QName("http://purl.org/dc/terms/", "temporal");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName valid = new QName("http://purl.org/dc/terms/", "valid");
 
     /* Attributes */

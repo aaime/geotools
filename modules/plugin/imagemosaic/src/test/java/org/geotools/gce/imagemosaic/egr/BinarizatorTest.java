@@ -33,7 +33,9 @@ import org.locationtech.jts.geom.LinearRing;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.impl.CoordinateArraySequence;
 
-/** @author Emanuele Tajariol <etj at geo-solutions.it> */
+/**
+ * @author Emanuele Tajariol <etj at geo-solutions.it>
+ */
 public class BinarizatorTest {
     private static final Logger LOGGER = Logging.getLogger(BinarizatorTest.class);
 

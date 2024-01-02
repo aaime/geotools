@@ -330,6 +330,7 @@ public abstract class AbstractEpsgFactory extends AbstractCachedAuthorityFactory
         hints.put(Hints.FORCE_STANDARD_AXIS_UNITS, Boolean.FALSE);
         hints.put(Hints.EPSG_DATA_SOURCE, dataSource);
     }
+
     /**
      * Constructs an authority factory using the specified connection.
      *
@@ -2257,6 +2258,7 @@ public abstract class AbstractEpsgFactory extends AbstractCachedAuthorityFactory
     private static final class Dimensions {
         /** The dimensions as an encoded value. */
         int encoded;
+
         /** The occurences of this dimensions. */
         int occurences;
 
@@ -2947,6 +2949,7 @@ public abstract class AbstractEpsgFactory extends AbstractCachedAuthorityFactory
             throw new FactoryException(e);
         }
     }
+
     /**
      * Disconnect from the database, and remain idle. We will still keep our internal data
      * structures, we are not going to hold onto a database connection unless we are going to be
@@ -2992,6 +2995,7 @@ public abstract class AbstractEpsgFactory extends AbstractCachedAuthorityFactory
         }
         return connection;
     }
+
     /**
      * Shutdown the database engine. This method is invoked twice by {@link ThreadedEpsgFactory} at
      * JVM shutdown: one time before the {@linkplain #connection} is closed, and a second time

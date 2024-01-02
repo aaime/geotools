@@ -83,7 +83,9 @@ public class WFSDataStore extends ContentDataStore {
         setFeatureFactory(CommonFactoryFinder.getFeatureFactory(null));
     }
 
-    /** @see WFSDataStore#getInfo() */
+    /**
+     * @see WFSDataStore#getInfo()
+     */
     @Override
     public WFSServiceInfo getInfo() {
         return client.getInfo();
@@ -94,7 +96,9 @@ public class WFSDataStore extends ContentDataStore {
         return new WFSContentState(entry);
     }
 
-    /** @see org.geotools.data.store.ContentDataStore#createTypeNames() */
+    /**
+     * @see org.geotools.data.store.ContentDataStore#createTypeNames()
+     */
     @Override
     protected List<Name> createTypeNames() throws IOException {
         String namespaceURI = getNamespaceURI();

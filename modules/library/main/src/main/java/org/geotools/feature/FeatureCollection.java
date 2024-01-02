@@ -213,10 +213,14 @@ public interface FeatureCollection<T extends FeatureType, F extends Feature> {
     //
     // ResourceCollection methods
     //
-    /** @see java.util.Collection#contains(Object) */
+    /**
+     * @see java.util.Collection#contains(Object)
+     */
     boolean contains(Object o);
 
-    /** @see java.util.Collection#containsAll(Collection) */
+    /**
+     * @see java.util.Collection#containsAll(Collection)
+     */
     boolean containsAll(Collection<?> o);
 
     /**
@@ -233,9 +237,13 @@ public interface FeatureCollection<T extends FeatureType, F extends Feature> {
      */
     int size();
 
-    /** @see java.util.Collection#toArray() */
+    /**
+     * @see java.util.Collection#toArray()
+     */
     Object[] toArray();
 
-    /** @see java.util.Collection#toArray(Object[]) */
+    /**
+     * @see java.util.Collection#toArray(Object[])
+     */
     <O> O[] toArray(O[] a);
 }

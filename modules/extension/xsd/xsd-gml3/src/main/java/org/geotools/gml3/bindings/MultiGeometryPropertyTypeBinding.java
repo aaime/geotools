@@ -49,7 +49,9 @@ import org.locationtech.jts.geom.GeometryCollection;
  */
 public class MultiGeometryPropertyTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiGeometryPropertyType;

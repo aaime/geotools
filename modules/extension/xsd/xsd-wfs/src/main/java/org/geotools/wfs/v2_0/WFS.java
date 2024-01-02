@@ -61,332 +61,671 @@ public final class WFS extends XSD {
         return getClass().getResource("wfs.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/wfs/2.0";
 
     public static final String CANONICAL_SCHEMA_LOCATION =
             "http://schemas.opengis.net/wfs/2.0/wfs.xsd";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractTransactionActionType =
             new QName("http://www.opengis.net/wfs/2.0", "AbstractTransactionActionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ActionResultsType =
             new QName("http://www.opengis.net/wfs/2.0", "ActionResultsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AllSomeType =
             new QName("http://www.opengis.net/wfs/2.0", "AllSomeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BaseRequestType =
             new QName("http://www.opengis.net/wfs/2.0", "BaseRequestType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CreatedOrModifiedFeatureType =
             new QName("http://www.opengis.net/wfs/2.0", "CreatedOrModifiedFeatureType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CreateStoredQueryResponseType =
             new QName("http://www.opengis.net/wfs/2.0", "CreateStoredQueryResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CreateStoredQueryType =
             new QName("http://www.opengis.net/wfs/2.0", "CreateStoredQueryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DeleteType =
             new QName("http://www.opengis.net/wfs/2.0", "DeleteType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeFeatureTypeType =
             new QName("http://www.opengis.net/wfs/2.0", "DescribeFeatureTypeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeStoredQueriesResponseType =
             new QName("http://www.opengis.net/wfs/2.0", "DescribeStoredQueriesResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeStoredQueriesType =
             new QName("http://www.opengis.net/wfs/2.0", "DescribeStoredQueriesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ElementType =
             new QName("http://www.opengis.net/wfs/2.0", "ElementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName EmptyType = new QName("http://www.opengis.net/wfs/2.0", "EmptyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName EnvelopePropertyType =
             new QName("http://www.opengis.net/wfs/2.0", "EnvelopePropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExecutionStatusType =
             new QName("http://www.opengis.net/wfs/2.0", "ExecutionStatusType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExtendedDescriptionType =
             new QName("http://www.opengis.net/wfs/2.0", "ExtendedDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureCollectionType =
             new QName("http://www.opengis.net/wfs/2.0", "FeatureCollectionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeaturesLockedType =
             new QName("http://www.opengis.net/wfs/2.0", "FeaturesLockedType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeaturesNotLockedType =
             new QName("http://www.opengis.net/wfs/2.0", "FeaturesNotLockedType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeListType =
             new QName("http://www.opengis.net/wfs/2.0", "FeatureTypeListType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeType =
             new QName("http://www.opengis.net/wfs/2.0", "FeatureTypeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilitiesType =
             new QName("http://www.opengis.net/wfs/2.0", "GetCapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetFeatureType =
             new QName("http://www.opengis.net/wfs/2.0", "GetFeatureType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetFeatureWithLockType =
             new QName("http://www.opengis.net/wfs/2.0", "GetFeatureWithLockType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetPropertyValueType =
             new QName("http://www.opengis.net/wfs/2.0", "GetPropertyValueType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InsertType =
             new QName("http://www.opengis.net/wfs/2.0", "InsertType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStoredQueriesResponseType =
             new QName("http://www.opengis.net/wfs/2.0", "ListStoredQueriesResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStoredQueriesType =
             new QName("http://www.opengis.net/wfs/2.0", "ListStoredQueriesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LockFeatureResponseType =
             new QName("http://www.opengis.net/wfs/2.0", "LockFeatureResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LockFeatureType =
             new QName("http://www.opengis.net/wfs/2.0", "LockFeatureType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MemberPropertyType =
             new QName("http://www.opengis.net/wfs/2.0", "MemberPropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MetadataURLType =
             new QName("http://www.opengis.net/wfs/2.0", "MetadataURLType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName NativeType =
             new QName("http://www.opengis.net/wfs/2.0", "NativeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName nonNegativeIntegerOrUnknown =
             new QName("http://www.opengis.net/wfs/2.0", "nonNegativeIntegerOrUnknown");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OutputFormatListType =
             new QName("http://www.opengis.net/wfs/2.0", "OutputFormatListType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ParameterExpressionType =
             new QName("http://www.opengis.net/wfs/2.0", "ParameterExpressionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ParameterType =
             new QName("http://www.opengis.net/wfs/2.0", "ParameterType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName positiveIntegerWithStar =
             new QName("http://www.opengis.net/wfs/2.0", "positiveIntegerWithStar");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyType =
             new QName("http://www.opengis.net/wfs/2.0", "PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName QueryExpressionTextType =
             new QName("http://www.opengis.net/wfs/2.0", "QueryExpressionTextType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName QueryType = new QName("http://www.opengis.net/wfs/2.0", "QueryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ReplaceType =
             new QName("http://www.opengis.net/wfs/2.0", "ReplaceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResolveValueType =
             new QName("http://www.opengis.net/wfs/2.0", "ResolveValueType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResultTypeType =
             new QName("http://www.opengis.net/wfs/2.0", "ResultTypeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ReturnFeatureTypesListType =
             new QName("http://www.opengis.net/wfs/2.0", "ReturnFeatureTypesListType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleFeatureCollectionType =
             new QName("http://www.opengis.net/wfs/2.0", "SimpleFeatureCollectionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StarStringType =
             new QName("http://www.opengis.net/wfs/2.0", "StarStringType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StateValueType =
             new QName("http://www.opengis.net/wfs/2.0", "StateValueType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StoredQueryDescriptionType =
             new QName("http://www.opengis.net/wfs/2.0", "StoredQueryDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StoredQueryListItemType =
             new QName("http://www.opengis.net/wfs/2.0", "StoredQueryListItemType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StoredQueryType =
             new QName("http://www.opengis.net/wfs/2.0", "StoredQueryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionResponseType =
             new QName("http://www.opengis.net/wfs/2.0", "TransactionResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionSummaryType =
             new QName("http://www.opengis.net/wfs/2.0", "TransactionSummaryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionType =
             new QName("http://www.opengis.net/wfs/2.0", "TransactionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TupleType = new QName("http://www.opengis.net/wfs/2.0", "TupleType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpdateActionType =
             new QName("http://www.opengis.net/wfs/2.0", "UpdateActionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpdateType =
             new QName("http://www.opengis.net/wfs/2.0", "UpdateType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ValueCollectionType =
             new QName("http://www.opengis.net/wfs/2.0", "ValueCollectionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ValueListType =
             new QName("http://www.opengis.net/wfs/2.0", "ValueListType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName WFS_CapabilitiesType =
             new QName("http://www.opengis.net/wfs/2.0", "WFS_CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _Abstract = new QName("http://www.opengis.net/wfs/2.0", "_Abstract");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _additionalObjects =
             new QName("http://www.opengis.net/wfs/2.0", "_additionalObjects");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _additionalValues =
             new QName("http://www.opengis.net/wfs/2.0", "_additionalValues");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _DropStoredQuery =
             new QName("http://www.opengis.net/wfs/2.0", "_DropStoredQuery");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _PropertyName =
             new QName("http://www.opengis.net/wfs/2.0", "_PropertyName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _Title = new QName("http://www.opengis.net/wfs/2.0", "_Title");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _truncatedResponse =
             new QName("http://www.opengis.net/wfs/2.0", "_truncatedResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeType_NoCRS =
             new QName("http://www.opengis.net/wfs/2.0", "FeatureTypeType_NoCRS");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyType_ValueReference =
             new QName("http://www.opengis.net/wfs/2.0", "PropertyType_ValueReference");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName WFS_CapabilitiesType_WSDL =
             new QName("http://www.opengis.net/wfs/2.0", "WFS_CapabilitiesType_WSDL");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Abstract = new QName("http://www.opengis.net/wfs/2.0", "Abstract");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractTransactionAction =
             new QName("http://www.opengis.net/wfs/2.0", "AbstractTransactionAction");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName additionalObjects =
             new QName("http://www.opengis.net/wfs/2.0", "additionalObjects");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName additionalValues =
             new QName("http://www.opengis.net/wfs/2.0", "additionalValues");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName boundedBy = new QName("http://www.opengis.net/wfs/2.0", "boundedBy");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CreateStoredQuery =
             new QName("http://www.opengis.net/wfs/2.0", "CreateStoredQuery");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CreateStoredQueryResponse =
             new QName("http://www.opengis.net/wfs/2.0", "CreateStoredQueryResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Delete = new QName("http://www.opengis.net/wfs/2.0", "Delete");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeFeatureType =
             new QName("http://www.opengis.net/wfs/2.0", "DescribeFeatureType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeStoredQueries =
             new QName("http://www.opengis.net/wfs/2.0", "DescribeStoredQueries");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeStoredQueriesResponse =
             new QName("http://www.opengis.net/wfs/2.0", "DescribeStoredQueriesResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DropStoredQuery =
             new QName("http://www.opengis.net/wfs/2.0", "DropStoredQuery");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DropStoredQueryResponse =
             new QName("http://www.opengis.net/wfs/2.0", "DropStoredQueryResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Element = new QName("http://www.opengis.net/wfs/2.0", "Element");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureCollection =
             new QName("http://www.opengis.net/wfs/2.0", "FeatureCollection");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName FeatureTypeList =
             new QName("http://www.opengis.net/wfs/2.0", "FeatureTypeList");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilities =
             new QName("http://www.opengis.net/wfs/2.0", "GetCapabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetFeature =
             new QName("http://www.opengis.net/wfs/2.0", "GetFeature");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetFeatureWithLock =
             new QName("http://www.opengis.net/wfs/2.0", "GetFeatureWithLock");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetPropertyValue =
             new QName("http://www.opengis.net/wfs/2.0", "GetPropertyValue");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Insert = new QName("http://www.opengis.net/wfs/2.0", "Insert");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStoredQueries =
             new QName("http://www.opengis.net/wfs/2.0", "ListStoredQueries");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListStoredQueriesResponse =
             new QName("http://www.opengis.net/wfs/2.0", "ListStoredQueriesResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LockFeature =
             new QName("http://www.opengis.net/wfs/2.0", "LockFeature");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LockFeatureResponse =
             new QName("http://www.opengis.net/wfs/2.0", "LockFeatureResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName member = new QName("http://www.opengis.net/wfs/2.0", "member");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Native = new QName("http://www.opengis.net/wfs/2.0", "Native");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Property = new QName("http://www.opengis.net/wfs/2.0", "Property");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PropertyName =
             new QName("http://www.opengis.net/wfs/2.0", "PropertyName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Query = new QName("http://www.opengis.net/wfs/2.0", "Query");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Replace = new QName("http://www.opengis.net/wfs/2.0", "Replace");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleFeatureCollection =
             new QName("http://www.opengis.net/wfs/2.0", "SimpleFeatureCollection");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StoredQuery =
             new QName("http://www.opengis.net/wfs/2.0", "StoredQuery");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Title = new QName("http://www.opengis.net/wfs/2.0", "Title");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Transaction =
             new QName("http://www.opengis.net/wfs/2.0", "Transaction");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionResponse =
             new QName("http://www.opengis.net/wfs/2.0", "TransactionResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName truncatedResponse =
             new QName("http://www.opengis.net/wfs/2.0", "truncatedResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Tuple = new QName("http://www.opengis.net/wfs/2.0", "Tuple");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Update = new QName("http://www.opengis.net/wfs/2.0", "Update");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Value = new QName("http://www.opengis.net/wfs/2.0", "Value");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ValueCollection =
             new QName("http://www.opengis.net/wfs/2.0", "ValueCollection");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ValueList = new QName("http://www.opengis.net/wfs/2.0", "ValueList");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName WFS_Capabilities =
             new QName("http://www.opengis.net/wfs/2.0", "WFS_Capabilities");
 

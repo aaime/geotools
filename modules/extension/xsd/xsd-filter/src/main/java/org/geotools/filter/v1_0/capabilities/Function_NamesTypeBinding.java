@@ -42,7 +42,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class Function_NamesTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Function_NamesType;

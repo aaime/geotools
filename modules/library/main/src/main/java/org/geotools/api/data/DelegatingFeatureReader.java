@@ -28,6 +28,8 @@ import org.geotools.api.feature.type.FeatureType;
 public interface DelegatingFeatureReader<T extends FeatureType, F extends Feature>
         extends FeatureReader<T, F> {
 
-    /** @return The delegate feature reader. */
+    /**
+     * @return The delegate feature reader.
+     */
     FeatureReader<T, F> getDelegate();
 }

@@ -45,7 +45,9 @@ public class SequenceHandler extends ElementGroupingHandler {
     private List<XSIElementHandler> children; // element, group, choice, sequence or any
     private DefaultSequence cache = null;
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     @SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
     public int hashCode() {
@@ -53,7 +55,9 @@ public class SequenceHandler extends ElementGroupingHandler {
                 + ((children == null) ? 2 : children.hashCode());
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XSIElementHandler getHandler(String namespaceURI, String localName) {
         logger.finest("Getting Handler for " + localName + " :: " + namespaceURI);
@@ -167,7 +171,9 @@ public class SequenceHandler extends ElementGroupingHandler {
         }
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getLocalName() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getLocalName()
+     */
     @Override
     public String getLocalName() {
         return LOCALNAME;
@@ -210,13 +216,17 @@ public class SequenceHandler extends ElementGroupingHandler {
         return cache;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandlerType() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandlerType()
+     */
     @Override
     public int getHandlerType() {
         return SEQUENCE;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String namespaceURI, String localName) {
         // do nothing
@@ -235,7 +245,9 @@ public class SequenceHandler extends ElementGroupingHandler {
         int minOccurs;
         int maxOccurs;
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(String name) {
             if (children == null) {
@@ -254,31 +266,41 @@ public class SequenceHandler extends ElementGroupingHandler {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.Sequence#getChildren() */
+        /**
+         * @see org.geotools.xml.xsi.Sequence#getChildren()
+         */
         @Override
         public ElementGrouping[] getChildren() {
             return children;
         }
 
-        /** @see org.geotools.xml.xsi.Sequence#getId() */
+        /**
+         * @see org.geotools.xml.xsi.Sequence#getId()
+         */
         @Override
         public String getId() {
             return id;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs()
+         */
         @Override
         public int getMaxOccurs() {
             return maxOccurs;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs()
+         */
         @Override
         public int getMinOccurs() {
             return minOccurs;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getGrouping() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getGrouping()
+         */
         @Override
         public int getGrouping() {
             return SEQUENCE;

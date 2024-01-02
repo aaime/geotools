@@ -228,7 +228,9 @@ public abstract class AbstractGetTileRequest extends AbstractWMTSRequest impleme
         return headers;
     }
 
-    /** @return the crs */
+    /**
+     * @return the crs
+     */
     public CoordinateReferenceSystem getCrs() {
         return crs;
     }

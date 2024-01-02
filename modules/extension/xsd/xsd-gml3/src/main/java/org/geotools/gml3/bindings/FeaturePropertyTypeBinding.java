@@ -72,7 +72,9 @@ public class FeaturePropertyTypeBinding extends AbstractComplexBinding {
         this.idSet = idSet;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.FeaturePropertyType;

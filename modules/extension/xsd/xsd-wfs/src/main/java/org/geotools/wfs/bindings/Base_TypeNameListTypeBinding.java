@@ -41,7 +41,9 @@ import org.geotools.xsd.InstanceComponent;
 public class Base_TypeNameListTypeBinding extends AbstractSimpleBinding {
     public Base_TypeNameListTypeBinding(WfsFactory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.Base_TypeNameListType;

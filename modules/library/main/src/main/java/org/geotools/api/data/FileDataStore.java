@@ -39,24 +39,36 @@ public interface FileDataStore extends DataStore {
      */
     SimpleFeatureType getSchema() throws IOException;
 
-    /** @see DataStore#updateSchema(java.lang.String,SimpleFeatureType) */
+    /**
+     * @see DataStore#updateSchema(java.lang.String,SimpleFeatureType)
+     */
     void updateSchema(SimpleFeatureType featureType) throws IOException;
 
-    /** @see DataStore#getFeatureSource(java.lang.String) */
+    /**
+     * @see DataStore#getFeatureSource(java.lang.String)
+     */
     SimpleFeatureSource getFeatureSource() throws IOException;
 
-    /** @see DataStore#getFeatureReader(java.lang.String) */
+    /**
+     * @see DataStore#getFeatureReader(java.lang.String)
+     */
     FeatureReader<SimpleFeatureType, SimpleFeature> getFeatureReader() throws IOException;
 
-    /** @see DataStore#getFeatureWriter(Filter,Transaction) */
+    /**
+     * @see DataStore#getFeatureWriter(Filter,Transaction)
+     */
     FeatureWriter<SimpleFeatureType, SimpleFeature> getFeatureWriter(
             Filter filter, Transaction transaction) throws IOException;
 
-    /** @see DataStore#getFeatureWriter(java.lang.String, Transaction) */
+    /**
+     * @see DataStore#getFeatureWriter(java.lang.String, Transaction)
+     */
     FeatureWriter<SimpleFeatureType, SimpleFeature> getFeatureWriter(Transaction transaction)
             throws IOException;
 
-    /** @see DataStore#getFeatureWriterAppend(java.lang.String, Transaction) */
+    /**
+     * @see DataStore#getFeatureWriterAppend(java.lang.String, Transaction)
+     */
     FeatureWriter<SimpleFeatureType, SimpleFeature> getFeatureWriterAppend(Transaction transaction)
             throws IOException;
 }

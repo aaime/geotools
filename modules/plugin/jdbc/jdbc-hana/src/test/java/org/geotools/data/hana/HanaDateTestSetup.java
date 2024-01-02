@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCDateTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaDateTestSetup extends JDBCDateTestSetup {
 
     private static final String TABLE = "dates";

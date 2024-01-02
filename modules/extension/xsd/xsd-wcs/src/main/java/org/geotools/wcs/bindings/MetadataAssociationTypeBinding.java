@@ -51,7 +51,9 @@ import org.geotools.xsd.Node;
  */
 public class MetadataAssociationTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.MetadataAssociationType;

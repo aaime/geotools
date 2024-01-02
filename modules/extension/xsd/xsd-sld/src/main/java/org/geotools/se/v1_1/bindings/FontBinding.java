@@ -50,7 +50,9 @@ public class FontBinding extends SLDFontBinding {
         super(styleFactory, filterFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Font;

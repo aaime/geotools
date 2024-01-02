@@ -208,6 +208,7 @@ public class Parameter<T> implements org.geotools.api.parameter.Parameter<T> {
                 new SimpleInternationalString(description),
                 metadata);
     }
+
     /**
      * Mandatory parameter
      *
@@ -245,6 +246,7 @@ public class Parameter<T> implements org.geotools.api.parameter.Parameter<T> {
             Map<String, Object> metadata) {
         this(key, type, title, description, true, 1, 1, null, metadata);
     }
+
     /**
      * Addition of optional parameters
      *

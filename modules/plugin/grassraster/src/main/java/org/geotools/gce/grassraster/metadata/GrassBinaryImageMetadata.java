@@ -67,24 +67,34 @@ public final class GrassBinaryImageMetadata extends IIOMetadata {
 
     /** the string used as separator in rules, to get them in one string. */
     public static final String RULESSPLIT = "@@split@@"; // $NON-NLS-1$
+
     /** the NO_DATA key for the metadata tree. */
     public static final String NO_DATA = "NO_DATA"; // $NON-NLS-1$
+
     /** the NROWS key for the metadata tree. */
     public static final String NROWS = "NROWS"; // $NON-NLS-1$
+
     /** the NCOLS key for the metadata tree. */
     public static final String NCOLS = "NCOLS"; // $NON-NLS-1$
+
     /** the XRES key for the metadata tree. */
     public static final String XRES = "XRES"; // $NON-NLS-1$
+
     /** the YRES key for the metadata tree. */
     public static final String YRES = "YRES"; // $NON-NLS-1$
+
     /** the SOUTH key for the metadata tree. */
     public static final String SOUTH = "SOUTH"; // $NON-NLS-1$
+
     /** the WEST key for the metadata tree. */
     public static final String WEST = "WEST"; // $NON-NLS-1$
+
     /** the NORTH key for the metadata tree. */
     public static final String NORTH = "NORTH"; // $NON-NLS-1$
+
     /** the EAST key for the metadata tree. */
     public static final String EAST = "EAST"; // $NON-NLS-1$
+
     /** the CRS key for the metadata tree. */
     public static final String CRS = "CRS"; // $NON-NLS-1$
 

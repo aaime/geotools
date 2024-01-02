@@ -56,7 +56,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSBase64BinaryBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.BASE64BINARY;

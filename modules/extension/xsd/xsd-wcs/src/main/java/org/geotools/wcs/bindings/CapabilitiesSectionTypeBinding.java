@@ -66,7 +66,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class CapabilitiesSectionTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.CapabilitiesSectionType;

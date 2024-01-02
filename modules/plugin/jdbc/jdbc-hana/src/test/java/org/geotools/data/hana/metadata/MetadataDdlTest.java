@@ -20,7 +20,9 @@ import org.geotools.data.hana.metadata.Srs.Type;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class MetadataDdlTest {
 
     @Test

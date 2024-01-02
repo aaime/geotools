@@ -184,7 +184,9 @@ public class GeometryCoordinateSequenceTransformer {
         return transformed;
     }
 
-    /** @throws TransformException */
+    /**
+     * @throws TransformException
+     */
     public LineString transformLineString(LineString ls, GeometryFactory gf)
             throws TransformException {
         if (ls instanceof CurvedGeometry<?> && curveCompatible) {
@@ -256,7 +258,9 @@ public class GeometryCoordinateSequenceTransformer {
         return transformed;
     }
 
-    /** @param cs a CoordinateSequence */
+    /**
+     * @param cs a CoordinateSequence
+     */
     private CoordinateSequence projectCoordinateSequence(CoordinateSequence cs)
             throws TransformException {
         return csTransformer.transform(cs, transform);

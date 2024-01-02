@@ -36,24 +36,35 @@ public interface ColorMapEntry {
     /** Label for this Color Map Entry */
     String getLabel();
 
-    /** @param label */
+    /**
+     * @param label
+     */
     void setLabel(String label);
 
     /** Expression resulting in a color */
     void setColor(Expression color);
 
-    /** @return Expression evaluated into a color */
+    /**
+     * @return Expression evaluated into a color
+     */
     Expression getColor();
 
-    /** @param opacity Expressed as a value between 0 and 1 */
+    /**
+     * @param opacity Expressed as a value between 0 and 1
+     */
     void setOpacity(Expression opacity);
-    /** @return Opacity expressed as a value between 0 and 1 */
+
+    /**
+     * @return Opacity expressed as a value between 0 and 1
+     */
     Expression getOpacity();
 
     /** Quantity marking the start of this color map entry. */
     void setQuantity(Expression quantity);
 
-    /** @return Quanity marking the start of this color map entry */
+    /**
+     * @return Quanity marking the start of this color map entry
+     */
     Expression getQuantity();
 
     void accept(StyleVisitor visitor);

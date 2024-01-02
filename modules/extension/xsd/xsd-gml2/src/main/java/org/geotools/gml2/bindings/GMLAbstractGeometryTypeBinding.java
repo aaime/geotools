@@ -61,7 +61,9 @@ public class GMLAbstractGeometryTypeBinding extends AbstractComplexBinding {
         this.logger = logger;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractGeometryType;

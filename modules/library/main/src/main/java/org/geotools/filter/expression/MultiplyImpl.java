@@ -72,6 +72,7 @@ public class MultiplyImpl extends MathExpressionImpl implements Multiply {
             return false;
         }
     }
+
     /**
      * Override of hashCode method.
      *

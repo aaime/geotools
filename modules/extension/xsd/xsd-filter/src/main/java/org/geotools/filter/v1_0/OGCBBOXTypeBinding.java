@@ -66,7 +66,9 @@ public class OGCBBOXTypeBinding extends AbstractComplexBinding {
         factory = CommonFactoryFinder.getFilterFactory(null);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.BBOXType;

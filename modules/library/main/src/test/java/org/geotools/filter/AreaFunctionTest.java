@@ -46,6 +46,7 @@ public class AreaFunctionTest {
     /** Standard logging instance */
     protected static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(AreaFunctionTest.class);
+
     /** Feature on which to preform tests */
     private static SimpleFeature testFeature = null;
 

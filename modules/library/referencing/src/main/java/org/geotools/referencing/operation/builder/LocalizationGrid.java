@@ -354,8 +354,10 @@ public class LocalizationGrid implements Serializable {
 
     /** Constant for {@link #testOrder}. */
     private static final int INCREASING = 1;
+
     /** Constant for {@link #testOrder}. */
     private static final int DECREASING = 2;
+
     /** Constant for {@link #testOrder}. */
     private static final int EQUALS = 4;
 

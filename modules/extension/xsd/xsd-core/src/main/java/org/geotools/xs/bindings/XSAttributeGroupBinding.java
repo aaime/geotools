@@ -45,7 +45,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSAttributeGroupBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.ATTRIBUTEGROUP;

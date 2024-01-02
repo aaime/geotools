@@ -37,20 +37,26 @@ public class XMLHandlerHints implements Map<String, Object> {
      * objects where String is the Namespace and URI is the URL to use to load the schema.
      */
     public static final String NAMESPACE_MAPPING = "NAMESPACE_MAPPING";
+
     /** Declares a FlowHandler for the parser to use */
     public static final String FLOW_HANDLER_HINT = "FLOW_HANDLER_HINT";
+
     /** Tells the parser to "Stream" */
     public static final String STREAM_HINT = "org.geotools.xml.gml.STREAM_HINT";
+
     /** Sets the level of compliance that the filter encoder should use */
     public static final String FILTER_COMPLIANCE_STRICTNESS =
             "org.geotools.xml.filter.FILTER_COMPLIANCE_STRICTNESS";
+
     /** Supplied {@link EntityResolver} for Schema and/or DTD validation */
     public static final String ENTITY_RESOLVER = GeoTools.ENTITY_RESOLVER;
+
     /** Supplied {@link SaxParserFactory} */
     public static final String SAX_PARSER_FACTORY = "javax.xml.parsers.SAXParserFactory";
 
     /** The value so that the parser will encode all Geotools filters with no modifications. */
     public static final Integer VALUE_FILTER_COMPLIANCE_LOW = Integer.valueOf(0);
+
     /**
      * The value so the parser will be slightly more compliant to the Filter 1.0.0 spec. It will
      * encode:

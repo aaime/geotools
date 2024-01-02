@@ -937,7 +937,9 @@ public class CapabilitiesFilterSplitter implements FilterVisitor, ExpressionVisi
         preStack.push(expression);
     }
 
-    /** @see org.geotools.filter.FilterVisitor#visit(org.geotools.filter.FunctionExpression) */
+    /**
+     * @see org.geotools.filter.FilterVisitor#visit(org.geotools.filter.FunctionExpression)
+     */
     @Override
     public Object visit(Function function, Object notUsed) {
         if (!fcs.fullySupports(function)) {

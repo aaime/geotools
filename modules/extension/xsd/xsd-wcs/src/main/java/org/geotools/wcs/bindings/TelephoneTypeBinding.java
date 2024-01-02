@@ -56,7 +56,9 @@ import org.geotools.xsd.Node;
  */
 public class TelephoneTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.TelephoneType;

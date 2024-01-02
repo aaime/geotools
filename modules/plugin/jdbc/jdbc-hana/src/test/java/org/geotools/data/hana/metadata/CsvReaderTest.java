@@ -25,7 +25,9 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class CsvReaderTest {
 
     @Test

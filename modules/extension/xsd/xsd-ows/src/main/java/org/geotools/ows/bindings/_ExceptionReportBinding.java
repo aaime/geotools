@@ -60,7 +60,9 @@ public class _ExceptionReportBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS._ExceptionReport;

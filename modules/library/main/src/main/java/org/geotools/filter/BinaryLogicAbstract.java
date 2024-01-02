@@ -20,13 +20,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/** @author jdeolive */
+/**
+ * @author jdeolive
+ */
 public abstract class BinaryLogicAbstract extends AbstractFilter {
     protected List<org.geotools.api.filter.Filter> children;
 
     protected BinaryLogicAbstract(List<org.geotools.api.filter.Filter> children) {
         this.children = children;
     }
+
     /** Returned list is unmodifieable. For a cheaper access option use visitor */
     public List<org.geotools.api.filter.Filter> getChildren() {
         return Collections.unmodifiableList(children);

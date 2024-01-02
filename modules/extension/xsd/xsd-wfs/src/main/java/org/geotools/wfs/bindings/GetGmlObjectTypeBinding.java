@@ -89,7 +89,9 @@ public class GetGmlObjectTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.GetGmlObjectType;

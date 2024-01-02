@@ -16,7 +16,9 @@
  */
 package org.geotools.data.shapefile.index;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public interface Lock {
 
     public static short SHARED = 1;

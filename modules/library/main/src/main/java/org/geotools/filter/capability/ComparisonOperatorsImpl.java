@@ -64,7 +64,10 @@ public class ComparisonOperatorsImpl implements ComparisonOperators {
     public void setOperators(Collection<Operator> operators) {
         this.operators = new HashSet<>(operators);
     }
-    /** @return Operator with the provided name, or null if not supported */
+
+    /**
+     * @return Operator with the provided name, or null if not supported
+     */
     @Override
     public Operator getOperator(String name) {
         if (name == null || operators == null) {

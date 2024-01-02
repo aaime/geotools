@@ -67,7 +67,9 @@ public class SimpleFeatureTypeImpl extends FeatureTypeImpl implements SimpleFeat
         descriptors = buildDescriptorIndex(this);
     }
 
-    /** @see org.geotools.api.feature.simple.SimpleFeatureType#getAttributeDescriptors() */
+    /**
+     * @see org.geotools.api.feature.simple.SimpleFeatureType#getAttributeDescriptors()
+     */
     @Override
     @SuppressWarnings("unchecked")
     public final List<AttributeDescriptor> getAttributeDescriptors() {

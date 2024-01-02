@@ -22,7 +22,9 @@ import org.geotools.test.TestData;
 import org.jaitools.swing.ImageFrame;
 import org.junit.Test;
 
-/** @author michael */
+/**
+ * @author michael
+ */
 public class StreamingRendererDirectLayerTest {
 
     private static final ReferencedEnvelope WORLD =

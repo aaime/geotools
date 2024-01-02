@@ -50,7 +50,9 @@ public class CoverageSlice {
 
     SimpleFeature originator;
 
-    /** @param feature */
+    /**
+     * @param feature
+     */
     public CoverageSlice(final SimpleFeature feature) {
         this.granuleBBOX = ReferencedEnvelope.reference(feature.getBounds());
         this.originator = feature;

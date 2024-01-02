@@ -55,6 +55,7 @@ public class TypeMapping implements Serializable {
      * True if data is multiple rows represent 1 feature. The safe default is to assume it's true.
      */
     private boolean isDenormalised = true;
+
     /** True if isDenormalised has been set in config. */
     private boolean isDenormalisedSet = false;
 

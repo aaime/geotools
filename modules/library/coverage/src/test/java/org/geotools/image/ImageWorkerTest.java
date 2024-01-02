@@ -180,6 +180,7 @@ public final class ImageWorkerTest extends GridProcessingTestBase {
         final BufferedImage image = new BufferedImage(cm, raster, false, null);
         return image;
     }
+
     /**
      * Creates a test image in RGB with either {@link ComponentColorModel} or {@link
      * DirectColorModel}.
@@ -432,6 +433,7 @@ public final class ImageWorkerTest extends GridProcessingTestBase {
         assertFalse(worker.isTranslucent());
         assertNoData(worker, null);
     }
+
     /**
      * Tests capability to write GIF image.
      *
@@ -1167,6 +1169,7 @@ public final class ImageWorkerTest extends GridProcessingTestBase {
         assertSame("Expected 64.", 64, worker.getRenderedImage().getTileWidth());
         assertSame("Expected 64.", 64, worker.getRenderedImage().getTileHeight());
     }
+
     /**
      * Visualize the content of given image if {@link #SHOW} is {@code true}.
      *

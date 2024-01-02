@@ -65,6 +65,7 @@ public class OrdinateList extends AbstractList {
                             + ARRAY.length);
         }
     }
+
     /**
      * Used to grab value from array.
      *
@@ -76,6 +77,7 @@ public class OrdinateList extends AbstractList {
     public Object get(int index) {
         return Double.valueOf(getDouble(index));
     }
+
     /** Quick double access */
     public double getDouble(int index) {
         assert index < SIZE : "Index: " + index + ", Size: " + SIZE;
@@ -89,6 +91,7 @@ public class OrdinateList extends AbstractList {
         }
         return array;
     }
+
     /**
      * Used to
      *

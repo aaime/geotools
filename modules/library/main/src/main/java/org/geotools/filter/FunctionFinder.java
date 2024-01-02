@@ -76,6 +76,7 @@ public class FunctionFinder {
                 });
         return Collections.unmodifiableList(allFunctionDescriptions);
     }
+
     /**
      * Lookup the FunctionName description.
      *
@@ -85,6 +86,7 @@ public class FunctionFinder {
     public FunctionName findFunctionDescription(String name) {
         return findFunctionDescription(new NameImpl(name));
     }
+
     /**
      * Lookup the FunctionName description.
      *
@@ -135,6 +137,7 @@ public class FunctionFinder {
             return new NameImpl(name);
         }
     }
+
     /**
      * Look up a function for the provided name.
      *

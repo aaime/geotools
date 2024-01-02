@@ -150,6 +150,7 @@ public class Diff {
             return modifiedFeatures.isEmpty() && addedFeatures.isEmpty();
         }
     }
+
     /** Clear diff - called during rollback. */
     public void clear() {
         synchronized (mutex) {

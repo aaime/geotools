@@ -77,14 +77,19 @@ public class JMapFrame extends JFrame {
 
     /** Name assigned to toolbar button for feature info queries. */
     public static final String TOOLBAR_INFO_BUTTON_NAME = "ToolbarInfoButton";
+
     /** Name assigned to toolbar button for map panning. */
     public static final String TOOLBAR_PAN_BUTTON_NAME = "ToolbarPanButton";
+
     /** Name assigned to toolbar button for default pointer. */
     public static final String TOOLBAR_POINTER_BUTTON_NAME = "ToolbarPointerButton";
+
     /** Name assigned to toolbar button for map reset. */
     public static final String TOOLBAR_RESET_BUTTON_NAME = "ToolbarResetButton";
+
     /** Name assigned to toolbar button for map zoom in. */
     public static final String TOOLBAR_ZOOMIN_BUTTON_NAME = "ToolbarZoomInButton";
+
     /** Name assigned to toolbar button for map zoom out. */
     public static final String TOOLBAR_ZOOMOUT_BUTTON_NAME = "ToolbarZoomOutButton";
 

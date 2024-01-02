@@ -136,6 +136,7 @@ public class SLDParser {
 
     /** NORMALIZE */
     private static final String NORMALIZE = "normalize";
+
     /** a list of available Contrast Methods */
     static final List<String> CONTRAST_METHODS =
             Arrays.asList(NORMALIZE, LOGARITHMIC, EXPONENTIAL, HISTOGRAM);
@@ -1584,7 +1585,9 @@ public class SLDParser {
         return symbol;
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     private ContrastMethodStrategy parseContrastMethod(String name, Node root) {
         ContrastMethod met = ContrastMethod.NONE;
         ContrastMethodStrategy ret = null;

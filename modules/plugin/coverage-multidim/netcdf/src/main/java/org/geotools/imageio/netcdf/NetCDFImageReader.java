@@ -630,7 +630,9 @@ public class NetCDFImageReader extends GeoSpatialImageReader implements FileSetM
         }
     }
 
-    /** @see javax.imageio.ImageReader#read(int, javax.imageio.ImageReadParam) */
+    /**
+     * @see javax.imageio.ImageReader#read(int, javax.imageio.ImageReadParam)
+     */
     @Override
     @SuppressWarnings("PMD.ReplaceHashtableWithMap") // needed for BufferedImageConstructor
     public BufferedImage read(int imageIndex, ImageReadParam param) throws IOException {

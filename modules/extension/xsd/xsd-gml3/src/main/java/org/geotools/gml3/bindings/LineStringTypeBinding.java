@@ -92,7 +92,9 @@ public class LineStringTypeBinding extends AbstractComplexBinding {
         this.csFactory = csFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.LineStringType;

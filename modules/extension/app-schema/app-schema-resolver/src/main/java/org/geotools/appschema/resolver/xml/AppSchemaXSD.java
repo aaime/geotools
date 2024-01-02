@@ -53,30 +53,40 @@ public class AppSchemaXSD extends XSD {
         this.resolver = resolver;
     }
 
-    /** @see XSD#getNamespaceURI() */
+    /**
+     * @see XSD#getNamespaceURI()
+     */
     @Override
     public String getNamespaceURI() {
         return namespaceUri;
     }
 
-    /** @see XSD#getSchemaLocation() */
+    /**
+     * @see XSD#getSchemaLocation()
+     */
     @Override
     public String getSchemaLocation() {
         return schemaLocation;
     }
 
-    /** @param configuration */
+    /**
+     * @param configuration
+     */
     public void setConfiguration(AppSchemaConfiguration configuration) {
         this.configuration = configuration;
     }
 
-    /** @see XSD#createSchemaLocationResolver() */
+    /**
+     * @see XSD#createSchemaLocationResolver()
+     */
     @Override
     public SchemaLocationResolver createSchemaLocationResolver() {
         return new AppSchemaLocationResolver(resolver);
     }
 
-    /** @see XSD#addDependencies(java.util.Set) */
+    /**
+     * @see XSD#addDependencies(java.util.Set)
+     */
     @SuppressWarnings("unchecked")
     @Override
     protected void addDependencies(Set dependencies) {

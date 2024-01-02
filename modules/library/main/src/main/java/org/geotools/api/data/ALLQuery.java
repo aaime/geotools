@@ -169,7 +169,9 @@ class ALLQuery extends Query {
         return null;
     }
 
-    /** @return {@link SortBy#UNSORTED}. */
+    /**
+     * @return {@link SortBy#UNSORTED}.
+     */
     @Override
     public SortBy[] getSortBy() {
         return SortBy.UNSORTED;

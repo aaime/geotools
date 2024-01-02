@@ -22,7 +22,9 @@ import org.geotools.coverage.grid.io.GridFormatFinder;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Simone Giannecchini,GeoSolutions */
+/**
+ * @author Simone Giannecchini,GeoSolutions
+ */
 public class ImageMosaicServiceTest {
     @Test
     public void isAvailable() {

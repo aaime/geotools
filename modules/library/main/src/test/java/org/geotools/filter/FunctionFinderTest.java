@@ -33,7 +33,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** @author jody */
+/**
+ * @author jody
+ */
 public class FunctionFinderTest {
     static org.geotools.api.filter.FilterFactory ff;
 

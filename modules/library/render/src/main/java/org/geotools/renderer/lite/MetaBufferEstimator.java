@@ -81,10 +81,14 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
 
     protected FilterAttributeExtractor attributeExtractor = new FilterAttributeExtractor();
 
-    /** @uml.property name="estimateAccurate" */
+    /**
+     * @uml.property name="estimateAccurate"
+     */
     protected boolean estimateAccurate = true;
 
-    /** @uml.property name="buffer" */
+    /**
+     * @uml.property name="buffer"
+     */
     protected int buffer = 0;
 
     /**
@@ -113,12 +117,16 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         buffer = 0;
     }
 
-    /** @uml.property name="buffer" */
+    /**
+     * @uml.property name="buffer"
+     */
     public int getBuffer() {
         return buffer;
     }
 
-    /** @uml.property name="estimateAccurate" */
+    /**
+     * @uml.property name="estimateAccurate"
+     */
     public boolean isEstimateAccurate() {
         return estimateAccurate;
     }
@@ -151,7 +159,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         // nothing to do here
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Stroke) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Stroke)
+     */
     @Override
     public void visit(Stroke stroke) {
         try {
@@ -175,7 +185,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
                         && ((ConstantExpression) exp).getValue() == null);
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Symbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Symbolizer)
+     */
     @Override
     public void visit(Symbolizer sym) {
         if (sym instanceof PointSymbolizer) {
@@ -220,7 +232,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.PointSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.PointSymbolizer)
+     */
     @Override
     public void visit(PointSymbolizer ps) {
         if (ps.getGraphic() != null) {
@@ -228,7 +242,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.LineSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.LineSymbolizer)
+     */
     @Override
     public void visit(LineSymbolizer line) {
         if (line.getStroke() != null) {
@@ -236,7 +252,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.PolygonSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.PolygonSymbolizer)
+     */
     @Override
     public void visit(PolygonSymbolizer poly) {
         if (poly.getStroke() != null) {
@@ -244,7 +262,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.TextSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.TextSymbolizer)
+     */
     @Override
     public void visit(TextSymbolizer text) {
         // while we cannot account for the label size, we should at least
@@ -295,7 +315,9 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Graphic) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Graphic)
+     */
     @Override
     public void visit(Graphic gr) {
         try {
@@ -436,43 +458,57 @@ public class MetaBufferEstimator extends FilterAttributeExtractor implements Sty
         return attributeExtractor.isConstantExpression();
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Mark) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Mark)
+     */
     @Override
     public void visit(Mark mark) {
         // nothing to do here
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.ExternalGraphic) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.ExternalGraphic)
+     */
     @Override
     public void visit(ExternalGraphic exgr) {
         // nothing to do
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.PointPlacement) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.PointPlacement)
+     */
     @Override
     public void visit(PointPlacement pp) {
         // nothing to do here
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.AnchorPoint) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.AnchorPoint)
+     */
     @Override
     public void visit(AnchorPoint ap) {
         // nothing to do here
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Displacement) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Displacement)
+     */
     @Override
     public void visit(Displacement dis) {
         // nothing to do here
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.LinePlacement) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.LinePlacement)
+     */
     @Override
     public void visit(LinePlacement lp) {
         // nothing to do here
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Halo) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Halo)
+     */
     @Override
     public void visit(Halo halo) {
         // nothing to do here

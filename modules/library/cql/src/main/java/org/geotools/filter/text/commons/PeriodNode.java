@@ -38,7 +38,9 @@ public class PeriodNode {
     private Literal begin = null;
     private Literal end = null;
 
-    /** @see create */
+    /**
+     * @see create
+     */
     private PeriodNode(final Literal begin, final Literal end) {
         if (!(begin.getValue() instanceof Date)) {
             throw new InvalidParameterException("begin parameter must be Literal with Date");
@@ -90,12 +92,16 @@ public class PeriodNode {
         return period;
     }
 
-    /** @return Literal with begining date of period */
+    /**
+     * @return Literal with begining date of period
+     */
     public Literal getBeginning() {
         return this.begin;
     }
 
-    /** @return with ending date of period */
+    /**
+     * @return with ending date of period
+     */
     public Literal getEnding() {
         return this.end;
     }

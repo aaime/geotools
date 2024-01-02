@@ -28,7 +28,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultTemporalPrimitiveTest {
 
     private TemporalPrimitive temporalPrimitive1;

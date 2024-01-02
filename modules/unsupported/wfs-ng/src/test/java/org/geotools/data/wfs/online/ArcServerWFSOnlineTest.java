@@ -43,7 +43,9 @@ import org.geotools.util.factory.GeoTools;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class ArcServerWFSOnlineTest extends OnlineTestSupport {
 
     @Test

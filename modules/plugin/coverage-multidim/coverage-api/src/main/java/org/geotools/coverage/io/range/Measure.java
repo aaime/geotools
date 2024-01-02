@@ -58,6 +58,7 @@ public abstract class Measure<V extends Number, Q extends Quantity<Q>>
             return converter.convert(getValue());
         }
     }
+
     /**
      * Double representation of {@link #getValue()} in the requested unit (values outside of the
      * range {@link Double#MIN_VALUE} - {@link Double#MAX_VALUE} are represented as infinite).

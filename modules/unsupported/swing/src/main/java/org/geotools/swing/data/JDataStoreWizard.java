@@ -55,6 +55,7 @@ public class JDataStoreWizard extends JWizard {
     public JDataStoreWizard() {
         this(null, new HashMap<String, Object>());
     }
+
     /**
      * Quick transition from JFileDataStoreChooser; allowing applications to migrate to connection
      * parameters.

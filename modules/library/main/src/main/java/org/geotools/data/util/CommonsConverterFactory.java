@@ -381,6 +381,7 @@ public class CommonsConverterFactory implements ConverterFactory {
             return target.cast(timezone);
         }
     }
+
     /** No need for FastHashMap - we are only registering during construction */
     private static HashMap<Class<?>, Converter> register = new HashMap<>();
 

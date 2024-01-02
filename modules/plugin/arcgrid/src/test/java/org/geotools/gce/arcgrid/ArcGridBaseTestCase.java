@@ -26,7 +26,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Giannecchini */
+/**
+ * @author Giannecchini
+ */
 public abstract class ArcGridBaseTestCase {
 
     protected static final Logger LOGGER =

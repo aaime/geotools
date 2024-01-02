@@ -495,7 +495,9 @@ public class StrictWFS_1_x_Strategy extends AbstractWFSStrategy {
         return this.serviceVersion;
     }
 
-    /** @see WFSStrategy#getFeatureTypeNames() */
+    /**
+     * @see WFSStrategy#getFeatureTypeNames()
+     */
     @Override
     public Set<QName> getFeatureTypeNames() {
         return new HashSet<>(typeInfos.keySet());
@@ -513,7 +515,9 @@ public class StrictWFS_1_x_Strategy extends AbstractWFSStrategy {
         return new FeatureTypeInfoImpl(eType, config);
     }
 
-    /** @see WFSStrategy#getFilterCapabilities() */
+    /**
+     * @see WFSStrategy#getFilterCapabilities()
+     */
     @Override
     public FilterCapabilities getFilterCapabilities() {
         FilterCapabilities wfsFilterCapabilities = capabilities.getFilterCapabilities();
@@ -555,7 +559,9 @@ public class StrictWFS_1_x_Strategy extends AbstractWFSStrategy {
         return null;
     }
 
-    /** @see WFSStrategy#getServerSupportedOutputFormats(QName, WFSOperationType) */
+    /**
+     * @see WFSStrategy#getServerSupportedOutputFormats(QName, WFSOperationType)
+     */
     @Override
     public Set<String> getServerSupportedOutputFormats(QName typeName, WFSOperationType operation) {
 
@@ -574,7 +580,9 @@ public class StrictWFS_1_x_Strategy extends AbstractWFSStrategy {
         return ftypeFormats;
     }
 
-    /** @see #getDefaultOutputFormat */
+    /**
+     * @see #getDefaultOutputFormat
+     */
     @Override
     public Set<String> getServerSupportedOutputFormats(WFSOperationType operation) {
 
@@ -614,7 +622,9 @@ public class StrictWFS_1_x_Strategy extends AbstractWFSStrategy {
         return serverSupportedFormats;
     }
 
-    /** @see WFSStrategy#getSupportedCRSIdentifiers */
+    /**
+     * @see WFSStrategy#getSupportedCRSIdentifiers
+     */
     @Override
     public Set<String> getSupportedCRSIdentifiers(QName typeName) {
         FeatureTypeInfo featureTypeInfo = getFeatureTypeInfo(typeName);

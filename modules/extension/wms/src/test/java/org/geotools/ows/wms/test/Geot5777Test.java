@@ -31,10 +31,14 @@ import org.geotools.test.TestData;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class Geot5777Test {
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {}
 

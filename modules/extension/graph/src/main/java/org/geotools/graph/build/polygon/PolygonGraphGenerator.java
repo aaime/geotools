@@ -78,8 +78,10 @@ public class PolygonGraphGenerator implements GraphGenerator {
 
     /** store polygon to node mapping in spatial index * */
     Quadtree index;
+
     /** relationship between polygons in graph * */
     PolygonRelationship rel;
+
     /** the node/edge builder * */
     GraphBuilder builder;
 

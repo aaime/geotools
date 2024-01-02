@@ -95,13 +95,17 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         m_out.remove(e);
     }
 
-    /** @see DirectedNode#removeIn(DirectedEdge) */
+    /**
+     * @see DirectedNode#removeIn(DirectedEdge)
+     */
     @Override
     public void removeIn(DirectedEdge e) {
         m_in.remove(e);
     }
 
-    /** @see DirectedNode#removeOut(DirectedEdge) */
+    /**
+     * @see DirectedNode#removeOut(DirectedEdge)
+     */
     @Override
     public void removeOut(DirectedEdge e) {
         m_out.remove(e);
@@ -120,7 +124,9 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         return (getOutEdge((DirectedNode) other));
     }
 
-    /** @see DirectedNode#getInEdge(DirectedNode) */
+    /**
+     * @see DirectedNode#getInEdge(DirectedNode)
+     */
     @Override
     public Edge getInEdge(DirectedNode other) {
         // must explicitly check that the edge has node other, and one node this,
@@ -131,7 +137,9 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         return (null);
     }
 
-    /** @see DirectedNode#getOutEdge(DirectedNode) */
+    /**
+     * @see DirectedNode#getOutEdge(DirectedNode)
+     */
     @Override
     public Edge getOutEdge(DirectedNode other) {
         // must explicitly check that the edge has node other, and one node this,
@@ -151,13 +159,17 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         return (edges);
     }
 
-    /** @see DirectedNode#getInEdges() */
+    /**
+     * @see DirectedNode#getInEdges()
+     */
     @Override
     public List<DirectedEdge> getInEdges() {
         return (m_in);
     }
 
-    /** @see DirectedNode#getOutEdges() */
+    /**
+     * @see DirectedNode#getOutEdges()
+     */
     @Override
     public List<DirectedEdge> getOutEdges() {
         return (m_out);
@@ -177,7 +189,9 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         return (edges);
     }
 
-    /** @see DirectedNode#getInEdges(DirectedNode) */
+    /**
+     * @see DirectedNode#getInEdges(DirectedNode)
+     */
     @Override
     public List<DirectedEdge> getInEdges(DirectedNode other) {
         ArrayList<DirectedEdge> edges = new ArrayList<>();
@@ -187,7 +201,9 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         return (edges);
     }
 
-    /** @see DirectedNode#getOutEdges(DirectedNode) */
+    /**
+     * @see DirectedNode#getOutEdges(DirectedNode)
+     */
     @Override
     public List<DirectedEdge> getOutEdges(DirectedNode other) {
         ArrayList<DirectedEdge> edges = new ArrayList<>();
@@ -207,13 +223,17 @@ public class BasicDirectedNode extends BasicGraphable implements DirectedNode {
         return (m_in.size() + m_out.size());
     }
 
-    /** @see DirectedNode#getInDegree() */
+    /**
+     * @see DirectedNode#getInDegree()
+     */
     @Override
     public int getInDegree() {
         return (m_in.size());
     }
 
-    /** @see DirectedNode#getOutDegree() */
+    /**
+     * @see DirectedNode#getOutDegree()
+     */
     @Override
     public int getOutDegree() {
         return (m_out.size());

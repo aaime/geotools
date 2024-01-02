@@ -21,7 +21,9 @@ import org.geotools.xml.schema.Choice;
 import org.geotools.xml.schema.Element;
 import org.geotools.xml.schema.ElementGrouping;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class ChoiceGT implements Choice {
     private String id;
     private int min;
@@ -46,37 +48,49 @@ public class ChoiceGT implements Choice {
         this.children = children;
     }
 
-    /** @see org.geotools.xml.schema.Choice#getId() */
+    /**
+     * @see org.geotools.xml.schema.Choice#getId()
+     */
     @Override
     public String getId() {
         return id;
     }
 
-    /** @see org.geotools.xml.schema.ElementGrouping#getMaxOccurs() */
+    /**
+     * @see org.geotools.xml.schema.ElementGrouping#getMaxOccurs()
+     */
     @Override
     public int getMaxOccurs() {
         return max;
     }
 
-    /** @see org.geotools.xml.schema.ElementGrouping#getMinOccurs() */
+    /**
+     * @see org.geotools.xml.schema.ElementGrouping#getMinOccurs()
+     */
     @Override
     public int getMinOccurs() {
         return min;
     }
 
-    /** @see org.geotools.xml.schema.Choice#getChildren() */
+    /**
+     * @see org.geotools.xml.schema.Choice#getChildren()
+     */
     @Override
     public ElementGrouping[] getChildren() {
         return children;
     }
 
-    /** @see org.geotools.xml.schema.ElementGrouping#getGrouping() */
+    /**
+     * @see org.geotools.xml.schema.ElementGrouping#getGrouping()
+     */
     @Override
     public int getGrouping() {
         return CHOICE;
     }
 
-    /** @see org.geotools.xml.schema.ElementGrouping#findChildElement(java.lang.String) */
+    /**
+     * @see org.geotools.xml.schema.ElementGrouping#findChildElement(java.lang.String)
+     */
     @Override
     public Element findChildElement(String name) {
         if (children == null) {

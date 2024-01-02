@@ -80,7 +80,9 @@ public class CategorizeBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Categorize;

@@ -25,6 +25,7 @@ public class Capabilities {
     private Service service;
     private String version;
     private String updateSequence;
+
     /**
      * The Service contains metadata about the OWS.
      *
@@ -34,7 +35,9 @@ public class Capabilities {
         return service;
     }
 
-    /** @param service The service to set. */
+    /**
+     * @param service The service to set.
+     */
     public void setService(Service service) {
         this.service = service;
     }
@@ -48,17 +51,23 @@ public class Capabilities {
         return version;
     }
 
-    /** @param version The version to set. */
+    /**
+     * @param version The version to set.
+     */
     public void setVersion(String version) {
         this.version = version;
     }
 
-    /** @return the updateSequence */
+    /**
+     * @return the updateSequence
+     */
     public String getUpdateSequence() {
         return updateSequence;
     }
 
-    /** @param updateSequence the updateSequence to set */
+    /**
+     * @param updateSequence the updateSequence to set
+     */
     public void setUpdateSequence(String updateSequence) {
         this.updateSequence = updateSequence;
     }

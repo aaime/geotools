@@ -27,29 +27,39 @@ public interface Element extends ElementGrouping {
     /** Returns True when the instance of this XML Schema Element is abstract, false otherwise */
     public boolean isAbstract();
 
-    /** @see Schema#getBlockDefault() */
+    /**
+     * @see Schema#getBlockDefault()
+     */
     public int getBlock();
 
     /** This returns the default value for the Element as a String */
     public String getDefault();
 
-    /** @see Schema#getFinalDefault() */
+    /**
+     * @see Schema#getFinalDefault()
+     */
     public int getFinal();
 
     /** This returns the fixed value for the Element as a String */
     public String getFixed();
 
-    /** @see Schema#isElementFormDefault() */
+    /**
+     * @see Schema#isElementFormDefault()
+     */
     public boolean isForm();
 
     /** The Schema ID for this element definition. */
     public String getId();
 
-    /** @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs() */
+    /**
+     * @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs()
+     */
     @Override
     public int getMaxOccurs();
 
-    /** @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs() */
+    /**
+     * @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs()
+     */
     @Override
     public int getMinOccurs();
 

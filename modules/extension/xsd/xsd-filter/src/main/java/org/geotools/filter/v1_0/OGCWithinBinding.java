@@ -48,7 +48,9 @@ public class OGCWithinBinding extends AbstractComplexBinding {
         this.geometryFactory = geometryFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Within;

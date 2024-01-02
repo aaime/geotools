@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBCGroupByVisitorTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaGroupByVisitorTestSetup extends JDBCGroupByVisitorTestSetup {
 
     private static final String BUILDINGS_TABLE = "buildings_group_by_tests";

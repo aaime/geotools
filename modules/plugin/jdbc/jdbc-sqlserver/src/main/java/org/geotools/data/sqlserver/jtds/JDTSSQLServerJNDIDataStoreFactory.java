@@ -18,7 +18,9 @@ package org.geotools.data.sqlserver.jtds;
 
 import org.geotools.data.sqlserver.SQLServerJNDIDataStoreFactory;
 
-/** @author mprins */
+/**
+ * @author mprins
+ */
 public class JDTSSQLServerJNDIDataStoreFactory extends SQLServerJNDIDataStoreFactory {
 
     public JDTSSQLServerJNDIDataStoreFactory() {

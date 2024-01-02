@@ -46,31 +46,42 @@ public class UnknownFormat extends AbstractGridFormat implements Format {
         writeParameters = null;
     }
 
-    /** @see AbstractGridFormat#getReader(Object) */
+    /**
+     * @see AbstractGridFormat#getReader(Object)
+     */
     @Override
     public AbstractGridCoverage2DReader getReader(java.lang.Object source) {
         throw new UnsupportedOperationException("Trying to get a reader from an unknown format.");
     }
 
-    /** @see AbstractGridFormat#getWriter(Object) */
+    /**
+     * @see AbstractGridFormat#getWriter(Object)
+     */
     @Override
     public GridCoverageWriter getWriter(Object destination) {
         throw new UnsupportedOperationException("Trying to get a writer from an unknown format.");
     }
 
-    /** @see AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public AbstractGridCoverage2DReader getReader(Object source, Hints hints) {
         throw new UnsupportedOperationException("Trying to get a reader from an unknown format.");
     }
 
-    /** @see AbstractGridFormat#getDefaultImageIOWriteParameters() */
+    /**
+     * @see AbstractGridFormat#getDefaultImageIOWriteParameters()
+     */
     @Override
     public GeoToolsWriteParams getDefaultImageIOWriteParameters() {
         throw new UnsupportedOperationException(
                 "Trying to get a writing parameters from an unknown format.");
     }
-    /** @see AbstractGridFormat#accepts(Object) */
+
+    /**
+     * @see AbstractGridFormat#accepts(Object)
+     */
     @Override
     public boolean accepts(Object input, Hints hints) {
         return false;

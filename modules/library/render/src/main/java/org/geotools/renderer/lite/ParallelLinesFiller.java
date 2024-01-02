@@ -63,6 +63,7 @@ public class ParallelLinesFiller {
 
     /** The set of parallel line definitions to paint */
     List<Line> lines;
+
     /** The repetition pattern */
     double xStep;
 

@@ -62,7 +62,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Polygon;
 
-/** @author DamianoG */
+/**
+ * @author DamianoG
+ */
 public class ZonalStatsProcessTest extends Assert {
 
     private RasterZonalStatistics process;

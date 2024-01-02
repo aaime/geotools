@@ -315,7 +315,8 @@ public class XmlComplexFeatureParser extends XmlFeatureParser<FeatureType, Featu
                     // We've got the attribute but the parser is still
                     // pointing at this tag so
                     // we have to advance it till we get to the end tag.
-                    while (parser.next() != END_ELEMENT) ;
+                    while (parser.next() != END_ELEMENT)
+                        ;
 
                     return new ReturnAttribute(id, currentTagName, hrefAttribute);
                 }
@@ -386,7 +387,8 @@ public class XmlComplexFeatureParser extends XmlFeatureParser<FeatureType, Featu
                         // We've got the attribute but the parser is still
                         // pointing at this tag so
                         // we have to advance it till we get to the end tag.
-                        while (parser.next() != END_ELEMENT) ;
+                        while (parser.next() != END_ELEMENT)
+                            ;
 
                         return new ReturnAttribute(id, currentTagName, list);
                     }
@@ -439,7 +441,8 @@ public class XmlComplexFeatureParser extends XmlFeatureParser<FeatureType, Featu
                     // We've got the attribute but the parser is still
                     // pointing at this tag so
                     // we have to advance it till we get to the end tag.
-                    while (parser.next() != END_ELEMENT) ;
+                    while (parser.next() != END_ELEMENT)
+                        ;
 
                     return new ReturnAttribute(id, currentTagName, attributeValue);
                 } else if (type instanceof AttributeType) {

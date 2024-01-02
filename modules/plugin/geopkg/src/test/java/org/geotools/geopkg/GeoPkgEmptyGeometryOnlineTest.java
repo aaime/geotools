@@ -74,6 +74,7 @@ public class GeoPkgEmptyGeometryOnlineTest extends JDBCEmptyGeometryOnlineTest {
     public void testEmptyMultiPolygon() throws Exception {
         testInsertEmptyGeometry("MULTIPOLYGON");
     }
+
     // Since we can't have multiple geom columns use multiple tables instead.
     private void testInsertEmptyGeometry(String type) throws Exception {
         WKTReader reader = new WKTReader();

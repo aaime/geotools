@@ -182,6 +182,7 @@ public class MemoryDataStoreTest extends DataTestCase {
         int size = features.size();
         Assert.assertEquals(roadFeatures.length, size);
     }
+
     /*
      * Test for void MemoryDataStore(FeatureReader)
      */

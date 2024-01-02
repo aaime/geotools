@@ -44,7 +44,9 @@ import org.geotools.xsd.Node;
  */
 public class _axisDescriptionBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS._axisDescription;

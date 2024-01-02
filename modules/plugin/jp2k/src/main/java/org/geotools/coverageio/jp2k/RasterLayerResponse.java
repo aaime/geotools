@@ -76,7 +76,9 @@ import org.geotools.util.factory.Hints;
  */
 class RasterLayerResponse {
 
-    /** @author Simone Giannecchini, GeoSolutions SAS */
+    /**
+     * @author Simone Giannecchini, GeoSolutions SAS
+     */
     class GranuleLoader implements Callable<RenderedImage> {
 
         final ReferencedEnvelope cropBBox;

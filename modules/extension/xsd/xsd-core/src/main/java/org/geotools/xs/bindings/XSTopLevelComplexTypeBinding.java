@@ -49,7 +49,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSTopLevelComplexTypeBinding extends AbstractComplexBinding {
-    /** @generatedextends AbstractComplexBinding */
+    /**
+     * @generatedextends AbstractComplexBinding
+     */
     @Override
     public QName getTarget() {
         return XS.TOPLEVELCOMPLEXTYPE;

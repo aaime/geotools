@@ -55,10 +55,13 @@ public class CRSEnvelope implements Bounds {
 
     /** Min of axis 0 as specified by CRS */
     protected double minX;
+
     /** Min of axis 1 as specified by CRS */
     protected double minY;
+
     /** Max of axis 0 as specified by CRS */
     protected double maxX;
+
     /** Max of axis 1 as specified by CRS */
     protected double maxY;
 
@@ -144,7 +147,9 @@ public class CRSEnvelope implements Bounds {
         setSRSName(epsgCode);
     }
 
-    /** @see getSRSName */
+    /**
+     * @see getSRSName
+     */
     public String getEPSGCode() {
         return srsName;
     }
@@ -329,6 +334,7 @@ public class CRSEnvelope implements Bounds {
     public void setResX(double resX) {
         this.resX = resX;
     }
+
     /**
      * Optional spatial resolution in the units of crs.
      *
@@ -337,6 +343,7 @@ public class CRSEnvelope implements Bounds {
     public double getResY() {
         return resY;
     }
+
     /**
      * Optional spatial resolution in the units of crs.
      *

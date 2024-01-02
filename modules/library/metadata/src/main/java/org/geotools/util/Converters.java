@@ -60,6 +60,7 @@ public final class Converters {
         }
         return registry;
     }
+
     //    /**
     //     * Used to combine provided hints with global GeoTools defaults.
     //     *

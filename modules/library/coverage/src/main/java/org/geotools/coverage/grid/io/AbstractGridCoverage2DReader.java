@@ -979,13 +979,17 @@ public abstract class AbstractGridCoverage2DReader implements GridCoverage2DRead
         return getMetadataNames();
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getMetadataNames() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getMetadataNames()
+     */
     @Override
     public String[] getMetadataNames() {
         return null;
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getMetadataValue(java.lang.String) */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getMetadataValue(java.lang.String)
+     */
     @Override
     public String getMetadataValue(final String name) {
         return getMetadataValue(coverageName, name);
@@ -1000,7 +1004,9 @@ public abstract class AbstractGridCoverage2DReader implements GridCoverage2DRead
         return null;
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getGridCoverageCount() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getGridCoverageCount()
+     */
     @Override
     public int getGridCoverageCount() {
         return 1;

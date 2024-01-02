@@ -445,10 +445,13 @@ public class Preprocessor extends Format {
     private static final class Replacement {
         /** The lower index in the target string, inclusive. */
         public final int lower;
+
         /** The upper index in the target string, exclusive. */
         public final int upper;
+
         /** The shift from source string to target string. */
         public final int shift;
+
         /** The next element in the linked list. */
         public Replacement next;
 

@@ -716,7 +716,8 @@ public enum ContrastEnhancementType {
      */
     LookupTable createByteLookupTable(Map<String, Object> params) {
         throw new UnsupportedOperationException();
-    };
+    }
+    ;
 
     /**
      * Create a {@link PiecewiseTransform1D} for the general case (!= Byte dataType). Different

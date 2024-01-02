@@ -45,7 +45,9 @@ import org.junit.Test;
 import org.locationtech.jts.util.Stopwatch;
 import org.xml.sax.helpers.NamespaceSupport;
 
-/** @author Eric Sword */
+/**
+ * @author Eric Sword
+ */
 public class PolymorphicChainingTest extends AppSchemaTestSupport {
     static final String EX_NS = "urn:example:xmlns:ArtifactML:1.0";
 

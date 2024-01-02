@@ -63,7 +63,9 @@ import org.geotools.xsd.InstanceComponent;
 public class ResultTypeTypeBinding extends AbstractSimpleBinding {
     public ResultTypeTypeBinding(WfsFactory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.ResultTypeType;

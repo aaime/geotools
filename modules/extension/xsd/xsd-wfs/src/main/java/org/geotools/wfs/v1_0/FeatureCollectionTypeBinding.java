@@ -60,12 +60,16 @@ public class FeatureCollectionTypeBinding
         return super.getProperty(object, name);
     }
 
-    /** @return the encoder */
+    /**
+     * @return the encoder
+     */
     public Encoder getEncoder() {
         return encoder;
     }
 
-    /** @param encoder the encoder to set */
+    /**
+     * @param encoder the encoder to set
+     */
     public void setEncoder(Encoder encoder) {
         this.encoder = encoder;
     }

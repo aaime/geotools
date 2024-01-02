@@ -76,6 +76,7 @@ public abstract class DataFeatureCollection implements SimpleFeatureCollection {
     protected DataFeatureCollection() {
         this("features" + (unique++));
     }
+
     /** Collection based on a generic collection */
     protected DataFeatureCollection(String id) {
         this(id, null);
@@ -119,7 +120,8 @@ public abstract class DataFeatureCollection implements SimpleFeatureCollection {
     @Override
     public abstract ReferencedEnvelope getBounds();
 
-    public abstract int getCount() throws IOException;;
+    public abstract int getCount() throws IOException;
+    ;
 
     // public abstract SimpleFeatureCollection collection() throws IOException;
 
@@ -140,6 +142,7 @@ public abstract class DataFeatureCollection implements SimpleFeatureCollection {
     protected FeatureWriter<SimpleFeatureType, SimpleFeature> writer() throws IOException {
         return null;
     }
+
     //
     // SimpleFeatureCollection methods
     //
@@ -159,6 +162,7 @@ public abstract class DataFeatureCollection implements SimpleFeatureCollection {
     protected String id;
 
     protected SimpleFeatureType schema;
+
     /**
      * SimpleFeatureIterator is entirely based on iterator().
      *
@@ -268,6 +272,7 @@ public abstract class DataFeatureCollection implements SimpleFeatureCollection {
             }
         }
     }
+
     //
     // Off into implementation land!
     //

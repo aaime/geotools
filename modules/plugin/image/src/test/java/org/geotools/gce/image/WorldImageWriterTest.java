@@ -54,14 +54,19 @@ public class WorldImageWriterTest extends WorldImageBaseTestCase {
         File testData = TestData.file(this, ".");
         new File(testData, "write").mkdir();
     }
+
     /**
      * This method simply read all the respecting a predefined pattern inside the testData directory
      * and then it tries to read, write and re-read them back. All the possible errors are caught.
      */
     @Test
     public void testWrite()
-            throws MalformedURLException, IOException, IllegalArgumentException, FactoryException,
-                    TransformException, ParseException {
+            throws MalformedURLException,
+                    IOException,
+                    IllegalArgumentException,
+                    FactoryException,
+                    TransformException,
+                    ParseException {
 
         // checking test data directory for all kind of inputs
         final File test_data_dir = TestData.file(this, null);
@@ -96,7 +101,10 @@ public class WorldImageWriterTest extends WorldImageBaseTestCase {
      * @param source Object The object on disk representing the coverage to test.
      */
     private File write(Object source, String format)
-            throws IOException, IllegalArgumentException, FactoryException, TransformException,
+            throws IOException,
+                    IllegalArgumentException,
+                    FactoryException,
+                    TransformException,
                     ParseException {
         // instantiating a reader
         WorldImageReader wiReader = new WorldImageReader(source);

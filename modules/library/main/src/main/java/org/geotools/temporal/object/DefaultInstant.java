@@ -35,11 +35,13 @@ public class DefaultInstant extends DefaultTemporalGeometricPrimitive implements
      * The collection may be empty.
      */
     private Collection<Period> begunBy;
+
     /**
      * This is the Collection of temporal {@link Period}s, for which this Instant is the end. The
      * collection may be empty.
      */
     private Collection<Period> endBy;
+
     /**
      * This is the position of this TM_Instant, it shall be associated with a single temporal
      * reference system.

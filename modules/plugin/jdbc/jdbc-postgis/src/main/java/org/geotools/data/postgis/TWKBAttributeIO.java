@@ -138,7 +138,9 @@ class TWKBAttributeIO {
         }
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#read(ResultSet, int) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#read(ResultSet, int)
+     */
     public Object read(ResultSet rs, String columnName) throws IOException {
         try {
             byte[] bytes = rs.getBytes(columnName);
@@ -153,7 +155,9 @@ class TWKBAttributeIO {
         }
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#read(ResultSet, int) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#read(ResultSet, int)
+     */
     public Object read(ResultSet rs, int columnIndex, Class<?> binding) throws IOException {
         try {
             byte[] bytes = rs.getBytes(columnIndex);
@@ -175,7 +179,9 @@ class TWKBAttributeIO {
         }
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#read(ResultSet, int) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#read(ResultSet, int)
+     */
     public Object read(ResultSet rs, String columnName, Class<?> binding) throws IOException {
         try {
             byte[] bytes = rs.getBytes(columnName);
@@ -227,7 +233,9 @@ class TWKBAttributeIO {
         return gf.createPolygon(shell);
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#write(PreparedStatement, int, Object) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#write(PreparedStatement, int, Object)
+     */
     public void write(PreparedStatement ps, int position, Object value) throws IOException {
         try {
             if (value == null) {

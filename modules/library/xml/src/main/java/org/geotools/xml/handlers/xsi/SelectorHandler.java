@@ -35,7 +35,9 @@ public class SelectorHandler extends XSIElementHandler {
     private String id;
     private String xpath;
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     @SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
     public int hashCode() {
@@ -44,7 +46,9 @@ public class SelectorHandler extends XSIElementHandler {
                 * ((xpath == null) ? 1 : xpath.hashCode());
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XSIElementHandler getHandler(String namespaceURI, String localName) {
         return null;
@@ -70,29 +74,39 @@ public class SelectorHandler extends XSIElementHandler {
         }
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getLocalName() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getLocalName()
+     */
     @Override
     public String getLocalName() {
         return LOCALNAME;
     }
 
-    /** @return id attribute value */
+    /**
+     * @return id attribute value
+     */
     public String getId() {
         return id;
     }
 
-    /** @return xPath attribute value */
+    /**
+     * @return xPath attribute value
+     */
     public String getXpath() {
         return xpath;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandlerType() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandlerType()
+     */
     @Override
     public int getHandlerType() {
         return DEFAULT;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String namespaceURI, String localName) {
         // do nothing

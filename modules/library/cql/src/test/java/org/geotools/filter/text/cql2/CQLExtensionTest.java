@@ -201,6 +201,7 @@ public class CQLExtensionTest {
         Assert.assertTrue(filters.get(1) instanceof IncludeFilter);
         Assert.assertTrue(filters.get(2) instanceof PropertyIsEqualTo);
     }
+
     /** Tests null factory as parameter. */
     @Test
     public void testNullFilterFactory() throws Exception {
@@ -352,6 +353,7 @@ public class CQLExtensionTest {
         Expression expr2 = eq.getExpression2();
         assertFunctionCompositionComplex(expr2);
     }
+
     /**
      * @param result strConcat( strConcat(QS, strConcat('/', RT)), strConcat(strConcat('/', NUMB),
      *     strConcat('/', BSUFF)) )")

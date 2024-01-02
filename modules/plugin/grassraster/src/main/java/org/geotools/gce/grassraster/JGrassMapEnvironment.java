@@ -66,10 +66,12 @@ public class JGrassMapEnvironment {
      * The Mapset file of the map, through which the {@linkplain JGrassMapEnvironment} was built.
      */
     private File MAPSET = null;
+
     /**
      * The Location file of the map, through which the {@linkplain JGrassMapEnvironment} was built.
      */
     private File LOCATION = null;
+
     /** The DEFAULT_WIND file, that keeps the default region informations. */
     private File DEFAULT_WIND = null;
 
@@ -126,6 +128,7 @@ public class JGrassMapEnvironment {
 
     /** The CELLMISC_RANGE file, holding the range values for the map. */
     private File CELLMISC_RANGE = null;
+
     /** The CELLMISC_NULL file, holding bitmap for novalues for the map. */
     private File CELLMISC_NULL = null;
 
@@ -687,6 +690,7 @@ public class JGrassMapEnvironment {
         }
         return dataRange;
     }
+
     /**
      * Reads the data range by reading the map.
      *

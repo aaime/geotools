@@ -148,7 +148,9 @@ public abstract class BaseFeatureCollection<T extends FeatureType, F extends Fea
         }
     }
 
-    /** @return <tt>true</tt> if this collection contains no elements. */
+    /**
+     * @return <tt>true</tt> if this collection contains no elements.
+     */
     @Override
     public boolean isEmpty() {
         try (FeatureIterator<F> iterator = features()) {
@@ -208,6 +210,7 @@ public abstract class BaseFeatureCollection<T extends FeatureType, F extends Fea
         }
         return new FilteringFeatureCollection<>(this, filter);
     }
+
     /**
      * Obtained sorted contents, only implemented for SimpleFeature at present.
      *

@@ -51,7 +51,10 @@ public class SLDNormalizeBinding extends AbstractComplexBinding {
         this.styleFactory = styleFactory;
         this.filterFactory = filterFactory;
     }
-    /** @generated */
+
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.NORMALIZE;

@@ -113,7 +113,9 @@ public abstract class DiffFeatureWriter implements FeatureWriter<SimpleFeatureTy
         }
     }
 
-    /** @see FeatureWriter#remove() */
+    /**
+     * @see FeatureWriter#remove()
+     */
     @Override
     public void remove() throws IOException {
         if (live != null) {

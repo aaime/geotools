@@ -45,7 +45,9 @@ public class RingTypeBinding extends AbstractComplexBinding implements Comparabl
         this.gf = gf;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.RingType;

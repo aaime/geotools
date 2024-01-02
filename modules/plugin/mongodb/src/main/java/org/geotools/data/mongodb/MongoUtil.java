@@ -59,7 +59,9 @@ import org.geotools.api.feature.type.Name;
 import org.geotools.data.mongodb.data.SchemaStoreDirectory;
 import org.geotools.http.HTTPClient;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoUtil {
 
     public static Object getDBOValue(DBObject dbo, String path) {

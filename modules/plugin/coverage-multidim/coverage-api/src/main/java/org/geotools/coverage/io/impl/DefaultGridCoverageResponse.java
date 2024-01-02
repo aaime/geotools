@@ -97,35 +97,40 @@ public class DefaultGridCoverageResponse implements GridCoverageResponse {
 
     @Override
     public boolean[] evaluate(Position point, boolean[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException {
         return gridCoverage.evaluate(point, destination);
     }
 
     @Override
     public byte[] evaluate(Position point, byte[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException {
         return gridCoverage.evaluate(point, destination);
     }
 
     @Override
     public int[] evaluate(Position point, int[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException {
         return gridCoverage.evaluate(point, destination);
     }
 
     @Override
     public float[] evaluate(Position point, float[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException {
         return gridCoverage.evaluate(point, destination);
     }
 
     @Override
     public double[] evaluate(Position point, double[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException {
         return gridCoverage.evaluate(point, destination);
     }

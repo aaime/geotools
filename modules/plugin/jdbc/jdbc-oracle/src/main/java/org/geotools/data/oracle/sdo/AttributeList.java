@@ -69,6 +69,7 @@ public class AttributeList extends AbstractList {
                             + Array.getLength(ARRAY));
         }
     }
+
     /**
      * Used to grab value from array.
      *
@@ -81,6 +82,7 @@ public class AttributeList extends AbstractList {
         rangeCheck(index);
         return Array.get(ARRAY, START + STEP * index + OFFSET);
     }
+
     /** Quick double access */
     public double getDouble(int index) {
         rangeCheck(index);
@@ -108,6 +110,7 @@ public class AttributeList extends AbstractList {
         }
         return array;
     }
+
     /**
      * Check if the given index is in range. If not, throw an appropriate runtime exception. This
      * method does *not* check if the index is negative: It is always used immediately prior to an
@@ -117,6 +120,7 @@ public class AttributeList extends AbstractList {
         if (index >= SIZE)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + SIZE);
     }
+
     /**
      * Used to
      *

@@ -197,6 +197,7 @@ public class BBOXImpl extends AbstractPreparedGeometryFilter implements BBOX {
             }
         }
     }
+
     /**
      * Generate bounding polygon for provided envelope.
      *

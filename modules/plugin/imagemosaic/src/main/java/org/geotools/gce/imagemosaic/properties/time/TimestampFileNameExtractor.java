@@ -34,7 +34,9 @@ import org.geotools.util.DateTimeParser;
 import org.geotools.util.DateTimeParser.FormatAndPrecision;
 import org.geotools.util.logging.Logging;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 class TimestampFileNameExtractor extends RegExPropertiesCollector {
     private static final Logger LOGGER = Logging.getLogger(TimestampFileNameExtractor.class);
 

@@ -460,12 +460,16 @@ public class WMTSCapabilities extends Capabilities {
         return layer;
     }
 
-    /** @param type */
+    /**
+     * @param type
+     */
     private void setType(WMTSServiceType type) {
         this.type = type;
     }
 
-    /** @return the type */
+    /**
+     * @return the type
+     */
     public WMTSServiceType getType() {
         return type;
     }
@@ -489,7 +493,9 @@ public class WMTSCapabilities extends Capabilities {
         return request;
     }
 
-    /** @param request The request to set. */
+    /**
+     * @param request The request to set.
+     */
     public void setRequest(WMTSRequest request) {
         this.request = request;
     }
@@ -506,7 +512,9 @@ public class WMTSCapabilities extends Capabilities {
         this.exceptions = exceptions;
     }
 
-    /** @return An unmodifiable list of MatrixSets */
+    /**
+     * @return An unmodifiable list of MatrixSets
+     */
     public List<TileMatrixSet> getMatrixSets() {
         return Collections.unmodifiableList(matrixes);
     }

@@ -33,6 +33,7 @@ public final class Geobuf {
          * @return A list containing the keys.
          */
         java.util.List<java.lang.String> getKeysList();
+
         /**
          *
          *
@@ -45,6 +46,7 @@ public final class Geobuf {
          * @return The count of keys.
          */
         int getKeysCount();
+
         /**
          *
          *
@@ -58,6 +60,7 @@ public final class Geobuf {
          * @return The keys at the given index.
          */
         java.lang.String getKeys(int index);
+
         /**
          *
          *
@@ -84,6 +87,7 @@ public final class Geobuf {
          * @return Whether the dimensions field is set.
          */
         boolean hasDimensions();
+
         /**
          *
          *
@@ -109,6 +113,7 @@ public final class Geobuf {
          * @return Whether the precision field is set.
          */
         boolean hasPrecision();
+
         /**
          *
          *
@@ -128,12 +133,14 @@ public final class Geobuf {
          * @return Whether the featureCollection field is set.
          */
         boolean hasFeatureCollection();
+
         /**
          * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
          *
          * @return The featureCollection.
          */
         org.geotools.data.geobuf.Geobuf.Data.FeatureCollection getFeatureCollection();
+
         /** <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code> */
         org.geotools.data.geobuf.Geobuf.Data.FeatureCollectionOrBuilder
                 getFeatureCollectionOrBuilder();
@@ -144,12 +151,14 @@ public final class Geobuf {
          * @return Whether the feature field is set.
          */
         boolean hasFeature();
+
         /**
          * <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code>
          *
          * @return The feature.
          */
         org.geotools.data.geobuf.Geobuf.Data.Feature getFeature();
+
         /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
         org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder getFeatureOrBuilder();
 
@@ -159,23 +168,27 @@ public final class Geobuf {
          * @return Whether the geometry field is set.
          */
         boolean hasGeometry();
+
         /**
          * <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code>
          *
          * @return The geometry.
          */
         org.geotools.data.geobuf.Geobuf.Data.Geometry getGeometry();
+
         /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
         org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometryOrBuilder();
 
         public org.geotools.data.geobuf.Geobuf.Data.DataTypeCase getDataTypeCase();
     }
+
     /** Protobuf type {@code org.geotools.data.geobuf.Data} */
     public static final class Data extends com.google.protobuf.GeneratedMessageV3
             implements
             // @@protoc_insertion_point(message_implements:org.geotools.data.geobuf.Data)
             DataOrBuilder {
         private static final long serialVersionUID = 0L;
+
         // Use Data.newBuilder() to construct.
         private Data(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
             super(builder);
@@ -361,12 +374,14 @@ public final class Geobuf {
              * @return Whether the geometry field is set.
              */
             boolean hasGeometry();
+
             /**
              * <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code>
              *
              * @return The geometry.
              */
             org.geotools.data.geobuf.Geobuf.Data.Geometry getGeometry();
+
             /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
             org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometryOrBuilder();
 
@@ -376,12 +391,14 @@ public final class Geobuf {
              * @return Whether the id field is set.
              */
             boolean hasId();
+
             /**
              * <code>string id = 11;</code>
              *
              * @return The id.
              */
             java.lang.String getId();
+
             /**
              * <code>string id = 11;</code>
              *
@@ -395,6 +412,7 @@ public final class Geobuf {
              * @return Whether the intId field is set.
              */
             boolean hasIntId();
+
             /**
              * <code>sint64 int_id = 12;</code>
              *
@@ -412,6 +430,7 @@ public final class Geobuf {
              * <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code>
              */
             java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> getValuesList();
+
             /**
              *
              *
@@ -422,6 +441,7 @@ public final class Geobuf {
              * <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code>
              */
             org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index);
+
             /**
              *
              *
@@ -432,6 +452,7 @@ public final class Geobuf {
              * <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code>
              */
             int getValuesCount();
+
             /**
              *
              *
@@ -443,6 +464,7 @@ public final class Geobuf {
              */
             java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                     getValuesOrBuilderList();
+
             /**
              *
              *
@@ -466,6 +488,7 @@ public final class Geobuf {
              * @return A list containing the properties.
              */
             java.util.List<java.lang.Integer> getPropertiesList();
+
             /**
              *
              *
@@ -478,6 +501,7 @@ public final class Geobuf {
              * @return The count of properties.
              */
             int getPropertiesCount();
+
             /**
              *
              *
@@ -504,6 +528,7 @@ public final class Geobuf {
              * @return A list containing the customProperties.
              */
             java.util.List<java.lang.Integer> getCustomPropertiesList();
+
             /**
              *
              *
@@ -516,6 +541,7 @@ public final class Geobuf {
              * @return The count of customProperties.
              */
             int getCustomPropertiesCount();
+
             /**
              *
              *
@@ -532,12 +558,14 @@ public final class Geobuf {
 
             public org.geotools.data.geobuf.Geobuf.Data.Feature.IdTypeCase getIdTypeCase();
         }
+
         /** Protobuf type {@code org.geotools.data.geobuf.Data.Feature} */
         public static final class Feature extends com.google.protobuf.GeneratedMessageV3
                 implements
                 // @@protoc_insertion_point(message_implements:org.geotools.data.geobuf.Data.Feature)
                 FeatureOrBuilder {
             private static final long serialVersionUID = 0L;
+
             // Use Feature.newBuilder() to construct.
             private Feature(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
                 super(builder);
@@ -736,6 +764,7 @@ public final class Geobuf {
                 private IdTypeCase(int value) {
                     this.value = value;
                 }
+
                 /**
                  * @param value The number of the enum to look for.
                  * @return The enum associated with the given number.
@@ -770,6 +799,7 @@ public final class Geobuf {
 
             public static final int GEOMETRY_FIELD_NUMBER = 1;
             private org.geotools.data.geobuf.Geobuf.Data.Geometry geometry_;
+
             /**
              * <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code>
              *
@@ -779,6 +809,7 @@ public final class Geobuf {
             public boolean hasGeometry() {
                 return ((bitField0_ & 0x00000001) != 0);
             }
+
             /**
              * <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code>
              *
@@ -790,6 +821,7 @@ public final class Geobuf {
                         ? org.geotools.data.geobuf.Geobuf.Data.Geometry.getDefaultInstance()
                         : geometry_;
             }
+
             /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometryOrBuilder() {
@@ -799,6 +831,7 @@ public final class Geobuf {
             }
 
             public static final int ID_FIELD_NUMBER = 11;
+
             /**
              * <code>string id = 11;</code>
              *
@@ -807,6 +840,7 @@ public final class Geobuf {
             public boolean hasId() {
                 return idTypeCase_ == 11;
             }
+
             /**
              * <code>string id = 11;</code>
              *
@@ -828,6 +862,7 @@ public final class Geobuf {
                     return s;
                 }
             }
+
             /**
              * <code>string id = 11;</code>
              *
@@ -851,6 +886,7 @@ public final class Geobuf {
             }
 
             public static final int INT_ID_FIELD_NUMBER = 12;
+
             /**
              * <code>sint64 int_id = 12;</code>
              *
@@ -860,6 +896,7 @@ public final class Geobuf {
             public boolean hasIntId() {
                 return idTypeCase_ == 12;
             }
+
             /**
              * <code>sint64 int_id = 12;</code>
              *
@@ -875,6 +912,7 @@ public final class Geobuf {
 
             public static final int VALUES_FIELD_NUMBER = 13;
             private java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> values_;
+
             /**
              *
              *
@@ -888,6 +926,7 @@ public final class Geobuf {
             public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> getValuesList() {
                 return values_;
             }
+
             /**
              *
              *
@@ -902,6 +941,7 @@ public final class Geobuf {
                     getValuesOrBuilderList() {
                 return values_;
             }
+
             /**
              *
              *
@@ -915,6 +955,7 @@ public final class Geobuf {
             public int getValuesCount() {
                 return values_.size();
             }
+
             /**
              *
              *
@@ -928,6 +969,7 @@ public final class Geobuf {
             public org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index) {
                 return values_.get(index);
             }
+
             /**
              *
              *
@@ -945,6 +987,7 @@ public final class Geobuf {
 
             public static final int PROPERTIES_FIELD_NUMBER = 14;
             private com.google.protobuf.Internal.IntList properties_;
+
             /**
              *
              *
@@ -960,6 +1003,7 @@ public final class Geobuf {
             public java.util.List<java.lang.Integer> getPropertiesList() {
                 return properties_;
             }
+
             /**
              *
              *
@@ -974,6 +1018,7 @@ public final class Geobuf {
             public int getPropertiesCount() {
                 return properties_.size();
             }
+
             /**
              *
              *
@@ -994,6 +1039,7 @@ public final class Geobuf {
 
             public static final int CUSTOM_PROPERTIES_FIELD_NUMBER = 15;
             private com.google.protobuf.Internal.IntList customProperties_;
+
             /**
              *
              *
@@ -1009,6 +1055,7 @@ public final class Geobuf {
             public java.util.List<java.lang.Integer> getCustomPropertiesList() {
                 return customProperties_;
             }
+
             /**
              *
              *
@@ -1023,6 +1070,7 @@ public final class Geobuf {
             public int getCustomPropertiesCount() {
                 return customProperties_.size();
             }
+
             /**
              *
              *
@@ -1331,6 +1379,7 @@ public final class Geobuf {
                 Builder builder = new Builder(parent);
                 return builder;
             }
+
             /** Protobuf type {@code org.geotools.data.geobuf.Data.Feature} */
             public static final class Builder
                     extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
@@ -1636,6 +1685,7 @@ public final class Geobuf {
                                 org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder,
                                 org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder>
                         geometryBuilder_;
+
                 /**
                  * <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code>
                  *
@@ -1644,6 +1694,7 @@ public final class Geobuf {
                 public boolean hasGeometry() {
                     return ((bitField0_ & 0x00000001) != 0);
                 }
+
                 /**
                  * <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code>
                  *
@@ -1658,6 +1709,7 @@ public final class Geobuf {
                         return geometryBuilder_.getMessage();
                     }
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 public Builder setGeometry(org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
                     if (geometryBuilder_ == null) {
@@ -1672,6 +1724,7 @@ public final class Geobuf {
                     bitField0_ |= 0x00000001;
                     return this;
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 public Builder setGeometry(
                         org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder builderForValue) {
@@ -1684,6 +1737,7 @@ public final class Geobuf {
                     bitField0_ |= 0x00000001;
                     return this;
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 public Builder mergeGeometry(org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
                     if (geometryBuilder_ == null) {
@@ -1707,6 +1761,7 @@ public final class Geobuf {
                     bitField0_ |= 0x00000001;
                     return this;
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 public Builder clearGeometry() {
                     if (geometryBuilder_ == null) {
@@ -1718,12 +1773,14 @@ public final class Geobuf {
                     bitField0_ = (bitField0_ & ~0x00000001);
                     return this;
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder getGeometryBuilder() {
                     bitField0_ |= 0x00000001;
                     onChanged();
                     return getGeometryFieldBuilder().getBuilder();
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder
                         getGeometryOrBuilder() {
@@ -1735,6 +1792,7 @@ public final class Geobuf {
                                 : geometry_;
                     }
                 }
+
                 /** <code>required .org.geotools.data.geobuf.Data.Geometry geometry = 1;</code> */
                 private com.google.protobuf.SingleFieldBuilderV3<
                                 org.geotools.data.geobuf.Geobuf.Data.Geometry,
@@ -1762,6 +1820,7 @@ public final class Geobuf {
                 public boolean hasId() {
                     return idTypeCase_ == 11;
                 }
+
                 /**
                  * <code>string id = 11;</code>
                  *
@@ -1786,6 +1845,7 @@ public final class Geobuf {
                         return (java.lang.String) ref;
                     }
                 }
+
                 /**
                  * <code>string id = 11;</code>
                  *
@@ -1808,6 +1868,7 @@ public final class Geobuf {
                         return (com.google.protobuf.ByteString) ref;
                     }
                 }
+
                 /**
                  * <code>string id = 11;</code>
                  *
@@ -1823,6 +1884,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>string id = 11;</code>
                  *
@@ -1836,6 +1898,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  * <code>string id = 11;</code>
                  *
@@ -1860,6 +1923,7 @@ public final class Geobuf {
                 public boolean hasIntId() {
                     return idTypeCase_ == 12;
                 }
+
                 /**
                  * <code>sint64 int_id = 12;</code>
                  *
@@ -1871,6 +1935,7 @@ public final class Geobuf {
                     }
                     return 0L;
                 }
+
                 /**
                  * <code>sint64 int_id = 12;</code>
                  *
@@ -1883,6 +1948,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>sint64 int_id = 12;</code>
                  *
@@ -1931,6 +1997,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessageList();
                     }
                 }
+
                 /**
                  *
                  *
@@ -1947,6 +2014,7 @@ public final class Geobuf {
                         return valuesBuilder_.getCount();
                     }
                 }
+
                 /**
                  *
                  *
@@ -1963,6 +2031,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessage(index);
                     }
                 }
+
                 /**
                  *
                  *
@@ -1986,6 +2055,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2007,6 +2077,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2029,6 +2100,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2052,6 +2124,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2072,6 +2145,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2093,6 +2167,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2114,6 +2189,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2133,6 +2209,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2152,6 +2229,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2165,6 +2243,7 @@ public final class Geobuf {
                         int index) {
                     return getValuesFieldBuilder().getBuilder(index);
                 }
+
                 /**
                  *
                  *
@@ -2182,6 +2261,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessageOrBuilder(index);
                     }
                 }
+
                 /**
                  *
                  *
@@ -2199,6 +2279,7 @@ public final class Geobuf {
                         return java.util.Collections.unmodifiableList(values_);
                     }
                 }
+
                 /**
                  *
                  *
@@ -2214,6 +2295,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Value
                                             .getDefaultInstance());
                 }
+
                 /**
                  *
                  *
@@ -2231,6 +2313,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Value
                                             .getDefaultInstance());
                 }
+
                 /**
                  *
                  *
@@ -2273,6 +2356,7 @@ public final class Geobuf {
                         bitField0_ |= 0x00000010;
                     }
                 }
+
                 /**
                  *
                  *
@@ -2289,6 +2373,7 @@ public final class Geobuf {
                             ? java.util.Collections.unmodifiableList(properties_)
                             : properties_;
                 }
+
                 /**
                  *
                  *
@@ -2303,6 +2388,7 @@ public final class Geobuf {
                 public int getPropertiesCount() {
                     return properties_.size();
                 }
+
                 /**
                  *
                  *
@@ -2318,6 +2404,7 @@ public final class Geobuf {
                 public int getProperties(int index) {
                     return properties_.getInt(index);
                 }
+
                 /**
                  *
                  *
@@ -2337,6 +2424,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2355,6 +2443,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2374,6 +2463,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2400,6 +2490,7 @@ public final class Geobuf {
                         bitField0_ |= 0x00000020;
                     }
                 }
+
                 /**
                  *
                  *
@@ -2416,6 +2507,7 @@ public final class Geobuf {
                             ? java.util.Collections.unmodifiableList(customProperties_)
                             : customProperties_;
                 }
+
                 /**
                  *
                  *
@@ -2430,6 +2522,7 @@ public final class Geobuf {
                 public int getCustomPropertiesCount() {
                     return customProperties_.size();
                 }
+
                 /**
                  *
                  *
@@ -2445,6 +2538,7 @@ public final class Geobuf {
                 public int getCustomProperties(int index) {
                     return customProperties_.getInt(index);
                 }
+
                 /**
                  *
                  *
@@ -2464,6 +2558,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2482,6 +2577,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2502,6 +2598,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -2584,6 +2681,7 @@ public final class Geobuf {
              * @return Whether the type field is set.
              */
             boolean hasType();
+
             /**
              * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
              *
@@ -2603,6 +2701,7 @@ public final class Geobuf {
              * @return A list containing the lengths.
              */
             java.util.List<java.lang.Integer> getLengthsList();
+
             /**
              *
              *
@@ -2615,6 +2714,7 @@ public final class Geobuf {
              * @return The count of lengths.
              */
             int getLengthsCount();
+
             /**
              *
              *
@@ -2641,6 +2741,7 @@ public final class Geobuf {
              * @return A list containing the coords.
              */
             java.util.List<java.lang.Long> getCoordsList();
+
             /**
              *
              *
@@ -2653,6 +2754,7 @@ public final class Geobuf {
              * @return The count of coords.
              */
             int getCoordsCount();
+
             /**
              *
              *
@@ -2669,26 +2771,34 @@ public final class Geobuf {
 
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             java.util.List<org.geotools.data.geobuf.Geobuf.Data.Geometry> getGeometriesList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             org.geotools.data.geobuf.Geobuf.Data.Geometry getGeometries(int index);
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             int getGeometriesCount();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder>
                     getGeometriesOrBuilderList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometriesOrBuilder(
                     int index);
 
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> getValuesList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index);
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             int getValuesCount();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                     getValuesOrBuilderList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder getValuesOrBuilder(int index);
 
@@ -2698,12 +2808,14 @@ public final class Geobuf {
              * @return A list containing the customProperties.
              */
             java.util.List<java.lang.Integer> getCustomPropertiesList();
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
              * @return The count of customProperties.
              */
             int getCustomPropertiesCount();
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -2712,12 +2824,14 @@ public final class Geobuf {
              */
             int getCustomProperties(int index);
         }
+
         /** Protobuf type {@code org.geotools.data.geobuf.Data.Geometry} */
         public static final class Geometry extends com.google.protobuf.GeneratedMessageV3
                 implements
                 // @@protoc_insertion_point(message_implements:org.geotools.data.geobuf.Data.Geometry)
                 GeometryOrBuilder {
             private static final long serialVersionUID = 0L;
+
             // Use Geometry.newBuilder() to construct.
             private Geometry(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
                 super(builder);
@@ -2952,16 +3066,22 @@ public final class Geobuf {
 
                 /** <code>POINT = 0;</code> */
                 public static final int POINT_VALUE = 0;
+
                 /** <code>MULTIPOINT = 1;</code> */
                 public static final int MULTIPOINT_VALUE = 1;
+
                 /** <code>LINESTRING = 2;</code> */
                 public static final int LINESTRING_VALUE = 2;
+
                 /** <code>MULTILINESTRING = 3;</code> */
                 public static final int MULTILINESTRING_VALUE = 3;
+
                 /** <code>POLYGON = 4;</code> */
                 public static final int POLYGON_VALUE = 4;
+
                 /** <code>MULTIPOLYGON = 5;</code> */
                 public static final int MULTIPOLYGON_VALUE = 5;
+
                 /** <code>GEOMETRYCOLLECTION = 6;</code> */
                 public static final int GEOMETRYCOLLECTION_VALUE = 6;
 
@@ -3054,6 +3174,7 @@ public final class Geobuf {
             private int bitField0_;
             public static final int TYPE_FIELD_NUMBER = 1;
             private int type_;
+
             /**
              * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
              *
@@ -3063,6 +3184,7 @@ public final class Geobuf {
             public boolean hasType() {
                 return ((bitField0_ & 0x00000001) != 0);
             }
+
             /**
              * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
              *
@@ -3080,6 +3202,7 @@ public final class Geobuf {
 
             public static final int LENGTHS_FIELD_NUMBER = 2;
             private com.google.protobuf.Internal.IntList lengths_;
+
             /**
              *
              *
@@ -3095,6 +3218,7 @@ public final class Geobuf {
             public java.util.List<java.lang.Integer> getLengthsList() {
                 return lengths_;
             }
+
             /**
              *
              *
@@ -3109,6 +3233,7 @@ public final class Geobuf {
             public int getLengthsCount() {
                 return lengths_.size();
             }
+
             /**
              *
              *
@@ -3129,6 +3254,7 @@ public final class Geobuf {
 
             public static final int COORDS_FIELD_NUMBER = 3;
             private com.google.protobuf.Internal.LongList coords_;
+
             /**
              *
              *
@@ -3144,6 +3270,7 @@ public final class Geobuf {
             public java.util.List<java.lang.Long> getCoordsList() {
                 return coords_;
             }
+
             /**
              *
              *
@@ -3158,6 +3285,7 @@ public final class Geobuf {
             public int getCoordsCount() {
                 return coords_.size();
             }
+
             /**
              *
              *
@@ -3178,28 +3306,33 @@ public final class Geobuf {
 
             public static final int GEOMETRIES_FIELD_NUMBER = 4;
             private java.util.List<org.geotools.data.geobuf.Geobuf.Data.Geometry> geometries_;
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             @java.lang.Override
             public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Geometry>
                     getGeometriesList() {
                 return geometries_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             @java.lang.Override
             public java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder>
                     getGeometriesOrBuilderList() {
                 return geometries_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             @java.lang.Override
             public int getGeometriesCount() {
                 return geometries_.size();
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.Geometry getGeometries(int index) {
                 return geometries_.get(index);
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometriesOrBuilder(
@@ -3209,27 +3342,32 @@ public final class Geobuf {
 
             public static final int VALUES_FIELD_NUMBER = 13;
             private java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> values_;
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> getValuesList() {
                 return values_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                     getValuesOrBuilderList() {
                 return values_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public int getValuesCount() {
                 return values_.size();
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index) {
                 return values_.get(index);
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder getValuesOrBuilder(
@@ -3239,6 +3377,7 @@ public final class Geobuf {
 
             public static final int CUSTOM_PROPERTIES_FIELD_NUMBER = 15;
             private com.google.protobuf.Internal.IntList customProperties_;
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -3248,6 +3387,7 @@ public final class Geobuf {
             public java.util.List<java.lang.Integer> getCustomPropertiesList() {
                 return customProperties_;
             }
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -3256,6 +3396,7 @@ public final class Geobuf {
             public int getCustomPropertiesCount() {
                 return customProperties_.size();
             }
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -3562,6 +3703,7 @@ public final class Geobuf {
                 Builder builder = new Builder(parent);
                 return builder;
             }
+
             /** Protobuf type {@code org.geotools.data.geobuf.Data.Geometry} */
             public static final class Builder
                     extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
@@ -3875,6 +4017,7 @@ public final class Geobuf {
                 private int bitField0_;
 
                 private int type_ = 0;
+
                 /**
                  * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
                  *
@@ -3884,6 +4027,7 @@ public final class Geobuf {
                 public boolean hasType() {
                     return ((bitField0_ & 0x00000001) != 0);
                 }
+
                 /**
                  * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
                  *
@@ -3898,6 +4042,7 @@ public final class Geobuf {
                             ? org.geotools.data.geobuf.Geobuf.Data.Geometry.Type.POINT
                             : result;
                 }
+
                 /**
                  * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
                  *
@@ -3913,6 +4058,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>required .org.geotools.data.geobuf.Data.Geometry.Type type = 1;</code>
                  *
@@ -3933,6 +4079,7 @@ public final class Geobuf {
                         bitField0_ |= 0x00000002;
                     }
                 }
+
                 /**
                  *
                  *
@@ -3949,6 +4096,7 @@ public final class Geobuf {
                             ? java.util.Collections.unmodifiableList(lengths_)
                             : lengths_;
                 }
+
                 /**
                  *
                  *
@@ -3963,6 +4111,7 @@ public final class Geobuf {
                 public int getLengthsCount() {
                     return lengths_.size();
                 }
+
                 /**
                  *
                  *
@@ -3978,6 +4127,7 @@ public final class Geobuf {
                 public int getLengths(int index) {
                     return lengths_.getInt(index);
                 }
+
                 /**
                  *
                  *
@@ -3997,6 +4147,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -4015,6 +4166,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -4034,6 +4186,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -4060,6 +4213,7 @@ public final class Geobuf {
                         bitField0_ |= 0x00000004;
                     }
                 }
+
                 /**
                  *
                  *
@@ -4076,6 +4230,7 @@ public final class Geobuf {
                             ? java.util.Collections.unmodifiableList(coords_)
                             : coords_;
                 }
+
                 /**
                  *
                  *
@@ -4090,6 +4245,7 @@ public final class Geobuf {
                 public int getCoordsCount() {
                     return coords_.size();
                 }
+
                 /**
                  *
                  *
@@ -4105,6 +4261,7 @@ public final class Geobuf {
                 public long getCoords(int index) {
                     return coords_.getLong(index);
                 }
+
                 /**
                  *
                  *
@@ -4124,6 +4281,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -4142,6 +4300,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -4160,6 +4319,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  *
                  *
@@ -4205,6 +4365,7 @@ public final class Geobuf {
                         return geometriesBuilder_.getMessageList();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public int getGeometriesCount() {
                     if (geometriesBuilder_ == null) {
@@ -4213,6 +4374,7 @@ public final class Geobuf {
                         return geometriesBuilder_.getCount();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Geometry getGeometries(int index) {
                     if (geometriesBuilder_ == null) {
@@ -4221,6 +4383,7 @@ public final class Geobuf {
                         return geometriesBuilder_.getMessage(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder setGeometries(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
@@ -4236,6 +4399,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder setGeometries(
                         int index,
@@ -4249,6 +4413,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder addGeometries(org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
                     if (geometriesBuilder_ == null) {
@@ -4263,6 +4428,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder addGeometries(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
@@ -4278,6 +4444,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder addGeometries(
                         org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder builderForValue) {
@@ -4290,6 +4457,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder addGeometries(
                         int index,
@@ -4303,6 +4471,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder addAllGeometries(
                         java.lang.Iterable<? extends org.geotools.data.geobuf.Geobuf.Data.Geometry>
@@ -4316,6 +4485,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder clearGeometries() {
                     if (geometriesBuilder_ == null) {
@@ -4327,6 +4497,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public Builder removeGeometries(int index) {
                     if (geometriesBuilder_ == null) {
@@ -4338,11 +4509,13 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder getGeometriesBuilder(
                         int index) {
                     return getGeometriesFieldBuilder().getBuilder(index);
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder
                         getGeometriesOrBuilder(int index) {
@@ -4352,6 +4525,7 @@ public final class Geobuf {
                         return geometriesBuilder_.getMessageOrBuilder(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public java.util.List<
                                 ? extends org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder>
@@ -4362,6 +4536,7 @@ public final class Geobuf {
                         return java.util.Collections.unmodifiableList(geometries_);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder
                         addGeometriesBuilder() {
@@ -4370,6 +4545,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Geometry
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder addGeometriesBuilder(
                         int index) {
@@ -4379,6 +4555,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Geometry
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Geometry geometries = 4;</code> */
                 public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder>
                         getGeometriesBuilderList() {
@@ -4431,6 +4608,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessageList();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public int getValuesCount() {
                     if (valuesBuilder_ == null) {
@@ -4439,6 +4617,7 @@ public final class Geobuf {
                         return valuesBuilder_.getCount();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index) {
                     if (valuesBuilder_ == null) {
@@ -4447,6 +4626,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessage(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder setValues(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Value value) {
@@ -4462,6 +4642,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder setValues(
                         int index,
@@ -4475,6 +4656,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(org.geotools.data.geobuf.Geobuf.Data.Value value) {
                     if (valuesBuilder_ == null) {
@@ -4489,6 +4671,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Value value) {
@@ -4504,6 +4687,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(
                         org.geotools.data.geobuf.Geobuf.Data.Value.Builder builderForValue) {
@@ -4516,6 +4700,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(
                         int index,
@@ -4529,6 +4714,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addAllValues(
                         java.lang.Iterable<? extends org.geotools.data.geobuf.Geobuf.Data.Value>
@@ -4542,6 +4728,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder clearValues() {
                     if (valuesBuilder_ == null) {
@@ -4553,6 +4740,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder removeValues(int index) {
                     if (valuesBuilder_ == null) {
@@ -4564,11 +4752,13 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value.Builder getValuesBuilder(
                         int index) {
                     return getValuesFieldBuilder().getBuilder(index);
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder getValuesOrBuilder(
                         int index) {
@@ -4578,6 +4768,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessageOrBuilder(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                         getValuesOrBuilderList() {
@@ -4587,6 +4778,7 @@ public final class Geobuf {
                         return java.util.Collections.unmodifiableList(values_);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value.Builder addValuesBuilder() {
                     return getValuesFieldBuilder()
@@ -4594,6 +4786,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Value
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value.Builder addValuesBuilder(
                         int index) {
@@ -4603,6 +4796,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Value
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value.Builder>
                         getValuesBuilderList() {
@@ -4637,6 +4831,7 @@ public final class Geobuf {
                         bitField0_ |= 0x00000020;
                     }
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4647,6 +4842,7 @@ public final class Geobuf {
                             ? java.util.Collections.unmodifiableList(customProperties_)
                             : customProperties_;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4655,6 +4851,7 @@ public final class Geobuf {
                 public int getCustomPropertiesCount() {
                     return customProperties_.size();
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4664,6 +4861,7 @@ public final class Geobuf {
                 public int getCustomProperties(int index) {
                     return customProperties_.getInt(index);
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4677,6 +4875,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4689,6 +4888,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4703,6 +4903,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -4775,25 +4976,33 @@ public final class Geobuf {
 
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             java.util.List<org.geotools.data.geobuf.Geobuf.Data.Feature> getFeaturesList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             org.geotools.data.geobuf.Geobuf.Data.Feature getFeatures(int index);
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             int getFeaturesCount();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder>
                     getFeaturesOrBuilderList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder getFeaturesOrBuilder(int index);
 
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> getValuesList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index);
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             int getValuesCount();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                     getValuesOrBuilderList();
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder getValuesOrBuilder(int index);
 
@@ -4803,12 +5012,14 @@ public final class Geobuf {
              * @return A list containing the customProperties.
              */
             java.util.List<java.lang.Integer> getCustomPropertiesList();
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
              * @return The count of customProperties.
              */
             int getCustomPropertiesCount();
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -4817,12 +5028,14 @@ public final class Geobuf {
              */
             int getCustomProperties(int index);
         }
+
         /** Protobuf type {@code org.geotools.data.geobuf.Data.FeatureCollection} */
         public static final class FeatureCollection extends com.google.protobuf.GeneratedMessageV3
                 implements
                 // @@protoc_insertion_point(message_implements:org.geotools.data.geobuf.Data.FeatureCollection)
                 FeatureCollectionOrBuilder {
             private static final long serialVersionUID = 0L;
+
             // Use FeatureCollection.newBuilder() to construct.
             private FeatureCollection(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
                 super(builder);
@@ -4968,27 +5181,32 @@ public final class Geobuf {
 
             public static final int FEATURES_FIELD_NUMBER = 1;
             private java.util.List<org.geotools.data.geobuf.Geobuf.Data.Feature> features_;
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             @java.lang.Override
             public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Feature> getFeaturesList() {
                 return features_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             @java.lang.Override
             public java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder>
                     getFeaturesOrBuilderList() {
                 return features_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             @java.lang.Override
             public int getFeaturesCount() {
                 return features_.size();
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.Feature getFeatures(int index) {
                 return features_.get(index);
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder getFeaturesOrBuilder(
@@ -4998,27 +5216,32 @@ public final class Geobuf {
 
             public static final int VALUES_FIELD_NUMBER = 13;
             private java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> values_;
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value> getValuesList() {
                 return values_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                     getValuesOrBuilderList() {
                 return values_;
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public int getValuesCount() {
                 return values_.size();
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index) {
                 return values_.get(index);
             }
+
             /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder getValuesOrBuilder(
@@ -5028,6 +5251,7 @@ public final class Geobuf {
 
             public static final int CUSTOM_PROPERTIES_FIELD_NUMBER = 15;
             private com.google.protobuf.Internal.IntList customProperties_;
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -5037,6 +5261,7 @@ public final class Geobuf {
             public java.util.List<java.lang.Integer> getCustomPropertiesList() {
                 return customProperties_;
             }
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -5045,6 +5270,7 @@ public final class Geobuf {
             public int getCustomPropertiesCount() {
                 return customProperties_.size();
             }
+
             /**
              * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
              *
@@ -5277,6 +5503,7 @@ public final class Geobuf {
                 Builder builder = new Builder(parent);
                 return builder;
             }
+
             /** Protobuf type {@code org.geotools.data.geobuf.Data.FeatureCollection} */
             public static final class Builder
                     extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
@@ -5575,6 +5802,7 @@ public final class Geobuf {
                         return featuresBuilder_.getMessageList();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public int getFeaturesCount() {
                     if (featuresBuilder_ == null) {
@@ -5583,6 +5811,7 @@ public final class Geobuf {
                         return featuresBuilder_.getCount();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Feature getFeatures(int index) {
                     if (featuresBuilder_ == null) {
@@ -5591,6 +5820,7 @@ public final class Geobuf {
                         return featuresBuilder_.getMessage(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder setFeatures(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Feature value) {
@@ -5606,6 +5836,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder setFeatures(
                         int index,
@@ -5619,6 +5850,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder addFeatures(org.geotools.data.geobuf.Geobuf.Data.Feature value) {
                     if (featuresBuilder_ == null) {
@@ -5633,6 +5865,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder addFeatures(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Feature value) {
@@ -5648,6 +5881,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder addFeatures(
                         org.geotools.data.geobuf.Geobuf.Data.Feature.Builder builderForValue) {
@@ -5660,6 +5894,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder addFeatures(
                         int index,
@@ -5673,6 +5908,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder addAllFeatures(
                         java.lang.Iterable<? extends org.geotools.data.geobuf.Geobuf.Data.Feature>
@@ -5686,6 +5922,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder clearFeatures() {
                     if (featuresBuilder_ == null) {
@@ -5697,6 +5934,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public Builder removeFeatures(int index) {
                     if (featuresBuilder_ == null) {
@@ -5708,11 +5946,13 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Feature.Builder getFeaturesBuilder(
                         int index) {
                     return getFeaturesFieldBuilder().getBuilder(index);
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder getFeaturesOrBuilder(
                         int index) {
@@ -5722,6 +5962,7 @@ public final class Geobuf {
                         return featuresBuilder_.getMessageOrBuilder(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public java.util.List<
                                 ? extends org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder>
@@ -5732,6 +5973,7 @@ public final class Geobuf {
                         return java.util.Collections.unmodifiableList(features_);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Feature.Builder addFeaturesBuilder() {
                     return getFeaturesFieldBuilder()
@@ -5739,6 +5981,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Feature
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Feature.Builder addFeaturesBuilder(
                         int index) {
@@ -5748,6 +5991,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Feature
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Feature features = 1;</code> */
                 public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Feature.Builder>
                         getFeaturesBuilderList() {
@@ -5800,6 +6044,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessageList();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public int getValuesCount() {
                     if (valuesBuilder_ == null) {
@@ -5808,6 +6053,7 @@ public final class Geobuf {
                         return valuesBuilder_.getCount();
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value getValues(int index) {
                     if (valuesBuilder_ == null) {
@@ -5816,6 +6062,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessage(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder setValues(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Value value) {
@@ -5831,6 +6078,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder setValues(
                         int index,
@@ -5844,6 +6092,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(org.geotools.data.geobuf.Geobuf.Data.Value value) {
                     if (valuesBuilder_ == null) {
@@ -5858,6 +6107,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(
                         int index, org.geotools.data.geobuf.Geobuf.Data.Value value) {
@@ -5873,6 +6123,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(
                         org.geotools.data.geobuf.Geobuf.Data.Value.Builder builderForValue) {
@@ -5885,6 +6136,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addValues(
                         int index,
@@ -5898,6 +6150,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder addAllValues(
                         java.lang.Iterable<? extends org.geotools.data.geobuf.Geobuf.Data.Value>
@@ -5911,6 +6164,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder clearValues() {
                     if (valuesBuilder_ == null) {
@@ -5922,6 +6176,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public Builder removeValues(int index) {
                     if (valuesBuilder_ == null) {
@@ -5933,11 +6188,13 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value.Builder getValuesBuilder(
                         int index) {
                     return getValuesFieldBuilder().getBuilder(index);
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder getValuesOrBuilder(
                         int index) {
@@ -5947,6 +6204,7 @@ public final class Geobuf {
                         return valuesBuilder_.getMessageOrBuilder(index);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public java.util.List<? extends org.geotools.data.geobuf.Geobuf.Data.ValueOrBuilder>
                         getValuesOrBuilderList() {
@@ -5956,6 +6214,7 @@ public final class Geobuf {
                         return java.util.Collections.unmodifiableList(values_);
                     }
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value.Builder addValuesBuilder() {
                     return getValuesFieldBuilder()
@@ -5963,6 +6222,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Value
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public org.geotools.data.geobuf.Geobuf.Data.Value.Builder addValuesBuilder(
                         int index) {
@@ -5972,6 +6232,7 @@ public final class Geobuf {
                                     org.geotools.data.geobuf.Geobuf.Data.Value
                                             .getDefaultInstance());
                 }
+
                 /** <code>repeated .org.geotools.data.geobuf.Data.Value values = 13;</code> */
                 public java.util.List<org.geotools.data.geobuf.Geobuf.Data.Value.Builder>
                         getValuesBuilderList() {
@@ -6006,6 +6267,7 @@ public final class Geobuf {
                         bitField0_ |= 0x00000004;
                     }
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6016,6 +6278,7 @@ public final class Geobuf {
                             ? java.util.Collections.unmodifiableList(customProperties_)
                             : customProperties_;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6024,6 +6287,7 @@ public final class Geobuf {
                 public int getCustomPropertiesCount() {
                     return customProperties_.size();
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6033,6 +6297,7 @@ public final class Geobuf {
                 public int getCustomProperties(int index) {
                     return customProperties_.getInt(index);
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6046,6 +6311,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6058,6 +6324,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6072,6 +6339,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>repeated uint32 custom_properties = 15 [packed = true];</code>
                  *
@@ -6151,12 +6419,14 @@ public final class Geobuf {
              * @return Whether the stringValue field is set.
              */
             boolean hasStringValue();
+
             /**
              * <code>string string_value = 1;</code>
              *
              * @return The stringValue.
              */
             java.lang.String getStringValue();
+
             /**
              * <code>string string_value = 1;</code>
              *
@@ -6170,6 +6440,7 @@ public final class Geobuf {
              * @return Whether the doubleValue field is set.
              */
             boolean hasDoubleValue();
+
             /**
              * <code>double double_value = 2;</code>
              *
@@ -6183,6 +6454,7 @@ public final class Geobuf {
              * @return Whether the posIntValue field is set.
              */
             boolean hasPosIntValue();
+
             /**
              * <code>uint64 pos_int_value = 3;</code>
              *
@@ -6196,6 +6468,7 @@ public final class Geobuf {
              * @return Whether the negIntValue field is set.
              */
             boolean hasNegIntValue();
+
             /**
              * <code>uint64 neg_int_value = 4;</code>
              *
@@ -6209,6 +6482,7 @@ public final class Geobuf {
              * @return Whether the boolValue field is set.
              */
             boolean hasBoolValue();
+
             /**
              * <code>bool bool_value = 5;</code>
              *
@@ -6222,12 +6496,14 @@ public final class Geobuf {
              * @return Whether the jsonValue field is set.
              */
             boolean hasJsonValue();
+
             /**
              * <code>string json_value = 6;</code>
              *
              * @return The jsonValue.
              */
             java.lang.String getJsonValue();
+
             /**
              * <code>string json_value = 6;</code>
              *
@@ -6237,12 +6513,14 @@ public final class Geobuf {
 
             public org.geotools.data.geobuf.Geobuf.Data.Value.ValueTypeCase getValueTypeCase();
         }
+
         /** Protobuf type {@code org.geotools.data.geobuf.Data.Value} */
         public static final class Value extends com.google.protobuf.GeneratedMessageV3
                 implements
                 // @@protoc_insertion_point(message_implements:org.geotools.data.geobuf.Data.Value)
                 ValueOrBuilder {
             private static final long serialVersionUID = 0L;
+
             // Use Value.newBuilder() to construct.
             private Value(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
                 super(builder);
@@ -6374,6 +6652,7 @@ public final class Geobuf {
                 private ValueTypeCase(int value) {
                     this.value = value;
                 }
+
                 /**
                  * @param value The number of the enum to look for.
                  * @return The enum associated with the given number.
@@ -6415,6 +6694,7 @@ public final class Geobuf {
             }
 
             public static final int STRING_VALUE_FIELD_NUMBER = 1;
+
             /**
              * <code>string string_value = 1;</code>
              *
@@ -6423,6 +6703,7 @@ public final class Geobuf {
             public boolean hasStringValue() {
                 return valueTypeCase_ == 1;
             }
+
             /**
              * <code>string string_value = 1;</code>
              *
@@ -6444,6 +6725,7 @@ public final class Geobuf {
                     return s;
                 }
             }
+
             /**
              * <code>string string_value = 1;</code>
              *
@@ -6467,6 +6749,7 @@ public final class Geobuf {
             }
 
             public static final int DOUBLE_VALUE_FIELD_NUMBER = 2;
+
             /**
              * <code>double double_value = 2;</code>
              *
@@ -6476,6 +6759,7 @@ public final class Geobuf {
             public boolean hasDoubleValue() {
                 return valueTypeCase_ == 2;
             }
+
             /**
              * <code>double double_value = 2;</code>
              *
@@ -6490,6 +6774,7 @@ public final class Geobuf {
             }
 
             public static final int POS_INT_VALUE_FIELD_NUMBER = 3;
+
             /**
              * <code>uint64 pos_int_value = 3;</code>
              *
@@ -6499,6 +6784,7 @@ public final class Geobuf {
             public boolean hasPosIntValue() {
                 return valueTypeCase_ == 3;
             }
+
             /**
              * <code>uint64 pos_int_value = 3;</code>
              *
@@ -6513,6 +6799,7 @@ public final class Geobuf {
             }
 
             public static final int NEG_INT_VALUE_FIELD_NUMBER = 4;
+
             /**
              * <code>uint64 neg_int_value = 4;</code>
              *
@@ -6522,6 +6809,7 @@ public final class Geobuf {
             public boolean hasNegIntValue() {
                 return valueTypeCase_ == 4;
             }
+
             /**
              * <code>uint64 neg_int_value = 4;</code>
              *
@@ -6536,6 +6824,7 @@ public final class Geobuf {
             }
 
             public static final int BOOL_VALUE_FIELD_NUMBER = 5;
+
             /**
              * <code>bool bool_value = 5;</code>
              *
@@ -6545,6 +6834,7 @@ public final class Geobuf {
             public boolean hasBoolValue() {
                 return valueTypeCase_ == 5;
             }
+
             /**
              * <code>bool bool_value = 5;</code>
              *
@@ -6559,6 +6849,7 @@ public final class Geobuf {
             }
 
             public static final int JSON_VALUE_FIELD_NUMBER = 6;
+
             /**
              * <code>string json_value = 6;</code>
              *
@@ -6567,6 +6858,7 @@ public final class Geobuf {
             public boolean hasJsonValue() {
                 return valueTypeCase_ == 6;
             }
+
             /**
              * <code>string json_value = 6;</code>
              *
@@ -6588,6 +6880,7 @@ public final class Geobuf {
                     return s;
                 }
             }
+
             /**
              * <code>string json_value = 6;</code>
              *
@@ -6874,6 +7167,7 @@ public final class Geobuf {
                 Builder builder = new Builder(parent);
                 return builder;
             }
+
             /** Protobuf type {@code org.geotools.data.geobuf.Data.Value} */
             public static final class Builder
                     extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
@@ -7113,6 +7407,7 @@ public final class Geobuf {
                 public boolean hasStringValue() {
                     return valueTypeCase_ == 1;
                 }
+
                 /**
                  * <code>string string_value = 1;</code>
                  *
@@ -7137,6 +7432,7 @@ public final class Geobuf {
                         return (java.lang.String) ref;
                     }
                 }
+
                 /**
                  * <code>string string_value = 1;</code>
                  *
@@ -7159,6 +7455,7 @@ public final class Geobuf {
                         return (com.google.protobuf.ByteString) ref;
                     }
                 }
+
                 /**
                  * <code>string string_value = 1;</code>
                  *
@@ -7174,6 +7471,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>string string_value = 1;</code>
                  *
@@ -7187,6 +7485,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  * <code>string string_value = 1;</code>
                  *
@@ -7211,6 +7510,7 @@ public final class Geobuf {
                 public boolean hasDoubleValue() {
                     return valueTypeCase_ == 2;
                 }
+
                 /**
                  * <code>double double_value = 2;</code>
                  *
@@ -7222,6 +7522,7 @@ public final class Geobuf {
                     }
                     return 0D;
                 }
+
                 /**
                  * <code>double double_value = 2;</code>
                  *
@@ -7234,6 +7535,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>double double_value = 2;</code>
                  *
@@ -7256,6 +7558,7 @@ public final class Geobuf {
                 public boolean hasPosIntValue() {
                     return valueTypeCase_ == 3;
                 }
+
                 /**
                  * <code>uint64 pos_int_value = 3;</code>
                  *
@@ -7267,6 +7570,7 @@ public final class Geobuf {
                     }
                     return 0L;
                 }
+
                 /**
                  * <code>uint64 pos_int_value = 3;</code>
                  *
@@ -7279,6 +7583,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>uint64 pos_int_value = 3;</code>
                  *
@@ -7301,6 +7606,7 @@ public final class Geobuf {
                 public boolean hasNegIntValue() {
                     return valueTypeCase_ == 4;
                 }
+
                 /**
                  * <code>uint64 neg_int_value = 4;</code>
                  *
@@ -7312,6 +7618,7 @@ public final class Geobuf {
                     }
                     return 0L;
                 }
+
                 /**
                  * <code>uint64 neg_int_value = 4;</code>
                  *
@@ -7324,6 +7631,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>uint64 neg_int_value = 4;</code>
                  *
@@ -7346,6 +7654,7 @@ public final class Geobuf {
                 public boolean hasBoolValue() {
                     return valueTypeCase_ == 5;
                 }
+
                 /**
                  * <code>bool bool_value = 5;</code>
                  *
@@ -7357,6 +7666,7 @@ public final class Geobuf {
                     }
                     return false;
                 }
+
                 /**
                  * <code>bool bool_value = 5;</code>
                  *
@@ -7369,6 +7679,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>bool bool_value = 5;</code>
                  *
@@ -7392,6 +7703,7 @@ public final class Geobuf {
                 public boolean hasJsonValue() {
                     return valueTypeCase_ == 6;
                 }
+
                 /**
                  * <code>string json_value = 6;</code>
                  *
@@ -7416,6 +7728,7 @@ public final class Geobuf {
                         return (java.lang.String) ref;
                     }
                 }
+
                 /**
                  * <code>string json_value = 6;</code>
                  *
@@ -7438,6 +7751,7 @@ public final class Geobuf {
                         return (com.google.protobuf.ByteString) ref;
                     }
                 }
+
                 /**
                  * <code>string json_value = 6;</code>
                  *
@@ -7453,6 +7767,7 @@ public final class Geobuf {
                     onChanged();
                     return this;
                 }
+
                 /**
                  * <code>string json_value = 6;</code>
                  *
@@ -7466,6 +7781,7 @@ public final class Geobuf {
                     }
                     return this;
                 }
+
                 /**
                  * <code>string json_value = 6;</code>
                  *
@@ -7552,6 +7868,7 @@ public final class Geobuf {
             private DataTypeCase(int value) {
                 this.value = value;
             }
+
             /**
              * @param value The number of the enum to look for.
              * @return The enum associated with the given number.
@@ -7588,6 +7905,7 @@ public final class Geobuf {
 
         public static final int KEYS_FIELD_NUMBER = 1;
         private com.google.protobuf.LazyStringList keys_;
+
         /**
          *
          *
@@ -7602,6 +7920,7 @@ public final class Geobuf {
         public com.google.protobuf.ProtocolStringList getKeysList() {
             return keys_;
         }
+
         /**
          *
          *
@@ -7616,6 +7935,7 @@ public final class Geobuf {
         public int getKeysCount() {
             return keys_.size();
         }
+
         /**
          *
          *
@@ -7631,6 +7951,7 @@ public final class Geobuf {
         public java.lang.String getKeys(int index) {
             return keys_.get(index);
         }
+
         /**
          *
          *
@@ -7649,6 +7970,7 @@ public final class Geobuf {
 
         public static final int DIMENSIONS_FIELD_NUMBER = 2;
         private int dimensions_;
+
         /**
          *
          *
@@ -7664,6 +7986,7 @@ public final class Geobuf {
         public boolean hasDimensions() {
             return ((bitField0_ & 0x00000001) != 0);
         }
+
         /**
          *
          *
@@ -7682,6 +8005,7 @@ public final class Geobuf {
 
         public static final int PRECISION_FIELD_NUMBER = 3;
         private int precision_;
+
         /**
          *
          *
@@ -7697,6 +8021,7 @@ public final class Geobuf {
         public boolean hasPrecision() {
             return ((bitField0_ & 0x00000002) != 0);
         }
+
         /**
          *
          *
@@ -7714,6 +8039,7 @@ public final class Geobuf {
         }
 
         public static final int FEATURE_COLLECTION_FIELD_NUMBER = 4;
+
         /**
          * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
          *
@@ -7723,6 +8049,7 @@ public final class Geobuf {
         public boolean hasFeatureCollection() {
             return dataTypeCase_ == 4;
         }
+
         /**
          * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
          *
@@ -7735,6 +8062,7 @@ public final class Geobuf {
             }
             return org.geotools.data.geobuf.Geobuf.Data.FeatureCollection.getDefaultInstance();
         }
+
         /** <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code> */
         @java.lang.Override
         public org.geotools.data.geobuf.Geobuf.Data.FeatureCollectionOrBuilder
@@ -7746,6 +8074,7 @@ public final class Geobuf {
         }
 
         public static final int FEATURE_FIELD_NUMBER = 5;
+
         /**
          * <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code>
          *
@@ -7755,6 +8084,7 @@ public final class Geobuf {
         public boolean hasFeature() {
             return dataTypeCase_ == 5;
         }
+
         /**
          * <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code>
          *
@@ -7767,6 +8097,7 @@ public final class Geobuf {
             }
             return org.geotools.data.geobuf.Geobuf.Data.Feature.getDefaultInstance();
         }
+
         /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
         @java.lang.Override
         public org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder getFeatureOrBuilder() {
@@ -7777,6 +8108,7 @@ public final class Geobuf {
         }
 
         public static final int GEOMETRY_FIELD_NUMBER = 6;
+
         /**
          * <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code>
          *
@@ -7786,6 +8118,7 @@ public final class Geobuf {
         public boolean hasGeometry() {
             return dataTypeCase_ == 6;
         }
+
         /**
          * <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code>
          *
@@ -7798,6 +8131,7 @@ public final class Geobuf {
             }
             return org.geotools.data.geobuf.Geobuf.Data.Geometry.getDefaultInstance();
         }
+
         /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
         @java.lang.Override
         public org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometryOrBuilder() {
@@ -8080,6 +8414,7 @@ public final class Geobuf {
             Builder builder = new Builder(parent);
             return builder;
         }
+
         /** Protobuf type {@code org.geotools.data.geobuf.Data} */
         public static final class Builder
                 extends com.google.protobuf.GeneratedMessageV3.Builder<Builder>
@@ -8348,6 +8683,7 @@ public final class Geobuf {
                     bitField0_ |= 0x00000001;
                 }
             }
+
             /**
              *
              *
@@ -8362,6 +8698,7 @@ public final class Geobuf {
             public com.google.protobuf.ProtocolStringList getKeysList() {
                 return keys_.getUnmodifiableView();
             }
+
             /**
              *
              *
@@ -8376,6 +8713,7 @@ public final class Geobuf {
             public int getKeysCount() {
                 return keys_.size();
             }
+
             /**
              *
              *
@@ -8391,6 +8729,7 @@ public final class Geobuf {
             public java.lang.String getKeys(int index) {
                 return keys_.get(index);
             }
+
             /**
              *
              *
@@ -8406,6 +8745,7 @@ public final class Geobuf {
             public com.google.protobuf.ByteString getKeysBytes(int index) {
                 return keys_.getByteString(index);
             }
+
             /**
              *
              *
@@ -8428,6 +8768,7 @@ public final class Geobuf {
                 onChanged();
                 return this;
             }
+
             /**
              *
              *
@@ -8449,6 +8790,7 @@ public final class Geobuf {
                 onChanged();
                 return this;
             }
+
             /**
              *
              *
@@ -8467,6 +8809,7 @@ public final class Geobuf {
                 onChanged();
                 return this;
             }
+
             /**
              *
              *
@@ -8484,6 +8827,7 @@ public final class Geobuf {
                 onChanged();
                 return this;
             }
+
             /**
              *
              *
@@ -8507,6 +8851,7 @@ public final class Geobuf {
             }
 
             private int dimensions_ = 2;
+
             /**
              *
              *
@@ -8522,6 +8867,7 @@ public final class Geobuf {
             public boolean hasDimensions() {
                 return ((bitField0_ & 0x00000002) != 0);
             }
+
             /**
              *
              *
@@ -8537,6 +8883,7 @@ public final class Geobuf {
             public int getDimensions() {
                 return dimensions_;
             }
+
             /**
              *
              *
@@ -8555,6 +8902,7 @@ public final class Geobuf {
                 onChanged();
                 return this;
             }
+
             /**
              *
              *
@@ -8574,6 +8922,7 @@ public final class Geobuf {
             }
 
             private int precision_ = 6;
+
             /**
              *
              *
@@ -8589,6 +8938,7 @@ public final class Geobuf {
             public boolean hasPrecision() {
                 return ((bitField0_ & 0x00000004) != 0);
             }
+
             /**
              *
              *
@@ -8604,6 +8954,7 @@ public final class Geobuf {
             public int getPrecision() {
                 return precision_;
             }
+
             /**
              *
              *
@@ -8622,6 +8973,7 @@ public final class Geobuf {
                 onChanged();
                 return this;
             }
+
             /**
              *
              *
@@ -8645,6 +8997,7 @@ public final class Geobuf {
                             org.geotools.data.geobuf.Geobuf.Data.FeatureCollection.Builder,
                             org.geotools.data.geobuf.Geobuf.Data.FeatureCollectionOrBuilder>
                     featureCollectionBuilder_;
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              *
@@ -8654,6 +9007,7 @@ public final class Geobuf {
             public boolean hasFeatureCollection() {
                 return dataTypeCase_ == 4;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              *
@@ -8675,6 +9029,7 @@ public final class Geobuf {
                             .getDefaultInstance();
                 }
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8692,6 +9047,7 @@ public final class Geobuf {
                 dataTypeCase_ = 4;
                 return this;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8707,6 +9063,7 @@ public final class Geobuf {
                 dataTypeCase_ = 4;
                 return this;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8737,6 +9094,7 @@ public final class Geobuf {
                 dataTypeCase_ = 4;
                 return this;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8756,6 +9114,7 @@ public final class Geobuf {
                 }
                 return this;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8763,6 +9122,7 @@ public final class Geobuf {
                     getFeatureCollectionBuilder() {
                 return getFeatureCollectionFieldBuilder().getBuilder();
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8779,6 +9139,7 @@ public final class Geobuf {
                             .getDefaultInstance();
                 }
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.FeatureCollection feature_collection = 4;</code>
              */
@@ -8816,6 +9177,7 @@ public final class Geobuf {
                             org.geotools.data.geobuf.Geobuf.Data.Feature.Builder,
                             org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder>
                     featureBuilder_;
+
             /**
              * <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code>
              *
@@ -8825,6 +9187,7 @@ public final class Geobuf {
             public boolean hasFeature() {
                 return dataTypeCase_ == 5;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code>
              *
@@ -8844,6 +9207,7 @@ public final class Geobuf {
                     return org.geotools.data.geobuf.Geobuf.Data.Feature.getDefaultInstance();
                 }
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             public Builder setFeature(org.geotools.data.geobuf.Geobuf.Data.Feature value) {
                 if (featureBuilder_ == null) {
@@ -8858,6 +9222,7 @@ public final class Geobuf {
                 dataTypeCase_ = 5;
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             public Builder setFeature(
                     org.geotools.data.geobuf.Geobuf.Data.Feature.Builder builderForValue) {
@@ -8870,6 +9235,7 @@ public final class Geobuf {
                 dataTypeCase_ = 5;
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             public Builder mergeFeature(org.geotools.data.geobuf.Geobuf.Data.Feature value) {
                 if (featureBuilder_ == null) {
@@ -8896,6 +9262,7 @@ public final class Geobuf {
                 dataTypeCase_ = 5;
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             public Builder clearFeature() {
                 if (featureBuilder_ == null) {
@@ -8913,10 +9280,12 @@ public final class Geobuf {
                 }
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             public org.geotools.data.geobuf.Geobuf.Data.Feature.Builder getFeatureBuilder() {
                 return getFeatureFieldBuilder().getBuilder();
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.FeatureOrBuilder getFeatureOrBuilder() {
@@ -8929,6 +9298,7 @@ public final class Geobuf {
                     return org.geotools.data.geobuf.Geobuf.Data.Feature.getDefaultInstance();
                 }
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Feature feature = 5;</code> */
             private com.google.protobuf.SingleFieldBuilderV3<
                             org.geotools.data.geobuf.Geobuf.Data.Feature,
@@ -8961,6 +9331,7 @@ public final class Geobuf {
                             org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder,
                             org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder>
                     geometryBuilder_;
+
             /**
              * <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code>
              *
@@ -8970,6 +9341,7 @@ public final class Geobuf {
             public boolean hasGeometry() {
                 return dataTypeCase_ == 6;
             }
+
             /**
              * <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code>
              *
@@ -8989,6 +9361,7 @@ public final class Geobuf {
                     return org.geotools.data.geobuf.Geobuf.Data.Geometry.getDefaultInstance();
                 }
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             public Builder setGeometry(org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
                 if (geometryBuilder_ == null) {
@@ -9003,6 +9376,7 @@ public final class Geobuf {
                 dataTypeCase_ = 6;
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             public Builder setGeometry(
                     org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder builderForValue) {
@@ -9015,6 +9389,7 @@ public final class Geobuf {
                 dataTypeCase_ = 6;
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             public Builder mergeGeometry(org.geotools.data.geobuf.Geobuf.Data.Geometry value) {
                 if (geometryBuilder_ == null) {
@@ -9041,6 +9416,7 @@ public final class Geobuf {
                 dataTypeCase_ = 6;
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             public Builder clearGeometry() {
                 if (geometryBuilder_ == null) {
@@ -9058,10 +9434,12 @@ public final class Geobuf {
                 }
                 return this;
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             public org.geotools.data.geobuf.Geobuf.Data.Geometry.Builder getGeometryBuilder() {
                 return getGeometryFieldBuilder().getBuilder();
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             @java.lang.Override
             public org.geotools.data.geobuf.Geobuf.Data.GeometryOrBuilder getGeometryOrBuilder() {
@@ -9074,6 +9452,7 @@ public final class Geobuf {
                     return org.geotools.data.geobuf.Geobuf.Data.Geometry.getDefaultInstance();
                 }
             }
+
             /** <code>.org.geotools.data.geobuf.Data.Geometry geometry = 6;</code> */
             private com.google.protobuf.SingleFieldBuilderV3<
                             org.geotools.data.geobuf.Geobuf.Data.Geometry,

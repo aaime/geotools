@@ -23,7 +23,9 @@ import java.util.Iterator;
 /** An iterator backed by some resource that needs closing when done using it */
 public interface CloseableIterator<T> extends Iterator<T>, Closeable {
 
-    /** @throws IOException if an I/O error occurs */
+    /**
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     public void close() throws IOException;
 }

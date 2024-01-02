@@ -616,7 +616,9 @@ public class ShpFiles {
         return urls.get(ShpFileType.SHP).toExternalForm().toLowerCase().startsWith("file:");
     }
 
-    /** @return whether the files are gzip-ped. */
+    /**
+     * @return whether the files are gzip-ped.
+     */
     public boolean isGz() {
         return urls.get(ShpFileType.SHP).toExternalForm().toLowerCase().endsWith(".gz");
     }

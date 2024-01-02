@@ -20,7 +20,9 @@ import org.geotools.api.feature.simple.SimpleFeature;
 import org.geotools.feature.DefaultFeatureCollection;
 import org.xml.sax.helpers.XMLFilterImpl;
 
-/** @author Darren Edmonds */
+/**
+ * @author Darren Edmonds
+ */
 public class GMLReceiver extends XMLFilterImpl implements GMLHandlerFeature {
     /** */
     private DefaultFeatureCollection featureCollection;

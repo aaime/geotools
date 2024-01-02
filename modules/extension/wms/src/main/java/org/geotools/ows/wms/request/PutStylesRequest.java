@@ -31,7 +31,9 @@ public interface PutStylesRequest extends Request {
     public static final String INSERT_AND_REPLACE = "InsertAndReplace";
     public static final String REPLACE_ALL = "ReplaceAll";
 
-    /** @param mode one of INSERT_AND_REPLACE or REPLACE_ALL */
+    /**
+     * @param mode one of INSERT_AND_REPLACE or REPLACE_ALL
+     */
     public void setMode(String mode);
 
     public void setSLD(String sld);

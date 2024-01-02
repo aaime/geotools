@@ -521,7 +521,9 @@ public class NetCDFReader extends AbstractGridCoverage2DReader
             ReferenceIdentifier name,
             CoverageReadRequest request,
             CoverageSource gridSource)
-            throws MismatchedDimensionException, InvalidGridGeometryException, TransformException,
+            throws MismatchedDimensionException,
+                    InvalidGridGeometryException,
+                    TransformException,
                     IOException {
 
         // //

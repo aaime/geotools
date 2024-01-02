@@ -55,7 +55,9 @@ public class LineStringTypeBinding extends AbstractComplexBinding {
         this.geometryFactory = geometryFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.LineStringType;

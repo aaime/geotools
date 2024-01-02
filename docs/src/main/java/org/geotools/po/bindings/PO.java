@@ -48,26 +48,47 @@ public final class PO extends XSD {
         return getClass().getResource("po.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.geotools.org/po";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Items = new QName("http://www.geotools.org/po", "Items");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName PurchaseOrderType =
             new QName("http://www.geotools.org/po", "PurchaseOrderType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SKU = new QName("http://www.geotools.org/po", "SKU");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName USAddress = new QName("http://www.geotools.org/po", "USAddress");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Items_item = new QName("http://www.geotools.org/po", "Items_item");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName comment = new QName("http://www.geotools.org/po", "comment");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName purchaseOrder =
             new QName("http://www.geotools.org/po", "purchaseOrder");
 

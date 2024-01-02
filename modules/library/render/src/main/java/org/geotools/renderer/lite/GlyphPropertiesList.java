@@ -22,7 +22,9 @@ import org.geotools.api.filter.FilterFactory;
 import org.geotools.api.filter.expression.Expression;
 import org.geotools.factory.CommonFactoryFinder;
 
-/** @author jfc173 */
+/**
+ * @author jfc173
+ */
 public class GlyphPropertiesList {
 
     private List<GlyphProperty> list = new ArrayList<>();

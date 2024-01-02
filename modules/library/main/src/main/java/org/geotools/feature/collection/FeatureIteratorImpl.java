@@ -37,6 +37,7 @@ public class FeatureIteratorImpl<F extends Feature> implements FeatureIterator<F
     Iterator<F> iterator;
 
     Collection<F> collection;
+
     /**
      * Create a new SimpleFeatureIterator using the Iterator from the given FeatureCollection.
      *
@@ -70,6 +71,7 @@ public class FeatureIteratorImpl<F extends Feature> implements FeatureIterator<F
     public F next() throws java.util.NoSuchElementException {
         return iterator.next();
     }
+
     /** Required so SimpleFeatureCollection classes can implement close( SimpleFeatureIterator ). */
     @Override
     public void close() {

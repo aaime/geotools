@@ -57,7 +57,9 @@ public class S3ImageInputStreamImplSpi extends ImageInputStreamSpi {
         super(vendorName, version, inputClass);
     }
 
-    /** @see ImageInputStreamSpi#getDescription(Locale). */
+    /**
+     * @see ImageInputStreamSpi#getDescription(Locale).
+     */
     @Override
     public String getDescription(Locale locale) {
         return "Service provider that wraps a file in S3";
@@ -76,6 +78,7 @@ public class S3ImageInputStreamImplSpi extends ImageInputStreamSpi {
             if (this != other) registry.setOrdering(targetClass, this, other);
         }
     }
+
     /**
      * Returns an instance of the ImageInputStream implementation associated with this service
      * provider.

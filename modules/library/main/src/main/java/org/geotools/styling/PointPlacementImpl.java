@@ -77,6 +77,7 @@ public class PointPlacementImpl implements PointPlacement, Cloneable {
                     return ConstantExpression.constant(0.5);
                 }
             };
+
     /** The logger for the default core module. */
     private static final java.util.logging.Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(PointPlacementImpl.class);

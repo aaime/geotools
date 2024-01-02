@@ -20,7 +20,9 @@ import org.geotools.api.filter.FilterVisitor;
 import org.geotools.api.filter.PropertyIsGreaterThan;
 import org.geotools.api.filter.expression.Expression;
 
-/** @author jdeolive */
+/**
+ * @author jdeolive
+ */
 public class IsGreaterThanImpl extends MultiCompareFilterImpl implements PropertyIsGreaterThan {
 
     protected IsGreaterThanImpl(Expression expression1, Expression expression2) {

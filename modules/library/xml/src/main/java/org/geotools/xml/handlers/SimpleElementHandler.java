@@ -57,32 +57,42 @@ public class SimpleElementHandler extends XMLElementHandler {
         type = (SimpleType) st.getType();
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getElement() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getElement()
+     */
     @Override
     public Element getElement() {
         return elem;
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XMLElementHandler getHandler(
             URI namespaceURI, String localName, Map<String, Object> hints) throws SAXException {
         throw new SAXException("Should not have any children - this is a simpleType");
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getValue() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getValue()
+     */
     @Override
     public Object getValue() {
         return value;
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getName() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getName()
+     */
     @Override
     public String getName() {
         return elem.getName();
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#characters(java.lang.String) */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#characters(java.lang.String)
+     */
     @Override
     public void characters(String text1) {
         if (this.text != null) {
@@ -92,7 +102,9 @@ public class SimpleElementHandler extends XMLElementHandler {
         }
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(URI namespaceURI, String localName, Map<String, Object> hints)
             throws OperationNotSupportedException, SAXException {
@@ -136,13 +148,17 @@ public class SimpleElementHandler extends XMLElementHandler {
             this.t = t;
         }
 
-        /** @see org.geotools.xml.xsi.ElementValue#getElement() */
+        /**
+         * @see org.geotools.xml.xsi.ElementValue#getElement()
+         */
         @Override
         public Element getElement() {
             return t;
         }
 
-        /** @see org.geotools.xml.xsi.ElementValue#getValue() */
+        /**
+         * @see org.geotools.xml.xsi.ElementValue#getValue()
+         */
         @Override
         public Object getValue() {
             return value;

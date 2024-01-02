@@ -30,408 +30,630 @@ public final class KML extends XSD {
     /** singleton instance */
     private static final KML instance = new KML();
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://earth.google.com/kml/2.1";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName altitudeModeEnum =
             new QName("http://earth.google.com/kml/2.1", "altitudeModeEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName angle180 = new QName("http://earth.google.com/kml/2.1", "angle180");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName angle360 = new QName("http://earth.google.com/kml/2.1", "angle360");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName angle90 = new QName("http://earth.google.com/kml/2.1", "angle90");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName anglepos90 =
             new QName("http://earth.google.com/kml/2.1", "anglepos90");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName BalloonStyleType =
             new QName("http://earth.google.com/kml/2.1", "BalloonStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName boundaryType =
             new QName("http://earth.google.com/kml/2.1", "boundaryType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ChangeType =
             new QName("http://earth.google.com/kml/2.1", "ChangeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName color = new QName("http://earth.google.com/kml/2.1", "color");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName colorModeEnum =
             new QName("http://earth.google.com/kml/2.1", "colorModeEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ColorStyleType =
             new QName("http://earth.google.com/kml/2.1", "ColorStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ContainerType =
             new QName("http://earth.google.com/kml/2.1", "ContainerType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CoordinatesType =
             new QName("http://earth.google.com/kml/2.1", "CoordinatesType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CreateType =
             new QName("http://earth.google.com/kml/2.1", "CreateType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName dateTimeType =
             new QName("http://earth.google.com/kml/2.1", "dateTimeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DeleteType =
             new QName("http://earth.google.com/kml/2.1", "DeleteType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DocumentType =
             new QName("http://earth.google.com/kml/2.1", "DocumentType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName FeatureType =
             new QName("http://earth.google.com/kml/2.1", "FeatureType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName FolderType =
             new QName("http://earth.google.com/kml/2.1", "FolderType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GeometryType =
             new QName("http://earth.google.com/kml/2.1", "GeometryType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GroundOverlayType =
             new QName("http://earth.google.com/kml/2.1", "GroundOverlayType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName IconStyleIconType =
             new QName("http://earth.google.com/kml/2.1", "IconStyleIconType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName IconStyleType =
             new QName("http://earth.google.com/kml/2.1", "IconStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName IconType = new QName("http://earth.google.com/kml/2.1", "IconType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName itemIconStateEnum =
             new QName("http://earth.google.com/kml/2.1", "itemIconStateEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName itemIconStateType =
             new QName("http://earth.google.com/kml/2.1", "itemIconStateType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ItemIconType =
             new QName("http://earth.google.com/kml/2.1", "ItemIconType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName KmlType = new QName("http://earth.google.com/kml/2.1", "KmlType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LabelStyleType =
             new QName("http://earth.google.com/kml/2.1", "LabelStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LatLonAltBoxType =
             new QName("http://earth.google.com/kml/2.1", "LatLonAltBoxType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LatLonBoxType =
             new QName("http://earth.google.com/kml/2.1", "LatLonBoxType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LinearRingType =
             new QName("http://earth.google.com/kml/2.1", "LinearRingType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LineStringType =
             new QName("http://earth.google.com/kml/2.1", "LineStringType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LineStyleType =
             new QName("http://earth.google.com/kml/2.1", "LineStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LinkType = new QName("http://earth.google.com/kml/2.1", "LinkType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName listItemTypeEnum =
             new QName("http://earth.google.com/kml/2.1", "listItemTypeEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ListStyleType =
             new QName("http://earth.google.com/kml/2.1", "ListStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LocationType =
             new QName("http://earth.google.com/kml/2.1", "LocationType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LodType = new QName("http://earth.google.com/kml/2.1", "LodType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LookAtType =
             new QName("http://earth.google.com/kml/2.1", "LookAtType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName MetadataType =
             new QName("http://earth.google.com/kml/2.1", "MetadataType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ModelType = new QName("http://earth.google.com/kml/2.1", "ModelType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName MultiGeometryType =
             new QName("http://earth.google.com/kml/2.1", "MultiGeometryType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkControlType =
             new QName("http://earth.google.com/kml/2.1", "NetworkLinkControlType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName NetworkLinkType =
             new QName("http://earth.google.com/kml/2.1", "NetworkLinkType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ObjectType =
             new QName("http://earth.google.com/kml/2.1", "ObjectType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName OrientationType =
             new QName("http://earth.google.com/kml/2.1", "OrientationType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName OverlayType =
             new QName("http://earth.google.com/kml/2.1", "OverlayType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PlacemarkType =
             new QName("http://earth.google.com/kml/2.1", "PlacemarkType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PointType = new QName("http://earth.google.com/kml/2.1", "PointType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PolygonType =
             new QName("http://earth.google.com/kml/2.1", "PolygonType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PolyStyleType =
             new QName("http://earth.google.com/kml/2.1", "PolyStyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName refreshModeEnum =
             new QName("http://earth.google.com/kml/2.1", "refreshModeEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RegionType =
             new QName("http://earth.google.com/kml/2.1", "RegionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ReplaceType =
             new QName("http://earth.google.com/kml/2.1", "ReplaceType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ScaleType = new QName("http://earth.google.com/kml/2.1", "ScaleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ScreenOverlayType =
             new QName("http://earth.google.com/kml/2.1", "ScreenOverlayType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SnippetType =
             new QName("http://earth.google.com/kml/2.1", "SnippetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StyleMapPairType =
             new QName("http://earth.google.com/kml/2.1", "StyleMapPairType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StyleMapType =
             new QName("http://earth.google.com/kml/2.1", "StyleMapType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StyleSelectorType =
             new QName("http://earth.google.com/kml/2.1", "StyleSelectorType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName styleStateEnum =
             new QName("http://earth.google.com/kml/2.1", "styleStateEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StyleType = new QName("http://earth.google.com/kml/2.1", "StyleType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimePrimitiveType =
             new QName("http://earth.google.com/kml/2.1", "TimePrimitiveType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeSpanType =
             new QName("http://earth.google.com/kml/2.1", "TimeSpanType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeStampType =
             new QName("http://earth.google.com/kml/2.1", "TimeStampType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName unitsEnum = new QName("http://earth.google.com/kml/2.1", "unitsEnum");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName UpdateType =
             new QName("http://earth.google.com/kml/2.1", "UpdateType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName vec2Type = new QName("http://earth.google.com/kml/2.1", "vec2Type");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName viewRefreshModeEnum =
             new QName("http://earth.google.com/kml/2.1", "viewRefreshModeEnum");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName BalloonStyle =
             new QName("http://earth.google.com/kml/2.1", "BalloonStyle");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName coordinates =
             new QName("http://earth.google.com/kml/2.1", "coordinates");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Document = new QName("http://earth.google.com/kml/2.1", "Document");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Feature = new QName("http://earth.google.com/kml/2.1", "Feature");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Folder = new QName("http://earth.google.com/kml/2.1", "Folder");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Geometry = new QName("http://earth.google.com/kml/2.1", "Geometry");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GroundOverlay =
             new QName("http://earth.google.com/kml/2.1", "GroundOverlay");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Icon = new QName("http://earth.google.com/kml/2.1", "Icon");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName IconStyle = new QName("http://earth.google.com/kml/2.1", "IconStyle");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName kml = new QName("http://earth.google.com/kml/2.1", "kml");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LabelStyle =
             new QName("http://earth.google.com/kml/2.1", "LabelStyle");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LatLonAltBox =
             new QName("http://earth.google.com/kml/2.1", "LatLonAltBox");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LatLonBox = new QName("http://earth.google.com/kml/2.1", "LatLonBox");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LinearRing =
             new QName("http://earth.google.com/kml/2.1", "LinearRing");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LineString =
             new QName("http://earth.google.com/kml/2.1", "LineString");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LineStyle = new QName("http://earth.google.com/kml/2.1", "LineStyle");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Link = new QName("http://earth.google.com/kml/2.1", "Link");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ListStyle = new QName("http://earth.google.com/kml/2.1", "ListStyle");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Location = new QName("http://earth.google.com/kml/2.1", "Location");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Lod = new QName("http://earth.google.com/kml/2.1", "Lod");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LookAt = new QName("http://earth.google.com/kml/2.1", "LookAt");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Model = new QName("http://earth.google.com/kml/2.1", "Model");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName MultiGeometry =
             new QName("http://earth.google.com/kml/2.1", "MultiGeometry");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName NetworkLink =
             new QName("http://earth.google.com/kml/2.1", "NetworkLink");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Object = new QName("http://earth.google.com/kml/2.1", "Object");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Orientation =
             new QName("http://earth.google.com/kml/2.1", "Orientation");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Placemark = new QName("http://earth.google.com/kml/2.1", "Placemark");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Point = new QName("http://earth.google.com/kml/2.1", "Point");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Polygon = new QName("http://earth.google.com/kml/2.1", "Polygon");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName PolyStyle = new QName("http://earth.google.com/kml/2.1", "PolyStyle");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Region = new QName("http://earth.google.com/kml/2.1", "Region");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Scale = new QName("http://earth.google.com/kml/2.1", "Scale");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ScreenOverlay =
             new QName("http://earth.google.com/kml/2.1", "ScreenOverlay");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Style = new QName("http://earth.google.com/kml/2.1", "Style");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StyleMap = new QName("http://earth.google.com/kml/2.1", "StyleMap");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName StyleSelector =
             new QName("http://earth.google.com/kml/2.1", "StyleSelector");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName styleUrl = new QName("http://earth.google.com/kml/2.1", "styleUrl");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimePrimitive =
             new QName("http://earth.google.com/kml/2.1", "TimePrimitive");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeSpan = new QName("http://earth.google.com/kml/2.1", "TimeSpan");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeStamp = new QName("http://earth.google.com/kml/2.1", "TimeStamp");
 
     /** private constructor */

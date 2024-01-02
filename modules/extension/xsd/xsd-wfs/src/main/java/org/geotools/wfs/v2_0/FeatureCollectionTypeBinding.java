@@ -73,7 +73,9 @@ public class FeatureCollectionTypeBinding extends AbstractComplexEMFBinding {
         }
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.FeatureCollectionType;

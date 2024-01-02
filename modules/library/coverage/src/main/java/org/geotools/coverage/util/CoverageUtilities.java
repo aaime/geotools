@@ -89,6 +89,7 @@ public final class CoverageUtilities {
             AffineTransform.getTranslateInstance(
                     PixelTranslation.getPixelTranslation(PixelInCell.CELL_CORNER),
                     PixelTranslation.getPixelTranslation(PixelInCell.CELL_CORNER));
+
     /**
      * {@link AffineTransform} that can be used to go from an image datum placed at the ULC corner
      * of pixels to one that is placed at center.

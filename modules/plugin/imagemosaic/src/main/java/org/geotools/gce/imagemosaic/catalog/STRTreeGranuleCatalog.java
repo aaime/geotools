@@ -437,7 +437,9 @@ class STRTreeGranuleCatalog extends GranuleCatalog {
         return getBounds(typeName);
     }
 
-    /** @throws IllegalStateException */
+    /**
+     * @throws IllegalStateException
+     */
     private void checkStore() throws IllegalStateException {
         if (wrappedCatalogue == null)
             throw new IllegalStateException("The underlying store has already been disposed!");

@@ -57,7 +57,9 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
-/** @author Emanuele Tajariol (etj at geo-solutions dot it) */
+/**
+ * @author Emanuele Tajariol (etj at geo-solutions dot it)
+ */
 public class WMTSConfigurationTest extends XmlTestSupport {
 
     static final Logger LOGGER = Logging.getLogger(WMTSConfigurationTest.class);

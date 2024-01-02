@@ -30,7 +30,9 @@ import org.junit.Before;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 
-/** @author James */
+/**
+ * @author James
+ */
 public abstract class FunctionTestSupport {
 
     protected SimpleFeatureCollection featureCollection,

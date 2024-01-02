@@ -923,6 +923,7 @@ public class StyleFactoryImpl extends AbstractStyleFactory implements StyleFacto
 
         return relief;
     }
+
     //
     // Start of GeoAPI StyleFacstory implementation
     //

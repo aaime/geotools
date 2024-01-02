@@ -23,7 +23,9 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-/** @author User */
+/**
+ * @author User
+ */
 public class NetCDFTimeUtilities {
 
     public static final int JGREG = 15 + 31 * (10 + 12 * 1582);
@@ -69,7 +71,9 @@ public class NetCDFTimeUtilities {
     /** */
     private NetCDFTimeUtilities() {}
 
-    /** @param origin */
+    /**
+     * @param origin
+     */
     public static String checkDateDigits(String origin) {
         String digitsCheckedOrigin = "";
         if (origin.indexOf("-") > 0) {

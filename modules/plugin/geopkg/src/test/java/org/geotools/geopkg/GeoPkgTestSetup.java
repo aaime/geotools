@@ -95,7 +95,9 @@ public class GeoPkgTestSetup extends JDBCTestSetup {
         run(sql);
     }
 
-    /** @param tableName */
+    /**
+     * @param tableName
+     */
     void removeTable(String tableName) {
         // drop old data
         runSafe("DROP TABLE IF EXISTS " + tableName);

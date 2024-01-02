@@ -7,7 +7,9 @@ package org.geotools.swing.testutils;
 import org.geotools.map.MapContent;
 import org.geotools.map.MapViewport;
 
-/** @author michael */
+/**
+ * @author michael
+ */
 public class WaitingMapContent extends MapContent {
 
     public static enum Type {

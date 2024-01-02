@@ -18,7 +18,9 @@ package org.geotools.data.mongodb.data;
 
 import java.io.File;
 
-/** @author ImranR */
+/**
+ * @author ImranR
+ */
 public interface SchemaStoreDirectory {
 
     public File getDirectory();

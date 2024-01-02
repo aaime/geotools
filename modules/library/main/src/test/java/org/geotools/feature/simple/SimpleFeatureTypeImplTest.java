@@ -129,7 +129,9 @@ public class SimpleFeatureTypeImplTest {
         Assert.assertEquals(0, latch.getCount());
     }
 
-    /** @return a simple feature type with location before count */
+    /**
+     * @return a simple feature type with location before count
+     */
     private SimpleFeatureType buildLocationCountType() {
         SimpleFeatureTypeBuilder builder = buildPartialBuilder();
         builder.add("location", Point.class, (CoordinateReferenceSystem) null);
@@ -137,7 +139,9 @@ public class SimpleFeatureTypeImplTest {
         return builder.buildFeatureType();
     }
 
-    /** @return a simple feature type with count before location */
+    /**
+     * @return a simple feature type with count before location
+     */
     private SimpleFeatureType buildCountLocationType() {
         SimpleFeatureTypeBuilder builder = buildPartialBuilder();
         builder.add("count", Integer.class);

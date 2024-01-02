@@ -41,7 +41,9 @@ import org.w3c.dom.Element;
  * @generated
  */
 public class OGCDistanceTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.DistanceType;

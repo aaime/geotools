@@ -158,6 +158,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(PropertyIsEqualTo filter, Object data) {
         return visit((BinaryComparisonOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(), and filter.getExpression2() if an expression visitor was set.
      */
@@ -165,6 +166,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(PropertyIsNotEqualTo filter, Object data) {
         return visit((BinaryComparisonOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(), and filter.getExpression2() if an expression visitor was set.
      */
@@ -172,6 +174,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(PropertyIsLessThan filter, Object data) {
         return visit((BinaryComparisonOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(), and filter.getExpression2() if an expression visitor was set.
      */
@@ -179,6 +182,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(PropertyIsLessThanOrEqualTo filter, Object data) {
         return visit((BinaryComparisonOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(), and filter.getExpression2() if an expression visitor was set.
      */
@@ -186,6 +190,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(PropertyIsGreaterThan filter, Object data) {
         return visit((BinaryComparisonOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(), and filter.getExpression2() if an expression visitor was set.
      */
@@ -222,6 +227,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Beyond filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -229,6 +235,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Contains filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -236,6 +243,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Crosses filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -243,6 +251,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Disjoint filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -250,6 +259,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(DWithin filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -257,6 +267,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Equals filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -264,6 +275,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Intersects filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -271,6 +283,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Overlaps filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -278,6 +291,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(Touches filter, Object data) {
         return visit((BinarySpatialOperator) filter, data);
     }
+
     /**
      * Visits filter.getExpression1(),filter.getExpression2() if an expression visitor has been set.
      */
@@ -312,6 +326,7 @@ public class AbstractFilterVisitor implements FilterVisitor {
     public Object visit(And filter, Object data) {
         return visit((BinaryLogicOperator) filter, data);
     }
+
     /** Visits elements of filter.getChildren(). */
     @Override
     public Object visit(Or filter, Object data) {

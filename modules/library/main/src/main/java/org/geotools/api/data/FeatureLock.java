@@ -64,6 +64,7 @@ public class FeatureLock {
     public FeatureLock(String authorization, long duration, TimeUnit unit) {
         this(authorization, TimeUnit.MILLISECONDS.convert(duration, unit));
     }
+
     /**
      * Gets the ID used for transaction authorization.
      *

@@ -59,338 +59,514 @@ public final class WCS extends XSD {
         return getClass().getResource("getCoverage.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/wcs";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractDescriptionBaseType =
             new QName("http://www.opengis.net/wcs", "AbstractDescriptionBaseType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractDescriptionType =
             new QName("http://www.opengis.net/wcs", "AbstractDescriptionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AddressType = new QName("http://www.opengis.net/wcs", "AddressType");
 
     //    /** @generated */
     //    public static final QName AxisSubsetType = new QName(
     //            "http://www.opengis.net/wcs", "AxisSubsetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AxisDescriptionType =
             new QName("http://www.opengis.net/wcs", "AxisDescriptionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CapabilitiesSectionType =
             new QName("http://www.opengis.net/wcs", "CapabilitiesSectionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ContactType = new QName("http://www.opengis.net/wcs", "ContactType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CoverageOfferingBriefType =
             new QName("http://www.opengis.net/wcs", "CoverageOfferingBriefType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CoverageOfferingType =
             new QName("http://www.opengis.net/wcs", "CoverageOfferingType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DCPTypeType = new QName("http://www.opengis.net/wcs", "DCPTypeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DomainSetType =
             new QName("http://www.opengis.net/wcs", "DomainSetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DomainSubsetType =
             new QName("http://www.opengis.net/wcs", "DomainSubsetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName InterpolationMethodType =
             new QName("http://www.opengis.net/wcs", "InterpolationMethodType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName intervalType =
             new QName("http://www.opengis.net/wcs", "intervalType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LonLatEnvelopeBaseType =
             new QName("http://www.opengis.net/wcs", "LonLatEnvelopeBaseType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LonLatEnvelopeType =
             new QName("http://www.opengis.net/wcs", "LonLatEnvelopeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName MetadataAssociationType =
             new QName("http://www.opengis.net/wcs", "MetadataAssociationType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName MetadataLinkType =
             new QName("http://www.opengis.net/wcs", "MetadataLinkType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName OnlineResourceType =
             new QName("http://www.opengis.net/wcs", "OnlineResourceType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName OutputType = new QName("http://www.opengis.net/wcs", "OutputType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RangeSetType =
             new QName("http://www.opengis.net/wcs", "RangeSetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RangeSubsetType =
             new QName("http://www.opengis.net/wcs", "RangeSubsetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ResponsiblePartyType =
             new QName("http://www.opengis.net/wcs", "ResponsiblePartyType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ServiceType = new QName("http://www.opengis.net/wcs", "ServiceType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SpatialDomainType =
             new QName("http://www.opengis.net/wcs", "SpatialDomainType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SpatialSubsetType =
             new QName("http://www.opengis.net/wcs", "SpatialSubsetType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SupportedCRSsType =
             new QName("http://www.opengis.net/wcs", "SupportedCRSsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SupportedFormatsType =
             new QName("http://www.opengis.net/wcs", "SupportedFormatsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SupportedInterpolationsType =
             new QName("http://www.opengis.net/wcs", "SupportedInterpolationsType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TelephoneType =
             new QName("http://www.opengis.net/wcs", "TelephoneType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimePeriodType =
             new QName("http://www.opengis.net/wcs", "TimePeriodType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeSequenceType =
             new QName("http://www.opengis.net/wcs", "TimeSequenceType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TypedLiteralType =
             new QName("http://www.opengis.net/wcs", "TypedLiteralType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName valueEnumBaseType =
             new QName("http://www.opengis.net/wcs", "valueEnumBaseType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName valueEnumType =
             new QName("http://www.opengis.net/wcs", "valueEnumType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName valueRangeType =
             new QName("http://www.opengis.net/wcs", "valueRangeType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WCS_CapabilitiesType =
             new QName("http://www.opengis.net/wcs", "WCS_CapabilitiesType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WCSCapabilityType =
             new QName("http://www.opengis.net/wcs", "WCSCapabilityType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _axisDescription =
             new QName("http://www.opengis.net/wcs", "_axisDescription");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _ContentMetadata =
             new QName("http://www.opengis.net/wcs", "_ContentMetadata");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _CoverageDescription =
             new QName("http://www.opengis.net/wcs", "_CoverageDescription");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _DescribeCoverage =
             new QName("http://www.opengis.net/wcs", "_DescribeCoverage");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _GetCapabilities =
             new QName("http://www.opengis.net/wcs", "_GetCapabilities");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _GetCoverage =
             new QName("http://www.opengis.net/wcs", "_GetCoverage");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _keywords = new QName("http://www.opengis.net/wcs", "_keywords");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _rangeSet = new QName("http://www.opengis.net/wcs", "_rangeSet");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AxisDescriptionType_values =
             new QName("http://www.opengis.net/wcs", "AxisDescriptionType_values");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DCPTypeType_HTTP =
             new QName("http://www.opengis.net/wcs", "DCPTypeType_HTTP");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RangeSubsetType_axisSubset =
             new QName("http://www.opengis.net/wcs", "RangeSubsetType_axisSubset");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WCSCapabilityType_Request =
             new QName("http://www.opengis.net/wcs", "WCSCapabilityType_Request");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WCSCapabilityType_Exception =
             new QName("http://www.opengis.net/wcs", "WCSCapabilityType_Exception");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WCSCapabilityType_VendorSpecificCapabilities =
             new QName("http://www.opengis.net/wcs", "WCSCapabilityType_VendorSpecificCapabilities");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName axisDescription =
             new QName("http://www.opengis.net/wcs", "axisDescription");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AxisDescription =
             new QName("http://www.opengis.net/wcs", "AxisDescription");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Capability = new QName("http://www.opengis.net/wcs", "Capability");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ContentMetadata =
             new QName("http://www.opengis.net/wcs", "ContentMetadata");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CoverageDescription =
             new QName("http://www.opengis.net/wcs", "CoverageDescription");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CoverageOffering =
             new QName("http://www.opengis.net/wcs", "CoverageOffering");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CoverageOfferingBrief =
             new QName("http://www.opengis.net/wcs", "CoverageOfferingBrief");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName DescribeCoverage =
             new QName("http://www.opengis.net/wcs", "DescribeCoverage");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName description = new QName("http://www.opengis.net/wcs", "description");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName domainSet = new QName("http://www.opengis.net/wcs", "domainSet");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName formats = new QName("http://www.opengis.net/wcs", "formats");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GetCapabilities =
             new QName("http://www.opengis.net/wcs", "GetCapabilities");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName GetCoverage = new QName("http://www.opengis.net/wcs", "GetCoverage");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName interpolationMethod =
             new QName("http://www.opengis.net/wcs", "interpolationMethod");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName interval = new QName("http://www.opengis.net/wcs", "interval");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName keywords = new QName("http://www.opengis.net/wcs", "keywords");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName lonLatEnvelope =
             new QName("http://www.opengis.net/wcs", "lonLatEnvelope");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName metadataLink =
             new QName("http://www.opengis.net/wcs", "metadataLink");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName name = new QName("http://www.opengis.net/wcs", "name");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName rangeSet = new QName("http://www.opengis.net/wcs", "rangeSet");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName RangeSet = new QName("http://www.opengis.net/wcs", "RangeSet");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Service = new QName("http://www.opengis.net/wcs", "Service");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName singleValue = new QName("http://www.opengis.net/wcs", "singleValue");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName spatialDomain =
             new QName("http://www.opengis.net/wcs", "spatialDomain");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName spatialSubset =
             new QName("http://www.opengis.net/wcs", "spatialSubset");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName supportedCRSs =
             new QName("http://www.opengis.net/wcs", "supportedCRSs");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName supportedFormats =
             new QName("http://www.opengis.net/wcs", "supportedFormats");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName supportedInterpolations =
             new QName("http://www.opengis.net/wcs", "supportedInterpolations");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName temporalDomain =
             new QName("http://www.opengis.net/wcs", "temporalDomain");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName temporalSubset =
             new QName("http://www.opengis.net/wcs", "temporalSubset");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName timePeriod = new QName("http://www.opengis.net/wcs", "timePeriod");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TimeSequence =
             new QName("http://www.opengis.net/wcs", "TimeSequence");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WCS_Capabilities =
             new QName("http://www.opengis.net/wcs", "WCS_Capabilities");
 
     /* Attributes */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName closure = new QName("http://www.opengis.net/wcs", "closure");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName semantic = new QName("http://www.opengis.net/wcs", "semantic");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName type = new QName("http://www.opengis.net/wcs", "type");
 }

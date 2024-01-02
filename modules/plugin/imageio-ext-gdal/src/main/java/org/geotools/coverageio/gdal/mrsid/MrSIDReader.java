@@ -185,7 +185,9 @@ public final class MrSIDReader extends BaseGDALGridCoverage2DReader implements G
         //    }
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new MrSIDFormat();

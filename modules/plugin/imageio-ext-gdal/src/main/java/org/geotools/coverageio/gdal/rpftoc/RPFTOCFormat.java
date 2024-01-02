@@ -56,7 +56,9 @@ public final class RPFTOCFormat extends BaseGDALGridFormat implements Format {
         setInfo(INFO);
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#getReader(Object, Hints)
+     */
     @Override
     public RPFTOCReader getReader(Object source, Hints hints) {
         try {

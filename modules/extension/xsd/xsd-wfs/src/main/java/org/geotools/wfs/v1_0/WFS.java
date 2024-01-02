@@ -28,23 +28,33 @@ import org.geotools.filter.v1_0.OGC;
  */
 public final class WFS extends org.geotools.wfs.WFS {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WFS_TransactionResponseType =
             new QName("http://www.opengis.net/wfs", "WFS_TransactionResponseType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WFS_TransactionResponse =
             new QName("http://www.opengis.net/wfs", "WFS_TransactionResponse");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WFS_LockFeatureResponseType =
             new QName("http://www.opengis.net/wfs", "WFS_LockFeatureResponseType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName WFS_LockFeatureResponse =
             new QName("http://www.opengis.net/wfs", "WFS_LockFeatureResponse");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName InsertResultType =
             new QName("http://www.opengis.net/wfs", "InsertResultType");
 

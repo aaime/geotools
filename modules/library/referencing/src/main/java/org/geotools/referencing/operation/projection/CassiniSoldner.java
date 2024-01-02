@@ -68,6 +68,7 @@ public class CassiniSoldner extends MapProjection {
     public ParameterDescriptorGroup getParameterDescriptors() {
         return Provider.PARAMETERS;
     }
+
     /**
      * Transforms the specified (<var>x</var>,<var>y</var>) coordinate and stores the result in
      * {@code ptDst}.

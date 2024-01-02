@@ -129,12 +129,16 @@ public class QuantileListVisitor implements FeatureCalc {
         this.countNaN = 0;
     }
 
-    /** @return the number of features which returned a NaN */
+    /**
+     * @return the number of features which returned a NaN
+     */
     public int getNaNCount() {
         return countNaN;
     }
 
-    /** @return the number of features which returned a null */
+    /**
+     * @return the number of features which returned a null
+     */
     public int getNullCount() {
         return countNull;
     }

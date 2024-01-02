@@ -34,8 +34,10 @@ public interface Request {
 
     /** Represents the REQUEST parameter */
     public static final String REQUEST = "REQUEST"; // $NON-NLS-1$
+
     /** Represents the VERSION parameter */
     public static final String VERSION = "VERSION"; // $NON-NLS-1$
+
     /** Represents the WMTVER parameter */
     public static final String WMTVER = "WMTVER"; // $NON-NLS-1$
 
@@ -65,7 +67,9 @@ public interface Request {
      */
     public void setProperty(String name, String value);
 
-    /** @return a copy of this request's properties */
+    /**
+     * @return a copy of this request's properties
+     */
     public Properties getProperties();
 
     /**

@@ -63,7 +63,9 @@ public class XSQNameBinding implements SimpleBinding {
         this.namespaceContext = namespaceContext;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.QNAME;

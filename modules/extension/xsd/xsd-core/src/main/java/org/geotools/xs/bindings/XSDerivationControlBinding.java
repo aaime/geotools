@@ -47,7 +47,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSDerivationControlBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.DERIVATIONCONTROL;

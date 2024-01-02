@@ -32,7 +32,9 @@ import org.geotools.api.style.ExternalGraphic;
 import org.geotools.api.style.Graphic;
 import org.geotools.util.logging.Logging;
 
-/** @author jfc173 */
+/**
+ * @author jfc173
+ */
 public class CustomGlyphRenderer implements GlyphRenderer {
 
     static final Logger LOGGER = Logging.getLogger(CustomGlyphRenderer.class);

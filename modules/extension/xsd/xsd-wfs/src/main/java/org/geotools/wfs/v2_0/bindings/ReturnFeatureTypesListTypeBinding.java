@@ -48,7 +48,9 @@ public class ReturnFeatureTypesListTypeBinding extends AbstractSimpleBinding {
         this.namespaceContext = namespaceContext;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.ReturnFeatureTypesListType;

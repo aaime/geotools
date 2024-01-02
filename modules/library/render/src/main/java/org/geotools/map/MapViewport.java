@@ -96,6 +96,7 @@ public class MapViewport {
     private CopyOnWriteArrayList<MapBoundsListener> boundsListeners;
     private boolean matchingAspectRatio;
     private boolean hasCenteringTransforms;
+
     /**
      * Determine if the map retains its scale (false) or its bounds (true) when the MapPane is
      * resized.
@@ -541,6 +542,7 @@ public class MapViewport {
     public boolean isFixedBoundsOnResize() {
         return fixedBoundsOnResize;
     }
+
     /**
      * Determine if the map retains its scale (false) or its bounds (true) when the MapPane is
      * resized.

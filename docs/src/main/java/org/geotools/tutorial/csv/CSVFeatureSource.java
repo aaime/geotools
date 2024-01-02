@@ -42,6 +42,7 @@ public class CSVFeatureSource extends ContentFeatureSource {
     public CSVDataStore getDataStore() {
         return (CSVDataStore) super.getDataStore();
     }
+
     // getDataStore end
 
     // reader start
@@ -72,6 +73,7 @@ public class CSVFeatureSource extends ContentFeatureSource {
         }
         return -1; // feature by feature scan required to count records
     }
+
     // count end
 
     // bounds start
@@ -82,6 +84,7 @@ public class CSVFeatureSource extends ContentFeatureSource {
     protected ReferencedEnvelope getBoundsInternal(Query query) throws IOException {
         return null; // feature by feature scan required to establish bounds
     }
+
     // bounds end
 
     // schema start

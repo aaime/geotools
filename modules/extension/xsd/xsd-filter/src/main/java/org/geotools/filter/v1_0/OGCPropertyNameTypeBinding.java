@@ -59,7 +59,9 @@ public class OGCPropertyNameTypeBinding extends AbstractComplexBinding {
         this.namespaceSupport = namespaceSupport;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.PropertyNameType;

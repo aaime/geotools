@@ -37,7 +37,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class OGCLogicOpsTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.LogicOpsType;

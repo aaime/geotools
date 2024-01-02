@@ -22,6 +22,7 @@ class Welcome {
     public static void main(String... args) {
         LOGGER.info("Welcome");
     }
+
     /**
      * Setup DEFAULT Logger (taking care to initialize GeoTools with preferred logging framework).
      *

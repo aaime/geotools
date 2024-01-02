@@ -52,13 +52,17 @@ public class SimpleHttpClient extends AbstractHttpClient implements HTTPProxy {
         this.readTimeout = DEFAULT_TIMEOUT;
     }
 
-    /** @see org.geotools.http.HTTPClient#get(java.net.URL) */
+    /**
+     * @see org.geotools.http.HTTPClient#get(java.net.URL)
+     */
     @Override
     public HTTPResponse get(final URL url) throws IOException {
         return this.get(url, null);
     }
 
-    /** @see org.geotools.http.HTTPClient#get(URL, Map) */
+    /**
+     * @see org.geotools.http.HTTPClient#get(URL, Map)
+     */
     @Override
     public HTTPResponse get(URL url, Map<String, String> headers) throws IOException {
         if (LOGGER.isLoggable(Level.FINE)) LOGGER.log(Level.FINE, "URL is " + url);
@@ -75,13 +79,17 @@ public class SimpleHttpClient extends AbstractHttpClient implements HTTPProxy {
         return new DefaultHttpResponse(connection);
     }
 
-    /** @see org.geotools.http.HTTPClient#post(URL, InputStream, String, Map) */
+    /**
+     * @see org.geotools.http.HTTPClient#post(URL, InputStream, String, Map)
+     */
     @Override
     public HTTPResponse post(URL url, InputStream content, String contentType) throws IOException {
         return post(url, content, contentType, null);
     }
 
-    /** @see org.geotools.http.HTTPClient#post(URL, InputStream, String) */
+    /**
+     * @see org.geotools.http.HTTPClient#post(URL, InputStream, String)
+     */
     @Override
     public HTTPResponse post(
             final URL url,

@@ -220,7 +220,9 @@ public class MappingFeatureSource implements FeatureSource<FeatureType, Feature>
         return Collections.emptySet();
     }
 
-    /** @see FeatureSource#getQueryCapabilities() */
+    /**
+     * @see FeatureSource#getQueryCapabilities()
+     */
     @Override
     public QueryCapabilities getQueryCapabilities() {
         return mapping.getSource().getQueryCapabilities();

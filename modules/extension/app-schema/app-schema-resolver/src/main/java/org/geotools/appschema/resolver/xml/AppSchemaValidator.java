@@ -296,7 +296,8 @@ public class AppSchemaValidator {
             throw new UnsupportedOperationException(
                     "Misconfigured parser: EntityResolver2 interface must be used "
                             + "so that relative URLs are resolved correctly");
-        };
+        }
+        ;
 
         /**
          * Always returns null to indicate that there is no external subset.
@@ -334,19 +335,25 @@ public class AppSchemaValidator {
      */
     private class AppSchemaValidatorErrorHandler implements ErrorHandler {
 
-        /** @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException) */
+        /**
+         * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)
+         */
         @Override
         public void error(SAXParseException exception) throws SAXException {
             failures.add("ERROR: " + exception.getMessage());
         }
 
-        /** @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException) */
+        /**
+         * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)
+         */
         @Override
         public void fatalError(SAXParseException exception) throws SAXException {
             failures.add("FATAL ERROR: " + exception.getMessage());
         }
 
-        /** @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException) */
+        /**
+         * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)
+         */
         @Override
         public void warning(SAXParseException exception) throws SAXException {
             if (failOnWarning) {

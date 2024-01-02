@@ -45,7 +45,9 @@ public final class LineIterator2 implements PathIterator {
 
     public LineIterator2() {}
 
-    /** @see java.awt.geom.PathIterator#currentSegment(float[]) */
+    /**
+     * @see java.awt.geom.PathIterator#currentSegment(float[])
+     */
     @Override
     public int currentSegment(float[] coords) {
         if (currentCoord == 0) {
@@ -124,7 +126,9 @@ public final class LineIterator2 implements PathIterator {
         }
     }
 
-    /** @see java.awt.geom.PathIterator#currentSegment(double[]) */
+    /**
+     * @see java.awt.geom.PathIterator#currentSegment(double[])
+     */
     @Override
     public int currentSegment(double[] coords) {
         float[] fco = new float[6];

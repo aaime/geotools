@@ -57,7 +57,9 @@ import org.geotools.xsd.Node;
  */
 public class DCPTypeType_HTTPBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.DCPTypeType_HTTP;

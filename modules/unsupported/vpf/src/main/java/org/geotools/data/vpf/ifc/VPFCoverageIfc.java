@@ -15,6 +15,7 @@
  *    Lesser General Public License for more details.
  */
 package org.geotools.data.vpf.ifc;
+
 /*
  * VPFCoverageIfc.java
  *

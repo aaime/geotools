@@ -80,7 +80,9 @@ public class BoundingBoxTypeBinding extends ComplexEMFBinding {
         super(owsFactory, target);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.BoundingBoxType;

@@ -450,6 +450,7 @@ public class Drawer {
 
         return at;
     }
+
     /**
      * Create a SimpleFeatureType schema using a type short hand.
      *
@@ -552,6 +553,7 @@ public class Drawer {
                     "Could not generate feature for point " + point); // $NON-NLS-1$
         }
     }
+
     /**
      * Simple Feature with a default geometry and no attribtues.
      *
@@ -600,6 +602,7 @@ public class Drawer {
                     "Could not generate feature for point " + multipoint); // $NON-NLS-1$
         }
     }
+
     /**
      * Simple Feature with a default geometry and no attribtues.
      *
@@ -617,6 +620,7 @@ public class Drawer {
                     "Could not generate feature for point " + multilinestring); // $NON-NLS-1$
         }
     }
+
     /**
      * Simple Feature with a default geometry and no attribtues.
      *
@@ -643,6 +647,7 @@ public class Drawer {
     public Point point(int x, int y) {
         return gf.createPoint(new Coordinate(x, y));
     }
+
     /**
      * Generate LineStrings from two dimensional ordinates
      *
@@ -672,6 +677,7 @@ public class Drawer {
 
         return gf.createMultiLineString(lines);
     }
+
     /**
      * Convience constructor for GeometryFactory.createPolygon.
      *

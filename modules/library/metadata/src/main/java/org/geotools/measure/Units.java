@@ -139,6 +139,7 @@ public final class Units {
         UnitFormatter format = UnitFormat.getInstance();
         return format.format(unit);
     }
+
     /**
      * Unit symbol, willing to use {@link UnitFormat} to look up appropriate label if required.
      *

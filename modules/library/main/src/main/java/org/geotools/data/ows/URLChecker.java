@@ -27,10 +27,14 @@ package org.geotools.data.ows;
 // doc-begin
 public interface URLChecker {
 
-    /** @return URLChecker name that best describes its purpose (e.g. GML Schema evaluator etc) */
+    /**
+     * @return URLChecker name that best describes its purpose (e.g. GML Schema evaluator etc)
+     */
     String getName();
 
-    /** @return Boolean flag indicating if this URLChecker should be used */
+    /**
+     * @return Boolean flag indicating if this URLChecker should be used
+     */
     boolean isEnabled();
 
     /**

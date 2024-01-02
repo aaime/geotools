@@ -46,7 +46,9 @@ public class FunctionTypeBinding extends OGCFunctionTypeBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.FunctionType;

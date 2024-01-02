@@ -22,7 +22,9 @@ import org.geotools.data.complex.AppSchemaDataAccessRegistry;
 import org.geotools.data.complex.DataAccessRegistry;
 import org.junit.AfterClass;
 
-/** @author Niels Charlier (Curtin University of Technology) */
+/**
+ * @author Niels Charlier (Curtin University of Technology)
+ */
 public class AppSchemaTestSupport {
 
     @AfterClass

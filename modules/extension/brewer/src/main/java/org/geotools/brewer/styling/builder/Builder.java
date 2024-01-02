@@ -34,12 +34,14 @@ public interface Builder<T> {
      * @return Builder configured to build <code>null</code>
      */
     Builder<T> unset();
+
     /**
      * Configure the Builder to produce a default result.
      *
      * @return Builder configured to produce a default result.
      */
     Builder<T> reset();
+
     /**
      * Configure the Builder to produce a copy of the provided original.
      *

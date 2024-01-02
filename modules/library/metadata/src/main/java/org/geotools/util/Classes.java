@@ -67,14 +67,19 @@ public final class Classes {
 
     /** The primitive type. */
     private final Class<?> primitive;
+
     /** The wrapper for the primitive type. */
     private final Class<?> wrapper;
+
     /** {@code true} for floating point number. */
     private final boolean isFloat;
+
     /** {@code true} for integer number. */
     private final boolean isInteger;
+
     /** The size in bytes. */
     private final byte size;
+
     /** Constant to be used in switch statement. */
     private final byte ordinal;
 

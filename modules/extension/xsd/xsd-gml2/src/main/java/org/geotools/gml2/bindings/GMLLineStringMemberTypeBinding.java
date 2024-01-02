@@ -52,7 +52,9 @@ import org.locationtech.jts.geom.LineString;
  * @generated
  */
 public class GMLLineStringMemberTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return new QName("http://www.opengis.net/gml", "LineStringMemberType");

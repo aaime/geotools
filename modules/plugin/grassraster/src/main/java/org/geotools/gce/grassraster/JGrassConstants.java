@@ -164,6 +164,7 @@ public class JGrassConstants {
 
     /** Array of supported types for csv imports. */
     public static final String[] CSVTYPESARRAY = {"X", "Y", "Z", "String", "Double", "Integer"};
+
     /** {@link Map} of classes for csv types. */
     public static final Map<String, Class<?>> CSVTYPESCLASSESMAP = new HashMap<>();
 

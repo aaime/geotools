@@ -65,51 +65,67 @@ public final class IndexedFeatureResults extends DataFeatureCollection {
         }
     }
 
-    /** @see org.geotools.data.FeatureResults#reader() */
+    /**
+     * @see org.geotools.data.FeatureResults#reader()
+     */
     public FeatureReader<SimpleFeatureType, SimpleFeature> reader(Envelope envelope)
             throws IOException {
         List results = index.query(envelope);
         final Iterator resultsIterator = results.iterator();
 
         return new FeatureReader<SimpleFeatureType, SimpleFeature>() {
-            /** @see FeatureReader#getFeatureType() */
+            /**
+             * @see FeatureReader#getFeatureType()
+             */
             @Override
             public SimpleFeatureType getFeatureType() {
                 return getSchema();
             }
 
-            /** @see FeatureReader#next() */
+            /**
+             * @see FeatureReader#next()
+             */
             @Override
             public SimpleFeature next()
                     throws IOException, IllegalAttributeException, NoSuchElementException {
                 return (SimpleFeature) resultsIterator.next();
             }
 
-            /** @see FeatureReader#hasNext() */
+            /**
+             * @see FeatureReader#hasNext()
+             */
             @Override
             public boolean hasNext() throws IOException {
                 return resultsIterator.hasNext();
             }
 
-            /** @see FeatureReader#close() */
+            /**
+             * @see FeatureReader#close()
+             */
             @Override
             public void close() throws IOException {}
         };
     }
 
-    /** @see org.geotools.data.FeatureResults#getBounds() */
+    /**
+     * @see org.geotools.data.FeatureResults#getBounds()
+     */
     @Override
     public ReferencedEnvelope getBounds() {
         return ReferencedEnvelope.reference(bounds);
     }
 
-    /** @see org.geotools.data.FeatureResults#getCount() */
+    /**
+     * @see org.geotools.data.FeatureResults#getCount()
+     */
     @Override
     public int getCount() throws IOException {
         return count;
     }
 
-    /** @see org.geotools.data.FeatureResults#collection() */
+    /**
+     * @see org.geotools.data.FeatureResults#collection()
+     */
     public SimpleFeatureCollection collection() throws IOException {
         DefaultFeatureCollection fc = new DefaultFeatureCollection();
         @SuppressWarnings("unchecked")
@@ -120,14 +136,18 @@ public final class IndexedFeatureResults extends DataFeatureCollection {
         return fc;
     }
 
-    /** @see org.geotools.data.FeatureResults#reader() */
+    /**
+     * @see org.geotools.data.FeatureResults#reader()
+     */
     @Override
     public FeatureReader<SimpleFeatureType, SimpleFeature> reader() throws IOException {
         if (queryBounds != null) return reader(queryBounds);
         else return reader(bounds);
     }
 
-    /** @param queryBounds an Envelope defining the boundary of the query */
+    /**
+     * @param queryBounds an Envelope defining the boundary of the query
+     */
     public void setQueryBounds(Envelope queryBounds) {
         this.queryBounds = queryBounds;
     }

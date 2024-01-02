@@ -49,7 +49,9 @@ import org.locationtech.jts.geom.Polygon;
  */
 public class SurfacePatchArrayPropertyTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.SurfacePatchArrayPropertyType;

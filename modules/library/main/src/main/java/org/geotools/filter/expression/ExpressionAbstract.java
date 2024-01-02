@@ -36,6 +36,7 @@ public abstract class ExpressionAbstract implements Expression {
     public Object evaluate(Object object) {
         return null;
     }
+
     /**
      * Default implementation delegates handling of context conversion to Converters utility class.
      *

@@ -56,6 +56,7 @@ public abstract class AbstractEpsgMediator extends AbstractAuthorityMediator {
     public AbstractEpsgMediator(Hints hints) throws FactoryException {
         this(hints, lookupDataSource(hints));
     }
+
     /**
      * We expect the EPSG_DATASOURCE to provide a DataSource. Either:
      *

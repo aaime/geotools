@@ -93,7 +93,9 @@ public class ForceCoordinateSystemFeatureReader
         this.reader = reader;
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public SimpleFeatureType getFeatureType() {
         if (reader == null) {
@@ -105,7 +107,9 @@ public class ForceCoordinateSystemFeatureReader
         return builder.getFeatureType();
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public SimpleFeature next()
             throws IOException, IllegalAttributeException, NoSuchElementException {
@@ -119,7 +123,9 @@ public class ForceCoordinateSystemFeatureReader
         return SimpleFeatureBuilder.retype(next, builder);
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() throws IOException {
         if (reader == null) {
@@ -129,7 +135,9 @@ public class ForceCoordinateSystemFeatureReader
         return reader.hasNext();
     }
 
-    /** @see FeatureReader#close() */
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() throws IOException {
         if (reader == null) {

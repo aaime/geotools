@@ -71,6 +71,7 @@ public class FilterToCQLTest {
     public void testANDOR() throws Exception {
         cqlTest("(ATTR1 < 10 AND ATTR2 < 2) OR ATTR3 > 10");
     }
+
     /** (ATTR1 > 10 OR ATTR2 < 2) */
     @Test
     public void testOR() throws Exception {

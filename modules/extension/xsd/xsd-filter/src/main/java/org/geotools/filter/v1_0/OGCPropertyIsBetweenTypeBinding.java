@@ -56,7 +56,9 @@ public class OGCPropertyIsBetweenTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.PropertyIsBetweenType;

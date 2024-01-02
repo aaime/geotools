@@ -47,7 +47,9 @@ public class HSQLCRSTest extends AbstractCRSTest {
 
     @Test
     public void testMercatorProjectionTolerance()
-            throws NoSuchAuthorityCodeException, FactoryException, MismatchedDimensionException,
+            throws NoSuchAuthorityCodeException,
+                    FactoryException,
+                    MismatchedDimensionException,
                     TransformException {
         CoordinateReferenceSystem targetCrs = CRS.decode("EPSG:25831");
         // System.out.println(targetCrs.getDomainOfValidity());

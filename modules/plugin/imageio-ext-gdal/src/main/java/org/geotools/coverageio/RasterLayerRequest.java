@@ -299,7 +299,9 @@ class RasterLayerRequest {
         }
     }
 
-    /** @param param */
+    /**
+     * @param param
+     */
     private void setTileSize(ParameterValue<?> param) {
         final String suggestedTileSize = (String) param.getValue();
         // Preliminary checks on parameter value
@@ -808,52 +810,72 @@ class RasterLayerRequest {
         }
     }
 
-    /** @uml.property name="hints" */
+    /**
+     * @uml.property name="hints"
+     */
     public Hints getHints() {
         return hints;
     }
 
-    /** @uml.property name="useMultithreading" */
+    /**
+     * @uml.property name="useMultithreading"
+     */
     public boolean useMultithreading() {
         return useMultithreading;
     }
 
-    /** @uml.property name="imageReadParam" */
+    /**
+     * @uml.property name="imageReadParam"
+     */
     public ImageReadParam getImageReadParam() {
         return imageReadParam;
     }
 
-    /** @uml.property name="useJAI" */
+    /**
+     * @uml.property name="useJAI"
+     */
     public boolean useJAI() {
         return useJAI;
     }
 
-    /** @uml.property name="emptyRequest" */
+    /**
+     * @uml.property name="emptyRequest"
+     */
     public synchronized boolean isEmptyRequest() {
         return emptyRequest;
     }
 
-    /** @uml.property name="input" */
+    /**
+     * @uml.property name="input"
+     */
     public File getInput() {
         return input;
     }
 
-    /** @uml.property name="coverageGridToWorld2D" */
+    /**
+     * @uml.property name="coverageGridToWorld2D"
+     */
     public MathTransform getRaster2Model() {
         return coverageGridToWorld2D;
     }
 
-    /** @uml.property name="coverageEnvelope" */
+    /**
+     * @uml.property name="coverageEnvelope"
+     */
     public GeneralBounds getCoverageEnvelope() {
         return coverageEnvelope;
     }
 
-    /** @uml.property name="coverageCRS" */
+    /**
+     * @uml.property name="coverageCRS"
+     */
     public CoordinateReferenceSystem getCoverageCRS() {
         return coverageCRS;
     }
 
-    /** @uml.property name="coverageName" */
+    /**
+     * @uml.property name="coverageName"
+     */
     public String getCoverageName() {
         return coverageName;
     }

@@ -131,7 +131,9 @@ public abstract class AbstractRequest implements Request {
         return url.getProtocol().equalsIgnoreCase("file");
     }
 
-    /** @see org.geotools.data.wms.request.Request#getFinalURL() */
+    /**
+     * @see org.geotools.data.wms.request.Request#getFinalURL()
+     */
     @Override
     public URL getFinalURL() {
         if (isFileUrl(onlineResource)) {
@@ -197,7 +199,9 @@ public abstract class AbstractRequest implements Request {
         }
     }
 
-    /** @return a copy of this request's properties */
+    /**
+     * @return a copy of this request's properties
+     */
     @Override
     public Properties getProperties() {
         return (Properties) properties.clone();

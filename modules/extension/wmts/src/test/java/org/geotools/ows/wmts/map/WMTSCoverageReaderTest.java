@@ -66,7 +66,9 @@ import org.junit.Test;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class WMTSCoverageReaderTest {
 
     private static final String KVP_CAPA_RESOURCENAME = "test-data/getcapa_kvp.xml";

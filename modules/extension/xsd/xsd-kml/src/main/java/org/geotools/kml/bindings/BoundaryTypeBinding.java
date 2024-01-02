@@ -42,7 +42,9 @@ import org.locationtech.jts.geom.LinearRing;
  * @generated
  */
 public class BoundaryTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.boundaryType;

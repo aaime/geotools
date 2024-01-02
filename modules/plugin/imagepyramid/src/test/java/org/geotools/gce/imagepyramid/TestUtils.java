@@ -39,7 +39,9 @@ import org.geotools.referencing.CRS;
 import org.geotools.util.factory.Hints;
 import org.junit.Assert;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 final class TestUtils extends Assert {
 
     private TestUtils() {}

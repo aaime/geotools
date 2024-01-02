@@ -56,54 +56,108 @@ public final class DC extends XSD {
         return getClass().getResource("rec-dcmes.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://purl.org/dc/elements/1.1/";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName elementContainer =
             new QName("http://purl.org/dc/elements/1.1/", "elementContainer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SimpleLiteral =
             new QName("http://purl.org/dc/elements/1.1/", "SimpleLiteral");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName contributor =
             new QName("http://purl.org/dc/elements/1.1/", "contributor");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName coverage = new QName("http://purl.org/dc/elements/1.1/", "coverage");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName creator = new QName("http://purl.org/dc/elements/1.1/", "creator");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName date = new QName("http://purl.org/dc/elements/1.1/", "date");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DCelement =
             new QName("http://purl.org/dc/elements/1.1/", "DC-element");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName description =
             new QName("http://purl.org/dc/elements/1.1/", "description");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName format = new QName("http://purl.org/dc/elements/1.1/", "format");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName identifier =
             new QName("http://purl.org/dc/elements/1.1/", "identifier");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName language = new QName("http://purl.org/dc/elements/1.1/", "language");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName publisher =
             new QName("http://purl.org/dc/elements/1.1/", "publisher");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName relation = new QName("http://purl.org/dc/elements/1.1/", "relation");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName rights = new QName("http://purl.org/dc/elements/1.1/", "rights");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName source = new QName("http://purl.org/dc/elements/1.1/", "source");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName subject = new QName("http://purl.org/dc/elements/1.1/", "subject");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName title = new QName("http://purl.org/dc/elements/1.1/", "title");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName type = new QName("http://purl.org/dc/elements/1.1/", "type");
 
     /* Attributes */

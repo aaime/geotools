@@ -234,7 +234,9 @@ public class PostGISDialect extends BasicSQLDialect {
         return functionEncodingEnabled;
     }
 
-    /** @see PostgisNGDataStoreFactory#ENCODE_FUNCTIONS */
+    /**
+     * @see PostgisNGDataStoreFactory#ENCODE_FUNCTIONS
+     */
     public void setFunctionEncodingEnabled(boolean functionEncodingEnabled) {
         this.functionEncodingEnabled = functionEncodingEnabled;
     }

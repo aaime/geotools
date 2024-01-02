@@ -97,6 +97,7 @@ public class MBExpressionParseTest {
         } catch (MBFormatException expected) {
         }
     }
+
     // ---- STRING EXPRESSIONS ---------------------------------------------------------
 
     /** Verify that a upcase string expression can be parsed correctly. */

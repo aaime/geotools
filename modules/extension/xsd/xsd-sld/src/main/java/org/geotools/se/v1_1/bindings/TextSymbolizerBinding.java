@@ -53,7 +53,9 @@ public class TextSymbolizerBinding extends SLDTextSymbolizerBinding {
         return BEFORE;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.TextSymbolizer;

@@ -114,7 +114,9 @@ public final class Capabilities200ServiceInfo implements WFSServiceInfo {
         return kws;
     }
 
-    /** @see ServiceInfo#getPublisher() */
+    /**
+     * @see ServiceInfo#getPublisher()
+     */
     @Override
     public URI getPublisher() {
         ServiceProviderType serviceProvider = capabilities.getServiceProvider();
@@ -153,7 +155,9 @@ public final class Capabilities200ServiceInfo implements WFSServiceInfo {
         return getCapsUrl;
     }
 
-    /** @see ServiceInfo#getTitle() */
+    /**
+     * @see ServiceInfo#getTitle()
+     */
     @Override
     public String getTitle() {
         ServiceIdentificationType serviceIdentification = capabilities.getServiceIdentification();
@@ -166,7 +170,9 @@ public final class Capabilities200ServiceInfo implements WFSServiceInfo {
         return ((LanguageStringType) serviceIdentification.getTitle().get(0)).getValue();
     }
 
-    /** @see WFSServiceInfo#getVersion() */
+    /**
+     * @see WFSServiceInfo#getVersion()
+     */
     @Override
     public String getVersion() {
         return capabilities.getVersion();

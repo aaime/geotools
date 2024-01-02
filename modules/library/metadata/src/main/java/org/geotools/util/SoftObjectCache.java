@@ -82,7 +82,9 @@ final class SoftObjectCache<K, V> implements ObjectCache<K, V> {
         return value;
     }
 
-    /** @return a copy of the keys currently in the map */
+    /**
+     * @return a copy of the keys currently in the map
+     */
     @Override
     public Set<K> getKeys() {
         return new HashSet<>(cache.keySet());

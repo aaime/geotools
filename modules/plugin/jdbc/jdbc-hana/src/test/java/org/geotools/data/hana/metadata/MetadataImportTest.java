@@ -26,7 +26,9 @@ import org.geotools.jdbc.JDBCTestSetup;
 import org.geotools.jdbc.JDBCTestSupport;
 import org.junit.Test;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class MetadataImportTest extends JDBCTestSupport {
 
     @SuppressWarnings("PMD.CloseResource") // no actual need to close the PrintStream

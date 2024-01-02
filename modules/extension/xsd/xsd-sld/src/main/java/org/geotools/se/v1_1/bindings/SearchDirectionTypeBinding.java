@@ -42,7 +42,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class SearchDirectionTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.searchDirectionType;

@@ -20,7 +20,9 @@ import org.geotools.api.filter.FilterVisitor;
 import org.geotools.api.filter.PropertyIsLessThan;
 import org.geotools.api.filter.expression.Expression;
 
-/** @author jdeolive */
+/**
+ * @author jdeolive
+ */
 public class IsLessThenImpl extends MultiCompareFilterImpl implements PropertyIsLessThan {
     protected IsLessThenImpl(Expression expression1, Expression expression2) {
         this(expression1, expression2, false);

@@ -77,7 +77,8 @@ public class OffsetCurveBuilderTest {
                     if (curve != null && INTERACTIVE_ON_SUCCESS) {
                         displayCurves(false);
                     }
-                };
+                }
+                ;
 
                 @Override
                 protected void failed(Throwable e, org.junit.runner.Description description) {
@@ -133,7 +134,8 @@ public class OffsetCurveBuilderTest {
                     graphics.dispose();
 
                     return bi;
-                };
+                }
+                ;
             };
 
     @SuppressWarnings("deprecation")

@@ -62,7 +62,9 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
         super("Feature Collection Buffer");
     }
 
-    /** @param ft Nullable */
+    /**
+     * @param ft Nullable
+     */
     protected FCBuffer(URI document, int capacity, int timeout, SimpleFeatureType ft) {
         super("Feature Collection Buffer");
         features = new SimpleFeature[capacity];
@@ -86,17 +88,23 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
         return l;
     }
 
-    /** @return The buffer size */
+    /**
+     * @return The buffer size
+     */
     public int getSize() {
         return size;
     }
 
-    /** @return The buffer capacity */
+    /**
+     * @return The buffer capacity
+     */
     public int getCapacity() {
         return features.length;
     }
 
-    /** @return The buffer capacity */
+    /**
+     * @return The buffer capacity
+     */
     public int getTimeout() {
         return timeout;
     }
@@ -169,7 +177,10 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
     protected SimpleFeatureType ft = null;
 
     private volatile Date lastUpdate;
-    /** @see FeatureReader#getFeatureType() */
+
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public SimpleFeatureType getFeatureType() {
         if (ft != null) return ft;
@@ -192,7 +203,9 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
         return ft;
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public SimpleFeature next() throws IOException, NoSuchElementException {
         if (exception != null) {
@@ -215,7 +228,9 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
         return f;
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     public SimpleFeature peek() throws IOException, NoSuchElementException {
         if (exception != null) {
             state = STOP;
@@ -228,7 +243,9 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
         return f;
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() throws IOException {
         if (exception instanceof StopException) {
@@ -296,14 +313,18 @@ public class FCBuffer extends Thread implements FeatureReader<SimpleFeatureType,
         return true;
     }
 
-    /** @see FeatureReader#close() */
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() {
         state = STOP; // note for the sax parser
         interrupt();
     }
 
-    /** @see java.lang.Runnable#run() */
+    /**
+     * @see java.lang.Runnable#run()
+     */
     @Override
     public void run() {
         XMLHandlerHints hints = new XMLHandlerHints();

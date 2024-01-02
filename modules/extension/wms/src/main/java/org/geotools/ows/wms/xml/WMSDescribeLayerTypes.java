@@ -266,6 +266,7 @@ public class WMSDescribeLayerTypes {
                     null,
                     false)
         };
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.ComplexType#getAttributes()
          */

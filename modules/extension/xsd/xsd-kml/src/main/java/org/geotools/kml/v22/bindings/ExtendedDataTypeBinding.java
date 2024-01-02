@@ -52,7 +52,9 @@ import org.geotools.xsd.Node;
  */
 public class ExtendedDataTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.ExtendedDataType;

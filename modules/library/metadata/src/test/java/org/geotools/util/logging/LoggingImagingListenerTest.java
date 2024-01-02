@@ -15,7 +15,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Marco Peters */
+/**
+ * @author Marco Peters
+ */
 public class LoggingImagingListenerTest {
 
     private TestLogHandler logHandler;

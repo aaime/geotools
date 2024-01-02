@@ -21,7 +21,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.geotools.util.factory.Hints;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class HTTPFactoryException extends RuntimeException {
 
     /** */

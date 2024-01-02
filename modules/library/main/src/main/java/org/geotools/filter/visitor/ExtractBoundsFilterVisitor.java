@@ -168,6 +168,7 @@ public class ExtractBoundsFilterVisitor extends NullFilterVisitor {
             return bbox(bounds);
         }
     }
+
     /**
      * Please note we are only visiting literals involved in spatial operations.
      *

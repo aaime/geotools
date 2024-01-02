@@ -28,7 +28,9 @@ import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 
-/** @author Martin Davis - OpenGeo */
+/**
+ * @author Martin Davis - OpenGeo
+ */
 public class BarnesSurfaceProcessTest {
 
     /**

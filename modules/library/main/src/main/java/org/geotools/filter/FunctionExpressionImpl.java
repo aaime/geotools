@@ -84,10 +84,12 @@ public abstract class FunctionExpressionImpl extends org.geotools.filter.Default
     protected FunctionExpressionImpl(Name name) {
         this(name, null);
     }
+
     /** Creates a new instance of FunctionExpression */
     protected FunctionExpressionImpl(String name, Literal fallback) {
         this(new NameImpl(name), fallback);
     }
+
     /** Creates a new instance of FunctionExpression */
     protected FunctionExpressionImpl(Name name, Literal fallback) {
         this.functionName = new FunctionNameImpl(name, (Class<?>) null);
@@ -123,6 +125,7 @@ public abstract class FunctionExpressionImpl extends org.geotools.filter.Default
     public void setFallbackValue(Literal fallback) {
         this.fallback = fallback;
     }
+
     /** Returns the function parameters. */
     @Override
     public List<org.geotools.api.filter.expression.Expression> getParameters() {
@@ -144,7 +147,9 @@ public abstract class FunctionExpressionImpl extends org.geotools.filter.Default
         this.params = new ArrayList<>(params);
     }
 
-    /** @see org.geotools.api.filter.expression.Expression#accept(ExpressionVisitor, Object) */
+    /**
+     * @see org.geotools.api.filter.expression.Expression#accept(ExpressionVisitor, Object)
+     */
     @Override
     public Object accept(ExpressionVisitor visitor, Object extraData) {
         return visitor.visit(this, extraData);

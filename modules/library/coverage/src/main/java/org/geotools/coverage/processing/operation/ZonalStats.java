@@ -65,21 +65,29 @@ public class ZonalStats extends BaseStatisticsOperationJAI {
 
     /** {@link String} key for getting the min vector. */
     public static final String GT_SYNTHETIC_PROPERTY_MIN = Statistic.MIN.toString();
+
     /** {@link String} key for getting the max vector. */
     public static final String GT_SYNTHETIC_PROPERTY_MAX = Statistic.MAX.toString();
+
     /** {@link String} key for getting the mean vector. */
     public static final String GT_SYNTHETIC_PROPERTY_MEAN = Statistic.MEAN.toString();
+
     /** {@link String} key for getting the variance vector. */
     public static final String GT_SYNTHETIC_PROPERTY_VAR = Statistic.VARIANCE.toString();
+
     /** {@link String} key for getting the standard deviation vector. */
     public static final String GT_SYNTHETIC_PROPERTY_SDEV = Statistic.SDEV.toString();
+
     /** {@link String} key for getting the range vector. */
     public static final String GT_SYNTHETIC_PROPERTY_RANGE = Statistic.RANGE.toString();
+
     /** {@link String} key for getting the median vector. */
     public static final String GT_SYNTHETIC_PROPERTY_MEDIAN = Statistic.MEDIAN.toString();
+
     /** {@link String} key for getting the approx median vector. */
     public static final String GT_SYNTHETIC_PROPERTY_APPROX_MEDIAN =
             Statistic.APPROX_MEDIAN.toString();
+
     /** {@link String} key for getting the sum vector. */
     public static final String GT_SYNTHETIC_PROPERTY_SUM = Statistic.SUM.toString();
 

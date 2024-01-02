@@ -35,7 +35,9 @@ public interface ColorMap {
     int TYPE_INTERVALS = 2;
     int TYPE_VALUES = 3;
 
-    /** @return Interpolate or Categorize function */
+    /**
+     * @return Interpolate or Categorize function
+     */
     Function getFunction();
 
     /**
@@ -58,7 +60,9 @@ public interface ColorMap {
      */
     int getType();
 
-    /** @param type One of TYPE_RAMP, TYPE_INTERVALS, or TYPE_VALUE */
+    /**
+     * @param type One of TYPE_RAMP, TYPE_INTERVALS, or TYPE_VALUE
+     */
     void setType(int type);
 
     void accept(StyleVisitor visitor);

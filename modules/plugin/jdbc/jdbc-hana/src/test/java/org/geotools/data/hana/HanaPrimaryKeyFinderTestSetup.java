@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import java.sql.Connection;
 import org.geotools.jdbc.JDBCPrimaryKeyFinderTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaPrimaryKeyFinderTestSetup extends JDBCPrimaryKeyFinderTestSetup {
 
     private static final String METADATA_TABLE = "GT_PK_METADATA";

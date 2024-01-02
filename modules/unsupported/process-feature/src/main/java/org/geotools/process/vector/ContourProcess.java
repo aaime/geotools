@@ -26,7 +26,9 @@ import org.geotools.process.factory.DescribeParameter;
 import org.geotools.process.factory.DescribeProcess;
 import org.geotools.process.factory.DescribeResult;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 @DescribeProcess(title = "Contours", description = "Computes contours over the point features.")
 public class ContourProcess implements VectorProcess {
 

@@ -803,7 +803,9 @@ public class XPath extends XPathUtil {
         return node.getType() instanceof ComplexType;
     }
 
-    /** @return true if this step represents an id attribute */
+    /**
+     * @return true if this step represents an id attribute
+     */
     public static boolean isId(Step step) {
         return step.isXmlAttribute() && step.getName().equals(GML.id);
     }

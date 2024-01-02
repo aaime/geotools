@@ -30,7 +30,9 @@ import java.util.Set;
 import org.geotools.test.AppSchemaTestSupport;
 import org.junit.Test;
 
-/** @author Russell Petty (GeoScience Victoria) */
+/**
+ * @author Russell Petty (GeoScience Victoria)
+ */
 public class AttributeCreateOrderListTest extends AppSchemaTestSupport {
 
     private static final String ROOT_LABEL = "root";

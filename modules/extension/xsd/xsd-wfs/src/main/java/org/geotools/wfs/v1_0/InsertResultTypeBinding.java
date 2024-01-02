@@ -66,7 +66,9 @@ public class InsertResultTypeBinding extends AbstractComplexEMFBinding {
         this.wfsfactory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.InsertResultType;

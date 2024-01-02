@@ -70,7 +70,9 @@ import org.geotools.xsd.Node;
  */
 public class SupportedCRSsTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.SupportedCRSsType;

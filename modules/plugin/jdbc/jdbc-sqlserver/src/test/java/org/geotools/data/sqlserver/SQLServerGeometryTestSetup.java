@@ -19,7 +19,9 @@ package org.geotools.data.sqlserver;
 import org.geotools.jdbc.JDBCDataStore;
 import org.geotools.jdbc.JDBCGeometryTestSetup;
 
-/** @author DamianoG */
+/**
+ * @author DamianoG
+ */
 @SuppressWarnings("PMD.JUnit4TestShouldUseBeforeAnnotation") // not a JUnit test
 public class SQLServerGeometryTestSetup extends JDBCGeometryTestSetup {
 

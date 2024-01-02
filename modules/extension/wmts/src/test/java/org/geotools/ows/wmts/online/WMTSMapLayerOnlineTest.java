@@ -41,7 +41,9 @@ import org.geotools.test.OnlineTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class WMTSMapLayerOnlineTest extends OnlineTestCase {
 
     protected CountHttpGetClient httpClient;

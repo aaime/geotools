@@ -68,6 +68,7 @@ public interface Operator {
     @Override
     /// @Override
     boolean equals(Object obj);
+
     /** HashCode should be implemented simply in terms of getName(). */
     @Override
     /// @Override

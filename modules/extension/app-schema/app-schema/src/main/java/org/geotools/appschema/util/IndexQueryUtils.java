@@ -36,7 +36,9 @@ import org.geotools.data.complex.filter.XPath;
 import org.geotools.data.complex.util.XPathUtil.StepList;
 import org.geotools.factory.CommonFactoryFinder;
 
-/** @author Fernando Miño - Geosolutions */
+/**
+ * @author Fernando Miño - Geosolutions
+ */
 public final class IndexQueryUtils {
 
     private IndexQueryUtils() {}

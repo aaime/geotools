@@ -158,12 +158,17 @@ public class StandardDeviationVisitor implements FeatureCalc, FeatureAttributeVi
     public double getMean() {
         return mean;
     }
-    /** @return the number of features which returned a NaN */
+
+    /**
+     * @return the number of features which returned a NaN
+     */
     public int getNaNCount() {
         return countNaN;
     }
 
-    /** @return the number of features which returned a null */
+    /**
+     * @return the number of features which returned a null
+     */
     public int getNullCount() {
         return countNull;
     }

@@ -19,7 +19,9 @@ package org.geotools.ows.wmts.client;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class TileURLBuilderTest {
 
     @Test

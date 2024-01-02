@@ -163,7 +163,9 @@ class CategoryRegistry {
         return registry;
     }
 
-    /** @return all registered categories */
+    /**
+     * @return all registered categories
+     */
     public Stream<Class<?>> streamCategories() {
         return categories.keySet().stream();
     }
@@ -259,7 +261,9 @@ class CategoryRegistry {
             this.category = category;
         }
 
-        /** @return {@code true} if this the first instance of its class. */
+        /**
+         * @return {@code true} if this the first instance of its class.
+         */
         public boolean register(final T instance) {
             ensureArgumentNonNull("instance", instance);
             boolean deregistered = deregisterByType(instance);
@@ -284,7 +288,9 @@ class CategoryRegistry {
             orderedInstances.add(instance);
         }
 
-        /** @return {true} if an instance of the same type was previously registered */
+        /**
+         * @return {true} if an instance of the same type was previously registered
+         */
         public boolean deregister(final T instance) {
             ensureArgumentNonNull("instance", instance);
             if (instancesByType.containsKey(instance.getClass())) {
@@ -295,7 +301,9 @@ class CategoryRegistry {
             }
         }
 
-        /** @return {true} if an instance of the same type was previously registered */
+        /**
+         * @return {true} if an instance of the same type was previously registered
+         */
         private boolean deregisterByType(final T instance) {
             T removed = instancesByType.remove(instance.getClass());
             boolean instanceWasRemoved = removed != null;
@@ -339,7 +347,9 @@ class CategoryRegistry {
             return Optional.ofNullable(instance);
         }
 
-        /** @see CategoryRegistry#setOrder(Class, Object, Object) */
+        /**
+         * @see CategoryRegistry#setOrder(Class, Object, Object)
+         */
         public boolean setOrder(T firstInstance, T secondInstance) {
             return instancesByType.containsKey(firstInstance.getClass())
                     && instancesByType.containsKey(secondInstance.getClass())
@@ -347,7 +357,9 @@ class CategoryRegistry {
                     && orderedInstances.setOrder(firstInstance, secondInstance);
         }
 
-        /** @see CategoryRegistry#clearOrder(Class, Object, Object) */
+        /**
+         * @see CategoryRegistry#clearOrder(Class, Object, Object)
+         */
         public boolean clearOrder(T firstInstance, T secondInstance) {
             ensureArgumentNonNull("firstInstance", firstInstance);
             ensureArgumentNonNull("secondInstance", secondInstance);

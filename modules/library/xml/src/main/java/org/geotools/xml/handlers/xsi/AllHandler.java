@@ -45,7 +45,9 @@ public class AllHandler extends ElementGroupingHandler {
     private List<ElementTypeHandler> elements;
     private DefaultAll cache = null;
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandler(java.lang.String, java.lang.String)
+     */
     @Override
     public XSIElementHandler getHandler(String namespaceURI, String localName) {
         if (SchemaHandler.namespaceURI.equalsIgnoreCase(namespaceURI)) {
@@ -104,7 +106,9 @@ public class AllHandler extends ElementGroupingHandler {
         }
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getLocalName() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getLocalName()
+     */
     @Override
     public String getLocalName() {
         return LOCALNAME;
@@ -140,7 +144,9 @@ public class AllHandler extends ElementGroupingHandler {
         return cache;
     }
 
-    /** @see java.lang.Object#hashCode() */
+    /**
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     @SuppressWarnings("PMD.OverrideBothEqualsAndHashcode")
     public int hashCode() {
@@ -148,13 +154,17 @@ public class AllHandler extends ElementGroupingHandler {
                 + (minOccurs * maxOccurs);
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#getHandlerType() */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#getHandlerType()
+     */
     @Override
     public int getHandlerType() {
         return DEFAULT;
     }
 
-    /** @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String) */
+    /**
+     * @see org.geotools.xml.XSIElementHandler#endElement(java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String namespaceURI, String localName) {
         // do nothing
@@ -173,7 +183,9 @@ public class AllHandler extends ElementGroupingHandler {
         int maxOccurs;
         int minOccurs;
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#findChildElement(java.lang.String) */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#findChildElement(java.lang.String)
+         */
         @Override
         public Element findChildElement(String name) {
             if (elements == null) {
@@ -192,31 +204,41 @@ public class AllHandler extends ElementGroupingHandler {
             return null;
         }
 
-        /** @see org.geotools.xml.xsi.All#getElements() */
+        /**
+         * @see org.geotools.xml.xsi.All#getElements()
+         */
         @Override
         public Element[] getElements() {
             return elements;
         }
 
-        /** @see org.geotools.xml.xsi.All#getId() */
+        /**
+         * @see org.geotools.xml.xsi.All#getId()
+         */
         @Override
         public String getId() {
             return id;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getMaxOccurs()
+         */
         @Override
         public int getMaxOccurs() {
             return maxOccurs;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getMinOccurs()
+         */
         @Override
         public int getMinOccurs() {
             return minOccurs;
         }
 
-        /** @see org.geotools.xml.xsi.ElementGrouping#getGrouping() */
+        /**
+         * @see org.geotools.xml.xsi.ElementGrouping#getGrouping()
+         */
         @Override
         public int getGrouping() {
             return ALL;

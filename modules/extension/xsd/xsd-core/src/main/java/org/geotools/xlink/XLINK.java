@@ -29,7 +29,9 @@ public final class XLINK extends XSD {
     /** singleton instance */
     private static XLINK instance = new XLINK();
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.w3.org/1999/xlink";
 
     /* Type Definitions */
@@ -38,31 +40,49 @@ public final class XLINK extends XSD {
 
     /* Attributes */
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ACTUATE = new QName("http://www.w3.org/1999/xlink", "actuate");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ARCROLE = new QName("http://www.w3.org/1999/xlink", "arcrole");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName FROM = new QName("http://www.w3.org/1999/xlink", "from");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName HREF = new QName("http://www.w3.org/1999/xlink", "href");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName LABEL = new QName("http://www.w3.org/1999/xlink", "label");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ROLE = new QName("http://www.w3.org/1999/xlink", "role");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SHOW = new QName("http://www.w3.org/1999/xlink", "show");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TITLE = new QName("http://www.w3.org/1999/xlink", "title");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName TO = new QName("http://www.w3.org/1999/xlink", "to");
 
     /** Private constructor. */

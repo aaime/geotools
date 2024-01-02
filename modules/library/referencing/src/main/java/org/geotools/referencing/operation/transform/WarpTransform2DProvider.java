@@ -193,8 +193,12 @@ public class WarpTransform2DProvider extends MathTransformProvider {
             final float preScaleY,
             final float postScaleX,
             final float postScaleY)
-            throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-                    InstantiationException, IllegalAccessException, IllegalArgumentException,
+            throws ClassNotFoundException,
+                    NoSuchMethodException,
+                    SecurityException,
+                    InstantiationException,
+                    IllegalAccessException,
+                    IllegalArgumentException,
                     InvocationTargetException {
         Class<?> warpClass = Class.forName(warpName);
         Class[] params = {

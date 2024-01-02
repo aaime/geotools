@@ -45,7 +45,9 @@ import org.geotools.xsd.Node;
  */
 public class HistogramBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Histogram;

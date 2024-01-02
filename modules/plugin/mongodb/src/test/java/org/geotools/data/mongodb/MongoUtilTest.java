@@ -29,7 +29,9 @@ import java.io.IOException;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoUtilTest {
 
     public MongoUtilTest() {}

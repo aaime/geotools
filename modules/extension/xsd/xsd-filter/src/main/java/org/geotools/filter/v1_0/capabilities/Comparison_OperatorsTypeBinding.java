@@ -54,7 +54,9 @@ public class Comparison_OperatorsTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Comparison_OperatorsType;

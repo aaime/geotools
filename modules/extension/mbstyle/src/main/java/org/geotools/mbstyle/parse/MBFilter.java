@@ -631,6 +631,7 @@ public class MBFilter {
             return parse.string(array, 1);
         }
     }
+
     /**
      * Comparison value2 defined as an data expression (or legacy literal reference).
      *

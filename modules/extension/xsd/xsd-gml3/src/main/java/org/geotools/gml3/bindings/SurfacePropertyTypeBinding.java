@@ -53,7 +53,9 @@ public class SurfacePropertyTypeBinding extends GeometryPropertyTypeBindingBase 
         super(encodingUtils, idRegistry);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.SurfacePropertyType;

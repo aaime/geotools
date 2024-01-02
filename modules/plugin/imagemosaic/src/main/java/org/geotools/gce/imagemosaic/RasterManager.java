@@ -328,7 +328,9 @@ public class RasterManager implements Cloneable {
          */
         private final DefaultParameterDescriptor<List> domainParameterDescriptor;
 
-        /** @return the identifier */
+        /**
+         * @return the identifier
+         */
         private String getIdentifier() {
             return identifier;
         }
@@ -341,7 +343,9 @@ public class RasterManager implements Cloneable {
             return dataType;
         }
 
-        /** @return the domainaParameterDescriptor */
+        /**
+         * @return the domainaParameterDescriptor
+         */
         private DefaultParameterDescriptor<List> getDomainParameterDescriptor() {
             return domainParameterDescriptor;
         }
@@ -619,7 +623,9 @@ public class RasterManager implements Cloneable {
             init(domainPairs, simpleFeatureType);
         }
 
-        /** @return @TODO We can surely improve it by making use of Regular Expressions */
+        /**
+         * @return @TODO We can surely improve it by making use of Regular Expressions
+         */
         private String cleanupDomainName(String domainName) {
             if (attributeHasRange(domainName)
                     || (domainName.contains("(") && domainName.contains(")"))) {

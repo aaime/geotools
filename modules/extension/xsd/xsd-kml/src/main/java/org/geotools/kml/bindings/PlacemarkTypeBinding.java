@@ -60,7 +60,9 @@ public class PlacemarkTypeBinding extends AbstractComplexBinding {
         SUPPORTED_GEOMETRY_TYPES = Arrays.asList("Point", "LineString", "Polygon", "MultiGeometry");
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.PlacemarkType;

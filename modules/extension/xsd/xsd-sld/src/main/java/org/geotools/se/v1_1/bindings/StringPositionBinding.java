@@ -69,7 +69,10 @@ public class StringPositionBinding extends AbstractComplexBinding {
     public StringPositionBinding(FilterFactory filterFactory) {
         this.filterFactory = filterFactory;
     }
-    /** @generated */
+
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.StringPosition;

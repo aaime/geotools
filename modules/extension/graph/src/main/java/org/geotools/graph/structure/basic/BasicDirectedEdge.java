@@ -49,13 +49,17 @@ public class BasicDirectedEdge extends BasicGraphable implements DirectedEdge {
         m_out = out;
     }
 
-    /** @see DirectedEdge#getInNode() */
+    /**
+     * @see DirectedEdge#getInNode()
+     */
     @Override
     public DirectedNode getInNode() {
         return (m_in);
     }
 
-    /** @see DirectedEdge#getOutNode() */
+    /**
+     * @see DirectedEdge#getOutNode()
+     */
     @Override
     public DirectedNode getOutNode() {
         return (m_out);
@@ -81,7 +85,9 @@ public class BasicDirectedEdge extends BasicGraphable implements DirectedEdge {
         return (m_out);
     }
 
-    /** @see Edge#getOtherNode(Node) */
+    /**
+     * @see Edge#getOtherNode(Node)
+     */
     @Override
     public Node getOtherNode(Node node) {
         return (m_in.equals(node) ? m_out : m_out.equals(node) ? m_in : null);
@@ -198,7 +204,9 @@ public class BasicDirectedEdge extends BasicGraphable implements DirectedEdge {
         return (out.iterator());
     }
 
-    /** @see Edge#compareNodes(Edge) */
+    /**
+     * @see Edge#compareNodes(Edge)
+     */
     @Override
     public int compareNodes(Edge other) {
         if (other instanceof DirectedEdge) {

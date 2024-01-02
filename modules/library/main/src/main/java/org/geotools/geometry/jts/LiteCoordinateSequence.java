@@ -175,7 +175,9 @@ public class LiteCoordinateSequence extends PackedCoordinateSequence implements 
         }
     }
 
-    /** @see org.locationtech.jts.geom.CoordinateSequence#getCoordinate(int) */
+    /**
+     * @see org.locationtech.jts.geom.CoordinateSequence#getCoordinate(int)
+     */
     @Override
     public Coordinate getCoordinateInternal(int i) {
         double x = coords[i * dimension];
@@ -196,7 +198,9 @@ public class LiteCoordinateSequence extends PackedCoordinateSequence implements 
         return new Coordinate(x, y);
     }
 
-    /** @see org.locationtech.jts.geom.CoordinateSequence#size() */
+    /**
+     * @see org.locationtech.jts.geom.CoordinateSequence#size()
+     */
     @Override
     public int size() {
         return size;
@@ -225,19 +229,25 @@ public class LiteCoordinateSequence extends PackedCoordinateSequence implements 
         return coords[index * dimension + ordinate];
     }
 
-    /** @see org.locationtech.jts.geom.CoordinateSequence#getX(int) */
+    /**
+     * @see org.locationtech.jts.geom.CoordinateSequence#getX(int)
+     */
     @Override
     public double getX(int index) {
         return coords[index * dimension];
     }
 
-    /** @see org.locationtech.jts.geom.CoordinateSequence#getY(int) */
+    /**
+     * @see org.locationtech.jts.geom.CoordinateSequence#getY(int)
+     */
     @Override
     public double getY(int index) {
         return coords[index * dimension + 1];
     }
 
-    /** @see org.locationtech.jts.geom.PackedCoordinateSequence#setOrdinate(int, int, double) */
+    /**
+     * @see org.locationtech.jts.geom.PackedCoordinateSequence#setOrdinate(int, int, double)
+     */
     @Override
     public void setOrdinate(int index, int ordinate, double value) {
         coordRef = null;
@@ -268,7 +278,9 @@ public class LiteCoordinateSequence extends PackedCoordinateSequence implements 
         return coords;
     }
 
-    /** @param coords2 */
+    /**
+     * @param coords2
+     */
     public void setArray(double[] coords2) {
         init(coords2, dimension);
         coordRef = null;

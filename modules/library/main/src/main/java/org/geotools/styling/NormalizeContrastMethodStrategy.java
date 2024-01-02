@@ -21,13 +21,17 @@ import java.util.List;
 import org.geotools.api.filter.expression.Expression;
 import org.geotools.api.style.ContrastMethod;
 
-/** @author iant */
+/**
+ * @author iant
+ */
 public class NormalizeContrastMethodStrategy extends AbstractContrastMethodStrategy {
 
     /** CLIP_TO_ZERO */
     private static final String CLIP_TO_ZERO = "ClipToZero";
+
     /** CLIP_TO_MINIMUM_MAXIMUM */
     private static final String CLIP_TO_MINIMUM_MAXIMUM = "ClipToMinimumMaximum";
+
     /** STRETCH_TO_MINIMUM_MAXIMUM */
     private static final String STRETCH_TO_MINIMUM_MAXIMUM = "StretchToMinimumMaximum";
 

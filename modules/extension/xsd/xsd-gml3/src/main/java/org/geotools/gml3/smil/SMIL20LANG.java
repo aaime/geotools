@@ -31,40 +31,58 @@ public final class SMIL20LANG extends XSD {
     /** singleton instance */
     private static SMIL20LANG instance = new SMIL20LANG();
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.w3.org/2001/SMIL20/Language";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ANIMATECOLORTYPE =
             new QName("http://www.w3.org/2001/SMIL20/Language", "animateColorType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ANIMATEMOTIONTYPE =
             new QName("http://www.w3.org/2001/SMIL20/Language", "animateMotionType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ANIMATETYPE =
             new QName("http://www.w3.org/2001/SMIL20/Language", "animateType");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SETTYPE =
             new QName("http://www.w3.org/2001/SMIL20/Language", "setType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ANIMATE =
             new QName("http://www.w3.org/2001/SMIL20/Language", "animate");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ANIMATECOLOR =
             new QName("http://www.w3.org/2001/SMIL20/Language", "animateColor");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ANIMATEMOTION =
             new QName("http://www.w3.org/2001/SMIL20/Language", "animateMotion");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName SET = new QName("http://www.w3.org/2001/SMIL20/Language", "set");
 
     /** private constructor. */

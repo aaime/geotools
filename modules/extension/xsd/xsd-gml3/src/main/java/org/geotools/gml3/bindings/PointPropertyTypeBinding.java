@@ -60,7 +60,9 @@ public class PointPropertyTypeBinding extends GeometryPropertyTypeBindingBase {
         // TODO Auto-generated constructor stub
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PointPropertyType;

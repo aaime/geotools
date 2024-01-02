@@ -75,7 +75,9 @@ public class CurveTypeBinding extends AbstractComplexBinding implements Comparab
         this.arcParameters = arcParameters;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.CurveType;

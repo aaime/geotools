@@ -55,7 +55,9 @@ public final class JP2MrSIDReader extends BaseGDALGridCoverage2DReader
         super(input, hints, worldFileExt, new JP2GDALMrSidImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new JP2MrSIDFormat();

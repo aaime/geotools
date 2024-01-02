@@ -38,7 +38,9 @@ import org.geotools.ows.ServiceException;
  */
 public abstract class AbstractGetFeatureResponseParserFactory extends AbstractWFSResponseFactory {
 
-    /** @see WFSResponseFactory#isAvailable() */
+    /**
+     * @see WFSResponseFactory#isAvailable()
+     */
     @Override
     public boolean isAvailable() {
         return true;
@@ -89,7 +91,9 @@ public abstract class AbstractGetFeatureResponseParserFactory extends AbstractWF
         }
     }
 
-    /** @param head The first couple of characters from the response, typically the first 512 */
+    /**
+     * @param head The first couple of characters from the response, typically the first 512
+     */
     @Override
     protected boolean isValidResponseHead(String head) {
         return head.indexOf("FeatureCollection") > 0;

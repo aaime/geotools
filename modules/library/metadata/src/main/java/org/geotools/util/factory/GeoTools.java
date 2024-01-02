@@ -631,6 +631,7 @@ public final class GeoTools {
         }
         return null;
     }
+
     /**
      * Lookup the MANIFEST.MF for the provided class.
      *
@@ -668,6 +669,7 @@ public final class GeoTools {
         }
         return manifest;
     }
+
     /**
      * Sets the global {@linkplain LoggerFactory logger factory}.
      *
@@ -751,6 +753,7 @@ public final class GeoTools {
             Hints.putSystemDefault(hints);
         }
     }
+
     /**
      * Initializes GeoTools for use. This convenience method performs various tasks (more may be
      * added in the future)
@@ -826,6 +829,7 @@ public final class GeoTools {
             Logging.ALL.forceMonolineConsoleOutput();
         }
     }
+
     /**
      * Provides GeoTools with the JNDI context for resource lookup.
      *

@@ -47,7 +47,9 @@ import org.geotools.xsd.Node;
  */
 public class GraphicStrokeBinding extends SLDGraphicStrokeBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.GraphicStroke;

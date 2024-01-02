@@ -63,6 +63,7 @@ public class CSVWriteStrategyTest {
             }
         }
     }
+
     // docs end attributes
 
     // docs start latlon
@@ -91,6 +92,7 @@ public class CSVWriteStrategyTest {
         SimpleFeature parsed = strategy.decode("fid1", csvRecord);
         assertEquals(feature, parsed);
     }
+
     // docs end latlon
 
     // docs start SpecifiedLatLon
@@ -126,6 +128,7 @@ public class CSVWriteStrategyTest {
             }
         }
     }
+
     // docs end SpecifiedLatLon
 
     @Test

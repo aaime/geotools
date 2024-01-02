@@ -74,6 +74,7 @@ public class Types {
             return false;
         }
     }
+
     /**
      * Validates content against an attribute.
      *
@@ -87,6 +88,7 @@ public class Types {
 
         validate(attribute.getType(), attribute, attributeContent, false);
     }
+
     /**
      * @param type AttributeType (often attribute.getType() )
      * @param attribute Attribute being tested

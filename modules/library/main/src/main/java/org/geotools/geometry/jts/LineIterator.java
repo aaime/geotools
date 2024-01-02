@@ -106,7 +106,9 @@ public final class LineIterator extends AbstractLiteIterator {
     //
     //    }
 
-    /** @param ls a LineString */
+    /**
+     * @param ls a LineString
+     */
     public void init(
             LineString ls,
             AffineTransform at,
@@ -308,7 +310,9 @@ public final class LineIterator extends AbstractLiteIterator {
         }
     }
 
-    /** @see java.awt.geom.PathIterator#currentSegment(double[]) */
+    /**
+     * @see java.awt.geom.PathIterator#currentSegment(double[])
+     */
     @Override
     public int currentSegment(double[] coords) {
         if (currentCoord == 0) {

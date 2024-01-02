@@ -3511,6 +3511,7 @@ public class WMSComplexTypes {
         public boolean isMixed() {
             return true;
         }
+
         /*
          * (non-Javadoc)
          *
@@ -4088,6 +4089,7 @@ public class WMSComplexTypes {
         public ElementGrouping getChild() {
             return seq;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.ComplexType#isMixed()
          */
@@ -4398,6 +4400,7 @@ public class WMSComplexTypes {
                 throws IOException, OperationNotSupportedException {
             throw new OperationNotSupportedException();
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.ComplexType#isMixed()
          */
@@ -4507,6 +4510,7 @@ public class WMSComplexTypes {
                 throws IOException, OperationNotSupportedException {
             throw new OperationNotSupportedException();
         }
+
         /*
          * @see org.geotools.xml.schema.ComplexType#isMixed()
          */
@@ -4864,6 +4868,7 @@ public class WMSComplexTypes {
                 throws IOException, OperationNotSupportedException {
             throw new OperationNotSupportedException();
         }
+
         /*
          * @see org.geotools.xml.schema.ComplexType#isMixed()
          */
@@ -5075,6 +5080,7 @@ public class WMSComplexTypes {
                 throws IOException, OperationNotSupportedException {
             throw new OperationNotSupportedException();
         }
+
         /*
          * @see org.geotools.xml.schema.ComplexType#isMixed()
          */
@@ -5368,6 +5374,7 @@ public class WMSComplexTypes {
         public boolean isMixed() {
             return true;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getInstanceType()
          */
@@ -5421,6 +5428,7 @@ public class WMSComplexTypes {
         public Attribute[] getAttributes() {
             return attrs;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.ComplexType#getChild()
          */
@@ -5428,6 +5436,7 @@ public class WMSComplexTypes {
         public ElementGrouping getChild() {
             return seq;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.ComplexType#getChildElements()
          */
@@ -5435,6 +5444,7 @@ public class WMSComplexTypes {
         public Element[] getChildElements() {
             return elems;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getValue(org.geotools.xml.schema.Element, org.geotools.xml.schema.ElementValue[], org.xml.sax.Attributes, java.util.Map)
          */
@@ -5483,6 +5493,7 @@ public class WMSComplexTypes {
 
             return firstException;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getName()
          */
@@ -5490,6 +5501,7 @@ public class WMSComplexTypes {
         public String getName() {
             return "ServiceExceptionReport";
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getInstanceType()
          */
@@ -5497,6 +5509,7 @@ public class WMSComplexTypes {
         public Class getInstanceType() {
             return ServiceException.class;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#canEncode(org.geotools.xml.schema.Element, java.lang.Object, java.util.Map)
          */
@@ -5505,6 +5518,7 @@ public class WMSComplexTypes {
             // TODO Auto-generated method stub
             return false;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#encode(org.geotools.xml.schema.Element, java.lang.Object, org.geotools.xml.PrintHandler, java.util.Map)
          */
@@ -5578,6 +5592,7 @@ public class WMSComplexTypes {
         public boolean isMixed() {
             return true;
         }
+
         /* (non-Javadoc)
          * @see org.geotools.xml.schema.Type#getInstanceType()
          */

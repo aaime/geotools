@@ -19,7 +19,9 @@ package org.geotools.data.mysql;
 import org.geotools.jdbc.JDBCFeatureWriterOnlineTest;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Burkhard Strauss */
+/**
+ * @author Burkhard Strauss
+ */
 public class MySQLFeatureWriterOnlineTest extends JDBCFeatureWriterOnlineTest {
 
     @Override

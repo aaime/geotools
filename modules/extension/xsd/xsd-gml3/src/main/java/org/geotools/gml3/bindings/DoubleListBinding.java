@@ -42,7 +42,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class DoubleListBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.doubleList;

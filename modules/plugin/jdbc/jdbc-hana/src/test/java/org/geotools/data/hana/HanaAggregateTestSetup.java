@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import java.sql.Connection;
 import org.geotools.jdbc.JDBCAggregateTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaAggregateTestSetup extends JDBCAggregateTestSetup {
 
     private static final String TABLE = "aggregate";

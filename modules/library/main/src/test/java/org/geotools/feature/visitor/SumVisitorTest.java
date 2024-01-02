@@ -23,7 +23,9 @@ import org.geotools.api.feature.simple.SimpleFeatureType;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-/** @author Sebastian Graca, ISPiK S.A. */
+/**
+ * @author Sebastian Graca, ISPiK S.A.
+ */
 @RunWith(Parameterized.class)
 public class SumVisitorTest<T> extends VisitorTestCase<T, T> {
     public SumVisitorTest(Class<T> valueClass, List<T> values, T expectedValue) {

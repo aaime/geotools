@@ -39,6 +39,7 @@ public class CQL2Json {
     }
 
     private static ObjectMapper objectMapper = new ObjectMapper();
+
     /**
      * Generates the CQL2-Json predicate associated to the {@link Filter} object.
      *

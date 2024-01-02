@@ -140,27 +140,37 @@ public class GMLWriter {
         this.encodeMeasures = encodeMeasures;
     }
 
-    /** @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator) */
+    /**
+     * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)
+     */
     public void setDocumentLocator(Locator locator) {
         handler.setDocumentLocator(locator);
     }
 
-    /** @see org.xml.sax.ContentHandler#startDocument() */
+    /**
+     * @see org.xml.sax.ContentHandler#startDocument()
+     */
     public void startDocument() throws SAXException {
         handler.startDocument();
     }
 
-    /** @see org.xml.sax.ContentHandler#endDocument() */
+    /**
+     * @see org.xml.sax.ContentHandler#endDocument()
+     */
     public void endDocument() throws SAXException {
         handler.endDocument();
     }
 
-    /** @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
+     */
     public void startPrefixMapping(String prefix, String uri) throws SAXException {
         handler.startPrefixMapping(prefix, uri);
     }
 
-    /** @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String) */
+    /**
+     * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)
+     */
     public void endPrefixMapping(String prefix) throws SAXException {
         handler.endPrefixMapping(prefix);
     }
@@ -216,7 +226,9 @@ public class GMLWriter {
         }
     }
 
-    /** @see org.xml.sax.ContentHandler#characters(char[], int, int) */
+    /**
+     * @see org.xml.sax.ContentHandler#characters(char[], int, int)
+     */
     private void characters(char[] ch, int start, int length) throws SAXException {
         handler.characters(ch, start, length);
     }

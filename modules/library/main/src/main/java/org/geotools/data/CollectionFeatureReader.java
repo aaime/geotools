@@ -78,13 +78,17 @@ public class CollectionFeatureReader implements FeatureReader<SimpleFeatureType,
         type = featuresArg[0].getFeatureType();
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public SimpleFeatureType getFeatureType() {
         return type;
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public SimpleFeature next()
             throws IOException, IllegalAttributeException, NoSuchElementException {
@@ -95,13 +99,17 @@ public class CollectionFeatureReader implements FeatureReader<SimpleFeatureType,
         return features.next();
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() throws IOException {
         return features != null && features.hasNext() && !closed;
     }
 
-    /** @see FeatureReader#close() */
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() throws IOException {
         closed = true;

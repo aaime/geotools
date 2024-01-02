@@ -790,6 +790,7 @@ public final class CachedAuthorityDecorator extends AbstractAuthorityFactory
         }
         return operations;
     }
+
     //
     // AbstractAuthorityFactory
     //

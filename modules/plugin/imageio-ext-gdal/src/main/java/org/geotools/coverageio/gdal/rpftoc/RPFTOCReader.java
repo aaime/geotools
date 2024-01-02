@@ -54,7 +54,9 @@ public final class RPFTOCReader extends BaseGDALGridCoverage2DReader implements 
         super(input, hints, worldFileExt, new RPFTOCImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new RPFTOCFormat();

@@ -123,18 +123,24 @@ public class Tuple {
         throw new IllegalArgumentException();
     }
 
-    /** @return the ith value of the tuple */
+    /**
+     * @return the ith value of the tuple
+     */
     public Object at(int i) {
         return values[i];
     }
 
-    /** @return the ith value of the tuple, as a String. */
+    /**
+     * @return the ith value of the tuple, as a String.
+     */
     public String strAt(int i) {
         Object obj = at(i);
         return obj != null ? obj.toString() : null;
     }
 
-    /** @return A String representation of the tuple, of the form "(a, b)". */
+    /**
+     * @return A String representation of the tuple, of the form "(a, b)".
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("(");
@@ -159,7 +165,9 @@ public class Tuple {
         return Arrays.asList(values);
     }
 
-    /** @return true if all values of the tuple are null, false otherwise. */
+    /**
+     * @return true if all values of the tuple are null, false otherwise.
+     */
     public boolean isNull() {
         for (Object value : values) {
             if (value != null) {

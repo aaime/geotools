@@ -42,7 +42,9 @@ import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.util.logging.Logging;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoInferredMapper extends AbstractCollectionMapper {
 
     public static final Logger LOG = Logging.getLogger(MongoInferredMapper.class);
@@ -50,6 +52,7 @@ public class MongoInferredMapper extends AbstractCollectionMapper {
     MongoGeometryBuilder geomBuilder = new MongoGeometryBuilder();
 
     SimpleFeatureType schema;
+
     /** Schema generation parameters, not null */
     private MongoSchemaInitParams schemainitParams;
 

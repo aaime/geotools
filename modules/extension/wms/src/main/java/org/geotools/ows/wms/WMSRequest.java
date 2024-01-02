@@ -32,32 +32,44 @@ public class WMSRequest {
     private OperationType getStyles;
     private OperationType putStyles;
 
-    /** @return Returns the getCapabilities. */
+    /**
+     * @return Returns the getCapabilities.
+     */
     public OperationType getGetCapabilities() {
         return getCapabilities;
     }
 
-    /** @param getCapabilities The getCapabilities to set. */
+    /**
+     * @param getCapabilities The getCapabilities to set.
+     */
     public void setGetCapabilities(OperationType getCapabilities) {
         this.getCapabilities = getCapabilities;
     }
 
-    /** @return Returns the getFeatureInfo. */
+    /**
+     * @return Returns the getFeatureInfo.
+     */
     public OperationType getGetFeatureInfo() {
         return getFeatureInfo;
     }
 
-    /** @param getFeatureInfo The getFeatureInfo to set. */
+    /**
+     * @param getFeatureInfo The getFeatureInfo to set.
+     */
     public void setGetFeatureInfo(OperationType getFeatureInfo) {
         this.getFeatureInfo = getFeatureInfo;
     }
 
-    /** @return Returns the getMap. */
+    /**
+     * @return Returns the getMap.
+     */
     public OperationType getGetMap() {
         return getMap;
     }
 
-    /** @param getMap The getMap to set. */
+    /**
+     * @param getMap The getMap to set.
+     */
     public void setGetMap(OperationType getMap) {
         this.getMap = getMap;
     }

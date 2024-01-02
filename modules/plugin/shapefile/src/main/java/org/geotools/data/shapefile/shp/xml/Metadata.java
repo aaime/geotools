@@ -33,12 +33,16 @@ public class Metadata {
     /** identification information */
     IdInfo idinfo;
 
-    /** @return Returns the idinfo. */
+    /**
+     * @return Returns the idinfo.
+     */
     public IdInfo getIdinfo() {
         return idinfo;
     }
 
-    /** @param idinfo The idinfo to set. */
+    /**
+     * @param idinfo The idinfo to set.
+     */
     public void setIdinfo(IdInfo idinfo) {
         this.idinfo = idinfo;
     }

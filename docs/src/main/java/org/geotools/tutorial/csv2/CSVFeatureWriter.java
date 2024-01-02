@@ -65,8 +65,10 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
 
     int latIndex = 0;
     int lngIndex = 0;
+
     /** Row count used to generate FeatureId when appending */
     int nextRow = 0;
+
     // header end
     // constructor start
     public CSVFeatureWriter(ContentState state, Query query) throws IOException {
@@ -90,6 +92,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
             }
         }
     }
+
     // constructor end
 
     // featureType start
@@ -97,6 +100,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
     public SimpleFeatureType getFeatureType() {
         return state.getFeatureType();
     }
+
     // featureType end
 
     // hasNext start
@@ -110,6 +114,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
         }
         return delegate.hasNext();
     }
+
     // hasNext end
 
     // next start
@@ -141,6 +146,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
             throw new IOException("Unable to create feature:" + invalid.getMessage(), invalid);
         }
     }
+
     // next end
 
     // remove start
@@ -151,6 +157,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
     public void remove() throws IOException {
         this.currentFeature = null; // just mark it done which means it will not get written out.
     }
+
     // remove end
 
     // write start
@@ -180,6 +187,7 @@ public class CSVFeatureWriter implements FeatureWriter<SimpleFeatureType, Simple
         nextRow++;
         this.currentFeature = null; // indicate that it has been written
     }
+
     // write end
 
     // close start

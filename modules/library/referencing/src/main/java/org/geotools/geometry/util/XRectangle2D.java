@@ -54,10 +54,13 @@ public class XRectangle2D extends Rectangle2D implements Serializable {
 
     /** Minimal <var>x</var> coordinate. */
     protected double xmin;
+
     /** Minimal <var>y</var> coordinate. */
     protected double ymin;
+
     /** Maximal <var>x</var> coordinate. */
     protected double xmax;
+
     /** Maximal <var>y</var> coordinate. */
     protected double ymax;
 

@@ -521,14 +521,19 @@ public class Schemas {
 
         /** base location */
         String baseLocation;
+
         /** locators for resolving to schemas directely */
         List<XSDSchemaLocator> locators;
+
         /** locators for resolving to absolute schema locations */
         List<XSDSchemaLocationResolver> resolvers;
+
         /** tracking seen namespaces and schema locations */
         Set<String> seen;
+
         /** list of errors encountered */
         List<String> errors;
+
         /** next set of locations to process */
         List<String> next;
 
@@ -955,6 +960,7 @@ public class Schemas {
 
         return false;
     }
+
     /**
      * Returns the minimum number of occurences of an element within a complex type.
      *

@@ -42,9 +42,13 @@ package org.geotools.api.style;
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface LayerFeatureConstraints {
-    /** @return The feature type constraints. */
+    /**
+     * @return The feature type constraints.
+     */
     FeatureTypeConstraint[] getFeatureTypeConstraints();
 
-    /** @param constraints The new feature type constraints. */
+    /**
+     * @param constraints The new feature type constraints.
+     */
     void setFeatureTypeConstraints(FeatureTypeConstraint... constraints);
 }

@@ -226,7 +226,9 @@ public abstract class Configuration {
         return xsd;
     }
 
-    /** @return a list of direct dependencies of the configuration. */
+    /**
+     * @return a list of direct dependencies of the configuration.
+     */
     public final List<Configuration> getDependencies() {
         return dependencies;
     }
@@ -358,7 +360,9 @@ public abstract class Configuration {
         dependencies.add(dependency);
     }
 
-    /** @return The namespace of the configuration schema. */
+    /**
+     * @return The namespace of the configuration schema.
+     */
     public final String getNamespaceURI() {
         return getXSD().getNamespaceURI();
     }

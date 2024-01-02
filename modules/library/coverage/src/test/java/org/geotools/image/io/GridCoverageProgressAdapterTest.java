@@ -35,7 +35,9 @@ import org.geotools.util.logging.Logging;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 public class GridCoverageProgressAdapterTest extends Assert {
 
     /** The logger to use for this class. */

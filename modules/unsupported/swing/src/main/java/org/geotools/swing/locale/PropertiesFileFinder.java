@@ -52,6 +52,7 @@ import org.geotools.util.logging.Logging;
  */
 public class PropertiesFileFinder {
     static final Logger LOGGER = Logging.getLogger(PropertiesFileFinder.class);
+
     /**
      * Searches for properties files in the specified resource directory and returns information
      * about each file and the {@code Locales} that it supports.

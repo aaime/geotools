@@ -34,7 +34,9 @@ import java.util.Random;
 import java.util.logging.Logger;
 import org.geotools.util.logging.Logging;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public final class CISetup extends CIBase {
 
     private static Logger LOGGER = Logging.getLogger(CISetup.class);

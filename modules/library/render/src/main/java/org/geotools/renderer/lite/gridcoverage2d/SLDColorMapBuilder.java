@@ -467,7 +467,9 @@ public class SLDColorMapBuilder {
         return this;
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     public Color getColorForValuesToPreserve() {
         return this.preservedValuesColor;
     }
@@ -540,7 +542,9 @@ public class SLDColorMapBuilder {
         return q;
     }
 
-    /** @uml.property name="extendedColors" */
+    /**
+     * @uml.property name="extendedColors"
+     */
     private boolean extendedColors = false;
 
     /**
@@ -574,7 +578,9 @@ public class SLDColorMapBuilder {
         return this;
     }
 
-    /** @uml.property name="numberColorMapEntries" */
+    /**
+     * @uml.property name="numberColorMapEntries"
+     */
     private int numberColorMapEntries = -1;
 
     /**
@@ -607,7 +613,9 @@ public class SLDColorMapBuilder {
         return this;
     }
 
-    /** @uml.property name="numberOfColorMapElements" */
+    /**
+     * @uml.property name="numberOfColorMapElements"
+     */
     private int numberOfColorMapElements = -1;
 
     /** This is the target object for this builder.* */

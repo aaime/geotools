@@ -37,8 +37,10 @@ public class VPFFileFactory implements DataStoreFactorySpi {
     // private final VPFFileStore store = new VPFFileStore();
     private VPFFileStore store = null;
     private static VPFFileFactory instance = null;
+
     /** Default constructor. Does nothing! */
     private VPFFileFactory() {}
+
     /*
      *  (non-Javadoc)
      * @see org.geotools.api.data.DataStoreFactorySpi#createDataStore(java.util.Map)
@@ -124,6 +126,7 @@ public class VPFFileFactory implements DataStoreFactorySpi {
     public boolean isAvailable() {
         return true;
     }
+
     /**
      * Returns the singleton instance
      *

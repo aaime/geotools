@@ -57,7 +57,9 @@ public class BasicGraphGenerator implements GraphGenerator {
         setGraphBuilder(new BasicGraphBuilder());
     }
 
-    /** @see GraphGenerator#add(Object) */
+    /**
+     * @see GraphGenerator#add(Object)
+     */
     @Override
     public Graphable add(Object obj) {
         Object[] objs = (Object[]) obj;
@@ -91,7 +93,9 @@ public class BasicGraphGenerator implements GraphGenerator {
         return (e);
     }
 
-    /** @see GraphGenerator#get(Object) */
+    /**
+     * @see GraphGenerator#get(Object)
+     */
     @Override
     public Graphable get(Object obj) {
         Object[] objs = (Object[]) obj;
@@ -101,7 +105,9 @@ public class BasicGraphGenerator implements GraphGenerator {
         return (n1.getEdge(n2));
     }
 
-    /** @see GraphGenerator#remove(Object) */
+    /**
+     * @see GraphGenerator#remove(Object)
+     */
     @Override
     public Graphable remove(Object obj) {
         Object[] objs = (Object[]) obj;
@@ -115,19 +121,25 @@ public class BasicGraphGenerator implements GraphGenerator {
         return (e);
     }
 
-    /** @see GraphGenerator#setGraphBuilder(GraphBuilder) */
+    /**
+     * @see GraphGenerator#setGraphBuilder(GraphBuilder)
+     */
     @Override
     public void setGraphBuilder(GraphBuilder builder) {
         m_builder = builder;
     }
 
-    /** @see GraphGenerator#getGraphBuilder() */
+    /**
+     * @see GraphGenerator#getGraphBuilder()
+     */
     @Override
     public GraphBuilder getGraphBuilder() {
         return (m_builder);
     }
 
-    /** @see GraphGenerator#getGraph() */
+    /**
+     * @see GraphGenerator#getGraph()
+     */
     @Override
     public Graph getGraph() {
         return (m_builder.getGraph());

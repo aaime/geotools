@@ -35,7 +35,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class SLDGammaValueBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.GAMMAVALUE;

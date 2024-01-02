@@ -87,7 +87,9 @@ public class AbstractFeatureTypeBinding extends AbstractComplexBinding {
         this.encodingUtils = encodingUtils;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractFeatureType;

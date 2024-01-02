@@ -44,7 +44,9 @@ import org.geotools.xsd.Node;
  */
 public class WCSCapabilityType_ExceptionBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.WCSCapabilityType_Exception;

@@ -58,7 +58,9 @@ public class GMLAbstractFeatureCollectionBaseTypeBinding extends AbstractComplex
 
     public GMLAbstractFeatureCollectionBaseTypeBinding() {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractFeatureCollectionBaseType;

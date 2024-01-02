@@ -18,7 +18,9 @@ package org.geotools.data.hana;
 
 import org.geotools.jdbc.JDBCDistanceFiltersTest;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaDistanceFiltersOnlineTest extends JDBCDistanceFiltersTest {
 
     @Override

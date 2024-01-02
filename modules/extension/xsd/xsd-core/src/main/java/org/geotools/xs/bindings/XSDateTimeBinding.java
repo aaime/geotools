@@ -63,7 +63,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSDateTimeBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.DATETIME;

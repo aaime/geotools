@@ -50,7 +50,9 @@ import org.geotools.xsd.Node;
  */
 public class SchemaDataTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.SchemaDataType;

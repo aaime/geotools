@@ -24,7 +24,9 @@ import java.util.Map;
 import org.geotools.api.util.ProgressListener;
 import org.geotools.util.factory.Hints;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public interface FileDriver extends Driver {
 
     /**

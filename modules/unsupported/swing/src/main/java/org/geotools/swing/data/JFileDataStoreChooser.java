@@ -334,6 +334,7 @@ public class JFileDataStoreChooser extends JFileChooser {
             JOptionPane.showMessageDialog(null, "Selection cancelled");
         }
     }
+
     /**
      * Consider the provided file as a candidate for a new filename. A number will be appended to
      * the filename if there is a conflict.

@@ -48,7 +48,9 @@ public class DisplacementBinding extends SLDDisplacementBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Displacement;

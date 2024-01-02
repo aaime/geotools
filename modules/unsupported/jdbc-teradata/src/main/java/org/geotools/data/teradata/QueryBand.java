@@ -31,10 +31,13 @@ public class QueryBand {
 
     /** Local query band for user name executing request. */
     public static String CLIENT_USER = "ClientUser";
+
     /** Local query band for host name executing request. */
     public static String CLIENT_HOST = "ClientHostName";
+
     /** Local query band for layer being worked against. */
     public static String LAYER = "Layer";
+
     /** Local query band for type of statement, SELECT, DELETE, etc... */
     public static String PROCESS = "Process";
 
@@ -43,7 +46,8 @@ public class QueryBand {
                 @Override
                 protected Map<String, String> initialValue() {
                     return new HashMap<>();
-                };
+                }
+                ;
             };
 
     /** Returns local query band map. */

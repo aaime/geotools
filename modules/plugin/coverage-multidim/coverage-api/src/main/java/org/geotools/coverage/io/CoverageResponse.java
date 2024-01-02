@@ -25,10 +25,14 @@ import org.geotools.api.coverage.grid.GridCoverage;
 import org.geotools.api.util.ProgressListener;
 import org.geotools.data.util.NullProgressListener;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public class CoverageResponse {
 
-    /** @author Simone Giannecchini, GeoSolutions */
+    /**
+     * @author Simone Giannecchini, GeoSolutions
+     */
     public enum Status {
         FAILURE,
         WARNING,

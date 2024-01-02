@@ -126,6 +126,7 @@ public class StyleBuilder {
     public void setStyleFactory(StyleFactory factory) {
         sf = factory;
     }
+
     /**
      * getter for StyleFactory
      *

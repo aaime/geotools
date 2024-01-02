@@ -48,7 +48,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions. */
+/**
+ * @author Simone Giannecchini, GeoSolutions.
+ */
 public class TestPiecewise {
 
     /** Testing {@link DefaultConstantPiecewiseTransformElement}. */
@@ -94,6 +96,7 @@ public class TestPiecewise {
         Assert.assertEquals(1, transform.getSourceDimensions());
         Assert.assertEquals(1, transform.getTargetDimensions());
     }
+
     /** Testing {@link org.geotools.renderer.lite.gridcoverage2d.MathTransformationAdapter}. */
     @Test
     public void mathTransform1DAdapter() throws IOException, TransformException {
@@ -116,6 +119,7 @@ public class TestPiecewise {
 
         }
     }
+
     /**
      * Testing {@link DefaultConstantPiecewiseTransformElement}.
      *
@@ -124,7 +128,8 @@ public class TestPiecewise {
     @Test
     @SuppressWarnings("SelfEquals")
     public void constantTransform()
-            throws IOException, TransformException,
+            throws IOException,
+                    TransformException,
                     it.geosolutions.jaiext.piecewise.NoninvertibleTransformException,
                     TransformationException {
 
@@ -237,6 +242,7 @@ public class TestPiecewise {
         Assert.assertEquals(0.0, e0.transform(3), 0);
         Assert.assertEquals(transform.transform(3), 0.0, 0.0);
     }
+
     /** Testing testPiecewiseLogarithm. */
     @Test
     public void piecewiseLogarithm()

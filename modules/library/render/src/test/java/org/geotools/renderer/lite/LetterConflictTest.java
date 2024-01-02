@@ -52,6 +52,7 @@ import org.junit.Test;
 /** Confirm functionality of letter level conflict detection. */
 public class LetterConflictTest {
     static final Logger LOGGER = Logging.getLogger(LetterConflictTest.class);
+
     /**
      * Makes the test interactive, showing a Swing dialog with image.
      *

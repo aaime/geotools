@@ -63,7 +63,9 @@ public class MultiCurveTypeBinding extends AbstractComplexBinding {
         this.gf = gf;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiCurveType;

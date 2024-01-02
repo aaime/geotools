@@ -535,6 +535,7 @@ public class OperationFactoryTest {
             assertNotNull(op.getMathTransform());
         }
     }
+
     /**
      * @param expected
      * @param output

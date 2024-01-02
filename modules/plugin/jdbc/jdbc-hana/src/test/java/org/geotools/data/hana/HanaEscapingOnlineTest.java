@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCEscapingOnlineTest;
 import org.geotools.jdbc.JDBCEscapingTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaEscapingOnlineTest extends JDBCEscapingOnlineTest {
 
     @Override

@@ -927,7 +927,9 @@ public class ParserHandler extends DefaultHandler2 {
         CDATAEnding = b;
     }
 
-    /** @return the cDATAEnding */
+    /**
+     * @return the cDATAEnding
+     */
     public boolean isCDATAEnding() {
         return CDATAEnding;
     }

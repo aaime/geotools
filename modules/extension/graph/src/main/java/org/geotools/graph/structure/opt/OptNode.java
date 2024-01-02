@@ -64,7 +64,9 @@ public class OptNode extends OptGraphable implements Node {
         m_edges = new Edge[degree];
     }
 
-    /** @see Node#add(Edge) */
+    /**
+     * @see Node#add(Edge)
+     */
     @Override
     public void add(Edge e) {
         for (int i = 0; i < m_edges.length; i++) {
@@ -85,7 +87,9 @@ public class OptNode extends OptGraphable implements Node {
         throw new UnsupportedOperationException(getClass().getName() + "#remove(Edge)");
     }
 
-    /** @see Node#getEdge(Node) */
+    /**
+     * @see Node#getEdge(Node)
+     */
     @Override
     public Edge getEdge(Node other) {
         for (Edge m_edge : m_edges) {
@@ -96,7 +100,9 @@ public class OptNode extends OptGraphable implements Node {
         return (null);
     }
 
-    /** @see Node#getEdges(Node) */
+    /**
+     * @see Node#getEdges(Node)
+     */
     @Override
     public List<Edge> getEdges(Node other) {
         ArrayList<Edge> edges = new ArrayList<>();
@@ -117,7 +123,9 @@ public class OptNode extends OptGraphable implements Node {
         return (m_edges);
     }
 
-    /** @see Node#getEdges() */
+    /**
+     * @see Node#getEdges()
+     */
     @Override
     public List<Edge> getEdges() {
         ArrayList<Edge> edges = new ArrayList<>();
@@ -138,7 +146,9 @@ public class OptNode extends OptGraphable implements Node {
         m_edges = new Edge[degree];
     }
 
-    /** @see Node#getDegree() */
+    /**
+     * @see Node#getDegree()
+     */
     @Override
     public int getDegree() {
         return (m_edges.length);

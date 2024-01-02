@@ -52,6 +52,7 @@ import org.locationtech.jts.geom.Point;
 public class ContentFeatureCollection implements SimpleFeatureCollection {
 
     protected static final Logger LOGGER = Logging.getLogger(ContentFeatureCollection.class);
+
     /** feature store the collection originated from. */
     protected ContentFeatureSource featureSource;
 
@@ -59,6 +60,7 @@ public class ContentFeatureCollection implements SimpleFeatureCollection {
 
     /** feature (possibly retyped from feautre source original) type */
     protected SimpleFeatureType featureType;
+
     /** state of the feature source */
     protected ContentState state;
 
@@ -372,6 +374,7 @@ public class ContentFeatureCollection implements SimpleFeatureCollection {
             return false;
         }
     }
+
     /**
      * Returns <tt>true</tt> if this collection contains all of the elements in the specified
      * collection.

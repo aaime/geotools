@@ -32,12 +32,16 @@ import org.geotools.ows.wms.Layer;
 public interface GetFeatureInfoRequest extends Request {
     /** Represents the INFO_FORMAT parameter */
     public static final String INFO_FORMAT = "INFO_FORMAT"; // $NON-NLS-1$
+
     /** Represents the FEATURE_COUNT parameter */
     public static final String FEATURE_COUNT = "FEATURE_COUNT"; // $NON-NLS-1$
+
     /** Represents the X parameter */
     public static final String QUERY_X = "X"; // $NON-NLS-1$
+
     /** Represents the Y parameter */
     public static final String QUERY_Y = "Y"; // $NON-NLS-1$
+
     /** Represents the QUERY_LAYERS parameter */
     public static final String QUERY_LAYERS = "QUERY_LAYERS"; // $NON-NLS-1$
 
@@ -65,10 +69,14 @@ public interface GetFeatureInfoRequest extends Request {
      */
     public void setInfoFormat(String infoFormat);
 
-    /** @param featureCount the maximum number of features to return in the response */
+    /**
+     * @param featureCount the maximum number of features to return in the response
+     */
     public void setFeatureCount(String featureCount);
 
-    /** @param featureCount the maximum number of features to return in the response */
+    /**
+     * @param featureCount the maximum number of features to return in the response
+     */
     public void setFeatureCount(int featureCount);
 
     /**

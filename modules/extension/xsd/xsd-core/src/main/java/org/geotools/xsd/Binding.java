@@ -220,10 +220,14 @@ public interface Binding {
     /** Specifies that a binding should totally override the execution of its direct parent. */
     static final int OVERRIDE = 2;
 
-    /** @return The qualified name of the target for the binding. */
+    /**
+     * @return The qualified name of the target for the binding.
+     */
     QName getTarget();
 
-    /** @return The java type this binding maps to. */
+    /**
+     * @return The java type this binding maps to.
+     */
     Class<?> getType();
 
     /**

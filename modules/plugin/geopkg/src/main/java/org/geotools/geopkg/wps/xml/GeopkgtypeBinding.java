@@ -77,7 +77,9 @@ import org.geotools.xsd.Node;
  */
 public class GeopkgtypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GPKG.geopkgtype;

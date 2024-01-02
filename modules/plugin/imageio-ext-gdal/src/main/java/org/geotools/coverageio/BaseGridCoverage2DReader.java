@@ -550,17 +550,23 @@ public abstract class BaseGridCoverage2DReader extends AbstractGridCoverage2DRea
         return response;
     }
 
-    /** @return the input file */
+    /**
+     * @return the input file
+     */
     protected File getInputFile() {
         return inputFile;
     }
 
-    /** @return the coverage name */
+    /**
+     * @return the coverage name
+     */
     public String getCoverageName() {
         return coverageName;
     }
 
-    /** @return the gridCoverage count */
+    /**
+     * @return the gridCoverage count
+     */
     @Override
     public int getGridCoverageCount() {
         return 1;

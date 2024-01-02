@@ -49,7 +49,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class MLMailTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return ML.MAILTYPE;

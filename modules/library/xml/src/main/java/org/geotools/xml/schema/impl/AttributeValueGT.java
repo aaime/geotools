@@ -19,7 +19,9 @@ package org.geotools.xml.schema.impl;
 import org.geotools.xml.schema.Attribute;
 import org.geotools.xml.schema.AttributeValue;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class AttributeValueGT implements AttributeValue {
     private String value;
     private Attribute attribute;
@@ -34,13 +36,17 @@ public class AttributeValueGT implements AttributeValue {
         this.value = value;
     }
 
-    /** @see org.geotools.xml.schema.AttributeValue#getValue() */
+    /**
+     * @see org.geotools.xml.schema.AttributeValue#getValue()
+     */
     @Override
     public String getValue() {
         return value;
     }
 
-    /** @see org.geotools.xml.schema.AttributeValue#getAttribute() */
+    /**
+     * @see org.geotools.xml.schema.AttributeValue#getAttribute()
+     */
     @Override
     public Attribute getAttribute() {
         return attribute;

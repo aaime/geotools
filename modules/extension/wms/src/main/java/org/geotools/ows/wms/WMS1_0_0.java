@@ -216,6 +216,7 @@ public class WMS1_0_0 extends WMSSpecification {
         protected void initService() {
             // The 1.0.0 specification does not use the service property
         }
+
         /*
          * @see org.geotools.data.wms.request.AbstractRequest#processKey(java.lang.String)
          */
@@ -320,7 +321,9 @@ public class WMS1_0_0 extends WMSSpecification {
         }
     }
 
-    /** @see WMSSpecification#createGetMapRequest(java.net.URL) */
+    /**
+     * @see WMSSpecification#createGetMapRequest(java.net.URL)
+     */
     @Override
     public org.geotools.ows.wms.request.GetMapRequest createGetMapRequest(URL get) {
         return new GetMapRequest(get);
@@ -358,7 +361,9 @@ public class WMS1_0_0 extends WMSSpecification {
         throw new UnsupportedOperationException("WMS 1.0.0 does not support GetLegendGraphic");
     }
 
-    /** @see WMSSpecification#createGetStylesRequest(java.net.URL) */
+    /**
+     * @see WMSSpecification#createGetStylesRequest(java.net.URL)
+     */
     @Override
     public GetStylesRequest createGetStylesRequest(URL onlineResource)
             throws UnsupportedOperationException {
@@ -367,7 +372,9 @@ public class WMS1_0_0 extends WMSSpecification {
 
     public static class InternalGetStylesRequest extends AbstractGetStylesRequest {
 
-        /** @param onlineResource */
+        /**
+         * @param onlineResource
+         */
         public InternalGetStylesRequest(URL onlineResource) {
             super(onlineResource, null);
         }

@@ -44,7 +44,9 @@ public class OperationType {
         this.formats = formats;
     }
 
-    /** @return the URL where a GET request should be made */
+    /**
+     * @return the URL where a GET request should be made
+     */
     public URL getGet() {
         return get;
     }
@@ -53,7 +55,9 @@ public class OperationType {
         this.get = get;
     }
 
-    /** @return the URL where a POST request should be made */
+    /**
+     * @return the URL where a POST request should be made
+     */
     public URL getPost() {
         return post;
     }

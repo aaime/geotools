@@ -43,6 +43,7 @@ import org.locationtech.jts.geom.GeometryFactory;
 
 public class CSVDataStoreFactory implements FileDataStoreFactorySpi {
     Logger logger = Logging.getLogger("org.geotools.data.csv");
+
     /** GUESS_STRATEGY */
     public static final String GUESS_STRATEGY = "guess";
 

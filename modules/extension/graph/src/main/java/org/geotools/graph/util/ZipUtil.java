@@ -66,7 +66,9 @@ public class ZipUtil {
         unzip(zipFilename, filenames.toArray(new String[filenames.size()]), outdir);
     }
 
-    /** @deprecated this used to only work on windows */
+    /**
+     * @deprecated this used to only work on windows
+     */
     @Deprecated
     public static void unzip(String zipFilename, String[] filenames, String outdir)
             throws IOException {
@@ -103,7 +105,10 @@ public class ZipUtil {
             }
         }
     }
-    /** @deprecated this used to only work on windows */
+
+    /**
+     * @deprecated this used to only work on windows
+     */
     @Deprecated
     public static void unzip(String zipFilename, String outdir) throws IOException {
         try (ZipFile zipFile = new ZipFile(zipFilename)) {

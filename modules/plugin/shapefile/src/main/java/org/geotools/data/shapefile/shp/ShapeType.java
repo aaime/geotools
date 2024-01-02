@@ -58,6 +58,7 @@ public enum ShapeType {
 
     /** The integer id of this ShapeType. */
     public final int id;
+
     /**
      * The human-readable name for this ShapeType.<br>
      * Could easily use ResourceBundle for internationialization.

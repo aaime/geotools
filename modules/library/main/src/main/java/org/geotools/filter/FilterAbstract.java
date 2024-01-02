@@ -91,6 +91,7 @@ public abstract class FilterAbstract implements org.geotools.api.filter.Filter {
 
         return unpack(value);
     }
+
     /**
      * Helper method for subclasses to reduce null checks
      *

@@ -89,7 +89,9 @@ public class IdentifiedObjectFinder {
      * store rather than to the factory on which 'getIdentifiedObjectFinder()' was invoked.
      */
 
-    /** @return the proxy */
+    /**
+     * @return the proxy
+     */
     protected AuthorityFactoryProxy getProxy() {
         return proxy;
     }
@@ -186,6 +188,7 @@ public class IdentifiedObjectFinder {
     protected Citation getAuthority() {
         return getProxy().getAuthorityFactory().getAuthority();
     }
+
     /** Returns the identifier for the specified object. */
     final String getIdentifier(final IdentifiedObject object) {
         Citation authority = getAuthority();
@@ -419,7 +422,9 @@ public class IdentifiedObjectFinder {
         return getProxy().toString(IdentifiedObjectFinder.class);
     }
 
-    /** @param proxy the proxy to set */
+    /**
+     * @param proxy the proxy to set
+     */
     public void setProxy(AuthorityFactoryProxy proxy) {
         this.proxy = proxy;
     }

@@ -24,7 +24,9 @@ import org.geotools.jdbc.JDBCDataStoreFactory;
 import org.geotools.jdbc.JDBCTestSetup;
 import tech.units.indriya.function.MultiplyConverter;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaTestSetupBase extends JDBCTestSetup {
 
     private static final String DRIVER_CLASS_NAME = "com.sap.db.jdbc.Driver";

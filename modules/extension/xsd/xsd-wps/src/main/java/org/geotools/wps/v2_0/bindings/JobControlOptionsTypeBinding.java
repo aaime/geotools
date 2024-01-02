@@ -79,7 +79,9 @@ import org.geotools.xsd.AbstractSimpleBinding;
  */
 public class JobControlOptionsTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WPS.JobControlOptionsType;

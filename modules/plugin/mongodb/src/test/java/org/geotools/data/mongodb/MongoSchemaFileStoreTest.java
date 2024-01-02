@@ -43,7 +43,9 @@ import org.geotools.feature.NameImpl;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoSchemaFileStoreTest extends MongoSchemaStoreTest<MongoSchemaFileStore> {
 
     Map<MongoSchemaFileStore, File> directories = new HashMap<>();

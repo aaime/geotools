@@ -429,6 +429,7 @@ public class MBFunction {
                     return color;
                 });
     }
+
     /**
      * Use Recode function to implement {@link FunctionType#CATEGORICAL}.
      *
@@ -547,6 +548,7 @@ public class MBFunction {
                     return font;
                 });
     }
+
     //
     // Numeric
     //
@@ -843,6 +845,7 @@ public class MBFunction {
         throw new UnsupportedOperationException(
                 "Unable to support '" + type + "' function for " + enumeration.getSimpleName());
     }
+
     /**
      * Generates an expression (based on a mapbox enumeration property) for the output of this
      * {@link MBFunction} (as a {@link MBFunction.FunctionType#CATEGORICAL} function), based on the

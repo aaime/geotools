@@ -49,6 +49,7 @@ public class ProcessParameterPage extends JPage {
 
     /** Name of the process we are working with. */
     Name name;
+
     /** The user supplied input parameters. */
     Map<String, Object> input;
 

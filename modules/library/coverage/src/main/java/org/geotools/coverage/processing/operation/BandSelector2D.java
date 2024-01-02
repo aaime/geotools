@@ -50,6 +50,7 @@ final class BandSelector2D extends GridCoverage2D {
 
     /** serialVersionUID */
     private static final long serialVersionUID = -2833594454437021628L;
+
     /**
      * The mapping to bands in the source grid coverage. May be {@code null} if all bands were
      * keept.

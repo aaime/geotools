@@ -77,7 +77,9 @@ import org.geotools.xsd.Node;
 public class InlineContentBinding extends AbstractComplexBinding {
     private static final Logger LOGGER = Logging.getLogger(InlineContentBinding.class);
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.InlineContent;

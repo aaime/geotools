@@ -35,7 +35,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 
-/** @author Tobias Warneke */
+/**
+ * @author Tobias Warneke
+ */
 public class FilterFunction_listMultiplyTest {
 
     private FilterFactory ff = CommonFactoryFinder.getFilterFactory(null);

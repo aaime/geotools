@@ -67,7 +67,9 @@ public class URN_AuthorityFactory extends Abstract_URI_AuthorityFactory {
         super(factory);
     }
 
-    /** @see org.geotools.referencing.factory.Abstract_URI_AuthorityFactory#getAuthority() */
+    /**
+     * @see org.geotools.referencing.factory.Abstract_URI_AuthorityFactory#getAuthority()
+     */
     @Override
     public Citation getAuthority() {
         return Citations.URN_OGC;

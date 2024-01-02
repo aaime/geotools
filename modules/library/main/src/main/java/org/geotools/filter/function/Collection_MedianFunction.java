@@ -57,6 +57,7 @@ public class Collection_MedianFunction extends FunctionExpressionImpl {
                     "Collection_Median",
                     parameter("median", Comparable.class),
                     parameter("expression", Comparable.class));
+
     /** Creates a new instance of Collection_MedianFunction */
     public Collection_MedianFunction() {
         super(NAME);

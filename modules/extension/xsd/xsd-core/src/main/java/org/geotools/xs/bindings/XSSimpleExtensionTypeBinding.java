@@ -51,7 +51,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSSimpleExtensionTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.SIMPLEEXTENSIONTYPE;

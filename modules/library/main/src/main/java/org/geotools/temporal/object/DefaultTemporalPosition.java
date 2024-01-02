@@ -37,6 +37,7 @@ public class DefaultTemporalPosition implements TemporalPosition {
      * is assumed to be an association to the Gregorian calendar and UTC.
      */
     private TemporalReferenceSystem frame;
+
     /**
      * This attribute provides the only value for TM_TemporalPosition unless a subtype of
      * TM_TemporalPosition is used as the data type.

@@ -300,6 +300,7 @@ public class WMS1_1_1_Test {
         assertEquals(llbbox.getMaxX(), maxX, 0.0);
         assertEquals(llbbox.getMaxY(), maxY, 0.0);
     }
+
     /* (non-Javadoc)
      * @see org.geotools.data.wms.test.WMS1_0_0Test#checkProperties(java.util.Properties)
      */

@@ -281,6 +281,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -291,6 +292,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -301,6 +303,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -311,6 +314,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -321,6 +325,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -331,6 +336,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -341,6 +347,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.ALL cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -351,6 +358,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.FIDS cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -361,6 +369,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.FIDS cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -371,6 +380,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.FIDS cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -381,6 +391,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.FIDS cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *
@@ -391,6 +402,7 @@ class FIDSQuery extends Query {
         throw new UnsupportedOperationException(
                 "Query.FIDS cannot be changed, please just use as a default.");
     }
+
     /**
      * Not applicable to FIDSQuery.
      *

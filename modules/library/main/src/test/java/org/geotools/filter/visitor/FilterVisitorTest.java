@@ -63,6 +63,7 @@ public class FilterVisitorTest {
         Set set = (Set) myFilter.accept(allFids, new HashSet());
         Assert.assertEquals(1, set.size());
     }
+
     /** Example located on the wiki */
     @Test
     @SuppressWarnings("unchecked")

@@ -387,7 +387,9 @@ public abstract class AbstractWFSStrategy extends WFSStrategy {
      * WFSStrategy methods
      * ---------------------------------------------------------------------*/
 
-    /** @see WFSStrategy#getServiceVersion() */
+    /**
+     * @see WFSStrategy#getServiceVersion()
+     */
     @Override
     public abstract Version getServiceVersion();
 
@@ -402,13 +404,17 @@ public abstract class AbstractWFSStrategy extends WFSStrategy {
         return simpleName;
     }
 
-    /** @see WFSStrategy#supportsOperation */
+    /**
+     * @see WFSStrategy#supportsOperation
+     */
     @Override
     public boolean supportsOperation(WFSOperationType operation, HttpMethod method) {
         return null != getOperationURI(operation, method);
     }
 
-    /** @see WFSStrategy#getOperationURL */
+    /**
+     * @see WFSStrategy#getOperationURL
+     */
     @Override
     public URL getOperationURL(WFSOperationType operation, HttpMethod method) {
         String href = getOperationURI(operation, method);
@@ -445,7 +451,9 @@ public abstract class AbstractWFSStrategy extends WFSStrategy {
                         + operation);
     }
 
-    /** @see WFSStrategy#dispose() */
+    /**
+     * @see WFSStrategy#dispose()
+     */
     @Override
     public void dispose() {
         // do nothing

@@ -27,22 +27,30 @@ public class IdInfo {
     /** spdom/lbounding represents */
     Envelope lbounding;
 
-    /** @return Returns the bounding. */
+    /**
+     * @return Returns the bounding.
+     */
     public Envelope getBounding() {
         return bounding;
     }
 
-    /** @param bounding The bounding to set. */
+    /**
+     * @param bounding The bounding to set.
+     */
     public void setBounding(Envelope bounding) {
         this.bounding = bounding;
     }
 
-    /** @return Returns the lbounding. */
+    /**
+     * @return Returns the lbounding.
+     */
     public Envelope getLbounding() {
         return lbounding;
     }
 
-    /** @param lbounding The lbounding to set. */
+    /**
+     * @param lbounding The lbounding to set.
+     */
     public void setLbounding(Envelope lbounding) {
         this.lbounding = lbounding;
     }

@@ -46,11 +46,16 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class DirectLayerLabelsTest {
 
     private long timout = 3000;
-    /** @throws java.lang.Exception */
+
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {
         // System.setProperty(TestData.INTERACTIVE_TEST_KEY, "true");

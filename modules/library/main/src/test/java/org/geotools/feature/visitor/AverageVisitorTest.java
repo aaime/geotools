@@ -23,7 +23,9 @@ import org.geotools.api.feature.simple.SimpleFeatureType;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-/** @author Sebastian Graca, ISPiK S.A. */
+/**
+ * @author Sebastian Graca, ISPiK S.A.
+ */
 @RunWith(Parameterized.class)
 public class AverageVisitorTest<T, R> extends VisitorTestCase<T, R> {
     public AverageVisitorTest(Class<T> valueClass, List<T> values, R expectedValue) {

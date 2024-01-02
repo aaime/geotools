@@ -78,19 +78,25 @@ public class GeoJSONFeatureStore extends ContentFeatureStore {
         return delegate.buildFeatureType();
     }
 
-    /** @see GeoJSONFeatureSource#getDataStore() */
+    /**
+     * @see GeoJSONFeatureSource#getDataStore()
+     */
     @Override
     public GeoJSONDataStore getDataStore() {
         return delegate.getDataStore();
     }
 
-    /** @see org.geotools.data.store.ContentFeatureSource#getEntry() */
+    /**
+     * @see org.geotools.data.store.ContentFeatureSource#getEntry()
+     */
     @Override
     public ContentEntry getEntry() {
         return delegate.getEntry();
     }
 
-    /** @see org.geotools.data.store.ContentFeatureSource#getTransaction() */
+    /**
+     * @see org.geotools.data.store.ContentFeatureSource#getTransaction()
+     */
     @Override
     public Transaction getTransaction() {
         return delegate.getTransaction();
@@ -103,31 +109,42 @@ public class GeoJSONFeatureStore extends ContentFeatureStore {
             delegate.setTransaction(transaction);
         }
     }
-    /** @see org.geotools.data.store.ContentFeatureSource#getState() */
+
+    /**
+     * @see org.geotools.data.store.ContentFeatureSource#getState()
+     */
     @Override
     public ContentState getState() {
         return delegate.getState();
     }
 
-    /** @see org.geotools.data.store.ContentFeatureSource#getInfo() */
+    /**
+     * @see org.geotools.data.store.ContentFeatureSource#getInfo()
+     */
     @Override
     public ResourceInfo getInfo() {
         return delegate.getInfo();
     }
 
-    /** @see org.geotools.data.store.ContentFeatureSource#getName() */
+    /**
+     * @see org.geotools.data.store.ContentFeatureSource#getName()
+     */
     @Override
     public Name getName() {
         return delegate.getName();
     }
 
-    /** @see org.geotools.data.store.ContentFeatureSource#getQueryCapabilities() */
+    /**
+     * @see org.geotools.data.store.ContentFeatureSource#getQueryCapabilities()
+     */
     @Override
     public QueryCapabilities getQueryCapabilities() {
         return delegate.getQueryCapabilities();
     }
 
-    /** @param writeBounds */
+    /**
+     * @param writeBounds
+     */
     public void setWriteBounds(boolean writeBounds) {
         this.writeBounds = writeBounds;
     }

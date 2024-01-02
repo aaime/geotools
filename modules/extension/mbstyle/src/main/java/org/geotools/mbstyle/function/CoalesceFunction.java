@@ -67,14 +67,18 @@ class CoalesceFunction extends FunctionExpressionImpl {
         super(NAME);
     }
 
-    /** @see org.geotools.filter.FunctionExpressionImpl#setParameters(java.util.List) */
+    /**
+     * @see org.geotools.filter.FunctionExpressionImpl#setParameters(java.util.List)
+     */
     @Override
     public void setParameters(List<Expression> params) {
         // set the parameters
         this.params = new ArrayList<>(params);
     }
 
-    /** @see org.geotools.filter.FunctionExpressionImpl#equals(java.lang.Object) */
+    /**
+     * @see org.geotools.filter.FunctionExpressionImpl#equals(java.lang.Object)
+     */
     @Override
     public Object evaluate(Object feature) {
         for (Expression expression : params) {

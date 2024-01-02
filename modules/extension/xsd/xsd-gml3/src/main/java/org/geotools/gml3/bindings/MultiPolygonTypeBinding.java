@@ -59,7 +59,9 @@ public class MultiPolygonTypeBinding extends AbstractComplexBinding implements C
         this.gFactory = gFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiPolygonType;

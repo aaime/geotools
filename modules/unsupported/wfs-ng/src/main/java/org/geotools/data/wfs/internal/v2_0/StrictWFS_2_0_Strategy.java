@@ -189,7 +189,9 @@ public class StrictWFS_2_0_Strategy extends AbstractWFSStrategy {
         return Versions.v2_0_0;
     }
 
-    /** @see WFSStrategy#getFeatureTypeNames() */
+    /**
+     * @see WFSStrategy#getFeatureTypeNames()
+     */
     @Override
     public Set<QName> getFeatureTypeNames() {
         return new HashSet<>(typeInfos.keySet());

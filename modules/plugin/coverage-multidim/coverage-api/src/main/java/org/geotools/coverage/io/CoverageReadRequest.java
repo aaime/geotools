@@ -106,7 +106,9 @@ public class CoverageReadRequest extends CoverageRequest {
     /** Custom filter for additional queries */
     private Filter filter;
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#getRangeSubset() */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#getRangeSubset()
+     */
     public RangeType getRangeSubset() {
         return this.rangeSubset;
     }
@@ -163,7 +165,9 @@ public class CoverageReadRequest extends CoverageRequest {
         this.rangeSubset = value;
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#getVerticalSubset() */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#getVerticalSubset()
+     */
     public Set<NumberRange<Double>> getVerticalSubset() {
         if (verticalSubset == null) {
             Set<NumberRange<Double>> empty = Collections.emptySet();
@@ -172,12 +176,16 @@ public class CoverageReadRequest extends CoverageRequest {
         } else return new LinkedHashSet<>(verticalSubset);
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#setVerticalSubset(java.util.SortedSet) */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#setVerticalSubset(java.util.SortedSet)
+     */
     public void setVerticalSubset(Set<NumberRange<Double>> verticalSubset) {
         this.verticalSubset = new LinkedHashSet<>(verticalSubset);
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#getTemporalSubset() */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#getTemporalSubset()
+     */
     public SortedSet<DateRange> getTemporalSubset() {
         if (temporalSubset == null) {
             temporalSubset = new DateRangeTreeSet();
@@ -186,7 +194,9 @@ public class CoverageReadRequest extends CoverageRequest {
         return new DateRangeTreeSet(temporalSubset);
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#setTemporalSubset(java.util.SortedSet) */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#setTemporalSubset(java.util.SortedSet)
+     */
     public void setTemporalSubset(SortedSet<DateRange> temporalSubset) {
         this.temporalSubset = new DateRangeTreeSet(temporalSubset);
     }
@@ -199,17 +209,23 @@ public class CoverageReadRequest extends CoverageRequest {
         this.additionalDomainsSubset = additionalDomainsSubset;
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#getRasterArea() */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#getRasterArea()
+     */
     public Rectangle getRasterArea() {
         return rasterArea != null ? (Rectangle) rasterArea.clone() : rasterArea;
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#getGeographicArea() */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#getGeographicArea()
+     */
     public BoundingBox getGeographicArea() {
         return geographicArea;
     }
 
-    /** @see org.geotools.coverage.io.CoverageReadRequest#getGridToWorldTransform() */
+    /**
+     * @see org.geotools.coverage.io.CoverageReadRequest#getGridToWorldTransform()
+     */
     public MathTransform2D getGridToWorldTransform() {
         return gridToWorldTransform;
     }

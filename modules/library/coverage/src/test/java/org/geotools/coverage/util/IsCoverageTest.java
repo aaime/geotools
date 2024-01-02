@@ -35,7 +35,9 @@ import org.geotools.filter.visitor.SimplifyingFilterVisitor;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.junit.Test;
 
-/** @author Davide Savazzi - GeoSolutions */
+/**
+ * @author Davide Savazzi - GeoSolutions
+ */
 public class IsCoverageTest extends GridCoverageTestBase {
 
     static final FilterFactory FF = CommonFactoryFinder.getFilterFactory();

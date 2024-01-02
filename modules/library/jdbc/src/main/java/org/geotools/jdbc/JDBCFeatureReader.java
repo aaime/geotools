@@ -80,10 +80,13 @@ public class JDBCFeatureReader implements FeatureReader<SimpleFeatureType, Simpl
 
     /** The feature source the reader originated from. */
     protected JDBCFeatureSource featureSource;
+
     /** the datastore */
     protected JDBCDataStore dataStore;
+
     /** schema of features */
     protected SimpleFeatureType featureType;
+
     /** geometry factory used to create geometry objects */
     protected GeometryFactory geometryFactory;
 
@@ -98,6 +101,7 @@ public class JDBCFeatureReader implements FeatureReader<SimpleFeatureType, Simpl
 
     /** current transaction */
     protected Transaction tx;
+
     /** flag indicating if the iterator has another feature */
     protected Boolean next;
 
@@ -106,6 +110,7 @@ public class JDBCFeatureReader implements FeatureReader<SimpleFeatureType, Simpl
 
     /** feature builder */
     protected SimpleFeatureBuilder builder;
+
     /** The primary key */
     protected PrimaryKey pkey;
 
@@ -586,8 +591,10 @@ public class JDBCFeatureReader implements FeatureReader<SimpleFeatureType, Simpl
     protected class ResultSetFeature implements SimpleFeature {
         /** result set */
         ResultSet rs;
+
         /** connection */
         Connection cx;
+
         /** primary key */
         PrimaryKey key;
 

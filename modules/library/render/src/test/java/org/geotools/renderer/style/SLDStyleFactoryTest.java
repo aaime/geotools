@@ -90,7 +90,9 @@ import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 
-/** @author jamesm */
+/**
+ * @author jamesm
+ */
 public class SLDStyleFactoryTest {
 
     StyleFactory sf = CommonFactoryFinder.getStyleFactory(null);

@@ -28,6 +28,8 @@ import org.geotools.api.feature.type.FeatureType;
 public interface DelegatingFeatureWriter<T extends FeatureType, F extends Feature>
         extends FeatureWriter<T, F> {
 
-    /** @return The delegate writer. */
+    /**
+     * @return The delegate writer.
+     */
     FeatureWriter<T, F> getDelegate();
 }

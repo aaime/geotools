@@ -174,6 +174,7 @@ public final class GeoToolsTest {
         assertNotNull(version);
         assertEquals("1.2", version.toString());
     }
+
     /** Tests the use of system properties. */
     @Test
     public void testSystemHints() {

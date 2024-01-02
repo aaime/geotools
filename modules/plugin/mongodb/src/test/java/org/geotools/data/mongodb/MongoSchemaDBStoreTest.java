@@ -40,7 +40,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 @SuppressWarnings("deprecation") // DB was replaced by MongoDatabase but API is not the same
 public class MongoSchemaDBStoreTest extends MongoSchemaStoreTest<MongoSchemaDBStore> {
 

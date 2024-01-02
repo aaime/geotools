@@ -46,6 +46,7 @@ public class AStarIteratorTest {
         m_builder = createBuilder();
         m_directed_builder = createDirectedBuilder();
     }
+
     /**
      * Test 0: Graph with no bifurcations. 100 nodes. G = 1 for all edges H = TargetsID - currentID
      * Expected: 1. Every node should be visited 2. ParentID = SonsID - 1

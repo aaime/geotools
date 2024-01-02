@@ -70,7 +70,9 @@ public class ExternalGraphicBinding extends SLDExternalGraphicBinding {
         super(styleFactory, resourceLocator);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.ExternalGraphic;

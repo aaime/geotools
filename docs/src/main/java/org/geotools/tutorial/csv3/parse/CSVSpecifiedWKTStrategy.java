@@ -58,6 +58,7 @@ public class CSVSpecifiedWKTStrategy extends CSVStrategy {
         }
         return featureBuilder.buildFeatureType();
     }
+
     // docs end buildFeatureType
 
     // docs start createSchema
@@ -82,6 +83,7 @@ public class CSVSpecifiedWKTStrategy extends CSVStrategy {
             writer.close();
         }
     }
+
     // docs end createSchema
 
     // docs start encode
@@ -104,6 +106,7 @@ public class CSVSpecifiedWKTStrategy extends CSVStrategy {
         }
         return csvRecord.toArray(new String[csvRecord.size() - 1]);
     }
+
     // docs end encode
 
     // docs start decode

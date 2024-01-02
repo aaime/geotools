@@ -313,6 +313,7 @@ public class TransformProcess implements VectorProcess {
             return new ReshapeFeatureIterator(delegate.features(), definition, schema);
         }
     }
+
     /**
      * Process one feature at time; obtaining values by evaulating the provided list of definitions.
      *

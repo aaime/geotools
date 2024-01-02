@@ -28,7 +28,9 @@ import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.MultiPoint;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequenceFactory;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class ProcessTestUtilities {
     public static SimpleFeatureCollection createPoints(
             Coordinate[] pts, ReferencedEnvelope bounds) {

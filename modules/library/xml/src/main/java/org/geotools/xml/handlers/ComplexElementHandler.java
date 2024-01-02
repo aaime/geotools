@@ -82,13 +82,17 @@ public class ComplexElementHandler extends XMLElementHandler {
         }
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getElement() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getElement()
+     */
     @Override
     public Element getElement() {
         return elem;
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#characters(java.lang.String) */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#characters(java.lang.String)
+     */
     @Override
     public void characters(String text1) throws SAXException {
         if (type.isMixed()) {
@@ -561,7 +565,9 @@ public class ComplexElementHandler extends XMLElementHandler {
         return value;
     }
 
-    /** @see org.geotools.xml.XMLElementHandler#getName() */
+    /**
+     * @see org.geotools.xml.XMLElementHandler#getName()
+     */
     @Override
     public String getName() {
         return elem.getName();
@@ -625,6 +631,7 @@ public class ComplexElementHandler extends XMLElementHandler {
         public Object getValue() {
             return value;
         }
+
         /* (non-Javadoc)
          * @see java.lang.Object#toString()
          */

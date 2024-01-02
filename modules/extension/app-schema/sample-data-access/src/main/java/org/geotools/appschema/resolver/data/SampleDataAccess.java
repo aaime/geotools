@@ -56,7 +56,9 @@ public class SampleDataAccess implements DataAccess<FeatureType, Feature> {
         // do nothing
     }
 
-    /** @see DataAccess#getFeatureSource(org.geotools.api.feature.type.Name) */
+    /**
+     * @see DataAccess#getFeatureSource(org.geotools.api.feature.type.Name)
+     */
     @Override
     public FeatureSource<FeatureType, Feature> getFeatureSource(Name typeName) throws IOException {
         if (typeName.equals(SampleDataAccessData.MAPPEDFEATURE_TYPE_NAME)) {

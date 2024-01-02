@@ -49,7 +49,9 @@ public class LongitudeFirstFactoryOverrideTest {
     private static final double[] SRC_TEST_POINT = {39.592654167, 3.084896111};
     private static final double[] DST_TEST_POINT = {39.594235744481225, 3.0844689951999427};
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @BeforeClass
     public static void setUpClass() throws Exception {
         // force longitude first mode

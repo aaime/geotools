@@ -76,7 +76,9 @@ import org.geotools.xsd.InstanceComponent;
 public class IdentifierGenerationOptionTypeBinding extends AbstractSimpleBinding {
     public IdentifierGenerationOptionTypeBinding(WfsFactory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.IdentifierGenerationOptionType;

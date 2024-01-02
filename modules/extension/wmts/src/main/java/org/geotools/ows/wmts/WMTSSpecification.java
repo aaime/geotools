@@ -121,12 +121,16 @@ public class WMTSSpecification extends Specification {
             setProperty(VERSION, WMTS_VERSION);
         }
 
-        /** @return the type */
+        /**
+         * @return the type
+         */
         public WMTSServiceType getType() {
             return type;
         }
 
-        /** @param type the type to set */
+        /**
+         * @param type the type to set
+         */
         public void setType(WMTSServiceType type) {
             this.type = type;
         }

@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCJoinOnlineTest;
 import org.geotools.jdbc.JDBCJoinTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaJoinOnlineTest extends JDBCJoinOnlineTest {
 
     @Override

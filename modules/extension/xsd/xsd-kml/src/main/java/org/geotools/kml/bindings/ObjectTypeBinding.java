@@ -39,7 +39,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class ObjectTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.ObjectType;

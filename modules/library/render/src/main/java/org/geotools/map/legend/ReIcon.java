@@ -36,6 +36,7 @@ public class ReIcon {
     public Icon getIcon() {
         return icon;
     }
+
     /**
      * Produce an icon of the required size.
      *

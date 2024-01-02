@@ -61,218 +61,425 @@ public final class CSW extends XSD {
         return getClass().getResource("csw.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/cat/csw/2.0.2";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractQueryType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "AbstractQueryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractRecordType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "AbstractRecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AcknowledgementType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "AcknowledgementType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BriefRecordType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "BriefRecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CapabilitiesType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ConceptualSchemeType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "ConceptualSchemeType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DCMIRecordType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DCMIRecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DeleteType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DeleteType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeRecordResponseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DescribeRecordResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeRecordType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DescribeRecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DistributedSearchType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DistributedSearchType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DomainValuesType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DomainValuesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName EchoedRequestType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "EchoedRequestType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ElementSetNameType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "ElementSetNameType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ElementSetType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "ElementSetType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName EmptyType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "EmptyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilitiesType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetCapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetDomainResponseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetDomainResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetDomainType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetDomainType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordByIdResponseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordByIdResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordByIdType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordByIdType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordsResponseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordsResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordsType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName HarvestResponseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "HarvestResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName HarvestType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "HarvestType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InsertResultType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "InsertResultType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InsertType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "InsertType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ListOfValuesType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "ListOfValuesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName QueryConstraintType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "QueryConstraintType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName QueryType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "QueryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RangeOfValuesType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "RangeOfValuesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecordPropertyType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "RecordPropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecordType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "RecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RequestBaseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "RequestBaseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RequestStatusType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "RequestStatusType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResultType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "ResultType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SchemaComponentType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "SchemaComponentType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SearchResultsType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "SearchResultsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SummaryRecordType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "SummaryRecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionResponseType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "TransactionResponseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionSummaryType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "TransactionSummaryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "TransactionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TypeNameListType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "TypeNameListType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UpdateType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "UpdateType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractQuery =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "AbstractQuery");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractRecord =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "AbstractRecord");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Acknowledgement =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "Acknowledgement");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName BriefRecord =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "BriefRecord");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Capabilities =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "Capabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Constraint =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "Constraint");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DCMIRecord =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DCMIRecord");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeRecord =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DescribeRecord");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeRecordResponse =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "DescribeRecordResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ElementSetName =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "ElementSetName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilities =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetCapabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetDomain =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetDomain");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetDomainResponse =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetDomainResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordById =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordById");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordByIdResponse =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordByIdResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecords =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecords");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetRecordsResponse =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "GetRecordsResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Harvest =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "Harvest");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName HarvestResponse =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "HarvestResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Query = new QName("http://www.opengis.net/cat/csw/2.0.2", "Query");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Record = new QName("http://www.opengis.net/cat/csw/2.0.2", "Record");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecordProperty =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "RecordProperty");
 
     public static final QName SimpleType =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "SummaryRecord");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SummaryRecord =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "SummaryRecord");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Transaction =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "Transaction");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TransactionResponse =
             new QName("http://www.opengis.net/cat/csw/2.0.2", "TransactionResponse");
 

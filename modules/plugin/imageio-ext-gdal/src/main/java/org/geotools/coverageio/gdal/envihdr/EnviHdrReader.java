@@ -31,6 +31,7 @@ import org.geotools.util.factory.Hints;
 public final class EnviHdrReader extends BaseGDALGridCoverage2DReader
         implements GridCoverageReader {
     private static final String worldFileExt = ".wld";
+
     /** Logger. */
     @SuppressWarnings("unused")
     private static final Logger LOGGER =
@@ -55,7 +56,9 @@ public final class EnviHdrReader extends BaseGDALGridCoverage2DReader
         super(input, hints, worldFileExt, new ENVIHdrImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new EnviHdrFormat();

@@ -43,6 +43,7 @@ public class DbaseNullSupportTest {
     private static final char[] types = {'C', 'N', 'F', 'L', 'D'};
     private static final int[] sizes = {5, 9, 20, 1, 8};
     private static final int[] decimals = {0, 0, 31, 0, 0};
+
     /**
      * Creates some non-null values to mix in with the nulls so we have variety. Be sure to use
      * powers of two for the numbers to prevent any possible loss of precision when

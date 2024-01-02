@@ -63,7 +63,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSAllBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.ALL;

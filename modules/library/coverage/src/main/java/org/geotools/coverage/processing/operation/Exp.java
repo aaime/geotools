@@ -68,6 +68,7 @@ import org.geotools.util.NumberRange;
 public class Exp extends BaseMathOperationJAI {
     private static final String ALGEBRIC = "algebric";
     private static final String EXP = "Exp";
+
     /** Serial number for interoperability with different versions. */
     private static final long serialVersionUID = 6136918309949539525L;
 

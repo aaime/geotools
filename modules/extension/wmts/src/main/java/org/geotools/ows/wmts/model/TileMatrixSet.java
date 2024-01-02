@@ -78,7 +78,9 @@ public class TileMatrixSet {
         matrices.add(tileMatrix);
     }
 
-    /** @return the crs */
+    /**
+     * @return the crs
+     */
     public String getCrs() {
         return crs;
     }
@@ -110,17 +112,23 @@ public class TileMatrixSet {
         return CRS.decode(crs);
     }
 
-    /** @return the matrices */
+    /**
+     * @return the matrices
+     */
     public List<TileMatrix> getMatrices() {
         return matrices;
     }
 
-    /** @param matrices the matrices to set */
+    /**
+     * @param matrices the matrices to set
+     */
     public void setMatrices(List<TileMatrix> matrices) {
         this.matrices = matrices;
     }
 
-    /** @return the identifier */
+    /**
+     * @return the identifier
+     */
     public String getIdentifier() {
         return identifier;
     }
@@ -151,7 +159,9 @@ public class TileMatrixSet {
         return sb.toString();
     }
 
-    /** @return the number of levels in this MatrixSet */
+    /**
+     * @return the number of levels in this MatrixSet
+     */
     public int size() {
         return matrices.size();
     }

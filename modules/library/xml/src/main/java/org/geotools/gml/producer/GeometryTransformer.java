@@ -76,7 +76,9 @@ public class GeometryTransformer extends TransformerBase {
         this.forceDecimalEncoding = forceDecimalEncoding;
     }
 
-    /** @TODO remove constant from GometryTraslator contructor call */
+    /**
+     * @TODO remove constant from GometryTraslator contructor call
+     */
     @Override
     public org.geotools.xml.transform.Translator createTranslator(ContentHandler handler) {
         return new GeometryTranslator(
@@ -172,6 +174,7 @@ public class GeometryTransformer extends TransformerBase {
             coordWriter.setPrefix(prefix);
             coordWriter.setNamespaceUri(nsUri);
         }
+
         /**
          * Constructor for GeometryTranslator allowing the specification of the number of valid
          * dimension represented in the Coordinates.

@@ -52,7 +52,9 @@ import tech.units.indriya.unit.BaseUnit;
  * @generated
  */
 public class MeasureTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MeasureType;

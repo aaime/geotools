@@ -29,25 +29,34 @@ public final class X364 {
 
     /** The espace sequence. */
     private static final String ESCAPE = "\u001B[";
+
     /** Reset all attributes off. */
     public static final String RESET = ESCAPE + "0m";
+
     /** Red foreground. */
     public static final String RED = ESCAPE + "31m";
+
     /** Green foreground. */
     public static final String GREEN = ESCAPE + "32m";
+
     /** Yellow foreground. */
     public static final String YELLOW = ESCAPE + "33m";
+
     /** Blue foreground. */
     public static final String BLUE = ESCAPE + "34m";
+
     /** Magenta foreground. */
     public static final String MAGENTA = ESCAPE + "35m";
+
     /** Cyan foreground. */
     public static final String CYAN = ESCAPE + "36m";
+
     /** Default foreground. */
     public static final String DEFAULT = ESCAPE + "39m";
 
     /** Red background. */
     public static final String BACKGROUND_RED = ESCAPE + "41m";
+
     /** Default background. */
     public static final String BACKGROUND_DEFAULT = ESCAPE + "49m";
 }

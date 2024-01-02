@@ -144,6 +144,7 @@ public class MBObjectParser {
             return new JSONObject();
         }
     }
+
     /**
      * Safely look up layout in provided layer json.
      *
@@ -218,6 +219,7 @@ public class MBObjectParser {
             return fallback;
         }
     }
+
     /**
      * Access json contains a JSONArray for the indicated tag.
      *
@@ -289,6 +291,7 @@ public class MBObjectParser {
         throw new MBFormatException(
                 context.getSimpleName() + " requires [" + index + "] string, numeric or boolean");
     }
+
     /**
      * Access a literal value (string, numeric, or boolean).
      *
@@ -977,6 +980,7 @@ public class MBObjectParser {
                             + obj.getClass().getSimpleName());
         }
     }
+
     /**
      * Convert the provided object to a font Expression (or function).
      *
@@ -1448,12 +1452,15 @@ public class MBObjectParser {
     //
     // structure checks
     //
-    /** @return True if json has a value for the property, False otherwise. */
+    /**
+     * @return True if json has a value for the property, False otherwise.
+     */
     @Deprecated
     public boolean isPropertyDefined(JSONObject json, String propertyName)
             throws MBFormatException {
         return isDefined(json, propertyName);
     }
+
     /**
      * True if json has a value for the provided name, False otherwise.
      *
@@ -1475,6 +1482,7 @@ public class MBObjectParser {
     public boolean isDefined(JSONArray json, int index) throws MBFormatException {
         return index < json.size() && json.get(index) != null;
     }
+
     /**
      * True if json has a string value for the provided name, False otherwise.
      *
@@ -1485,6 +1493,7 @@ public class MBObjectParser {
     public boolean isString(JSONObject json, String name) throws MBFormatException {
         return json.containsKey(name) && json.get(name) != null && json.get(name) instanceof String;
     }
+
     /**
      * True if array has a string element at the provided index, False otherwise.
      *
@@ -1495,6 +1504,7 @@ public class MBObjectParser {
     public boolean isString(JSONArray json, int index) throws MBFormatException {
         return index < json.size() && json.get(index) != null && json.get(index) instanceof String;
     }
+
     /**
      * True if json has a numeric value for the provided name, False otherwise.
      *
@@ -1505,6 +1515,7 @@ public class MBObjectParser {
     public boolean isNumeric(JSONObject json, String name) throws MBFormatException {
         return json.containsKey(name) && json.get(name) != null && json.get(name) instanceof Number;
     }
+
     /**
      * True if array has a numeric element at the provided index, False otherwise.
      *
@@ -1515,6 +1526,7 @@ public class MBObjectParser {
     public boolean isNumeric(JSONArray json, int index) throws MBFormatException {
         return index < json.size() && json.get(index) != null && json.get(index) instanceof Number;
     }
+
     /**
      * True if json has a boolean value for the provided name, False otherwise.
      *
@@ -1527,6 +1539,7 @@ public class MBObjectParser {
                 && json.get(name) != null
                 && json.get(name) instanceof Boolean;
     }
+
     /**
      * True if array has a boolean element at the provided index, False otherwise.
      *
@@ -1537,6 +1550,7 @@ public class MBObjectParser {
     public boolean isBoolean(JSONArray json, int index) throws MBFormatException {
         return index < json.size() && json.get(index) != null && json.get(index) instanceof Boolean;
     }
+
     /**
      * True if json has an array value for the provided name, False otherwise.
      *
@@ -1549,6 +1563,7 @@ public class MBObjectParser {
                 && json.get(name) != null
                 && json.get(name) instanceof JSONArray;
     }
+
     /**
      * True if array has an array element at the provided index, False otherwise.
      *
@@ -1561,6 +1576,7 @@ public class MBObjectParser {
                 && json.get(index) != null
                 && json.get(index) instanceof JSONArray;
     }
+
     /**
      * True if json has an object value for the provided name, False otherwise.
      *
@@ -1573,6 +1589,7 @@ public class MBObjectParser {
                 && json.get(name) != null
                 && json.get(name) instanceof JSONObject;
     }
+
     /**
      * True if array has an object element at the provided index, False otherwise.
      *

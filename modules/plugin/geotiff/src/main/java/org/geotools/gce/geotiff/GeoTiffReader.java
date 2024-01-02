@@ -610,7 +610,9 @@ public class GeoTiffReader extends AbstractGridCoverage2DReader implements GridC
         }
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new GeoTiffFormat();
@@ -1071,7 +1073,9 @@ public class GeoTiffReader extends AbstractGridCoverage2DReader implements GridC
         return crs;
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     static MathTransform parseWorldFile(Object source) throws IOException {
         MathTransform raster2Model = null;
 
@@ -1113,7 +1117,9 @@ public class GeoTiffReader extends AbstractGridCoverage2DReader implements GridC
         return raster2Model;
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     static MapInfoFileReader parseMapInfoFile(Object source) throws IOException {
         if (source instanceof File) {
             final File sourceFile = ((File) source);

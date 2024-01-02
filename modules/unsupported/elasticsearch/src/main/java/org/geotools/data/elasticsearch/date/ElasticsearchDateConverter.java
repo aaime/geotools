@@ -310,6 +310,7 @@ public final class ElasticsearchDateConverter {
             }
         };
     }
+
     // endregion
 
     /** a DateFormatter to convert epoch milliseconds */

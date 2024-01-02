@@ -67,7 +67,9 @@ public class RasterSymbolizerBinding extends SLDRasterSymbolizerBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.RasterSymbolizer;

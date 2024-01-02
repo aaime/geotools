@@ -20,7 +20,9 @@ import java.sql.Connection;
 import org.geotools.jdbc.JDBC3DTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class Hana3DTestSetup extends JDBC3DTestSetup {
 
     private static final String POINT3D_TABLE = "point3d";

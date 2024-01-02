@@ -57,7 +57,9 @@ class WFSFeatureReader implements FeatureReader<SimpleFeatureType, SimpleFeature
         }
     }
 
-    /** @see FeatureReader#close() */
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() throws IOException {
         final GetParser<SimpleFeature> parser = this.parser;
@@ -73,7 +75,9 @@ class WFSFeatureReader implements FeatureReader<SimpleFeatureType, SimpleFeature
         }
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     @Override
     public SimpleFeatureType getFeatureType() {
         if (featureType == null) {
@@ -83,13 +87,17 @@ class WFSFeatureReader implements FeatureReader<SimpleFeatureType, SimpleFeature
         return featureType;
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() throws IOException {
         return next != null;
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public SimpleFeature next() throws IOException, NoSuchElementException {
         if (this.next == null) {

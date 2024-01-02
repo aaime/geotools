@@ -62,7 +62,9 @@ import org.picocontainer.MutablePicoContainer;
  */
 public class OGCBinaryLogicOpTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.BinaryLogicOpType;

@@ -50,58 +50,93 @@ public class DefaultServiceInfo implements ServiceInfo, Serializable {
         this.title = copy.getTitle();
         this.source = copy.getSource();
     }
-    /** @return the description */
+
+    /**
+     * @return the description
+     */
     @Override
     public String getDescription() {
         return description;
     }
-    /** @param description the description to set */
+
+    /**
+     * @param description the description to set
+     */
     public void setDescription(String description) {
         this.description = description;
     }
-    /** @return the keywords */
+
+    /**
+     * @return the keywords
+     */
     @Override
     public Set<String> getKeywords() {
         return keywords;
     }
-    /** @param keywords the keywords to set */
+
+    /**
+     * @param keywords the keywords to set
+     */
     public void setKeywords(Set<String> keywords) {
         this.keywords = keywords;
     }
-    /** @return the publisher */
+
+    /**
+     * @return the publisher
+     */
     @Override
     public URI getPublisher() {
         return publisher;
     }
-    /** @param publisher the publisher to set */
+
+    /**
+     * @param publisher the publisher to set
+     */
     public void setPublisher(URI publisher) {
         this.publisher = publisher;
     }
-    /** @return the schema */
+
+    /**
+     * @return the schema
+     */
     @Override
     public URI getSchema() {
         return schema;
     }
-    /** @param schema the schema to set */
+
+    /**
+     * @param schema the schema to set
+     */
     public void setSchema(URI schema) {
         this.schema = schema;
     }
-    /** @return the title */
+
+    /**
+     * @return the title
+     */
     @Override
     public String getTitle() {
         return title;
     }
-    /** @param title the title to set */
+
+    /**
+     * @param title the title to set
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
-    /** @return the source */
+    /**
+     * @return the source
+     */
     @Override
     public URI getSource() {
         return source;
     }
-    /** @param source the source to set */
+
+    /**
+     * @param source the source to set
+     */
     public void setSource(URI source) {
         this.source = source;
     }

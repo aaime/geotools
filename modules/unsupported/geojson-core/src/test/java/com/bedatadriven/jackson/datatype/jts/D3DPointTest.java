@@ -1,4 +1,5 @@
 package com.bedatadriven.jackson.datatype.jts;
+
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org
@@ -23,7 +24,9 @@ package com.bedatadriven.jackson.datatype.jts;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Point;
 
-/** @author lainard on 28/06/16. */
+/**
+ * @author lainard on 28/06/16.
+ */
 public class D3DPointTest extends BaseJtsModuleTest<Point> {
 
     @Override

@@ -52,8 +52,11 @@ public class ImageLevelsMapperTest extends AbstractPyramidTest {
 
     @Test
     public void multicoveragePyramidWithOverviews()
-            throws IOException, MismatchedDimensionException, NoSuchAuthorityCodeException,
-                    InvalidParameterValueException, ParseException {
+            throws IOException,
+                    MismatchedDimensionException,
+                    NoSuchAuthorityCodeException,
+                    InvalidParameterValueException,
+                    ParseException {
 
         //
         // Get the resource.

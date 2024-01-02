@@ -27,6 +27,7 @@ import org.geotools.api.data.DataStoreFinder;
 /** Utility class to find a DataStoreFactorySpi for a given set of connection parameters. */
 public abstract class GranuleStoreFinder {
     protected GranuleTracker granuleTracker;
+
     /**
      * Find the DataStore for the given connection parameters.
      *
@@ -50,6 +51,7 @@ public abstract class GranuleStoreFinder {
         }
         return params;
     }
+
     /**
      * Returns the data store factory SPI for the given name
      *

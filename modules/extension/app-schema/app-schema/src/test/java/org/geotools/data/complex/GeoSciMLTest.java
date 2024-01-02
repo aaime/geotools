@@ -82,7 +82,9 @@ public class GeoSciMLTest extends AppSchemaTestSupport {
         // Logging.GEOTOOLS.forceMonolineConsoleOutput(Level.FINEST);
     }
 
-    /** @param location schema location path discoverable through getClass().getResource() */
+    /**
+     * @param location schema location path discoverable through getClass().getResource()
+     */
     private SchemaIndex loadSchema(String location) throws IOException {
         URL catalogLocation = getClass().getResource(schemaBase + "mappedPolygons.oasis.xml");
         reader.setResolver(catalogLocation);

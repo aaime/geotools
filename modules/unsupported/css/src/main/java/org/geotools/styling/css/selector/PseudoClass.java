@@ -33,7 +33,8 @@ public class PseudoClass extends Selector {
                 @Override
                 public String toString() {
                     return "ROOT";
-                };
+                }
+                ;
             };
 
     String className;

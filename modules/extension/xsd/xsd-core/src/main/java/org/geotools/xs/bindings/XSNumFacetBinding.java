@@ -48,7 +48,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSNumFacetBinding extends AbstractComplexBinding {
-    /** @generated modifiable */
+    /**
+     * @generated modifiable
+     */
     @Override
     public QName getTarget() {
         return XS.NUMFACET;

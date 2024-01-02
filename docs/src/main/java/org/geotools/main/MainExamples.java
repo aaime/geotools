@@ -44,6 +44,7 @@ public class MainExamples {
 
         SimpleFeature changed = DataUtilities.reType(modified, feature);
     }
+
     // exampleRetype end
 
     @SuppressFBWarnings

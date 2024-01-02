@@ -276,7 +276,9 @@ public final class PackedLineIterator extends AbstractLiteIterator {
         }
     }
 
-    /** @see java.awt.geom.PathIterator#currentSegment(double[]) */
+    /**
+     * @see java.awt.geom.PathIterator#currentSegment(double[])
+     */
     @Override
     public int currentSegment(double[] coords) {
         return 0;

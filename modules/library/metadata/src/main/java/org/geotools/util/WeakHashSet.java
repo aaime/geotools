@@ -294,10 +294,13 @@ public class WeakHashSet<E> extends AbstractSet<E> implements CheckedCollection<
     // Arguments for the {@link #intern} method.
     /** The "remove" operation. */
     static final int REMOVE = -1;
+
     /** The "get" operation. */
     static final int GET = 0;
+
     /** The "add" operation. */
     static final int ADD = +1;
+
     /** The "intern" operation. */
     static final int INTERN = +2;
 

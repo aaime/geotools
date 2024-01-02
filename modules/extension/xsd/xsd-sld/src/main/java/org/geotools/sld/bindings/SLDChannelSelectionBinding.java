@@ -63,7 +63,9 @@ public class SLDChannelSelectionBinding extends AbstractComplexBinding {
         this.styleFactory = styleFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.CHANNELSELECTION;

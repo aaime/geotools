@@ -54,6 +54,7 @@ public class CSVFeatureSource extends ContentFeatureSource {
         }
         return bounds;
     }
+
     // docs end getBoundsInternal
 
     // docs start getCountInternal
@@ -69,6 +70,7 @@ public class CSVFeatureSource extends ContentFeatureSource {
         }
         return n;
     }
+
     // docs end getCountInternal
 
     // docs start getReaderInternal
@@ -77,6 +79,7 @@ public class CSVFeatureSource extends ContentFeatureSource {
         CSVDataStore dataStore = getDataStore();
         return new CSVFeatureReader(dataStore.getCSVStrategy(), query);
     }
+
     // docs end getReaderInternal
 
     // docs start buildFeatureType

@@ -28,7 +28,9 @@ import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 
-/** @author jamesm */
+/**
+ * @author jamesm
+ */
 public class MockFeatureCollection implements SimpleFeatureCollection {
 
     /** Creates a new instance of MockFeatureCollection */

@@ -118,7 +118,9 @@ public class GetFeatureWithLockTypeBinding extends AbstractComplexEMFBinding {
         this.wfsfactory = wfsfactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.GetFeatureWithLockType;

@@ -148,7 +148,8 @@ public class EnvFunction extends FunctionExpressionImpl {
         public Map<String, Object> getTable() {
             return super.get();
         }
-    };
+    }
+    ;
 
     private static final LocalLookup localLookup = new LocalLookup();
 

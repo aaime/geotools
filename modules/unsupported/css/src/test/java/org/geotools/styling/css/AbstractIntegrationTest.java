@@ -81,7 +81,10 @@ public abstract class AbstractIntegrationTest extends CssBaseTest {
     }
 
     private void testTranslation(String css)
-            throws TransformerException, IOException, FileNotFoundException, SAXException,
+            throws TransformerException,
+                    IOException,
+                    FileNotFoundException,
+                    SAXException,
                     ParserConfigurationException {
         File sldFile =
                 new File(

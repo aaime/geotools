@@ -58,7 +58,9 @@ import org.geotools.xsd.Node;
  */
 public class BaseSymbolizerBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.BaseSymbolizer;

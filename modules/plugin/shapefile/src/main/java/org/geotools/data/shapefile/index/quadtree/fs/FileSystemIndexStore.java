@@ -37,7 +37,9 @@ import org.geotools.data.shapefile.index.quadtree.StoreException;
 import org.geotools.data.shapefile.shp.IndexFile;
 import org.locationtech.jts.geom.Envelope;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class FileSystemIndexStore implements FileReader, IndexStore {
     private static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(FileSystemIndexStore.class);
@@ -256,7 +258,9 @@ public class FileSystemIndexStore implements FileReader, IndexStore {
         return tree;
     }
 
-    /** @param order */
+    /**
+     * @param order
+     */
     private static ByteOrder byteToOrder(byte order) {
         ByteOrder ret = null;
 
@@ -282,12 +286,16 @@ public class FileSystemIndexStore implements FileReader, IndexStore {
         return ret;
     }
 
-    /** @return Returns the byteOrder. */
+    /**
+     * @return Returns the byteOrder.
+     */
     public int getByteOrder() {
         return this.byteOrder;
     }
 
-    /** @param byteOrder The byteOrder to set. */
+    /**
+     * @param byteOrder The byteOrder to set.
+     */
     public void setByteOrder(byte byteOrder) {
         this.byteOrder = byteOrder;
     }

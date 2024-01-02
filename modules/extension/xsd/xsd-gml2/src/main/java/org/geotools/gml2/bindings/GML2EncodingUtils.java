@@ -168,7 +168,9 @@ public class GML2EncodingUtils {
         return null;
     }
 
-    /** @deprecated please use {@link org.geotools.geometry.jts.JTS#getCRS(Geometry)} */
+    /**
+     * @deprecated please use {@link org.geotools.geometry.jts.JTS#getCRS(Geometry)}
+     */
     @Deprecated
     public static CoordinateReferenceSystem getCRS(Geometry g) {
         return JTS.getCRS(g);

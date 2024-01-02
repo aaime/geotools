@@ -49,7 +49,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** @author Nicola Lagomarsini Geosolutions */
+/**
+ * @author Nicola Lagomarsini Geosolutions
+ */
 public class SpatialRequestHelperTest {
 
     private static final double TOLERANCE = 0.01d;
@@ -164,7 +166,9 @@ public class SpatialRequestHelperTest {
 
     @Test
     public void testHelperWithReprojection()
-            throws DataSourceException, NoSuchAuthorityCodeException, TransformException,
+            throws DataSourceException,
+                    NoSuchAuthorityCodeException,
+                    TransformException,
                     FactoryException {
         // Initialization of the helper
         SpatialRequestHelper helper = new SpatialRequestHelper();
@@ -204,7 +208,9 @@ public class SpatialRequestHelperTest {
 
     @Test
     public void testHelperWithNoGridGeometry()
-            throws DataSourceException, NoSuchAuthorityCodeException, TransformException,
+            throws DataSourceException,
+                    NoSuchAuthorityCodeException,
+                    TransformException,
                     FactoryException {
         // Initialization of the helper
         SpatialRequestHelper helper = new SpatialRequestHelper();

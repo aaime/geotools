@@ -55,7 +55,9 @@ import org.geotools.xsd.Node;
  */
 public class RangeSubsetType_axisSubsetBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.RangeSubsetType_axisSubset;

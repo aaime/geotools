@@ -37,6 +37,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
     public CSVFeatureStore(ContentEntry entry, Query query) {
         super(entry, query);
     }
+
     // header end
     // getWriter start
     //
@@ -47,6 +48,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
             Query query, int flags) throws IOException {
         return new CSVFeatureWriter(getState(), query);
     }
+
     // getWriter end
 
     // transaction start
@@ -71,6 +73,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
             delegate.setTransaction(transaction);
         }
     }
+
     // transaction end
 
     // internal start
@@ -98,6 +101,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
             throws IOException {
         return delegate.getReaderInternal(query);
     }
+
     // internal end
 
     // visitor start
@@ -105,6 +109,7 @@ public class CSVFeatureStore extends ContentFeatureStore {
     protected boolean handleVisitor(Query query, FeatureVisitor visitor) throws IOException {
         return delegate.handleVisitor(query, visitor);
     }
+
     // visitor end
 
     // public start

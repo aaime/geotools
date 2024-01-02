@@ -31,10 +31,14 @@ import org.geotools.filter.FunctionFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class PolygonLabelFunctionFactoryTest {
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {}
 

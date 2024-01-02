@@ -97,7 +97,8 @@ public final class GridGeometryTest extends GridCoverageTestBase {
     /** Tests the construction from an envelope. */
     @Test
     public void testEnvelope()
-            throws InvalidGridGeometryException, NoninvertibleTransformException,
+            throws InvalidGridGeometryException,
+                    NoninvertibleTransformException,
                     TransformException {
         final int[] lower = {0, 0, 4};
         final int[] upper = {90, 45, 5};

@@ -69,7 +69,9 @@ public class ArcTypeBinding extends AbstractComplexBinding {
         this.arcParameters = arcParameters;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.ArcType;

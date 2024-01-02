@@ -52,7 +52,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class TimeIndeterminateValueTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.TimeIndeterminateValueType;

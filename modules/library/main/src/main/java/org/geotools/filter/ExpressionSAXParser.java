@@ -60,6 +60,7 @@ public class ExpressionSAXParser {
 
     /** The current state of the expression. Deterimines if a proper expression can be made.. */
     private String currentState = null; // DJB: appears this can be leftValue rightValue complete.
+
     // DJB: added "accumulate" for <Function>
 
     private List<Expression> expressions =
@@ -87,6 +88,7 @@ public class ExpressionSAXParser {
     public ExpressionSAXParser(FilterFactory factory) {
         this(null, factory);
     }
+
     /**
      * Constructor with a schema to read the attribute againset.
      *
@@ -95,11 +97,13 @@ public class ExpressionSAXParser {
     public ExpressionSAXParser(SimpleFeatureType schema) {
         this(schema, CommonFactoryFinder.getFilterFactory());
     }
+
     /** Constructor injection */
     public ExpressionSAXParser(SimpleFeatureType schema, FilterFactory factory) {
         this.schema = schema;
         ff = factory;
     }
+
     /** Setter injection */
     public void setFilterFactory(FilterFactory factory) {
         ff = factory;

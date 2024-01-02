@@ -73,6 +73,7 @@ public class SubtractImpl extends MathExpressionImpl implements Subtract {
             return false;
         }
     }
+
     /**
      * Override of hashCode method.
      *

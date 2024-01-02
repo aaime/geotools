@@ -53,7 +53,9 @@ public final class ECWReader extends BaseGDALGridCoverage2DReader implements Gri
         super(input, hints, worldFileExt, new ECWImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new ECWFormat();

@@ -53,7 +53,9 @@ public class NormalizeBinding extends SLDNormalizeBinding {
         // TODO Auto-generated constructor stub
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.Normalize;

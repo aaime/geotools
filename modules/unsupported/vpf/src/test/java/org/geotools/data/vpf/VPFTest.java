@@ -24,7 +24,9 @@ import org.geotools.test.OnlineTestCase;
 import org.geotools.util.URLs;
 import org.junit.Test;
 
-/** @author jody */
+/**
+ * @author jody
+ */
 public class VPFTest extends OnlineTestCase {
 
     File vmap = null;

@@ -131,6 +131,7 @@ public class SpatialRequestHelper {
         public void setReprojectionNeeded(boolean reprojectionNeeded) {
             this.reprojectionNeeded = reprojectionNeeded;
         }
+
         // //
         // Coverage's original properties
         // //

@@ -42,18 +42,25 @@ import si.uom.SI;
 public class Utils {
 
     Logger logger = Logger.getLogger("org.geotools.temporal");
+
     /** The number of millisecond in one year. */
     private static final long yearMS = 31536000000L;
+
     /** The number of millisecond in one month. */
     private static final long monthMS = 2628000000L;
+
     /** The number of millisecond in one week. */
     private static final long weekMS = 604800000L;
+
     /** The number of millisecond in one day. */
     private static final long dayMS = 86400000L;
+
     /** The number of millisecond in one hour. */
     private static final long hourMS = 3600000L;
+
     /** The number of millisecond in one minute. */
     private static final long minMS = 60000;
+
     /** The number of millisecond in one second. */
     private static final long secondMS = 1000;
 

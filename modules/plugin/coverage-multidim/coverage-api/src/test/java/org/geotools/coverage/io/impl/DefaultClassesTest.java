@@ -50,7 +50,9 @@ import org.geotools.util.factory.Hints;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/** @author Nicola Lagomarsini Geosolutions */
+/**
+ * @author Nicola Lagomarsini Geosolutions
+ */
 public class DefaultClassesTest {
 
     private static Map<String, Parameter<?>> emptyMap;

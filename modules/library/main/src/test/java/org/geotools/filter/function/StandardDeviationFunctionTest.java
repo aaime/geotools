@@ -29,7 +29,9 @@ import org.geotools.data.simple.SimpleFeatureIterator;
 import org.geotools.feature.DefaultFeatureCollection;
 import org.junit.Test;
 
-/** @author Cory Horner, Refractions Research */
+/**
+ * @author Cory Horner, Refractions Research
+ */
 public class StandardDeviationFunctionTest extends FunctionTestSupport {
     private static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(StandardDeviationFunctionTest.class);

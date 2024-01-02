@@ -55,6 +55,7 @@ public final class DynamicSymbolFactoryFinder {
      * {@link MarkFactory} execution order.
      */
     public static final Hints.Key MARK_FACTORY_ORDER = new Hints.Key(Comparator.class);
+
     /**
      * Rendering hint key to store a {@link Predicate}<{@link MarkFactory}> instance to set the
      * allowed {@link MarkFactory} instances to be evaluated.

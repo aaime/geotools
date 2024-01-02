@@ -74,7 +74,9 @@ public class DirectPositionListTypeBinding extends AbstractComplexBinding {
         // no formatter
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.DirectPositionListType;

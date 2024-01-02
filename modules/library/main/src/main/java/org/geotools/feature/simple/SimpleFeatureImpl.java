@@ -60,12 +60,16 @@ public class SimpleFeatureImpl implements SimpleFeature {
 
     protected FeatureId id;
     protected SimpleFeatureType featureType;
+
     /** The actual values held by this feature */
     protected Object[] values;
+
     /** The attribute name -> position index */
     protected Map<String, Integer> index;
+
     /** The set of user data attached to the feature (lazily created) */
     protected Map<Object, Object> userData;
+
     /** The set of user data attached to each attribute (lazily created) */
     protected Map<Object, Object>[] attributeUserData;
 
@@ -364,7 +368,9 @@ public class SimpleFeatureImpl implements SimpleFeature {
         setValue(converted);
     }
 
-    /** @see org.geotools.api.feature.Attribute#getDescriptor() */
+    /**
+     * @see org.geotools.api.feature.Attribute#getDescriptor()
+     */
     @Override
     public AttributeDescriptor getDescriptor() {
         return new AttributeDescriptorImpl(
@@ -563,6 +569,7 @@ public class SimpleFeatureImpl implements SimpleFeature {
         public void setValue(Object newValue) {
             values[index] = newValue;
         }
+
         /**
          * Override of hashCode; uses descriptor name to agree with AttributeImpl
          *

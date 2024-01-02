@@ -120,6 +120,7 @@ public class RowField extends Number implements DataTypesDefinition {
     public byte byteValue() {
         return ((Number) value).byteValue();
     }
+
     /* (non-Javadoc)
      * @see java.lang.Number#shortValue()
      */

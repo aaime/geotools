@@ -308,8 +308,10 @@ public interface StyleFactory {
 
     /** */
     AnchorPoint anchorPoint(Expression x, Expression y);
+
     /** */
     ChannelSelection channelSelection(SelectedChannelType gray);
+
     /** */
     ChannelSelection channelSelection(
             SelectedChannelType red, SelectedChannelType green, SelectedChannelType blue);
@@ -343,8 +345,10 @@ public interface StyleFactory {
      * @return ColorReplacement wrapped around a Function
      */
     ColorReplacement colorReplacement(Expression propertyName, Expression... mapping);
+
     /** */
     ContrastEnhancement contrastEnhancement(Expression gamma, ContrastMethod method);
+
     /** */
     ContrastEnhancement contrastEnhancement(Expression gamma, String method);
 
@@ -372,7 +376,9 @@ public interface StyleFactory {
     /** */
     ExternalMark externalMark(Icon inline);
 
-    /** @param rules May not be null or empty */
+    /**
+     * @param rules May not be null or empty
+     */
     FeatureTypeStyle featureTypeStyle(
             String name,
             Description description,
@@ -395,6 +401,7 @@ public interface StyleFactory {
      * @return Font
      */
     Font font(List<Expression> family, Expression style, Expression weight, Expression size);
+
     /** Create a graphic. */
     Graphic graphic(
             List<GraphicalSymbol> symbols,
@@ -421,6 +428,7 @@ public interface StyleFactory {
             Expression rotation,
             AnchorPoint anchorPoint,
             Displacement displacement);
+
     /** */
     GraphicStroke graphicStroke(
             List<GraphicalSymbol> symbols,
@@ -443,6 +451,7 @@ public interface StyleFactory {
             boolean repeated,
             boolean aligned,
             boolean generalizedLine);
+
     /**
      * @param name handle used to refer to this symbolizer (machine readible)
      * @param geometry Expression used to produce the Geometry to renderer; often a PropertyName
@@ -461,11 +470,14 @@ public interface StyleFactory {
 
     /** */
     Mark mark(Expression wellKnownName, Fill fill, Stroke stroke);
+
     /** */
     Mark mark(ExternalMark externalMark, Fill fill, Stroke stroke);
+
     /** */
     PointPlacement pointPlacement(
             AnchorPoint anchor, Displacement displacement, Expression rotation);
+
     /**
      * Creation of a PointSymbolizer to describe how geometry can be rendered as a point.
      *
@@ -482,6 +494,7 @@ public interface StyleFactory {
             Description description,
             Unit<?> unit,
             Graphic graphic);
+
     /**
      * @param name handle used to refer to this symbolizer (machine readable)
      * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
@@ -497,6 +510,7 @@ public interface StyleFactory {
             Fill fill,
             Displacement displacement,
             Expression offset);
+
     /**
      * @param name handle used to refer to this symbolizer (machine readable)
      * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
@@ -516,6 +530,7 @@ public interface StyleFactory {
             ContrastEnhancement contrast,
             ShadedRelief shaded,
             Symbolizer outline);
+
     /**
      * Used to represent a symbolizer intended for a vendor specific rendering process. This
      * facility should be used to control subject matter that is beyond the scope of the traditional
@@ -558,15 +573,21 @@ public interface StyleFactory {
             List<Symbolizer> symbolizers,
             Filter filter);
 
-    /** @return SelectedChannelType */
+    /**
+     * @return SelectedChannelType
+     */
     SelectedChannelType selectedChannelType(
             Expression channelName, ContrastEnhancement contrastEnhancement);
 
-    /** @return SelectedChannelType */
+    /**
+     * @return SelectedChannelType
+     */
     SelectedChannelType selectedChannelType(
             String channelName, org.geotools.api.style.ContrastEnhancement contrastEnhancement);
 
-    /** @return ShadedRelief */
+    /**
+     * @return ShadedRelief
+     */
     ShadedRelief shadedRelief(Expression reliefFactor, boolean brightnessOnly);
 
     Stroke stroke(
@@ -605,6 +626,7 @@ public interface StyleFactory {
             boolean isDefault,
             List<FeatureTypeStyle> featureTypeStyles,
             Symbolizer defaultSymbolizer);
+
     /**
      * Creation of a TextSymbolizer defining how labels are portrayed.
      *
@@ -630,7 +652,9 @@ public interface StyleFactory {
             Halo halo,
             Fill fill);
 
-    /** @return a deep copy of the method */
+    /**
+     * @return a deep copy of the method
+     */
     ContrastMethod createContrastMethod(ContrastMethod method);
 
     /**

@@ -254,12 +254,16 @@ public class GeoPkgGeomReader {
         return h;
     }
 
-    /** @return the factory */
+    /**
+     * @return the factory
+     */
     public GeometryFactory getFactory() {
         return factory;
     }
 
-    /** @param factory the factory to set */
+    /**
+     * @param factory the factory to set
+     */
     public void setFactory(GeometryFactory factory) {
         if (factory != null) {
             this.factory = factory;

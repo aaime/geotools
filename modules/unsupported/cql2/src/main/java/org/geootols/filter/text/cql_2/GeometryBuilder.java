@@ -72,7 +72,9 @@ abstract class GeometryBuilder {
         throw new UnsupportedOperationException("should be implemented by subclass");
     }
 
-    /** @param idNode Node's identifier specified in the grammar */
+    /**
+     * @param idNode Node's identifier specified in the grammar
+     */
     public Geometry build(final int idNode) throws CQLException {
         throw new UnsupportedOperationException("should be implemented by subclass");
     }

@@ -129,6 +129,7 @@ final class FixedSizeObjectCache<K, V> implements ObjectCache<K, V> {
         }
         return false;
     }
+
     /** Stores a value */
     @Override
     public void put(final K key, final V object) {
@@ -139,7 +140,9 @@ final class FixedSizeObjectCache<K, V> implements ObjectCache<K, V> {
         }
     }
 
-    /** @return the keys of the object currently in the set */
+    /**
+     * @return the keys of the object currently in the set
+     */
     @Override
     public Set<K> getKeys() {
         return new HashSet<>(cache.keySet());

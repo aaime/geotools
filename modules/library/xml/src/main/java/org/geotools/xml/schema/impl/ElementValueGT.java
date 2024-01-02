@@ -19,7 +19,9 @@ package org.geotools.xml.schema.impl;
 import org.geotools.xml.schema.Element;
 import org.geotools.xml.schema.ElementValue;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class ElementValueGT implements ElementValue {
     private Element element;
     private Object value;
@@ -34,13 +36,17 @@ public class ElementValueGT implements ElementValue {
         this.value = value;
     }
 
-    /** @see org.geotools.xml.schema.ElementValue#getElement() */
+    /**
+     * @see org.geotools.xml.schema.ElementValue#getElement()
+     */
     @Override
     public Element getElement() {
         return element;
     }
 
-    /** @see org.geotools.xml.schema.ElementValue#getValue() */
+    /**
+     * @see org.geotools.xml.schema.ElementValue#getValue()
+     */
     @Override
     public Object getValue() {
         return value;

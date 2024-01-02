@@ -53,7 +53,9 @@ public final class NITFReader extends BaseGDALGridCoverage2DReader implements Gr
         super(input, hints, worldFileExt, new NITFImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new NITFFormat();

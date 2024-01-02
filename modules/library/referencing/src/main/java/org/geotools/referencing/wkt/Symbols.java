@@ -30,6 +30,7 @@ import java.util.Locale;
 public class Symbols {
     /** The default set of symbols. */
     public static final Symbols DEFAULT = new Symbols(Locale.US);
+
     // DONT't invoke the default constructor for this one.
 
     /** A set of symbols with parameters between square brackets, like {@code [...]}. */

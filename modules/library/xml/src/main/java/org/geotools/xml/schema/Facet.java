@@ -16,7 +16,9 @@
  */
 package org.geotools.xml.schema;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public interface Facet {
 
     public static int ENUMERATION = 1;

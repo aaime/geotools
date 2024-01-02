@@ -52,7 +52,9 @@ import org.geotools.util.factory.Hints;
 import org.geotools.util.logging.Logging;
 import org.xml.sax.EntityResolver;
 
-/** @see WFSStrategy#setConfig(WFSConfig) */
+/**
+ * @see WFSStrategy#setConfig(WFSConfig)
+ */
 public class WFSConfig {
 
     private static final Logger LOGGER = Logging.getLogger(WFSConfig.class);
@@ -208,87 +210,121 @@ public class WFSConfig {
         return null;
     }
 
-    /** @return the user */
+    /**
+     * @return the user
+     */
     public String getUser() {
         return user;
     }
 
-    /** @return the pass */
+    /**
+     * @return the pass
+     */
     public String getPassword() {
         return pass;
     }
 
-    /** @return the timeoutMillis */
+    /**
+     * @return the timeoutMillis
+     */
     public int getTimeoutMillis() {
         return timeoutMillis;
     }
 
-    /** @return the preferredMethod */
+    /**
+     * @return the preferredMethod
+     */
     public PreferredHttpMethod getPreferredMethod() {
         return preferredMethod;
     }
 
-    /** @return the buffer */
+    /**
+     * @return the buffer
+     */
     public int getBuffer() {
         return buffer;
     }
 
-    /** @return the tryGZIP */
+    /**
+     * @return the tryGZIP
+     */
     public boolean isTryGZIP() {
         return tryGZIP;
     }
 
-    /** @return the lenient */
+    /**
+     * @return the lenient
+     */
     public boolean isLenient() {
         return lenient;
     }
 
-    /** @return the maxFeatures */
+    /**
+     * @return the maxFeatures
+     */
     public Integer getMaxFeatures() {
         return maxFeatures;
     }
 
-    /** @return the defaultEncoding */
+    /**
+     * @return the defaultEncoding
+     */
     public Charset getDefaultEncoding() {
         return defaultEncoding;
     }
 
-    /** @return the wfsStrategy */
+    /**
+     * @return the wfsStrategy
+     */
     public String getWfsStrategy() {
         return wfsStrategy;
     }
 
-    /** @return the filterCompliance */
+    /**
+     * @return the filterCompliance
+     */
     public Integer getFilterCompliance() {
         return filterCompliance;
     }
 
-    /** @return the namespaceOverride */
+    /**
+     * @return the namespaceOverride
+     */
     public String getNamespaceOverride() {
         return namespaceOverride;
     }
 
-    /** @return the outputformat override */
+    /**
+     * @return the outputformat override
+     */
     public String getOutputformatOverride() {
         return outputformatOverride;
     }
 
-    /** @return if use default srs */
+    /**
+     * @return if use default srs
+     */
     public boolean isUseDefaultSrs() {
         return useDefaultSrs;
     }
 
-    /** @return the axis order */
+    /**
+     * @return the axis order
+     */
     public String getAxisOrder() {
         return axisOrder;
     }
 
-    /** @return the axis order filter */
+    /**
+     * @return the axis order filter
+     */
     public String getAxisOrderFilter() {
         return axisOrderFilter;
     }
 
-    /** @return if GML compatible typenames are used */
+    /**
+     * @return if GML compatible typenames are used
+     */
     public boolean isGmlCompatibleTypenames() {
         return gmlCompatibleTypenames;
     }
@@ -298,7 +334,9 @@ public class WFSConfig {
         return entityResolver;
     }
 
-    /** @return if http connection pooling should be used */
+    /**
+     * @return if http connection pooling should be used
+     */
     public boolean isUseHttpConnectionPooling() {
         return useHttpConnectionPooling;
     }

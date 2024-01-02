@@ -30,6 +30,7 @@ class SqlServerBinary {
 
     private int srid;
     private int numberOfPoints;
+
     /**
      * Version 1 products:
      *

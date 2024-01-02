@@ -63,196 +63,380 @@ public final class WPS extends XSD {
         return new SchemaLocationResolver(this, "common");
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/wps/1.0.0";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName ComplexDataCombinationsType =
             new QName("http://www.opengis.net/wps/1.0.0", "ComplexDataCombinationsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComplexDataCombinationType =
             new QName("http://www.opengis.net/wps/1.0.0", "ComplexDataCombinationType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComplexDataDescriptionType =
             new QName("http://www.opengis.net/wps/1.0.0", "ComplexDataDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ComplexDataType =
             new QName("http://www.opengis.net/wps/1.0.0", "ComplexDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CRSsType = new QName("http://www.opengis.net/wps/1.0.0", "CRSsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DataInputsType =
             new QName("http://www.opengis.net/wps/1.0.0", "DataInputsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DataType = new QName("http://www.opengis.net/wps/1.0.0", "DataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescriptionType =
             new QName("http://www.opengis.net/wps/1.0.0", "DescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DocumentOutputDefinitionType =
             new QName("http://www.opengis.net/wps/1.0.0", "DocumentOutputDefinitionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InputDescriptionType =
             new QName("http://www.opengis.net/wps/1.0.0", "InputDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InputReferenceType =
             new QName("http://www.opengis.net/wps/1.0.0", "InputReferenceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InputType =
             new QName("http://www.opengis.net/wps/1.0.0", "InputType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LanguagesType =
             new QName("http://www.opengis.net/wps/1.0.0", "LanguagesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LiteralDataType =
             new QName("http://www.opengis.net/wps/1.0.0", "LiteralDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LiteralInputType =
             new QName("http://www.opengis.net/wps/1.0.0", "LiteralInputType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LiteralOutputType =
             new QName("http://www.opengis.net/wps/1.0.0", "LiteralOutputType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OutputDataType =
             new QName("http://www.opengis.net/wps/1.0.0", "OutputDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OutputDefinitionsType =
             new QName("http://www.opengis.net/wps/1.0.0", "OutputDefinitionsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OutputDefinitionType =
             new QName("http://www.opengis.net/wps/1.0.0", "OutputDefinitionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OutputDescriptionType =
             new QName("http://www.opengis.net/wps/1.0.0", "OutputDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OutputReferenceType =
             new QName("http://www.opengis.net/wps/1.0.0", "OutputReferenceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessBriefType =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessBriefType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessDescriptionType =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessFailedType =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessFailedType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessStartedType =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessStartedType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RequestBaseType =
             new QName("http://www.opengis.net/wps/1.0.0", "RequestBaseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResponseBaseType =
             new QName("http://www.opengis.net/wps/1.0.0", "ResponseBaseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResponseDocumentType =
             new QName("http://www.opengis.net/wps/1.0.0", "ResponseDocumentType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ResponseFormType =
             new QName("http://www.opengis.net/wps/1.0.0", "ResponseFormType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName StatusType =
             new QName("http://www.opengis.net/wps/1.0.0", "StatusType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SupportedComplexDataInputType =
             new QName("http://www.opengis.net/wps/1.0.0", "SupportedComplexDataInputType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SupportedComplexDataType =
             new QName("http://www.opengis.net/wps/1.0.0", "SupportedComplexDataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SupportedCRSsType =
             new QName("http://www.opengis.net/wps/1.0.0", "SupportedCRSsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SupportedUOMsType =
             new QName("http://www.opengis.net/wps/1.0.0", "SupportedUOMsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UOMsType = new QName("http://www.opengis.net/wps/1.0.0", "UOMsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ValuesReferenceType =
             new QName("http://www.opengis.net/wps/1.0.0", "ValuesReferenceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName WPSCapabilitiesType =
             new QName("http://www.opengis.net/wps/1.0.0", "WPSCapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _DescribeProcess =
             new QName("http://www.opengis.net/wps/1.0.0", "_DescribeProcess");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _Execute = new QName("http://www.opengis.net/wps/1.0.0", "_Execute");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _ExecuteResponse =
             new QName("http://www.opengis.net/wps/1.0.0", "_ExecuteResponse");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _GetCapabilities =
             new QName("http://www.opengis.net/wps/1.0.0", "_GetCapabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _Languages =
             new QName("http://www.opengis.net/wps/1.0.0", "_Languages");
 
-    /** @generated NOT */
+    /**
+     * @generated NOT
+     */
     public static final QName _Languages_Default =
             new QName("http://www.opengis.net/wps/1.0.0", "_Languages_Default");
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName _ProcessDescriptions =
             new QName("http://www.opengis.net/wps/1.0.0", "_ProcessDescriptions");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _ProcessOfferings =
             new QName("http://www.opengis.net/wps/1.0.0", "_ProcessOfferings");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName _WSDL = new QName("http://www.opengis.net/wps/1.0.0", "_WSDL");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InputReferenceType_Header =
             new QName("http://www.opengis.net/wps/1.0.0", "InputReferenceType_Header");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName InputReferenceType_BodyReference =
             new QName("http://www.opengis.net/wps/1.0.0", "InputReferenceType_BodyReference");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessDescriptionType_DataInputs =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessDescriptionType_DataInputs");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessDescriptionType_ProcessOutputs =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessDescriptionType_ProcessOutputs");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SupportedCRSsType_Default =
             new QName("http://www.opengis.net/wps/1.0.0", "SupportedCRSsType_Default");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName SupportedUOMsType_Default =
             new QName("http://www.opengis.net/wps/1.0.0", "SupportedUOMsType_Default");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Capabilities =
             new QName("http://www.opengis.net/wps/1.0.0", "Capabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeProcess =
             new QName("http://www.opengis.net/wps/1.0.0", "DescribeProcess");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Execute = new QName("http://www.opengis.net/wps/1.0.0", "Execute");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExecuteResponse =
             new QName("http://www.opengis.net/wps/1.0.0", "ExecuteResponse");
+
     /** generated NOT */
     public static final QName ExecuteResponse_ProcessOutputs =
             new QName("http://www.opengis.net/wps/1.0.0", "ExecuteResponse_ProcessOutputs");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilities =
             new QName("http://www.opengis.net/wps/1.0.0", "GetCapabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Languages =
             new QName("http://www.opengis.net/wps/1.0.0", "Languages");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessDescriptions =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessDescriptions");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ProcessOfferings =
             new QName("http://www.opengis.net/wps/1.0.0", "ProcessOfferings");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName WSDL = new QName("http://www.opengis.net/wps/1.0.0", "WSDL");
 
     /* Attributes */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName processVersion =
             new QName("http://www.opengis.net/wps/1.0.0", "processVersion");
 }

@@ -65,204 +65,410 @@ public final class GCO extends GML.DelegatingXSD {
         return getClass().getResource("gco.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.isotc211.org/2005/gco";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractObject_Type =
             new QName("http://www.isotc211.org/2005/gco", "AbstractObject_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Angle_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Angle_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Binary_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Binary_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Binary_Type =
             new QName("http://www.isotc211.org/2005/gco", "Binary_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Boolean_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Boolean_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CharacterString_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "CharacterString_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CodeListValue_Type =
             new QName("http://www.isotc211.org/2005/gco", "CodeListValue_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Date_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Date_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Date_Type =
             new QName("http://www.isotc211.org/2005/gco", "Date_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DateTime_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "DateTime_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Decimal_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Decimal_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Distance_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Distance_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GenericName_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "GenericName_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Integer_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Integer_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Length_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Length_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LocalName_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "LocalName_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Measure_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Measure_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MemberName_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "MemberName_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MemberName_Type =
             new QName("http://www.isotc211.org/2005/gco", "MemberName_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Multiplicity_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Multiplicity_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Multiplicity_Type =
             new QName("http://www.isotc211.org/2005/gco", "Multiplicity_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiplicityRange_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "MultiplicityRange_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiplicityRange_Type =
             new QName("http://www.isotc211.org/2005/gco", "MultiplicityRange_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Number_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Number_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ObjectReference_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "ObjectReference_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Real_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Real_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Record_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Record_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecordType_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "RecordType_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecordType_Type =
             new QName("http://www.isotc211.org/2005/gco", "RecordType_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Scale_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "Scale_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScopedName_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "ScopedName_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TypeName_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "TypeName_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TypeName_Type =
             new QName("http://www.isotc211.org/2005/gco", "TypeName_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UnitOfMeasure_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UnitOfMeasure_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UnlimitedInteger_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UnlimitedInteger_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UnlimitedInteger_Type =
             new QName("http://www.isotc211.org/2005/gco", "UnlimitedInteger_Type");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomAngle_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomAngle_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomArea_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomArea_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomLength_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomLength_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomScale_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomScale_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomTime_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomTime_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomVelocity_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomVelocity_PropertyType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UomVolume_PropertyType =
             new QName("http://www.isotc211.org/2005/gco", "UomVolume_PropertyType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName AbstractGenericName =
             new QName("http://www.isotc211.org/2005/gco", "AbstractGenericName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName AbstractObject =
             new QName("http://www.isotc211.org/2005/gco", "AbstractObject");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Angle = new QName("http://www.isotc211.org/2005/gco", "Angle");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Binary = new QName("http://www.isotc211.org/2005/gco", "Binary");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Boolean = new QName("http://www.isotc211.org/2005/gco", "Boolean");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CharacterString =
             new QName("http://www.isotc211.org/2005/gco", "CharacterString");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Date = new QName("http://www.isotc211.org/2005/gco", "Date");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DateTime = new QName("http://www.isotc211.org/2005/gco", "DateTime");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Decimal = new QName("http://www.isotc211.org/2005/gco", "Decimal");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Distance = new QName("http://www.isotc211.org/2005/gco", "Distance");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Integer = new QName("http://www.isotc211.org/2005/gco", "Integer");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Length = new QName("http://www.isotc211.org/2005/gco", "Length");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName LocalName =
             new QName("http://www.isotc211.org/2005/gco", "LocalName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Measure = new QName("http://www.isotc211.org/2005/gco", "Measure");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MemberName =
             new QName("http://www.isotc211.org/2005/gco", "MemberName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Multiplicity =
             new QName("http://www.isotc211.org/2005/gco", "Multiplicity");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName MultiplicityRange =
             new QName("http://www.isotc211.org/2005/gco", "MultiplicityRange");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Real = new QName("http://www.isotc211.org/2005/gco", "Real");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Record = new QName("http://www.isotc211.org/2005/gco", "Record");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RecordType =
             new QName("http://www.isotc211.org/2005/gco", "RecordType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Scale = new QName("http://www.isotc211.org/2005/gco", "Scale");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ScopedName =
             new QName("http://www.isotc211.org/2005/gco", "ScopedName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName TypeName = new QName("http://www.isotc211.org/2005/gco", "TypeName");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName UnlimitedInteger =
             new QName("http://www.isotc211.org/2005/gco", "UnlimitedInteger");
 
     /* Attributes */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName isoType = new QName("http://www.isotc211.org/2005/gco", "isoType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName nilReason =
             new QName("http://www.isotc211.org/2005/gco", "nilReason");
 }

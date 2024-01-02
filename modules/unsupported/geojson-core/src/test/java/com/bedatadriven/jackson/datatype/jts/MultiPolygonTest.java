@@ -1,4 +1,5 @@
 package com.bedatadriven.jackson.datatype.jts;
+
 /*
  *    GeoTools - The Open Source Java GIS Toolkit
  *    http://geotools.org

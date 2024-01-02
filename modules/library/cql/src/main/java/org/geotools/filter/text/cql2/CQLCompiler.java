@@ -119,7 +119,9 @@ public class CQLCompiler extends CQLParser implements ICompiler {
         }
     }
 
-    /** @return the cql source */
+    /**
+     * @return the cql source
+     */
     @Override
     public final String getSource() {
         return this.source;
@@ -134,6 +136,7 @@ public class CQLCompiler extends CQLParser implements ICompiler {
     public final Filter getFilter() throws CQLException {
         return this.builder.getFilter();
     }
+
     /**
      * Return the expression resultant of compiling process
      *
@@ -179,6 +182,7 @@ public class CQLCompiler extends CQLParser implements ICompiler {
             n.dispose();
         }
     }
+
     /**
      * This method is called when the parser close a node. Here is built the filters an expressions
      * recognized in the parsing process.

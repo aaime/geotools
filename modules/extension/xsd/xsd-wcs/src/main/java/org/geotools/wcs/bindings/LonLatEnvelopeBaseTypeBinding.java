@@ -67,7 +67,9 @@ import org.w3c.dom.Element;
  */
 public class LonLatEnvelopeBaseTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.LonLatEnvelopeBaseType;

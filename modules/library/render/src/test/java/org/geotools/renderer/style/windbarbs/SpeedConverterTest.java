@@ -20,7 +20,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import systems.uom.common.USCustomary;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public class SpeedConverterTest extends Assert {
 
     @Test

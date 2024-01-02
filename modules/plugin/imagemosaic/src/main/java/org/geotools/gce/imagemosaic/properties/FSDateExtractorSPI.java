@@ -21,7 +21,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-/** @author Niels Charlier */
+/**
+ * @author Niels Charlier
+ */
 public class FSDateExtractorSPI implements PropertiesCollectorSPI {
 
     @Override

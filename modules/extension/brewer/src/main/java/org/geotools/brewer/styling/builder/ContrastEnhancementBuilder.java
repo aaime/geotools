@@ -131,7 +131,9 @@ public class ContrastEnhancementBuilder extends AbstractStyleBuilder<ContrastEnh
                 "Cannot build a meaningful style out of a contrast enhancement alone");
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     public ContrastEnhancementBuilder normalize() {
         return contrastMethod("normalize", null);
     }

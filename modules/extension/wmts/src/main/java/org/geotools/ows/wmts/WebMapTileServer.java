@@ -188,7 +188,9 @@ public class WebMapTileServer extends AbstractOpenWebService<WMTSCapabilities, L
         return (WMTSSpecification) specification;
     }
 
-    /** @deprecated - change to tileRequest.getTiles() */
+    /**
+     * @deprecated - change to tileRequest.getTiles()
+     */
     @Deprecated
     public Set<Tile> issueRequest(GetTileRequest tileRequest) throws ServiceException {
         return tileRequest.getTiles();
@@ -354,7 +356,9 @@ public class WebMapTileServer extends AbstractOpenWebService<WMTSCapabilities, L
         this.type = getCapabilities().getType();
     }
 
-    /** @param type */
+    /**
+     * @param type
+     */
     public void setType(WMTSServiceType type) {
         this.type = type;
     }

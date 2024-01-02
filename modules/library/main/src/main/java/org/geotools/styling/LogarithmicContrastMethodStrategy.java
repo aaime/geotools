@@ -23,7 +23,9 @@ import java.util.logging.Logger;
 import org.geotools.api.filter.expression.Expression;
 import org.geotools.api.style.ContrastMethod;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class LogarithmicContrastMethodStrategy extends AbstractContrastMethodStrategy {
 
     /** CORRECTION_FACTOR */

@@ -43,7 +43,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class XSNormalizedStringBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.NORMALIZEDSTRING;

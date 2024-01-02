@@ -22,7 +22,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.locationtech.jts.geom.Envelope;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class Node {
     protected int numShapesId;
     private boolean visited = false;
@@ -37,27 +39,37 @@ public class Node {
         this.shapesId = null;
     }
 
-    /** @return Returns the bounds. */
+    /**
+     * @return Returns the bounds.
+     */
     public Envelope getBounds() {
         return this.bounds;
     }
 
-    /** @param bounds The bounds to set. */
+    /**
+     * @param bounds The bounds to set.
+     */
     public void setBounds(Envelope bounds) {
         this.bounds = bounds;
     }
 
-    /** @return Returns the numSubNodes. */
+    /**
+     * @return Returns the numSubNodes.
+     */
     public int getNumSubNodes() {
         return this.subNodes.size();
     }
 
-    /** @return Returns the number of records stored. */
+    /**
+     * @return Returns the number of records stored.
+     */
     public int getNumShapeIds() {
         return this.numShapesId;
     }
 
-    /** @param node */
+    /**
+     * @param node
+     */
     public void addSubNode(Node node) {
         if (node == null) {
             throw new NullPointerException("Cannot add null to subnodes");
@@ -146,7 +158,9 @@ public class Node {
         this.shapesId = other.shapesId;
     }
 
-    /** @return Returns the shapesId. */
+    /**
+     * @return Returns the shapesId.
+     */
     public int[] getShapesId() {
         return this.shapesId;
     }

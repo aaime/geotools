@@ -80,7 +80,9 @@ class SpatialOperationBuilder {
         throw new UnsupportedOperationException("must be implemented");
     }
 
-    /** @return new instance of {@link Contains} operation */
+    /**
+     * @return new instance of {@link Contains} operation
+     */
     protected Contains buildContains() throws CQLException {
 
         Expression[] params = buildParameters();
@@ -88,14 +90,19 @@ class SpatialOperationBuilder {
         return getFilterFactory().contains(params[0], params[1]);
     }
 
-    /** @return new instance of {@link Equals} operation */
+    /**
+     * @return new instance of {@link Equals} operation
+     */
     public Equals buildEquals() throws CQLException {
 
         Expression[] params = buildParameters();
 
         return getFilterFactory().equal(params[0], params[1]);
     }
-    /** @return new instance of {@link Disjoint} operation */
+
+    /**
+     * @return new instance of {@link Disjoint} operation
+     */
     public Disjoint buildDisjoint() throws CQLException {
 
         Expression[] params = buildParameters();
@@ -103,14 +110,18 @@ class SpatialOperationBuilder {
         return getFilterFactory().disjoint(params[0], params[1]);
     }
 
-    /** @return new instance of {@link Intersects} operation */
+    /**
+     * @return new instance of {@link Intersects} operation
+     */
     public Intersects buildIntersects() throws CQLException {
         Expression[] params = buildParameters();
 
         return getFilterFactory().intersects(params[0], params[1]);
     }
 
-    /** @return new instance of {@link Touches} operation */
+    /**
+     * @return new instance of {@link Touches} operation
+     */
     public Touches buildTouches() throws CQLException {
 
         Expression[] params = buildParameters();
@@ -118,7 +129,9 @@ class SpatialOperationBuilder {
         return getFilterFactory().touches(params[0], params[1]);
     }
 
-    /** @return new instance of {@link Crosses} operation */
+    /**
+     * @return new instance of {@link Crosses} operation
+     */
     public Crosses buildCrosses() throws CQLException {
 
         Expression[] params = buildParameters();
@@ -126,7 +139,9 @@ class SpatialOperationBuilder {
         return getFilterFactory().crosses(params[0], params[1]);
     }
 
-    /** @return new instance of {@link Within} operation */
+    /**
+     * @return new instance of {@link Within} operation
+     */
     public Within buildWithin() throws CQLException {
 
         Expression[] params = buildParameters();
@@ -134,7 +149,9 @@ class SpatialOperationBuilder {
         return getFilterFactory().within(params[0], params[1]);
     }
 
-    /** @return new instance of {@link Within} operation */
+    /**
+     * @return new instance of {@link Within} operation
+     */
     public Overlaps buildOverlaps() throws CQLException {
 
         Expression[] params = buildParameters();

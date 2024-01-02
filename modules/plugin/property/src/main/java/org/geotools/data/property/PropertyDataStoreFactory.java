@@ -41,6 +41,7 @@ public class PropertyDataStoreFactory implements DataStoreFactorySpi {
 
     public static final Param NAMESPACE =
             new Param("namespace", String.class, "namespace of datastore", false);
+
     /**
      * Public "no argument" constructor called by Factory Service Provider (SPI) entry listed in
      * META-INF/services/org.geotools.data.DataStoreFactorySPI
@@ -66,6 +67,7 @@ public class PropertyDataStoreFactory implements DataStoreFactorySpi {
         String namespaceURI = (String) NAMESPACE.lookUp(params);
         return new PropertyDataStore(dir, namespaceURI);
     }
+
     // createNewDataStore end
 
     @Override

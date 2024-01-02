@@ -57,7 +57,9 @@ public class CapabilitiesBaseType_LanguagesBinding extends AbstractComplexEMFBin
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.CapabilitiesBaseType_Languages;

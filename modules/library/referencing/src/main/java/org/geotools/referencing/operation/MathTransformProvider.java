@@ -159,8 +159,10 @@ public abstract class MathTransformProvider extends DefaultOperationMethod {
      * @see MathTransformProvider.Delegate
      */
     protected abstract MathTransform createMathTransform(ParameterValueGroup values)
-            throws InvalidParameterNameException, ParameterNotFoundException,
-                    InvalidParameterValueException, FactoryException;
+            throws InvalidParameterNameException,
+                    ParameterNotFoundException,
+                    InvalidParameterValueException,
+                    FactoryException;
 
     /**
      * Constructs a parameter descriptor from a set of alias. The parameter is identified by codes

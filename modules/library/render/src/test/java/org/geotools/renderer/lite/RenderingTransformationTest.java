@@ -285,8 +285,12 @@ public class RenderingTransformationTest {
     }
 
     private void testTransformWithQuery(boolean invert)
-            throws IOException, URISyntaxException, CQLException, NoSuchAuthorityCodeException,
-                    FactoryException, Exception {
+            throws IOException,
+                    URISyntaxException,
+                    CQLException,
+                    NoSuchAuthorityCodeException,
+                    FactoryException,
+                    Exception {
         // grab the style
         Style style =
                 RendererBaseTest.loadStyle(

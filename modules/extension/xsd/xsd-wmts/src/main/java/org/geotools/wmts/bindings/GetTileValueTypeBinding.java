@@ -52,7 +52,9 @@ public class GetTileValueTypeBinding extends AbstractSimpleBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WMTS.GetTileValueType;

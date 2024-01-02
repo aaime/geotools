@@ -22,7 +22,9 @@ import java.sql.SQLException;
 import org.geotools.jdbc.JDBCDelegatingTestSetup;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaSimplificationTestSetup extends JDBCDelegatingTestSetup {
 
     private static final String TABLE_ROUND_EARTH = "roundEarth";

@@ -65,7 +65,8 @@ public class SimilarTransformBuilder extends ProjectiveTransformBuilder {
      *     MappedPosition}
      */
     public SimilarTransformBuilder(List<MappedPosition> vectors)
-            throws IllegalArgumentException, MismatchedDimensionException,
+            throws IllegalArgumentException,
+                    MismatchedDimensionException,
                     MismatchedReferenceSystemException {
         super.setMappedPositions(vectors);
     }

@@ -483,6 +483,7 @@ public class DataUtilitiesTest extends DataTestCase {
         Assert.assertEquals(rv1.getAttribute("flow"), rv3.getAttribute("flow"));
         assertNull(rv3.getDefaultGeometry());
     }
+
     /** Test createType and createFeature methods as per GEOT-4150 */
     @Test
     public void testCreate() throws Exception {
@@ -520,6 +521,7 @@ public class DataUtilitiesTest extends DataTestCase {
         Assert.assertEquals(geomBuilder.point(6, 2), feature2.getDefaultGeometry());
         Assert.assertEquals(geomBuilder.point(6, 2), feature2.getAttribute("geom"));
     }
+
     /** Test createType and createFeature methods as per GEOT-4150 */
     @Test
     public void testEncode() throws Exception {
@@ -569,6 +571,7 @@ public class DataUtilitiesTest extends DataTestCase {
                 DataUtilities.createAttribute("area:Polygon"),
                 DataUtilities.createAttribute("area:com.vividsolutions.jts.geom.Polygon"));
     }
+
     /*
      * Test for Feature template(FeatureType)
      */

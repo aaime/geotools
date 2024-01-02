@@ -45,6 +45,7 @@ public abstract class CartesianDistanceFilter extends GeometryFilterImpl
         implements DistanceBufferOperator {
     /** The distance value */
     private double distance;
+
     /** the distnace units */
     private String units;
 

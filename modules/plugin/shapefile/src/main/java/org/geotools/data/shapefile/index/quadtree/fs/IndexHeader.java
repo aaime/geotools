@@ -25,7 +25,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 import org.geotools.data.shapefile.index.quadtree.StoreException;
 
-/** @author Tommaso Nolli */
+/**
+ * @author Tommaso Nolli
+ */
 public class IndexHeader {
     public static final byte LSB_ORDER = -1;
     public static final byte MSB_ORDER = -2;
@@ -90,7 +92,9 @@ public class IndexHeader {
         buf.put(RESERVED);
     }
 
-    /** @return Returns the byteOrder. */
+    /**
+     * @return Returns the byteOrder.
+     */
     public byte getByteOrder() {
         return this.byteOrder;
     }

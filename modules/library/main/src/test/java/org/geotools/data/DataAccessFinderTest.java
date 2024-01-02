@@ -217,7 +217,9 @@ public class DataAccessFinderTest {
             return MockDataAccessFactory.class.equals(params.get(MOCK_DS_PARAM_KEY));
         }
 
-        /** @return {@link DataAccessFinderTest#MOCK_DATAACCESS} */
+        /**
+         * @return {@link DataAccessFinderTest#MOCK_DATAACCESS}
+         */
         @Override
         public DataAccess<FeatureType, Feature> createDataStore(Map<String, ?> params)
                 throws IOException {
@@ -267,7 +269,9 @@ public class DataAccessFinderTest {
             return MockDataStoreFactory.class.equals(params.get(MOCK_DS_PARAM_KEY));
         }
 
-        /** @return {@link DataAccessFinderTest#MOCK_DATASTORE} */
+        /**
+         * @return {@link DataAccessFinderTest#MOCK_DATASTORE}
+         */
         @Override
         public DataStore createDataStore(Map<String, ?> params) throws IOException {
             return MOCK_DATASTORE;

@@ -54,7 +54,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class OverlapBehaviorBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.OverlapBehavior;

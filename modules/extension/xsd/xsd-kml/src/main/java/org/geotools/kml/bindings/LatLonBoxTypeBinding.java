@@ -53,7 +53,9 @@ import org.locationtech.jts.geom.Envelope;
  * @generated
  */
 public class LatLonBoxTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.LatLonBoxType;

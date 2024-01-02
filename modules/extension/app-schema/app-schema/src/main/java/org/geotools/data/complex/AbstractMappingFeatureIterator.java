@@ -378,6 +378,7 @@ public abstract class AbstractMappingFeatureIterator implements IMappingFeatureI
      */
     protected abstract String extractIdForAttribute(
             final Expression idExpression, Object sourceInstance);
+
     /**
      * Return a query appropriate to its underlying feature source.
      *
@@ -471,7 +472,8 @@ public abstract class AbstractMappingFeatureIterator implements IMappingFeatureI
                 // ignore, no resolve
             }
         }
-    };
+    }
+    ;
 
     protected static String referenceToIdentifier(String reference) {
 

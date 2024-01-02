@@ -30,7 +30,9 @@ import org.geotools.metadata.i18n.ErrorKeys;
 import org.geotools.process.ProcessException;
 import org.geotools.referencing.CRS;
 
-/** @author Daniele Romagnoli, GeoSolutions */
+/**
+ * @author Daniele Romagnoli, GeoSolutions
+ */
 public class BaseCoverageAlgebraProcess {
 
     static final String MISMATCHING_ENVELOPE_MESSAGE =

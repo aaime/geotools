@@ -38,6 +38,7 @@ import org.geotools.filter.IllegalFilterException;
 public class MedianVisitor implements FeatureCalc, FeatureAttributeVisitor {
     private Expression expr;
     private List<Comparable> list = new ArrayList<>();
+
     /**
      * This var is only used to store the median for optimized functions, where we don't have a
      * complete list, but just the answer instead (merging will be disabled until some cool code is
@@ -150,6 +151,7 @@ public class MedianVisitor implements FeatureCalc, FeatureAttributeVisitor {
 
     public static class MedianResult extends AbstractCalcResult {
         private List<Comparable> list;
+
         /**
          * When an optimization is used, median will have a value and list will not. This var takes
          * priority over list.

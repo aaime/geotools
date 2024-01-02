@@ -56,7 +56,9 @@ public class OGCPropertyIsNullTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.PropertyIsNullType;

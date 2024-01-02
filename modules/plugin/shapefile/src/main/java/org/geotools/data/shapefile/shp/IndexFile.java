@@ -188,7 +188,9 @@ public class IndexFile implements FileReader, AutoCloseable {
         this.channel = null;
     }
 
-    /** @see java.lang.Object#finalize() */
+    /**
+     * @see java.lang.Object#finalize()
+     */
     @Override
     @SuppressWarnings("deprecation") // finalize is deprecated in Java 9
     protected void finalize() throws Throwable {

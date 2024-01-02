@@ -20,7 +20,9 @@ import java.net.URI;
 import org.geotools.xml.schema.Attribute;
 import org.geotools.xml.schema.SimpleType;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class AttributeGT implements Attribute {
     private String defualT;
     private String fixed;
@@ -55,49 +57,65 @@ public class AttributeGT implements Attribute {
         this.form = form;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getDefault() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getDefault()
+     */
     @Override
     public String getDefault() {
         return defualT;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getFixed() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getFixed()
+     */
     @Override
     public String getFixed() {
         return fixed;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#isForm() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#isForm()
+     */
     @Override
     public boolean isForm() {
         return form;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getId() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getId()
+     */
     @Override
     public String getId() {
         return id;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getName() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getName()
+     */
     @Override
     public String getName() {
         return name;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getUse() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getUse()
+     */
     @Override
     public int getUse() {
         return use;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getSimpleType() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getSimpleType()
+     */
     @Override
     public SimpleType getSimpleType() {
         return type;
     }
 
-    /** @see org.geotools.xml.schema.Attribute#getNamespace() */
+    /**
+     * @see org.geotools.xml.schema.Attribute#getNamespace()
+     */
     @Override
     public URI getNamespace() {
         return namespace;

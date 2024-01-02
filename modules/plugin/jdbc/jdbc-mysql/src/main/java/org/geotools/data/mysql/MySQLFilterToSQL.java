@@ -109,6 +109,7 @@ public class MySQLFilterToSQL extends FilterToSQL {
             return visitBinarySpatialOperator(filter, e1, e2, false, extraData);
         }
     }
+
     /** pre-5.6 spatial functions. */
     protected Object visitBinarySpatialOperator(
             BinarySpatialOperator filter,

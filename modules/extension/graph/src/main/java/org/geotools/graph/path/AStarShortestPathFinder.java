@@ -65,7 +65,9 @@ public class AStarShortestPathFinder implements GraphWalker {
         m_traversal.traverse();
     }
 
-    /** @see GraphWalker#visit(Graphable, GraphTraversal) */
+    /**
+     * @see GraphWalker#visit(Graphable, GraphTraversal)
+     */
     @Override
     public int visit(Graphable element, GraphTraversal traversal) {
         if (element.equals(m_target)) {

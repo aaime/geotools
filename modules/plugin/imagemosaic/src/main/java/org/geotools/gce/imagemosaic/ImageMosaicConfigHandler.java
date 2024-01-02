@@ -1371,8 +1371,11 @@ public class ImageMosaicConfigHandler {
             int fileIndex,
             double numFiles,
             DefaultTransaction transaction)
-            throws IOException, GranuleHandlingException, NoSuchAuthorityCodeException,
-                    FactoryException, TransformException {
+            throws IOException,
+                    GranuleHandlingException,
+                    NoSuchAuthorityCodeException,
+                    FactoryException,
+                    TransformException {
         updateConfiguration(
                 coverageReader,
                 inputCoverageName,
@@ -1394,8 +1397,11 @@ public class ImageMosaicConfigHandler {
             int fileIndex,
             double numFiles,
             DefaultTransaction transaction)
-            throws IOException, GranuleHandlingException, NoSuchAuthorityCodeException,
-                    FactoryException, TransformException {
+            throws IOException,
+                    GranuleHandlingException,
+                    NoSuchAuthorityCodeException,
+                    FactoryException,
+                    TransformException {
 
         final String targetCoverageName = getTargetCoverageName(coverageReader, inputCoverageName);
 

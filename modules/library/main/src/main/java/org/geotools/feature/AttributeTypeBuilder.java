@@ -97,18 +97,25 @@ public class AttributeTypeBuilder {
 
     /** namespace used to distingish between otherwise identical type names. */
     protected String namespaceURI;
+
     /** abstract flag */
     protected boolean isAbstract = false;
+
     /** restrictions */
     protected List<Filter> restrictions;
+
     /** string description */
     protected InternationalString description;
+
     /** identifiable flag */
     protected boolean isIdentifiable = false;
+
     /** bound java class */
     protected Class<?> binding;
+
     /** super type */
     protected AttributeType superType;
+
     /** default value */
     protected Object defaultValue;
 
@@ -558,6 +565,7 @@ public class AttributeTypeBuilder {
         }
         return minOccurs;
     }
+
     /**
      * This is not actually right but we do it for backwards compatibility.
      *

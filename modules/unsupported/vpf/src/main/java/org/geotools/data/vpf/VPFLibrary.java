@@ -88,25 +88,35 @@ import org.geotools.referencing.crs.DefaultGeographicCRS;
  * @author  <a href="mailto:knuterik@onemap.org">Knut-Erik Johnsen</a>, Project OneMap
  * @source $URL$
  */
-/** @source $URL$ */
+/**
+ * @source $URL$
+ */
 public class VPFLibrary extends ContentDataStore {
 
     /** Part of bounding box. */
     private final double xmin;
+
     /** Part of bounding box. */
     private final double ymin;
+
     /** Part of bounding box. */
     private final double xmax;
+
     /** Part of bounding box. */
     private final double ymax;
+
     /** The directory containing the library */
     private final File directory;
+
     /** The name of the library */
     private final String libraryName;
+
     /** The coverages that are in the library */
     private final List<VPFCoverage> coverages = new ArrayList<>();
+
     /** The coordinate reference system used through this library */
     private CoordinateReferenceSystem crs;
+
     /** Signals if an error has already been logged for a CRS related exception */
     private boolean loggedCRSException = false;
 
@@ -201,6 +211,7 @@ public class VPFLibrary extends ContentDataStore {
         libraryName = directoryName.substring(directoryName.lastIndexOf(File.separator) + 1);
         setCoverages();
     }
+
     /**
      * Determines the coverages contained by this library
      *
@@ -279,6 +290,7 @@ public class VPFLibrary extends ContentDataStore {
             }
         }
     }
+
     /**
      * Returns the coverages contained by the library
      *
@@ -323,6 +335,7 @@ public class VPFLibrary extends ContentDataStore {
     public double getYmin() {
         return ymin;
     }
+
     /*
      *  (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -339,8 +352,10 @@ public class VPFLibrary extends ContentDataStore {
                         + "}",
                 libraryName, getXmin(), getXmax(), getYmin(), getYmax());
     }
+
     /** A map containing the tiles used by this library */
     private final Map<Short, String> tileMap = new HashMap<>();
+
     /**
      * Returns a map containing the tiles used by this library. The map has Short keys and and
      * string values.
@@ -350,6 +365,7 @@ public class VPFLibrary extends ContentDataStore {
     public Map<Short, String> getTileMap() {
         return tileMap;
     }
+
     /**
      * Generates the tile map for this coverage
      *
@@ -380,6 +396,7 @@ public class VPFLibrary extends ContentDataStore {
             tileMap.put(rowId, value);
         }
     }
+
     //            HashMap hm = new HashMap();
     //
     //            TableInputStream testInput = new TableInputStream(

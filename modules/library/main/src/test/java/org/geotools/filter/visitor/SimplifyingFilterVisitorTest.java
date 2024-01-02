@@ -71,7 +71,8 @@ public class SimplifyingFilterVisitorTest {
                     @Override
                     protected boolean isSimpleFeature() {
                         return true;
-                    };
+                    }
+                    ;
                 };
         simpleVisitor.setRangeSimplicationEnabled(true);
         // one that does not know, and thus assumes complex ones

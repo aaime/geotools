@@ -32,7 +32,9 @@ import org.geotools.filter.text.cql2.CQLException;
  */
 public interface ICompiler {
 
-    /** @return the compilation source */
+    /**
+     * @return the compilation source
+     */
     public String getSource();
 
     /**
@@ -54,6 +56,7 @@ public interface ICompiler {
      * retrieved with {@link #getExpression()}.
      */
     public void compileExpression() throws CQLException;
+
     /**
      * The resultant {@link Expression} of the compilation.
      *

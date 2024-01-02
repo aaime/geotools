@@ -20,7 +20,9 @@ import java.util.Objects;
 import org.geotools.api.feature.simple.SimpleFeature;
 import org.geotools.graph.structure.line.BasicXYNode;
 
-/** @author jfc173 */
+/**
+ * @author jfc173
+ */
 public class DelaunayNode extends BasicXYNode {
 
     private SimpleFeature feature;

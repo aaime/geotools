@@ -107,7 +107,9 @@ public class WMS1_1_1 extends WMS1_1_0 {
         return new InternalGetStylesRequest(onlineResource, null);
     }
 
-    /** @see WMS1_0_0#createPutStylesRequest(java.net.URL) */
+    /**
+     * @see WMS1_0_0#createPutStylesRequest(java.net.URL)
+     */
     @Override
     public PutStylesRequest createPutStylesRequest(URL onlineResource)
             throws UnsupportedOperationException {
@@ -120,6 +122,7 @@ public class WMS1_1_1 extends WMS1_1_0 {
         public InternalGetStylesRequest(URL onlineResource, Properties properties) {
             super(onlineResource, properties);
         }
+
         /* (non-Javadoc)
          * @see AbstractGetStylesRequest#initVersion()
          */

@@ -131,7 +131,9 @@ public class WKBAttributeIO {
         }
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#read(java.sql.ResultSet, int) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#read(java.sql.ResultSet, int)
+     */
     private Geometry readFromBlob(ResultSet rs, int columnIndex) throws IOException {
         try {
             return doReadFromBlob(rs.getBlob(columnIndex));

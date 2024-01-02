@@ -67,7 +67,9 @@ public class GeometryOperandTypeBinding extends AbstractSimpleBinding {
         this.namespaceContext = namespaceContext;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.GeometryOperandType;

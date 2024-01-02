@@ -61,7 +61,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSDecimalBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.DECIMAL;

@@ -287,6 +287,7 @@ public final class JTS {
         }
         return targetEnvelope;
     }
+
     /**
      * Transform from 3D down to 2D.
      *
@@ -501,6 +502,7 @@ public final class JTS {
         ReferencedEnvelope initial = ReferencedEnvelope.envelope(envelope, crs);
         return toGeographic(initial);
     }
+
     /**
      * Transforms the envelope to {@link DefaultGeographicCRS#WGS84}.
      *
@@ -521,6 +523,7 @@ public final class JTS {
                     MessageFormat.format(ErrorKeys.CANT_TRANSFORM_ENVELOPE, exception));
         }
     }
+
     /**
      * Like a transform but eXtreme!
      *
@@ -685,6 +688,7 @@ public final class JTS {
             }
         };
     }
+
     /**
      * Copies the ordinates values from the specified JTS coordinates to the specified array. The
      * destination array can have any length. Only the relevant field of the source coordinate will
@@ -1021,6 +1025,7 @@ public final class JTS {
             }
         }
     }
+
     /**
      * Converts a {@link BoundingBox} to a JTS polygon.
      *

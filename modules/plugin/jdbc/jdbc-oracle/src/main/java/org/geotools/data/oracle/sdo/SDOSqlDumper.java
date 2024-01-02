@@ -79,6 +79,7 @@ public class SDOSqlDumper {
         }
         throw new UnsupportedOperationException("Cannot encode MultiLineString (yet)");
     }
+
     /** TODO: Encode more then 1 */
     private static String toSDOGeom(MultiPolygon polygon, int srid) {
         if (polygon.getNumGeometries() == 1) {
@@ -86,6 +87,7 @@ public class SDOSqlDumper {
         }
         throw new UnsupportedOperationException("Cannot encode MultiPolygon (yet)");
     }
+
     /**
      * Converts a LineString Geometry in an SDO SQL geometry construction statement.
      *

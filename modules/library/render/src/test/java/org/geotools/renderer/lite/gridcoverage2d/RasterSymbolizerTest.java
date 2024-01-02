@@ -86,7 +86,9 @@ import org.geotools.xml.styling.SLDParser;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Simone Giannecchini, GeoSolutions. */
+/**
+ * @author Simone Giannecchini, GeoSolutions.
+ */
 public class RasterSymbolizerTest extends org.junit.Assert {
 
     private static final StyleFactory sf =
@@ -1159,8 +1161,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @org.junit.Test
     public void bandFloat32_SLD()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         GeneralBounds envelope =
                 new GeneralBounds(new double[] {-180, -90}, new double[] {180, 90});
@@ -1246,8 +1251,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @Test
     public void test1BandFloat32_ColorMap_SLD()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         GeneralBounds envelope =
                 new GeneralBounds(new double[] {-180, -90}, new double[] {180, 90});
@@ -1364,8 +1372,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @org.junit.Test
     public void bandsUInt16_SLD()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         final GridSampleDimension[] gsd = {
             new GridSampleDimension("test1BandByte_SLD1"),
@@ -1461,8 +1472,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @Test
     public void bandsUInt16_SLDROI()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         final GridSampleDimension[] gsd = {
             new GridSampleDimension("test1BandByte_SLD1"),
@@ -1582,8 +1596,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @org.junit.Test
     public void bandsByte_SLD()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         GridCoverage2D gc = read3BandsByteCoverage();
 
@@ -1661,8 +1678,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @org.junit.Test
     public void greenSelection()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         GridCoverage2D gc = read3BandsByteCoverage();
 
         java.net.URL surl = TestData.url(this, "greenChannelSelection.sld");
@@ -1709,8 +1729,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @org.junit.Test
     public void bandsByte_ColorMap_SLD()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         GridCoverage2D gc = read3BandsByteCoverage();
 
@@ -1805,8 +1828,11 @@ public class RasterSymbolizerTest extends org.junit.Assert {
 
     @org.junit.Test
     public void BandByte_SLD()
-            throws IOException, TransformerException, FactoryRegistryException,
-                    IllegalArgumentException, URISyntaxException {
+            throws IOException,
+                    TransformerException,
+                    FactoryRegistryException,
+                    IllegalArgumentException,
+                    URISyntaxException {
         // the GridCoverage
         GeneralBounds envelope =
                 new GeneralBounds(new double[] {-180, -90}, new double[] {180, 90});

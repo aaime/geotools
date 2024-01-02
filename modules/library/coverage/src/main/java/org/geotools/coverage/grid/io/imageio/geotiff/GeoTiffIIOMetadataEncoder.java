@@ -348,6 +348,7 @@ public class GeoTiffIIOMetadataEncoder {
             appendAsciiParam(value);
         }
     }
+
     /**
      * Updates the provided metatag to the GeoKey directory.
      *
@@ -845,7 +846,9 @@ public class GeoTiffIIOMetadataEncoder {
         return new IIOMetadataNode(name);
     }
 
-    /** @return the first matching child element, or null if not found */
+    /**
+     * @return the first matching child element, or null if not found
+     */
     private Element getChild(Element element, String childName) {
         NodeList childNodes = element.getChildNodes();
         for (int i = 0; i < childNodes.getLength(); i++) {

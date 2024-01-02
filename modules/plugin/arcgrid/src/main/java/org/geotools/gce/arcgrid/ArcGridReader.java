@@ -193,7 +193,9 @@ public final class ArcGridReader extends AbstractGridCoverage2DReader
      * @param hints Hints to be used by this reader throughout his life.
      */
     private void checkSource(Object input, final Hints hints)
-            throws UnsupportedEncodingException, DataSourceException, IOException,
+            throws UnsupportedEncodingException,
+                    DataSourceException,
+                    IOException,
                     FileNotFoundException {
 
         closeMe = true;
@@ -310,7 +312,9 @@ public final class ArcGridReader extends AbstractGridCoverage2DReader
         highestRes = getResolution(originalEnvelope, actualDim, crs);
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new ArcGridFormat();
@@ -494,6 +498,7 @@ public final class ArcGridReader extends AbstractGridCoverage2DReader
             throw new DataSourceException(e);
         }
     }
+
     /**
      * This method is responsible for building up an envelope according to the definition of the
      * crs. It assumes that X coordinate on the ascii grid itself maps to longitude and y coordinate

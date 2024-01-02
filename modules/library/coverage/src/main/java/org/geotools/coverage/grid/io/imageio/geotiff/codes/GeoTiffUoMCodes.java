@@ -29,6 +29,7 @@ public final class GeoTiffUoMCodes {
     public static final int Angular_DMS_Hemisphere = 9108;
     public static final int Angular_Gon = 9106;
     public static final int Angular_Grad = 9105;
+
     /**
      * 6.3.1.4 Angular Units Codes These codes shall be used for any key that requires specification
      * of an angular unit of measurement.
@@ -46,6 +47,7 @@ public final class GeoTiffUoMCodes {
     public static final int Linear_Link = 9007;
     public static final int Linear_Link_Benoit = 9008;
     public static final int Linear_Link_Sears = 9009;
+
     /**
      * 6.3.1.3 Linear Units Codes There are several different kinds of units that may be used in
      * geographically related raster data: linear units, angular units, units of time (e.g. for

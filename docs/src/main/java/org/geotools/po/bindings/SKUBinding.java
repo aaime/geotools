@@ -43,7 +43,9 @@ public class SKUBinding extends AbstractSimpleBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public QName getTarget() {
         return PO.SKU;
     }

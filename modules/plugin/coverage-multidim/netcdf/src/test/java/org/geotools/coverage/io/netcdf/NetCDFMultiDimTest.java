@@ -434,7 +434,9 @@ public class NetCDFMultiDimTest {
         assertNull(cov);
     }
 
-    /** @throws Exception */
+    /**
+     * @throws Exception
+     */
     protected void test2DTime_DiffSize(File file) throws Exception {
 
         NetCDFImageReaderSpi readerSpi = new NetCDFImageReaderSpi();
@@ -644,7 +646,9 @@ public class NetCDFMultiDimTest {
         reader.dispose();
     }
 
-    /** @throws Exception */
+    /**
+     * @throws Exception
+     */
     @Test
     public void test2DTime_FeatureCollection_DiffSize() throws Exception {
         File dir = TestData.file(this, "twodimtime");
@@ -655,7 +659,10 @@ public class NetCDFMultiDimTest {
         FileUtils.writeStringToFile(tempFile, content, "UTF-8");
         test2DTime_DiffSize(tempFile);
     }
-    /** @throws Exception */
+
+    /**
+     * @throws Exception
+     */
     @Test
     public void test2DTime_Aggregation_DiffSize() throws Exception {
         File dir = TestData.file(this, "twodimtime");

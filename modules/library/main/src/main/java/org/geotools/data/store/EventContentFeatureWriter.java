@@ -96,7 +96,9 @@ public class EventContentFeatureWriter implements FeatureWriter<SimpleFeatureTyp
         return feature;
     }
 
-    /** @see FeatureWriter#remove() */
+    /**
+     * @see FeatureWriter#remove()
+     */
     @Override
     public void remove() throws IOException {
         if (writer == null) {
@@ -165,6 +167,7 @@ public class EventContentFeatureWriter implements FeatureWriter<SimpleFeatureTyp
         }
         feature = null;
     }
+
     /**
      * Used to detect commit() and rollback() in order to fire batch feature events.
      *

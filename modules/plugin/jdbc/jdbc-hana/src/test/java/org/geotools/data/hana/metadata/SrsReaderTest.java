@@ -24,7 +24,9 @@ import java.io.InputStream;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class SrsReaderTest {
 
     @Test

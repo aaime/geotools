@@ -202,7 +202,9 @@ public class AttributeBuilder {
         this.type = descriptor.getType();
     }
 
-    /** @return The type of the attribute being built. */
+    /**
+     * @return The type of the attribute being built.
+     */
     public AttributeType getType() {
         return type;
     }
@@ -213,7 +215,9 @@ public class AttributeBuilder {
         this.crs = crs;
     }
 
-    /** @return The coordinate reference system of the feature, or null if not set. */
+    /**
+     * @return The coordinate reference system of the feature, or null if not set.
+     */
     public CoordinateReferenceSystem getCRS(Object geom) {
         if (geom != null && geom instanceof Geometry) {
             // the CRS in the geometry itself is preferred
@@ -231,7 +235,9 @@ public class AttributeBuilder {
         this.defaultGeometry = defaultGeometry;
     }
 
-    /** @return The default geometry of the feature. */
+    /**
+     * @return The default geometry of the feature.
+     */
     public Object getDefaultGeometry() {
         return defaultGeometry;
     }
@@ -553,7 +559,9 @@ public class AttributeBuilder {
         return this.descriptor;
     }
 
-    /** @return The coordinate reference system of the feature, or null if not set. */
+    /**
+     * @return The coordinate reference system of the feature, or null if not set.
+     */
     public CoordinateReferenceSystem getCRS() {
         return crs;
     }

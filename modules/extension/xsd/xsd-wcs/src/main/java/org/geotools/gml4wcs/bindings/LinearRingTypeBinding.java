@@ -54,7 +54,9 @@ import org.geotools.xsd.Node;
  */
 public class LinearRingTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.LinearRingType;

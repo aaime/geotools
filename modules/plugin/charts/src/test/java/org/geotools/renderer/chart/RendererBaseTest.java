@@ -37,7 +37,9 @@ import org.geotools.renderer.GTRenderer;
 import org.geotools.test.TestData;
 import org.geotools.xml.styling.SLDParser;
 
-/** @author Simone Giannecchini */
+/**
+ * @author Simone Giannecchini
+ */
 public abstract class RendererBaseTest {
 
     public RendererBaseTest() {}

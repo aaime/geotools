@@ -2300,7 +2300,10 @@ public class StreamingRenderer implements GTRenderer {
             final Layer layer,
             final FeatureType schema,
             List<LiteFeatureTypeStyle> featureTypeStyles)
-            throws IOException, FactoryException, NoninvertibleTransformException, SchemaException,
+            throws IOException,
+                    FactoryException,
+                    NoninvertibleTransformException,
+                    SchemaException,
                     TransformException {
         @SuppressWarnings("unchecked")
         final FeatureSource<FeatureType, Feature> featureSource =
@@ -3637,7 +3640,9 @@ public class StreamingRenderer implements GTRenderer {
             return shape;
         }
 
-        /** @throws org.geotools.api.referencing.operation.NoninvertibleTransformException */
+        /**
+         * @throws org.geotools.api.referencing.operation.NoninvertibleTransformException
+         */
         private Decimator getDecimator(MathTransform mathTransform) {
             // returns a decimator that does nothing if the currently set generalization
             // distance is zero (no generalization desired) or if the datastore has

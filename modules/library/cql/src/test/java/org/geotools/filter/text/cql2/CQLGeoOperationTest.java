@@ -119,7 +119,9 @@ public class CQLGeoOperationTest {
         assertTrue("Intersects was expected", resultFilter instanceof Intersects);
     }
 
-    /** @throws CQLException */
+    /**
+     * @throws CQLException
+     */
     @Test
     public void relate() throws CQLException {
 

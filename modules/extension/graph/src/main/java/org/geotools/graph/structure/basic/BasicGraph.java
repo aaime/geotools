@@ -68,7 +68,9 @@ public class BasicGraph implements Graph, Serializable {
         m_nodes = nodes;
     }
 
-    /** @see Graph#getNodes() */
+    /**
+     * @see Graph#getNodes()
+     */
     @Override
     public Collection<Node> getNodes() {
         return (m_nodes);
@@ -83,33 +85,43 @@ public class BasicGraph implements Graph, Serializable {
         m_edges = edges;
     }
 
-    /** @see Graph#getEdges() */
+    /**
+     * @see Graph#getEdges()
+     */
     @Override
     public Collection<Edge> getEdges() {
         return (m_edges);
     }
 
-    /** @see Graph#queryNodes(GraphVisitor) */
+    /**
+     * @see Graph#queryNodes(GraphVisitor)
+     */
     @Override
     @SuppressWarnings("unchecked")
     public List<Node> queryNodes(GraphVisitor visitor) {
         return (List<Node>) (query(getNodes(), visitor));
     }
 
-    /** @see Graph#queryEdges(GraphVisitor) */
+    /**
+     * @see Graph#queryEdges(GraphVisitor)
+     */
     @Override
     @SuppressWarnings("unchecked")
     public List<Edge> queryEdges(GraphVisitor visitor) {
         return (List<Edge>) (query(getEdges(), visitor));
     }
 
-    /** @see Graph#visitNodes(GraphVisitor) */
+    /**
+     * @see Graph#visitNodes(GraphVisitor)
+     */
     @Override
     public void visitNodes(GraphVisitor visitor) {
         visit(m_nodes, visitor);
     }
 
-    /** @see Graph#visitEdges(GraphVisitor) */
+    /**
+     * @see Graph#visitEdges(GraphVisitor)
+     */
     @Override
     public void visitEdges(GraphVisitor visitor) {
         visit(m_edges, visitor);
@@ -130,14 +142,18 @@ public class BasicGraph implements Graph, Serializable {
                 }));
     }
 
-    /** @see Graph#getVisitedNodes(boolean) */
+    /**
+     * @see Graph#getVisitedNodes(boolean)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Node> getVisitedNodes(boolean visited) {
         return (List<Node>) (getVisited(getNodes(), visited));
     }
 
-    /** @see Graph#getVisitedEdges(boolean) */
+    /**
+     * @see Graph#getVisitedEdges(boolean)
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Edge> getVisitedEdges(boolean visited) {
@@ -182,6 +198,7 @@ public class BasicGraph implements Graph, Serializable {
     public String toString() {
         return ("V=" + m_nodes.toString() + "\n" + "E=" + m_edges.toString());
     }
+
     /*
      * Internal query method.
      */

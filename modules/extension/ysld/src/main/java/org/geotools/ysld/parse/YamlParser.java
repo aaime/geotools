@@ -63,7 +63,8 @@ public class YamlParser {
         context.mergeDocHints(hints);
         context.push(YamlObject.create(parsed), root);
 
-        while (context.next()) ;
+        while (context.next())
+            ;
 
         return root;
     }

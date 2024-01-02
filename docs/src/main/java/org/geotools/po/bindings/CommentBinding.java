@@ -24,7 +24,9 @@ public class CommentBinding extends AbstractSimpleBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public QName getTarget() {
         return PO.comment;
     }

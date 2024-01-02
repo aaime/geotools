@@ -41,7 +41,9 @@ import org.locationtech.jts.geom.MultiLineString;
 import org.locationtech.jts.geom.MultiPoint;
 import org.locationtech.jts.geom.MultiPolygon;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class ZMHandlersTest {
 
     /**

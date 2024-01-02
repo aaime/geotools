@@ -94,6 +94,7 @@ public class DefaultRenderingExecutorTest extends RenderingExecutorTestBase {
             public void setFail(boolean fail) {
                 this.mockFail = fail;
             }
+
             // Just fill the graphics with red ... our test will be looking for this
             @Override
             protected void pretendToPaint() {
@@ -112,7 +113,8 @@ public class DefaultRenderingExecutorTest extends RenderingExecutorTestBase {
                                                     "Simulated layer rendering failure")));
                 }
             }
-        };
+        }
+        ;
 
         FailableMockRenderer failableRenderer = new FailableMockRenderer(mapContent);
         this.renderer = failableRenderer;

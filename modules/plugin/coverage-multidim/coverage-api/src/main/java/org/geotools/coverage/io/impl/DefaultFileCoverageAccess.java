@@ -27,7 +27,9 @@ import org.geotools.api.data.Parameter;
 import org.geotools.coverage.io.Driver;
 import org.geotools.coverage.io.FileCoverageAccess;
 
-/** @author Simone Giannecchini, GeoSolutions */
+/**
+ * @author Simone Giannecchini, GeoSolutions
+ */
 public class DefaultFileCoverageAccess extends DefaultCoverageAccess implements FileCoverageAccess {
 
     protected final URL source;

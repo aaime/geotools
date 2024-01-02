@@ -25,7 +25,9 @@ import org.geotools.xsd.Node;
 
 /** Binding object for the upper boundary of a property is between filter. */
 public class UpperBoundaryTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.UpperBoundaryType;

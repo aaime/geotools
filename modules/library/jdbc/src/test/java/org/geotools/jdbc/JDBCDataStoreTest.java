@@ -56,7 +56,9 @@ import org.locationtech.jts.geom.Envelope;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 
-/** @author Dean Povey */
+/**
+ * @author Dean Povey
+ */
 public class JDBCDataStoreTest {
 
     // Subtype of the requested mapping type.  This is used in the mapping initialisation test

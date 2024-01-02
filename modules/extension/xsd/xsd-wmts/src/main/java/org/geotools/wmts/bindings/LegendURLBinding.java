@@ -100,7 +100,9 @@ public class LegendURLBinding extends OnlineResourceTypeBinding {
         this.factory = factory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WMTS.LegendURL;

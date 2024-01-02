@@ -54,7 +54,9 @@ import org.geotools.xsd.InstanceComponent;
  */
 public class TemporalPositionTypeBinding extends AbstractSimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.TemporalPositionType;

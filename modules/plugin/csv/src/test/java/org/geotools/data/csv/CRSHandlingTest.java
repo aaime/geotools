@@ -81,7 +81,9 @@ public class CRSHandlingTest {
 
     @Test
     public void testPrjFileRead()
-            throws FileNotFoundException, IOException, NoSuchAuthorityCodeException,
+            throws FileNotFoundException,
+                    IOException,
+                    NoSuchAuthorityCodeException,
                     FactoryException {
         File f = TestData.file(this, "coastal2.csv");
         Map<String, Object> params = new HashMap<>();

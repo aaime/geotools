@@ -55,7 +55,9 @@ public final class ErdasImgReader extends BaseGDALGridCoverage2DReader
         super(input, hints, worldFileExt, new ErdasImgImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new ErdasImgFormat();

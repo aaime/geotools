@@ -72,7 +72,9 @@ public class CoverageStyleBinding extends FeatureTypeStyleBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.CoverageStyle;

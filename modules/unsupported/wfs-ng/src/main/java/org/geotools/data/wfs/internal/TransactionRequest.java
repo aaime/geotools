@@ -87,7 +87,9 @@ public class TransactionRequest extends WFSRequest {
         return super.createResponse(response);
     }
 
-    /** @author groldan */
+    /**
+     * @author groldan
+     */
     public abstract static class TransactionElement {
 
         private QName typeName;

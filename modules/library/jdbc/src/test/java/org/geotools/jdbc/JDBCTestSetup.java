@@ -59,12 +59,16 @@ public abstract class JDBCTestSetup {
         this.fixture = fixture;
     }
 
-    /** @see {@link OnlineTestCase#createOfflineFixture} */
+    /**
+     * @see {@link OnlineTestCase#createOfflineFixture}
+     */
     protected Properties createOfflineFixture() {
         return null;
     }
 
-    /** @see {@link OnlineTestCase#createExampleFixture} */
+    /**
+     * @see {@link OnlineTestCase#createExampleFixture}
+     */
     protected Properties createExampleFixture() {
         return null;
     }

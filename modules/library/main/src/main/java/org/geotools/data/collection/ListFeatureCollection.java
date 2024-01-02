@@ -68,6 +68,7 @@ public class ListFeatureCollection extends AbstractFeatureCollection
     public ListFeatureCollection(SimpleFeatureType schema) {
         this(schema, new ArrayList<>());
     }
+
     /**
      * Create a ListFeatureCollection around the provided list. The contents of the list should all
      * be of the provided schema for this to make sense. Please keep in mind the feature collection
@@ -82,6 +83,7 @@ public class ListFeatureCollection extends AbstractFeatureCollection
         super(schema);
         this.list = list;
     }
+
     /**
      * Create a ListFeatureCollection around the provided array. The contents of the array should
      * all be of the provided schema for this to make sense. Please keep in mind the feature
@@ -94,6 +96,7 @@ public class ListFeatureCollection extends AbstractFeatureCollection
         super(schema);
         this.list = new CopyOnWriteArrayList<>(array);
     }
+
     /**
      * Create a ListFeatureCollection around the provided list. The contents of the list should all
      * be of the provided schema for this to make sense. Please keep in mind the feature collection
@@ -145,6 +148,7 @@ public class ListFeatureCollection extends AbstractFeatureCollection
         }
         return bounds;
     }
+
     /** Calculate bounds from features */
     protected ReferencedEnvelope calculateBounds() {
         ReferencedEnvelope extent =
@@ -166,6 +170,7 @@ public class ListFeatureCollection extends AbstractFeatureCollection
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
     /**
      * SimpleFeatureIterator that will use collection close method.
      *

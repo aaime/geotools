@@ -38,6 +38,7 @@ public class AllGT implements All {
         this.min = min;
         this.max = max;
     }
+
     /* (non-Javadoc)
      * @see org.geotools.xml.schema.All#getElements()
      */

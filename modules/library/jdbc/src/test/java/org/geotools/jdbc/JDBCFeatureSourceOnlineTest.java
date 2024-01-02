@@ -649,7 +649,10 @@ public abstract class JDBCFeatureSourceOnlineTest extends JDBCTestSupport {
             fail("Unexpected dialect type: " + dialect);
         }
     }
-    /** @return expected list for {@link #testMixedEncodeIn()} */
+
+    /**
+     * @return expected list for {@link #testMixedEncodeIn()}
+     */
     protected List<Object> getTestMixedEncodeInExpected() {
         return Arrays.asList("zero", "two", 1, 2, 0d);
     }

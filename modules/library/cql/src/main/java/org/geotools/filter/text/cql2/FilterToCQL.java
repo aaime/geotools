@@ -93,6 +93,7 @@ class FilterToCQL implements FilterVisitor {
     public Object visit(ExcludeFilter filter, Object extraData) {
         return FilterToTextUtil.buildExclude(extraData);
     }
+
     /** Include everything; using an old SQL trick of 1=1. */
     @Override
     public Object visit(IncludeFilter filter, Object extraData) {
@@ -269,6 +270,7 @@ class FilterToCQL implements FilterVisitor {
         checkLeftExpressionIsProperty(filter.getExpression1());
         return FilterToTextUtil.buildBinarySpatialOperator("WITHIN", filter, extraData);
     }
+
     /**
      * A filter has not been provided.
      *

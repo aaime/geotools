@@ -1313,7 +1313,9 @@ public abstract class SQLDialect {
         return false;
     }
 
-    /** @return Table types filtered from jdbc {@link DatabaseMetaData} */
+    /**
+     * @return Table types filtered from jdbc {@link DatabaseMetaData}
+     */
     public String[] getDesiredTablesType() {
         return new String[] {"TABLE", "VIEW", "MATERIALIZED VIEW", "SYNONYM"};
     }

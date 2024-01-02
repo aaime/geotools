@@ -47,7 +47,9 @@ public class XSNonPositiveIntegerBinding implements SimpleBinding {
     final BigInteger MIN_LONG = BigInteger.valueOf(Long.MIN_VALUE);
     final BigInteger MIN_INTEGER = BigInteger.valueOf(Integer.MIN_VALUE);
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.NONPOSITIVEINTEGER;

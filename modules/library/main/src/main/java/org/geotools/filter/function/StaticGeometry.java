@@ -32,7 +32,9 @@ import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.io.WKTReader;
 
-/** @author David Blasby (The Open Planning Project) */
+/**
+ * @author David Blasby (The Open Planning Project)
+ */
 public class StaticGeometry {
 
     // Lazily created filter factory for updated numerical operations
@@ -626,7 +628,10 @@ public class StaticGeometry {
     public static boolean isNull(Object o) {
         return o == null;
     }
-    /** @return true if value is between low and high */
+
+    /**
+     * @return true if value is between low and high
+     */
     public static boolean between(Object o, Object o_low, Object o_high) {
 
         return StaticGeometry.greaterEqualThan(o, o_low) && StaticGeometry.lessEqualThan(o, o_high);

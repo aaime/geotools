@@ -65,7 +65,9 @@ public class MemberPropertyTypeBinding
         this.schemaIndex = schemaIndex;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.MemberPropertyType;

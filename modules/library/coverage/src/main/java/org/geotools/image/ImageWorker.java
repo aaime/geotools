@@ -168,6 +168,7 @@ public class ImageWorker {
 
     /** Byte identity lookup table for indexed color models */
     private static final byte[][] IDENTITY_BYTE;
+
     /** Short identity lookup table for indexed color models */
     private static final short[][] IDENTITY_SHORT;
 

@@ -27,7 +27,9 @@ import org.geotools.api.feature.simple.SimpleFeature;
 import org.geotools.coverage.grid.io.GridCoverage2DReader;
 import org.geotools.util.logging.Logging;
 
-/** @author Niels Charlier */
+/**
+ * @author Niels Charlier
+ */
 class ResolutionExtractor extends PropertiesCollector {
 
     private static final Logger LOGGER = Logging.getLogger(ResolutionExtractor.class);

@@ -117,7 +117,9 @@ public class CatalogConfigurationBean {
         this.caching = caching;
     }
 
-    /** @return the suggestedSPI */
+    /**
+     * @return the suggestedSPI
+     */
     public String getSuggestedSPI() {
         return suggestedSPI;
     }
@@ -149,7 +151,9 @@ public class CatalogConfigurationBean {
         return null;
     }
 
-    /** @param suggestedSPI the suggestedSPI to set */
+    /**
+     * @param suggestedSPI the suggestedSPI to set
+     */
     public void setSuggestedSPI(final String suggestedSPI) {
         this.suggestedSPI = suggestedSPI;
     }

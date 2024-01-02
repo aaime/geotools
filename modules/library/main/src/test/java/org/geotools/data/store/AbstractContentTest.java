@@ -73,7 +73,9 @@ public abstract class AbstractContentTest {
             namespaceURI = TYPE.getName().getNamespaceURI();
         }
 
-        /** @see org.geotools.data.store.ContentDataStore#createTypeNames() */
+        /**
+         * @see org.geotools.data.store.ContentDataStore#createTypeNames()
+         */
         @SuppressWarnings("serial")
         @Override
         protected List<Name> createTypeNames() throws IOException {
@@ -120,14 +122,18 @@ public abstract class AbstractContentTest {
             return -1;
         }
 
-        /** @see org.geotools.data.store.ContentFeatureSource#getReaderInternal(Query) */
+        /**
+         * @see org.geotools.data.store.ContentFeatureSource#getReaderInternal(Query)
+         */
         @Override
         protected FeatureReader<SimpleFeatureType, SimpleFeature> getReaderInternal(Query query)
                 throws IOException {
             return new MockSimpleFeatureReader();
         }
 
-        /** @see org.geotools.data.store.ContentFeatureSource#buildFeatureType() */
+        /**
+         * @see org.geotools.data.store.ContentFeatureSource#buildFeatureType()
+         */
         @Override
         protected SimpleFeatureType buildFeatureType() throws IOException {
             return TYPE;
@@ -146,26 +152,34 @@ public abstract class AbstractContentTest {
         /** Index of the next test feature to be returned. */
         private int index = 0;
 
-        /** @see FeatureReader#getFeatureType() */
+        /**
+         * @see FeatureReader#getFeatureType()
+         */
         @Override
         public SimpleFeatureType getFeatureType() {
             return TYPE;
         }
 
-        /** @see FeatureReader#next() */
+        /**
+         * @see FeatureReader#next()
+         */
         @Override
         public SimpleFeature next()
                 throws IOException, IllegalArgumentException, NoSuchElementException {
             return FEATURES.get(index++);
         }
 
-        /** @see FeatureReader#hasNext() */
+        /**
+         * @see FeatureReader#hasNext()
+         */
         @Override
         public boolean hasNext() throws IOException {
             return index < FEATURES.size();
         }
 
-        /** @see FeatureReader#close() */
+        /**
+         * @see FeatureReader#close()
+         */
         @Override
         public void close() throws IOException {
             // ignored

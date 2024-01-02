@@ -106,7 +106,9 @@ public class TimeSeriesTest extends AppSchemaTestSupport {
         // Logging.GEOTOOLS.forceMonolineConsoleOutput(Level.FINEST);
     }
 
-    /** @param location schema location path discoverable through getClass().getResource() */
+    /**
+     * @param location schema location path discoverable through getClass().getResource()
+     */
     private SchemaIndex loadSchema(URL location) throws IOException {
         URL catalogLocation = getClass().getResource(schemaBase + "observations.oasis.xml");
         reader.setResolver(catalogLocation);

@@ -47,6 +47,7 @@ public class MapboxTestUtils {
 
     static JSONParser jsonParser = new JSONParser();
     static final Logger LOGGER = Logging.getLogger(MapboxTestUtils.class);
+
     /** Reader for a test Mapbox Style file (json). */
     public static Reader readerTestStyle(String filename) throws IOException, ParseException {
         try (InputStream is = MapboxTestUtils.class.getResourceAsStream(filename)) {

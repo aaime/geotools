@@ -46,7 +46,9 @@ public class SelectedChannelTypeBinding extends SLDSelectedChannelTypeBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.SelectedChannelType;

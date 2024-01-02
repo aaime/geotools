@@ -121,6 +121,7 @@ public class OGCSchema implements Schema {
     public Attribute[] getAttributes() {
         return null;
     }
+
     /** TODO comment here */
     private static volatile ComplexType[] complexTypes = null;
 
@@ -131,6 +132,7 @@ public class OGCSchema implements Schema {
         }
         return complexTypes;
     }
+
     /** TODO comment here */
     private static volatile Element[] elements = null;
 
@@ -172,6 +174,7 @@ public class OGCSchema implements Schema {
     public Group[] getGroups() {
         return null;
     }
+
     /** TODO comment here */
     private static volatile SimpleType[] simpleTypes = null;
 

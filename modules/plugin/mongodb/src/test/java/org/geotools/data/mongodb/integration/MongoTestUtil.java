@@ -43,7 +43,9 @@ import org.geotools.feature.FeatureIterator;
 import org.junit.Test;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 @SuppressWarnings("deprecation") // DB was replaced by MongoDatabase but API is not the same
 public class MongoTestUtil {
 

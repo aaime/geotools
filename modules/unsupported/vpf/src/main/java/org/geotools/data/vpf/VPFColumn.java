@@ -265,7 +265,9 @@ public class VPFColumn {
         return result;
     }
 
-    /** @return Returns the attemptLookup. */
+    /**
+     * @return Returns the attemptLookup.
+     */
     public boolean isAttemptLookup() {
         return attemptLookup;
     }

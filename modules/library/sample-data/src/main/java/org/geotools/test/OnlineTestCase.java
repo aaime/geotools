@@ -104,8 +104,10 @@ public abstract class OnlineTestCase extends TestCase {
      * looking up the file and reporting it not found to the user.
      */
     protected static Map<String, Boolean> found = new HashMap<>();
+
     /** The test fixture, {@code null} if the fixture is not available. */
     protected Properties fixture;
+
     /**
      * Flag that determines effect of exceptions in connect/disconnect. If true (the default),
      * exceptions in connect cause the the test to be disabled, and exceptions in disconnect to be
@@ -225,6 +227,7 @@ public abstract class OnlineTestCase extends TestCase {
             Logger.getGlobal().log(Level.INFO, "", ioe);
         }
     }
+
     /**
      * Loads the test fixture for the test case.
      *

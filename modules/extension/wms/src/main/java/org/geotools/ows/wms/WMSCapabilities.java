@@ -119,7 +119,9 @@ public class WMSCapabilities extends Capabilities {
         return request;
     }
 
-    /** @param request The request to set. */
+    /**
+     * @param request The request to set.
+     */
     public void setRequest(WMSRequest request) {
         this.request = request;
     }

@@ -42,8 +42,10 @@ public class MySQLDataStoreFactory extends JDBCDataStoreFactory {
                     true,
                     "mysql",
                     Collections.singletonMap(Parameter.LEVEL, "program"));
+
     /** Default port number for MYSQL */
     public static final Param PORT = new Param("port", Integer.class, "Port", true, 3306);
+
     /** Storage engine to use when creating tables */
     public static final Param STORAGE_ENGINE =
             new Param("storage engine", String.class, "Storage Engine", false, "MyISAM");
@@ -161,6 +163,7 @@ public class MySQLDataStoreFactory extends JDBCDataStoreFactory {
         }
         return isMySQLVersion56OrAbove;
     }
+
     /**
      * check if the version of MySQL is 8.0 or greater. Needed to determine which syntax can be used
      * for eg. {@code ST_SRID()}

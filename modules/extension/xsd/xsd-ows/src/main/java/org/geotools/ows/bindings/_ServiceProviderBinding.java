@@ -60,7 +60,9 @@ public class _ServiceProviderBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS._ServiceProvider;

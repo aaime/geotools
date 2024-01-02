@@ -55,7 +55,9 @@ public class TransactionSummaryTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.TransactionSummaryType;

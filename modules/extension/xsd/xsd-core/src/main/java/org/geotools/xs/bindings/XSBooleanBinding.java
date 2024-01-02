@@ -52,7 +52,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSBooleanBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.BOOLEAN;

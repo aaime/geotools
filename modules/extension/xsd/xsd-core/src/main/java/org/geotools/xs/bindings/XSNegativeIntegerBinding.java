@@ -43,7 +43,9 @@ import org.geotools.xsd.SimpleBinding;
  * @generated
  */
 public class XSNegativeIntegerBinding implements SimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.NEGATIVEINTEGER;

@@ -347,7 +347,9 @@ public class WindBarbsFactory implements MarkFactory {
         throw new IllegalArgumentException("Wrong windbard name:" + windBarbName);
     }
 
-    /** @return a {@link WindBarbDefinition} for the provided params */
+    /**
+     * @return a {@link WindBarbDefinition} for the provided params
+     */
     private WindBarbDefinition parseWindBarbsDefinition(Map<String, String> params) {
         final WindBarbDefinition retValue = WindBarb.DEFAULT_WINDBARB_DEFINITION;
         if (params == null || params.isEmpty()) {

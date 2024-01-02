@@ -32,7 +32,9 @@ import org.geotools.api.style.StyleFactory;
  */
 public class SLDTitleBinding extends SLDInternationalStringBinding {
 
-    /** @param styleFactory */
+    /**
+     * @param styleFactory
+     */
     public SLDTitleBinding(StyleFactory styleFactory) {
         super(styleFactory);
     }

@@ -761,7 +761,9 @@ public class ShapefileReader implements FileReader, Closeable {
         return count;
     }
 
-    /** @param handler The handler to set. */
+    /**
+     * @param handler The handler to set.
+     */
     public void setHandler(ShapeHandler handler) {
         this.handler = handler;
     }

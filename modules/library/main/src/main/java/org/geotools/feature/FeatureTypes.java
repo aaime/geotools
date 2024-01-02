@@ -754,6 +754,7 @@ public class FeatureTypes {
         }
         return true;
     }
+
     /**
      * This method depends on the correct implementation of FeatureType equals
      *

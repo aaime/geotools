@@ -250,7 +250,9 @@ public class DocumentWriter {
         }
     }
 
-    /** @throws IOException */
+    /**
+     * @throws IOException
+     */
     public static void writeSchema(Schema schema, Writer w, Map<String, Object> hints)
             throws IOException {
         WriterContentHandler wch =
@@ -1571,7 +1573,9 @@ public class DocumentWriter {
             writer.write(arg0, arg1, arg2);
         }
 
-        /** @see PrintHandler#startDocument() */
+        /**
+         * @see PrintHandler#startDocument()
+         */
         @Override
         public void startDocument() throws IOException {
             writer.write("<?xml version=\"1.0\" encoding=\"" + encoding + "\"?>");
@@ -1580,7 +1584,9 @@ public class DocumentWriter {
             writer.write("\n");
         }
 
-        /** @see PrintHandler#endDocument() */
+        /**
+         * @see PrintHandler#endDocument()
+         */
         @Override
         public void endDocument() throws IOException {
             // TODO format here
@@ -1588,19 +1594,25 @@ public class DocumentWriter {
             writer.flush();
         }
 
-        /** @see PrintHandler#getDocumentSchema() */
+        /**
+         * @see PrintHandler#getDocumentSchema()
+         */
         @Override
         public Schema getDocumentSchema() {
             return schema;
         }
 
-        /** @see PrintHandler#getHint(Object) */
+        /**
+         * @see PrintHandler#getHint(Object)
+         */
         @Override
         public Object getHint(Object key) {
             return hints.get(key);
         }
 
-        /** @see PrintHandler#findElement(Object) */
+        /**
+         * @see PrintHandler#findElement(Object)
+         */
         @Override
         public Element findElement(Object value) {
             Schema[] searchOrder1;
@@ -1628,7 +1640,9 @@ public class DocumentWriter {
             return null;
         }
 
-        /** @see PrintHandler#findElement(String) */
+        /**
+         * @see PrintHandler#findElement(String)
+         */
         @Override
         public Element findElement(String name) {
             Schema[] searchOrder1;

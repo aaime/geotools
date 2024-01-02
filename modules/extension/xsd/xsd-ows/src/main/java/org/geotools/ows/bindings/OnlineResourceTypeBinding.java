@@ -48,7 +48,9 @@ public class OnlineResourceTypeBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.OnlineResourceType;

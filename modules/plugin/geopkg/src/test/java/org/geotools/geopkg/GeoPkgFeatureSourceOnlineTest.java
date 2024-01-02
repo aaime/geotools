@@ -48,6 +48,7 @@ public class GeoPkgFeatureSourceOnlineTest extends JDBCFeatureSourceOnlineTest {
     public void testConversionFilter() throws Exception {
         // seems there are rounding issues here - consider new test
     }
+
     /**
      * SQLite's LIKE is usually case insensitive - there are many possible "fixes" out there but all
      * are hard to implement or seem not to work for all CharacterSets.

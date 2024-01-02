@@ -80,6 +80,7 @@ import org.geotools.util.NumberRange;
 public class DivideByConst extends OperationJAI {
     private static final String OPERATION_CONST = "operationConst";
     private static final String DIVIDE_BY_CONST = "DivideByConst";
+
     /** Serial number for interoperability with different versions. */
     private static final long serialVersionUID = -3723238033407316564L;
 

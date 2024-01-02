@@ -1243,7 +1243,10 @@ public class NetCDFMosaicReaderTest {
 
     @Test
     public void testNetCdfMosaicSingleVariableFiles()
-            throws IOException, NoSuchFieldException, SecurityException, IllegalArgumentException,
+            throws IOException,
+                    NoSuchFieldException,
+                    SecurityException,
+                    IllegalArgumentException,
                     IllegalAccessException {
         File ncMosaic = TestData.file(this, "imagemosaic");
         File mosaic = tempFolder.newFolder("ncmosaic");

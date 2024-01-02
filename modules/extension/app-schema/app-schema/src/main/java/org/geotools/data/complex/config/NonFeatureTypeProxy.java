@@ -107,7 +107,9 @@ public class NonFeatureTypeProxy extends ComplexTypeProxy implements FeatureType
         this.descriptors = schema;
     }
 
-    /** @see ComplexTypeProxy#getSubject() */
+    /**
+     * @see ComplexTypeProxy#getSubject()
+     */
     @Override
     public AttributeType getSubject() {
         return subject;

@@ -51,7 +51,9 @@ public class ShadedReliefBinding extends SLDShadedReliefBinding {
         super(styleFactory, filterFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.ShadedRelief;

@@ -757,12 +757,16 @@ public class WMTSTileService extends TileService {
         return matrixSet.getMatrices().get(zoomLevel);
     }
 
-    /** @return the matrixSet */
+    /**
+     * @return the matrixSet
+     */
     public TileMatrixSet getMatrixSet() {
         return matrixSet;
     }
 
-    /** @param matrixSet the matrixSet to set */
+    /**
+     * @param matrixSet the matrixSet to set
+     */
     public void setMatrixSet(TileMatrixSet matrixSet) {
         if (matrixSet == null) {
             throw new IllegalArgumentException("MatrixSet cannot be null");

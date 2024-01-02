@@ -67,6 +67,7 @@ public class GridEnvelope2D extends Rectangle implements GridEnvelope, Cloneable
     public GridEnvelope2D(final int x, final int y, final int width, final int height) {
         super(x, y, width, height);
     }
+
     /**
      * Casts the specified envelope into a grid envelope. This is sometime useful after an envelope
      * has been transformed from "real world" coordinates to grid coordinates using the {@linkplain
@@ -204,6 +205,7 @@ public class GridEnvelope2D extends Rectangle implements GridEnvelope, Cloneable
         setLocation(index[0], index[1]);
         setSize(index[0 + DIMENSION] - index[0], index[1 + DIMENSION] - index[1]);
     }
+
     /**
      * Casts the specified envelope into a grid envelope. This is sometime useful after an envelope
      * has been transformed from "real world" coordinates to grid coordinates using the {@linkplain

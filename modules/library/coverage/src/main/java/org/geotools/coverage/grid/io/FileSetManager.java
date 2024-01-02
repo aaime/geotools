@@ -18,7 +18,9 @@ package org.geotools.coverage.grid.io;
 
 import java.util.List;
 
-/** @author Daniele Romagnoli, GeoSolutions SaS */
+/**
+ * @author Daniele Romagnoli, GeoSolutions SaS
+ */
 public interface FileSetManager {
 
     /** Add a file to the file set manager */

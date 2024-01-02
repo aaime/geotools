@@ -56,10 +56,12 @@ public class CSVFeatureReader implements FeatureReader<SimpleFeatureType, Simple
         geometryFactory = JTSFactoryFinder.getGeometryFactory(null);
         row = 0;
     }
+
     /** Access FeatureType (documenting available attributes) */
     public SimpleFeatureType getFeatureType() {
         return state.getFeatureType();
     }
+
     // class definition end
 
     // read start
@@ -85,6 +87,7 @@ public class CSVFeatureReader implements FeatureReader<SimpleFeatureType, Simple
         }
         return feature;
     }
+
     /**
      * Check if additional content is available.
      *
@@ -98,6 +101,7 @@ public class CSVFeatureReader implements FeatureReader<SimpleFeatureType, Simple
             return next != null;
         }
     }
+
     // read end
 
     // parse start
@@ -132,6 +136,7 @@ public class CSVFeatureReader implements FeatureReader<SimpleFeatureType, Simple
         row += 1;
         return builder.buildFeature(state.getEntry().getTypeName() + "." + row);
     }
+
     // parse end
 
     // close start

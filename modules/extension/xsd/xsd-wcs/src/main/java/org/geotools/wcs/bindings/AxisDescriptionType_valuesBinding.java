@@ -52,7 +52,9 @@ import org.geotools.xsd.Node;
  */
 public class AxisDescriptionType_valuesBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WCS.AxisDescriptionType_values;

@@ -71,6 +71,7 @@ public class SimpleFeaturePropertyAccessorFactory implements PropertyAccessorFac
                     + "\\u00b7"
                     + "\\u0300-\\u036f"
                     + "\\u203f-\\u2040";
+
     /**
      * Based on definition of valid xml element name at http://www.w3.org/TR/xml/#NT-Name,
      * eventually inclusive of namespace, plus an optional [1] at the end and no @ anywhere in the

@@ -237,31 +237,41 @@ public abstract class AbstractGridFormat implements Format {
                     new Boolean[] {Boolean.TRUE, Boolean.FALSE},
                     RESCALE_DEFAULT);
 
-    /** @see org.geotools.api.coverage.grid.Format#getName() */
+    /**
+     * @see org.geotools.api.coverage.grid.Format#getName()
+     */
     @Override
     public String getName() {
         return mInfo.get("name");
     }
 
-    /** @see org.geotools.api.coverage.grid.Format#getDescription() */
+    /**
+     * @see org.geotools.api.coverage.grid.Format#getDescription()
+     */
     @Override
     public String getDescription() {
         return mInfo.get("description");
     }
 
-    /** @see org.geotools.api.coverage.grid.Format#getVendor() */
+    /**
+     * @see org.geotools.api.coverage.grid.Format#getVendor()
+     */
     @Override
     public String getVendor() {
         return mInfo.get("vendor");
     }
 
-    /** @see org.geotools.api.coverage.grid.Format#getDocURL() */
+    /**
+     * @see org.geotools.api.coverage.grid.Format#getDocURL()
+     */
     @Override
     public String getDocURL() {
         return mInfo.get("docURL");
     }
 
-    /** @see org.geotools.api.coverage.grid.Format#getVersion() */
+    /**
+     * @see org.geotools.api.coverage.grid.Format#getVersion()
+     */
     @Override
     public String getVersion() {
         return mInfo.get("version");

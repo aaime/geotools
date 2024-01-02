@@ -54,7 +54,9 @@ public final class JP2ECWReader extends BaseGDALGridCoverage2DReader implements 
         super(input, hints, worldFileExt, new JP2GDALEcwImageReaderSpi());
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new JP2ECWFormat();

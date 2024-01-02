@@ -55,7 +55,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSComplexRestrictionTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.COMPLEXRESTRICTIONTYPE;

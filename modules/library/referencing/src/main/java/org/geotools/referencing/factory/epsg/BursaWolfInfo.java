@@ -25,8 +25,10 @@ package org.geotools.referencing.factory.epsg;
 final class BursaWolfInfo {
     /** CO.COORD_OP_CODE */
     final String operation;
+
     /** CO.COORD_OP_METHOD_CODE */
     final int method;
+
     /** CRS1.DATUM_CODE */
     final String target;
 

@@ -77,7 +77,9 @@ import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.geom.TopologyException;
 import org.locationtech.jts.geom.impl.PackedCoordinateSequenceFactory;
 
-/** @author jamesm */
+/**
+ * @author jamesm
+ */
 public class Rendering2DTest {
 
     /** The logger for the rendering module. */

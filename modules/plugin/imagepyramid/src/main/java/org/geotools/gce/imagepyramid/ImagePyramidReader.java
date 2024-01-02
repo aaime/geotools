@@ -257,7 +257,9 @@ public final class ImagePyramidReader extends AbstractGridCoverage2DReader
         this(source, null);
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#getFormat()
+     */
     @Override
     public Format getFormat() {
         return new ImagePyramidFormat();
@@ -402,7 +404,9 @@ public final class ImagePyramidReader extends AbstractGridCoverage2DReader
         }
     }
 
-    /** @see org.geotools.api.coverage.grid.GridCoverageReader#dispose() */
+    /**
+     * @see org.geotools.api.coverage.grid.GridCoverageReader#dispose()
+     */
     @Override
     public synchronized void dispose() {
         super.dispose();
@@ -414,7 +418,9 @@ public final class ImagePyramidReader extends AbstractGridCoverage2DReader
         return coverageNames;
     }
 
-    /** @return the number of coverages for this reader. */
+    /**
+     * @return the number of coverages for this reader.
+     */
     @Override
     public int getGridCoverageCount() {
         return count;

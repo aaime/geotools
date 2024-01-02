@@ -49,7 +49,9 @@ public class SortByTypeBinding extends AbstractComplexBinding {
         this.filterfactory = filterfactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.SortByType;

@@ -160,17 +160,23 @@ public class TPKFile {
         }
     }
 
-    /** @return -- the minimum Web Tile Service zoom level contained in the TPK */
+    /**
+     * @return -- the minimum Web Tile Service zoom level contained in the TPK
+     */
     public long getMinZoomLevel() {
         return zoomLevelMap.keySet().stream().min(Long::compare).get();
     }
 
-    /** @return -- the maximum Web Tile Service zoom level contained in the TPK */
+    /**
+     * @return -- the maximum Web Tile Service zoom level contained in the TPK
+     */
     public long getMaxZoomLevel() {
         return zoomLevelMap.keySet().stream().max(Long::compare).get();
     }
 
-    /** @return -- the image format used in the TPK (eg JPEG, PNG) */
+    /**
+     * @return -- the image format used in the TPK (eg JPEG, PNG)
+     */
     public String getImageFormat() {
         return imageFormat;
     }

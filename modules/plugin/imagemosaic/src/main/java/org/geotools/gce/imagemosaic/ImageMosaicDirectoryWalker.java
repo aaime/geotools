@@ -228,7 +228,9 @@ public class ImageMosaicDirectoryWalker extends ImageMosaicWalker {
         }
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     private IOFileFilter createDefaultGranuleExclusionFilter() {
         final IOFileFilter specialWildCardFileFilter =
                 WildcardFileFilter.builder()

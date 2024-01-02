@@ -106,7 +106,9 @@ public final class ImagePyramidFormat extends AbstractGridFormat implements Form
         throw new UnsupportedOperationException("This plugin is a read only plugin!");
     }
 
-    /** @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(Object input) */
+    /**
+     * @see org.geotools.data.coverage.grid.AbstractGridFormat#accepts(Object input)
+     */
     @Override
     public boolean accepts(Object source, Hints hints) {
 

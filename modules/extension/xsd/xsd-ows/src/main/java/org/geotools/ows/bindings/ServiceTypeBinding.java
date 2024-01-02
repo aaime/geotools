@@ -44,7 +44,9 @@ import org.geotools.xsd.ows.OWS;
 public class ServiceTypeBinding extends AbstractSimpleBinding {
     public ServiceTypeBinding(Ows10Factory factory) {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.ServiceType;

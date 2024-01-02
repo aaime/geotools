@@ -111,7 +111,9 @@ public class CoverageProcessor {
             super();
         }
 
-        /** @param hints */
+        /**
+         * @param hints
+         */
         public CacheableCoverageProcessor(RenderingHints hints) {
             super(hints);
         }
@@ -568,6 +570,7 @@ public class CoverageProcessor {
         log(source, coverage, operationName, false);
         return coverage;
     }
+
     /**
      * Applies a process operation to a coverage. The default implementation checks if source
      * coverages use an interpolation, and then invokes {@link AbstractOperation#doOperation}. If

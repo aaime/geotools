@@ -84,7 +84,9 @@ public abstract class WFSStrategy extends Specification {
      */
     public abstract Version getServiceVersion();
 
-    /** @return the output formats the server advertises for the given operation; */
+    /**
+     * @return the output formats the server advertises for the given operation;
+     */
     public abstract Set<String> getServerSupportedOutputFormats(final WFSOperationType operation);
 
     /**
@@ -211,7 +213,9 @@ public abstract class WFSStrategy extends Specification {
      */
     public abstract Map<QName, Class<?>> getFieldTypeMappings();
 
-    /** @return */
+    /**
+     * @return
+     */
     public boolean canLimit() {
         return true;
     }

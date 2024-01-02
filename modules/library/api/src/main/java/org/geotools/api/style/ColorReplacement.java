@@ -42,6 +42,8 @@ public interface ColorReplacement {
      */
     Object accept(TraversingStyleVisitor visitor, Object extraData);
 
-    /** @param function Recoding function to use */
+    /**
+     * @param function Recoding function to use
+     */
     void setRecoding(Function function);
 }

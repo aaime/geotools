@@ -43,7 +43,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class XSTokenBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.TOKEN;

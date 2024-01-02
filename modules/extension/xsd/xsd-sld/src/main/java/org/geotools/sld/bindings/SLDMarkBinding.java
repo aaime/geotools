@@ -74,7 +74,9 @@ public class SLDMarkBinding extends AbstractComplexBinding {
         this.resourceLocator = resourceLocator;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.MARK;

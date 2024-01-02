@@ -114,6 +114,7 @@ public class VPFFeatureClass implements SimpleFeatureType {
     private boolean debug = false;
 
     static final Logger LOGGER = Logging.getLogger(VPFFeatureClass.class);
+
     /**
      * Constructor
      *
@@ -612,6 +613,7 @@ public class VPFFeatureClass implements SimpleFeatureType {
 
         return result;
     }
+
     /**
      * Identifies the type of geometry factory to use based on the name of the table containing the
      * geometry, then constructs the appropriate geometry factory object.
@@ -701,7 +703,9 @@ public class VPFFeatureClass implements SimpleFeatureType {
         return featureType.isAbstract();
     }
 
-    /** @return Returns the geometryFactory. */
+    /**
+     * @return Returns the geometryFactory.
+     */
     public VPFGeometryFactory getGeometryFactory() {
         return geometryFactory;
     }

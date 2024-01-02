@@ -44,7 +44,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class SLDSymbolizerTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.SYMBOLIZERTYPE;

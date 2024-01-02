@@ -41,7 +41,9 @@ public class DottedNamesTest {
 
     private DataStore gpkg;
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {
         URL url = TestData.url(this.getClass(), "mosselzaad.gpkg");

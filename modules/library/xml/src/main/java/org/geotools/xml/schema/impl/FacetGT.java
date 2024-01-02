@@ -18,7 +18,9 @@ package org.geotools.xml.schema.impl;
 
 import org.geotools.xml.schema.Facet;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class FacetGT implements Facet {
     private int type;
     private String value;
@@ -33,13 +35,17 @@ public class FacetGT implements Facet {
         this.value = value;
     }
 
-    /** @see org.geotools.xml.schema.Facet#getFacetType() */
+    /**
+     * @see org.geotools.xml.schema.Facet#getFacetType()
+     */
     @Override
     public int getFacetType() {
         return type;
     }
 
-    /** @see org.geotools.xml.schema.Facet#getValue() */
+    /**
+     * @see org.geotools.xml.schema.Facet#getValue()
+     */
     @Override
     public String getValue() {
         return value;

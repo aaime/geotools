@@ -73,6 +73,7 @@ public class WMTSMapLayer extends GridReaderLayer {
     public WMTSMapLayer(WebMapTileServer wmts, Layer layer) {
         super(new WMTSCoverageReader(wmts, layer), createStyle());
     }
+
     /** Builds a new WMTS map layer */
     public WMTSMapLayer(WebMapTileServer wmts, Layer layer, CoordinateReferenceSystem sourceCRS) {
         super(new WMTSCoverageReader(wmts, layer), createStyle());

@@ -28,7 +28,9 @@ import org.locationtech.jts.geom.CoordinateSequenceFactory;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.LineString;
 
-/** @author Erik van de Pol. B3Partners BV. */
+/**
+ * @author Erik van de Pol. B3Partners BV.
+ */
 public class CircleTypeBinding extends AbstractComplexBinding {
     GeometryFactory gFactory;
     CoordinateSequenceFactory csFactory;
@@ -43,7 +45,9 @@ public class CircleTypeBinding extends AbstractComplexBinding {
         this.arcParameters = arcParameters;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.CircleType;

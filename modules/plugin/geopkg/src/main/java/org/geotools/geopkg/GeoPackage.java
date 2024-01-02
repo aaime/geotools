@@ -142,8 +142,10 @@ public class GeoPackage implements Closeable {
     // requirement 11, two generic SRID are to be considered
     protected static final int GENERIC_GEOGRAPHIC_SRID = 0;
     protected static final int GENERIC_PROJECTED_SRID = -1;
+
     /** The application id for GeoPackage 1.2 onwards (GPKG) */
     static final int GPKG_120_APPID = 0x47504B47;
+
     /** The application id for GeoPackage 1.0 (GP10) */
     static final int GPKG_100_APPID = 0x47503130;
 
@@ -172,6 +174,7 @@ public class GeoPackage implements Closeable {
     }
 
     static final String DATE_FORMAT_STRING = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
     /** database file */
     File file;
 
@@ -633,6 +636,7 @@ public class GeoPackage implements Closeable {
         }
         return contents;
     }
+
     //
     //    //
     //    // feature methods
@@ -1534,6 +1538,7 @@ public class GeoPackage implements Closeable {
         String spatial_index = "rtree_" + entry.getTableName() + "_" + entry.getGeometryColumn();
         return spatial_index;
     }
+
     /**
      * Verifies if a spatial index is present
      *

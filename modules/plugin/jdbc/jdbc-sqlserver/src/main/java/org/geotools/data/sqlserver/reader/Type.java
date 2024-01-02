@@ -18,7 +18,9 @@
 
 package org.geotools.data.sqlserver.reader;
 
-/** @author Anders Bakkevold, Bouvet */
+/**
+ * @author Anders Bakkevold, Bouvet
+ */
 public enum Type {
     POINT(1),
     LINESTRING(2),

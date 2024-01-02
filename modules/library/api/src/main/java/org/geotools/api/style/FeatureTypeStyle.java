@@ -31,10 +31,13 @@ public interface FeatureTypeStyle {
 
     /** This option influences how multiple rules matching the same feature are evaluated */
     String KEY_EVALUATION_MODE = "ruleEvaluation";
+
     /** The standard behavior, all the matching rules are executed */
     String VALUE_EVALUATION_MODE_ALL = "all";
+
     /** Only the first matching rule gets executed, all the others are skipped */
     String VALUE_EVALUATION_MODE_FIRST = "first";
+
     /**
      * Applies a color composition/blending operation at the feature type style level (that is,
      * blending the current FTS level against the map below it).
@@ -70,6 +73,7 @@ public interface FeatureTypeStyle {
      * their math)
      */
     String COMPOSITE = "composite";
+
     /**
      * Boolean value, if true the current feature type style will be treated as a base for the
      * subsequent feature type styles in the rendering stack (including other layer ones) as opposed
@@ -78,6 +82,7 @@ public interface FeatureTypeStyle {
      * composite operator
      */
     String COMPOSITE_BASE = "composite-base";
+
     /**
      * String value controlling the order in which the features are loaded from the data source, and
      * thus painted, in this feature type style.
@@ -90,6 +95,7 @@ public interface FeatureTypeStyle {
      * by ascending <code>name</code> within all features having the same <code>cat</code> value.
      */
     String SORT_BY = "sortBy";
+
     /**
      * String value controlling cross layer z-ordering. Several feature type styles in the same
      * sortByGroup will have their features globally ordered before painting, for example, in order
@@ -98,6 +104,7 @@ public interface FeatureTypeStyle {
      * same FeatureTypeStyle, the first value in group will be used for the entire group.
      */
     String SORT_BY_GROUP = "sortByGroup";
+
     /**
      * String value allowing to control whether an SLD element should be included when applying the
      * style to render maps or a legends. The option can be used also on Rule and all the

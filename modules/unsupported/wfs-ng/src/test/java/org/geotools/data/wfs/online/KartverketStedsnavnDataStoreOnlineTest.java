@@ -55,7 +55,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.locationtech.jts.geom.Polygon;
 
-/** @author Roar Brænden */
+/**
+ * @author Roar Brænden
+ */
 public class KartverketStedsnavnDataStoreOnlineTest extends AbstractWfsDataStoreOnlineTest {
 
     static final String SERVER_URL =

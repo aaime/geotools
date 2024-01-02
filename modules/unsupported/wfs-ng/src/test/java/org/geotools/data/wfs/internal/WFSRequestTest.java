@@ -27,7 +27,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/** @author Matthias Schulze - Landesamt für Digitalisierung, Breitband und Vermessung */
+/**
+ * @author Matthias Schulze - Landesamt für Digitalisierung, Breitband und Vermessung
+ */
 public class WFSRequestTest {
 
     @Before

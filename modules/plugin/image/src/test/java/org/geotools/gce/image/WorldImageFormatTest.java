@@ -19,7 +19,9 @@ package org.geotools.gce.image;
 import org.junit.Assert;
 import org.junit.Test;
 
-/** @author rgoulds */
+/**
+ * @author rgoulds
+ */
 public class WorldImageFormatTest {
 
     @Test

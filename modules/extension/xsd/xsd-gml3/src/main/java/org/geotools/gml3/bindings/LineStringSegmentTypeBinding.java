@@ -87,7 +87,9 @@ public class LineStringSegmentTypeBinding extends AbstractComplexBinding {
         this.csf = csf;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.LineStringSegmentType;

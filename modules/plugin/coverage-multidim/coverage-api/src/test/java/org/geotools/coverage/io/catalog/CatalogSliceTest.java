@@ -51,7 +51,9 @@ import org.junit.Test;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.PrecisionModel;
 
-/** @author Simone Giannecchini, GeoSolutions SAS */
+/**
+ * @author Simone Giannecchini, GeoSolutions SAS
+ */
 public class CatalogSliceTest extends Assert {
 
     private H2DataStoreFactory INTERNAL_STORE_SPI = new H2DataStoreFactory();

@@ -89,6 +89,7 @@ public class FillExtrusionMBLayer extends MBLayer {
     protected SemanticType defaultSemanticType() {
         return SemanticType.POLYGON;
     }
+
     /**
      * (Optional) Defaults to 1.
      *

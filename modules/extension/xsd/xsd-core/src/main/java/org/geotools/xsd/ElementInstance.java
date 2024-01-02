@@ -24,10 +24,14 @@ import org.eclipse.xsd.XSDElementDeclaration;
  * @author Justin Deoliveira,Refractions Research Inc.,jdeolive@refractions.net
  */
 public interface ElementInstance extends InstanceComponent {
-    /** @return The declaration of the element in the schema. */
+    /**
+     * @return The declaration of the element in the schema.
+     */
     XSDElementDeclaration getElementDeclaration();
 
-    /** @return The attributes of the element. */
+    /**
+     * @return The attributes of the element.
+     */
     AttributeInstance[] getAttributes();
 
     /**

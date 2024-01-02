@@ -87,7 +87,9 @@ public class GMLAbstractFeatureTypeBinding extends AbstractComplexBinding {
         this.configuration = configuration;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractFeatureType;

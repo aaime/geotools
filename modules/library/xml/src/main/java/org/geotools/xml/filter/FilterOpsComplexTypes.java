@@ -274,13 +274,17 @@ public class FilterOpsComplexTypes {
             return true;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return null;
@@ -329,13 +333,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "ComparisonOpsType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return BinaryComparisonOperator.class;
@@ -533,13 +541,17 @@ public class FilterOpsComplexTypes {
             return true;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return null;
@@ -571,13 +583,17 @@ public class FilterOpsComplexTypes {
             //			}
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "SpatialOpsType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return BinarySpatialOperator.class;
@@ -721,13 +737,17 @@ public class FilterOpsComplexTypes {
 
         //    	<xsd:complexType name="LogicOpsType" abstract="true"/>
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return null;
@@ -746,13 +766,17 @@ public class FilterOpsComplexTypes {
             return null; // subclass will do the right thing (tm)
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "LogicOpsType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return BinaryLogicOperator.class; // Not?
@@ -854,13 +878,17 @@ public class FilterOpsComplexTypes {
             return instance;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return choice;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -910,13 +938,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "FilterType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Filter.class;
@@ -1027,13 +1059,17 @@ public class FilterOpsComplexTypes {
             return attrs;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return null;
@@ -1076,13 +1112,17 @@ public class FilterOpsComplexTypes {
             // return r;
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "FeatureIdType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Id.class;
@@ -1149,13 +1189,17 @@ public class FilterOpsComplexTypes {
         //		</xsd:complexType>
         private static Element[] elems = {
             new FilterElement("expression", ExpressionType.getInstance()) {
-                /** @see Element#getMaxOccurs() */
+                /**
+                 * @see Element#getMaxOccurs()
+                 */
                 @Override
                 public int getMaxOccurs() {
                     return 2;
                 }
 
-                /** @see Element#getMinOccurs() */
+                /**
+                 * @see Element#getMinOccurs()
+                 */
                 @Override
                 public int getMinOccurs() {
                     return 2;
@@ -1173,13 +1217,17 @@ public class FilterOpsComplexTypes {
             return ComparisonOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return seq;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1231,13 +1279,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "BinaryComparisonOpType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return BinaryComparisonOperator.class;
@@ -1327,13 +1379,17 @@ public class FilterOpsComplexTypes {
             return ComparisonOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return seq;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1379,13 +1435,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "PropertyIsLikeType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return PropertyIsLike.class;
@@ -1474,13 +1534,17 @@ public class FilterOpsComplexTypes {
             return ComparisonOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return seq;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1506,13 +1570,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "PropertyIsNullType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return PropertyIsNull.class;
@@ -1590,13 +1658,17 @@ public class FilterOpsComplexTypes {
             return ComparisonOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return seq;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1625,13 +1697,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "PropertyIsBetweenType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return PropertyIsBetween.class;
@@ -1698,13 +1774,17 @@ public class FilterOpsComplexTypes {
             return instance;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return choice;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1723,13 +1803,17 @@ public class FilterOpsComplexTypes {
             return value[0].getValue();
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "LowerBoundaryType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Expression.class;
@@ -1787,13 +1871,17 @@ public class FilterOpsComplexTypes {
             return instance;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return choice;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1812,13 +1900,17 @@ public class FilterOpsComplexTypes {
             return value[0].getValue();
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "UpperBoundaryType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Expression.class;
@@ -1895,13 +1987,17 @@ public class FilterOpsComplexTypes {
             return SpatialOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return child;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -1959,13 +2055,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "BinarySpatialOpType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return BinarySpatialOperator.class;
@@ -2101,13 +2201,17 @@ public class FilterOpsComplexTypes {
             return SpatialOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return seq;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -2154,13 +2258,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "BBOXType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Filter
@@ -2254,13 +2362,17 @@ public class FilterOpsComplexTypes {
             return SpatialOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return seq;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -2287,13 +2399,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "DistanceBufferType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return DistanceBufferOperator.class;
@@ -2391,13 +2507,17 @@ public class FilterOpsComplexTypes {
             return attrs;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return null;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return null;
@@ -2424,13 +2544,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "DistanceType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return DistanceBufferOperator.class;
@@ -2530,13 +2654,17 @@ public class FilterOpsComplexTypes {
             return LogicOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return choice;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -2593,13 +2721,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "BinaryLogicOpType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return BinaryLogicOperator.class;
@@ -2680,13 +2812,17 @@ public class FilterOpsComplexTypes {
             return LogicOpsType.getInstance();
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChild() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChild()
+         */
         @Override
         public ElementGrouping getChild() {
             return choice;
         }
 
-        /** @see org.geotools.xml.schema.ComplexType#getChildElements() */
+        /**
+         * @see org.geotools.xml.schema.ComplexType#getChildElements()
+         */
         @Override
         public Element[] getChildElements() {
             return elems;
@@ -2722,13 +2858,17 @@ public class FilterOpsComplexTypes {
             }
         }
 
-        /** @see org.geotools.xml.schema.Type#getName() */
+        /**
+         * @see org.geotools.xml.schema.Type#getName()
+         */
         @Override
         public String getName() {
             return "UnaryLogicOpType";
         }
 
-        /** @see org.geotools.xml.schema.Type#getInstanceType() */
+        /**
+         * @see org.geotools.xml.schema.Type#getInstanceType()
+         */
         @Override
         public Class getInstanceType() {
             return Not.class;

@@ -398,7 +398,9 @@ public abstract class BaseCoverageProcessingNode implements CoverageProcessingNo
      *
      * @see org.geotools.renderer.lite.gridcoverage2d.CoverageProcessingNode#getSinks()
      */
-    /** @uml.property name="sinks" */
+    /**
+     * @uml.property name="sinks"
+     */
     @Override
     public List<CoverageProcessingNode> getSinks() {
         return Collections.unmodifiableList(sinks);
@@ -419,7 +421,9 @@ public abstract class BaseCoverageProcessingNode implements CoverageProcessingNo
      *
      * @see org.geotools.renderer.lite.gridcoverage2d.CoverageProcessingNode#getSources()
      */
-    /** @uml.property name="sources" */
+    /**
+     * @uml.property name="sources"
+     */
     @Override
     public List<CoverageProcessingNode> getSources() {
         return Collections.unmodifiableList(sources);
@@ -526,7 +530,9 @@ public abstract class BaseCoverageProcessingNode implements CoverageProcessingNo
      *
      * @see org.geotools.renderer.lite.gridcoverage2d.CoverageProcessingNode#getDescription()
      */
-    /** @uml.property name="description" */
+    /**
+     * @uml.property name="description"
+     */
     @Override
     public InternationalString getDescription() {
         return description;
@@ -537,7 +543,9 @@ public abstract class BaseCoverageProcessingNode implements CoverageProcessingNo
      *
      * @see org.geotools.renderer.lite.gridcoverage2d.CoverageProcessingNode#getName()
      */
-    /** @uml.property name="name" */
+    /**
+     * @uml.property name="name"
+     */
     @Override
     public InternationalString getName() {
         return name;

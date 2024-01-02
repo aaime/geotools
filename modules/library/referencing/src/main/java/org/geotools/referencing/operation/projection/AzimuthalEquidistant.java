@@ -153,7 +153,8 @@ public class AzimuthalEquidistant {
             set(descriptors, Provider.LATITUDE_OF_CENTRE, values, latitudeOfOrigin);
             return values;
         }
-    };
+    }
+    ;
 
     /** Spherical Azimuthal Equidistant projection. */
     @SuppressWarnings("serial")
@@ -476,8 +477,10 @@ public class AzimuthalEquidistant {
          */
         @Override
         protected MathTransform createMathTransform(ParameterValueGroup parameters)
-                throws InvalidParameterNameException, ParameterNotFoundException,
-                        InvalidParameterValueException, FactoryException {
+                throws InvalidParameterNameException,
+                        ParameterNotFoundException,
+                        InvalidParameterValueException,
+                        FactoryException {
             if (isSpherical(parameters)) {
                 return new Spherical(parameters);
             } else {

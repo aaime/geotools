@@ -1068,7 +1068,9 @@ public class Mosaic extends OperationJAI {
      * @author Nicola Lagomarsini
      */
     private static final class ResampledRasters {
-        /** @return The array of the resampled RenderedImages */
+        /**
+         * @return The array of the resampled RenderedImages
+         */
         public RenderedImage[] getRasters() {
             return rasters;
         }
@@ -1078,7 +1080,9 @@ public class Mosaic extends OperationJAI {
             this.rasters = rasters;
         }
 
-        /** @return The {@link GridGeometry2D} object to use for the mosaic */
+        /**
+         * @return The {@link GridGeometry2D} object to use for the mosaic
+         */
         public GridGeometry2D getFinalGeometry() {
             return finalGeometry;
         }
@@ -1088,7 +1092,9 @@ public class Mosaic extends OperationJAI {
             this.finalGeometry = finalGeometry;
         }
 
-        /** @return The {@link PlanarImage} array to use for the mosaic */
+        /**
+         * @return The {@link PlanarImage} array to use for the mosaic
+         */
         public PlanarImage[] getAlphas() {
             return alphas;
         }
@@ -1098,7 +1104,9 @@ public class Mosaic extends OperationJAI {
             this.alphas = alphas;
         }
 
-        /** @return The nodata to use for the mosaic */
+        /**
+         * @return The nodata to use for the mosaic
+         */
         public double[] getBackgrounds() {
             return nodata;
         }
@@ -1108,7 +1116,9 @@ public class Mosaic extends OperationJAI {
             this.nodata = nodata;
         }
 
-        /** @return The roi to use for the mosaic */
+        /**
+         * @return The roi to use for the mosaic
+         */
         public ROI[] getRois() {
             return rois;
         }
@@ -1118,7 +1128,9 @@ public class Mosaic extends OperationJAI {
             this.rois = rois;
         }
 
-        /** @return boolean indicating that at least one coverage contains nodata */
+        /**
+         * @return boolean indicating that at least one coverage contains nodata
+         */
         public boolean hasNoData() {
             return hasNoData;
         }

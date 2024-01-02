@@ -84,7 +84,9 @@ public class URLCheckers {
         getServiceRegistry().deregisterFactory(checker, URLChecker.class);
     }
 
-    /** @return enabled list of org.geotools.data.ows.URLChecker implementations */
+    /**
+     * @return enabled list of org.geotools.data.ows.URLChecker implementations
+     */
     public static List<URLChecker> getEnabledURLCheckers() {
         return getServiceRegistry()
                 .getFactories(URLChecker.class, null, GeoTools.getDefaultHints())

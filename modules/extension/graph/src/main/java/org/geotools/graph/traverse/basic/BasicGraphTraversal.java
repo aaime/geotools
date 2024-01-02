@@ -54,13 +54,17 @@ public class BasicGraphTraversal implements GraphTraversal {
         setIterator(iterator);
     }
 
-    /** @see GraphTraversal#setGraph(Graph) */
+    /**
+     * @see GraphTraversal#setGraph(Graph)
+     */
     @Override
     public void setGraph(Graph graph) {
         m_graph = graph;
     }
 
-    /** @see GraphTraversal#getGraph() */
+    /**
+     * @see GraphTraversal#getGraph()
+     */
     @Override
     public Graph getGraph() {
         return (m_graph);
@@ -79,19 +83,25 @@ public class BasicGraphTraversal implements GraphTraversal {
         m_iterator.init(m_graph, this);
     }
 
-    /** @see GraphTraversal#getIterator() */
+    /**
+     * @see GraphTraversal#getIterator()
+     */
     @Override
     public GraphIterator getIterator() {
         return (m_iterator);
     }
 
-    /** @see GraphTraversal#setWalker(GraphWalker) */
+    /**
+     * @see GraphTraversal#setWalker(GraphWalker)
+     */
     @Override
     public void setWalker(GraphWalker walker) {
         m_walker = walker;
     }
 
-    /** @see GraphTraversal#getWalker() */
+    /**
+     * @see GraphTraversal#getWalker()
+     */
     @Override
     public GraphWalker getWalker() {
         return (m_walker);

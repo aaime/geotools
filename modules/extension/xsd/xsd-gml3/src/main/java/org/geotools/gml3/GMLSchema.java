@@ -31238,6 +31238,7 @@ public class GMLSchema extends SchemaImpl {
                 CYLINDRICALCSREFTYPE_TYPE);
         put(new NameImpl("http://www.opengis.net/gml", "OffsetCurveType"), OFFSETCURVETYPE_TYPE);
     }
+
     /**
      * Profile of GMLSchema capturing a unique mapping of Java classes.
      *

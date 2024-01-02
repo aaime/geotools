@@ -166,6 +166,7 @@ public class UnitsTest {
 
     private static final double RADIAN_TO_DEGREE_RATIO = Math.PI / 180.0; // 0.017453292519943295
     private static final double DEEGREE_RATIO_COMPARISON_EPSILON = 1.0e-15;
+
     /**
      * Recognize representation of NonSI.DEEGREE_ANGLE to prevent unnecessary conversion.
      *

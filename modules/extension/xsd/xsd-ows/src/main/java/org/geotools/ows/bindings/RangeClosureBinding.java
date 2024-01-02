@@ -26,7 +26,9 @@ public class RangeClosureBinding extends AbstractSimpleBinding {
 
     public RangeClosureBinding() {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.rangeClosure;

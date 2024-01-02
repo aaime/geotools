@@ -541,7 +541,9 @@ public abstract class AbstractCRSTest extends OnlineTestCase {
 
     @Test
     public void testCRS_CH1903_LV03()
-            throws NoSuchAuthorityCodeException, FactoryException, MismatchedDimensionException,
+            throws NoSuchAuthorityCodeException,
+                    FactoryException,
+                    MismatchedDimensionException,
                     TransformException {
         CoordinateReferenceSystem sourceCRS = CRS.decode("EPSG:4326", false); // WGS84
         CoordinateReferenceSystem targetCRS = CRS.decode("EPSG:21781", false); // CH1903_LV03

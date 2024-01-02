@@ -194,6 +194,7 @@ public class FunctionParseTest {
                                 contains(10.0, "#00FF00"),
                                 contains(30.0, "#FF8800"))));
     }
+
     /**
      * Verify that an interval function for number can be parsed.
      *
@@ -219,6 +220,7 @@ public class FunctionParseTest {
                                 contains(5L, 10L),
                                 contains(10L, 20L))));
     }
+
     /**
      * Traverse a nested map using the array of strings, and cast the result to the provided class,
      * or return {@link Optional#empty()}.

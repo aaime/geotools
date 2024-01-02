@@ -74,6 +74,7 @@ public class ECQLTemporalPredicateTest extends CQLTemporalPredicateTest {
 
         Assert.assertTrue(resultFilter.evaluate(null));
     }
+
     /** After predicate with dateTime in the leftHand */
     @Test
     public void dateTimeExpresionAfterDateTimeExpresion() throws CQLException {

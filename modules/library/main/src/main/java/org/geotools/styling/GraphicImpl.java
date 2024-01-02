@@ -87,6 +87,7 @@ public class GraphicImpl
                     return ConstantExpression.ZERO;
                 }
             };
+
     /**
      * Indicates an absense of graphic.
      *
@@ -126,6 +127,7 @@ public class GraphicImpl
                 //            }
 
             };
+
     /** The logger for the default core module. */
     // private static final java.util.logging.Logger LOGGER =
     // org.geotools.util.logging.Logging.getLogger(GraphicImpl.class);

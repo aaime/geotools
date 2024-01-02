@@ -45,7 +45,9 @@ import org.geotools.xsd.InstanceComponent;
  * @generated
  */
 public class MLMimeTopLevelTypeBinding extends AbstractSimpleBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return ML.MIMETOPLEVELTYPE;

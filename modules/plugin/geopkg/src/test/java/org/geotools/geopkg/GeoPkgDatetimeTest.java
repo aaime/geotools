@@ -60,7 +60,9 @@ public class GeoPkgDatetimeTest {
     private static final NullProgressListener NULL_LISTENER = new NullProgressListener();
     private DataStore gpkg;
 
-    /** @throws java.lang.Exception */
+    /**
+     * @throws java.lang.Exception
+     */
     @Before
     public void setUp() throws Exception {
         URL url = TestData.url(this.getClass(), "datetime_date.gpkg");

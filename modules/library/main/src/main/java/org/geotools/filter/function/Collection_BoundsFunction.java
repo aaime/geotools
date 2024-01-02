@@ -56,6 +56,7 @@ public class Collection_BoundsFunction extends FunctionExpressionImpl {
                     "Collection_Bounds",
                     parameter("bounds", Object.class),
                     parameter("geometry", Geometry.class));
+
     /** Creates a new instance of Collection_BoundsFunction */
     public Collection_BoundsFunction() {
         super(NAME);

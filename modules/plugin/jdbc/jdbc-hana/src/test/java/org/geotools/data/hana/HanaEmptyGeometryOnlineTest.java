@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCEmptyGeometryOnlineTest;
 import org.geotools.jdbc.JDBCEmptyGeometryTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaEmptyGeometryOnlineTest extends JDBCEmptyGeometryOnlineTest {
 
     @Override

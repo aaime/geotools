@@ -828,6 +828,7 @@ public abstract class AbstractAuthorityMediator extends AbstractAuthorityFactory
         }
         return value;
     }
+
     /**
      * An interface describing a portion of work for which a worker is needed.
      *
@@ -855,6 +856,7 @@ public abstract class AbstractAuthorityMediator extends AbstractAuthorityFactory
             }
         }
     }
+
     /**
      * Clean up the object pool of workers (since we are shutting down).
      *
@@ -874,6 +876,7 @@ public abstract class AbstractAuthorityMediator extends AbstractAuthorityFactory
             workers = null;
         }
     }
+
     /**
      * Creates the objects, subclasses of AbstractCachedAuthorityFactory, which are held by the
      * ObjectPool. This implementation simply delegates each method to the subclass.
@@ -952,6 +955,7 @@ public abstract class AbstractAuthorityMediator extends AbstractAuthorityFactory
             final Class<? extends IdentifiedObject> type) throws FactoryException {
         return new LazyCachedFinder(type);
     }
+
     /**
      * An {@link IdentifiedObjectFinder} which uses a worker when searching.
      *
@@ -966,6 +970,7 @@ public abstract class AbstractAuthorityMediator extends AbstractAuthorityFactory
      */
     private final class LazyCachedFinder extends IdentifiedObjectFinder {
         private Class<? extends IdentifiedObject> type;
+
         /** Creates a finder for the underlying backing store. */
         LazyCachedFinder(final Class<? extends IdentifiedObject> type) {
             super(AbstractAuthorityMediator.this, type);
@@ -1028,6 +1033,7 @@ public abstract class AbstractAuthorityMediator extends AbstractAuthorityFactory
         protected Citation getAuthority() {
             return AbstractAuthorityMediator.this.getAuthority();
         }
+
         /** Returns the identifier for the specified object. */
         @Override
         public String findIdentifier(final IdentifiedObject object) throws FactoryException {

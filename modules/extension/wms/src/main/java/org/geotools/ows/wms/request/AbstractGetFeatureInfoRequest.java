@@ -53,7 +53,9 @@ public abstract class AbstractGetFeatureInfoRequest extends AbstractWMSRequest
         return request.getProperties();
     }
 
-    /** @see org.geotools.data.wms.request.Request#getFinalURL() */
+    /**
+     * @see org.geotools.data.wms.request.Request#getFinalURL()
+     */
     @Override
     public URL getFinalURL() {
         Iterator<Layer> iter = queryLayers.iterator();
@@ -91,37 +93,49 @@ public abstract class AbstractGetFeatureInfoRequest extends AbstractWMSRequest
         return url;
     }
 
-    /** @see GetFeatureInfoRequest#addQueryLayer(Layer) */
+    /**
+     * @see GetFeatureInfoRequest#addQueryLayer(Layer)
+     */
     @Override
     public void addQueryLayer(Layer layer) {
         queryLayers.add(layer);
     }
 
-    /** @see GetFeatureInfoRequest#setQueryLayers(java.util.Set) */
+    /**
+     * @see GetFeatureInfoRequest#setQueryLayers(java.util.Set)
+     */
     @Override
     public void setQueryLayers(Set<Layer> layers) {
         queryLayers = layers;
     }
 
-    /** @see GetFeatureInfoRequest#setInfoFormat(java.lang.String) */
+    /**
+     * @see GetFeatureInfoRequest#setInfoFormat(java.lang.String)
+     */
     @Override
     public void setInfoFormat(String infoFormat) {
         setProperty(INFO_FORMAT, infoFormat);
     }
 
-    /** @see GetFeatureInfoRequest#setFeatureCount(java.lang.String) */
+    /**
+     * @see GetFeatureInfoRequest#setFeatureCount(java.lang.String)
+     */
     @Override
     public void setFeatureCount(String featureCount) {
         setProperty(FEATURE_COUNT, featureCount);
     }
 
-    /** @see GetFeatureInfoRequest#setFeatureCount(int) */
+    /**
+     * @see GetFeatureInfoRequest#setFeatureCount(int)
+     */
     @Override
     public void setFeatureCount(int featureCount) {
         setFeatureCount(Integer.toString(featureCount));
     }
 
-    /** @see GetFeatureInfoRequest#setQueryPoint(int, int) */
+    /**
+     * @see GetFeatureInfoRequest#setQueryPoint(int, int)
+     */
     @Override
     public void setQueryPoint(int x, int y) {
         setProperty(getQueryX(), Integer.toString(x));

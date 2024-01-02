@@ -49,7 +49,9 @@ public class SvgParameterBinding extends SLDCssParameterBinding {
         super(filterFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.SvgParameter;

@@ -47,7 +47,9 @@ public class OGCOrBinding extends AbstractComplexBinding {
         this.filterfactory = filterfactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.Or;

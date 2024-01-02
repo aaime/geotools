@@ -381,7 +381,9 @@ public final class JDBCDataStore extends ContentDataStore implements GmlObjectSt
         this.fetchSize = fetchSize;
     }
 
-    /** @return the number of features to bufferize while inserting in order to do batch inserts. */
+    /**
+     * @return the number of features to bufferize while inserting in order to do batch inserts.
+     */
     public int getBatchInsertSize() {
         return batchInsertSize;
     }

@@ -77,7 +77,9 @@ import org.locationtech.jts.geom.Polygon;
 import org.locationtech.jts.io.ParseException;
 import org.locationtech.jts.io.WKTReader;
 
-/** @author Erwan Bocher */
+/**
+ * @author Erwan Bocher
+ */
 class H2GISTest extends H2GISTestSetup {
 
     private static final String DB_NAME = "H2GISDBTest";
@@ -558,7 +560,10 @@ class H2GISTest extends H2GISTestSetup {
         assertNotNull(ds.getFeatureSource(tableName));
         assertEquals(Point.class, dbSchema.getGeometryDescriptor().getType().getBinding());
         ReferenceIdentifier crsidentifier =
-                dbSchema.getGeometryDescriptor().getCoordinateReferenceSystem().getIdentifiers()
+                dbSchema
+                        .getGeometryDescriptor()
+                        .getCoordinateReferenceSystem()
+                        .getIdentifiers()
                         .stream()
                         .findFirst()
                         .get();

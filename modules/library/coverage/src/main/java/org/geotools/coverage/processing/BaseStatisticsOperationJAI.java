@@ -146,6 +146,7 @@ public abstract class BaseStatisticsOperationJAI extends OperationJAI {
                         ImagingParameterDescriptors.DEFAULT_SOURCE_TYPE_MAP,
                         REPLACED_DESCRIPTORS));
     }
+
     /**
      * Constructor for {@link BaseStatisticsOperationJAI}.
      *

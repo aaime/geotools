@@ -69,7 +69,9 @@ public class _ServiceIdentificationBinding extends AbstractComplexEMFBinding {
         super(factory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS._ServiceIdentification;

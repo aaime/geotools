@@ -52,7 +52,9 @@ import org.picocontainer.MutablePicoContainer;
  * @generated
  */
 public class XSLocalComplexTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.LOCALCOMPLEXTYPE;

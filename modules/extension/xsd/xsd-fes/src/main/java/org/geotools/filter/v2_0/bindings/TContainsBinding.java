@@ -47,7 +47,9 @@ public class TContainsBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return FES.TContains;

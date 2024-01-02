@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import java.sql.Connection;
 import org.geotools.jdbc.JDBCNoPrimaryKeyTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaNoPrimaryKeyTestSetup extends JDBCNoPrimaryKeyTestSetup {
 
     private static final String TABLE = "lake";

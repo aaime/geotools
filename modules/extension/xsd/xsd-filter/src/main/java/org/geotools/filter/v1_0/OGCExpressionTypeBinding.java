@@ -45,7 +45,9 @@ public class OGCExpressionTypeBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OGC.ExpressionType;

@@ -63,7 +63,9 @@ import org.locationtech.jts.geom.LineString;
 import si.uom.SI;
 import systems.uom.common.USCustomary;
 
-/** @author milton */
+/**
+ * @author milton
+ */
 public class UomRescaleStyleVisitorTest {
 
     FilterFactory ff = CommonFactoryFinder.getFilterFactory();

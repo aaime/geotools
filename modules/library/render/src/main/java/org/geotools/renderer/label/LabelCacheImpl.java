@@ -215,7 +215,9 @@ public class LabelCacheImpl implements LabelCache {
         activeLayers.clear();
     }
 
-    /** @see org.geotools.renderer.lite.LabelCache#start() */
+    /**
+     * @see org.geotools.renderer.lite.LabelCache#start()
+     */
     @Override
     public void start() {
         stop = false;
@@ -260,7 +262,9 @@ public class LabelCacheImpl implements LabelCache {
         enabledLayers.remove(layerId);
     }
 
-    /** @see org.geotools.renderer.lite.LabelCache#startLayer(String) */
+    /**
+     * @see org.geotools.renderer.lite.LabelCache#startLayer(String)
+     */
     @Override
     public void startLayer(String layerId) {
         enabledLayers.add(layerId);
@@ -483,7 +487,9 @@ public class LabelCacheImpl implements LabelCache {
         return item;
     }
 
-    /** @see org.geotools.renderer.lite.LabelCache#endLayer(String,Graphics2D,Rectangle) */
+    /**
+     * @see org.geotools.renderer.lite.LabelCache#endLayer(String,Graphics2D,Rectangle)
+     */
     @Override
     public void endLayer(String layerId, Graphics2D graphics, Rectangle displayArea) {
         activeLayers.remove(layerId);
@@ -516,7 +522,9 @@ public class LabelCacheImpl implements LabelCache {
         return false;
     }
 
-    /** @see org.geotools.renderer.lite.LabelCache#end(java.awt.Graphics2D, java.awt.Rectangle) */
+    /**
+     * @see org.geotools.renderer.lite.LabelCache#end(java.awt.Graphics2D, java.awt.Rectangle)
+     */
     @Override
     public void end(Graphics2D graphics, Rectangle displayArea) {
         final Object antialiasing = graphics.getRenderingHint(RenderingHints.KEY_ANTIALIASING);

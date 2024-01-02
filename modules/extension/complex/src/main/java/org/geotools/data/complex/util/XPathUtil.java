@@ -187,7 +187,9 @@ public class XPathUtil {
         }
     }
 
-    /** @author Gabriel Roldan */
+    /**
+     * @author Gabriel Roldan
+     */
     public static class Step implements Cloneable {
         private int index;
 

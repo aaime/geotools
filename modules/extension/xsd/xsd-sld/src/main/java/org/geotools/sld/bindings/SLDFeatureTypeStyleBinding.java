@@ -68,7 +68,9 @@ public class SLDFeatureTypeStyleBinding extends AbstractComplexBinding {
         this.styleFactory = styleFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.FEATURETYPESTYLE;

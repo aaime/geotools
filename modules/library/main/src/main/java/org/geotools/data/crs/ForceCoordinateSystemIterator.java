@@ -86,7 +86,9 @@ public class ForceCoordinateSystemIterator
         this.reader = reader;
     }
 
-    /** @see FeatureReader#getFeatureType() */
+    /**
+     * @see FeatureReader#getFeatureType()
+     */
     public SimpleFeatureType getFeatureType() {
         if (reader == null || builder == null) {
             throw new IllegalStateException("Reader has already been closed");
@@ -94,7 +96,9 @@ public class ForceCoordinateSystemIterator
         return builder.getFeatureType();
     }
 
-    /** @see FeatureReader#next() */
+    /**
+     * @see FeatureReader#next()
+     */
     @Override
     public SimpleFeature next() throws NoSuchElementException {
         if (reader == null) {
@@ -112,7 +116,9 @@ public class ForceCoordinateSystemIterator
         }
     }
 
-    /** @see FeatureReader#hasNext() */
+    /**
+     * @see FeatureReader#hasNext()
+     */
     @Override
     public boolean hasNext() {
         if (reader == null) {
@@ -126,7 +132,10 @@ public class ForceCoordinateSystemIterator
     public void remove() {
         throw new UnsupportedOperationException();
     }
-    /** @see FeatureReader#close() */
+
+    /**
+     * @see FeatureReader#close()
+     */
     @Override
     public void close() {
         if (reader == null) {

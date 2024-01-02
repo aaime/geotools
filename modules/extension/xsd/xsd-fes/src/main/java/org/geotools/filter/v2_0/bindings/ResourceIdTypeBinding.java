@@ -35,7 +35,9 @@ public class ResourceIdTypeBinding extends AbstractComplexBinding {
         this.factory = factory;
     }
 
-    /** @return {@code FeatureId.class}, meant to catch {@code ResourceId.class} too */
+    /**
+     * @return {@code FeatureId.class}, meant to catch {@code ResourceId.class} too
+     */
     @Override
     public Class<?> getType() {
         return FeatureId.class;

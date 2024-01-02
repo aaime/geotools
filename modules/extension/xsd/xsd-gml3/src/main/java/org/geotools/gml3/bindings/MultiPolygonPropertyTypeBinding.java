@@ -56,7 +56,9 @@ public class MultiPolygonPropertyTypeBinding extends GeometryPropertyTypeBinding
         super(encodingUtils, idRegistry);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiPolygonPropertyType;

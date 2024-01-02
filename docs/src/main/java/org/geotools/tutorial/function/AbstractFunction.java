@@ -57,6 +57,7 @@ public abstract class AbstractFunction implements Function {
     public Literal getFallbackValue() {
         return fallback;
     }
+
     // helper methods
     <T> T eval(Object feature, int index, Class<T> type) {
         Expression expr = params.get(index);

@@ -101,7 +101,9 @@ public abstract class GranuleCatalog {
 
     public abstract void removeType(final String typeName) throws IOException;
 
-    /** @deprecated please use {@link #removeGranules(Query, Transaction)} */
+    /**
+     * @deprecated please use {@link #removeGranules(Query, Transaction)}
+     */
     @Deprecated
     public abstract int removeGranules(Query query);
 

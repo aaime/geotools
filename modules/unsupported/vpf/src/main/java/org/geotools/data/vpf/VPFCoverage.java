@@ -51,8 +51,10 @@ public class VPFCoverage {
 
     /** The owning library */
     private final VPFLibrary library;
+
     /** Path name for the directory containing this coverage */
     private final String pathName;
+
     /** The topology level (0-3) */
     private final int topologyLevel;
 
@@ -225,7 +227,10 @@ public class VPFCoverage {
     public String getPathName() {
         return pathName;
     }
-    /** @return Returns the topologyLevel. */
+
+    /**
+     * @return Returns the topologyLevel.
+     */
     public int getTopologyLevel() {
         return topologyLevel;
     }
@@ -233,6 +238,7 @@ public class VPFCoverage {
     public String getDescription() {
         return this.description;
     }
+
     /*
      *  (non-Javadoc)
      * @see java.lang.Object#toString()

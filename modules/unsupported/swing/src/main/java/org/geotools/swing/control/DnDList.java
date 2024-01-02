@@ -88,6 +88,7 @@ public class DnDList<T> extends JList<T>
     public DnDListModel<T> getModel() {
         return (DnDListModel<T>) super.getModel();
     }
+
     /** Called by the system when a drag gesture starts */
     @Override
     public void dragGestureRecognized(DragGestureEvent dge) {

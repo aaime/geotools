@@ -29,7 +29,9 @@ class WMTSZoomLevel extends ZoomLevel {
 
     private final WMTSTileService service;
 
-    /** @param zoomLevel */
+    /**
+     * @param zoomLevel
+     */
     public WMTSZoomLevel(int zoomLevel, WMTSTileService service) {
         // super(zoomLevel);
         this.service = service;

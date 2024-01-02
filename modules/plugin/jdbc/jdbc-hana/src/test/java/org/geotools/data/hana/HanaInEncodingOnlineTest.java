@@ -20,7 +20,9 @@ import java.io.IOException;
 import org.geotools.jdbc.JDBCInEncodingOnlineTest;
 import org.geotools.jdbc.JDBCTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaInEncodingOnlineTest extends JDBCInEncodingOnlineTest {
 
     @Override

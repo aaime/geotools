@@ -55,7 +55,9 @@ public class ComplexFeatureBuilderTest {
         }
     }
 
-    /** @throws Exception */
+    /**
+     * @throws Exception
+     */
     @Test(expected = IllegalArgumentException.class)
     public void append_validNameInvalidValueClass_throwsIllegalArgumentException()
             throws Exception {

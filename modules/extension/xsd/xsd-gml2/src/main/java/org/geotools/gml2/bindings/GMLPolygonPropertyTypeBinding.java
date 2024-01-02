@@ -54,7 +54,9 @@ import org.locationtech.jts.geom.Polygon;
  * @generated
  */
 public class GMLPolygonPropertyTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.PolygonPropertyType;

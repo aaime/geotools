@@ -20,7 +20,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import org.geotools.data.hana.metadata.Srs;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaTestSetupDefault extends HanaTestSetupPSPooling {
 
     private static final String TABLE1 = "ft1";

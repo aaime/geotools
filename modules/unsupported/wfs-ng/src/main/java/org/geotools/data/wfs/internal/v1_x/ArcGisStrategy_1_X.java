@@ -18,7 +18,9 @@ package org.geotools.data.wfs.internal.v1_x;
 
 import org.geotools.data.wfs.internal.GetFeatureRequest.ResultType;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class ArcGisStrategy_1_X extends StrictWFS_1_x_Strategy {
     // this fixes the issue where ArcGis returns the full count when asked for a filtered and
     // limited HITs count

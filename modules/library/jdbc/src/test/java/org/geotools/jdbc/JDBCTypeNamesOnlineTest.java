@@ -24,7 +24,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
-/** @author r0bb3n */
+/**
+ * @author r0bb3n
+ */
 public abstract class JDBCTypeNamesOnlineTest extends JDBCTestSupport {
 
     @Override

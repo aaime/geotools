@@ -224,6 +224,7 @@ public class Capabilities {
     }
 
     public static Capabilities LOGICAL_OPENGIS = LOGICAL;
+
     /** Capabilities representing the simple comparisions. */
     public static Capabilities SIMPLE_COMPARISONS;
 
@@ -242,6 +243,7 @@ public class Capabilities {
 
     /** This is a quick visitor (returning true / false) that only checks one level deep. */
     IsSupportedFilterVisitor supportedVisitor;
+
     /**
      * Visitor (returning true / false) if the provided filter is supported by our
      * FilterCapabilities.
@@ -359,6 +361,7 @@ public class Capabilities {
             }
         }
     }
+
     /**
      * Will add support for a function with the provided number of arguments
      *
@@ -390,6 +393,7 @@ public class Capabilities {
             functions.getFunctionNames().add(function);
         }
     }
+
     /**
      * Determines if specific filter passed in is supported.
      *
@@ -429,6 +433,7 @@ public class Capabilities {
         }
         return (Boolean) filter.accept(fullySupportedVisitor, null);
     }
+
     /**
      * Determines if the expression and all its sub expressions is supported.
      *

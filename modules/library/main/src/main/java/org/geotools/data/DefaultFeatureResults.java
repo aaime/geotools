@@ -159,6 +159,7 @@ public class DefaultFeatureResults extends DataFeatureCollection {
 
         return schema;
     }
+
     /**
      * FeatureSchema for provided query.
      *

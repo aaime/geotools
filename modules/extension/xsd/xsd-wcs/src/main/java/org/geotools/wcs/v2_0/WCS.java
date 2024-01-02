@@ -57,94 +57,208 @@ public final class WCS extends XSD {
         return getClass().getResource("wcsAll.xsd").toString();
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final String NAMESPACE = "http://www.opengis.net/wcs/2.0";
 
     public static final String NAMESPACE_RANGESUBSET =
             "http://www.opengis.net/wcs/range-subsetting/1.0";
 
     /* Type Definitions */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName CapabilitiesType = new QName(NAMESPACE, "CapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ContentsType = new QName(NAMESPACE, "ContentsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageDescriptionsType =
             new QName(NAMESPACE, "CoverageDescriptionsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageDescriptionType =
             new QName(NAMESPACE, "CoverageDescriptionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageOfferingsType = new QName(NAMESPACE, "CoverageOfferingsType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageSubtypeParentType =
             new QName(NAMESPACE, "CoverageSubtypeParentType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageSummaryType = new QName(NAMESPACE, "CoverageSummaryType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeCoverageType = new QName(NAMESPACE, "DescribeCoverageType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DimensionSliceType = new QName(NAMESPACE, "DimensionSliceType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DimensionSubsetType = new QName(NAMESPACE, "DimensionSubsetType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DimensionTrimType = new QName(NAMESPACE, "DimensionTrimType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ExtensionType = new QName(NAMESPACE, "ExtensionType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilitiesType = new QName(NAMESPACE, "GetCapabilitiesType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCoverageType = new QName(NAMESPACE, "GetCoverageType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OfferedCoverageType = new QName(NAMESPACE, "OfferedCoverageType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName RequestBaseType = new QName(NAMESPACE, "RequestBaseType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ServiceMetadataType = new QName(NAMESPACE, "ServiceMetadataType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ServiceParametersType = new QName(NAMESPACE, "ServiceParametersType");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName VersionStringType = new QName(NAMESPACE, "VersionStringType");
 
     /* Elements */
-    /** @generated */
+    /**
+     * @generated
+     */
     public static final QName Capabilities = new QName(NAMESPACE, "Capabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Contents = new QName(NAMESPACE, "Contents");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageDescription = new QName(NAMESPACE, "CoverageDescription");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageDescriptions = new QName(NAMESPACE, "CoverageDescriptions");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageId = new QName(NAMESPACE, "CoverageId");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageOfferings = new QName(NAMESPACE, "CoverageOfferings");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageSubtype = new QName(NAMESPACE, "CoverageSubtype");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageSubtypeParent = new QName(NAMESPACE, "CoverageSubtypeParent");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName CoverageSummary = new QName(NAMESPACE, "CoverageSummary");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DescribeCoverage = new QName(NAMESPACE, "DescribeCoverage");
 
     public static final QName DescribeEOCoverageSet = new QName(NAMESPACE, "DescribeEOCoverageSet");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DimensionSlice = new QName(NAMESPACE, "DimensionSlice");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DimensionSubset = new QName(NAMESPACE, "DimensionSubset");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName DimensionTrim = new QName(NAMESPACE, "DimensionTrim");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName Extension = new QName(NAMESPACE, "Extension");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCapabilities = new QName(NAMESPACE, "GetCapabilities");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName GetCoverage = new QName(NAMESPACE, "GetCoverage");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName OfferedCoverage = new QName(NAMESPACE, "OfferedCoverage");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ServiceMetadata = new QName(NAMESPACE, "ServiceMetadata");
-    /** @generated */
+
+    /**
+     * @generated
+     */
     public static final QName ServiceParameters = new QName(NAMESPACE, "ServiceParameters");
 }

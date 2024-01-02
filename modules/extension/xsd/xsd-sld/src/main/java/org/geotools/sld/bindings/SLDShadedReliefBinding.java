@@ -63,7 +63,9 @@ public class SLDShadedReliefBinding extends AbstractComplexBinding {
         this.filterFactory = filterFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SLD.SHADEDRELIEF;

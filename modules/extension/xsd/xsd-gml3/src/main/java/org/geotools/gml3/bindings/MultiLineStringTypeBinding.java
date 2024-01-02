@@ -58,7 +58,9 @@ public class MultiLineStringTypeBinding extends AbstractComplexBinding {
         this.gFactory = gFactory;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.MultiLineStringType;

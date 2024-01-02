@@ -61,6 +61,7 @@ public class GeometryConverter {
     }
 
     public static final String DATATYPE = "MDSYS.SDO_GEOMETRY";
+
     /**
      * Used to handle MDSYS.SDO_GEOMETRY.
      *
@@ -352,6 +353,7 @@ public class GeometryConverter {
         if (datum == null) return DEFAULT;
         return datum.intValue();
     }
+
     /**
      * Presents Number as an int with optional default value in case the {@code datum} argument is
      * {@code null}.
@@ -362,11 +364,13 @@ public class GeometryConverter {
         if (datum == null) return DEFAULT;
         return datum.intValue();
     }
+
     /** Presents datum as a double */
     protected double asDouble(Datum datum, final double DEFAULT) throws SQLException {
         if (datum == null) return DEFAULT;
         return ((NUMBER) datum).doubleValue();
     }
+
     /**
      * Presents Number as a double with optional default value in case the {@code datum} argument is
      * {@code null}.
@@ -406,6 +410,7 @@ public class GeometryConverter {
         }
         return array;
     }
+
     /**
      * Presents Number[] as a double[] with optional default value in case an {@code data[n]}
      * argument is {@code null}.

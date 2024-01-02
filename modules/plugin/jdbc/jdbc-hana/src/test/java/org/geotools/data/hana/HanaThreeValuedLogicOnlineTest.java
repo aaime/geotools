@@ -19,7 +19,9 @@ package org.geotools.data.hana;
 import org.geotools.jdbc.JDBCThreeValuedLogicOnlineTest;
 import org.geotools.jdbc.JDBCThreeValuedLogicTestSetup;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaThreeValuedLogicOnlineTest extends JDBCThreeValuedLogicOnlineTest {
 
     @Override

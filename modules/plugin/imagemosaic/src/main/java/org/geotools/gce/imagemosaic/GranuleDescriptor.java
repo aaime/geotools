@@ -129,6 +129,7 @@ public class GranuleDescriptor {
             return pathType.resolvePath(parentLocation, granuleLocation);
         }
     }
+
     /** Logger. */
     private static final Logger LOGGER =
             org.geotools.util.logging.Logging.getLogger(GranuleDescriptor.class);
@@ -1868,7 +1869,9 @@ public class GranuleDescriptor {
         return this.format.getReader(granuleUrl, hints);
     }
 
-    /** @return */
+    /**
+     * @return
+     */
     public MultiLevelROI getRoiProvider() {
         return this.roiProvider;
     }

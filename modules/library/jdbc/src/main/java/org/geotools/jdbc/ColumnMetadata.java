@@ -22,18 +22,25 @@ import org.geotools.api.filter.Filter;
 public class ColumnMetadata {
 
     Filter restriction;
+
     /** The column java type, if known */
     Class binding;
+
     /** The column name */
     String name;
+
     /** The native type name */
     String typeName;
+
     /** The native sql type */
     int sqlType;
+
     /** Is the column accepting null values? */
     boolean nullable;
+
     /** The native srid */
     Integer srid;
+
     /** Column Remarks */
     String remarks;
 

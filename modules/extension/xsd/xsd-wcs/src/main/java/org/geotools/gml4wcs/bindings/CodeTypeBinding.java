@@ -55,7 +55,9 @@ import org.geotools.xsd.Node;
  */
 public class CodeTypeBinding extends AbstractComplexBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.CodeType;

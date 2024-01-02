@@ -55,7 +55,9 @@ public class LineStyleTypeBinding extends AbstractComplexBinding {
         this.sb = sb;
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.LineStyleType;

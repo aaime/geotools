@@ -53,7 +53,9 @@ public class RegionTypeBinding extends AbstractComplexBinding {
 
     private final GeometryFactory geometryFactory;
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return KML.RegionType;

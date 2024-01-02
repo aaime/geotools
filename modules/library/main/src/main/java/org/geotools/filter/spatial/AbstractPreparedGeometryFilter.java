@@ -129,16 +129,19 @@ public abstract class AbstractPreparedGeometryFilter extends GeometryFilterImpl 
 
     /** Indicates which expressions are {@link Literal}s */
     protected Literals literals;
+
     /**
      * The PreparedGeometry for the left Geometry. Null if the left geometry is not a {@link
      * Literal}
      */
     protected PreparedGeometry leftPreppedGeom;
+
     /**
      * The PreparedGeometry for the right Geometry. Null if the right geometry is not a {@link
      * Literal}
      */
     protected PreparedGeometry rightPreppedGeom;
+
     /**
      * If both expressions are literals the value will never change. In that case this field is that
      * calculated value. It is false otherwise.

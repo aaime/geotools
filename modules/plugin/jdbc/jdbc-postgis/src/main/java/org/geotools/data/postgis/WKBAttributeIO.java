@@ -89,7 +89,9 @@ public class WKBAttributeIO {
         }
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#read(java.sql.ResultSet, int) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#read(java.sql.ResultSet, int)
+     */
     public Object read(ResultSet rs, String columnName) throws IOException {
         try {
             byte[] bytes = rs.getBytes(columnName);
@@ -104,7 +106,9 @@ public class WKBAttributeIO {
         }
     }
 
-    /** @see org.geotools.data.jdbc.attributeio.AttributeIO#read(java.sql.ResultSet, int) */
+    /**
+     * @see org.geotools.data.jdbc.attributeio.AttributeIO#read(java.sql.ResultSet, int)
+     */
     public Object read(ResultSet rs, int columnIndex) throws IOException {
         try {
             byte[] bytes = rs.getBytes(columnIndex);

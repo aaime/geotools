@@ -98,7 +98,9 @@ public class ThreadedTransformTest {
     }
 
     protected void transform()
-            throws URISyntaxException, OperationNotFoundException, FactoryException,
+            throws URISyntaxException,
+                    OperationNotFoundException,
+                    FactoryException,
                     TransformException {
         for (int iter = 0; iter < NUM_ITERATIONS; iter++) {
             CoordinateOperationFactory coordinateOperationFactory =

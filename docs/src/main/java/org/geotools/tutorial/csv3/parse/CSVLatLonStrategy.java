@@ -123,6 +123,7 @@ public class CSVLatLonStrategy extends CSVStrategy {
                 || "long".equalsIgnoreCase(s)
                 || "longitude".equalsIgnoreCase(s);
     }
+
     // docs end isLongitude
 
     protected static boolean isNumeric(Class<?> clazz) {
@@ -164,6 +165,7 @@ public class CSVLatLonStrategy extends CSVStrategy {
             writer.close();
         }
     }
+
     // docs end createSchema
 
     // docs start decode
@@ -208,6 +210,7 @@ public class CSVLatLonStrategy extends CSVStrategy {
         }
         return builder.buildFeature(csvFileState.getTypeName() + "-" + recordId);
     }
+
     // docs end decode
 
     // docs start encode

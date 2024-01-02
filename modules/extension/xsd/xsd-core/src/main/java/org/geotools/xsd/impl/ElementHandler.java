@@ -68,6 +68,8 @@ public interface ElementHandler extends Handler {
      */
     void endElement(QName qName) throws SAXException;
 
-    /** @return The declaration of hte element being handled. */
+    /**
+     * @return The declaration of hte element being handled.
+     */
     XSDElementDeclaration getElementDeclaration();
 }

@@ -24,6 +24,7 @@ public class ProcessTutorial extends StaticMethodsProcessFactory<ProcessTutorial
     public ProcessTutorial() {
         super(Text.text("Tutorial"), "tutorial", ProcessTutorial.class);
     }
+
     // constructor end
 
     // octagonalEnvelope start

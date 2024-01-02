@@ -69,19 +69,25 @@ public class FidFilterImpl extends AbstractFilter implements Id {
         }
     }
 
-    /** @see org.geotools.api.filter.Id#getIDs() */
+    /**
+     * @see org.geotools.api.filter.Id#getIDs()
+     */
     @Override
     public Set<Object> getIDs() {
         return new HashSet<>(getFidsSet());
     }
 
-    /** @see org.geotools.api.filter.Id#getIdentifiers() */
+    /**
+     * @see org.geotools.api.filter.Id#getIdentifiers()
+     */
     @Override
     public Set<Identifier> getIdentifiers() {
         return fids;
     }
 
-    /** @see org.geotools.api.filter.identity.FeatureId#setIDs(Set) */
+    /**
+     * @see org.geotools.api.filter.identity.FeatureId#setIDs(Set)
+     */
     public void setIDs(Set ids) {
         fids = new HashSet<>();
         addAllFids(ids);

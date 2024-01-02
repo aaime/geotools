@@ -30,7 +30,9 @@ import org.geotools.jdbc.VirtualTable;
 import org.geotools.referencing.CRS;
 import org.locationtech.jts.geom.Geometry;
 
-/** @author Stefan Uhrig, SAP SE */
+/**
+ * @author Stefan Uhrig, SAP SE
+ */
 public class HanaGeographyOnlineTest extends JDBCGeographyOnlineTest {
 
     @Override

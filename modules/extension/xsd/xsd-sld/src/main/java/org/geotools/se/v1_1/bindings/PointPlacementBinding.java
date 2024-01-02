@@ -48,7 +48,9 @@ public class PointPlacementBinding extends SLDPointPlacementBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.PointPlacement;

@@ -368,6 +368,7 @@ public class FeatureTransformer extends TransformerBase {
         boolean prefixGml = false;
         boolean featureBounding = false;
         boolean collectionBounding = true;
+
         /**
          * The string representing the Spatial Reference System of the data.
          *
@@ -376,6 +377,7 @@ public class FeatureTransformer extends TransformerBase {
          * actual (lack of) abilities of the underlying DataStore).
          */
         String srsName = null;
+
         /**
          * Will be 0 - if unknown; 2 if normal and 3 if working with 3D coordinates.
          *
@@ -432,6 +434,7 @@ public class FeatureTransformer extends TransformerBase {
             return new GeometryTransformer.GeometryTranslator(
                     handler, numDecimals, padWithZeros, forceDecimalEncoding);
         }
+
         /** */
         protected GeometryTranslator createGeometryTranslator(
                 ContentHandler handler,

@@ -47,7 +47,9 @@ import org.geotools.xsd.ows.OWS;
 public class PositionTypeBinding extends AbstractSimpleBinding {
     public PositionTypeBinding() {}
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return OWS.PositionType;

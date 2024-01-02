@@ -54,7 +54,9 @@ public class SimpleFeatureIOTest {
     }
 
     private void checkStringNameEncodeDecode(String name)
-            throws IOException, NoSuchAuthorityCodeException, FactoryException,
+            throws IOException,
+                    NoSuchAuthorityCodeException,
+                    FactoryException,
                     FileNotFoundException {
         File tempFile = File.createTempFile("temp", "simpleFeatureIO");
         SimpleFeatureTypeBuilder typeBuilder = new SimpleFeatureTypeBuilder();

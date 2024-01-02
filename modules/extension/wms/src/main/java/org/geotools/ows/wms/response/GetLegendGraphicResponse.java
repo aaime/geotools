@@ -21,7 +21,9 @@ import org.geotools.data.ows.Response;
 import org.geotools.http.HTTPResponse;
 import org.geotools.ows.ServiceException;
 
-/** @author Richard Gould */
+/**
+ * @author Richard Gould
+ */
 public class GetLegendGraphicResponse extends Response {
 
     public GetLegendGraphicResponse(HTTPResponse httpResponse)

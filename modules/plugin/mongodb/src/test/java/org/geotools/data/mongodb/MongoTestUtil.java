@@ -21,7 +21,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.mongodb.DBObject;
 
-/** @author tkunicki@boundlessgeo.com */
+/**
+ * @author tkunicki@boundlessgeo.com
+ */
 public class MongoTestUtil {
 
     public static String prettyPrint(DBObject dbo) {

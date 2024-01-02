@@ -75,6 +75,7 @@ import org.locationtech.jts.geom.PrecisionModel;
 public class MBStyle {
 
     private static final int DEFAULT_LABEL_PRIORITY = 1000;
+
     /**
      * JSON document being wrapped by this class.
      *
@@ -96,6 +97,7 @@ public class MBStyle {
     public MBStyle(JSONObject json) {
         this.json = json;
     }
+
     /**
      * Parse MBStyle for the provided json.
      *

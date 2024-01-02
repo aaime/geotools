@@ -77,7 +77,9 @@ public class GraphicStyle2D extends Style2D implements PointStyle2D {
         return rotation;
     }
 
-    /** @param image */
+    /**
+     * @param image
+     */
     public void setImage(BufferedImage image) {
         this.image = image;
     }

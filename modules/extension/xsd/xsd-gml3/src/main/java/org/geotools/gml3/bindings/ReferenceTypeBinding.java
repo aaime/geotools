@@ -50,7 +50,9 @@ import org.w3c.dom.Element;
  * @generated
  */
 public class ReferenceTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.ReferenceType;

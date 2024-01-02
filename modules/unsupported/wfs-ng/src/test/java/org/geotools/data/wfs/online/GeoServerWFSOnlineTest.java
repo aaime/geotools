@@ -44,7 +44,9 @@ import org.geotools.test.OnlineTestSupport;
 import org.geotools.util.factory.GeoTools;
 import org.junit.Test;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class GeoServerWFSOnlineTest extends OnlineTestSupport {
 
     /** All states with LAND_KM between 100,000 and 150,000 */

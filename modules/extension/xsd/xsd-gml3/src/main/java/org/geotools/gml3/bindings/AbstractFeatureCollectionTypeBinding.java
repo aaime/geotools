@@ -55,7 +55,9 @@ import org.geotools.xsd.Node;
  * @generated
  */
 public class AbstractFeatureCollectionTypeBinding extends AbstractComplexBinding {
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return GML.AbstractFeatureCollectionType;

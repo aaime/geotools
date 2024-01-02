@@ -47,7 +47,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.locationtech.jts.geom.Coordinate;
 
-/** @author ian */
+/**
+ * @author ian
+ */
 public class ContourProcessTest {
 
     static final Logger LOGGER = Logging.getLogger(ContourProcessTest.class);
@@ -149,7 +151,9 @@ public class ContourProcessTest {
         assertEquals(120, results.size());
     }
 
-    /** @param results */
+    /**
+     * @param results
+     */
     private static Object lock = new Object();
 
     private void displayResults(SimpleFeatureCollection points, SimpleFeatureCollection results)

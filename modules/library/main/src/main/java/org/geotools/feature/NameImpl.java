@@ -71,6 +71,7 @@ public class NameImpl
     public NameImpl(String namespace, String local) {
         this(namespace, ":", local);
     }
+
     /**
      * Constructs an instance with the local part and namespace set.
      *

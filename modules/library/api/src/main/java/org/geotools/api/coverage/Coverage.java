@@ -176,7 +176,8 @@ public interface Coverage {
      *     small to hold the output.
      */
     boolean[] evaluate(Position point, boolean[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException;
 
     /**
@@ -200,7 +201,8 @@ public interface Coverage {
      *     small to hold the output.
      */
     byte[] evaluate(Position point, byte[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException;
 
     /**
@@ -225,7 +227,8 @@ public interface Coverage {
      * @see Raster#getPixel(int, int, int[])
      */
     int[] evaluate(Position point, int[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException;
 
     /**
@@ -249,7 +252,8 @@ public interface Coverage {
      * @see Raster#getPixel(int, int, float[])
      */
     float[] evaluate(Position point, float[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException;
 
     /**
@@ -273,7 +277,8 @@ public interface Coverage {
      * @see Raster#getPixel(int, int, double[])
      */
     double[] evaluate(Position point, double[] destination)
-            throws PointOutsideCoverageException, CannotEvaluateException,
+            throws PointOutsideCoverageException,
+                    CannotEvaluateException,
                     ArrayIndexOutOfBoundsException;
 
     /**

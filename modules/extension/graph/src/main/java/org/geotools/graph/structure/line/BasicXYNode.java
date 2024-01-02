@@ -28,13 +28,17 @@ import org.locationtech.jts.geom.Coordinate;
  */
 public class BasicXYNode extends BasicNode implements XYNode {
 
-    /** @see XYNode#getCoordinate() */
+    /**
+     * @see XYNode#getCoordinate()
+     */
     @Override
     public Coordinate getCoordinate() {
         return ((Coordinate) getObject());
     }
 
-    /** @see XYNode#setCoordinate(Coordinate) */
+    /**
+     * @see XYNode#setCoordinate(Coordinate)
+     */
     @Override
     public void setCoordinate(Coordinate c) {
         setObject(c);

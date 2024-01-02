@@ -64,7 +64,10 @@ public class QueryExpressionTextTypeBinding extends AbstractComplexEMFBinding {
         super(factory, QueryExpressionTextType.class);
         this.namespaceContext = namespaceContext;
     }
-    /** @generated */
+
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return WFS.QueryExpressionTextType;

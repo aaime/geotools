@@ -40,6 +40,7 @@ import org.geotools.feature.SchemaException;
 public class VPFDataBase {
     /** The libraries in the database */
     private final List<VPFLibrary> libraries = new ArrayList<>();
+
     /**
      * Constructor
      *
@@ -91,6 +92,7 @@ public class VPFDataBase {
         //            libraries[i] = new VPFLibrary(libraries_tmp[i], directory, this);
         //        }
     }
+
     /**
      * Returns the libraries that are in the database
      *
@@ -99,6 +101,7 @@ public class VPFDataBase {
     public List getLibraries() {
         return libraries;
     }
+
     /**
      * Returns the minimum X value of the database
      *
@@ -190,6 +193,7 @@ public class VPFDataBase {
 
         return result;
     }
+
     /*
      *  (non-Javadoc)
      * @see java.lang.Object#toString()

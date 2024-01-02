@@ -35,49 +35,65 @@ public class ColorMapEntryImpl implements ColorMapEntry {
     private Expression color;
     private String label;
 
-    /** @see ColorMapEntry#getLabel */
+    /**
+     * @see ColorMapEntry#getLabel
+     */
     @Override
     public String getLabel() {
         return this.label;
     }
 
-    /** @see ColorMapEntry#setLabel */
+    /**
+     * @see ColorMapEntry#setLabel
+     */
     @Override
     public void setLabel(String label) {
         this.label = label;
     }
 
-    /** @see ColorMapEntry#setColor */
+    /**
+     * @see ColorMapEntry#setColor
+     */
     @Override
     public void setColor(Expression color) {
         this.color = color;
     }
 
-    /** @see ColorMapEntry#getColor */
+    /**
+     * @see ColorMapEntry#getColor
+     */
     @Override
     public Expression getColor() {
         return this.color;
     }
 
-    /** @see ColorMapEntry#setOpacity */
+    /**
+     * @see ColorMapEntry#setOpacity
+     */
     @Override
     public void setOpacity(Expression opacity) {
         this.opacity = opacity;
     }
 
-    /** @see ColorMapEntry#getOpacity() */
+    /**
+     * @see ColorMapEntry#getOpacity()
+     */
     @Override
     public Expression getOpacity() {
         return this.opacity;
     }
 
-    /** @see ColorMapEntry#setQuantity */
+    /**
+     * @see ColorMapEntry#setQuantity
+     */
     @Override
     public void setQuantity(Expression quantity) {
         this.quantity = quantity;
     }
 
-    /** @see ColorMapEntry#getQuantity() */
+    /**
+     * @see ColorMapEntry#getQuantity()
+     */
     @Override
     public Expression getQuantity() {
         return quantity;

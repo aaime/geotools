@@ -45,6 +45,7 @@ public class FilteringSimpleFeatureCollection extends DecoratingSimpleFeatureCol
 
     /** The original feature collection. */
     SimpleFeatureCollection delegate;
+
     /** the filter */
     Filter filter;
 

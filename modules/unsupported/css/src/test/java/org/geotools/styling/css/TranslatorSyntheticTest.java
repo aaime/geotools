@@ -502,6 +502,7 @@ public class TranslatorSyntheticTest extends CssBaseTest {
         assertLiteral("italic", font.getStyle());
         assertLiteral("20", font.getSize());
     }
+
     /*
      * Don't seem to be able to set font-size with out setting font-style
      */

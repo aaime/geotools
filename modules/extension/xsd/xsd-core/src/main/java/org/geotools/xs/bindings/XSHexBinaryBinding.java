@@ -57,7 +57,9 @@ import org.geotools.xsd.SimpleBinding;
  */
 public class XSHexBinaryBinding implements SimpleBinding {
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return XS.HEXBINARY;

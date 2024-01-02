@@ -569,6 +569,7 @@ public class JGrassUtilities {
         GridCoverage2D coverage2D = factory.create(name, writableRaster, writeEnvelope);
         return coverage2D;
     }
+
     /**
      * Create a {@link WritableRaster} from a double matrix.
      *

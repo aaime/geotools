@@ -92,23 +92,31 @@ public class InPlaceCoordinateSequenceTransformer implements CoordinateSequenceT
             dimension = dim;
         }
 
-        /** @param offset The offset to set. */
+        /**
+         * @param offset The offset to set.
+         */
         public void setOffset(int offset) {
             this.offset = offset;
         }
 
-        /** @param sequence The sequence to set. */
+        /**
+         * @param sequence The sequence to set.
+         */
         public void setSequence(PackedCoordinateSequence sequence) {
             this.sequence = sequence;
         }
 
-        /** @see org.geotools.api.geometry.coordinate.DirectPosition#getDimension() */
+        /**
+         * @see org.geotools.api.geometry.coordinate.DirectPosition#getDimension()
+         */
         @Override
         public int getDimension() {
             return dimension;
         }
 
-        /** @see org.geotools.api.geometry.coordinate.DirectPosition#getCoordinate() */
+        /**
+         * @see org.geotools.api.geometry.coordinate.DirectPosition#getCoordinate()
+         */
         @Override
         public double[] getCoordinate() {
             return new double[] {
@@ -118,13 +126,17 @@ public class InPlaceCoordinateSequenceTransformer implements CoordinateSequenceT
             };
         }
 
-        /** @see org.geotools.api.geometry.coordinate.DirectPosition#getOrdinate(int) */
+        /**
+         * @see org.geotools.api.geometry.coordinate.DirectPosition#getOrdinate(int)
+         */
         @Override
         public double getOrdinate(int arg0) throws IndexOutOfBoundsException {
             return sequence.getOrdinate(offset, arg0);
         }
 
-        /** @see org.geotools.api.geometry.coordinate.DirectPosition#setOrdinate(int, double) */
+        /**
+         * @see org.geotools.api.geometry.coordinate.DirectPosition#setOrdinate(int, double)
+         */
         @Override
         public void setOrdinate(int arg0, double arg1) throws IndexOutOfBoundsException {
             sequence.setOrdinate(offset, arg0, arg1);
@@ -139,18 +151,24 @@ public class InPlaceCoordinateSequenceTransformer implements CoordinateSequenceT
             throw new UnsupportedOperationException();
         }
 
-        /** @see org.geotools.api.geometry.coordinate.DirectPosition#clone() */
+        /**
+         * @see org.geotools.api.geometry.coordinate.DirectPosition#clone()
+         */
         @Override
         public FlyWeightDirectPosition clone() {
             throw new UnsupportedOperationException();
         }
 
-        /** @see Position */
+        /**
+         * @see Position
+         */
         public Position getPosition() {
             return this;
         }
 
-        /** @see Position */
+        /**
+         * @see Position
+         */
         @Override
         public Position getDirectPosition() {
             return this;

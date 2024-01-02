@@ -106,7 +106,9 @@ public class IonicStrategy extends StrictWFS_1_x_Strategy {
         return super.getDefaultOutputFormat(op);
     }
 
-    /** @return a Filter 1.0 configuration since Ionic expects that instead of 1.1 */
+    /**
+     * @return a Filter 1.0 configuration since Ionic expects that instead of 1.1
+     */
     @Override
     public Configuration getFilterConfiguration() {
         return Ionic_filter_1_0_0_Configuration;

@@ -240,7 +240,9 @@ public class MBStyleTransformer {
         }
     }
 
-    /** @return The list of default font names */
+    /**
+     * @return The list of default font names
+     */
     public List<String> getDefaultFonts() {
         return defaultFonts;
     }

@@ -88,6 +88,7 @@ public class FilterExamples {
         Filter filter = ff.id(fids);
         return featureSource.getFeatures(filter);
     }
+
     // grabSelectedIds end
 
     /**

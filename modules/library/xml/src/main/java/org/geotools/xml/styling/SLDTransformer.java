@@ -165,12 +165,16 @@ public class SLDTransformer extends TransformerBase {
         }
     }
 
-    /** @return the exportDefaultValues */
+    /**
+     * @return the exportDefaultValues
+     */
     public boolean isExportDefaultValues() {
         return exportDefaultValues;
     }
 
-    /** @param exportDefaultValues the exportDefaultValues to set */
+    /**
+     * @param exportDefaultValues the exportDefaultValues to set
+     */
     public void setExportDefaultValues(boolean exportDefaultValues) {
         this.exportDefaultValues = exportDefaultValues;
     }
@@ -230,6 +234,7 @@ public class SLDTransformer extends TransformerBase {
         public SLDTranslator(ContentHandler handler) {
             this(handler, "sld", "http://www.opengis.net/sld");
         }
+
         /** Translates */
         public SLDTranslator(ContentHandler handler, String prefix, String uri) {
             super(handler, prefix, uri);
@@ -267,12 +272,16 @@ public class SLDTransformer extends TransformerBase {
             return false;
         }
 
-        /** @param exportDefaultValues */
+        /**
+         * @param exportDefaultValues
+         */
         public void setExportDefaultValues(boolean exportDefaultValues) {
             this.exportDefaultValues = exportDefaultValues;
         }
 
-        /** @return the exportDefaultValues */
+        /**
+         * @return the exportDefaultValues
+         */
         public boolean isExportDefaultValues() {
             return exportDefaultValues;
         }

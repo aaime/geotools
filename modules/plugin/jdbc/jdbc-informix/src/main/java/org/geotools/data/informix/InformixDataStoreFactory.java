@@ -40,6 +40,7 @@ public class InformixDataStoreFactory extends JDBCDataStoreFactory {
                     true,
                     "informix-sqli",
                     Collections.singletonMap(Parameter.LEVEL, "program"));
+
     /** Default port number for Informix */
     public static final Param PORT = new Param("port", Integer.class, "Port", true, 9088);
 

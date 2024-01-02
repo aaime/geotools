@@ -68,6 +68,7 @@ import org.geotools.util.NumberRange;
 public class Absolute extends BaseMathOperationJAI {
     private static final String ALGEBRIC = "algebric";
     private static final String ABSOLUTE = "Absolute";
+
     /** Serial number for interoperability with different versions. */
     private static final long serialVersionUID = 3723059532452772794L;
 

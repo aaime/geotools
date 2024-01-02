@@ -43,7 +43,9 @@ public abstract class AbstractDescribeLayerRequest extends AbstractWMSRequest
         setProperty(REQUEST, "DescribeLayer");
     }
 
-    /** @see DescribeLayerRequest#setLayers(java.lang.String) */
+    /**
+     * @see DescribeLayerRequest#setLayers(java.lang.String)
+     */
     @Override
     public void setLayers(String layers) {
         setProperty(LAYERS, layers);

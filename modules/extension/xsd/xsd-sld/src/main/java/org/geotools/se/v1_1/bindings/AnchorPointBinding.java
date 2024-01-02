@@ -48,7 +48,9 @@ public class AnchorPointBinding extends SLDAnchorPointBinding {
         super(styleFactory);
     }
 
-    /** @generated */
+    /**
+     * @generated
+     */
     @Override
     public QName getTarget() {
         return SE.AnchorPoint;

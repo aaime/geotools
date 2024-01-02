@@ -18,48 +18,61 @@ package org.geotools.ows;
 
 import org.xml.sax.SAXException;
 
-/** @author dzwiers */
+/**
+ * @author dzwiers
+ */
 public class ServiceException extends SAXException {
     /*
      * Constants used in communications with Web Map Servers
      */
     /** Request contains a Format not offered by the service instance */
     public static final String INVALID_FORMAT = "InvalidFormat";
+
     /**
      * Request contains an SRS not offered by the service instance for one or more of the Layers in
      * the request.
      */
     public static final String INVALID_SRS = "InvalidSRS";
+
     /**
      * Request contains a CRS not offered by the server for one or more of the Layers in the
      * request.
      */
     public static final String INVALID_CRS = "InvalidCRS";
+
     /** Request is for a Layer not offered by the service instance. */
     public static final String LAYER_NOT_DEFINED = "LayerNotDefined";
+
     /** Request is for a Layer in a Style not offered by the service instance. */
     public static final String STYLE_NOT_DEFINED = "StyleNotDefined";
+
     /** GetFeatureInfo request is applied to a Layer which is not declared queryable. */
     public static final String LAYER_NOT_QUERYABLE = "LayerNotQueryable";
+
     /**
      * Value of (optional) UpdateSequence parameter in GetCapabilities request is equal to current
      * value of Capabilities XML update sequence number.
      */
     public static final String CURRENT_UPDATE_SEQUENCE = "CurrentUpdateSequence";
+
     /**
      * Value of (optional) UpdateSequence parameter in GetCapabilities request is greater than
      * current value of Capabilities XML update sequence number.
      */
     public static final String INVALID_UPDATE_SEQUENCE = "InvalidUpdateSequence";
+
     /**
      * Request does not include a sample dimension value, and the service instance did not declare a
      * default value for that dimension.
      */
     public static final String MISSING_DIMENSION_VALUE = "MissingDimensionValue";
+
     /** Request contains an invalid sample dimension value. */
     public static final String INVALID_DIMENSION_VALUE = "InvalidDimensionValue";
+
     /** Request is for an optional operation that is not supported by the server. */
     public static final String OPERATION_NOT_SUPPORTED = "OperationNotSupported";
+
     /*
      * END WMS Constants
      */
@@ -128,12 +141,17 @@ public class ServiceException extends SAXException {
         }
         return super.getException();
     }
-    /** @return String the error code, such as 404-Not Found */
+
+    /**
+     * @return String the error code, such as 404-Not Found
+     */
     public String getCode() {
         return code;
     }
 
-    /** @return String the location of the error, useful for parse errors */
+    /**
+     * @return String the location of the error, useful for parse errors
+     */
     public String getLocator() {
         return locator;
     }

@@ -104,8 +104,10 @@ public abstract class ContentDataStore implements DataStore {
 
     /** Flag writer for adding new content */
     protected static final int WRITER_ADD = 0x01 << 0;
+
     /** Flag writer for updating content in place */
     protected static final int WRITER_UPDATE = 0x01 << 1;
+
     /** Flag writer for commit (AUTO_COMMIT with no events) */
     protected static final int WRITER_COMMIT = 0x01 << 2;
 
@@ -645,13 +647,17 @@ public abstract class ContentDataStore implements DataStore {
         updateSchema(typeName.getLocalPart(), featureType);
     }
 
-    /** @see DataAccess#removeSchema(Name) */
+    /**
+     * @see DataAccess#removeSchema(Name)
+     */
     @Override
     public void removeSchema(Name typeName) throws IOException {
         throw new UnsupportedOperationException("Schema removal not supported");
     }
 
-    /** @see DataStore#removeSchema(String) */
+    /**
+     * @see DataStore#removeSchema(String)
+     */
     @Override
     public void removeSchema(String typeName) throws IOException {
         throw new UnsupportedOperationException("Schema removal not supported");

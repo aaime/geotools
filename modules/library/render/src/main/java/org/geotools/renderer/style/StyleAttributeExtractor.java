@@ -104,13 +104,17 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         return defaultGeometryUsed;
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Style) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Style)
+     */
     @Override
     public void visit(org.geotools.api.style.Style style) {
         style.featureTypeStyles().forEach(ft -> ft.accept(this));
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Rule) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Rule)
+     */
     @Override
     public void visit(Rule rule) {
         Filter filter = rule.getFilter();
@@ -122,7 +126,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         rule.symbolizers().forEach(s -> s.accept(this));
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.FeatureTypeStyle) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.FeatureTypeStyle)
+     */
     @Override
     public void visit(FeatureTypeStyle fts) {
         for (Rule rule : fts.rules()) {
@@ -130,7 +136,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Fill) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Fill)
+     */
     @Override
     public void visit(Fill fill) {
         if (fill.getColor() != null) {
@@ -146,7 +154,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Stroke) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Stroke)
+     */
     @Override
     public void visit(Stroke stroke) {
         if (stroke.getColor() != null) {
@@ -188,7 +198,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Symbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Symbolizer)
+     */
     @Override
     public void visit(Symbolizer sym) {
         if (sym instanceof PointSymbolizer) {
@@ -229,7 +241,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.PointSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.PointSymbolizer)
+     */
     @Override
     public void visit(PointSymbolizer ps) {
         if (symbolizerGeometriesVisitEnabled) {
@@ -245,7 +259,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.LineSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.LineSymbolizer)
+     */
     @Override
     public void visit(LineSymbolizer line) {
         if (symbolizerGeometriesVisitEnabled) {
@@ -265,7 +281,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.PolygonSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.PolygonSymbolizer)
+     */
     @Override
     public void visit(PolygonSymbolizer poly) {
         if (symbolizerGeometriesVisitEnabled) {
@@ -285,7 +303,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.TextSymbolizer) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.TextSymbolizer)
+     */
     @Override
     public void visit(TextSymbolizer text) {
         if (symbolizerGeometriesVisitEnabled) {
@@ -347,7 +367,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Graphic) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Graphic)
+     */
     @Override
     public void visit(Graphic gr) {
         for (GraphicalSymbol symbol : gr.graphicalSymbols()) {
@@ -375,7 +397,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         if (gr.getAnchorPoint() != null) gr.getAnchorPoint().accept(this);
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Mark) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Mark)
+     */
     @Override
     public void visit(Mark mark) {
         if (mark.getFill() != null) {
@@ -401,7 +425,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         if (parsed != null) parsed.accept(this, null);
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.ExternalGraphic) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.ExternalGraphic)
+     */
     @Override
     public void visit(ExternalGraphic exgr) {
         // add dynamic support for ExternalGrapic format attribute
@@ -415,7 +441,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.PointPlacement) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.PointPlacement)
+     */
     @Override
     public void visit(PointPlacement pp) {
         if (pp.getAnchorPoint() != null) {
@@ -431,7 +459,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.AnchorPoint) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.AnchorPoint)
+     */
     @Override
     public void visit(AnchorPoint ap) {
         if (ap.getAnchorPointX() != null) {
@@ -443,7 +473,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Displacement) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Displacement)
+     */
     @Override
     public void visit(Displacement dis) {
         if (dis.getDisplacementX() != null) {
@@ -455,7 +487,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.LinePlacement) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.LinePlacement)
+     */
     @Override
     public void visit(LinePlacement lp) {
         if (lp.getPerpendicularOffset() != null) {
@@ -463,7 +497,9 @@ public class StyleAttributeExtractor extends FilterAttributeExtractor implements
         }
     }
 
-    /** @see StyleVisitor#visit(org.geotools.api.style.Halo) */
+    /**
+     * @see StyleVisitor#visit(org.geotools.api.style.Halo)
+     */
     @Override
     public void visit(Halo halo) {
         if (halo.getFill() != null) {

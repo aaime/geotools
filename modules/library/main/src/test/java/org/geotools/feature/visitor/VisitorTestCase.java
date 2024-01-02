@@ -28,7 +28,9 @@ import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-/** @author Sebastian Graca, ISPiK S.A. */
+/**
+ * @author Sebastian Graca, ISPiK S.A.
+ */
 public abstract class VisitorTestCase<T, R> {
     private final Class<T> valueClass;
     private final List<T> values;

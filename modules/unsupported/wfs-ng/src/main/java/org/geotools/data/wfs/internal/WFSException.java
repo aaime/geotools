@@ -62,7 +62,9 @@ public class WFSException extends IOException {
         return msg.toString();
     }
 
-    /** @return the structured contents of the WFS exception, if any */
+    /**
+     * @return the structured contents of the WFS exception, if any
+     */
     public List<ExceptionDetails> getExceptionDetails() {
         return Collections.unmodifiableList(exceptionDetails);
     }

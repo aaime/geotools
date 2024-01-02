@@ -25,7 +25,9 @@ import org.geotools.api.util.GenericName;
 import org.geotools.api.util.InternationalString;
 import org.geotools.util.Utilities;
 
-/** @author Mehdi Sidhoum (Geomatys) */
+/**
+ * @author Mehdi Sidhoum (Geomatys)
+ */
 public class DefaultTemporalReferenceSystem implements TemporalReferenceSystem {
 
     /** This is a name that uniquely identifies the temporal reference system. */

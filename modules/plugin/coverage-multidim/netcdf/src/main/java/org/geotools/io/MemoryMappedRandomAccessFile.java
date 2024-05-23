@@ -164,7 +164,8 @@ public class MemoryMappedRandomAccessFile extends RandomAccessFile {
                 }
             }
             NIOUtilities.clean(mappedByteBuffer);
-            mappedByteBuffer = channel.map(mapMode, currentOffset, BUFFER_MEMORY_LIMIT);
+            mappedByteBuffer =
+                    channel.map(mapMode, currentOffset, Math.max(readSize, BUFFER_MEMORY_LIMIT));
             // make sure to properly re-align the position
             mappedByteBuffer.position((int) (fcPosition - currentOffset));
         }

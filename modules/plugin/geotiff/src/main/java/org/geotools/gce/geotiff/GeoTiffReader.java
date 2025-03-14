@@ -37,6 +37,7 @@ package org.geotools.gce.geotiff;
 import it.geosolutions.imageio.core.BasicAuthURI;
 import it.geosolutions.imageio.maskband.DatasetLayout;
 import it.geosolutions.imageio.pam.PAMDataset;
+import it.geosolutions.imageio.pam.PAMParser;
 import it.geosolutions.imageio.plugins.tiff.TIFFImageReadParam;
 import it.geosolutions.imageio.utilities.ImageIOUtilities;
 import it.geosolutions.imageioimpl.plugins.cog.CogImageInputStreamSpi;
@@ -57,6 +58,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
@@ -81,6 +83,7 @@ import javax.media.jai.JAI;
 import javax.media.jai.PlanarImage;
 import javax.media.jai.ROI;
 import javax.media.jai.RenderedOp;
+
 import org.geotools.api.coverage.ColorInterpretation;
 import org.geotools.api.coverage.grid.Format;
 import org.geotools.api.coverage.grid.GridCoverage;
@@ -293,6 +296,21 @@ public class GeoTiffReader extends AbstractGridCoverage2DReader implements GridC
         }
     }
 
+    @Override
+    protected PAMDataset getPamDataset(IIOMetadata metadata) throws IOException {
+        if (source instanceof CogSourceSPIProvider && !ImageIOUtilities.isSkipExternalFilesLookup()) {
+            CogSourceSPIProvider cogSource = (CogSourceSPIProvider) source;
+            BasicAuthURI cogURI = cogSource.getCogUri();
+            BasicAuthURI auxURI = new BasicAuthURI(URI.create(cogURI.getUri() + ".aux.xml"), cogURI.isUseCache(),
+                    cogURI.getUser(), cogURI.getPassword());
+            CogSourceSPIProvider auxSource = new CogSourceSPIProvider(auxURI, cogSource.getReaderSpi(),
+                    cogSource.getStreamSpi(), cogSource.getRangeReaderClassname());
+            return auxSource.consumeInputStream(is -> PAMParser.getInstance().parsePAM(is));
+        }
+
+        return super.getPamDataset(metadata);
+    }
+
     private String extractCoverageName() {
         if (source instanceof File) {
             return ((File) source).getName();
@@ -379,7 +397,7 @@ public class GeoTiffReader extends AbstractGridCoverage2DReader implements GridC
             collectScaleOffset(iioMetadata);
 
             // collect PAM dataset if available
-            this.pamDataset = getPamDataset(getSourceAsFile(), iioMetadata);
+            this.pamDataset = getPamDataset(iioMetadata);
 
             //
             // parse and set layout

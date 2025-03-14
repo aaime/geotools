@@ -16,7 +16,9 @@
  */
 package org.geotools.coverage.grid.io;
 
+import it.geosolutions.imageio.core.BasicAuthURI;
 import it.geosolutions.imageio.core.CoreCommonImageMetadata;
+import it.geosolutions.imageio.core.SourceSPIProvider;
 import it.geosolutions.imageio.maskband.DatasetLayout;
 import it.geosolutions.imageio.maskband.DefaultDatasetLayoutImpl;
 import it.geosolutions.imageio.pam.PAMDataset;
@@ -84,6 +86,7 @@ import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.GridCoverageFactory;
 import org.geotools.coverage.grid.GridEnvelope2D;
 import org.geotools.coverage.grid.io.footprint.MultiLevelROIProvider;
+import org.geotools.coverage.grid.io.imageio.MaskOverviewProvider;
 import org.geotools.coverage.util.CoverageUtilities;
 import org.geotools.data.DefaultFileResourceInfo;
 import org.geotools.data.DefaultFileServiceInfo;
@@ -1295,7 +1298,8 @@ public abstract class AbstractGridCoverage2DReader implements GridCoverage2DRead
      * structure: there might be files with invalid metadata that used to be read just fine before PAM dataset reading
      * was implemented.
      */
-    public static PAMDataset getPamDataset(File sourceFile, IIOMetadata metadata) {
+    protected PAMDataset getPamDataset(IIOMetadata metadata) throws IOException {
+        File sourceFile = getSourceAsFile();
         if (sourceFile != null && !ImageIOUtilities.isSkipExternalFilesLookup()) {
             File pamFile = new File(sourceFile.getParent(), sourceFile.getName() + ".aux.xml");
             if (pamFile.exists()) {

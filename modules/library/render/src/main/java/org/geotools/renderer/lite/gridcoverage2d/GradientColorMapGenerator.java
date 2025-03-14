@@ -265,8 +265,8 @@ public class GradientColorMapGenerator {
                 String offset = element.getAttribute("offset");
                 String stopColor = element.getAttribute("stop-color");
                 String stopOpacity = element.getAttribute("stop-opacity");
-                percentage = Double.parseDouble(offset.substring(0, offset.length() - 1)) / 100d;
-                opacity = Double.parseDouble(stopOpacity);
+                percentage = Double.parseDouble(offset) / 100d;
+                opacity = stopOpacity.isEmpty() ? 1 : Double.parseDouble(stopOpacity);
                 color = createColor(stopColor);
                 gradientEntries[i] = new LinearGradientEntry(percentage, color, opacity);
             }
@@ -285,15 +285,17 @@ public class GradientColorMapGenerator {
      * @return the {@link Color} instance related to that string definition
      */
     private static Color createColor(String color) {
+        int length = color.length();
         if (color.startsWith(RGB_INLINEVALUE_MARKER)) {
-            String colorString = color.substring(4, color.length() - 1);
+            String colorString = color.substring(4, length - 1);
             String[] rgb = colorString.split("\\s*,\\s*");
             return new Color(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2]));
         } else if (color.startsWith(RGBA_INLINEVALUE_MARKER)) {
-            String colorString = color.substring(5, color.length() - 1);
+            String colorString = color.substring(5, length - 1);
             String[] rgba = colorString.split("\\s*,\\s*");
             return new Color(Integer.parseInt(rgba[0]), Integer.parseInt(rgba[1]), Integer.parseInt(rgba[2]));
-        } else if ((color.startsWith("#") && color.length() == 7) || (color.startsWith("0x") && color.length() == 8)) {
+        } else if ((color.startsWith("#") && (length == 4 || length == 7))
+                || ((color.startsWith("0x") && (length == 5 || length == 8)))) {
             // Try to parse it as an HEX code
             return hex2Rgb(color);
         }
@@ -329,16 +331,30 @@ public class GradientColorMapGenerator {
      */
     public static Color hex2Rgb(String colorStr) {
         if (colorStr.startsWith("#")) {
+            if (colorStr.length() == 4) {
+                colorStr = "#" + colorStr.charAt(1) + colorStr.charAt(1) + colorStr.charAt(2)
+                        + colorStr.charAt(2) + colorStr.charAt(3)
+                        + colorStr.charAt(3);
+            }
             return new Color(
                     Integer.valueOf(colorStr.substring(1, 3), 16),
                     Integer.valueOf(colorStr.substring(3, 5), 16),
                     Integer.valueOf(colorStr.substring(5, 7), 16));
         } else {
+            if (colorStr.length() == 5) {
+                colorStr = "" + colorStr.charAt(2) + colorStr.charAt(2) + colorStr.charAt(3)
+                        + colorStr.charAt(3) + colorStr.charAt(4)
+                        + colorStr.charAt(4);
+            }
             return new Color(
                     Integer.valueOf(colorStr.substring(2, 4), 16),
                     Integer.valueOf(colorStr.substring(4, 6), 16),
                     Integer.valueOf(colorStr.substring(6, 8), 16));
         }
+    }
+
+    private static String dup(String src) {
+        return src + src;
     }
 
     /** Return an HEX representation of a Color */

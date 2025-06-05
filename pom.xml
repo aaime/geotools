@@ -2591,6 +2591,8 @@
                 -Xep:JUnitAmbiguousTestClass:OFF \
                 -Xep:InconsistentCapitalization:OFF \
                 -Xep:Finalize:OFF \
+                -Xep:InlineMeSuggester:OFF \
+                -Xep:DoNotCallSuggester:OFF \
                 ${errorProneFlags}</arg>
                 <arg>-Xlint:${lint}</arg>
                 <arg>-Werror</arg>

@@ -757,7 +757,7 @@ public class TableWriter extends FilterWriter {
              * alors cette cellule devra s'écrire sur plusieurs lignes dans la cellule
              * courante.
              */
-            while (!isEmpty(currentLine)) {
+            while (!isEmpty((Object[]) currentLine)) {
                 for (int j = 0; j < currentLine.length; j++) {
                     final boolean isFirstColumn = (j == 0);
                     final boolean isLastColumn = (j + 1 == currentLine.length);

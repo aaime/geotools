@@ -291,8 +291,8 @@ public class WrappingProjectionHandler extends ProjectionHandler {
 
             if (gtype == null) {
                 gtype = g.getClass();
-            } else if (geomType != null && !g.getClass().equals(geomType)
-                    || lastType != null && !g.getClass().equals(lastType)) {
+            } else if (((geomType != null) && !g.getClass().equals(geomType))
+                    || ((lastType != null) && !g.getClass().equals(lastType))) {
                 // if we have different types, switch to Geometry type
                 gtype = Geometry.class;
             }

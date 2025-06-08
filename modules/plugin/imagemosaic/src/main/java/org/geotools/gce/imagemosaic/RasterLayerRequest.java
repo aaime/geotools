@@ -351,7 +351,7 @@ public class RasterLayerRequest {
             }
             MosaicQueryBuilder builder = new MosaicQueryBuilder(this, queryBounds);
             Query query = builder.build();
-            query.setSortBy(null); // no need to actually sort on anything here
+            query.setSortBy((org.geotools.api.filter.sort.SortBy) null); // no need to actually sort on anything here
             GranuleSource granules = rasterManager.getGranuleSource(true, null);
             // ... load only the default geometry if possible
             final GeometryDescriptor gd = granules.getSchema().getGeometryDescriptor();

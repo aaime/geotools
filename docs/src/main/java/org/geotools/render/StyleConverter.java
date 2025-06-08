@@ -282,7 +282,7 @@ public class StyleConverter extends JFrame {
 
         // FeatureTypeConstraint ftc =
         // styleFactory.createFeatureTypeConstraint(null, Filter.INCLUDE, null);
-        layer.setLayerFeatureConstraints(null);
+        layer.setLayerFeatureConstraints((org.geotools.api.style.FeatureTypeConstraint) null);
         sld.addStyledLayer(layer);
         layer.addUserStyle(style);
 

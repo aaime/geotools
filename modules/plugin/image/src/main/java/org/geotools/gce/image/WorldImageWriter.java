@@ -140,7 +140,7 @@ public final class WorldImageWriter extends AbstractGridCoverageWriter implement
      *     org.geotools.api.parameter.GeneralParameterValue[])
      */
     @Override
-    public void write(GridCoverage coverage, GeneralParameterValue[] parameters)
+    public void write(GridCoverage coverage, GeneralParameterValue... parameters)
             throws IllegalArgumentException, IOException {
         final GridCoverage2D gc = (GridCoverage2D) coverage;
         // checking parameters

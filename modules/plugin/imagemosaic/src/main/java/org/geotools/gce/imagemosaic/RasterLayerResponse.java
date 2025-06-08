@@ -701,7 +701,7 @@ public class RasterLayerResponse {
                                 .getName()),
                         bboxExtractor.getBBox()));
                 query.setMaxFeatures(1);
-                query.setSortBy(null);
+                query.setSortBy((org.geotools.api.filter.sort.SortBy) null);
                 rasterManager.getGranuleDescriptors(query, dryRunVisitor);
                 if (dryRunVisitor.granulesNumber > 0) {
                     LOGGER.fine(

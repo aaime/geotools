@@ -151,7 +151,7 @@ public class GeoTiffWriterTest extends Assert {
         // Read the original coverage.
         //
         // /////////////////////////////////////////////////////////////////////
-        GridCoverage2D gc = (GridCoverage2D) reader.read(null);
+        GridCoverage2D gc = (GridCoverage2D) reader.read((GeneralParameterValue) null);
         if (TestData.isInteractiveTest()) {
             LOGGER.info(new StringBuilder("Coverage before: ")
                     .append("\n")
@@ -238,7 +238,7 @@ public class GeoTiffWriterTest extends Assert {
         final GridCoverageWriter writer = format.getWriter(writeFile);
 
         try {
-            writer.write(cropped, null);
+            writer.write(cropped, (GeneralParameterValue) null);
         } catch (IOException e) {
         } finally {
             try {
@@ -249,7 +249,7 @@ public class GeoTiffWriterTest extends Assert {
         try {
             reader = new GeoTiffReader(writeFile, null);
             assertNotNull(reader);
-            gc = (GridCoverage2D) reader.read(null);
+            gc = (GridCoverage2D) reader.read((GeneralParameterValue) null);
             assertNotNull(gc);
             final CoordinateReferenceSystem targetCRS = gc.getCoordinateReferenceSystem2D();
             assertTrue(
@@ -362,7 +362,7 @@ public class GeoTiffWriterTest extends Assert {
 
         final ParameterValue<Boolean> tfw = GeoTiffFormat.WRITE_TFW.createValue();
         tfw.setValue(true);
-        writer.write(coverage, new GeneralParameterValue[] {tfw});
+        writer.write(coverage, tfw);
         writer.dispose();
         coverage.dispose(true);
 
@@ -521,7 +521,7 @@ public class GeoTiffWriterTest extends Assert {
 
             }
         });
-        writer.write(coverage, new GeneralParameterValue[] {listener});
+        writer.write(coverage, listener);
         writer.dispose();
         coverage.dispose(true);
     }
@@ -564,7 +564,7 @@ public class GeoTiffWriterTest extends Assert {
         coverage = CoverageFactoryFinder.getGridCoverageFactory(GeoTools.getDefaultHints())
                 .create(coverage.getName(), coverage.getRenderedImage(), envelope);
 
-        writer.write(coverage, new GeneralParameterValue[] {value});
+        writer.write(coverage, value);
         writer.dispose();
         coverage.dispose(true);
 
@@ -616,7 +616,7 @@ public class GeoTiffWriterTest extends Assert {
             ParameterValue<GeoToolsWriteParams> value = GeoTiffFormat.GEOTOOLS_WRITE_PARAMS.createValue();
             value.setValue(params);
 
-            writer.write(coverage, new GeneralParameterValue[] {value});
+            writer.write(coverage, value);
             writer.dispose();
             coverage.dispose(true);
 
@@ -675,7 +675,7 @@ public class GeoTiffWriterTest extends Assert {
         File output = new File(outputDir, "test-azimuthal-equidistant.tif");
         GeoTiffFormat format = new GeoTiffFormat();
         GridCoverageWriter writer = format.getWriter(output);
-        writer.write(coverage, null);
+        writer.write(coverage, (GeneralParameterValue) null);
         writer.dispose();
         coverage.dispose(true);
         // test that reading succeeds and that the projection name and parameters are correct

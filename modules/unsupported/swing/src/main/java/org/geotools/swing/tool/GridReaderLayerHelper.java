@@ -121,7 +121,7 @@ public class GridReaderLayerHelper extends InfoToolHelper {
                         reader.getCoordinateReferenceSystem()));
 
         try {
-            cachedCoverage = reader.read(new GeneralParameterValue[] {parameter});
+            cachedCoverage = reader.read(parameter);
             return cachedCoverage != null;
 
         } catch (Exception ex) {

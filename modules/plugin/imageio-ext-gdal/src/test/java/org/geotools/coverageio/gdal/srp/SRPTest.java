@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import javax.media.jai.ImageLayout;
 import javax.media.jai.JAI;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -148,7 +147,7 @@ public final class SRPTest extends GDALTestCase {
                 new GridEnvelope2D(new Rectangle(
                         0, 0, (int) (range.width / 2.0 / cropFactor), (int) (range.height / 2.0 / cropFactor))),
                 cropEnvelope));
-        GridCoverage2D gcSubsampled = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D gcSubsampled = reader.read(gg);
         assertEquals(32, gcSubsampled.getGridGeometry().getGridRange2D().width);
         assertEquals(32, gcSubsampled.getGridGeometry().getGridRange2D().height);
         forceDataLoading(gcSubsampled);

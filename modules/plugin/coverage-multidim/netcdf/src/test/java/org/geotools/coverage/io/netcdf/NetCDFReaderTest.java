@@ -1302,7 +1302,7 @@ public class NetCDFReaderTest extends NetCDFBaseTest {
     @Test
     public void testSourceUrl() throws Exception {
         NetCDFReader reader = new NetCDFReader(TestData.file(this, "O3-NO2.nc"), null);
-        GridCoverage2D coverage = reader.read("O3", new GeneralParameterValue[] {});
+        GridCoverage2D coverage = reader.read("O3");
         URL sourceUrl = (URL) coverage.getProperty(GridCoverage2DReader.SOURCE_URL_PROPERTY);
         assertNotNull(sourceUrl);
         assertEquals("file", sourceUrl.getProtocol());

@@ -221,7 +221,7 @@ public class RenderingTransformationTest {
             }
 
             @Override
-            public GridCoverage2D read(GeneralParameterValue[] parameters)
+            public GridCoverage2D read(GeneralParameterValue... parameters)
                     throws IllegalArgumentException, IOException {
                 // we return null on purpose, simulating a reader queried outside of its
                 // area, or

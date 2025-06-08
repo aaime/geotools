@@ -139,7 +139,7 @@ public class GrassCoverageWriter extends AbstractGridCoverageWriter implements G
     }
 
     @Override
-    public void write(GridCoverage coverage, GeneralParameterValue[] parameters)
+    public void write(GridCoverage coverage, GeneralParameterValue... parameters)
             throws IllegalArgumentException, IOException {
         if (coverage instanceof GridCoverage2D) {
             GridCoverage2D gridCoverage = (GridCoverage2D) coverage;

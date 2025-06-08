@@ -191,7 +191,7 @@ public class ImageMosaicCogOnlineTest {
         ImageMosaicReader reader = IMAGE_MOSAIC_FORMAT.getReader(workDir);
         ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
         bands.setValue(new int[] {0, 0});
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {bands});
+        GridCoverage2D coverage = reader.read(bands);
         Assert.assertNotNull(coverage);
         RenderedImage image = coverage.getRenderedImage();
         assertEquals(2, image.getSampleModel().getNumBands());

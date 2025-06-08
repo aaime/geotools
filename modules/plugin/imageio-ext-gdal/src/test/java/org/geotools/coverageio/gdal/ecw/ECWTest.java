@@ -29,7 +29,6 @@ import java.util.Iterator;
 import javax.media.jai.ImageLayout;
 import javax.media.jai.JAI;
 import org.geotools.api.geometry.Position;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -97,7 +96,7 @@ public final class ECWTest extends GDALTestCase {
         // /////////////////////////////////////////////////////////////////////
         final ParameterValue<Boolean> jai = ((AbstractGridFormat) reader.getFormat()).USE_JAI_IMAGEREAD.createValue();
         jai.setValue(true);
-        GridCoverage2D gc = reader.read(new GeneralParameterValue[] {jai});
+        GridCoverage2D gc = reader.read(jai);
         LOGGER.info(gc.toString());
         forceDataLoading(gc);
 
@@ -126,7 +125,7 @@ public final class ECWTest extends GDALTestCase {
                 new GridEnvelope2D(new Rectangle(
                         0, 0, (int) (range.width / 4.0 / cropFactor), (int) (range.height / 4.0 / cropFactor))),
                 cropEnvelope));
-        gc = reader.read(new GeneralParameterValue[] {gg});
+        gc = reader.read(gg);
         Assert.assertNotNull(gc);
         // NOTE: in some cases might be too restrictive
         Assert.assertTrue(cropEnvelope.equals(
@@ -161,7 +160,7 @@ public final class ECWTest extends GDALTestCase {
         gg2.setValue(
                 new GridGeometry2D(new GridEnvelope2D(new Rectangle(0, 0, range.width, range.height)), wrongEnvelope));
 
-        gc = reader.read(new GeneralParameterValue[] {gg2});
+        gc = reader.read(gg2);
         Assert.assertNull("Wrong envelope requested", gc);
     }
 
@@ -208,7 +207,7 @@ public final class ECWTest extends GDALTestCase {
         ParameterValue<String> footprint = AbstractGridFormat.FOOTPRINT_BEHAVIOR.createValue();
         footprint.setValue(FootprintBehavior.Transparent.toString());
 
-        GridCoverage2D gc = reader.read(new GeneralParameterValue[] {jai, footprint});
+        GridCoverage2D gc = reader.read(jai, footprint);
         LOGGER.info(gc.toString());
         forceDataLoading(gc);
 

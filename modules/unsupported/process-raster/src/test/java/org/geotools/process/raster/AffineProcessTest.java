@@ -80,7 +80,7 @@ public class AffineProcessTest {
         // Get a reader for the selected format
         GridCoverageReader reader = format.getReader(tiff);
         // Read the input Coverage
-        coverage = (GridCoverage2D) reader.read(null);
+        coverage = (GridCoverage2D) reader.read((org.geotools.api.parameter.GeneralParameterValue) null);
         // Reader disposal
         reader.dispose();
 

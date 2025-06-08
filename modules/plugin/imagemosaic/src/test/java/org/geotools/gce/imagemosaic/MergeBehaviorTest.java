@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.test.TestData;
@@ -89,7 +88,7 @@ public class MergeBehaviorTest {
         try {
             final ParameterValue<String> mergeBehavior = ImageMosaicFormat.MERGE_BEHAVIOR.createValue();
             mergeBehavior.setValue(MergeBehavior.MAX.toString());
-            GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {mergeBehavior});
+            GridCoverage2D coverage = reader.read(mergeBehavior);
             assertNotNull(coverage);
 
             // extract underlying raster
@@ -157,7 +156,7 @@ public class MergeBehaviorTest {
         try {
             final ParameterValue<String> mergeBehavior = ImageMosaicFormat.MERGE_BEHAVIOR.createValue();
             mergeBehavior.setValue(MergeBehavior.MIN.toString());
-            GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {mergeBehavior});
+            GridCoverage2D coverage = reader.read(mergeBehavior);
             assertNotNull(coverage);
 
             // extract underlying raster

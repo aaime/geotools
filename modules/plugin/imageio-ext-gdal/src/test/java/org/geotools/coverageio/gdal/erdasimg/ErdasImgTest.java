@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 import javax.media.jai.ImageLayout;
 import javax.media.jai.JAI;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -133,7 +132,7 @@ public final class ErdasImgTest extends GDALTestCase {
                 new GridEnvelope2D(new Rectangle(
                         0, 0, (int) (range.width / 2.0 / cropFactor), (int) (range.height / 2.0 / cropFactor))),
                 cropEnvelope));
-        gc = reader.read(new GeneralParameterValue[] {gg});
+        gc = reader.read(gg);
         forceDataLoading(gc);
     }
 }

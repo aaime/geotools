@@ -269,7 +269,7 @@ public class WorldImageReaderTest extends WorldImageBaseTestCase {
         GridGeometry2D gridGeometry = new GridGeometry2D(range, envelope);
         gg.setValue(gridGeometry);
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertEquals(coverage.getEnvelope(), reader.getOriginalEnvelope());
     }
 

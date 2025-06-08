@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import javax.media.jai.PlanarImage;
 import org.gdal.gdal.Driver;
 import org.gdal.gdal.gdal;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -85,7 +84,7 @@ public final class JP2MrSIDTest extends GDALTestCase {
         final GeneralBounds oldEnvelope = reader.getOriginalEnvelope();
         gg.setValue(new GridGeometry2D(reader.getOriginalGridRange(), oldEnvelope));
 
-        final GridCoverage2D gc = reader.read(new GeneralParameterValue[] {gg});
+        final GridCoverage2D gc = reader.read(gg);
 
         Assert.assertNotNull(gc);
 

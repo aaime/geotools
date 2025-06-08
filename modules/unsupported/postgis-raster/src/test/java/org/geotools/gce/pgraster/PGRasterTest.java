@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.dbcp.BasicDataSource;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
 import org.geotools.parameter.Parameter;
@@ -137,10 +136,8 @@ public class PGRasterTest extends OnlineTestCase {
         assertNotNull(min);
         assertNotEquals(min, max);
 
-        GridCoverage2D r1 = reader.read(
-                new GeneralParameterValue[] {new Parameter<>(AbstractGridFormat.TIME, Collections.singletonList(min))});
-        GridCoverage2D r2 = reader.read(
-                new GeneralParameterValue[] {new Parameter<>(AbstractGridFormat.TIME, Collections.singletonList(max))});
+        GridCoverage2D r1 = reader.read(new Parameter<>(AbstractGridFormat.TIME, Collections.singletonList(min)));
+        GridCoverage2D r2 = reader.read(new Parameter<>(AbstractGridFormat.TIME, Collections.singletonList(max)));
 
         show(r1);
         show(r2);

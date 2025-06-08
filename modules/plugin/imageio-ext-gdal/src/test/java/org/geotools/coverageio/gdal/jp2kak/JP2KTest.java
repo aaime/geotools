@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.logging.Logger;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -77,7 +76,7 @@ public final class JP2KTest extends GDALTestCase {
         final GeneralBounds oldEnvelope = reader.getOriginalEnvelope();
         gg.setValue(new GridGeometry2D(reader.getOriginalGridRange(), oldEnvelope));
 
-        final GridCoverage2D gc = reader.read(new GeneralParameterValue[] {gg});
+        final GridCoverage2D gc = reader.read(gg);
         forceDataLoading(gc);
 
         if (TestData.isInteractiveTest()) {

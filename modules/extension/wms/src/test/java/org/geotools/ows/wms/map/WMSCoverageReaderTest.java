@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.GridEnvelope2D;
@@ -128,7 +127,7 @@ public class WMSCoverageReaderTest {
         layer.setVendorParameters(vendorParameters);
 
         WMSCoverageReader reader = new WMSCoverageReader(server, layer);
-        reader.read(new GeneralParameterValue[] {ggParam});
+        reader.read(ggParam);
     }
 
     @Test
@@ -142,7 +141,7 @@ public class WMSCoverageReaderTest {
         final Parameter<GridGeometry2D> ggParam =
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(gg);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggParam});
+        GridCoverage2D coverage = reader.read(ggParam);
         assertTrue(CRS.equalsIgnoreMetadata(wgs84, coverage.getCoordinateReferenceSystem()));
         assertEquals(worldEnvelope, new ReferencedEnvelope(coverage.getEnvelope()));
     }
@@ -158,7 +157,7 @@ public class WMSCoverageReaderTest {
         final Parameter<GridGeometry2D> ggParam =
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(gg);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggParam});
+        GridCoverage2D coverage = reader.read(ggParam);
         assertTrue(CRS.equalsIgnoreMetadata(wgs84, coverage.getCoordinateReferenceSystem()));
         assertEquals(worldEnvelope, new ReferencedEnvelope(coverage.getEnvelope()));
     }
@@ -179,7 +178,7 @@ public class WMSCoverageReaderTest {
         final Parameter<GridGeometry2D> ggParam =
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(gg);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggParam});
+        GridCoverage2D coverage = reader.read(ggParam);
         assertTrue(CRS.equalsIgnoreMetadata(wgs84, coverage.getCoordinateReferenceSystem()));
         assertEquals(worldEnvelope, new ReferencedEnvelope(coverage.getEnvelope()));
     }
@@ -259,7 +258,7 @@ public class WMSCoverageReaderTest {
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(gg);
         try {
-            reader.read(new GeneralParameterValue[] {ggParam});
+            reader.read(ggParam);
             fail("Should have thrown an exception, the GetMap content type was null");
         } catch (Exception e) {
             // it's fine
@@ -281,7 +280,7 @@ public class WMSCoverageReaderTest {
         final Parameter<GridGeometry2D> ggParam =
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(gg);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggParam});
+        GridCoverage2D coverage = reader.read(ggParam);
         assertTrue(CRS.equalsIgnoreMetadata(wgs84, coverage.getCoordinateReferenceSystem()));
         assertEquals(worldEnvelope, new ReferencedEnvelope(coverage.getEnvelope()));
     }
@@ -348,7 +347,7 @@ public class WMSCoverageReaderTest {
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(gg);
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggParam});
+        GridCoverage2D coverage = reader.read(ggParam);
         assertTrue(CRS.equalsIgnoreMetadata(wgs84, coverage.getCoordinateReferenceSystem()));
         assertEquals(worldEnvelope, new ReferencedEnvelope(coverage.getEnvelope()));
     }

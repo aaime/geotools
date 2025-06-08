@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.geotools.api.geometry.Bounds;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.crs.CoordinateReferenceSystem;
 import org.geotools.api.referencing.operation.MathTransform;
@@ -87,8 +86,7 @@ public final class JP2KTest extends BaseJP2K {
         // Reading
         //
         // //
-        final GridCoverage2D gc =
-                reader.read(new GeneralParameterValue[] {gg, useJAI, useMT, tileSize, transparentColor});
+        final GridCoverage2D gc = reader.read(gg, useJAI, useMT, tileSize, transparentColor);
         assertNotNull(gc);
         forceDataLoading(gc);
 
@@ -126,7 +124,7 @@ public final class JP2KTest extends BaseJP2K {
         final GeneralBounds oldEnvelope = reader.getOriginalEnvelope();
         checkReader(reader);
         gg.setValue(new GridGeometry2D(reader.getOriginalGridRange(), oldEnvelope));
-        GridCoverage2D gc = reader.read(new GeneralParameterValue[] {gg, useJAI});
+        GridCoverage2D gc = reader.read(gg, useJAI);
         assertNotNull(gc);
         forceDataLoading(gc);
 
@@ -139,7 +137,7 @@ public final class JP2KTest extends BaseJP2K {
         useJAI.setValue(true);
         final Bounds wgs84Envelope = CRS.transform(oldEnvelope, DefaultGeographicCRS.WGS84);
         gg.setValue(new GridGeometry2D(reader.getOriginalGridRange(), wgs84Envelope));
-        gc = reader.read(new GeneralParameterValue[] {gg, useJAI});
+        gc = reader.read(gg, useJAI);
         assertNotNull(gc);
         forceDataLoading(gc);
     }

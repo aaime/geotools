@@ -39,7 +39,6 @@ import javax.media.jai.Interpolation;
 import javax.xml.parsers.ParserConfigurationException;
 import net.opengis.wmts.v_1.CapabilitiesType;
 import org.apache.commons.lang3.NotImplementedException;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.coverage.grid.GridEnvelope2D;
 import org.geotools.coverage.grid.GridGeometry2D;
 import org.geotools.coverage.grid.io.AbstractGridFormat;
@@ -201,7 +200,7 @@ public class WMTSCoverageReaderTest {
                 (Parameter<GridGeometry2D>) AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         paramGridGeometry.setValue(gridGeometry);
 
-        coverageReader.read(new GeneralParameterValue[] {paramInterpolation, paramGridGeometry});
+        coverageReader.read(paramInterpolation, paramGridGeometry);
     }
 
     @Test

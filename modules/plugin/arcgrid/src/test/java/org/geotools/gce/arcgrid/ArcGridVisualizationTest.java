@@ -76,24 +76,28 @@ public final class ArcGridVisualizationTest extends ArcGridTestCaseAdapter {
         final File f = TestData.file(this, "arcgrid/spearfish.asc.gz");
         // Reading the coverage through a file
         GridCoverageReader reader = new ArcGridReader(f);
-        final GridCoverage2D gc1 = (GridCoverage2D) reader.read(null);
+        final GridCoverage2D gc1 =
+                (GridCoverage2D) reader.read((org.geotools.api.parameter.GeneralParameterValue) null);
 
         LOGGER.info("Reading the gzipped coverage through an ImageInputStream");
         // Reading the coverage through an ImageInputStream
         @SuppressWarnings("PMD.CloseResource")
         final ImageInputStream iiStream = ImageIO.createImageInputStream(new GZIPInputStream(new FileInputStream(f)));
         reader = new ArcGridReader(iiStream, hints);
-        final GridCoverage2D gc2 = (GridCoverage2D) reader.read(null);
+        final GridCoverage2D gc2 =
+                (GridCoverage2D) reader.read((org.geotools.api.parameter.GeneralParameterValue) null);
 
         LOGGER.info(" Reading the gzipped coverage through an InputStream");
         // Reading the coverage through an InputStream
         reader = new ArcGridReader(new GZIPInputStream(new FileInputStream(f)), hints);
-        final GridCoverage2D gc3 = (GridCoverage2D) reader.read(null);
+        final GridCoverage2D gc3 =
+                (GridCoverage2D) reader.read((org.geotools.api.parameter.GeneralParameterValue) null);
 
         LOGGER.info("Reading the gzipped coverage through a URL");
         // Reading the coverage through a URL
         reader = new ArcGridReader(f.toURI().toURL(), hints);
-        final GridCoverage2D gc4 = (GridCoverage2D) reader.read(null);
+        final GridCoverage2D gc4 =
+                (GridCoverage2D) reader.read((org.geotools.api.parameter.GeneralParameterValue) null);
 
         // show the coverage or try to load the data
         if (TestData.isInteractiveTest()) {

@@ -91,7 +91,8 @@ public class Spatial_OperatorsTypeBinding extends AbstractComplexBinding {
         List<SpatialOperator> ops = new ArrayList<>();
 
         for (Node child : node.getChildren()) {
-            ops.add(factory.spatialOperator(child.getComponent().getName(), null));
+            ops.add(factory.spatialOperator(
+                    child.getComponent().getName(), (org.geotools.api.filter.capability.GeometryOperand) null));
         }
 
         return factory.spatialOperators(ops.toArray(new SpatialOperator[ops.size()]));

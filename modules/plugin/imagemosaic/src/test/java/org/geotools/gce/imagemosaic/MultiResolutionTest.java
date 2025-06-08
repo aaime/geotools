@@ -73,7 +73,7 @@ public class MultiResolutionTest {
         testEnvelope.setCoordinateReferenceSystem(nativeCRS);
         ParameterValue<GridGeometry2D> pam = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         pam.setValue(new GridGeometry2D(testRange, testEnvelope));
-        final GridCoverage2D gc = reader.read(new ParameterValue<?>[] {pam});
+        final GridCoverage2D gc = reader.read(pam);
         // gc would be null before bug fix
         Assert.assertNotNull(gc);
         reader.dispose();
@@ -101,7 +101,7 @@ public class MultiResolutionTest {
         ParameterValue<GridGeometry2D> pam = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         pam.setValue(new GridGeometry2D(originalRange, envelope));
 
-        GridCoverage2D gc = reader.read(new ParameterValue<?>[] {virtualNativeRes, pam});
+        GridCoverage2D gc = reader.read(virtualNativeRes, pam);
         RenderedImage ri = gc.getRenderedImage();
 
         // The Virtual Native Resolution resulted into getting back an image with
@@ -133,7 +133,7 @@ public class MultiResolutionTest {
         ParameterValue<GridGeometry2D> pam = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         pam.setValue(new GridGeometry2D(originalRange, envelope));
 
-        GridCoverage2D gc = reader.read(new ParameterValue<?>[] {virtualNativeRes, pam});
+        GridCoverage2D gc = reader.read(virtualNativeRes, pam);
         RenderedImage ri = gc.getRenderedImage();
 
         // The Virtual Native Resolution resulted into getting back an image with
@@ -192,7 +192,7 @@ public class MultiResolutionTest {
         ParameterValue<Interpolation> interpolation = AbstractGridFormat.INTERPOLATION.createValue();
         interpolation.setValue(Interpolation.getInstance(Interpolation.INTERP_NEAREST));
 
-        GridCoverage2D gc = reader.read(new ParameterValue<?>[] {virtualNativeRes, gg, decimation, interpolation});
+        GridCoverage2D gc = reader.read(virtualNativeRes, gg, decimation, interpolation);
         RenderedImage ri = gc.getRenderedImage();
 
         // Given that we are requesting full bbox on full width*height

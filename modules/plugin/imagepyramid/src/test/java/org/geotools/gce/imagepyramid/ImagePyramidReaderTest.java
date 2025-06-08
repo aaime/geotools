@@ -322,7 +322,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {transp});
+        GridCoverage2D coverage = reader.read(transp);
         assertNotNull(coverage);
         assertTrue(
                 "coverage dimensions different from what we expected",
@@ -358,7 +358,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         readGG.setValue(new GridGeometry2D(new GridEnvelope2D(0, 0, 400, 400), requestedEnvelope));
 
         // make sure we get back a null, not an exception
-        assertNull(reader.read(new GeneralParameterValue[] {readGG}));
+        assertNull(reader.read(readGG));
     }
 
     /**
@@ -402,7 +402,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertNotNull("Null value returned instead of a coverage", coverage);
 
         // used to match exactly, but now we compute the exact bbox matching the request on the fly
@@ -455,7 +455,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertNotNull("Null value returned instead of a coverage", coverage);
         if (TestData.isInteractiveTest()) coverage.show("testCropLevel1");
         else PlanarImage.wrapRenderedImage(coverage.getRenderedImage()).getTiles();
@@ -507,7 +507,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertNotNull("Null value returned instead of a coverage", coverage);
         if (TestData.isInteractiveTest()) coverage.show("testCropLevel2");
         else PlanarImage.wrapRenderedImage(coverage.getRenderedImage()).getTiles();
@@ -555,7 +555,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertNotNull("Null value returned instead of a coverage", coverage);
         // assertTrue("coverage dimensions different from what we expected",
         // coverage.getGridGeometry().getGridRange().getSpan(0) == 15
@@ -625,7 +625,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {transp});
+        GridCoverage2D coverage = reader.read(transp);
         assertNotNull(coverage);
         assertTrue(
                 "coverage dimensions different from what we expected",
@@ -702,7 +702,7 @@ public class ImagePyramidReaderTest extends AbstractPyramidTest {
         //
         // Show the coverage
         //
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {transp});
+        GridCoverage2D coverage = reader.read(transp);
         assertNotNull(coverage);
         assertTrue(
                 "coverage dimensions different from what we expected",

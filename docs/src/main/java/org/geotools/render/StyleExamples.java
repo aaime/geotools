@@ -67,7 +67,8 @@ public class StyleExamples {
 
         //
         // define constraint limited what features the sld applies to
-        FeatureTypeConstraint constraint = sf.createFeatureTypeConstraint("Feature", Filter.INCLUDE, null);
+        FeatureTypeConstraint constraint =
+                sf.createFeatureTypeConstraint("Feature", Filter.INCLUDE, (org.geotools.api.style.Extent) null);
 
         layer.layerFeatureConstraints().add(constraint);
 
@@ -216,7 +217,8 @@ public class StyleExamples {
         UserLayer layer = styleFactory.createUserLayer();
         layer.setName("layer");
 
-        FeatureTypeConstraint constraint = styleFactory.createFeatureTypeConstraint("Feature", Filter.INCLUDE, null);
+        FeatureTypeConstraint constraint = styleFactory.createFeatureTypeConstraint(
+                "Feature", Filter.INCLUDE, (org.geotools.api.style.Extent) null);
 
         layer.layerFeatureConstraints().add(constraint);
 

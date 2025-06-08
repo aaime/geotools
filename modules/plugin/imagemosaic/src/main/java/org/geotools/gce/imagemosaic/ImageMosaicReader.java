@@ -543,7 +543,7 @@ public class ImageMosaicReader extends AbstractGridCoverage2DReader implements S
     }
 
     @Override
-    public GridCoverage2D read(GeneralParameterValue[] params) throws IOException {
+    public GridCoverage2D read(GeneralParameterValue... params) throws IOException {
         return read(UNSPECIFIED, params);
     }
 
@@ -552,7 +552,7 @@ public class ImageMosaicReader extends AbstractGridCoverage2DReader implements S
      *     org.geotools.api.coverage.grid.GridCoverageReader#read(org.geotools.api.parameter.GeneralParameterValue[]) @Override
      */
     @Override
-    public GridCoverage2D read(String coverageName, GeneralParameterValue[] params) throws IOException {
+    public GridCoverage2D read(String coverageName, GeneralParameterValue... params) throws IOException {
 
         // check if we were disposed already
         if (rasterManagers == null) {

@@ -80,7 +80,7 @@ public class GeoTiffReaderCogOnlineTest extends Assert {
 
         ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
         bands.setValue(new int[] {0, 0});
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {bands});
+        GridCoverage2D coverage = reader.read(bands);
         assertNotNull(coverage);
         assertEquals(2, coverage.getRenderedImage().getSampleModel().getNumBands());
         assertEquals(2, coverage.getRenderedImage().getColorModel().getNumComponents());

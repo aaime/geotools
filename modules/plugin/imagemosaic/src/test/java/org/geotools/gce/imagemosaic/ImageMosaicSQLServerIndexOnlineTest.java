@@ -212,7 +212,7 @@ public class ImageMosaicSQLServerIndexOnlineTest extends OnlineTestCase {
             elevation.setValue(Arrays.asList(100.0));
 
             // Test the output coverage
-            assertNotNull(reader.read(new GeneralParameterValue[] {gg, time, bkg, elevation, direct}));
+            assertNotNull(reader.read(gg, time, bkg, elevation, direct));
             TestUtils.checkCoverage(
                     reader, new GeneralParameterValue[] {gg, time, bkg, elevation, direct}, "Time-Elevation Test");
 
@@ -498,7 +498,7 @@ public class ImageMosaicSQLServerIndexOnlineTest extends OnlineTestCase {
             elevation.setValue(Arrays.asList(100.0));
 
             // Test the output coverage
-            assertNotNull(reader.read(new GeneralParameterValue[] {gg, time, bkg, elevation, direct}));
+            assertNotNull(reader.read(gg, time, bkg, elevation, direct));
             TestUtils.checkCoverage(
                     reader, new GeneralParameterValue[] {gg, time, bkg, elevation, direct}, "Time-Elevation Test");
 

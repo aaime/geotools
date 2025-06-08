@@ -25,7 +25,6 @@ import java.net.URL;
 import java.util.Iterator;
 import javax.media.jai.ImageLayout;
 import javax.media.jai.JAI;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -115,7 +114,7 @@ public class EnviHdrTest extends GDALTestCase {
                 new GridEnvelope2D(new Rectangle(
                         0, 0, (int) (range.width / 4.0 / cropFactor), (int) (range.height / 4.0 / cropFactor))),
                 cropEnvelope));
-        gc = reader.read(new GeneralParameterValue[] {gg});
+        gc = reader.read(gg);
         Assert.assertNotNull(gc);
         // NOTE: in some cases might be too restrictive
         Assert.assertTrue(cropEnvelope.equals(

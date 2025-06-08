@@ -255,7 +255,7 @@ public class ImageMosaicFootprintsTest {
 
         ParameterValue<String> footprintManagement = AbstractGridFormat.FOOTPRINT_BEHAVIOR.createValue();
         footprintManagement.setValue(FootprintBehavior.Transparent.name());
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {footprintManagement, gg});
+        GridCoverage2D coverage = reader.read(footprintManagement, gg);
 
         byte[] pixel = new byte[4];
 

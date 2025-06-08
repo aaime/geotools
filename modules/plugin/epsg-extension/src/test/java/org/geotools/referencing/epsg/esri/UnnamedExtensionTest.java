@@ -117,7 +117,8 @@ public class UnnamedExtensionTest {
     @Test
     public void test42102() throws FactoryException {
         final Hints hints = new Hints(Hints.CRS_AUTHORITY_FACTORY, UnnamedExtension.class);
-        final CRSAuthorityFactory factory = new OrderedAxisAuthorityFactory("EPSG", hints, null);
+        final CRSAuthorityFactory factory =
+                new OrderedAxisAuthorityFactory("EPSG", hints, (org.geotools.api.referencing.cs.AxisDirection) null);
         final CoordinateReferenceSystem crs = factory.createCoordinateReferenceSystem("EPSG:42102");
         assertNotNull(crs);
         assertNotNull(crs.getIdentifiers());

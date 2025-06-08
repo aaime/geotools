@@ -330,7 +330,7 @@ public class HeterogenousCRSTest {
         ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
         bands.setValue(new int[] {0, 0});
         // would throw an exception on read
-        GridCoverage2D coverage = imReader.read(new GeneralParameterValue[] {bands});
+        GridCoverage2D coverage = imReader.read(bands);
         Assert.assertNotNull(coverage);
         RenderedImage image = coverage.getRenderedImage();
         assertEquals(2, image.getSampleModel().getNumBands());
@@ -529,14 +529,14 @@ public class HeterogenousCRSTest {
         // read before dateline
         GeneralParameterValue gg1 = buildGridGeometryParameter(
                 new ReferencedEnvelope(179, 180, 60, 62, DefaultGeographicCRS.WGS84), 128, 256);
-        GridCoverage2D gcBefore = imReader.read(new GeneralParameterValue[] {gg1});
+        GridCoverage2D gcBefore = imReader.read(gg1);
         RenderedImage riBefore = gcBefore.getRenderedImage();
         ImageAssert.assertEquals(testFile("hetero_crs_dateline_results/before.png"), riBefore, 1000);
 
         // read after the dateline
         GeneralParameterValue ggAfter = buildGridGeometryParameter(
                 new ReferencedEnvelope(180, 181, 60, 62, DefaultGeographicCRS.WGS84), 128, 256);
-        GridCoverage2D gcAfter = imReader.read(new GeneralParameterValue[] {ggAfter});
+        GridCoverage2D gcAfter = imReader.read(ggAfter);
         RenderedImage riAfter = gcAfter.getRenderedImage();
         ImageAssert.assertEquals(testFile("hetero_crs_dateline_results/after.png"), riAfter, 1000);
 
@@ -582,7 +582,7 @@ public class HeterogenousCRSTest {
         // check it's not empty (used to be)
         final ParameterValue<String> footprintParam = AbstractGridFormat.FOOTPRINT_BEHAVIOR.createValue();
         footprintParam.setValue("Transparent");
-        GridCoverage2D coverage = imReader.read(new GeneralParameterValue[] {footprintParam});
+        GridCoverage2D coverage = imReader.read(footprintParam);
         assertNotNull(coverage);
         ImageAssert.assertEquals(testFile("hetero_crs_rastermask.png"), coverage.getRenderedImage(), 1000);
         imReader.dispose();
@@ -804,7 +804,7 @@ public class HeterogenousCRSTest {
         ParameterValue<GridGeometry2D> ggParam = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParam.setValue(readingGridGeometry);
 
-        GridCoverage2D gc = imReader.read(new GeneralParameterValue[] {ggParam});
+        GridCoverage2D gc = imReader.read(ggParam);
 
         // Check that we get back ImageMosaic on its "common" CRS (4326)
         CoordinateReferenceSystem wgs84 = DefaultGeographicCRS.WGS84;
@@ -833,7 +833,7 @@ public class HeterogenousCRSTest {
 
         ParameterValue<Boolean> useAlternativeCRS = ImageMosaicFormat.OUTPUT_TO_ALTERNATIVE_CRS.createValue();
         useAlternativeCRS.setValue(true);
-        gc = imReader.read(new GeneralParameterValue[] {ggParam, useAlternativeCRS});
+        gc = imReader.read(ggParam, useAlternativeCRS);
 
         // Check that the output is in the requested CRS (no 4326 anymore)
         assertTrue(CRS.equalsIgnoreMetadata(utmZone32N, gc.getCoordinateReferenceSystem()));
@@ -1003,7 +1003,7 @@ public class HeterogenousCRSTest {
 
         // record queries only during the read
         recordQueries.set(true);
-        GridCoverage2D coverage = repoReader.read(new GeneralParameterValue[] {ggp, filter});
+        GridCoverage2D coverage = repoReader.read(ggp, filter);
         recordQueries.set(false);
         if (coverage != null) coverage.dispose(true);
         repoReader.dispose();

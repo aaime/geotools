@@ -26,7 +26,6 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.util.Properties;
 import javax.media.jai.PlanarImage;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.coverage.grid.GridEnvelope2D;
@@ -173,7 +172,7 @@ public class CatalogBuilderTest extends Assert {
         // use imageio with defined tiles
 
         // Test the output coverage
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg, useJai, tileSize});
+        GridCoverage2D coverage = reader.read(gg, useJai, tileSize);
         Assert.assertNotNull(coverage);
         PlanarImage.wrapRenderedImage(coverage.getRenderedImage()).getTiles();
 
@@ -247,7 +246,7 @@ public class CatalogBuilderTest extends Assert {
         // use imageio with defined tiles
 
         // Test the output coverage
-        coverage = reader.read(new GeneralParameterValue[] {gg, useJai, tileSize});
+        coverage = reader.read(gg, useJai, tileSize);
         Assert.assertNotNull(coverage);
         PlanarImage.wrapRenderedImage(coverage.getRenderedImage()).getTiles();
 

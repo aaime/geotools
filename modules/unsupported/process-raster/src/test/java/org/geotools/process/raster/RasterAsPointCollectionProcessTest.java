@@ -134,7 +134,7 @@ public class RasterAsPointCollectionProcessTest {
         // Get a reader for the selected format
         GridCoverageReader reader = format.getReader(tiff);
         // Read the input Coverage
-        inputCoverage = (GridCoverage2D) reader.read(null);
+        inputCoverage = (GridCoverage2D) reader.read((GeneralParameterValue) null);
         // Reproject to the default WGS84 CRS
         processor = CoverageProcessor.getInstance(GeoTools.getDefaultHints());
         final ParameterValueGroup param = processor.getOperation("Resample").getParameters();

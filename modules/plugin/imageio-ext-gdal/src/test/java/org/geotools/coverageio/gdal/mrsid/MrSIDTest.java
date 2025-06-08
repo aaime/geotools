@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
-import org.geotools.api.parameter.GeneralParameterValue;
 import org.geotools.api.parameter.ParameterValue;
 import org.geotools.api.referencing.FactoryException;
 import org.geotools.api.referencing.NoSuchAuthorityCodeException;
@@ -122,7 +121,7 @@ public final class MrSIDTest extends GDALTestCase {
         gg.setValue(new GridGeometry2D(
                 new GridEnvelope2D(new Rectangle(0, 0, (int) (range.width / 2.0), (int) (range.height / 2.0))),
                 reducedEnvelope));
-        gc = reader.read(new GeneralParameterValue[] {gg});
+        gc = reader.read(gg);
         Assert.assertNotNull(gc);
         // NOTE: in some cases might be too restrictive
         Assert.assertTrue(reducedEnvelope.equals(
@@ -162,7 +161,7 @@ public final class MrSIDTest extends GDALTestCase {
         final ParameterValue useJaiRead = ((BaseGDALGridFormat) reader.getFormat()).USE_JAI_IMAGEREAD.createValue();
         useJaiRead.setValue(true);
 
-        gc = reader.read(new GeneralParameterValue[] {gg, policy, tilesize, useJaiRead});
+        gc = reader.read(gg, policy, tilesize, useJaiRead);
 
         Assert.assertNotNull(gc);
         // NOTE: in some cases might be too restrictive

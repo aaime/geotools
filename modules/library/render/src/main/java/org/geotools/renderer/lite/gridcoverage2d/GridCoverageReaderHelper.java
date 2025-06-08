@@ -621,9 +621,9 @@ public class GridCoverageReaderHelper {
             } else
                 // we have no parameters hence we just use the read grid
                 // geometry to get a coverage
-                coverage = reader.read(new GeneralParameterValue[] {readGGParam});
+                coverage = reader.read(readGGParam);
         } else if (gg != null) {
-            coverage = reader.read(new GeneralParameterValue[] {readGGParam});
+            coverage = reader.read(readGGParam);
         } else {
             coverage = reader.read(null);
         }

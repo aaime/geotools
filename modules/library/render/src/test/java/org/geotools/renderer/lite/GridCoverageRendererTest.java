@@ -1374,7 +1374,7 @@ public class GridCoverageRendererTest {
     public void testContrastEnhancementInChannelSelectionAfterBandSelectionWithoutColorModel() throws Exception {
         GridCoverage2DReader reader = new TestMultiBandReader(0, 2, 4) {
             @Override
-            public GridCoverage2D read(GeneralParameterValue[] parameters) throws IOException {
+            public GridCoverage2D read(GeneralParameterValue... parameters) throws IOException {
                 GridCoverage2D originalCoverage = super.read(parameters);
                 RenderedImage source = new ImageWorker(originalCoverage.getRenderedImage())
                         .format(DataBuffer.TYPE_USHORT)
@@ -1832,7 +1832,7 @@ public class GridCoverageRendererTest {
         }
 
         @Override
-        public GridCoverage2D read(GeneralParameterValue[] parameters) throws IllegalArgumentException, IOException {
+        public GridCoverage2D read(GeneralParameterValue... parameters) throws IllegalArgumentException, IOException {
             assertTrue(Arrays.stream(parameters)
                     .anyMatch(p -> "Bands".equals(p.getDescriptor().getName().toString())
                             && Arrays.equals(expectedBands, (int[]) ((ParameterValue) p).getValue())));
@@ -1934,7 +1934,7 @@ public class GridCoverageRendererTest {
         }
 
         @Override
-        public GridCoverage2D read(GeneralParameterValue[] parameters) throws IllegalArgumentException, IOException {
+        public GridCoverage2D read(GeneralParameterValue... parameters) throws IllegalArgumentException, IOException {
             for (GeneralParameterValue parameter : parameters) {
                 if ("Bands".equals(parameter.getDescriptor().getName().toString())) {
                     assertArrayEquals(expectedBands, (int[]) ((ParameterValue) parameter).getValue());
@@ -2061,7 +2061,7 @@ public class GridCoverageRendererTest {
 
         ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
         bands.setValue(new int[] {0});
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {rescalePixels, bands});
+        GridCoverage2D coverage = reader.read(rescalePixels, bands);
         NoDataContainer noDataProperty = CoverageUtilities.getNoDataProperty(coverage);
         assertNotNull(noDataProperty);
         double noData = noDataProperty.getAsSingleValue();

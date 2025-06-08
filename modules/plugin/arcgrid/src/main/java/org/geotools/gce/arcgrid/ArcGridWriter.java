@@ -433,7 +433,7 @@ public final class ArcGridWriter extends AbstractGridCoverageWriter implements G
      *     org.geotools.api.parameter.GeneralParameterValue[])
      */
     @Override
-    public void write(GridCoverage coverage, GeneralParameterValue[] parameters)
+    public void write(GridCoverage coverage, GeneralParameterValue... parameters)
             throws IllegalArgumentException, IOException {
         ensureWeCanWrite(coverage, parameters);
         writeGridCoverage((GridCoverage2D) coverage, parameters);

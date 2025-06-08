@@ -63,7 +63,7 @@ public class RemoteTest {
         testEnvelope.setCoordinateReferenceSystem(nativeCRS);
         ParameterValue<GridGeometry2D> pam = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         pam.setValue(new GridGeometry2D(testRange, testEnvelope));
-        final GridCoverage2D gc = reader.read(new ParameterValue<?>[] {pam});
+        final GridCoverage2D gc = reader.read(pam);
         Assert.assertNotNull(gc);
         assertNotBlank("remote image mosaic", ((PlanarImage) gc.getRenderedImage()).getAsBufferedImage(), Color.BLACK);
         reader.dispose();

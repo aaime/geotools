@@ -232,7 +232,8 @@ public class ImageTiler {
 
                 // use the AbstractGridFormat's writer to write out the tile
                 File tileFile = new File(tileDirectory, i + "_" + j + "." + fileExtension);
-                format.getWriter(tileFile).write(finalCoverage, null);
+                format.getWriter(tileFile)
+                        .write(finalCoverage, (org.geotools.api.parameter.GeneralParameterValue) null);
             }
         }
     }

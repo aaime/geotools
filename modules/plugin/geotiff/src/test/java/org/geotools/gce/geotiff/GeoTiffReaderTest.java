@@ -938,7 +938,7 @@ public class GeoTiffReaderTest {
                 assertEquals(1, coverage.getRenderedImage().getSampleModel().getNumBands());
                 final ParameterValue<Color> colorPV = AbstractGridFormat.INPUT_TRANSPARENT_COLOR.createValue();
                 colorPV.setValue(Color.BLACK);
-                coverage = reader.read(new GeneralParameterValue[] {colorPV});
+                coverage = reader.read(colorPV);
                 assertNotNull(coverage);
                 assertEquals(2, coverage.getRenderedImage().getSampleModel().getNumBands());
 
@@ -961,7 +961,7 @@ public class GeoTiffReaderTest {
                 assertEquals(3, coverage.getRenderedImage().getSampleModel().getNumBands());
                 final ParameterValue<Color> colorPV = AbstractGridFormat.INPUT_TRANSPARENT_COLOR.createValue();
                 colorPV.setValue(new Color(34, 53, 87));
-                coverage = reader.read(new GeneralParameterValue[] {colorPV});
+                coverage = reader.read(colorPV);
                 assertNotNull(coverage);
                 assertEquals(4, coverage.getRenderedImage().getSampleModel().getNumBands());
 
@@ -986,7 +986,7 @@ public class GeoTiffReaderTest {
                 final ParameterValue<Color> colorPV = AbstractGridFormat.INPUT_TRANSPARENT_COLOR.createValue();
                 colorPV.setValue(new Color(34, 53, 87));
                 try {
-                    coverage = reader.read(new GeneralParameterValue[] {colorPV});
+                    coverage = reader.read(colorPV);
                     fail(); // we should not get here
                 } catch (Exception e) {
                     // TODO: handle exception
@@ -1029,7 +1029,7 @@ public class GeoTiffReaderTest {
         GridGeometry2D gridGeometry = new GridGeometry2D(range, envelope);
         gg.setValue(gridGeometry);
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertEquals(reader.getOriginalEnvelope(), coverage.getEnvelope());
         RenderedImage image = coverage.getRenderedImage();
         assertEquals(image.getWidth(), 2);
@@ -1103,7 +1103,7 @@ public class GeoTiffReaderTest {
         GridGeometry2D gridGeometry = new GridGeometry2D(range, envelope);
         gg.setValue(gridGeometry);
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         RenderedOp op = (RenderedOp) coverage.getRenderedImage();
         @SuppressWarnings("PMD.CloseResource") // closed along with the coverage
         FileImageInputStreamExtImpl fis = (FileImageInputStreamExtImpl)
@@ -1239,7 +1239,7 @@ public class GeoTiffReaderTest {
         try {
             ParameterValue<Boolean> rescalePixels = AbstractGridFormat.RESCALE_PIXELS.createValue();
             rescalePixels.setValue(false);
-            coverage = reader.read(new GeneralParameterValue[] {rescalePixels});
+            coverage = reader.read(rescalePixels);
             ImageWorker iw = new ImageWorker(coverage.getRenderedImage());
             double noData = iw.getNoData().getMin().doubleValue();
             double[] maximums = iw.getMaximums();
@@ -1264,7 +1264,7 @@ public class GeoTiffReaderTest {
         try {
             ParameterValue<Boolean> rescalePixels = AbstractGridFormat.RESCALE_PIXELS.createValue();
             rescalePixels.setValue(true);
-            coverage = reader.read(new GeneralParameterValue[] {rescalePixels});
+            coverage = reader.read(rescalePixels);
             ImageWorker iw = new ImageWorker(coverage.getRenderedImage());
             double noData = iw.getNoData().getMin().doubleValue();
             double[] maximums = iw.getMaximums();
@@ -1374,7 +1374,7 @@ public class GeoTiffReaderTest {
         try {
             ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
             bands.setValue(new int[] {1, 3, 5});
-            coverage = reader.read(new GeneralParameterValue[] {bands});
+            coverage = reader.read(bands);
             RenderedImage ri = coverage.getRenderedImage();
             assertEquals(3, ri.getSampleModel().getNumBands());
 
@@ -1403,7 +1403,7 @@ public class GeoTiffReaderTest {
         try {
             ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
             bands.setValue(new int[] {0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5});
-            coverage = reader.read(new GeneralParameterValue[] {bands});
+            coverage = reader.read(bands);
             RenderedImage ri = coverage.getRenderedImage();
             assertEquals(12, ri.getSampleModel().getNumBands());
 

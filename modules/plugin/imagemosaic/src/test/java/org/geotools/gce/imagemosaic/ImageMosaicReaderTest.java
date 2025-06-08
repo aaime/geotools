@@ -1942,7 +1942,7 @@ public class ImageMosaicReaderTest {
         bgp.setValue(new double[] {255, 0, 0, 255});
 
         // read and check we actually got a coverage in the requested area
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggp, bgp});
+        GridCoverage2D coverage = reader.read(ggp, bgp);
         assertNotNull(coverage);
         assertTrue(coverage.getEnvelope2D().intersects((BoundingBox) env));
 
@@ -2005,7 +2005,7 @@ public class ImageMosaicReaderTest {
         bgp.setValue(new double[] {255, 127, 64});
 
         // read and check we actually got a coverage in the requested area
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggp, bgp, bands});
+        GridCoverage2D coverage = reader.read(ggp, bgp, bands);
         assertNotNull(coverage);
         assertTrue(coverage.getEnvelope2D().intersects((BoundingBox) env));
 
@@ -2046,7 +2046,7 @@ public class ImageMosaicReaderTest {
         bgp.setValue(new double[] {255, 0, 0, 255});
 
         // read and check we actually got a coverage in the requested area
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggp, bgp});
+        GridCoverage2D coverage = reader.read(ggp, bgp);
         assertNotNull(coverage);
         final ReferencedEnvelope ReferencedEnvelope = coverage.getEnvelope2D();
         assertTrue(ReferencedEnvelope.contains((BoundingBox) env));
@@ -2082,7 +2082,7 @@ public class ImageMosaicReaderTest {
             transparent.setValue(new Color(0, 0, 0));
 
             // read and check we actually got a coverage in the requested area
-            GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggp, transparent});
+            GridCoverage2D coverage = reader.read(ggp, transparent);
             assertNotNull(coverage);
             assertTrue(coverage.getEnvelope2D().contains((BoundingBox) env));
 
@@ -2454,7 +2454,7 @@ public class ImageMosaicReaderTest {
         GridGeometry2D gg = new GridGeometry2D(rasterEnvelope, env);
         final ParameterValue<GridGeometry2D> ggParameter = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParameter.setValue(gg);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggParameter});
+        GridCoverage2D coverage = reader.read(ggParameter);
         assertNotNull(coverage);
         coverage.dispose(true);
 
@@ -2520,7 +2520,7 @@ public class ImageMosaicReaderTest {
         GridGeometry2D gg = new GridGeometry2D(rasterEnvelope, env);
         final ParameterValue<GridGeometry2D> ggParameter = AbstractGridFormat.READ_GRIDGEOMETRY2D.createValue();
         ggParameter.setValue(gg);
-        GridCoverage2D coverage = reader2.read(new GeneralParameterValue[] {ggParameter});
+        GridCoverage2D coverage = reader2.read(ggParameter);
         assertNotNull(coverage);
         coverage.dispose(true);
 
@@ -3687,7 +3687,7 @@ public class ImageMosaicReaderTest {
         timeValues.add(date);
         time.setValue(timeValues);
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {time});
+        GridCoverage2D coverage = reader.read(time);
         Object object = coverage.getProperty(GridCoverage2DReader.PAM_DATASET);
         checkPAMDataset(object, 73.0352, 84.3132);
 
@@ -4248,7 +4248,7 @@ public class ImageMosaicReaderTest {
         GridEnvelope2D range = new GridEnvelope2D(new ReferencedEnvelope(ge), PixelInCell.CELL_CENTER);
         gg.setValue(new GridGeometry2D(range, mt, box.getCoordinateReferenceSystem()));
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         RenderedImage ri = coverage.getRenderedImage();
         // RenderedImageBrowser.showChain(ri);
         assertThat(ri.getColorModel(), instanceOf(clazz));
@@ -4299,7 +4299,7 @@ public class ImageMosaicReaderTest {
         Rectangle rasterArea = ((GridEnvelope2D) reader.getOriginalGridRange());
         GridEnvelope2D range = new GridEnvelope2D(rasterArea);
         gg.setValue(new GridGeometry2D(range, envelope));
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertNull(coverage);
 
         // read without parameters, should also give null, since the bbox of the coverage is used
@@ -4317,7 +4317,7 @@ public class ImageMosaicReaderTest {
         ReferencedEnvelope env = ReferencedEnvelope.rect(0, 0, 1000, 1000, reader.getCoordinateReferenceSystem());
         GridGeometry2D gg2D = new GridGeometry2D(new GridEnvelope2D(0, 0, 100, 100), (Bounds) env);
         gg.setValue(gg2D);
-        coverage = reader.read(new GeneralParameterValue[] {bkg, gg, useJai, tileSize});
+        coverage = reader.read(bkg, gg, useJai, tileSize);
         assertNull(coverage);
 
         // now add a granule, reinitialize and test the opposite...
@@ -4350,7 +4350,7 @@ public class ImageMosaicReaderTest {
         coverage.dispose(true);
 
         // use more complex parameters and own bbox --> should also return a coverage
-        coverage = reader.read(new GeneralParameterValue[] {bkg, gg, useJai, tileSize});
+        coverage = reader.read(bkg, gg, useJai, tileSize);
         assertNotNull(coverage);
         assertNotNull(coverage.getRenderedImage());
         coverage.dispose(true);
@@ -4367,7 +4367,7 @@ public class ImageMosaicReaderTest {
         assertNull(coverage);
 
         // use more complex parameters and own bbox --> should also return a null coverage
-        coverage = reader.read(new GeneralParameterValue[] {bkg, gg, useJai, tileSize});
+        coverage = reader.read(bkg, gg, useJai, tileSize);
         assertNull(coverage);
 
         reader.dispose();
@@ -4397,7 +4397,7 @@ public class ImageMosaicReaderTest {
         Rectangle rasterArea = ((GridEnvelope2D) reader.getOriginalGridRange());
         GridEnvelope2D range = new GridEnvelope2D(rasterArea);
         gg.setValue(new GridGeometry2D(range, envelope));
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         assertNull(coverage);
 
         // read without parameters, should also give null, since the bbox of the coverage is used
@@ -4415,7 +4415,7 @@ public class ImageMosaicReaderTest {
         ReferencedEnvelope env = ReferencedEnvelope.rect(0, 0, 1000, 1000, reader.getCoordinateReferenceSystem());
         GridGeometry2D gg2D = new GridGeometry2D(new GridEnvelope2D(0, 0, 100, 100), (Bounds) env);
         gg.setValue(gg2D);
-        coverage = reader.read(new GeneralParameterValue[] {bkg, gg, useJai, tileSize});
+        coverage = reader.read(bkg, gg, useJai, tileSize);
         assertNull(coverage);
 
         reader.dispose();
@@ -4457,7 +4457,7 @@ public class ImageMosaicReaderTest {
         gg.setValue(new GridGeometry2D(new GridEnvelope2D(0, 0, 50, 50), re));
 
         // Test the output coverage, should be made of a single granule
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {gg});
+        GridCoverage2D coverage = reader.read(gg);
         RenderedImage ri = coverage.getRenderedImage();
         assertEquals(1, getSourceGranules(ri));
 
@@ -4626,7 +4626,7 @@ public class ImageMosaicReaderTest {
         final ParameterValue<String> sortBy = ImageMosaicFormat.SORT_BY.createValue();
         sortBy.setValue("time D");
         ImageMosaicReader reader = new ImageMosaicReader(timeCached);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {sortBy});
+        GridCoverage2D coverage = reader.read(sortBy);
         ImageAssert.assertEquals(expected, coverage.getRenderedImage(), 0);
         coverage.dispose(true);
         reader.dispose();
@@ -4643,7 +4643,7 @@ public class ImageMosaicReaderTest {
         final ParameterValue<String> sortBy = ImageMosaicFormat.SORT_BY.createValue();
         sortBy.setValue("time A");
         ImageMosaicReader reader = new ImageMosaicReader(timeCached);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {sortBy});
+        GridCoverage2D coverage = reader.read(sortBy);
         ImageAssert.assertEquals(expected, coverage.getRenderedImage(), 0);
         coverage.dispose(true);
         reader.dispose();
@@ -4663,7 +4663,7 @@ public class ImageMosaicReaderTest {
         // during does not include the limits apparently, so we end up with a weird filter
         filter.setValue(ECQL.toFilter("time during 2004-02-28T23:59:59/2004-05-01T00:00:00"));
         ImageMosaicReader reader = new ImageMosaicReader(timeCached);
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {sortBy, filter});
+        GridCoverage2D coverage = reader.read(sortBy, filter);
         ImageAssert.assertEquals(expected, coverage.getRenderedImage(), 0);
         coverage.dispose(true);
         reader.dispose();
@@ -4714,12 +4714,12 @@ public class ImageMosaicReaderTest {
         // read a coverage in deferred mode, check the nodata is there
         ParameterValue<Boolean> deferredLoading = AbstractGridFormat.USE_JAI_IMAGEREAD.createValue();
         deferredLoading.setValue(true);
-        GridCoverage2D coverageDeferred = imReader.read(new GeneralParameterValue[] {deferredLoading});
+        GridCoverage2D coverageDeferred = imReader.read(deferredLoading);
         assertNoData(coverageDeferred, 0d);
 
         // read in immediate mode, the nodata is also there
         deferredLoading.setValue(false);
-        GridCoverage2D coverage = imReader.read(new GeneralParameterValue[] {deferredLoading});
+        GridCoverage2D coverage = imReader.read(deferredLoading);
         assertNoData(coverage, 0d);
         imReader.dispose();
     }
@@ -4738,7 +4738,7 @@ public class ImageMosaicReaderTest {
         ParameterValue<Boolean> deferredLoading = AbstractGridFormat.USE_JAI_IMAGEREAD.createValue();
 
         deferredLoading.setValue(true);
-        GridCoverage2D coverage = imReader.read(new GeneralParameterValue[] {deferredLoading});
+        GridCoverage2D coverage = imReader.read(deferredLoading);
         assertNoData(coverage, 7d);
         imReader.dispose();
     }
@@ -4811,7 +4811,7 @@ public class ImageMosaicReaderTest {
         ParameterValue<Interpolation> interpValue = AbstractGridFormat.INTERPOLATION.createValue();
         interpValue.setValue(Interpolation.getInstance(Interpolation.INTERP_BILINEAR));
 
-        GridCoverage2D coverage = reader.read(new GeneralParameterValue[] {ggValue, interpValue});
+        GridCoverage2D coverage = reader.read(ggValue, interpValue);
         NoDataContainer noData = (NoDataContainer) coverage.getProperty(NoDataContainer.GC_NODATA);
         assertEquals(9.96920996838686905e+36, noData.getAsSingleValue(), 0.1);
 
@@ -4855,13 +4855,13 @@ public class ImageMosaicReaderTest {
         // order them one way and check
         ParameterValue<String> ascending = ImageMosaicFormat.SORT_BY.createValue();
         ascending.setValue("location A");
-        GridCoverage2D coverageA = reader.read(new GeneralParameterValue[] {ascending});
+        GridCoverage2D coverageA = reader.read(ascending);
         verifier.accept(coverageA);
 
         // other them the opposite way and check
         ParameterValue<String> descending = ImageMosaicFormat.SORT_BY.createValue();
         descending.setValue("location D");
-        GridCoverage2D coverageD = reader.read(new GeneralParameterValue[] {descending});
+        GridCoverage2D coverageD = reader.read(descending);
         verifier.accept(coverageD);
 
         reader.dispose();
@@ -5074,7 +5074,7 @@ public class ImageMosaicReaderTest {
             // test one, read with scale/offset rescaling
             ParameterValue<Boolean> rescalePixels = AbstractGridFormat.RESCALE_PIXELS.createValue();
             rescalePixels.setValue(true);
-            GridCoverage2D gc = reader.read(new GeneralParameterValue[] {rescalePixels});
+            GridCoverage2D gc = reader.read(rescalePixels);
             RenderedImage imScaled = gc.getRenderedImage();
             assertEquals(DataBuffer.TYPE_DOUBLE, imScaled.getSampleModel().getDataType());
             // ... checking pixels in the first image
@@ -5100,7 +5100,7 @@ public class ImageMosaicReaderTest {
             // test one, read with scale/offset rescaling
             ParameterValue<Boolean> rescalePixels = AbstractGridFormat.RESCALE_PIXELS.createValue();
             rescalePixels.setValue(false);
-            GridCoverage2D gc = reader.read(new GeneralParameterValue[] {rescalePixels});
+            GridCoverage2D gc = reader.read(rescalePixels);
             RenderedImage imScaled = gc.getRenderedImage();
             assertEquals(DataBuffer.TYPE_INT, imScaled.getSampleModel().getDataType());
             // ... checking pixels in the first image
@@ -5128,7 +5128,7 @@ public class ImageMosaicReaderTest {
             rescalePixels.setValue(true);
             ParameterValue<int[]> bands = AbstractGridFormat.BANDS.createValue();
             bands.setValue(new int[] {5});
-            GridCoverage2D gc = reader.read(new GeneralParameterValue[] {rescalePixels, bands});
+            GridCoverage2D gc = reader.read(rescalePixels, bands);
             RenderedImage imScaled = gc.getRenderedImage();
             assertEquals(DataBuffer.TYPE_DOUBLE, imScaled.getSampleModel().getDataType());
 
@@ -5140,7 +5140,7 @@ public class ImageMosaicReaderTest {
             assertArrayEquals(new double[] {1}, pixelDouble, 0d);
 
             bands.setValue(new int[] {1, 4});
-            gc = reader.read(new GeneralParameterValue[] {rescalePixels, bands});
+            gc = reader.read(rescalePixels, bands);
             imScaled = gc.getRenderedImage();
             // ... checking pixels
             pixelDouble = new double[2];
@@ -5608,7 +5608,7 @@ public class ImageMosaicReaderTest {
             final GridEnvelope2D range = new GridEnvelope2D(rasterArea);
             gg.setValue(new GridGeometry2D(range, envelope));
 
-            coverage = reader.read(new GeneralParameterValue[] {gg});
+            coverage = reader.read(gg);
             File sample = new File("src/test/resources/org/geotools/gce/imagemosaic/test-data/no-slivers.png");
             ImageAssert.assertEquals(sample, coverage.getRenderedImage(), 0);
         } finally {

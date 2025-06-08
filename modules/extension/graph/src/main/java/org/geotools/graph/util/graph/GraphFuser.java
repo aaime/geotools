@@ -112,7 +112,7 @@ public class GraphFuser {
                     m_ndegree2--;
                 }
 
-                return (GraphTraversal.CONTINUE);
+                return GraphTraversal.CONTINUE;
             }
 
             @Override
@@ -133,7 +133,7 @@ public class GraphFuser {
         m_nodes = new ArrayList<>();
 
         m_ndegree2 = m_graph.getNodesOfDegree(2).size();
-        if (m_ndegree2 == 0) return (true); // nothing to fuse
+        if (m_ndegree2 == 0) return true; // nothing to fuse
 
         m_traversal.init();
 
@@ -160,10 +160,10 @@ public class GraphFuser {
                             // check for adjacent node of degree > 2
                             for (Iterator<?> itr = node.getRelated(); itr.hasNext(); ) {
                                 Node rel = (Node) itr.next();
-                                if (rel.getDegree() > 2) return (Graph.PASS_AND_CONTINUE);
+                                if (rel.getDegree() > 2) return Graph.PASS_AND_CONTINUE;
                             }
                         }
-                        return (Graph.FAIL_QUERY);
+                        return Graph.FAIL_QUERY;
                     })
                     .iterator();
 
@@ -171,8 +171,8 @@ public class GraphFuser {
             // disconnected from the rest of graph, so just pick any node of degree 2
             if (!sources.hasNext()) {
                 sources = m_graph.queryNodes(component -> {
-                            if (!component.isVisited()) return (Graph.PASS_AND_STOP);
-                            return (Graph.FAIL_QUERY);
+                            if (!component.isVisited()) return Graph.PASS_AND_STOP;
+                            return Graph.FAIL_QUERY;
                         })
                         .iterator();
             }
@@ -184,7 +184,7 @@ public class GraphFuser {
                 public int visit(Graphable element, GraphTraversal traversal) {
                     m_ndegree2--;
                     m_nodes.add(element);
-                    return (GraphTraversal.CONTINUE);
+                    return GraphTraversal.CONTINUE;
                 }
 
                 @Override
@@ -288,9 +288,9 @@ public class GraphFuser {
                 m_builder.addEdge(newEdge);
             }
 
-            return (true);
+            return true;
         }
-        return (false);
+        return false;
     }
 
     // /**

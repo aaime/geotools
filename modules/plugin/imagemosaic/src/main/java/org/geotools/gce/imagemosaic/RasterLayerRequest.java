@@ -413,7 +413,7 @@ public class RasterLayerRequest {
             // //
             if (name.equals(AbstractGridFormat.USE_JAI_IMAGEREAD.getName())) {
                 if (value == null) continue;
-                readType = ((Boolean) value) ? ReadType.JAI_IMAGEREAD : ReadType.DIRECT_READ;
+                readType = (Boolean) value ? ReadType.JAI_IMAGEREAD : ReadType.DIRECT_READ;
                 continue;
             }
 
@@ -532,7 +532,7 @@ public class RasterLayerRequest {
                 final String suggestedTileSize = (String) value;
 
                 // Preliminary checks on parameter value
-                if ((suggestedTileSize != null) && (suggestedTileSize.trim().length() > 0)) {
+                if (suggestedTileSize != null && suggestedTileSize.trim().length() > 0) {
 
                     if (suggestedTileSize.contains(AbstractGridFormat.TILE_SIZE_SEPARATOR)) {
                         final String[] tilesSize = suggestedTileSize.split(AbstractGridFormat.TILE_SIZE_SEPARATOR);
@@ -789,7 +789,7 @@ public class RasterLayerRequest {
             final String suggestedTileSize = (String) param.getValue();
 
             // Preliminary checks on parameter value
-            if ((suggestedTileSize != null) && (suggestedTileSize.trim().length() > 0)) {
+            if (suggestedTileSize != null && suggestedTileSize.trim().length() > 0) {
 
                 if (suggestedTileSize.contains(AbstractGridFormat.TILE_SIZE_SEPARATOR)) {
                     final String[] tilesSize = suggestedTileSize.split(AbstractGridFormat.TILE_SIZE_SEPARATOR);

@@ -1135,7 +1135,7 @@ public class FilterToSQL implements FilterVisitor, ExpressionVisitor {
                     out.write(" = ");
                     writeLiteral(attValues.get(j));
 
-                    if (j < (attValues.size() - 1)) {
+                    if (j < attValues.size() - 1) {
                         out.write(" AND ");
                     }
                 }

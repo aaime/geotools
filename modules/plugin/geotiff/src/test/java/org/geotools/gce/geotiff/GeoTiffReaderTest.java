@@ -613,7 +613,7 @@ public class GeoTiffReaderTest {
         dim.setSize(
                 reader.getOriginalGridRange().getSpan(0) / 4,
                 reader.getOriginalGridRange().getSpan(1) / 4);
-        final Rectangle rasterArea = ((GridEnvelope2D) reader.getOriginalGridRange());
+        final Rectangle rasterArea = (GridEnvelope2D) reader.getOriginalGridRange();
         rasterArea.setSize(dim);
         final GridEnvelope2D range = new GridEnvelope2D(rasterArea);
         gg.setValue(new GridGeometry2D(range, envelope));
@@ -821,7 +821,7 @@ public class GeoTiffReaderTest {
         dim.setSize(
                 reader.getOriginalGridRange().getSpan(0) / 2.0,
                 reader.getOriginalGridRange().getSpan(1) / 2.0);
-        final Rectangle rasterArea = ((GridEnvelope2D) reader.getOriginalGridRange());
+        final Rectangle rasterArea = (GridEnvelope2D) reader.getOriginalGridRange();
         rasterArea.setSize(dim);
         final GridEnvelope2D range = new GridEnvelope2D(rasterArea);
         gg.setValue(new GridGeometry2D(range, envelope));
@@ -1023,7 +1023,7 @@ public class GeoTiffReaderTest {
         dim.setSize(
                 reader.getOriginalGridRange().getSpan(0) / 64.0,
                 reader.getOriginalGridRange().getSpan(1) / 64.0);
-        final Rectangle rasterArea = ((GridEnvelope2D) reader.getOriginalGridRange());
+        final Rectangle rasterArea = (GridEnvelope2D) reader.getOriginalGridRange();
         rasterArea.setSize(dim);
         final GridEnvelope2D range = new GridEnvelope2D(rasterArea);
         GridGeometry2D gridGeometry = new GridGeometry2D(range, envelope);
@@ -1097,7 +1097,7 @@ public class GeoTiffReaderTest {
         dim.setSize(
                 reader.getOriginalGridRange().getSpan(0) / 64.0,
                 reader.getOriginalGridRange().getSpan(1) / 64.0);
-        final Rectangle rasterArea = ((GridEnvelope2D) reader.getOriginalGridRange());
+        final Rectangle rasterArea = (GridEnvelope2D) reader.getOriginalGridRange();
         rasterArea.setSize(dim);
         final GridEnvelope2D range = new GridEnvelope2D(rasterArea);
         GridGeometry2D gridGeometry = new GridGeometry2D(range, envelope);

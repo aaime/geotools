@@ -405,7 +405,7 @@ public class XPath extends XPathUtil {
 
         final Name attributeName = descriptor.getName();
 
-        Attribute leafAttribute = (parent instanceof ComplexAttribute)
+        Attribute leafAttribute = parent instanceof ComplexAttribute
                 ? findLeafAttribute((ComplexAttribute) parent, attributeName, index, isXlinkRef, convertedValue)
                 : null;
 
@@ -415,10 +415,10 @@ public class XPath extends XPathUtil {
         // case, as insufficient information at this point to evaluate xlink:href expressions and
         // remove duplicates, assume building multivalued xlink:href ClientProperty.
         if (leafAttribute == null
-                || (descriptor.getMaxOccurs() > 1
+                || descriptor.getMaxOccurs() > 1
                         && leafAttribute.getUserData().containsKey(Attributes.class)
                         && ((Map<Object, Object>) leafAttribute.getUserData().get(Attributes.class))
-                                .containsKey(AbstractMappingFeatureIterator.XLINK_HREF_NAME))) {
+                                .containsKey(AbstractMappingFeatureIterator.XLINK_HREF_NAME)) {
             AppSchemaAttributeBuilder builder = new AppSchemaAttributeBuilder(featureFactory);
             if (crs != null) {
                 builder.setCRS(crs);
@@ -436,7 +436,7 @@ public class XPath extends XPathUtil {
                     leafAttribute = builder.add(id, convertedValue, attributeName, targetNodeType);
                 }
             } else if (descriptor.getType().getName().equals(XSSchema.ANYTYPE_TYPE.getName())
-                    && (value == null || (value instanceof Collection && ((Collection) value).isEmpty()))) {
+                    && (value == null || value instanceof Collection && ((Collection) value).isEmpty())) {
                 // casting anyType as a complex attribute so we can set xlink:href
                 leafAttribute = builder.addComplexAnyTypeAttribute(convertedValue, descriptor, id);
             } else {
@@ -498,7 +498,7 @@ public class XPath extends XPathUtil {
             leafAttribute = getAttributeMatchingIndex(parent, attributeName, index);
         } else {
             // eliminate duplicates in case the values come from denormalized view..
-            Predicate<Attribute> valueFilter = att -> att != null && Objects.equals(att.getValue(), (convertedValue));
+            Predicate<Attribute> valueFilter = att -> att != null && Objects.equals(att.getValue(), convertedValue);
             if (index > -1) {
                 final boolean checkMappedAttributeIndexOnly = true;
                 Attribute sameIndex =

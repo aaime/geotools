@@ -110,7 +110,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
         Annotation[][] params = method.getParameterAnnotations();
         Class<?>[] paramTypes = getMethodParamTypes(method);
         for (int i = 0; i < paramTypes.length; i++) {
-            if (!(ProgressListener.class.isAssignableFrom(paramTypes[i]))) {
+            if (!ProgressListener.class.isAssignableFrom(paramTypes[i])) {
                 Parameter<?> param = paramInfo(method.getDeclaringClass(), i, paramTypes[i], params[i]);
                 input.put(param.key, param);
             }
@@ -642,7 +642,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
                     monitor.exceptionOccurred(t);
                 }
                 if (t instanceof ProcessException) {
-                    throw ((ProcessException) t);
+                    throw (ProcessException) t;
                 } else {
                     throw new ProcessException(t);
                 }
@@ -838,7 +838,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 if (t instanceof ProcessException) {
-                    throw ((ProcessException) t);
+                    throw (ProcessException) t;
                 } else {
                     throw new ProcessException(t);
                 }
@@ -866,7 +866,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 if (t instanceof ProcessException) {
-                    throw ((ProcessException) t);
+                    throw (ProcessException) t;
                 } else {
                     throw new ProcessException(t);
                 }
@@ -893,7 +893,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 if (t instanceof ProcessException) {
-                    throw ((ProcessException) t);
+                    throw (ProcessException) t;
                 } else {
                     throw new ProcessException(t);
                 }
@@ -916,7 +916,7 @@ public abstract class AnnotationDrivenProcessFactory implements ProcessFactory {
             } catch (InvocationTargetException e) {
                 Throwable t = e.getTargetException();
                 if (t instanceof ProcessException) {
-                    throw ((ProcessException) t);
+                    throw (ProcessException) t;
                 } else {
                     throw new ProcessException(t);
                 }

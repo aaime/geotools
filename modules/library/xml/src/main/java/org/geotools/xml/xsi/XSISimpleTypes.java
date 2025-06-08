@@ -211,9 +211,9 @@ public class XSISimpleTypes {
         @Override
         public boolean canCreateAttributes(Attribute attribute, Object value, Map<java.lang.String, Object> hints) {
             // TODO ensure equals works here
-            return (value != null)
+            return value != null
                     && value.getClass().equals(getInstanceType())
-                    && (attribute.getSimpleType() != null)
+                    && attribute.getSimpleType() != null
                     && this.getClass().equals(attribute.getSimpleType().getClass());
         }
 
@@ -223,9 +223,9 @@ public class XSISimpleTypes {
         @Override
         public boolean canEncode(Element element, Object value, Map<java.lang.String, Object> hints) {
             // TODO ensure equals works here
-            return (value != null)
+            return value != null
                     && value.getClass().equals(getInstanceType())
-                    && (element.getType() != null)
+                    && element.getType() != null
                     && this.getClass().equals(element.getType().getClass());
         }
 
@@ -251,7 +251,7 @@ public class XSISimpleTypes {
                 output.endElement(getNamespace(), getName());
             } else {
                 output.startElement(element.getNamespace(), element.getName(), null);
-                output.characters(((value == null) ? "" : value.toString()));
+                output.characters(value == null ? "" : value.toString());
                 output.endElement(element.getNamespace(), element.getName());
             }
         }
@@ -335,7 +335,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrsgetValue, Map<java.lang.String, Object> hints) {
-            if ((value.length >= 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length >= 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 return java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
             }
 
@@ -380,7 +380,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 return java.lang.Double.valueOf((java.lang.String) value[0].getValue());
             }
 
@@ -420,10 +420,10 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Integer i = java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
 
-                return (i.intValue() < 0) ? i : null;
+                return i.intValue() < 0 ? i : null;
             }
 
             return null;
@@ -465,10 +465,10 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Integer i = java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
 
-                return (i.intValue() >= 0) ? i : null;
+                return i.intValue() >= 0 ? i : null;
             }
 
             return null;
@@ -504,10 +504,10 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Integer i = java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
 
-                return (i.intValue() > 0) ? i : null;
+                return i.intValue() > 0 ? i : null;
             }
 
             return null;
@@ -543,10 +543,10 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Integer i = java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
 
-                return (i.intValue() <= 0) ? i : null;
+                return i.intValue() <= 0 ? i : null;
             }
 
             return null;
@@ -582,7 +582,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Long i = java.lang.Long.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -621,7 +621,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Integer i = java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -660,7 +660,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Short i = java.lang.Short.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -699,7 +699,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Byte i = java.lang.Byte.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -738,7 +738,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Long i = java.lang.Long.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -777,7 +777,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Short i = java.lang.Short.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -816,7 +816,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Integer i = java.lang.Integer.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -855,7 +855,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Byte i = java.lang.Byte.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -894,7 +894,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Float i = java.lang.Float.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -933,7 +933,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.Double i = java.lang.Double.valueOf((java.lang.String) value[0].getValue());
 
                 return i;
@@ -973,7 +973,7 @@ public class XSISimpleTypes {
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints)
                 throws SAXException {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 java.sql.Date parsed = Converters.convert(svalue, java.sql.Date.class);
                 if (null == parsed) {
@@ -1030,7 +1030,7 @@ public class XSISimpleTypes {
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints)
                 throws SAXException {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 Timestamp parsed = Converters.convert(svalue, java.sql.Timestamp.class);
                 if (null == parsed) {
@@ -1082,7 +1082,7 @@ public class XSISimpleTypes {
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints)
                 throws SAXException {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 int month;
                 int day;
                 int hour;
@@ -1106,53 +1106,53 @@ public class XSISimpleTypes {
                     return null;
                 }
 
-                if ((svalue.length() < index)
-                        && (svalue.charAt(1 + svalues[sindex].length()) == 'Y')
-                        && (sindex < svalues.length)) {
+                if (svalue.length() < index
+                        && svalue.charAt(1 + svalues[sindex].length()) == 'Y'
+                        && sindex < svalues.length) {
                     year = java.lang.Integer.parseInt(svalues[sindex]);
-                    index += (svalues[sindex].length() + 1);
+                    index += svalues[sindex].length() + 1;
                     sindex++;
                 }
 
-                if ((svalue.length() < index)
-                        && (svalue.charAt(1 + svalues[sindex].length()) == 'M')
-                        && (sindex < svalues.length)) {
+                if (svalue.length() < index
+                        && svalue.charAt(1 + svalues[sindex].length()) == 'M'
+                        && sindex < svalues.length) {
                     month = java.lang.Integer.parseInt(svalues[sindex]);
-                    index += (svalues[sindex].length() + 1);
+                    index += svalues[sindex].length() + 1;
                     sindex++;
                 }
 
-                if ((svalue.length() < index)
-                        && (svalue.charAt(1 + svalues[sindex].length()) == 'D')
-                        && (sindex < svalues.length)) {
+                if (svalue.length() < index
+                        && svalue.charAt(1 + svalues[sindex].length()) == 'D'
+                        && sindex < svalues.length) {
                     day = java.lang.Integer.parseInt(svalues[sindex]);
-                    index += (svalues[sindex].length() + 1);
+                    index += svalues[sindex].length() + 1;
                     sindex++;
                 }
 
                 index++; // T
 
-                if ((svalue.length() < index)
-                        && (svalue.charAt(1 + svalues[sindex].length()) == 'H')
-                        && (sindex < svalues.length)) {
+                if (svalue.length() < index
+                        && svalue.charAt(1 + svalues[sindex].length()) == 'H'
+                        && sindex < svalues.length) {
                     hour = java.lang.Integer.parseInt(svalues[sindex]);
-                    index += (svalues[sindex].length() + 1);
+                    index += svalues[sindex].length() + 1;
                     sindex++;
                 }
 
-                if ((svalue.length() < index)
-                        && (svalue.charAt(1 + svalues[sindex].length()) == 'M')
-                        && (sindex < svalues.length)) {
+                if (svalue.length() < index
+                        && svalue.charAt(1 + svalues[sindex].length()) == 'M'
+                        && sindex < svalues.length) {
                     minute = java.lang.Integer.parseInt(svalues[sindex]);
-                    index += (svalues[0].length() + 1);
+                    index += svalues[0].length() + 1;
                     sindex++;
                 }
 
-                if ((svalue.length() < index)
-                        && (svalue.charAt(1 + svalues[sindex].length()) == 'S')
-                        && (sindex < svalues.length)) {
+                if (svalue.length() < index
+                        && svalue.charAt(1 + svalues[sindex].length()) == 'S'
+                        && sindex < svalues.length) {
                     second = java.lang.Integer.parseInt(svalues[sindex]);
-                    index += (svalues[sindex].length() + 1);
+                    index += svalues[sindex].length() + 1;
                     sindex++;
                 }
 
@@ -1198,7 +1198,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 svalue = svalue.split("\\D*")[0]; // get digits;
 
@@ -1242,7 +1242,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 svalue = svalue.split("\\D*")[0]; // get digits;
 
@@ -1286,7 +1286,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 java.lang.String[] t = svalue.split("\\D*"); // get digits;
 
@@ -1331,7 +1331,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 java.lang.String[] t = svalue.split("\\D*"); // get digits;
 
@@ -1375,7 +1375,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 java.lang.String[] t = svalue.split("\\D*"); // get digits;
 
@@ -1421,7 +1421,7 @@ public class XSISimpleTypes {
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints)
                 throws SAXException {
-            if ((value.length == 1) && (value[0].getValue() != null) && (!"".equals(value[0].getValue()))) {
+            if (value.length == 1 && value[0].getValue() != null && !"".equals(value[0].getValue())) {
                 java.lang.String svalue = (java.lang.String) value[0].getValue();
                 java.sql.Time parsed = Converters.convert(svalue, java.sql.Time.class);
                 if (null == parsed) {
@@ -1463,7 +1463,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
@@ -1502,7 +1502,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
@@ -1541,7 +1541,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String[] i = ((java.lang.String) value[0].getValue()).split("\\s");
 
                 return i;
@@ -1580,8 +1580,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -1619,7 +1619,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String[] i = ((java.lang.String) value[0].getValue()).split("\\s");
 
                 return i;
@@ -1658,8 +1658,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -1697,7 +1697,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String[] i = ((java.lang.String) value[0].getValue()).split("\\s");
 
                 return i;
@@ -1736,8 +1736,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -1775,8 +1775,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -1814,7 +1814,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String i = ((java.lang.String) value[0].getValue()).replaceAll("\\s", " ");
 
                 return i;
@@ -1853,7 +1853,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String i = ((java.lang.String) value[0].getValue()).replaceAll("\\s", " ");
 
                 return i;
@@ -1892,8 +1892,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -1931,8 +1931,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -1970,8 +1970,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -2009,7 +2009,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 java.lang.String booleanValue = (java.lang.String) value[0].getValue();
                 java.lang.Boolean parsedValue =
                         "1".equals(booleanValue) ? java.lang.Boolean.TRUE : java.lang.Boolean.valueOf(booleanValue);
@@ -2050,7 +2050,7 @@ public class XSISimpleTypes {
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints)
                 throws SAXException {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 try {
                     URI i = new URI((java.lang.String) value[0].getValue());
 
@@ -2093,8 +2093,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -2132,8 +2132,8 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
-                java.lang.String i = ((java.lang.String) value[0].getValue());
+            if (value.length == 1 && value[0].getValue() != null) {
+                java.lang.String i = (java.lang.String) value[0].getValue();
 
                 return i;
             }
@@ -2171,7 +2171,7 @@ public class XSISimpleTypes {
         @Override
         public Object getValue(
                 Element element, ElementValue[] value, Attributes attrs, Map<java.lang.String, Object> hints) {
-            if ((value.length == 1) && (value[0].getValue() != null)) {
+            if (value.length == 1 && value[0].getValue() != null) {
                 Locale i = new Locale((java.lang.String) value[0].getValue());
 
                 return i;

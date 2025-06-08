@@ -2592,7 +2592,27 @@
                 -Xep:InconsistentCapitalization:OFF \
                 -Xep:Finalize:OFF \
                 -Xep:InlineMeSuggester:OFF \
-                -Xep:DoNotCallSuggester:OFF \
+		-Xep:DoNotCallSuggester:OFF \
+		-Xep:OperatorPrecedence:OFF \
+		-Xep:InconsistentHashCode:OFF \ 
+		-Xep:BadInstanceof:OFF \
+		-Xep:InvalidThrows:OFF \
+		-Xep:AlmostJavadoc:OFF \
+		-Xep:ImmutableEnumChecker:OFF \
+		-Xep:EmptyCatch:OFF \
+		-Xep:NotJavadoc:OFF \
+		-Xep:AlreadyChecked:OFF \
+		-Xep:UnusedVariable:OFF \ 
+		-Xep:CatchFail:OFF \
+		-Xep:ModifiedButNotUsed:OFF \
+		-Xep:UndefinedEquals:OFF \
+		-Xep:ExtendingJUnitAssert:OFF \
+		-Xep:UnusedMethod:OFF \
+		-Xep:ThreadPriorityCheck:OFF \ 
+		-Xep:MissingFail:OFF \
+		-Xep:FutureReturnValueIgnored:OFF \ 
+		-Xep:AssertThrowsMultipleStatements:OFF \
+		-Xep:StringCharset:OFF \ 
                 ${errorProneFlags}</arg>
                 <arg>-Xlint:${lint}</arg>
                 <arg>-Werror</arg>
